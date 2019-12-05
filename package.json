@@ -2,12 +2,13 @@
   "name": "dcs-frontend",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "ng": "npm run get_env && ng",
+    "start": "npm run get_env && ng serve",
+    "build": "npm run get_env && ng build",
+    "test": "npm run get_env && ng test",
+    "lint": "npm run get_env && ng lint",
+    "e2e": "npm run get_env && ng e2e",
+    "get_env": "node ./node_modules/ng-node-environment/index.js"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +20,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "ng-node-environment": "^1.1.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
