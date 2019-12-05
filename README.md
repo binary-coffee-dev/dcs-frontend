@@ -12,6 +12,17 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
+**Expose environment variables**
+
+All the environment variables of the project can be found in the `src/environments/environments.ts` file. If you want to change the value of some of these environments variables, you only need to have the environment in the system. In order to be possible to recognize the variable you need to put at the beginning the `NG_` prefix, so if the variable name is `apiUrl` you need to **export** the environment variable `NG_API_URL` and this will be automatically inserted in the `base.ts` file at the same level of the `environment.ts` file.
+
+**Environment variables**
+
+- `NG_API_URL`: api url. By default: `http://localhost:1337/`
+- `NG_PRODUCTION`: define if the application is running in production or not. By default: `false`
+
+**Build the project**
+
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
