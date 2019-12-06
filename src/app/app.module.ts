@@ -16,6 +16,7 @@ import { NgxsModule } from '@ngxs/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatSliderModule } from '@angular/material/slider';
       
     ]),
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    FlexLayoutModule
   ],
   providers: [{
     provide: APOLLO_OPTIONS,
