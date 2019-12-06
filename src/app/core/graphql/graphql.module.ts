@@ -1,17 +1,21 @@
 import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+
 import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
 import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 
-const uri = ''; // <-- add the URL of the GraphQL server here
+import {environment} from '../../../environments/environment';
+
 export function createApollo(httpLink: HttpLink) {
   return {
-    link: httpLink.create({uri}),
+    link: httpLink.create({uri: environment.graphqlUrl}),
     cache: new InMemoryCache(),
   };
 }
 
 @NgModule({
+  imports: [CommonModule, ApolloModule, HttpLinkModule],
   exports: [ApolloModule, HttpLinkModule],
   providers: [
     {
@@ -21,4 +25,5 @@ export function createApollo(httpLink: HttpLink) {
     },
   ],
 })
-export class GraphQLModule {}
+export class GraphQLModule {
+}

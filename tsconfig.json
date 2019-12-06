@@ -20,7 +20,8 @@
       "esnext.asynciterable"
     ],
     "paths": {
-      "~environments/*": ["environments/*"]
+      "~environments/*": ["environments/*"],
+      "~graphql/*": ["app/core/graphql/*"]
     }
   },
   "angularCompilerOptions": {
