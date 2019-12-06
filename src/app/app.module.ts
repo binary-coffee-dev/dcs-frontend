@@ -9,6 +9,10 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {environment} from '../environments/environment';
+import { GraphQLModule } from './graphql.module';
+
+import { NgxsModule } from '@ngxs/store';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +21,11 @@ import {environment} from '../environments/environment';
     HttpClientModule,
     AppRoutingModule,
     ApolloModule,
-    HttpLinkModule
+    HttpLinkModule,
+    GraphQLModule,
+    NgxsModule.forRoot([
+      
+    ])
   ],
   providers: [{
     provide: APOLLO_OPTIONS,
