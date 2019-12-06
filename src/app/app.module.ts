@@ -13,6 +13,10 @@ import { GraphQLModule } from './graphql.module';
 
 import { NgxsModule } from '@ngxs/store';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +29,9 @@ import { NgxsModule } from '@ngxs/store';
     GraphQLModule,
     NgxsModule.forRoot([
       
-    ])
+    ]),
+    BrowserAnimationsModule,
+    MatSliderModule
   ],
   providers: [{
     provide: APOLLO_OPTIONS,
