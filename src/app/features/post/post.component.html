@@ -6,7 +6,8 @@
        fxFlex.sm="100"
        fxFlex="60">
     <h1>{{post?.title}}</h1>
-    <div fxLayout="row">
+    <div class="post-info-container"
+         fxLayout="row">
       <span class="post-info separator">{{post?.createdAt && moment.timeFromDate(post.createdAt) || ''}}</span>
     </div>
     <div class="image-container"></div>

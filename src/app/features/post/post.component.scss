@@ -10,6 +10,10 @@
         margin: 0;
       }
 
+      .post-info-container {
+        margin-top: map_get($spacings, 2);
+      }
+
       .image-container {
         margin: map_get($spacings, 4) 0;
         width: 100%;
