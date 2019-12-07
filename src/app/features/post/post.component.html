@@ -1,10 +1,15 @@
 <div class="post-container"
-     fxLayout="column"
+     fxLayout="row"
      fxLayoutAlign="center center">
-  <h1>{{post?.title}}</h1>
-  <div fxLayout="row">
-    <span class="post-info separator">{{post?.createdAt && moment.timeFromDate(post.createdAt) || ''}}</span>
+  <div class="post-in-container"
+       fxFlex.xs="100"
+       fxFlex.sm="100"
+       fxFlex="60">
+    <h1>{{post?.title}}</h1>
+    <div fxLayout="row">
+      <span class="post-info separator">{{post?.createdAt && moment.timeFromDate(post.createdAt) || ''}}</span>
+    </div>
+    <div class="image-container"></div>
+    <markdown [data]="post?.body"></markdown>
   </div>
-  <div class="image-container"></div>
-  <markdown [data]="post?.body"></markdown>
 </div>
