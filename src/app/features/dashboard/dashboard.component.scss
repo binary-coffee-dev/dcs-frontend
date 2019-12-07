@@ -2,9 +2,9 @@
 
 :host {
   .posts-container {
-    padding: map_get($spacings, 10);
+    padding: map_get($spacings, 5);
     margin: auto;
-    width: 80%;
+    //width: 80%;
 
     .post-element {
       margin-bottom: map_get($spacings, 6);
