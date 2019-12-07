@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "npm run get_env && ng",
-    "start": "npm run get_env && ng serve",
+    "start": "npm run get_env && ng serve --watch",
     "build": "npm run get_env && ng build",
     "test": "npm run get_env && ng test",
     "lint": "npm run get_env && ng lint",

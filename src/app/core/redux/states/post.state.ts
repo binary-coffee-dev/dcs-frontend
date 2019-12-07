@@ -1,7 +1,8 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
+import {tap} from 'rxjs/operators';
 
 import {PostService} from '../services';
-import {FetchPostsAction} from '../actions';
+import {FetchPostAction, FetchPostsAction} from '../actions';
 import {initPostStateModel, PostStateModel} from './post-state.model';
 import {Post} from '../models';
 
@@ -21,7 +22,12 @@ export class PostState {
 
   @Action(FetchPostsAction)
   fetchPostsAction(ctx: StateContext<PostStateModel>) {
-    return this.postService.fetchPosts().subscribe((posts) => ctx.patchState({posts}));
+    return this.postService.fetchPosts().pipe(tap(posts => ctx.patchState({posts})));
+  }
+
+  @Action(FetchPostAction)
+  fetchPostAction(ctx: StateContext<PostStateModel>, action: FetchPostAction) {
+    return this.postService.fetchPost(action.postId).pipe(tap(post => ctx.patchState({post})));
   }
 
 }
