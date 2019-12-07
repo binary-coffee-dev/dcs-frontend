@@ -2,12 +2,12 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSliderModule} from '@angular/material/slider';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ReduxModule} from '../core/redux';
+import {MaterialModule} from '../core/material';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,9 +16,9 @@ import {ReduxModule} from '../core/redux';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSliderModule,
     FlexLayoutModule,
-    ReduxModule
+    ReduxModule,
+    MaterialModule
   ],
   bootstrap: [AppComponent]
 })
