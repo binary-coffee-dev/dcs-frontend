@@ -1,3 +1,3 @@
 export class FetchPostsAction {
-  static readonly type = '[Post] Fetch posts';
+  static readonly type = '[Posts] Fetch posts';
 }

@@ -3,9 +3,9 @@ import {CommonModule} from '@angular/common';
 
 import {DashboardComponent} from './dashboard.component';
 import {DashboardRoutingModule} from './dashboard-routing.module';
-import {PostsResolver} from './resolvers';
 import {MaterialModule} from '../../core/material';
-import { PostItemComponent } from './post-item/post-item.component';
+import {PostItemComponent} from './post-item/post-item.component';
+import {PostsGuard} from './guards';
 
 @NgModule({
   declarations: [DashboardComponent, PostItemComponent],
@@ -14,7 +14,7 @@ import { PostItemComponent } from './post-item/post-item.component';
     DashboardRoutingModule,
     MaterialModule
   ],
-  providers: [PostsResolver]
+  providers: [PostsGuard]
 })
 export class DashboardModule {
 }

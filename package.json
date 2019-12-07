@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "npm run get_env && ng",
-    "start": "npm run get_env && ng serve --watch",
+    "start": "npm run get_env && ng serve --watch --poll=2000",
     "build": "npm run get_env && ng build",
     "test": "npm run get_env && ng test",
     "lint": "npm run get_env && ng lint",
@@ -33,6 +33,7 @@
     "graphql-tag": "^2.10.1",
     "hammerjs": "^2.0.8",
     "ng-node-environment": "^1.1.1",
+    "ngx-markdown": "^8.2.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

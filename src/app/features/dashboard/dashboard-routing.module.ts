@@ -2,15 +2,13 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
 import {DashboardComponent} from './dashboard.component';
-import {PostsResolver} from './resolvers';
+import {PostsGuard} from './guards';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    resolve: {
-      posts: PostsResolver
-    }
+    canActivate: [PostsGuard]
   }
 ];
 

@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 
 import {Store} from '@ngxs/store';
-import {FetchPostAction} from '../../core/redux/actions';
+
+import {PostState} from '../../core/redux/states';
+import {Post} from '../../core/redux/models';
 
 @Component({
   selector: 'app-post',
@@ -11,11 +12,13 @@ import {FetchPostAction} from '../../core/redux/actions';
 })
 export class PostComponent implements OnInit {
 
-  constructor(private store: Store, private activatedRoute: ActivatedRoute) {
+  post: Post;
+
+  constructor(private store: Store) {
   }
 
   ngOnInit() {
-    this.store.dispatch(new FetchPostAction(this.activatedRoute.snapshot.paramMap.get('id')));
+    this.store.select(PostState.post).subscribe((post: Post) => this.post = post);
   }
 
 }

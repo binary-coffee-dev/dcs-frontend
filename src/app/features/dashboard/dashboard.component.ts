@@ -20,5 +20,6 @@ export class DashboardComponent implements OnInit {
     this.store.select(PostState.posts).subscribe((posts) => {
       this.posts = posts;
     });
+    this.posts = this.store.selectSnapshot(PostState.posts) || [];
   }
 }
