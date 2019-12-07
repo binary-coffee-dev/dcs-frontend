@@ -1,0 +1,52 @@
+@import "src/color";
+
+$post_image_size: 110px;
+
+:host {
+  .post-image-container {
+    width: $post_image_size;
+    height: $post_image_size;
+    min-width: $post_image_size;
+    border-radius: 2px;
+    margin-right: 12px;
+    background-color: map_get($md-primary, 500);
+  }
+
+  .post-body-container {
+    .post-info {
+      color: map_get($md-grey, 600);
+      font-size: 0.8125rem;
+
+      &:after {
+        content: "";
+        display: inline-block;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: #8f8f8f;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        position: relative;
+        top: -3px;
+      }
+    }
+
+    h3 {
+      margin: 0 0;
+      font-size: 1.275rem;
+
+      a {
+        text-decoration: none;
+        color: map_get($md-grey, 800);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .post-body-extract {
+    width: 100%;
+  }
+}

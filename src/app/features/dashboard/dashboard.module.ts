@@ -5,9 +5,10 @@ import {DashboardComponent} from './dashboard.component';
 import {DashboardRoutingModule} from './dashboard-routing.module';
 import {PostsResolver} from './resolvers';
 import {MaterialModule} from '../../core/material';
+import { PostItemComponent } from './post-item/post-item.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, PostItemComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

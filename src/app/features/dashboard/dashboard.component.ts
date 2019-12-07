@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngxs/store';
 
-import _ from 'lodash';
-
 import {PostState} from '../../core/redux/states';
 import {Post} from '../../core/redux/models';
 
@@ -22,9 +20,5 @@ export class DashboardComponent implements OnInit {
     this.store.select(PostState.posts).subscribe((posts) => {
       this.posts = posts;
     });
-  }
-
-  truncatePostDescription(t: string) {
-    return _.truncate(t, {length: 300});
   }
 }
