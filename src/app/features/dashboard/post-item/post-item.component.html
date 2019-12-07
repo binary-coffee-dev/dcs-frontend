@@ -4,9 +4,7 @@
 <div class="post-body-container">
   <h3><a [routerLink]="'post/' + post.id">{{post.title}}</a></h3>
   <div fxLayout="row">
-    <span class="post-info separator">Published 2 days ago</span>
-    <span class="post-info separator">5 min read</span>
-    <span class="post-info">8 comments</span>
+    <span class="post-info separator">{{post.createdAt && moment.timeFromDate(post.createdAt) || ''}}</span>
   </div>
   <span class="post-body-extract">{{truncatePostDescription(post.description)}}</span>
 </div>

@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
-import { truncate } from 'lodash';
+import {truncate} from 'lodash';
 
 import {Post} from '../../../core/redux/models';
+import {MomentService} from '../../../core/services';
 
 @Component({
   selector: 'app-post-item',
@@ -14,7 +15,8 @@ export class PostItemComponent {
   @Input()
   post: Post;
 
-  constructor() { }
+  constructor(public moment: MomentService) {
+  }
 
   truncatePostDescription(t: string) {
     return truncate(t, {length: 300});

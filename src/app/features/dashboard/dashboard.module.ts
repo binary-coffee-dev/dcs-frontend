@@ -6,13 +6,15 @@ import {DashboardRoutingModule} from './dashboard-routing.module';
 import {MaterialModule} from '../../core/material';
 import {PostItemComponent} from './post-item/post-item.component';
 import {PostsGuard} from './guards';
+import {ServicesModule} from '../../core/services';
 
 @NgModule({
   declarations: [DashboardComponent, PostItemComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ServicesModule
   ],
   providers: [PostsGuard]
 })
