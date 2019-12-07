@@ -8,9 +8,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ReduxModule} from '../core/redux';
 import {MaterialModule} from '../core/material';
+import {HeaderComponent} from './components/header';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
