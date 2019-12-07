@@ -7,6 +7,7 @@ import {PostComponent} from './post.component';
 import {PostRoutingModule} from './post-routing.module';
 import {PostGuard} from './guards';
 import {MaterialModule} from '../../core/material';
+import {ServicesModule} from '../../core/services';
 
 @NgModule({
   declarations: [PostComponent],
@@ -14,7 +15,8 @@ import {MaterialModule} from '../../core/material';
     CommonModule,
     PostRoutingModule,
     MaterialModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    ServicesModule
   ],
   providers: [PostGuard]
 })
