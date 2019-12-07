@@ -11,6 +11,7 @@
       <span class="post-info separator">{{post?.createdAt && moment.timeFromDate(post.createdAt) || ''}}</span>
     </div>
     <div class="image-container"></div>
-    <markdown [data]="post?.body"></markdown>
+    <markdown [data]="post?.body"
+              lineNumbers></markdown>
   </div>
 </div>
