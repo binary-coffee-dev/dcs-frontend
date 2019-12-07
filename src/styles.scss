@@ -1,7 +1,13 @@
 @import "color";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .post-info {
   color: map_get($md-grey, 600);
@@ -20,5 +26,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       position: relative;
       top: -3px;
     }
+  }
+}
+
+markdown {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 1.3rem;
+    font-weight: 100;
   }
 }
