@@ -5,7 +5,7 @@
     <div class="post-image-container">
     </div>
     <div class="post-body-container">
-      <h3><a href="#">{{post.title}}</a></h3>
+      <h3><a [routerLink]="'post/' + post.id">{{post.title}}</a></h3>
       <div fxLayout="row">
         <span class="post-info">Published 2 days ago</span>
         <span class="post-info">5 min read</span>
