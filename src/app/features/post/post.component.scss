@@ -1,0 +1,21 @@
+@import "src/spacings";
+@import "src/color";
+
+:host {
+  .post-container {
+    h1 {
+      margin: 0;
+    }
+
+    .image-container {
+      margin: map_get($spacings, 4) map_get($spacings, 10);
+      width: calc(100% - #{map_get($spacings, 10)} * 2);
+      min-height: 200px;
+      background-color: map_get($md-primary, 900);
+    }
+
+    markdown {
+      margin: 0 map_get($spacings, 10);
+    }
+  }
+}
