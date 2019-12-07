@@ -7,16 +7,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: map_get($md-grey, 600);
   font-size: 0.8125rem;
 
-  &:after {
-    content: "";
-    display: inline-block;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: #8f8f8f;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    position: relative;
-    top: -3px;
+  &.separator {
+    &:after {
+      content: "";
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #8f8f8f;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      position: relative;
+      top: -3px;
+    }
   }
 }
