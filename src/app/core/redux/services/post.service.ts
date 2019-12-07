@@ -8,7 +8,7 @@ import {Post} from '../models';
 import {map} from 'rxjs/operators';
 
 
-const POSTS_QUERY = gql` { posts { title description } } `;
+const POSTS_QUERY = gql` { posts { id title description } } `;
 
 @Injectable()
 export class PostService {
