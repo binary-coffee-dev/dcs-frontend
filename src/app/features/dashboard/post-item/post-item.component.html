@@ -1,5 +1,8 @@
 <div class="post-image-container"
      fxShow.xs="false">
+  <img *ngIf="post?.banner && post?.banner?.url"
+       [src]="resource.addApiUrl(post?.banner?.url)"
+       alt="">
 </div>
 <div class="post-body-container">
   <h3><a [routerLink]="'post/' + post.id">{{post.title}}</a></h3>
