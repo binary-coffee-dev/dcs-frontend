@@ -4,7 +4,7 @@
     "outDir": "./out-tsc/spec",
     "emitDecoratorMetadata": true,
     "types": [
-      "jasmine",
+      "jest",
       "node"
     ]
   },
