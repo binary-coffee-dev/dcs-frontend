@@ -10,4 +10,8 @@
     <span class="post-info separator">{{post?.createdAt && moment.timeFromDate(post.createdAt) || ''}}</span>
   </div>
   <span class="post-body-extract">{{truncatePostDescription(post.description)}}</span>
+  <div>
+    <a class="read-more-button"
+       [routerLink]="'post/' + post.id">Read more →</a>
+  </div>
 </div>
