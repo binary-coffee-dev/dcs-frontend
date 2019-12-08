@@ -38,4 +38,10 @@ markdown {
     font-size: 1.3rem;
     font-weight: 100;
   }
+
+  img {
+    width: 50%;
+    object-fit: cover;
+    object-position: center;
+  }
 }
