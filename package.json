@@ -56,6 +56,11 @@
   },
   "jest": {
     "preset": "jest-preset-angular",
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/{main.ts,polyfills.ts,index.ts}",
+      "!src/**/*{.module.ts,.model.ts}"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/setupJest.ts"
     ]
