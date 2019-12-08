@@ -4,7 +4,7 @@ import {Store} from '@ngxs/store';
 
 import {PostState} from '../../core/redux/states';
 import {Post} from '../../core/redux/models';
-import {MomentService} from '../../core/services';
+import {MomentService, ResourceService} from '../../core/services';
 
 @Component({
   selector: 'app-post',
@@ -15,7 +15,11 @@ export class PostComponent implements OnInit {
 
   post: Post;
 
-  constructor(private store: Store, public moment: MomentService) {
+  constructor(
+    private store: Store,
+    public moment: MomentService,
+    public resource: ResourceService
+  ) {
   }
 
   ngOnInit() {

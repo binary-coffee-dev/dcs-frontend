@@ -18,11 +18,13 @@
       .image-container {
         margin: map_get($spacings, 4) 0;
         width: 100%;
-        min-height: 200px;
         background-color: map_get($md-primary, 900);
-      }
 
-      markdown {
+        img {
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
       }
     }
   }
