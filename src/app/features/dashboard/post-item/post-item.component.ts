@@ -15,7 +15,10 @@ export class PostItemComponent {
   @Input()
   post: Post;
 
-  constructor(public moment: MomentService, public resource: ResourceService) {
+  constructor(
+    public moment: MomentService,
+    public resource: ResourceService
+  ) {
   }
 
   truncatePostDescription(t: string) {

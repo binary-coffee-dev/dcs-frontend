@@ -10,6 +10,6 @@ export class ResourceService {
   }
 
   addApiUrl(url: string) {
-    return `${environment.apiUrl}/${url}`;
+    return `${environment.apiUrl}${url}`;
   }
 }

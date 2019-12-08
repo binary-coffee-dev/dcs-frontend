@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 
 import {Observable} from 'rxjs';
 import {Apollo} from 'apollo-angular';
-
-import {Post} from '../models';
 import {map} from 'rxjs/operators';
+
 import {POST_QUERY, POSTS_QUERY} from '../../graphql/queries';
+import {Post} from '../models';
 
 @Injectable()
 export class PostService {

@@ -22,7 +22,8 @@
     "paths": {
       "~environments/*": ["environments/*"],
       "~graphql/*": ["app/core/graphql/*"]
-    }
+    },
+    "esModuleInterop": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
