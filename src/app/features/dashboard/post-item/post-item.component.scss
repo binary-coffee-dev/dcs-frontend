@@ -1,4 +1,5 @@
 @import "src/color";
+@import "src/spacings";
 
 $post_image_size: 110px;
 
@@ -36,7 +37,13 @@ $post_image_size: 110px;
     }
   }
 
+  .post-info-container {
+    margin: map_get($spacings, 1) 0;
+  }
+
   .post-body-extract {
     width: 100%;
+    font-weight: 300;
+    font-size: 0.95rem;
   }
 }
