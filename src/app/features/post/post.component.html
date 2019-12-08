@@ -10,7 +10,10 @@
          fxLayout="row">
       <span class="post-info separator">{{post?.createdAt && moment.timeFromDate(post.createdAt) || ''}}</span>
     </div>
-    <div class="image-container"></div>
+    <div class="image-container">
+      <img [src]="post?.banner?.url"
+           alt="">
+    </div>
     <markdown [data]="post?.body"
               katex
               lineNumbers></markdown>

@@ -10,6 +10,13 @@ $post_image_size: 110px;
     border-radius: 2px;
     margin-right: 12px;
     background-color: map_get($md-primary, 500);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
   }
 
   .post-body-container {
