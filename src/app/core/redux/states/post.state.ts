@@ -1,11 +1,10 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {map, tap} from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 
 import {PostService} from '../services';
 import {FetchPostAction, FetchPostsAction} from '../actions';
 import {initPostStateModel, PostStateModel} from './post-state.model';
 import {Post} from '../models';
-import {log} from 'util';
 
 @State<PostStateModel>({
   name: 'post',
