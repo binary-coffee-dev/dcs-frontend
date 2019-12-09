@@ -5,17 +5,17 @@ import {Apollo} from 'apollo-angular';
 import {map} from 'rxjs/operators';
 
 import {POST_QUERY, POSTS_QUERY} from '../../graphql/queries';
-import {Post} from '../models';
+import {Post, PostConnection} from '../models';
 
 @Injectable()
 export class PostService {
   constructor(private apollo: Apollo) {
   }
 
-  fetchPosts(): Observable<Post[]> {
+  fetchPosts(): Observable<PostConnection> {
     return this.apollo
       .watchQuery({query: POSTS_QUERY})
-      .valueChanges.pipe(map((result: any) => result.data.posts));
+      .valueChanges.pipe(map((result: any) => result.data.postsConnection));
   }
 
   fetchPost(id: string): Observable<Post> {
