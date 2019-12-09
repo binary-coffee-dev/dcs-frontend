@@ -4,7 +4,7 @@ import {tap} from 'rxjs/operators';
 import {PostService} from '../services';
 import {FetchPostAction, FetchPostsAction} from '../actions';
 import {initPostStateModel, PostStateModel} from './post-state.model';
-import {Post} from '../models';
+import {Post, PostConnection} from '../models';
 
 @State<PostStateModel>({
   name: 'post',
@@ -27,8 +27,11 @@ export class PostState {
 
   @Action(FetchPostsAction)
   fetchPostsAction(ctx: StateContext<PostStateModel>) {
-    return this.postService.fetchPosts().pipe(tap(posts => {
-      ctx.patchState({posts});
+    return this.postService.fetchPosts().pipe(tap((postConnection: PostConnection) => {
+      ctx.patchState({
+        posts: postConnection.values,
+        count: postConnection.aggregate.count
+      });
     }));
   }
 
