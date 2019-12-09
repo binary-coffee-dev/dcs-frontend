@@ -2,9 +2,11 @@ import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {tap} from 'rxjs/operators';
 
 import {PostService} from '../services';
-import {FetchPostAction, FetchPostsAction} from '../actions';
+import {FetchPostAction, FetchPostsAction, NextPageAction, PreviousPageAction} from '../actions';
 import {initPostStateModel, PostStateModel} from './post-state.model';
 import {Post, PostConnection} from '../models';
+
+export const MINIMUM_PAGE = 0;
 
 @State<PostStateModel>({
   name: 'post',
@@ -27,17 +29,54 @@ export class PostState {
 
   @Action(FetchPostsAction)
   fetchPostsAction(ctx: StateContext<PostStateModel>) {
-    return this.postService.fetchPosts().pipe(tap((postConnection: PostConnection) => {
-      ctx.patchState({
-        posts: postConnection.values,
-        count: postConnection.aggregate.count
-      });
+    const pageSize = ctx.getState().pageSize;
+    const start = ctx.getState().page * pageSize;
+    return this.fetchPage(pageSize, start, ctx);
+  }
+
+  @Action(NextPageAction)
+  nextPageAction(ctx: StateContext<PostStateModel>) {
+    const pageSize = ctx.getState().pageSize;
+    const currentPage = this.nextPageNumber(ctx.getState().page, ctx.getState().count, pageSize);
+    const start = currentPage * pageSize;
+    return this.fetchPage(pageSize, start, ctx).pipe(tap(() => {
+      ctx.patchState({page: currentPage});
+    }));
+  }
+
+  nextPageNumber(page: number, count: number, pageSize: number) {
+    return Math.min(page + 1, !!count ? this.lastPage(count, pageSize) : 0);
+  }
+
+  lastPage(count: number, pageSize: number) {
+    return Math.floor(Math.max(count - 1, 0) / (pageSize === 0 ? 1 : pageSize));
+  }
+
+  @Action(PreviousPageAction)
+  previousPageAction(ctx: StateContext<PostStateModel>) {
+    const pageSize = ctx.getState().pageSize;
+    const currentPage = Math.max(ctx.getState().page - 1, MINIMUM_PAGE);
+    const start = currentPage * pageSize;
+    return this.fetchPage(pageSize, start, ctx).pipe(tap(() => {
+      ctx.patchState({page: currentPage});
     }));
   }
 
   @Action(FetchPostAction)
   fetchPostAction(ctx: StateContext<PostStateModel>, action: FetchPostAction) {
     return this.postService.fetchPost(action.postId).pipe(tap(post => ctx.patchState({post})));
+  }
+
+  fetchPage(pageSize: number, start: number, ctx: StateContext<PostStateModel>) {
+    return this.postService.fetchPosts(
+      pageSize,
+      start
+    ).pipe(tap((postConnection: PostConnection) => {
+      ctx.patchState({
+        posts: postConnection.values,
+        count: postConnection.aggregate.count
+      });
+    }));
   }
 
 }

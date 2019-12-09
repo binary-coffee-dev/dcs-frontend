@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const POSTS_QUERY = gql`
-    query {
-        postsConnection(sort: "createdAt:desc", limit: 1, start: 0){
+    query pageQuery($limit: Int!, $start: Int!) {
+        postsConnection(sort: "createdAt:desc", limit: $limit, start: $start){
             values {
                 title
                 body

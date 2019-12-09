@@ -23,6 +23,7 @@ const POSTS_EXAMPLE = [
 describe('PostState', () => {
   let store: Store;
   let postService: PostServiceStub;
+  let postState: PostState;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,9 +34,14 @@ describe('PostState', () => {
     }).compileComponents();
     store = TestBed.get(Store);
     postService = TestBed.get(PostService);
+    postState = TestBed.get(PostState);
   }));
 
-  it('should fetch the list of posts', (done) => {
+  it('should create', () => {
+    expect(postState).toBeTruthy();
+  });
+
+  xit('should fetch the list of posts', (done) => {
     jest.spyOn(postService, 'fetchPosts').mockReturnValue(of(POSTS_EXAMPLE));
     store.dispatch(new FetchPostsAction());
     store.selectOnce(PostState.posts).subscribe((posts) => {
@@ -52,5 +58,18 @@ describe('PostState', () => {
       expect(postService.fetchPost).toHaveBeenCalledWith(ID_EXAMPLE);
       done();
     });
+  });
+
+  it('should get the last page', () => {
+    expect(postState.lastPage(43, 20)).toEqual(2);
+    expect(postState.lastPage(10, 1)).toEqual(9);
+    expect(postState.lastPage(0, 1)).toEqual(0);
+    expect(postState.lastPage(0, 0)).toEqual(0);
+  });
+
+  it('should get the next page number', () => {
+    expect(postState.nextPageNumber(0, 60, 20)).toEqual(1);
+    expect(postState.nextPageNumber(1, 60, 20)).toEqual(2);
+    expect(postState.nextPageNumber(2, 60, 20)).toEqual(2);
   });
 });

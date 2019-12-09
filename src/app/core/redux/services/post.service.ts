@@ -12,9 +12,9 @@ export class PostService {
   constructor(private apollo: Apollo) {
   }
 
-  fetchPosts(): Observable<PostConnection> {
+  fetchPosts(limit, start = 0): Observable<PostConnection> {
     return this.apollo
-      .watchQuery({query: POSTS_QUERY})
+      .watchQuery({query: POSTS_QUERY, variables: { limit, start }})
       .valueChanges.pipe(map((result: any) => result.data.postsConnection));
   }
 

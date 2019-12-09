@@ -1,4 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+import {Store} from '@ngxs/store';
+
+import {NextPageAction, PreviousPageAction} from '../../../core/redux/actions';
 
 @Component({
   selector: 'app-pagination',
@@ -7,10 +11,18 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class PaginationComponent implements OnInit {
 
-  constructor() {
+  constructor(private store: Store) {
   }
 
   ngOnInit() {
+  }
+
+  nextPage() {
+    this.store.dispatch(new NextPageAction());
+  }
+
+  previousPage() {
+    this.store.dispatch(new PreviousPageAction());
   }
 
 }
