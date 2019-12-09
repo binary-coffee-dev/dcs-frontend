@@ -1,0 +1,22 @@
+@import "src/color";
+
+:host {
+  .pagination-container {
+    margin: 0 -13px;
+
+    .pagination-button {
+      border: none;
+      border-radius: 5px;
+      height: 48px;
+      margin: 12px;
+      background-color: map_get($md-primary, 500);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+
+      &:hover {
+        background-color: map_get($md-primary, 700);
+      }
+    }
+  }
+}

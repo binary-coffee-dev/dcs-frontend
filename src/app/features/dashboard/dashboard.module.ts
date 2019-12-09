@@ -7,9 +7,10 @@ import {MaterialModule} from '../../core/material';
 import {PostItemComponent} from './post-item/post-item.component';
 import {PostsGuard} from './guards';
 import {ServicesModule} from '../../core/services';
+import {PaginationComponent} from './pagination';
 
 @NgModule({
-  declarations: [DashboardComponent, PostItemComponent],
+  declarations: [DashboardComponent, PostItemComponent, PaginationComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
