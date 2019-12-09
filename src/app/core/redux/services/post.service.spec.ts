@@ -4,7 +4,7 @@ import {Apollo} from 'apollo-angular';
 import {of} from 'rxjs';
 
 import {PostService} from './post.service';
-import {Post} from '../models';
+import {Post, PostConnection} from '../models';
 import {POST_QUERY, POSTS_QUERY} from '../../graphql/queries';
 
 class ApolloStub {
@@ -13,6 +13,8 @@ class ApolloStub {
 
 const ID_EXAMPLE = '123';
 const POST_EXAMPLE = {id: ID_EXAMPLE} as Post;
+const COUNT_EXAMPLE = 123;
+const LIMIT_EXAMPLE = 12;
 const POSTS_EXAMPLE = [
   POST_EXAMPLE,
   {id: '12'} as Post
@@ -39,11 +41,20 @@ describe('PostService', () => {
   });
 
   it('should fetch list of posts from backend', (done) => {
-    jest.spyOn(apollo, 'watchQuery').mockReturnValue({valueChanges: of({data: {posts: POSTS_EXAMPLE}})});
+    jest.spyOn(apollo, 'watchQuery').mockReturnValue({
+      valueChanges: of({
+        data: {
+          postsConnection: {
+            values: POSTS_EXAMPLE,
+            aggregate: {count: COUNT_EXAMPLE}
+          } as PostConnection
+        }
+      })
+    });
 
-    service.fetchPosts().subscribe((posts) => {
-      expect(posts).toEqual(POSTS_EXAMPLE);
-      expect(apollo.watchQuery).toHaveBeenCalledWith({query: POSTS_QUERY});
+    service.fetchPosts(LIMIT_EXAMPLE).subscribe((posts) => {
+      expect(posts).toEqual({values: POSTS_EXAMPLE, aggregate: {count: COUNT_EXAMPLE}} as PostConnection);
+      expect(apollo.watchQuery).toHaveBeenCalledWith({query: POSTS_QUERY, variables: {limit: LIMIT_EXAMPLE, start: 0}});
       done();
     });
   });
