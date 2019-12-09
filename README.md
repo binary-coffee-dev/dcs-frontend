@@ -1,7 +1,7 @@
 # DcsFrontend
 
 [![Build Status](https://travis-ci.com/dcs-community/dcs-frontend.svg?branch=master)](https://travis-ci.com/dcs-community/dcs-frontend)
-[![codecov.io](https://img.shields.io/codecov/c/github/dcs-community/dcs-frontend/master.svg?style=flat-square)]
+![codecov.io](https://img.shields.io/codecov/c/github/dcs-community/dcs-frontend/master.svg?style=flat-square)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
