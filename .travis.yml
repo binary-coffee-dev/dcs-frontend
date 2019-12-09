@@ -6,4 +6,4 @@ node_js:
 #after_success:
 #  - codecov --file coverage/lcov.info --disable search
 script:
-  - npm run test:cov
+  - npm run test
