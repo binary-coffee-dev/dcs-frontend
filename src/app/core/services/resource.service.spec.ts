@@ -3,10 +3,17 @@ import {TestBed} from '@angular/core/testing';
 import {ResourceService} from './resource.service';
 
 describe('ResourceService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: ResourceService;
+
+  beforeEach(() => TestBed.configureTestingModule({
+    providers: [ResourceService]
+  }));
+
+  beforeEach(() => {
+    service = TestBed.get(ResourceService);
+  });
 
   it('should be created', () => {
-    const service: ResourceService = TestBed.get(ResourceService);
     expect(service).toBeTruthy();
   });
 });
