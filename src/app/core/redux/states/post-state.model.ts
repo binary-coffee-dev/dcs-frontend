@@ -6,12 +6,14 @@ export interface PostStateModel {
   count: number;
   page: number;
   pageSize: number;
+  firstPage: boolean;
+  lastPage: boolean;
 }
 
 export const initPostStateModel = () => {
   return {
     posts: [],
     page: 0,
-    pageSize: 1
+    pageSize: 10
   } as PostStateModel;
 };

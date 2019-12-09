@@ -8,6 +8,7 @@ export const POSTS_QUERY = gql`
                 title
                 body
                 description
+                createdAt
                 banner {
                     name
                     url

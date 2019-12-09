@@ -24,6 +24,16 @@ export class PostState {
     return state.post;
   }
 
+  @Selector()
+  static firstPage(state: PostStateModel): boolean {
+    return state.firstPage;
+  }
+
+  @Selector()
+  static lastPage(state: PostStateModel): boolean {
+    return state.lastPage;
+  }
+
   constructor(private postService: PostService) {
   }
 
@@ -39,7 +49,7 @@ export class PostState {
     const pageSize = ctx.getState().pageSize;
     const currentPage = this.nextPageNumber(ctx.getState().page, ctx.getState().count, pageSize);
     const start = currentPage * pageSize;
-    return this.fetchPage(pageSize, start, ctx).pipe(tap(() => {
+    return this.fetchPage(pageSize, start, ctx, currentPage).pipe(tap(() => {
       ctx.patchState({page: currentPage});
     }));
   }
@@ -48,16 +58,12 @@ export class PostState {
     return Math.min(page + 1, !!count ? this.lastPage(count, pageSize) : 0);
   }
 
-  lastPage(count: number, pageSize: number) {
-    return Math.floor(Math.max(count - 1, 0) / (pageSize === 0 ? 1 : pageSize));
-  }
-
   @Action(PreviousPageAction)
   previousPageAction(ctx: StateContext<PostStateModel>) {
     const pageSize = ctx.getState().pageSize;
     const currentPage = Math.max(ctx.getState().page - 1, MINIMUM_PAGE);
     const start = currentPage * pageSize;
-    return this.fetchPage(pageSize, start, ctx).pipe(tap(() => {
+    return this.fetchPage(pageSize, start, ctx, currentPage).pipe(tap(() => {
       ctx.patchState({page: currentPage});
     }));
   }
@@ -67,16 +73,31 @@ export class PostState {
     return this.postService.fetchPost(action.postId).pipe(tap(post => ctx.patchState({post})));
   }
 
-  fetchPage(pageSize: number, start: number, ctx: StateContext<PostStateModel>) {
+  fetchPage(pageSize: number, start: number, ctx: StateContext<PostStateModel>, page?: number) {
     return this.postService.fetchPosts(
       pageSize,
       start
-    ).pipe(tap((postConnection: PostConnection) => {
-      ctx.patchState({
-        posts: postConnection.values,
-        count: postConnection.aggregate.count
-      });
-    }));
+    ).pipe(
+      tap((postConnection: PostConnection) => {
+        ctx.patchState({posts: postConnection.values, count: postConnection.aggregate.count});
+        this.refreshPaginationVisibility(
+          ctx,
+          typeof page === 'number' ? page : ctx.getState().page,
+          postConnection.aggregate.count,
+          pageSize
+        );
+      }));
+  }
+
+  refreshPaginationVisibility(ctx: StateContext<PostStateModel>, page, count, pageSize) {
+    ctx.patchState({
+      firstPage: page === 0,
+      lastPage: page === this.lastPage(count, pageSize)
+    });
+  }
+
+  lastPage(count: number, pageSize: number) {
+    return Math.floor(Math.max(count - 1, 0) / (pageSize === 0 ? 1 : pageSize));
   }
 
 }
