@@ -38,7 +38,6 @@
               "node_modules/prismjs/components/prism-css.min.js",
               "node_modules/prismjs/components/prism-csharp.min.js",
               "node_modules/prismjs/components/prism-java.js",
-              "node_modules/prismjs/components/prism-cpp.js",
               "node_modules/prismjs/components/prism-javascript.js",
               "node_modules/prismjs/components/prism-go.js",
               "node_modules/prismjs/components/prism-php.js",
@@ -51,7 +50,6 @@
               "node_modules/prismjs/components/prism-kotlin.js",
               "node_modules/prismjs/components/prism-c.js",
               "node_modules/prismjs/components/prism-bash.js",
-              "node_modules/prismjs/components/prism-arduino.js",
               "node_modules/prismjs/components/prism-json.js"
             ]
           },
