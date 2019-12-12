@@ -39,8 +39,30 @@ markdown {
     font-weight: 100;
   }
 
+  a {
+    color: map_get($md-grey, 800);
+  }
+
+  strong {
+    font-weight: 500;
+  }
+
+  blockquote {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: -40px;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background-color: map_get($md-grey, 500);
+    }
+  }
+
   img {
-    width: 50%;
+    width: 30%;
     object-fit: cover;
     object-position: center;
   }
