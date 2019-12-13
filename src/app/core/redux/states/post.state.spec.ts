@@ -127,4 +127,17 @@ describe('PostState', () => {
       done();
     });
   });
+
+  it('should fetch a null value', (done) => {
+    jest.spyOn(postService, 'fetchPosts').mockReturnValue(of(null));
+    jest.spyOn(postState, 'refreshPaginationVisibility').mockImplementation(jest.fn());
+    const ctx = {patchState: jest.fn()} as unknown as StateContext<PostStateModel>;
+
+    postState.fetchPage(PAGE_SIZE_EXAMPLE, START_PAGE_EXAMPLE, ctx, PAGE_EXAMPLE).subscribe(() => {
+      expect(postService.fetchPosts).toHaveBeenCalledWith(PAGE_SIZE_EXAMPLE, START_PAGE_EXAMPLE);
+      expect(ctx.patchState).toHaveBeenCalledWith({posts: [], count: 0});
+      expect(postState.refreshPaginationVisibility).toHaveBeenCalledWith(ctx, PAGE_EXAMPLE, 0, PAGE_SIZE_EXAMPLE);
+      done();
+    });
+  });
 });

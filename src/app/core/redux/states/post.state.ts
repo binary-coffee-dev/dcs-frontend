@@ -79,11 +79,13 @@ export class PostState {
       start
     ).pipe(
       tap((postConnection: PostConnection) => {
-        ctx.patchState({posts: postConnection.values, count: postConnection.aggregate.count});
+        const posts = postConnection ? postConnection.values : [];
+        const count = postConnection ? postConnection.aggregate.count : 0;
+        ctx.patchState({posts, count});
         this.refreshPaginationVisibility(
           ctx,
           typeof page === 'number' ? page : ctx.getState().page,
-          postConnection.aggregate.count,
+          count,
           pageSize
         );
       }));
