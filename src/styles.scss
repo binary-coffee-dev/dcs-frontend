@@ -63,8 +63,20 @@ markdown {
   }
 
   img {
-    width: 30%;
+    width: 50%;
     object-fit: cover;
     object-position: center;
+  }
+
+  @media screen and (max-width: 599px) {
+    img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    img {
+      width: 80%;
+    }
   }
 }
