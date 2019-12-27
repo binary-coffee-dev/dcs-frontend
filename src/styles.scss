@@ -41,6 +41,7 @@ markdown {
 
   a {
     color: map_get($md-grey, 800);
+    word-break: break-all;
   }
 
   strong {
