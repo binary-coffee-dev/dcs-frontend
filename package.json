@@ -5,6 +5,7 @@
     "ng": "npm run get_env && ng",
     "start": "npm run get_env && ng serve --watch --poll=2000",
     "build": "npm run get_env && ng build",
+    "build.prod": "npm run get_env && ng build --prod",
     "test": "npm run get_env && jest --coverage",
     "lint": "npm run get_env && ng lint",
     "e2e": "npm run get_env && ng e2e",
