@@ -39,9 +39,44 @@ markdown {
     font-weight: 100;
   }
 
+  a {
+    color: map_get($md-grey, 800);
+    word-break: break-all;
+  }
+
+  strong {
+    font-weight: 500;
+  }
+
+  blockquote {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: -40px;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background-color: map_get($md-grey, 500);
+    }
+  }
+
   img {
     width: 50%;
     object-fit: cover;
     object-position: center;
+  }
+
+  @media screen and (max-width: 599px) {
+    img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    img {
+      width: 80%;
+    }
   }
 }
