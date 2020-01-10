@@ -7,4 +7,4 @@ services:
       dockerfile: ./Dockerfile
     restart: always
     ports:
-      - '127.0.0.1:${PORT_FRONTEND}:80'
+      - '127.0.0.1:${PORT_FRONTEND}:4000'

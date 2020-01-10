@@ -4,15 +4,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {ReduxModule} from '../core/redux';
-import {MaterialModule} from '../core/material';
-import {HeaderComponent} from './components/header';
+import {AppComponent} from './features/app.component';
+import {ReduxModule} from './core/redux';
+import {MaterialModule} from './core/material';
+import {HeaderComponent} from './features/components/header';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
