@@ -5,6 +5,7 @@ export const POSTS_QUERY = gql`
         postsConnection(sort: "createdAt:desc", limit: $limit, start: $start){
             values {
                 id
+                name
                 title
                 body
                 description

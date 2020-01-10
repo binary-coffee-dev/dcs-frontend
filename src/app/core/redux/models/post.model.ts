@@ -2,6 +2,7 @@ import {File} from './file.model';
 
 export interface Post {
   id: string;
+  name: string;
   title: string;
   body: string;
   createdAt: Date;

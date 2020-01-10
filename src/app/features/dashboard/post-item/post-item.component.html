@@ -5,13 +5,13 @@
        alt="">
 </div>
 <div class="post-body-container">
-  <h3><a [routerLink]="'post/' + post?.id">{{post?.title}}</a></h3>
+  <h3><a [routerLink]="'post/' + post?.name">{{post?.title}}</a></h3>
   <div class="post-info-container" fxLayout="row">
     <span class="post-info separator">{{post?.createdAt && moment.timeFromDate(post?.createdAt) || ''}}</span>
   </div>
   <span class="post-body-extract">{{truncatePostDescription(post?.description)}}</span>
   <div>
     <a class="read-more-button"
-       [routerLink]="'post/' + post?.id">Read more →</a>
+       [routerLink]="'post/' + post?.name">Read more →</a>
   </div>
 </div>

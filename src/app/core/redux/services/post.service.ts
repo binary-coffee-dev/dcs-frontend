@@ -21,6 +21,6 @@ export class PostService {
   fetchPost(id: string): Observable<Post> {
     return this.apollo
       .watchQuery({query: POST_QUERY, variables: {id}})
-      .valueChanges.pipe(map((result: any) => result.data.post));
+      .valueChanges.pipe(map((result: any) => result.data.postByName));
   }
 }
