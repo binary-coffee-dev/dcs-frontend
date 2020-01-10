@@ -29,10 +29,12 @@ export class PostComponent implements OnInit {
       this.post = post;
       if (post) {
         this.metaTags.updateMetas([
+          {key: MetaTagsService.metas, value: window.location.href} as MetaTag,
           {key: MetaTagsService.titleMeta, value: post.title} as MetaTag,
           {key: MetaTagsService.imageMeta, value: `${environment.apiUrl}${post.banner.url}`} as MetaTag,
           {key: MetaTagsService.descriptionMeta, value: post.description} as MetaTag,
           {key: MetaTagsService.twitterImageMeta, value: `${environment.apiUrl}${post.banner.url}`} as MetaTag,
+          {key: MetaTagsService.typeMeta, value: 'article'} as MetaTag,
           {key: MetaTagsService.twitterTitleMeta, value: post.title} as MetaTag
         ]);
       }

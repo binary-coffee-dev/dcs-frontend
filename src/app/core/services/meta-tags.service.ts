@@ -15,6 +15,7 @@ export class MetaTagsService {
   public static titleMeta = 'og:title';
   public static descriptionMeta = 'og:description';
   public static imageMeta = 'og:image';
+  public static typeMeta = 'og:type';
   public static secureImageMeta = 'og:image:secure_url';
   public static twitterTitleMeta = 'twitter:text:title';
   public static twitterImageMeta = 'twitter:image';
@@ -24,8 +25,6 @@ export class MetaTagsService {
 
   public updateMetas(tags: MetaTag[]) {
     tags.forEach(siteTag => {
-      // const tagName = this.meta.getTag(`name='${siteTag.key}'`);
-      // const tagProperty = this.meta.getTag(`property='${siteTag.key}'`);
       this.meta.updateTag({name: siteTag.key, content: siteTag.value});
       this.meta.updateTag({property: siteTag.key, content: siteTag.value});
     });
