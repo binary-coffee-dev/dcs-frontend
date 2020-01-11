@@ -10,9 +10,15 @@ export const POSTS_QUERY = gql`
                 body
                 description
                 createdAt
+                views
                 banner {
                     name
                     url
+                }
+                author {
+                    username
+                    email
+                    page
                 }
             }
             aggregate {

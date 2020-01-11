@@ -1,4 +1,5 @@
 import {File} from './file.model';
+import {User} from './user.model';
 
 export interface Post {
   id: string;
@@ -8,4 +9,6 @@ export interface Post {
   createdAt: Date;
   description: string;
   banner: File;
+  author: User;
+  views: string;
 }

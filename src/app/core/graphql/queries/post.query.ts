@@ -9,8 +9,13 @@ export const POST_QUERY = gql`
             description
             body
             createdAt
-            banner {
-                url
+            views
+            banner { url }
+            author {
+                username
+                email
+                avatar { url }
+                page
             }
         }
     }
