@@ -8,7 +8,22 @@
     <h1>{{post?.title}}</h1>
     <div class="post-info-container"
          fxLayout="row">
-      <span class="post-info separator">{{post?.createdAt && moment.timeFromDate(post.createdAt) || ''}}</span>
+      <span class="post-info separator">
+        <a [href]="post?.author?.page || ''"
+           [title]="post?.author?.email"
+           fxLayout="row"
+           fxLayoutAlign="start center">
+          <img *ngIf="post?.author?.avatar?.url"
+               [src]="resource.addApiUrl(post?.author?.avatar?.url)"
+               alt="">
+          {{post?.author?.username}}
+        </a>
+      </span>
+      <span class="post-info separator"
+            fxLayout="row"
+            fxLayoutAlign="start center">
+        Published {{post?.createdAt && moment.timeFromDate(post.createdAt) || ''}}
+      </span>
     </div>
     <div class="image-container">
       <img *ngIf="post?.banner && post?.banner?.url"
