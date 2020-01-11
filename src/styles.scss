@@ -12,6 +12,20 @@ body {
 .post-info {
   color: map_get($md-grey, 600);
   font-size: 0.8125rem;
+  position: relative;
+  margin-right: 15px;
+
+  a {
+    text-decoration: none;
+    color: map_get($md-grey, 600);
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+  }
 
   &.separator {
     &:after {
@@ -21,10 +35,9 @@ body {
       height: 3px;
       border-radius: 50%;
       background: #8f8f8f;
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-      position: relative;
-      top: -3px;
+      position: absolute;
+      right: -7px;
+      top: 50%;
     }
   }
 }
