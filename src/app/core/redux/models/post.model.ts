@@ -10,4 +10,5 @@ export interface Post {
   description: string;
   banner: File;
   author: User;
+  views: string;
 }
