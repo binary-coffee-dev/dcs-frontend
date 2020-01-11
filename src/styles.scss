@@ -15,9 +15,14 @@ body {
   position: relative;
   margin-right: 15px;
 
+  span {
+    margin-right: 5px;
+  }
+
   a {
     text-decoration: none;
     color: map_get($md-grey, 600);
+    font-weight: 600;
 
     img {
       width: 30px;

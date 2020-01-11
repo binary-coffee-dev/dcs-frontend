@@ -7,6 +7,16 @@
 <div class="post-body-container">
   <h3><a [routerLink]="'post/' + post?.name">{{post?.title}}</a></h3>
   <div class="post-info-container" fxLayout="row">
+    <span class="post-info separator"
+          fxLayout="row">
+      <span>author</span>
+      <a [href]="post?.author?.page || ''"
+         [title]="post?.author?.email"
+         fxLayout="row"
+         fxLayoutAlign="start center">
+        {{post?.author?.username}}
+      </a>
+    </span>
     <span class="post-info separator">published {{post?.createdAt && moment.timeFromDate(post?.createdAt) || ''}}</span>
     <span class="post-info"
           fxLayout="row"

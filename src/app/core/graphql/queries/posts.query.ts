@@ -15,6 +15,11 @@ export const POSTS_QUERY = gql`
                     name
                     url
                 }
+                author {
+                    username
+                    email
+                    page
+                }
             }
             aggregate {
                 count
