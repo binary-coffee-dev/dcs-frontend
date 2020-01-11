@@ -22,7 +22,11 @@
       <span class="post-info separator"
             fxLayout="row"
             fxLayoutAlign="start center">
-        Published {{post?.createdAt && moment.timeFromDate(post.createdAt) || ''}}
+        published {{post?.createdAt && moment.timeFromDate(post.createdAt) || ''}}
+      </span><span class="post-info"
+            fxLayout="row"
+            fxLayoutAlign="start center">
+        views {{post?.views || 0}}
       </span>
     </div>
     <div class="image-container">
