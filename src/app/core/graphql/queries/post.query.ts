@@ -8,7 +8,7 @@ export const POST_QUERY = gql`
             title
             description
             body
-            createdAt
+            publishedAt
             views
             banner { url }
             author {

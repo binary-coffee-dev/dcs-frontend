@@ -6,7 +6,7 @@ export interface Post {
   name: string;
   title: string;
   body: string;
-  createdAt: Date;
+  publishedAt: Date;
   description: string;
   banner: File;
   author: User;
