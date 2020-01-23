@@ -3,7 +3,7 @@ import {tap} from 'rxjs/operators';
 
 import {CommentService} from '../services';
 import {CommentStateModel, initCommentStateModel} from './comment-state.model';
-import {FetchCaptchaAction} from '../actions';
+import {CreateCommentAction, FetchCaptchaAction} from '../actions';
 import {Captcha} from '../models';
 
 @State<CommentStateModel>({
@@ -25,5 +25,10 @@ export class CommentState {
     return this.commentService.fetchCaptcha().pipe(tap(captcha => {
       ctx.patchState({captcha});
     }));
+  }
+
+  @Action(CreateCommentAction)
+  createCommentAction(ctx: StateContext<CommentStateModel>, action: CreateCommentAction) {
+    return this.commentService.createComment(action.comment, action.captcha);
   }
 }

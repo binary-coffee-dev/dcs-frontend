@@ -26,12 +26,34 @@
 
       .comment-item-text {
         padding: map_get($spacings, 2);
+        margin-bottom: map_get($spacings, 3);
         font-size: 1.2em;
         width: calc(100% - 28px);
       }
 
       .comment-credentials {
         width: 100%;
+
+        .items-credentials-container {
+          width: 100%;
+
+          .comment-form-styles {
+            width: auto;
+            max-width: 150px;
+            border: none;
+            padding: 6px;
+            margin-top: 12px;
+            border-radius: 3px;
+            color: #969696;
+            font-weight: 900;
+            cursor: pointer;
+
+            &:disabled {
+              color: #cacaca;
+              cursor: auto;
+            }
+          }
+        }
 
         .comment-item-credentials {
           padding: 6px;
