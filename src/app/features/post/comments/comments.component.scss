@@ -31,11 +31,20 @@
       }
 
       .comment-credentials {
-        width: 60%;
+        width: 100%;
 
         .comment-item-credentials {
           padding: 6px;
           margin-top: 12px;
+        }
+
+        .captcha-container {
+          margin-right: map_get($spacings, 10);
+
+          .comment-item-captcha {
+            width: calc(150px - 12px - 4px);
+            margin-top: 0;
+          }
         }
       }
     }

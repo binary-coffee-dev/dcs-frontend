@@ -7,17 +7,28 @@
     <input class="comment-item comment-item-text"
            type="text"
            placeholder="Deja tu opinión...">
+
     <div class="comment-credentials"
-         fxLayout="column"
+         fxFlex="100"
+         fxLayout="row"
          fxLayoutAlign="center center">
-      <input class="comment-item comment-item-credentials"
-             fxFlex="100"
-             type="text"
-             placeholder="Nombre">
-      <input class="comment-item comment-item-credentials"
-             fxFlex="100"
-             type="text"
-             placeholder="Correo">
+      <div class="captcha-container">
+        <div [innerHTML]="myCaptcha"></div>
+        <input type="text"
+               placeholder="Captcha"
+               class="comment-item comment-item-credentials comment-item-captcha">
+      </div>
+      <div fxLayout="column"
+           fxFlex="100">
+        <input class="comment-item comment-item-credentials"
+               fxFlex="100"
+               type="text"
+               placeholder="Nombre">
+        <input class="comment-item comment-item-credentials"
+               fxFlex="100"
+               type="text"
+               placeholder="Correo">
+      </div>
     </div>
   </div>
 
