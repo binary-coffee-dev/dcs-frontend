@@ -41,6 +41,10 @@
         .captcha-container {
           margin-right: map_get($spacings, 10);
 
+          .captcha {
+            cursor: pointer;
+          }
+
           .comment-item-captcha {
             width: calc(150px - 12px - 4px);
             margin-top: 0;

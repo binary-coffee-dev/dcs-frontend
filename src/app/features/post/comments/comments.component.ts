@@ -30,4 +30,7 @@ export class CommentsComponent implements OnInit {
     });
   }
 
+  reloadCaptcha() {
+    this.store.dispatch(new FetchCaptchaAction()).subscribe(() => {});
+  }
 }

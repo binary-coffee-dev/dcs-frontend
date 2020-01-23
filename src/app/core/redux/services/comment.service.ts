@@ -16,7 +16,7 @@ export class CommentService {
 
   fetchCaptcha(): Observable<Captcha> {
     return this.apollo
-      .watchQuery({query: CAPTCHA_QUERY})
+      .watchQuery({query: CAPTCHA_QUERY, fetchPolicy: 'no-cache'})
       .valueChanges.pipe(map((result: any) => result.data.captcha));
   }
 }

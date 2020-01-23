@@ -13,7 +13,9 @@
          fxLayout="row"
          fxLayoutAlign="center center">
       <div class="captcha-container">
-        <div [innerHTML]="myCaptcha"></div>
+        <div class="captcha"
+             [innerHTML]="myCaptcha"
+             (click)="reloadCaptcha()"></div>
         <input type="text"
                placeholder="Captcha"
                class="comment-item comment-item-credentials comment-item-captcha">
