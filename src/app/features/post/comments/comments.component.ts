@@ -23,10 +23,11 @@ export class CommentsComponent implements OnInit {
   myCaptcha: SafeHtml;
 
   comments: Comment[] = [];
+  commentError = '';
 
   commentForm = new FormGroup({
     body: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     captcha: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required)
   });
@@ -51,6 +52,10 @@ export class CommentsComponent implements OnInit {
         this.comments = comments;
       }
     });
+    this.store.select(CommentState.error).subscribe(error => {
+      this.commentError = error.message;
+      this.reloadCaptcha();
+    });
   }
 
   reloadCaptcha() {
@@ -73,6 +78,7 @@ export class CommentsComponent implements OnInit {
         this.commentForm.reset();
         this.reloadCaptcha();
         this.store.dispatch(new FetchCommentsAction(this.post.id));
+        this.commentError = '';
       });
     }
   }

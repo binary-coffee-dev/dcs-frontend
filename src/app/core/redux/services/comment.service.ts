@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable, throwError} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 import {Apollo} from 'apollo-angular';
 
 import {Captcha, Comment} from '../models';
 import {CAPTCHA_QUERY, COMMENTS_QUERY} from '../../graphql/queries';
 import {CREATE_COMMENT_MUTATION} from '../../graphql/mutations';
+import {log} from 'util';
 
 @Injectable({
   providedIn: 'root'

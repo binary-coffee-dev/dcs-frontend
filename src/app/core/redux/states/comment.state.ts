@@ -1,10 +1,11 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {tap} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 
 import {CommentService} from '../services';
 import {CommentStateModel, initCommentStateModel} from './comment-state.model';
-import {CreateCommentAction, FetchCaptchaAction, FetchCommentsAction} from '../actions';
-import {Captcha, Comment} from '../models';
+import {CommentErrorAction, CreateCommentAction, FetchCaptchaAction, FetchCommentsAction} from '../actions';
+import {Captcha, Comment, CommentError} from '../models';
+import {of} from 'rxjs';
 
 @State<CommentStateModel>({
   name: 'comment',
@@ -22,6 +23,11 @@ export class CommentState {
     return state.comments;
   }
 
+  @Selector()
+  static error(state: CommentStateModel): CommentError {
+    return state.error;
+  }
+
   constructor(private commentService: CommentService) {
   }
 
@@ -34,7 +40,21 @@ export class CommentState {
 
   @Action(CreateCommentAction)
   createCommentAction(ctx: StateContext<CommentStateModel>, action: CreateCommentAction) {
-    return this.commentService.createComment(action.comment, action.captcha);
+    return this.commentService.createComment(action.comment, action.captcha).pipe(
+      catchError((error: Error) => {
+        console.log(error);
+        if (error.message === 'GraphQL error: invalid-captcha') {
+          console.log(error.message);
+          ctx.dispatch(new CommentErrorAction('Invalid captcha'));
+        }
+        return of();
+      })
+    );
+  }
+
+  @Action(CommentErrorAction)
+  commentErrorAction(ctx: StateContext<CommentStateModel>, action: CommentErrorAction) {
+    ctx.patchState({error: {message: action.errorMessage, timestamp: new Date().getTime()}});
   }
 
   @Action(FetchCommentsAction)

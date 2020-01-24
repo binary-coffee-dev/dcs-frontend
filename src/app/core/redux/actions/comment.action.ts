@@ -17,3 +17,10 @@ export class CreateCommentAction {
   constructor(public comment: Comment, public captcha: Captcha) {
   }
 }
+
+export class CommentErrorAction {
+  static readonly type = '[Comment] Comment error';
+
+  constructor(public errorMessage: string) {
+  }
+}

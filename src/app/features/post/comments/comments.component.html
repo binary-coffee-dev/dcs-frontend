@@ -9,7 +9,8 @@
            formControlName="body"
            type="text"
            placeholder="Deja tu opinión...">
-
+    <span class="comment-error-message"
+          *ngIf="commentError">{{commentError}}</span>
     <div class="comment-credentials"
          fxFlex="100"
          fxLayout="row"
@@ -39,7 +40,7 @@
         <input class="comment-item comment-item-credentials"
                fxFlex="100"
                fxFlex.lg="50"
-               type="text"
+               type="email"
                formControlName="email"
                placeholder="Correo">
         <button class="comment-form-styles"
