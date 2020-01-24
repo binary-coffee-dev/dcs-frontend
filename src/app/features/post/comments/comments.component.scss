@@ -76,15 +76,19 @@
     }
 
     .comments-list {
-      .comment-user-image {
-        width: map_get($spacings, 8);
-        height: map_get($spacings, 8);
-        border-radius: 3px;
-        margin-right: map_get($spacings, 2);
-      }
+      .comment-item {
+        margin-bottom: 30px;
 
-      .post-info-container {
-        margin-bottom: map_get($spacings, 1);
+        .comment-user-image {
+          width: map_get($spacings, 8);
+          height: map_get($spacings, 8);
+          border-radius: 3px;
+          margin-right: map_get($spacings, 2);
+        }
+
+        .post-info-container {
+          margin-bottom: map_get($spacings, 1);
+        }
       }
     }
   }
