@@ -14,13 +14,20 @@ export class PostService {
 
   fetchPosts(limit, start = 0): Observable<PostConnection> {
     return this.apollo
-      .watchQuery({query: POSTS_QUERY, variables: { limit, start }})
-      .valueChanges.pipe(map((result: any) => result.data.postsConnection));
+      .watchQuery({query: POSTS_QUERY, variables: { limit, start }, fetchPolicy: 'no-cache'})
+      .valueChanges.pipe(map((result: any) => {
+        return {
+          ...result.data.postsConnection,
+          aggregate: {
+            count: result.data.countPosts
+          }
+        } as PostConnection;
+      }));
   }
 
   fetchPost(id: string): Observable<Post> {
     return this.apollo
-      .watchQuery({query: POST_QUERY, variables: {id}})
+      .watchQuery({query: POST_QUERY, variables: {id}, fetchPolicy: 'no-cache'})
       .valueChanges.pipe(map((result: any) => result.data.postByName));
   }
 }
