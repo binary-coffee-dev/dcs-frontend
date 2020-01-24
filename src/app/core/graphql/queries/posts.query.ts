@@ -25,5 +25,6 @@ export const POSTS_QUERY = gql`
                 count
             }
         }
+        countPosts
     }
 `;
