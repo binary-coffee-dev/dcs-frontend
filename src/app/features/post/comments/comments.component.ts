@@ -3,7 +3,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 import {Store} from '@ngxs/store';
 
-import {CreateCommentAction, FetchCaptchaAction} from '../../../core/redux/actions';
+import {CreateCommentAction, FetchCaptchaAction, FetchCommentsAction} from '../../../core/redux/actions';
 import {CommentState} from '../../../core/redux/states';
 import {Captcha, Comment, Post} from '../../../core/redux/models';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -72,6 +72,7 @@ export class CommentsComponent implements OnInit {
       this.store.dispatch(new CreateCommentAction(comment, captcha)).subscribe(() => {
         this.commentForm.reset();
         this.reloadCaptcha();
+        this.store.dispatch(new FetchCommentsAction(this.post.id));
       });
     }
   }
