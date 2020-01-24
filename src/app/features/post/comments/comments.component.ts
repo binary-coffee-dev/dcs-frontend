@@ -60,6 +60,7 @@ export class CommentsComponent implements OnInit {
 
   reloadCaptcha() {
     this.store.dispatch(new FetchCaptchaAction()).subscribe(() => {});
+    this.commentForm.controls.captcha.setValue('');
   }
 
   createComment() {
