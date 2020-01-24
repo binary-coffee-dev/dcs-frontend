@@ -27,8 +27,8 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.store.select(PostState.post).subscribe((post: Post) => {
-      this.post = post;
       if (post) {
+        this.post = post;
         const imageUrl = post.banner ? `${environment.apiUrl}${post.banner.url}` : '';
         this.metaTags.updateMetas([
           {key: MetaTagsService.metas, value: environment.siteUrl} as MetaTag,
