@@ -7,6 +7,7 @@ import {CreateCommentAction, FetchCaptchaAction} from '../../../core/redux/actio
 import {CommentState} from '../../../core/redux/states';
 import {Captcha, Comment, Post} from '../../../core/redux/models';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MomentService} from '../../../core/services';
 
 @Component({
   selector: 'app-comments',
@@ -21,6 +22,8 @@ export class CommentsComponent implements OnInit {
   captcha: Captcha;
   myCaptcha: SafeHtml;
 
+  comments: Comment[] = [];
+
   commentForm = new FormGroup({
     body: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -28,7 +31,11 @@ export class CommentsComponent implements OnInit {
     name: new FormControl('', Validators.required)
   });
 
-  constructor(private store: Store, private sanitizer: DomSanitizer) {
+  constructor(
+    private store: Store,
+    private sanitizer: DomSanitizer,
+    private moment: MomentService
+  ) {
   }
 
   ngOnInit() {
@@ -37,6 +44,11 @@ export class CommentsComponent implements OnInit {
       this.captcha = captcha;
       if (captcha) {
         this.myCaptcha = this.sanitizer.bypassSecurityTrustHtml(captcha.captcha);
+      }
+    });
+    this.store.select(CommentState.comments).subscribe(comments => {
+      if (comments) {
+        this.comments = comments;
       }
     });
   }

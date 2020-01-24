@@ -6,6 +6,7 @@ import {PostState} from '../../core/redux/states';
 import {Post} from '../../core/redux/models';
 import {MetaTag, MetaTagsService, MomentService, ResourceService} from '../../core/services';
 import {environment} from '../../../environments/environment';
+import {FetchCommentsAction} from '../../core/redux/actions';
 
 @Component({
   selector: 'app-post',
@@ -38,6 +39,8 @@ export class PostComponent implements OnInit {
           {key: MetaTagsService.typeMeta, value: 'article'} as MetaTag,
           {key: MetaTagsService.twitterTitleMeta, value: post.title} as MetaTag
         ]);
+
+        this.store.dispatch(new FetchCommentsAction(post.id));
       }
     });
   }

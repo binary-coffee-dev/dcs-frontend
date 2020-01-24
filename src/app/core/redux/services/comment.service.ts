@@ -21,10 +21,10 @@ export class CommentService {
       .valueChanges.pipe(map((result: any) => result.data.captcha));
   }
 
-  fetchComments() {
+  fetchComments(postId): Observable<Comment[]> {
     return this.apollo
-      .watchQuery({query: COMMENTS_QUERY})
-      .valueChanges.pipe(map(result => result.data));
+      .watchQuery({query: COMMENTS_QUERY, variables: {postId}, fetchPolicy: 'no-cache'})
+      .valueChanges.pipe(map((result: any) => result.data.commentsConnection.values));
   }
 
   createComment(comment: Comment, captcha: Captcha) {

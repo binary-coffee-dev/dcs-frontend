@@ -3,4 +3,5 @@ export interface Comment {
   email: string;
   name: string;
   post: string;
+  publishedAt: Date;
 }

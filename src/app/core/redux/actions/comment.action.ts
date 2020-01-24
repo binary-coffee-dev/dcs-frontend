@@ -6,6 +6,9 @@ export class FetchCaptchaAction {
 
 export class FetchCommentsAction {
   static readonly type = '[Comment] Fetch comments';
+
+  constructor(public postId: string) {
+  }
 }
 
 export class CreateCommentAction {
