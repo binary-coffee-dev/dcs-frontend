@@ -34,7 +34,7 @@ export class CommentsComponent implements OnInit {
   constructor(
     private store: Store,
     private sanitizer: DomSanitizer,
-    private moment: MomentService
+    public moment: MomentService
   ) {
   }
 
