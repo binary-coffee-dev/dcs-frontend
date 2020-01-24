@@ -6,7 +6,7 @@
     margin-top: map_get($spacings, 10);
 
     .comments-header {
-      border-bottom: 2px solid map-get($md-grey, 500);
+      border-bottom: 2px solid map-get($md-grey, 600);
       margin-bottom: 10px;
 
       span {
@@ -19,7 +19,7 @@
       margin-bottom: map_get($spacings, 10);
 
       .comment-item {
-        border: 2px solid map-get($md-grey, 500);
+        border: 2px solid map-get($md-grey, 600);
         border-radius: 5px;
         width: 100%;
       }
