@@ -24,6 +24,11 @@ export class CommentState {
   }
 
   @Selector()
+  static commentsCount(state: CommentStateModel): number {
+    return state && state.comments && state.comments.length || 0;
+  }
+
+  @Selector()
   static error(state: CommentStateModel): CommentError {
     return state.error;
   }

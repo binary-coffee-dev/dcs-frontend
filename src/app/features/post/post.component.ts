@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {Store} from '@ngxs/store';
 
-import {PostState} from '../../core/redux/states';
+import {CommentState, PostState} from '../../core/redux/states';
 import {Post} from '../../core/redux/models';
 import {MetaTag, MetaTagsService, MomentService, ResourceService} from '../../core/services';
 import {environment} from '../../../environments/environment';
@@ -16,6 +16,7 @@ import {FetchCommentsAction} from '../../core/redux/actions';
 export class PostComponent implements OnInit {
 
   post: Post;
+  commentsCount = 0;
 
   constructor(
     private store: Store,
@@ -43,6 +44,7 @@ export class PostComponent implements OnInit {
         this.store.dispatch(new FetchCommentsAction(post.id));
       }
     });
+    this.store.select(CommentState.commentsCount).subscribe(commentsCount => this.commentsCount = commentsCount);
   }
 
 }
