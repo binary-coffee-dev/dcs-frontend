@@ -8,9 +8,13 @@ import {PostRoutingModule} from './post-routing.module';
 import {PostGuard} from './guards';
 import {MaterialModule} from '../../core/material';
 import {ServicesModule} from '../../core/services';
+import {CommentsComponent} from './comments/comments.component';
 
 @NgModule({
-  declarations: [PostComponent],
+  declarations: [
+    PostComponent,
+    CommentsComponent
+  ],
   imports: [
     CommonModule,
     PostRoutingModule,

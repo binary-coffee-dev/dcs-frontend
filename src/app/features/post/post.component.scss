@@ -3,7 +3,7 @@
 
 :host {
   .post-container {
-    margin: 0 map_get($spacings, 5);
+    margin: 0 map_get($spacings, 5) map_get($spacings, 5) map_get($spacings, 5);
 
     .post-in-container {
       h1 {

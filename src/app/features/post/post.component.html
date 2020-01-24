@@ -37,5 +37,8 @@
     <markdown [data]="post?.body"
               katex
               lineNumbers></markdown>
+
+    <app-comments *ngIf="post"
+                  [post]="post"></app-comments>
   </div>
 </div>

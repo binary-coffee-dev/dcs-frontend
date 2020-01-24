@@ -1,0 +1,78 @@
+<div class="comments-container">
+  <div class="comments-header"><span>Comments</span></div>
+
+  <form class="comment-new-container"
+        fxLayout="column"
+        [formGroup]="commentForm"
+        fxLayoutAlign="center end">
+    <input class="comment-item comment-item-text"
+           formControlName="body"
+           type="text"
+           placeholder="Deja tu opinión...">
+
+    <div class="comment-credentials"
+         fxFlex="100"
+         fxLayout="row"
+         fxLayout.sm="column"
+         fxLayout.xs="column"
+         fxLayoutAlign.sm="start start"
+         fxLayoutAlign.xs="start start"
+         fxLayoutAlign="center center">
+      <div class="captcha-container">
+        <div class="captcha"
+             [innerHTML]="myCaptcha"
+             (click)="reloadCaptcha()"></div>
+        <input type="text"
+               placeholder="Captcha"
+               formControlName="captcha"
+               class="comment-item comment-item-credentials comment-item-captcha">
+      </div>
+      <div fxLayout="column"
+           class="items-credentials-container"
+           fxLayoutAlign="end end"
+           fxFlex="100">
+        <input class="comment-item comment-item-credentials"
+               fxFlex="100"
+               type="text"
+               formControlName="name"
+               placeholder="Nombre">
+        <input class="comment-item comment-item-credentials"
+               fxFlex="100"
+               fxFlex.lg="50"
+               type="text"
+               formControlName="email"
+               placeholder="Correo">
+        <button class="comment-form-styles"
+                [disabled]="!commentForm.valid"
+                (click)="createComment()">
+          Comentar
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="comments-list">
+    <div fxLayout="row"
+         class="comment-item"
+         *ngFor="let comment of comments">
+      <img class="comment-user-image"
+           src="assets/images/noavatar.png"
+           alt="noavatar">
+
+      <div fxLayout="column" fxFlex="100">
+        <div class="post-info-container"
+             fxLayout="row">
+          <span class="post-info separator">{{comment.name}}</span>
+          <span class="post-info"
+                fxLayout="row"
+                fxLayoutAlign="start center">
+            {{comment?.publishedAt && moment.timeFromDate(post.publishedAt) || ''}}
+          </span>
+        </div>
+        <div>
+          {{comment.body}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {NgxsModule} from '@ngxs/store';
 
 import {PostService} from './services';
-import {PostState} from './states';
+import {CommentState, PostState} from './states';
 import {GraphQLModule} from '../graphql';
 import {environment} from '../../../environments/environment';
 
@@ -12,7 +12,7 @@ import {environment} from '../../../environments/environment';
   imports: [
     CommonModule,
     GraphQLModule,
-    NgxsModule.forRoot([PostState], {
+    NgxsModule.forRoot([PostState, CommentState], {
       developmentMode: !environment.production
     }),
   ],
