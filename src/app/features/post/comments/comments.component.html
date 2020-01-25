@@ -5,12 +5,15 @@
         fxLayout="column"
         [formGroup]="commentForm"
         fxLayoutAlign="center end">
+    <span class="comment-error-message"
+          *ngIf="commentError">
+      <mat-icon aria-hidden="false">close</mat-icon>
+      {{commentError}}
+    </span>
     <input class="comment-item comment-item-text"
            formControlName="body"
            type="text"
            placeholder="Deja tu opinión...">
-    <span class="comment-error-message"
-          *ngIf="commentError">{{commentError}}</span>
     <div class="comment-credentials"
          fxFlex="100"
          fxLayout="row"

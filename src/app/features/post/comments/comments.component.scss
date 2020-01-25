@@ -19,15 +19,28 @@
       margin-bottom: map_get($spacings, 10);
 
       .comment-error-message {
-        width: 100%;
-        text-align: center;
-        color: #000;
-        background-color: #ff000061;
-        padding: 5px 0;
+        width: calc(100% - 48px);
+        font-weight: 100;
+        margin-bottom: map_get($spacings, 2);
+        color: #dc0e0e;
+        background-color: #ffd4d4;
+        padding: map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 6);
+        position: relative;
+
+        mat-icon {
+          background: #bb0b0b;
+          border-radius: 50%;
+          color: #ffd4d4;
+          font-weight: bold;
+          position: absolute;
+          left: map_get($spacings, 1);
+          top: 50%;
+          transform: translateY(-50%);
+        }
       }
 
       .comment-item {
-        border: 2px solid map-get($md-grey, 600);
+        border: 1px solid map-get($md-grey, 600);
         border-radius: 5px;
         width: 100%;
       }
