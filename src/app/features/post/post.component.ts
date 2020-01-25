@@ -7,6 +7,7 @@ import {Post} from '../../core/redux/models';
 import {MetaTag, MetaTagsService, MomentService, ResourceService} from '../../core/services';
 import {environment} from '../../../environments/environment';
 import {FetchCommentsAction} from '../../core/redux/actions';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post',
@@ -22,7 +23,8 @@ export class PostComponent implements OnInit {
     private store: Store,
     public moment: MomentService,
     public resource: ResourceService,
-    private metaTags: MetaTagsService
+    private metaTags: MetaTagsService,
+    private title: Title
   ) {
   }
 
@@ -40,6 +42,7 @@ export class PostComponent implements OnInit {
           {key: MetaTagsService.typeMeta, value: 'article'} as MetaTag,
           {key: MetaTagsService.twitterTitleMeta, value: post.title} as MetaTag
         ]);
+        this.title.setTitle(post.title);
 
         this.store.dispatch(new FetchCommentsAction(post.id));
       }
