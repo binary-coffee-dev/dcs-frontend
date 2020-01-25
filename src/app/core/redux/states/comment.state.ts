@@ -55,9 +55,7 @@ export class CommentState {
     return this.commentService.createComment(action.comment, action.captcha).pipe(
       tap(() => ctx.dispatch(new RefreshPostAction())),
       catchError((error: Error) => {
-        console.log(error);
         if (error.message === 'GraphQL error: invalid-captcha') {
-          console.log(error.message);
           ctx.dispatch(new CommentErrorAction('Invalid captcha'));
         }
         return of();
