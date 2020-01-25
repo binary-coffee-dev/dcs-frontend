@@ -8,7 +8,6 @@ import {PostService} from '../services';
 import {FetchPostAction, FetchPostsAction, NextPageAction, PreviousPageAction} from '../actions';
 import {Post, PostConnection} from '../models';
 import {PostStateModel} from './post-state.model';
-import {combineAll} from 'rxjs/operators';
 
 class PostServiceStub {
   fetchPosts = jest.fn();

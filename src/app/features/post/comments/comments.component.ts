@@ -3,7 +3,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 import {Store} from '@ngxs/store';
 
-import {CreateCommentAction, FetchCaptchaAction, FetchCommentsAction} from '../../../core/redux/actions';
+import {CommentErrorAction, CreateCommentAction, FetchCaptchaAction, FetchCommentsAction} from '../../../core/redux/actions';
 import {CommentState} from '../../../core/redux/states';
 import {Captcha, Comment, Post} from '../../../core/redux/models';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -64,7 +64,11 @@ export class CommentsComponent implements OnInit {
   }
 
   createComment() {
-    if (this.commentForm.valid) {
+    if (this.commentForm.valid
+      && this.checkEmptySpaces(this.commentForm.controls.body.value)
+      && this.checkEmptySpaces(this.commentForm.controls.email.value)
+      && this.checkEmptySpaces(this.commentForm.controls.name.value)
+      && this.checkEmptySpaces(this.commentForm.controls.captcha.value)) {
       const comment = {
         body: this.commentForm.controls.body.value,
         email: this.commentForm.controls.email.value,
@@ -81,6 +85,12 @@ export class CommentsComponent implements OnInit {
         this.store.dispatch(new FetchCommentsAction(this.post.id));
         this.commentError = '';
       });
+    } else {
+      this.store.dispatch(new CommentErrorAction('Missing data in the comment'));
     }
+  }
+
+  checkEmptySpaces(value: string): boolean {
+    return value.replace(/ /gi, '') !== '';
   }
 }
