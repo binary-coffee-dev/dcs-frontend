@@ -17,7 +17,6 @@ import {Title} from '@angular/platform-browser';
 export class PostComponent implements OnInit {
 
   post: Post;
-  commentsCount = 0;
 
   constructor(
     private store: Store,
@@ -47,7 +46,6 @@ export class PostComponent implements OnInit {
         this.store.dispatch(new FetchCommentsAction(post.id));
       }
     });
-    this.store.select(CommentState.commentsCount).subscribe(commentsCount => this.commentsCount = commentsCount);
   }
 
 }

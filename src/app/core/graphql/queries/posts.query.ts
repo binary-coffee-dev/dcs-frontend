@@ -20,6 +20,7 @@ export const POSTS_QUERY = gql`
                     email
                     page
                 }
+                comments
             }
             aggregate {
                 count

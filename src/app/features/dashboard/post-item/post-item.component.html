@@ -17,11 +17,16 @@
         {{post?.author?.username}}
       </a>
     </span>
-    <span class="post-info separator">published {{post?.publishedAt && moment.timeFromDate(post?.publishedAt) || ''}}</span>
-    <span class="post-info"
+    <span class="post-info separator">{{post?.publishedAt && moment.timeFromDate(post?.publishedAt) || ''}}</span>
+    <span class="post-info separator"
           fxLayout="row"
           fxLayoutAlign="start center">
         views {{post?.views || 0}}
+    </span>
+    <span class="post-info"
+          fxLayout="row"
+          fxLayoutAlign="start center">
+        comments {{post?.comments || 0}}
     </span>
   </div>
   <span class="post-body-extract">{{truncatePostDescription(post?.description)}}</span>

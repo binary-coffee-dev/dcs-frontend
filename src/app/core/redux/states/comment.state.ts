@@ -1,11 +1,18 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {catchError, tap} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 import {CommentService} from '../services';
 import {CommentStateModel, initCommentStateModel} from './comment-state.model';
-import {CommentErrorAction, CreateCommentAction, FetchCaptchaAction, FetchCommentsAction} from '../actions';
+import {
+  CommentErrorAction,
+  CreateCommentAction,
+  FetchCaptchaAction,
+  FetchCommentsAction,
+  FetchPostAction,
+  RefreshPostAction
+} from '../actions';
 import {Captcha, Comment, CommentError} from '../models';
-import {of} from 'rxjs';
 
 @State<CommentStateModel>({
   name: 'comment',
@@ -46,6 +53,7 @@ export class CommentState {
   @Action(CreateCommentAction)
   createCommentAction(ctx: StateContext<CommentStateModel>, action: CreateCommentAction) {
     return this.commentService.createComment(action.comment, action.captcha).pipe(
+      tap(() => ctx.dispatch(new RefreshPostAction())),
       catchError((error: Error) => {
         console.log(error);
         if (error.message === 'GraphQL error: invalid-captcha') {
