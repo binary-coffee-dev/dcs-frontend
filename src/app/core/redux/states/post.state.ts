@@ -2,7 +2,7 @@ import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {tap} from 'rxjs/operators';
 
 import {PostService} from '../services';
-import {FetchPostAction, FetchPostsAction, NextPageAction, PreviousPageAction, RefreshPostAction} from '../actions';
+import {CommentErrorAction, FetchPostAction, FetchPostsAction, NextPageAction, PreviousPageAction, RefreshPostAction} from '../actions';
 import {initPostStateModel, PostStateModel} from './post-state.model';
 import {Post, PostConnection} from '../models';
 
@@ -70,7 +70,10 @@ export class PostState {
 
   @Action(FetchPostAction)
   fetchPostAction(ctx: StateContext<PostStateModel>, action: FetchPostAction) {
-    return this.postService.fetchPost(action.postId).pipe(tap(post => ctx.patchState({post})));
+    return this.postService.fetchPost(action.postId).pipe(tap(post => {
+      ctx.patchState({post});
+      ctx.dispatch(new CommentErrorAction(''));
+    }));
   }
 
   @Action(RefreshPostAction)
