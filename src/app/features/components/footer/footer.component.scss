@@ -1,0 +1,104 @@
+@import "src/color";
+
+$font-primary:    map_get($md-grey,500);
+$font-secundary:  map_get($md-grey,600);
+$background:      map_get($md-grey, 800);
+$link:            map_get($md-primary, 300);
+$link-hover:      map_get($md-primary, 800);
+
+footer {
+  padding: 2rem 2rem;
+  background-color: $background;
+  color: $font-secundary;
+
+  .copyright {
+    text-align: center;
+  }
+
+  .social-links{
+    text-align: center;
+    a{
+      color: $font-secundary;
+      margin-right: 5px;
+      text-decoration: none;
+      &:hover{
+        color: $font-primary;
+      }
+    }
+  }
+}
+
+.groups{
+  color: $font-primary;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 3rem;
+  .sub-group{
+    ul{
+      padding: 0;
+
+      li{
+        list-style: none;
+        margin-bottom: .5rem;
+
+        a{
+          text-decoration: none;
+
+          span{
+            color: $font-secundary;
+
+            &:hover{
+              color: $font-primary;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.bc-logo{
+  text-align: right;
+  margin-bottom: -6px;
+  padding-right: 20%;
+  img:hover{
+    animation: anim-bc .3s linear;
+  }
+}
+
+.anim-pulse{
+    animation: anim-pulse 0.9s infinite linear;
+}
+
+@keyframes anim-pulse {
+  0% {
+    transform: scale(1.2);
+  }
+  40% {
+      transform: scale(1);
+  }
+  90% {
+    transform: scale(1.3);
+  }
+  100% {    
+    transform: scale(1);
+  }
+}
+
+$rot:5deg;
+@keyframes anim-bc {
+   0% {   
+    transform: rotate(0deg); 
+  }
+  10% {
+    transform: rotate($rot);
+  }
+  70% {
+    transform: rotate(-$rot);
+  }
+  100% {   
+    transform: rotate(0deg); 
+  }
+}
