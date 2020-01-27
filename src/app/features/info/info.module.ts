@@ -5,11 +5,12 @@ import { AboutComponent } from './about/about.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { SiteMapComponent } from './site-map/site-map.component';
 import { JoinComponent } from './join/join.component';
+import { TecsComponent } from './tecs/tecs.component';
 
 
 
 @NgModule({
-  declarations: [ContactComponent, AboutComponent, QuestionsComponent, SiteMapComponent, JoinComponent],
+  declarations: [ContactComponent, AboutComponent, QuestionsComponent, SiteMapComponent, JoinComponent, TecsComponent],
   imports: [
     CommonModule
   ]
