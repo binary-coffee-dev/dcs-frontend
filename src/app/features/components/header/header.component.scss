@@ -1,6 +1,12 @@
 @import "src/color";
 @import "src/spacings";
 
+$font-primary:    map_get($md-grey,900);
+$font-secundary:  map_get($md-grey,600);
+$background:      map_get($md-grey, 500);
+$border:          map-get($md-primary, 100);
+$link:            map_get($md-primary, 800);
+
 :host {
   .logo{
     filter: invert(100%);
@@ -34,11 +40,21 @@
         font-family: Meddon, Roboto,"Helvetica Neue",sans-serif;
       }
     }
+  }
+}
 
-    h2 {
-      text-align: center;
-      font-size: 1rem;
-      color: map_get($md-grey, 600);
-    }
+$rot:5deg;
+@keyframes anim-bc {
+   0% {   
+    transform: rotate(0deg); 
+  }
+  10% {
+    transform: rotate($rot);
+  }
+  70% {
+    transform: rotate(-$rot);
+  }
+  100% {   
+    transform: rotate(0deg); 
   }
 }

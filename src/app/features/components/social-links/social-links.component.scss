@@ -1,0 +1,38 @@
+@import "src/color";
+
+$font:          map_get($md-grey,700);
+$background:    map_get($md-grey, 500);
+$border:        map-get($md-primary, 100);
+$link:          map_get($md-primary, 400);
+$link-hover:    map_get($md-primary, 900);
+$padding-rl:       5px;
+$padding-tb:       3px;
+
+.social-links{
+    position: fixed;
+    top: 5rem;
+    right: 0;
+}
+.links {
+    text-align: center;
+    padding: 0;
+    background-color: $background;
+    border-top-left-radius: $padding-rl;
+    border-bottom-left-radius: $padding-rl;
+    padding: $padding-tb $padding-rl $padding-tb $padding-rl;
+    border: 1px solid $border;
+    border-right: 0;
+
+    li {
+        list-style: none;
+        font-size: 1.2em;
+        text-decoration: none;
+
+        span {
+            color: $link;
+            &:hover {
+                color: $link-hover;
+            }
+        }
+    }
+}
