@@ -1,9 +1,7 @@
-@import "src/color";
 @import "src/spacings";
 
 :host {
   .container {
-    background-color: map_get($md-grey, 50);
     .posts-container {
       padding: map_get($spacings, 5);
       margin: auto;
