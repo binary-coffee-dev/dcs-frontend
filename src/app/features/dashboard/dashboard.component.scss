@@ -1,13 +1,13 @@
+@import "src/color";
 @import "src/spacings";
 
 :host {
-  .posts-container {
-    padding: map_get($spacings, 5);
-    margin: auto;
-    //width: 80%;
-
-    .post-element {
-      margin-bottom: map_get($spacings, 6);
+  .container {
+    background-color: map_get($md-grey, 50);
+    .posts-container {
+      padding: map_get($spacings, 5);
+      margin: auto;
+      //width: 80%;
     }
   }
 }

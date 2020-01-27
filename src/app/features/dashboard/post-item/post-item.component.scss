@@ -4,12 +4,20 @@
 $post_image_size: 110px;
 
 :host {
+  .card-container{
+    box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+    background-color: map_get($md-grey, A100);
+    width: 100%;
+    padding: map_get($spacings, 4);
+    border-radius: map_get($spacings, 3);
+    margin-bottom: map_get($spacings, 4);
+  }
   .post-image-container {
     width: $post_image_size;
     height: $post_image_size;
     min-width: $post_image_size;
-    border-radius: 2px;
-    margin-right: 12px;
+    border-radius: map_get($spacings, 3);
+    margin-right: map_get($spacings, 4);
     background-color: map_get($md-primary, 500);
 
     img {
@@ -17,6 +25,7 @@ $post_image_size: 110px;
       height: 100%;
       object-fit: cover;
       object-position: center;
+      border-radius: map_get($spacings, 3);
     }
   }
 
@@ -28,7 +37,10 @@ $post_image_size: 110px;
 
       a {
         text-decoration: none;
-        color: map_get($md-grey, 800);
+        color: map_get($md-primary, 500);
+        font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+        font-weight: 200;
+        text-transform: uppercase;
 
         &:hover {
           text-decoration: underline;
@@ -39,10 +51,15 @@ $post_image_size: 110px;
 
   .post-info-container {
     margin: map_get($spacings, 1) 0;
+    font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+    font-weight: 400;
   }
 
   .post-body-extract {
     width: 100%;
+    font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+    color: map_get($md-grey, 900);
+    letter-spacing: 0.45px;
     font-weight: 300;
     font-size: 0.95rem;
   }
@@ -51,6 +68,8 @@ $post_image_size: 110px;
     color: #5FCB71;
     text-decoration: none;
     background-color: transparent;
-    font-size: 0.8125rem;
+    i{
+      font-size: 2.2rem;
+    }
   }
 }

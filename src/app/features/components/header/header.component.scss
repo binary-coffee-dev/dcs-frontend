@@ -1,18 +1,37 @@
 @import "src/color";
+@import "src/spacings";
 
 :host {
-  mat-toolbar {
-    padding: 5rem 0;
-    background-color: map_get($md-grey, 500);
-    color: map_get($md-grey, 900);
-
+  .logo{
+    filter: invert(100%);
+    width: 50px;
+    margin-right: map_get($spacings, 2);
+  }
+  @media (max-width: 599px) {
+    .logo{
+      width: 42px;
+    }
     h1 {
-      text-align: center;
-      font-size: 2rem;
-
-      a {
-        color: map_get($md-grey, 900);
-        text-decoration: none;
+      font-size: 1.6rem!important;
+    }
+  }
+  mat-toolbar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    padding: 2.5rem 0 3rem;
+    background-image: linear-gradient(-90deg, map_get($md-primary, 900), map_get($md-primary, 500));
+    color: map_get($md-grey, 900);
+    box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+    a {
+      color: map_get($md-grey, A100);
+      text-decoration: none;
+      h1 {
+        text-align: center;
+        font-size: 2rem;
+        margin-top: map_get($spacings, 3);
+        font-family: Meddon, Roboto,"Helvetica Neue",sans-serif;
       }
     }
 
