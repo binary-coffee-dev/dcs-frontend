@@ -9,11 +9,12 @@ import { TecsComponent } from './tecs/tecs.component';
 import { DcsCommunityComponent } from './dcs-community/dcs-community.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { DevTeamComponent } from './dev-team/dev-team.component';
+import { PublishComponent } from './publish/publish.component';
 
 
 
 @NgModule({
-  declarations: [ContactComponent, AboutComponent, QuestionsComponent, SiteMapComponent, JoinComponent, TecsComponent, DcsCommunityComponent, FeedbackComponent, DevTeamComponent],
+  declarations: [ContactComponent, AboutComponent, QuestionsComponent, SiteMapComponent, JoinComponent, TecsComponent, DcsCommunityComponent, FeedbackComponent, DevTeamComponent, PublishComponent],
   imports: [
     CommonModule
   ]

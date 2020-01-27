@@ -9,6 +9,7 @@ import { TecsComponent } from "./features/info/tecs/tecs.component";
 import { DcsCommunityComponent } from "./features/info/dcs-community/dcs-community.component";
 import { FeedbackComponent } from "./features/info/feedback/feedback.component";
 import { DevTeamComponent } from "./features/info/dev-team/dev-team.component";
+import { PublishComponent } from "./features/info/publish/publish.component";
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: 'dev-team',
     component: DevTeamComponent
+  },
+  {
+    path: 'publish',
+    component: PublishComponent
   }
 ];
 
