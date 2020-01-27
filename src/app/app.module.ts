@@ -10,6 +10,7 @@ import { MaterialModule } from './core/material';
 import { HeaderComponent } from './features/components/header';
 import { FooterComponent } from './features/components/footer/footer.component';
 import { SocialLinksComponent } from './features/components/social-links/social-links.component';
+import { InfoModule } from './features/info/info.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SocialLinksComponent } from './features/components/social-links/social-
     AppRoutingModule,
     BrowserAnimationsModule,
     ReduxModule,
-    MaterialModule
+    MaterialModule,
+    InfoModule
   ],
   bootstrap: [AppComponent]
 })
