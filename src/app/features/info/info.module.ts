@@ -4,11 +4,12 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { SiteMapComponent } from './site-map/site-map.component';
+import { JoinComponent } from './join/join.component';
 
 
 
 @NgModule({
-  declarations: [ContactComponent, AboutComponent, QuestionsComponent, SiteMapComponent],
+  declarations: [ContactComponent, AboutComponent, QuestionsComponent, SiteMapComponent, JoinComponent],
   imports: [
     CommonModule
   ]

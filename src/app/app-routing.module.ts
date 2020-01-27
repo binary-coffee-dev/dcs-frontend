@@ -4,6 +4,7 @@ import { ContactComponent } from "./features/info/contact/contact.component";
 import { AboutComponent } from "./features/info/about/about.component";
 import { QuestionsComponent } from "./features/info/questions/questions.component";
 import { SiteMapComponent } from "./features/info/site-map/site-map.component";
+import { JoinComponent } from "./features/info/join/join.component";
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'site-map',
     component: SiteMapComponent
+  },
+  {
+    path: 'join',
+    component: JoinComponent
   }
 ];
 
