@@ -7,11 +7,12 @@ import { SiteMapComponent } from './site-map/site-map.component';
 import { JoinComponent } from './join/join.component';
 import { TecsComponent } from './tecs/tecs.component';
 import { DcsCommunityComponent } from './dcs-community/dcs-community.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 
 
 @NgModule({
-  declarations: [ContactComponent, AboutComponent, QuestionsComponent, SiteMapComponent, JoinComponent, TecsComponent, DcsCommunityComponent],
+  declarations: [ContactComponent, AboutComponent, QuestionsComponent, SiteMapComponent, JoinComponent, TecsComponent, DcsCommunityComponent, FeedbackComponent],
   imports: [
     CommonModule
   ]
