@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Store} from '@ngxs/store';
 
 import {CommentErrorAction, CreateCommentAction, FetchCaptchaAction, FetchCommentsAction} from '../../../core/redux/actions';
 import {CommentState} from '../../../core/redux/states';
 import {Captcha, Comment, Post} from '../../../core/redux/models';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MomentService} from '../../../core/services';
 
 @Component({
