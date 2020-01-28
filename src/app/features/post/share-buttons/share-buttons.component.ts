@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-share-buttoms',
-  templateUrl: './share-buttoms.component.html',
-  styleUrls: ['./share-buttoms.component.css']
+  selector: 'app-share-buttons',
+  templateUrl: './share-buttons.component.html',
+  styleUrls: ['./share-buttons.component.scss']
 })
-export class ShareButtomsComponent implements OnInit {
+export class ShareButtonsComponent implements OnInit {
 
   url: string;
   urlFacebook: string;

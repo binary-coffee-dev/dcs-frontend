@@ -9,13 +9,13 @@ import { PostGuard } from './guards';
 import { MaterialModule } from '../../core/material';
 import { ServicesModule } from '../../core/services';
 import { CommentsComponent } from './comments/comments.component';
-import { ShareButtomsComponent } from './share-buttoms/share-buttoms.component';
+import { ShareButtonsComponent } from './share-buttons/share-buttons.component';
 
 @NgModule({
   declarations: [
     PostComponent,
     CommentsComponent,
-    ShareButtomsComponent
+    ShareButtonsComponent
   ],
   imports: [
     CommonModule,
