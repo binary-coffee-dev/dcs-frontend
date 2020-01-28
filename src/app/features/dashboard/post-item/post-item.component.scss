@@ -16,7 +16,6 @@ $post_image_size: 110px;
     width: $post_image_size;
     height: $post_image_size;
     min-width: $post_image_size;
-    border-radius: map_get($spacings, 3);
     margin-right: map_get($spacings, 4);
     background-color: map_get($md-primary, 500);
 
