@@ -10,6 +10,7 @@ $post_image_size: 110px;
     width: 100%;
     padding: map_get($spacings, 4);
     margin-bottom: map_get($spacings, 4);
+    cursor: pointer;
   }
 
   .post-image-container {

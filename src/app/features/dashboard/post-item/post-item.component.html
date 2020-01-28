@@ -1,4 +1,6 @@
-<div class="card-container" fxLayout="row">
+<div class="card-container"
+     [routerLink]="'post/' + post?.name"
+     fxLayout="row">
   <div class="post-image-container"
        fxShow.xs="false">
     <img *ngIf="post?.banner && post?.banner?.url"
@@ -35,11 +37,5 @@
       </span>
     </div>
     <span class="post-body-extract">{{truncatePostDescription(post?.description)}}</span>
-    <div fxLayout="row" fxLayoutAlign="end center">
-      <a class="read-more-button"
-         [routerLink]="'post/' + post?.name">
-        <i class="material-icons">more_horiz</i>
-      </a>
-    </div>
   </div>
 </div>
