@@ -11,6 +11,7 @@ $post_image_size: 110px;
     padding: map_get($spacings, 4);
     margin-bottom: map_get($spacings, 4);
   }
+
   .post-image-container {
     width: $post_image_size;
     height: $post_image_size;
