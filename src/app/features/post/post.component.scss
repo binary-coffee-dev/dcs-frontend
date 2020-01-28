@@ -10,7 +10,7 @@
       box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
       background-color: map_get($md-grey, A100);
       padding: map_get($spacings, 4);
-      border-radius: map_get($spacings, 3);
+
       h1 {
         margin: 0;
         font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
@@ -34,6 +34,12 @@
           object-position: center;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .post-container {
+      margin: 0;
     }
   }
 }
