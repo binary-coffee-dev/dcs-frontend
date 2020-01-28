@@ -2,9 +2,11 @@
 
 :host {
   .container {
+    min-height: calc(100vh - 248px);
+
     .posts-container {
       padding: map_get($spacings, 5);
-      margin: auto;
+      margin: 0 auto;
     }
   }
 
