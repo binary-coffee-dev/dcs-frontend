@@ -21,6 +21,12 @@ body {
     margin-right: 5px;
   }
 
+  mat-icon {
+    font-size: 1.1rem;
+    height: auto;
+    color: map_get($md-primary, 500);
+  }
+
   a {
     text-decoration: none;
     color: map_get($md-grey, 600);
