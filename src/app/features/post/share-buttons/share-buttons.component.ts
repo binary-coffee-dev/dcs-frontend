@@ -10,6 +10,7 @@ export class ShareButtonsComponent implements OnInit {
   url: string;
   urlFacebook: string;
   urlTwitter: string;
+  urlLinkedIn: string;
 
 
   constructor() { }
@@ -18,6 +19,7 @@ export class ShareButtonsComponent implements OnInit {
     this.url = document.location.href;
     this.urlFacebook = `https://www.facebook.com/sharer/sharer.php?u=${this.url}`;
     this.urlTwitter = `https://twitter.com/intent/tweet/?url=${this.url}&hastags=BinaryCoffee`;
+    this.urlLinkedIn = `https://www.linkedin.com/shareArticle?mini=true&url=${this.url}`
   }
 
 }
