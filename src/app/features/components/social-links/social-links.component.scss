@@ -1,0 +1,40 @@
+@import "src/color";
+@import "src/spacings";
+
+$font:          map_get($md-grey,700);
+$background:    map_get($md-grey, 500);
+$border:        map-get($md-primary, 100);
+$link:          map_get($md-primary, 400);
+$link-hover:    map_get($md-primary, 900);
+$padding-rl:       5px;
+$padding-tb:       3px;
+
+.social-links{
+    position: fixed;
+    top: 5rem;
+    right: 0;
+}
+.links {
+    text-align: center;
+    padding: 0;
+    background-color: $background;
+    border-top-left-radius: $padding-rl;
+    border-bottom-left-radius: $padding-rl;
+    padding: $padding-tb $padding-rl $padding-tb $padding-rl;
+    box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+    border-right: 0;
+
+    li {
+        list-style: none;
+        font-size: 1.5em;
+        text-decoration: none;
+        padding: map_get($spacings, 2);
+
+        span {
+            color: $link;
+            &:hover {
+                color: $link-hover;
+            }
+        }
+    }
+}

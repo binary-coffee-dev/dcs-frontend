@@ -1,11 +1,14 @@
-<div class="posts-container"
-     fxFlex.xs="100"
-     fxFlex.sm="100"
-     fxFlex="60">
-  <app-post-item class="post-element"
-                 *ngFor="let post of posts"
-                 [post]="post"
-                 fxLayout="row">
-  </app-post-item>
-  <app-pagination></app-pagination>
+<div class="container"
+     fxLayout="row"
+     fxLayoutAlign="start start">
+  <div class="posts-container"
+       fxFlex.xs="100"
+       fxFlex.sm="100"
+       fxFlex="60">
+    <app-post-item class="post-element"
+                   *ngFor="let post of posts"
+                   [post]="post">
+    </app-post-item>
+    <app-pagination></app-pagination>
+  </div>
 </div>

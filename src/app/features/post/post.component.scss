@@ -3,12 +3,19 @@
 
 :host {
   .post-container {
-    margin: 0 map_get($spacings, 5);
+    margin: 0 map_get($spacings, 5) map_get($spacings, 5) map_get($spacings, 5);
 
     .post-in-container {
+      margin-top: map_get($spacings, 5);
+      box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+      background-color: map_get($md-grey, A100);
+      padding: map_get($spacings, 4);
+
       h1 {
         margin: 0;
-        font-weight: 500;
+        font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+        font-weight: 200;
+        text-transform: uppercase;
       }
 
       .post-info-container {
@@ -27,6 +34,12 @@
           object-position: center;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .post-container {
+      margin: 0;
     }
   }
 }

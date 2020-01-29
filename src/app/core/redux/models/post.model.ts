@@ -11,4 +11,5 @@ export interface Post {
   banner: File;
   author: User;
   views: string;
+  comments: string;
 }

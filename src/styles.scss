@@ -6,7 +6,9 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+  font-weight: 400;
+  background-color: map_get($md-grey, 50);
 }
 
 .post-info {
@@ -17,6 +19,12 @@ body {
 
   span {
     margin-right: 5px;
+  }
+
+  mat-icon {
+    font-size: 1.1rem;
+    height: auto;
+    color: map_get($md-primary, 500);
   }
 
   a {

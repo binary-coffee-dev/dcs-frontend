@@ -1,13 +1,20 @@
 @import "src/spacings";
 
 :host {
-  .posts-container {
-    padding: map_get($spacings, 5);
-    margin: auto;
-    //width: 80%;
+  .container {
+    min-height: calc(100vh - 248px);
 
-    .post-element {
-      margin-bottom: map_get($spacings, 6);
+    .posts-container {
+      padding: map_get($spacings, 5);
+      margin: 0 auto;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .container {
+      .posts-container {
+        padding: map_get($spacings, 1);
+      }
     }
   }
 }
