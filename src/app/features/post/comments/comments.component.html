@@ -1,5 +1,5 @@
 <div class="comments-container">
-  <div class="comments-header"><span>Comments</span></div>
+  <div class="comments-header"><span>Comentarios</span></div>
 
   <form class="comment-new-container"
         fxLayout="column"
@@ -10,18 +10,17 @@
       <mat-icon aria-hidden="false">close</mat-icon>
       {{commentError}}
     </span>
-    <input class="comment-item comment-item-text"
-           formControlName="body"
-           type="text"
-           placeholder="Deja tu opinión...">
+    <textarea class="comment-item comment-item-text"
+              formControlName="body"
+              type="text" maxlength="250"
+              placeholder="Deja tu opinión..." cols="30" rows="10">
+    </textarea>
     <div class="comment-credentials"
          fxFlex="100"
          fxLayout="row"
          fxLayout.sm="column"
          fxLayout.xs="column"
-         fxLayoutAlign.sm="start start"
-         fxLayoutAlign.xs="start start"
-         fxLayoutAlign="center center">
+         fxLayoutAlign="start start">
       <div class="captcha-container">
         <div class="captcha"
              [innerHTML]="myCaptcha"

@@ -16,10 +16,7 @@ $padding-tb:       3px;
 }
 .links {
     text-align: center;
-    padding: 0;
     background-color: $background;
-    border-top-left-radius: $padding-rl;
-    border-bottom-left-radius: $padding-rl;
     padding: $padding-tb $padding-rl $padding-tb $padding-rl;
     box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
     border-right: 0;
