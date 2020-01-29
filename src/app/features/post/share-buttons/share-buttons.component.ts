@@ -18,7 +18,7 @@ export class ShareButtonsComponent implements OnInit {
   ngOnInit() {
     this.url = document.location.href;
     this.urlFacebook = `https://www.facebook.com/sharer/sharer.php?u=${this.url}`;
-    this.urlTwitter = `https://twitter.com/intent/tweet/?url=${this.url}&hastags=BinaryCoffee`;
+    this.urlTwitter = `https://twitter.com/intent/tweet/?hashtags=BinaryCoffee&url=${this.url}`;
     this.urlLinkedIn = `https://www.linkedin.com/shareArticle?mini=true&url=${this.url}`
   }
 
