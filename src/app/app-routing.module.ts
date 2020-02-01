@@ -22,6 +22,10 @@ const routes: Routes = [
     loadChildren: () => import('./features/post/post.module').then(m => m.PostModule)
   },
   {
+    path: 'verify/:token',
+    loadChildren: () => import('./features/subscription/subscription.module').then(m => m.SubscriptionModule)
+  },
+  {
     path: 'contact',
     component: ContactComponent
   },
