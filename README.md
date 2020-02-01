@@ -39,3 +39,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Contributing
+
+Any contribution is welcome, but please first read the CONTRIBUTING guide: [CONTRIBUTING.md](https://github.com/dcs-community/dcs-frontend/blob/master/CONTRIBUTING.md)
