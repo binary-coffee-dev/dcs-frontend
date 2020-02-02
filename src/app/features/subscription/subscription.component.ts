@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import {Store} from '@ngxs/store';
-import {VerifySubscriptionAction} from './redux/subscription.action';
+import {SubscribeAction, VerifySubscriptionAction} from './redux/subscription.action';
 import {SubscriptionState} from './redux/subscription.state';
 import {Subscription} from './redux/models';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -18,8 +18,8 @@ export class SubscriptionComponent implements OnInit {
 
   message = '';
 
-  subscriptionError = false;
-  subscriptionSent = true;
+  subscriptionError = '';
+  subscriptionSent = false;
 
   subscribeForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -45,8 +45,20 @@ export class SubscriptionComponent implements OnInit {
 
   subscribe() {
     if (this.subscribeForm.valid) {
+      this.store.dispatch(new SubscribeAction(this.subscribeForm.controls.email.value)).subscribe(() => {
+        const subscription = this.store.selectSnapshot(SubscriptionState.subscription);
+        if (subscription && !subscription.verified) {
+          this.message = 'La suscripción a sido correctamente enviada, revise su email para verificarlo';
+          this.subscriptionSent = true;
+        } else if (subscription && subscription.verified) {
+          this.subscriptionError = 'El email ya se encuentra suscrito al sitio';
+        } else {
+          this.subscriptionError =
+            'Error: Ha ocurrido algún problema con su suscripción. Por favor, contáctenos en website@binary-coffee.dev';
+        }
+      });
     } else {
-      this.subscriptionError = true;
+      this.subscriptionError = 'Error: Email incorrecto';
     }
   }
 }

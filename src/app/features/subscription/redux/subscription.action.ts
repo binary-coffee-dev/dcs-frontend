@@ -4,3 +4,10 @@ export class VerifySubscriptionAction {
   constructor(public token: string) {
   }
 }
+
+export class SubscribeAction {
+  static readonly type = '[Subscription] Subscribe';
+
+  constructor(public email: string) {
+  }
+}

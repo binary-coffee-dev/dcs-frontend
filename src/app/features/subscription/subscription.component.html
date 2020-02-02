@@ -11,6 +11,6 @@
     <button type="submit">Suscribirse</button>
   </form>
   <span class="error"
-        *ngIf="subscriptionError && !subscriptionSent">Incorrect email</span>
+        *ngIf="subscriptionError !== '' && !subscriptionSent && !token">{{subscriptionError}}</span>
   <a class="back-button" routerLink="/">Volver al sitio</a>
 </div>
