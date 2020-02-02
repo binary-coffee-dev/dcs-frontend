@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngxs/store';
 import {VerifySubscriptionAction} from './redux/subscription.action';
 import {SubscriptionState} from './redux/subscription.state';
+import {Subscription} from './redux/models';
 
 @Component({
   selector: 'app-subscription',
@@ -13,6 +14,7 @@ import {SubscriptionState} from './redux/subscription.state';
 export class SubscriptionComponent implements OnInit {
 
   token = '';
+  subscription: Subscription;
 
   constructor(
     private activeRouter: ActivatedRoute,
@@ -23,7 +25,7 @@ export class SubscriptionComponent implements OnInit {
   ngOnInit() {
     this.token = this.activeRouter.snapshot.params.token;
     this.store.dispatch(new VerifySubscriptionAction(this.token)).subscribe(() => {
-      console.log(this.store.selectSnapshot(SubscriptionState.subscription));
+      this.subscription = this.store.selectSnapshot(SubscriptionState.subscription);
     });
   }
 
