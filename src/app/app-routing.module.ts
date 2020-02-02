@@ -26,6 +26,10 @@ const routes: Routes = [
     loadChildren: () => import('./features/subscription/subscription.module').then(m => m.SubscriptionModule)
   },
   {
+    path: 'subscribe',
+    loadChildren: () => import('./features/subscription/subscription.module').then(m => m.SubscriptionModule)
+  },
+  {
     path: 'contact',
     component: ContactComponent
   },

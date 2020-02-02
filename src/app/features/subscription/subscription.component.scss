@@ -1,5 +1,30 @@
+@import '../../../spacings';
+@import '../../../color';
+
 :host {
   .container {
     min-height: calc(100vh - 264px);
+
+    form {
+      input, button {
+        font-size: 1.5rem;
+        padding: 6px;
+      }
+
+      button {
+        background-color: map_get($md-primary, 500);
+        border: solid map_get($md-primary, 500);
+        color: map_get($md-grey, 50);
+        cursor: pointer;
+      }
+    }
+
+    .error {
+      color: #f00;
+    }
+
+    .back-button {
+      margin-top: map_get($spacings, 5);
+    }
   }
 }

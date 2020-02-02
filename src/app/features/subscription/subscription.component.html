@@ -1,6 +1,16 @@
 <div class="container"
      fxLayout="column"
      fxLayoutAlign="center center">
-  <p *ngIf="subscription?.verified">Se ha suscrito correctamente al sitio Binary Coffee.</p>
-  <a routerLink="/">Volver al sitio</a>
+  <p *ngIf="message">{{message}}</p>
+  <form [formGroup]="subscribeForm"
+        *ngIf="!subscriptionSent && !token"
+        (ngSubmit)="subscribe()">
+    <input type="email"
+           placeholder="Email"
+           formControlName="email">
+    <button type="submit">Suscribirse</button>
+  </form>
+  <span class="error"
+        *ngIf="subscriptionError && !subscriptionSent">Incorrect email</span>
+  <a class="back-button" routerLink="/">Volver al sitio</a>
 </div>

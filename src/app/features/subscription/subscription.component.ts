@@ -5,6 +5,7 @@ import {Store} from '@ngxs/store';
 import {VerifySubscriptionAction} from './redux/subscription.action';
 import {SubscriptionState} from './redux/subscription.state';
 import {Subscription} from './redux/models';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-subscription',
@@ -14,7 +15,15 @@ import {Subscription} from './redux/models';
 export class SubscriptionComponent implements OnInit {
 
   token = '';
-  subscription: Subscription;
+
+  message = '';
+
+  subscriptionError = false;
+  subscriptionSent = true;
+
+  subscribeForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+  });
 
   constructor(
     private activeRouter: ActivatedRoute,
@@ -24,9 +33,20 @@ export class SubscriptionComponent implements OnInit {
 
   ngOnInit() {
     this.token = this.activeRouter.snapshot.params.token;
-    this.store.dispatch(new VerifySubscriptionAction(this.token)).subscribe(() => {
-      this.subscription = this.store.selectSnapshot(SubscriptionState.subscription);
-    });
+    if (this.token) {
+      this.store.dispatch(new VerifySubscriptionAction(this.token)).subscribe(() => {
+        const subscription = this.store.selectSnapshot(SubscriptionState.subscription);
+        if (subscription.verified) {
+          this.message = 'Se ha suscrito correctamente al sitio Binary Coffee.';
+        }
+      });
+    }
   }
 
+  subscribe() {
+    if (this.subscribeForm.valid) {
+    } else {
+      this.subscriptionError = true;
+    }
+  }
 }
