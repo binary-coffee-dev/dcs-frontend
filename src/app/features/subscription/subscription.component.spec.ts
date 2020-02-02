@@ -1,6 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
-import { SubscriptionComponent } from './subscription.component';
+import {Store} from '@ngxs/store';
+
+import {SubscriptionComponent} from './subscription.component';
+
+class StoreStub {
+}
 
 describe('SubscriptionComponent', () => {
   let component: SubscriptionComponent;
@@ -8,14 +15,20 @@ describe('SubscriptionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubscriptionComponent ]
+      imports: [RouterTestingModule],
+      declarations: [SubscriptionComponent],
+      providers: [{provide: Store, userClass: StoreStub}],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SubscriptionComponent);
     component = fixture.componentInstance;
+
+    spyOn(component, 'ngOnInit');
+
     fixture.detectChanges();
   });
 
