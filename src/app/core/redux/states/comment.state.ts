@@ -9,7 +9,6 @@ import {
   CreateCommentAction,
   FetchCaptchaAction,
   FetchCommentsAction,
-  FetchPostAction,
   RefreshPostAction
 } from '../actions';
 import {Captcha, Comment, CommentError} from '../models';

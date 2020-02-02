@@ -2,18 +2,18 @@ import {TestBed} from '@angular/core/testing';
 
 import {Apollo} from 'apollo-angular';
 
-import {CommentService} from './comment.service';
+import {SubscriptionService} from './subscription.service';
 
 class ApolloStub {
 }
 
-describe('CommentService', () => {
+describe('SubscriptionService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [{provide: Apollo, userClass: ApolloStub}]
   }));
 
   it('should be created', () => {
-    const service: CommentService = TestBed.get(CommentService);
+    const service: SubscriptionService = TestBed.get(SubscriptionService);
     expect(service).toBeTruthy();
   });
 });
