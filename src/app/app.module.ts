@@ -11,13 +11,15 @@ import { HeaderComponent } from './features/components/header';
 import { FooterComponent } from './features/components/footer/footer.component';
 import { SocialLinksComponent } from './features/components/social-links/social-links.component';
 import { InfoModule } from './features/info/info.module';
+import { NewLabelComponent } from './features/components/new-label/new-label.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    SocialLinksComponent
+    SocialLinksComponent,
+    NewLabelComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
