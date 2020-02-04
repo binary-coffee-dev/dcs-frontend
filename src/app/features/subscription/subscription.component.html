@@ -10,10 +10,9 @@
         <input type="email" placeholder="Email" formControlName="email">
         <button mat-button type="submit">Suscribirse</button>
       </div>
-      <span class="message" *ngIf="message" fxFlex="100">{{message}}</span>
     </div>
-
   </form>
+  <span class="message" *ngIf="message">{{message}} Usted se ha subscritoa Binary</span>
   <a class="back-button" (click)="backClicked()">
     <mat-icon mat-font-icon="fa-icon" class="fa fa-arrow-left"></mat-icon>
     Volver

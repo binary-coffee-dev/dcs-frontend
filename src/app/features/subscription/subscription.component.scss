@@ -8,7 +8,7 @@
     form {
       .card{
         padding: map_get($spacings, 4);
-        background-color: white;
+        background-color: map-get($md-grey, A100);;
         box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
         border-radius: 0;
 
@@ -36,20 +36,20 @@
         
       }
 
+      
+    }
+
       .message,.error {
-        color: white;
         padding-left: map_get($spacings, 1) ;
         padding-right: map_get($spacings, 1) ;
       }
       .error{
+        color: map-get($md-grey, A100);
         background-color: rgba(255, 0, 0, 0.2);
       }
       .message{
-        background-color: rgba(0, 255, 0, 0.2);
+        color: map-get($md-primary, 900);
       }
-    }
-
-
     
     .back-button {
       margin-top: map_get($spacings, 5);
