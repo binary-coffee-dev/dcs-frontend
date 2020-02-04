@@ -36,20 +36,20 @@
         
       }
 
+      
+    }
+
       .message,.error {
-        color: white;
         padding-left: map_get($spacings, 1) ;
         padding-right: map_get($spacings, 1) ;
       }
       .error{
+        color: white;
         background-color: rgba(255, 0, 0, 0.2);
       }
       .message{
-        background-color: rgba(0, 255, 0, 0.2);
+        color: map-get($md-primary, 900);
       }
-    }
-
-
     
     .back-button {
       margin-top: map_get($spacings, 5);
