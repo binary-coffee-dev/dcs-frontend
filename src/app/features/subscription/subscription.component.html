@@ -1,16 +1,21 @@
-<div class="container"
-     fxLayout="column"
-     fxLayoutAlign="center center">
-  <p *ngIf="message">{{message}}</p>
-  <form [formGroup]="subscribeForm"
-        *ngIf="!subscriptionSent && !token"
-        (ngSubmit)="subscribe()">
-    <input type="email"
-           placeholder="Email"
-           formControlName="email">
-    <button type="submit">Suscribirse</button>
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+
+  <form [formGroup]="subscribeForm" *ngIf="!subscriptionSent && !token" (ngSubmit)="subscribe()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="gappx">
+      <span class="error" *ngIf="subscriptionError !== '' && !subscriptionSent && !token"
+        fxFlex="100">{{subscriptionError}}</span>
+      <div class="card" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="gappx" fxFlex="100">
+        <img src="assets/binarycoffee_2.1.1.svg" width="250">
+
+        <input type="email" placeholder="Email" formControlName="email">
+        <button mat-button type="submit">Suscribirse</button>
+      </div>
+      <span class="message" *ngIf="message" fxFlex="100">{{message}}</span>
+    </div>
+
   </form>
-  <span class="error"
-        *ngIf="subscriptionError !== '' && !subscriptionSent && !token">{{subscriptionError}}</span>
-  <a class="back-button" routerLink="/">Volver al sitio</a>
+  <a class="back-button" (click)="backClicked()">
+    <mat-icon mat-font-icon="fa-icon" class="fa fa-arrow-left"></mat-icon>
+    Volver
+  </a>
 </div>

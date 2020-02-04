@@ -5,36 +5,43 @@
         </a>
     </div>
     <footer>
-        <div class="groups" *ngIf="false" fxLayout="row wrap">
+        <div class="groups" fxLayout="row wrap">
             <div class="sub-group" fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start start"
                 fxFlex.xs="50" fxFlex="25">
                 <b>Binnary Coffee</b>
                 <ul>
                     <li>
-                        <a [routerLink]="'/about'" title="Quienes somos y de donde venimos">
+                        <a [routerLink]="'/subscribe'" title="Subscríbace ahora">
+                            <span>Subscribirse</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a *ngIf="false" [routerLink]="'/about'" title="Quienes somos y de donde venimos">
                             <span>Quienes somos</span>
                         </a>
                     </li>
                     <li>
-                        <a [routerLink]="'/questions'" title="Pregunte cualquier duda o revise las más frecuentes">
+                        <a *ngIf="false" [routerLink]="'/questions'"
+                            title="Pregunte cualquier duda o revise las más frecuentes">
                             <span>Preguntas</span>
                         </a>
                     </li>
                     <li>
-                        <a [routerLink]="'/site-map'" title="Vea la estructura general del sitio web">
+                        <a *ngIf="false" [routerLink]="'/site-map'" title="Vea la estructura general del sitio web">
                             <span>Mapa</span>
                         </a>
                     </li>
                     <li>
-                        <a [routerLink]="'/contact'" title="Contactar directamete con el equipo de Binary Coffee">
+                        <a *ngIf="false" [routerLink]="'/contact'"
+                            title="Contactar directamete con el equipo de Binary Coffee">
                             <span>Contáctenos</span>
                         </a>
                     </li>
                 </ul>
             </div>
 
-            <div class="sub-group" fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start start"
-                fxFlex.xs="50" fxFlex="25">
+            <div *ngIf="false" class="sub-group" fxLayout="column" fxLayoutAlign="start center"
+                fxLayoutAlign.xs="start start" fxFlex.xs="50" fxFlex="25">
                 <b>Desarrolladores</b>
                 <ul>
                     <li>
@@ -65,8 +72,8 @@
                 </ul>
             </div>
 
-            <div class="sub-group" fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start start"
-                fxFlex.xs="50" fxFlex="25">
+            <div *ngIf="false" class="sub-group" fxLayout="column" fxLayoutAlign="start center"
+                fxLayoutAlign.xs="start start" fxFlex.xs="50" fxFlex="25">
                 <b>Escritores</b>
                 <ul>
                     <li>
@@ -82,8 +89,8 @@
                 </ul>
             </div>
 
-            <div class="sub-group" fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start start"
-                fxFlex.xs="50" fxFlex="25">
+            <div *ngIf="false" class="sub-group" fxLayout="column" fxLayoutAlign="start center"
+                fxLayoutAlign.xs="start start" fxFlex.xs="50" fxFlex="25">
                 <b>Socios</b>
                 <ul>
                     <li>

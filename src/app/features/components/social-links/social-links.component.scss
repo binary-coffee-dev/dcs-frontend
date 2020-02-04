@@ -11,10 +11,11 @@ $padding-tb:       3px;
 
 .social-links{
     position: fixed;
-    top: 5rem;
+    top: 6rem;
     right: 0;
 }
 .links {
+    margin-bottom: 1.5rem;
     text-align: center;
     background-color: $background;
     padding: $padding-tb $padding-rl $padding-tb $padding-rl;
@@ -27,7 +28,7 @@ $padding-tb:       3px;
         text-decoration: none;
         padding: map_get($spacings, 2);
 
-        span {
+        mat-icon {
             color: $link;
             &:hover {
                 color: $link-hover;
