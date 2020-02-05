@@ -1,0 +1,13 @@
+
+.scroll-to-top {
+ position: fixed;
+ bottom: 6rem;
+ right: 0;
+ opacity: 0;
+ transition: all .2s ease-in-out;
+}
+
+.show-scrollTop {
+ opacity: .6;
+ transition: all .2s ease-in-out;
+}
