@@ -6,8 +6,6 @@ $background:    map_get($md-grey, 500);
 $border:        map-get($md-primary, 100);
 $link:          map_get($md-primary, 400);
 $link-hover:    map_get($md-primary, 900);
-$padding-rl:       5px;
-$padding-tb:       3px;
 
 .social-links{
     position: fixed;
@@ -18,7 +16,7 @@ $padding-tb:       3px;
     margin-bottom: 1.5rem;
     text-align: center;
     background-color: $background;
-    padding: $padding-tb $padding-rl $padding-tb $padding-rl;
+    padding: 0;
     box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
     border-right: 0;
 
