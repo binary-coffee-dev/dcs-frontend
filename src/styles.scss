@@ -63,6 +63,13 @@ markdown {
   p {
     font-size: 1.3rem;
     font-weight: 100;
+
+    code {
+      background-color: map_get($md-grey, 850);
+      color: map_get($md-grey, 450);
+      padding: 0 3px;
+      border-radius: 3px;
+    }
   }
 
   a {
