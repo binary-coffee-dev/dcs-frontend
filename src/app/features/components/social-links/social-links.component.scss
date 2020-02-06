@@ -1,35 +1,36 @@
 @import "src/color";
 @import "src/spacings";
+:host{
+    $font:          map_get($md-grey,700);
+    $background:    map_get($md-grey, 500);
+    $border:        map-get($md-primary, 100);
+    $link:          map_get($md-primary, 400);
+    $link-hover:    map_get($md-primary, 900);
 
-$font:          map_get($md-grey,700);
-$background:    map_get($md-grey, 500);
-$border:        map-get($md-primary, 100);
-$link:          map_get($md-primary, 400);
-$link-hover:    map_get($md-primary, 900);
+    .social-links{
+        position: fixed;
+        top: 6rem;
+        left: 0;
+    }
+    .links {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        background-color: $background;
+        padding: 0;
+        box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+        border-right: 0;
 
-.social-links{
-    position: fixed;
-    top: 6rem;
-    right: 0;
-}
-.links {
-    margin-bottom: 1.5rem;
-    text-align: center;
-    background-color: $background;
-    padding: 0;
-    box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
-    border-right: 0;
+        li {
+            list-style: none;
+            font-size: 1.5em;
+            text-decoration: none;
+            padding: map_get($spacings, 2);
 
-    li {
-        list-style: none;
-        font-size: 1.5em;
-        text-decoration: none;
-        padding: map_get($spacings, 2);
-
-        mat-icon {
-            color: $link;
-            &:hover {
-                color: $link-hover;
+            mat-icon {
+                color: $link;
+                &:hover {
+                    color: $link-hover;
+                }
             }
         }
     }
