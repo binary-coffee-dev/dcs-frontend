@@ -1,20 +1,24 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
+import {Subject, timer} from 'rxjs';
 import {Store} from '@ngxs/store';
 
 import {CommentErrorAction, CreateCommentAction, FetchCaptchaAction, FetchCommentsAction} from '../../../core/redux/actions';
 import {CommentState} from '../../../core/redux/states';
 import {Captcha, Comment, Post} from '../../../core/redux/models';
 import {MomentService} from '../../../core/services';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent implements OnInit {
+export class CommentsComponent implements OnInit, OnDestroy {
+
+  _unsubscribe = new Subject();
 
   @Input()
   post: Post = {} as Post;
@@ -45,6 +49,8 @@ export class CommentsComponent implements OnInit {
       this.captcha = captcha;
       if (captcha) {
         this.myCaptcha = this.sanitizer.bypassSecurityTrustHtml(captcha.captcha);
+        this._unsubscribe.next();
+        timer(120000).pipe(takeUntil(this._unsubscribe)).subscribe(() => this.reloadCaptcha());
       }
     });
     this.store.select(CommentState.comments).subscribe(comments => {
@@ -56,6 +62,10 @@ export class CommentsComponent implements OnInit {
       this.commentError = error.message;
       this.reloadCaptcha();
     });
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe.next();
   }
 
   reloadCaptcha() {
