@@ -72,6 +72,11 @@ markdown {
     }
   }
 
+  ul {
+    font-size: 1.2rem;
+    font-weight: 100;
+  }
+
   a {
     color: map_get($md-grey, 800);
     word-break: break-all;
