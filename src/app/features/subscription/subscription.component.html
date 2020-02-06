@@ -8,11 +8,11 @@
         <img src="assets/binarycoffee_2.1.1.svg" width="250">
 
         <input type="email" placeholder="Email" formControlName="email">
-        <button mat-button type="submit">Suscribirse</button>
+        <button mat-button type="submit">Suscríbase</button>
       </div>
     </div>
   </form>
-  <span class="message" *ngIf="message">{{message}} Usted se ha subscritoa Binary</span>
+  <p class="message" *ngIf="message">{{message}}</p>
   <a class="back-button" (click)="backClicked()">
     <mat-icon mat-font-icon="fa-icon" class="fa fa-arrow-left"></mat-icon>
     Volver
