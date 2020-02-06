@@ -1,12 +1,10 @@
 div{
     position: absolute;
-    border-bottom-left-radius: 50px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
+    border-radius: 50px;
     font-size: 12px;
     background-color:#ff9d00;
     padding: 1px 5px 3px 6px;
     color:white;
-    left: -15px;
+    right: -15px;
     top:5px;
 }
