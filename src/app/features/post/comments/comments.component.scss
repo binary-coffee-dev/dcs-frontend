@@ -132,6 +132,10 @@
         .post-info-container {
           margin-bottom: map_get($spacings, 1);
         }
+
+        .comment-body{
+          overflow-x: auto;
+        }
       }
     }
   }
