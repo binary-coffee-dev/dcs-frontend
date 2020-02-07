@@ -104,6 +104,8 @@ markdown {
     width: 50%;
     object-fit: cover;
     object-position: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
 
   @media screen and (max-width: 599px) {
