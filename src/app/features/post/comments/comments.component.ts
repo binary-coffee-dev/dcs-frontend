@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -10,6 +10,7 @@ import {CommentState} from '../../../core/redux/states';
 import {Captcha, Comment, Post} from '../../../core/redux/models';
 import {MomentService} from '../../../core/services';
 import {takeUntil} from 'rxjs/operators';
+import {isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'app-comments',
@@ -39,7 +40,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store,
     private sanitizer: DomSanitizer,
-    public moment: MomentService
+    public moment: MomentService,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
   }
 
@@ -50,7 +52,9 @@ export class CommentsComponent implements OnInit, OnDestroy {
       if (captcha) {
         this.myCaptcha = this.sanitizer.bypassSecurityTrustHtml(captcha.captcha);
         this._unsubscribe.next();
-        timer(120000).pipe(takeUntil(this._unsubscribe)).subscribe(() => this.reloadCaptcha());
+        if (isPlatformBrowser(this.platformId)) {
+          timer(120000).pipe(takeUntil(this._unsubscribe)).subscribe(() => this.reloadCaptcha());
+        }
       }
     });
     this.store.select(CommentState.comments).subscribe(comments => {
