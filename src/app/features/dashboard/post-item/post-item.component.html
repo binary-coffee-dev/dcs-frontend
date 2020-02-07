@@ -1,41 +1,25 @@
-<div class="card-container"
-     [routerLink]="'post/' + post?.name"
-     fxLayout="row">
-  <div class="post-image-container"
-       fxShow.xs="false">
-    <img *ngIf="post?.banner && post?.banner?.url"
-         [src]="resource.addApiUrl(post?.banner?.url)"
-         alt="">
+<a class="card-container" target="blanck" [routerLink]="'post/' + post?.name" fxLayout="row">
+  <div class="post-image-container" fxShow.xs="false">
+    <img *ngIf="post?.banner && post?.banner?.url" [src]="resource.addApiUrl(post?.banner?.url)" alt="">
   </div>
   <div class="post-body-container" fxFlex.gt-sm="80">
-    <h3><a [routerLink]="'post/' + post?.name">{{post?.title}}</a></h3>
+    <h3>{{post?.title}}</h3>
     <div class="post-info-container" fxLayout="row">
-      <span class="post-info separator"
-            *ngIf="post?.author"
-            fxLayout="row">
-        <a [href]="post?.author?.page || ''"
-           [title]="post?.author?.email"
-           fxLayout="row"
-           fxLayoutAlign="start center">
+      <span class="post-info separator" *ngIf="post?.author" fxLayout="row">
+        <a [href]="post?.author?.page || ''" [title]="post?.author?.email" fxLayout="row" fxLayoutAlign="start center">
           {{post?.author?.username}}
         </a>
       </span>
       <span class="post-info separator">{{post?.publishedAt && moment.timeFromDate(post?.publishedAt) || ''}}</span>
-      <span class="post-info"
-            [ngClass]="{'separator': post?.comments}"
-            fxLayout="row"
-            fxLayoutAlign="start center">
+      <span class="post-info" [ngClass]="{'separator': post?.comments}" fxLayout="row" fxLayoutAlign="start center">
         <mat-icon aria-hidden="false">remove_red_eye</mat-icon>
         {{post?.views || 0}}
       </span>
-      <span class="post-info"
-            *ngIf="post?.comments"
-            fxLayout="row"
-            fxLayoutAlign="start center">
+      <span class="post-info" *ngIf="post?.comments" fxLayout="row" fxLayoutAlign="start center">
         <mat-icon aria-hidden="false">comment</mat-icon>
         {{post?.comments || 0}}
       </span>
     </div>
     <span class="post-body-extract">{{truncatePostDescription(post?.description)}}</span>
   </div>
-</div>
+</a>
