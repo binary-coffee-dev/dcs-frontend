@@ -63,6 +63,18 @@ markdown {
   p {
     font-size: 1.3rem;
     font-weight: 100;
+
+    code {
+      background-color: map_get($md-grey, 850);
+      color: map_get($md-grey, 450);
+      padding: 0 3px;
+      border-radius: 3px;
+    }
+  }
+
+  ul {
+    font-size: 1.2rem;
+    font-weight: 100;
   }
 
   a {
@@ -92,6 +104,8 @@ markdown {
     width: 50%;
     object-fit: cover;
     object-position: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
 
   @media screen and (max-width: 599px) {

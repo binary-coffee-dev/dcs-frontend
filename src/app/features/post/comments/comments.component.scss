@@ -2,6 +2,31 @@
 @import "../../../../spacings";
 
 :host {
+  input, textarea{
+    font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+    border-radius: 0!important;
+    padding: map_get($spacings, 2)!important;
+    font-size: 0.875rem;
+    margin-top: 0!important;
+    margin-bottom: map_get($spacings, 3)!important;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  button{
+    font-size: 0.875rem;
+    font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+    padding: map_get($spacings, 2) map_get($spacings, 4)!important;
+    border-radius: 0!important;
+    color: map_get($md-grey, A100)!important;
+    text-transform: uppercase;
+    background-color: map_get($md-primary, 900);
+  }
+  button[disabled]{
+    background-color: map_get($md-primary, 600);
+  }
   .comments-container {
     margin-top: map_get($spacings, 10);
 
@@ -46,9 +71,6 @@
       }
 
       .comment-item-text {
-        padding: map_get($spacings, 2);
-        margin-bottom: map_get($spacings, 3);
-        font-size: 1.2em;
         width: calc(100% - 28px);
       }
 
@@ -63,7 +85,6 @@
             max-width: 150px;
             border: none;
             padding: 6px;
-            margin-top: 12px;
             border-radius: 3px;
             color: #595959;
             font-weight: 900;
@@ -82,10 +103,11 @@
         }
 
         .captcha-container {
-          margin-right: map_get($spacings, 10);
+          margin-right: map_get($spacings, 3);
 
           .captcha {
             cursor: pointer;
+            margin-bottom: 8px;
           }
 
           .comment-item-captcha {
@@ -109,6 +131,10 @@
 
         .post-info-container {
           margin-bottom: map_get($spacings, 1);
+        }
+
+        .comment-body{
+          word-wrap: break-word;
         }
       }
     }

@@ -67,10 +67,6 @@ $link-hover:      map_get($md-primary, 800);
 
     img {
       height: 60px;
-
-      &:hover {
-        animation: anim-bc .3s linear;
-      }
     }
   }
 

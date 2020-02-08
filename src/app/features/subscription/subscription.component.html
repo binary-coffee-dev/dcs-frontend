@@ -1,0 +1,20 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+
+  <form [formGroup]="subscribeForm" *ngIf="!subscriptionSent && !token" (ngSubmit)="subscribe()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="gappx">
+      <span class="error" *ngIf="subscriptionError !== '' && !subscriptionSent && !token"
+        fxFlex="100">{{subscriptionError}}</span>
+      <div class="card" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="gappx" fxFlex="100">
+        <img src="assets/binarycoffee_2.1.1.svg" width="250">
+
+        <input type="email" placeholder="Email" formControlName="email">
+        <button mat-button type="submit">Suscribirse</button>
+      </div>
+    </div>
+  </form>
+  <p class="message" *ngIf="message">{{message}}</p>
+  <a class="back-button" (click)="backClicked()">
+    <mat-icon mat-font-icon="fa-icon" class="fa fa-arrow-left"></mat-icon>
+    Volver
+  </a>
+</div>

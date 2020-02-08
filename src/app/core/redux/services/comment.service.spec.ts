@@ -1,9 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { CommentService } from './comment.service';
+import {Apollo} from 'apollo-angular';
+
+import {CommentService} from './comment.service';
+
+class ApolloStub {
+}
 
 describe('CommentService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({
+    providers: [{provide: Apollo, userClass: ApolloStub}]
+  }));
 
   it('should be created', () => {
     const service: CommentService = TestBed.get(CommentService);

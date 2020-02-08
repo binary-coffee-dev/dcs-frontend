@@ -47,24 +47,29 @@ describe('PostService', () => {
           postsConnection: {
             values: POSTS_EXAMPLE,
             aggregate: {count: COUNT_EXAMPLE}
-          } as PostConnection
+          } as PostConnection,
+          countPosts: COUNT_EXAMPLE
         }
       })
     });
 
     service.fetchPosts(LIMIT_EXAMPLE).subscribe((posts) => {
       expect(posts).toEqual({values: POSTS_EXAMPLE, aggregate: {count: COUNT_EXAMPLE}} as PostConnection);
-      expect(apollo.watchQuery).toHaveBeenCalledWith({query: POSTS_QUERY, variables: {limit: LIMIT_EXAMPLE, start: 0}});
+      expect(apollo.watchQuery).toHaveBeenCalledWith({
+        query: POSTS_QUERY,
+        variables: {limit: LIMIT_EXAMPLE, start: 0},
+        fetchPolicy: 'no-cache'
+      });
       done();
     });
   });
 
   it('should fetch a post by id', (done) => {
-    jest.spyOn(apollo, 'watchQuery').mockReturnValue({valueChanges: of({data: {post: POST_EXAMPLE}})});
+    jest.spyOn(apollo, 'watchQuery').mockReturnValue({valueChanges: of({data: {postByName: POST_EXAMPLE}})});
 
     service.fetchPost(ID_EXAMPLE).subscribe((post) => {
       expect(post).toEqual(POST_EXAMPLE);
-      expect(apollo.watchQuery).toHaveBeenCalledWith({query: POST_QUERY, variables: {id: ID_EXAMPLE}});
+      expect(apollo.watchQuery).toHaveBeenCalledWith({query: POST_QUERY, variables: {id: ID_EXAMPLE}, fetchPolicy: 'no-cache'});
       done();
     });
   });

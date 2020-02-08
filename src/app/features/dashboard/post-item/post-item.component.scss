@@ -11,6 +11,7 @@ $post_image_size: 110px;
     padding: map_get($spacings, 4);
     margin-bottom: map_get($spacings, 4);
     cursor: pointer;
+    text-decoration: none;
   }
 
   .post-image-container {
@@ -34,17 +35,11 @@ $post_image_size: 110px;
       margin: 0 0;
       font-size: 1.275rem;
 
-      a {
         text-decoration: none;
         color: map_get($md-primary, 500);
         font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
         font-weight: 200;
         text-transform: uppercase;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
     }
   }
 

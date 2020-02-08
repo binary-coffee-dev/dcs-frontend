@@ -1,0 +1,24 @@
+@import "src/spacings";
+@import "src/color";
+
+.twitter{
+    background-color: #1da1f2;
+}
+.facebook{
+    background-color: #2d4a86;
+}
+.linkedin{
+    background-color: #0077b5;
+}
+a{
+    margin-right: map_get($spacings, 1);
+    padding: map_get($spacings, 1) 0 map_get($spacings, 1) 0;
+    text-decoration: none;
+    .fa{
+        color: white;
+    }
+    
+}
+div{
+    margin-top: map_get($spacings, 2);
+}

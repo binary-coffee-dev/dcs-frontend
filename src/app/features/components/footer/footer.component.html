@@ -1,48 +1,45 @@
 <div>
     <div class="bc-logo">
-        <img src="assets/binarycoffee_2.0.1-i.png">
+        <img src="assets/256x256/binarycoffee_2.0.1-i.png">
     </div>
     <footer>
-        <div class="groups"
-             *ngIf="false"
-             fxLayout="row wrap">
-            <div class="sub-group"
-                 fxLayout="column"
-                 fxLayoutAlign="start center"
-                 fxLayoutAlign.xs="start start"
-                 fxFlex.xs="50"
-                 fxFlex="25">
-                <b>Binnary Coffee</b>
+        <div class="groups" fxLayout="row wrap">
+            <div class="sub-group" fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start start"
+                fxFlex.xs="50" fxFlex="25">
+                <b>Binary Coffee</b>
                 <ul>
                     <li>
-                        <a [routerLink]="'/about'" title="Quienes somos y de donde venimos">
+                        <a [routerLink]="'/subscribe'" title="Subscríbace ahora">
+                            <span>Subscribirse</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a *ngIf="false" [routerLink]="'/about'" title="Quienes somos y de donde venimos">
                             <span>Quienes somos</span>
                         </a>
                     </li>
                     <li>
-                        <a [routerLink]="'/questions'" title="Pregunte cualquier duda o revise las más frecuentes">
+                        <a *ngIf="false" [routerLink]="'/questions'"
+                            title="Pregunte cualquier duda o revise las más frecuentes">
                             <span>Preguntas</span>
                         </a>
                     </li>
                     <li>
-                        <a [routerLink]="'/site-map'" title="Vea la estructura general del sitio web">
+                        <a *ngIf="false" [routerLink]="'/site-map'" title="Vea la estructura general del sitio web">
                             <span>Mapa</span>
                         </a>
                     </li>
                     <li>
-                        <a [routerLink]="'/contact'" title="Contactar directamete con el equipo de Binary Coffee">
+                        <a href="mailto:website@binary-coffee.dev" target="blank"
+                            title="Contactar directamete con el equipo de Binary Coffee">
                             <span>Contáctenos</span>
                         </a>
                     </li>
                 </ul>
             </div>
 
-            <div class="sub-group"
-                 fxLayout="column"
-                 fxLayoutAlign="start center"
-                 fxLayoutAlign.xs="start start"
-                 fxFlex.xs="50"
-                 fxFlex="25">
+            <div *ngIf="false" class="sub-group" fxLayout="column" fxLayoutAlign="start center"
+                fxLayoutAlign.xs="start start" fxFlex.xs="50" fxFlex="25">
                 <b>Desarrolladores</b>
                 <ul>
                     <li>
@@ -73,12 +70,8 @@
                 </ul>
             </div>
 
-            <div class="sub-group"
-                 fxLayout="column"
-                 fxLayoutAlign="start center"
-                 fxLayoutAlign.xs="start start"
-                 fxFlex.xs="50"
-                 fxFlex="25">
+            <div *ngIf="false" class="sub-group" fxLayout="column" fxLayoutAlign="start center"
+                fxLayoutAlign.xs="start start" fxFlex.xs="50" fxFlex="25">
                 <b>Escritores</b>
                 <ul>
                     <li>
@@ -94,12 +87,8 @@
                 </ul>
             </div>
 
-            <div class="sub-group"
-                 fxLayout="column"
-                 fxLayoutAlign="start center"
-                 fxLayoutAlign.xs="start start"
-                 fxFlex.xs="50"
-                 fxFlex="25">
+            <div *ngIf="false" class="sub-group" fxLayout="column" fxLayoutAlign="start center"
+                fxLayoutAlign.xs="start start" fxFlex.xs="50" fxFlex="25">
                 <b>Socios</b>
                 <ul>
                     <li>
@@ -113,6 +102,7 @@
         <div class="social-links">
             <a href="https://github.com/dcs-community/" target="blanck">GitHub</a>|
             <a href="https://t.me/binarycoffeedev" target="blanck">Telegram</a>|
+            <a href="https://www.linkedin.com/company/binarycoffee/" target="blanck">LinkedIn</a>|
             <a href="https://twitter.com/CoffeeBinary" target="blanck">Twitter</a>|
             <a href="https://mbasic.facebook.com/Binary-Coffee-111577483710684/" target="blanck">Faceboook</a>
         </div>

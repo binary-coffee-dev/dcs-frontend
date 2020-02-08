@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiteMapComponent } from './site-map.component';
+import { NewLabelComponent } from './new-label.component';
 
-describe('SiteMapComponent', () => {
-  let component: SiteMapComponent;
-  let fixture: ComponentFixture<SiteMapComponent>;
+describe('NewLabelComponent', () => {
+  let component: NewLabelComponent;
+  let fixture: ComponentFixture<NewLabelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SiteMapComponent ]
+      declarations: [ NewLabelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SiteMapComponent);
+    fixture = TestBed.createComponent(NewLabelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
