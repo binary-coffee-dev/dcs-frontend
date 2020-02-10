@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
+import {LazyLoadImageModule, scrollPreset} from 'ng-lazyload-image';
+
 import {DashboardComponent} from './dashboard.component';
 import {DashboardRoutingModule} from './dashboard-routing.module';
 import {MaterialModule} from '../../core/material';
@@ -15,7 +17,8 @@ import {PaginationComponent} from './pagination';
     CommonModule,
     DashboardRoutingModule,
     MaterialModule,
-    ServicesModule
+    ServicesModule,
+    LazyLoadImageModule.forRoot({preset: scrollPreset})
   ],
   providers: [PostsGuard]
 })
