@@ -1,9 +1,13 @@
+@import "src/spacings";
+
 :host{
     .scroll-to-top {
         position: fixed;
+        right: 0;
         bottom: 7rem;
         opacity: 0;
         transition: all .2s ease-in-out;
+        padding: map-get($spacings, 2 );
     }
 
     .show-scrollTop {
