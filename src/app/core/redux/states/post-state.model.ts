@@ -14,7 +14,7 @@ export const initPostStateModel = () => {
   return {
     posts: [],
     page: 0,
-    pageSize: 10,
+    pageSize: 6,
     firstPage: false,
     lastPage: false
   } as PostStateModel;
