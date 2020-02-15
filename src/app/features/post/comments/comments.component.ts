@@ -19,7 +19,7 @@ import {isPlatformBrowser} from '@angular/common';
 })
 export class CommentsComponent implements OnInit, OnDestroy {
 
-  _unsubscribe = new Subject();
+  unsubscribe = new Subject();
 
   @Input()
   post: Post = {} as Post;
@@ -51,9 +51,9 @@ export class CommentsComponent implements OnInit, OnDestroy {
       this.captcha = captcha;
       if (captcha) {
         this.myCaptcha = this.sanitizer.bypassSecurityTrustHtml(captcha.captcha);
-        this._unsubscribe.next();
+        this.unsubscribe.next();
         if (isPlatformBrowser(this.platformId)) {
-          timer(120000).pipe(takeUntil(this._unsubscribe)).subscribe(() => this.reloadCaptcha());
+          timer(120000).pipe(takeUntil(this.unsubscribe)).subscribe(() => this.reloadCaptcha());
         }
       }
     });
@@ -69,11 +69,12 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._unsubscribe.next();
+    this.unsubscribe.next();
   }
 
   reloadCaptcha() {
-    this.store.dispatch(new FetchCaptchaAction()).subscribe(() => {});
+    this.store.dispatch(new FetchCaptchaAction()).subscribe(() => {
+    });
     this.commentForm.controls.captcha.setValue('');
   }
 
