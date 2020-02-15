@@ -10,6 +10,8 @@ export class ResourceService {
   }
 
   addApiUrl(url: string) {
+    if (url.length > 0 && url[0] === '/')
+      url = url.substring(1);
     return `${environment.apiUrl}${url}`;
   }
 }
