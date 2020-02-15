@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "npm run get_env && ng",
-    "start": "npm run get_env && ng serve --watch --poll=2000",
+    "start": "npm run get_env && ng serve --watch --poll=2000 --host=0.0.0.0",
     "build": "npm run get_env && ng build",
     "build.prod": "npm run get_env && ng build --prod",
     "test": "npm run get_env && jest --coverage",
