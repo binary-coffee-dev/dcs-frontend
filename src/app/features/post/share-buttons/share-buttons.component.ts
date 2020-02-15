@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-share-buttons',
@@ -12,14 +12,14 @@ export class ShareButtonsComponent implements OnInit {
   urlTwitter: string;
   urlLinkedIn: string;
 
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.url = document.location.href;
     this.urlFacebook = `https://www.facebook.com/sharer/sharer.php?u=${this.url}`;
     this.urlTwitter = `https://twitter.com/intent/tweet/?hashtags=BinaryCoffee&url=${this.url}`;
-    this.urlLinkedIn = `https://www.linkedin.com/shareArticle?mini=true&url=${this.url}`
+    this.urlLinkedIn = `https://www.linkedin.com/shareArticle?mini=true&url=${this.url}`;
   }
 
 }
