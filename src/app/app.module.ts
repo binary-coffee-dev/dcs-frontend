@@ -13,6 +13,7 @@ import {SocialLinksComponent} from './features/components/social-links';
 import {InfoModule} from './features/info/info.module';
 import {NewLabelComponent} from './features/components/new-label';
 import {ScrollTopComponent} from './features/components/scroll-top/scroll-top.component';
+import {WINDOW} from './core/services';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,9 @@ import {ScrollTopComponent} from './features/components/scroll-top/scroll-top.co
     ReduxModule,
     MaterialModule,
     InfoModule
+  ],
+  providers: [
+    {provide: WINDOW, useValue: window}
   ],
   bootstrap: [AppComponent]
 })
