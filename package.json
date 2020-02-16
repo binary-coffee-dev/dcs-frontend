@@ -13,7 +13,8 @@
     "compile:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
-    "build:client-and-server-bundles": "npm run get_env && ng build --prod && ng run dcs-frontend:server:production --bundleDependencies all"
+    "build:client-and-server-bundles": "npm run get_env && ng build --prod && ng run dcs-frontend:server:production --bundleDependencies all",
+    "check": "npm run test && npm run lint && npm run build:ssr"
   },
   "private": true,
   "dependencies": {
