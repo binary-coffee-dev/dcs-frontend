@@ -9,10 +9,12 @@ export class ResourceService {
   constructor() {
   }
 
+  removeExtraSlashesFromUrl(url: string) {
+    return url.replace(/([^:]\/)\/+/g, "$1");
+  }
+
   addApiUrl(url: string) {
-    if (url.length > 0 && url[0] === '/') {
-      url = url.substring(1);
-    }
-    return `${environment.apiUrl}${url}`;
+    let result = this.removeExtraSlashesFromUrl(`${environment.apiUrl}${url}`);
+    return result;
   }
 }
