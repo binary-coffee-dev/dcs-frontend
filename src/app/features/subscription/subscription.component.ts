@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Store } from '@ngxs/store';
@@ -15,6 +15,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SubscriptionComponent implements OnInit {
 
+  SUBSCRIBE_PATH = '/subscribe';
+
   token = '';
 
   message = '';
@@ -29,7 +31,8 @@ export class SubscriptionComponent implements OnInit {
   constructor(
     private activeRouter: ActivatedRoute,
     private store: Store,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {
   }
 
@@ -65,6 +68,9 @@ export class SubscriptionComponent implements OnInit {
   }
 
   backClicked() {
-    this.location.back();
+    if (this.location.path() === this.SUBSCRIBE_PATH)
+      this.location.back();
+    else
+      this.router.navigateByUrl('/');
   }
 }
