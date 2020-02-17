@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SocialLink } from "./social-link.model";
+import { SocialLink } from './social-link.model';
 
 @Component({
   selector: 'app-social-links',
@@ -18,47 +18,47 @@ export class SocialLinksComponent implements OnInit {
   ngOnInit(): void {
     this.links = [
       {
-        "enabled": true,
-        "title": "DC's Comunity",
-        "href": "https://github.com/dcs-community/",
-        "icon": "fa fa-github"
+        enabled: true,
+        title: 'DC\'s Comunity',
+        href: 'https://github.com/dcs-community/',
+        icon: 'fa fa-github'
       },
       {
-        "enabled": true,
-        "title": "Twitter Page",
-        "href": "https://twitter.com/CoffeeBinary/",
-        "icon": "fa fa-twitter"
+        enabled: true,
+        title: 'Twitter Page',
+        href: 'https://twitter.com/CoffeeBinary/',
+        icon: 'fa fa-twitter'
       },
       {
-        "enabled": true,
-        "title": "LinkedIn Page",
-        "href": "https://www.linkedin.com/company/binarycoffee/",
-        "icon": "fa fa-linkedin"
+        enabled: true,
+        title: 'LinkedIn Page',
+        href: 'https://www.linkedin.com/company/binarycoffee/',
+        icon: 'fa fa-linkedin'
       },
       {
-        "enabled": true,
-        "title": "Instagram Page",
-        "href": "https://www.instagram.com/binarycoffee.dev/",
-        "icon": "fa fa-instagram"
+        enabled: false,
+        title: 'Instagram Page',
+        href: 'https://www.instagram.com/binarycoffee.dev/',
+        icon: 'fa fa-instagram'
       },
       {
-        "enabled": true,
-        "title": "Facebook Page",
-        "href": "https://facebook.com/Binary-Coffee-111577483710684/",
-        "icon": "fa fa-facebook-official"
+        enabled: false,
+        title: 'Facebook Page',
+        href: 'https://facebook.com/Binary-Coffee-111577483710684/',
+        icon: 'fa fa-facebook-official'
       },
       {
-        "enabled": true,
-        "title": "BinaryCoffee Chanel",
-        "href": "https://www.youtube.com/channel/UCmiGV-Amt7e4plFIxKH_v_g",
-        "icon": "fa fa-youtube-play"
+        enabled: false,
+        title: 'BinaryCoffee Chanel',
+        href: 'https://www.youtube.com/channel/UCmiGV-Amt7e4plFIxKH_v_g',
+        icon: 'fa fa-youtube-play'
       },
       {
-        "enabled": true,
-        "title": "Telegram Chanel",
-        "href": "https://t.me/binarycoffeedev",
-        "icon": "fa fa-telegram"
+        enabled: true,
+        title: 'Telegram Chanel',
+        href: 'https://t.me/binarycoffeedev',
+        icon: 'fa fa-telegram'
       }
-    ]
+    ];
   }
 }
