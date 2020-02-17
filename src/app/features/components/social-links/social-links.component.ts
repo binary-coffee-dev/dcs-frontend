@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { SocialLink } from './social-link.model';
 
 @Component({

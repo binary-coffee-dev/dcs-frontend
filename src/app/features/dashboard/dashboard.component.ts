@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngxs/store';
+import { Component, OnInit } from '@angular/core';
 
-import {PostState} from '../../core/redux/states';
-import {Post} from '../../core/redux/models';
+import { Store } from '@ngxs/store';
+
+import { PostState } from '../../core/redux/states';
+import { Post } from '../../core/redux/models';
 
 @Component({
   selector: 'app-dashboard',
