@@ -5,6 +5,7 @@ import {PostService} from '../services';
 import {CommentErrorAction, FetchPostAction, FetchPostsAction, NextPageAction, PreviousPageAction, RefreshPostAction} from '../actions';
 import {initPostStateModel, PostStateModel} from './post-state.model';
 import {Post, PostConnection} from '../models';
+import {ScrollService} from '../../services';
 
 export const MINIMUM_PAGE = 0;
 
@@ -34,7 +35,7 @@ export class PostState {
     return state.lastPage;
   }
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService, private scroll: ScrollService) {
   }
 
   @Action(FetchPostsAction)
@@ -51,6 +52,7 @@ export class PostState {
     const start = currentPage * pageSize;
     return this.fetchPage(pageSize, start, ctx, currentPage).pipe(tap(() => {
       ctx.patchState({page: currentPage});
+      this.scroll.smoothScroll();
     }));
   }
 
@@ -65,6 +67,7 @@ export class PostState {
     const start = currentPage * pageSize;
     return this.fetchPage(pageSize, start, ctx, currentPage).pipe(tap(() => {
       ctx.patchState({page: currentPage});
+      this.scroll.smoothScroll();
     }));
   }
 

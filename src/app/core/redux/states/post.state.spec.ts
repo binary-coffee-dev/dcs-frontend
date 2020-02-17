@@ -8,10 +8,15 @@ import {PostService} from '../services';
 import {FetchPostAction, FetchPostsAction, NextPageAction, PreviousPageAction} from '../actions';
 import {Post, PostConnection} from '../models';
 import {PostStateModel} from './post-state.model';
+import {ScrollService} from '../../services';
 
 class PostServiceStub {
   fetchPosts = jest.fn();
   fetchPost = jest.fn();
+}
+
+class ScrollServiceStub {
+  smoothScroll = jest.fn();
 }
 
 const ID_EXAMPLE = '123';
@@ -29,17 +34,20 @@ describe('PostState', () => {
   let store: Store;
   let postService: PostServiceStub;
   let postState: PostState;
+  let scrollService: ScrollServiceStub;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [NgxsModule.forRoot([PostState])],
       providers: [
-        {provide: PostService, useClass: PostServiceStub}
+        {provide: PostService, useClass: PostServiceStub},
+        {provide: ScrollService, useClass: ScrollServiceStub}
       ]
     }).compileComponents();
     store = TestBed.get(Store);
     postService = TestBed.get(PostService);
     postState = TestBed.get(PostState);
+    scrollService = TestBed.get(ScrollService);
   }));
 
   it('should create', () => {
@@ -56,16 +64,20 @@ describe('PostState', () => {
 
   it('should fetch next list of post', (done) => {
     jest.spyOn(postState, 'fetchPage').mockReturnValue(of({} as PostConnection));
+    jest.spyOn(scrollService, 'smoothScroll');
     store.dispatch(new NextPageAction()).subscribe(() => {
       expect(postState.fetchPage).toHaveBeenCalled();
+      expect(scrollService.smoothScroll).toHaveBeenCalled();
       done();
     });
   });
 
   it('should fetch previous list of post', (done) => {
     jest.spyOn(postState, 'fetchPage').mockReturnValue(of({} as PostConnection));
+    jest.spyOn(scrollService, 'smoothScroll');
     store.dispatch(new PreviousPageAction()).subscribe(() => {
       expect(postState.fetchPage).toHaveBeenCalled();
+      expect(scrollService.smoothScroll).toHaveBeenCalled();
       done();
     });
   });

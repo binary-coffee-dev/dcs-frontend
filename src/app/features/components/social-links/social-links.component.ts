@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-social-links',
@@ -8,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SocialLinksComponent {
 
   @Input()
-  dir: String;
+  dir: string;
 
-  constructor() { }
+  constructor() {
+  }
 }

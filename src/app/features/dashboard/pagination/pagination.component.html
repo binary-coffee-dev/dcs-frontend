@@ -3,12 +3,12 @@
      fxLayoutAlign="center center">
   <button class="pagination-button"
           (click)="previousPage()"
-          *ngIf="!(firstPage | async)"
+          *ngIf="(firstPage | async) === false"
           fxFlex="100">Previous
   </button>
   <button class="pagination-button"
           (click)="nextPage()"
-          *ngIf="!(lastPage | async)"
+          *ngIf="(lastPage | async) === false"
           fxFlex="100">Next
   </button>
 </div>
