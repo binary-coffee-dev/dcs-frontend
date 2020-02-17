@@ -1,31 +1,13 @@
 <div class="social-links">
   <div class="links social-links-box" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
-    <a class="social-link" routerLink="/subscribe" title="Suscríbase">
+    <a class="social-link" routerLink="/suscribe" title="Suscríbase">
       <mat-icon mat-font-icon="fa-icon" class="fa fa-envelope-open"></mat-icon>
     </a>
-    <a class="social-link" href="https://github.com/dcs-community/" title="DC's Comunity" target="blanck">
-      <mat-icon mat-font-icon="fa-icon" class="fa fa-github"></mat-icon>
-    </a>
-    <a class="social-link" href="https://twitter.com/CoffeeBinary/" title="Twitter" target="blanck">
-      <mat-icon mat-font-icon="fa-icon" class="fa fa-twitter"></mat-icon>
-    </a>
-    <a class="social-link" href="https://www.linkedin.com/company/binarycoffee/" title="LinkedIn Page" target="blanck">
-      <mat-icon mat-font-icon="fa-icon" class="fa fa-linkedin"></mat-icon>
-    </a>
-    <a class="social-link" href="https://www.instagram.com/binarycoffee.dev/" title="Intagram" target="blanck">
-      <mat-icon mat-font-icon="fa-icon" class="fa fa-instagram"></mat-icon>
-    </a>
-    <a class="social-link" href="https://facebook.com/Binary-Coffee-111577483710684/" title="Facebook Page"
-      target="blanck">
-      <mat-icon mat-font-icon="fa-icon" class="fa fa-facebook"></mat-icon>
-    </a>
-    <a class="social-link" href="https://www.youtube.com/channel/UCmiGV-Amt7e4plFIxKH_v_g" title="BinaryCoffee Chanel"
-      target="blanck">
-      <mat-icon mat-font-icon="fa-icon" class="fa fa-youtube"></mat-icon>
-    </a>
-    <a class="social-link" href="https://t.me/binarycoffeedev" title="Telegram Chanel" target="blanck">
-      <mat-icon mat-font-icon="fa-icon" class="fa fa-telegram"></mat-icon>
-    </a>
+    <span *ngFor="let link of links">
+      <a class="social-link" *ngIf="link.enabled" [href]="link.href" [title]="link.title" target="blanck">
+        <mat-icon mat-font-icon="fa-icon" [class]="link.icon"></mat-icon>
+      </a>
+    </span>
   </div>
 
 </div>

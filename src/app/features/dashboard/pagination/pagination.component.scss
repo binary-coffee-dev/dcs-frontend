@@ -1,4 +1,5 @@
 @import "src/color";
+@import "src/spacings";
 
 :host {
   .pagination-container {
@@ -6,16 +7,19 @@
 
     .pagination-button {
       border: none;
-      border-radius: 5px;
+      border-radius: map_get($radius, 2);
       height: 48px;
-      margin: 12px;
-      background-color: map_get($md-primary, 500);
-      color: #fff;
+      margin: 0 map_get($spacings, 2);
+      background-color: map_get($md-grey, A100);
+      color: map_get($md-primary, 800);
       font-size: 1rem;
       font-weight: bold;
+      cursor: pointer;
+      box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
 
       &:hover {
-        background-color: map_get($md-primary, 700);
+        background-color: map_get($md-primary, 50);
+        color: map_get($md-primary, 900);
       }
     }
   }

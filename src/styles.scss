@@ -1,9 +1,15 @@
 @import "color";
+@import "spacings";
 
 html, body {
   height: 100%;
 }
-
+mat-form-field{
+  filter: invert(100%);
+  input,textarea{
+    filter: invert(100%);
+  }
+}
 body {
   margin: 0;
   font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
@@ -35,7 +41,6 @@ body {
     img {
       width: 30px;
       height: 30px;
-      border-radius: 50%;
       margin-right: 5px;
     }
   }
@@ -55,20 +60,25 @@ body {
   }
 }
 
-markdown {
+app-post {
   h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
   }
-
-  p {
+  p{
     font-size: 1.3rem;
     font-weight: 100;
+  }
+  pre {
+    font-size: 1.3rem;
+    font-weight: 100;
+    background-color: map_get($md-grey, A100) !important;
+    box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+    border-bottom: 2px solid map_get($md-primary, 800);
 
     code {
-      background-color: map_get($md-grey, 850);
-      color: map_get($md-grey, 450);
+      color: map_get($md-grey, 900)  !important;
       padding: 0 3px;
-      border-radius: 3px;
+      border-radius: map_get($radius, 2);
     }
   }
 
@@ -100,13 +110,25 @@ markdown {
     }
   }
 
-  img {
-    width: 50%;
-    object-fit: cover;
-    object-position: center;
-    margin-left: 50%;
-    transform: translateX(-50%);
+  .image-container{
+    background-color: transparent !important;
+    overflow-x: hidden;
+    img {
+      width: 50%;
+      object-fit: cover;
+      object-position: center;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
   }
+
+  img{
+    border-bottom: 2px solid map_get($md-primary, 800);
+    box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+    border-radius: map_get($radius, 2) !important;
+  }
+
+  
 
   @media screen and (max-width: 599px) {
     img {

@@ -1,59 +1,41 @@
 @import "src/color";
-
-$font-primary:    map_get($md-grey,500);
-$font-secundary:  map_get($md-grey,600);
-$background:      map_get($md-grey, 800);
-$link:            map_get($md-primary, 300);
-$link-hover:      map_get($md-primary, 800);
+@import "src/spacings";
 
 :host {
 
   footer {
-    padding: 2rem 2rem;
-    background-color: $background;
-    color: $font-secundary;
+    padding: map_get($spacings, 5) map_get($spacings, 5);
+    background-color: map_get($md-grey, A100);;
+    color: map_get($md-grey,800);
+    box-shadow: 1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+    border-top-left-radius: map_get($radius, 2);
+    border-top-right-radius: map_get($radius, 2);
 
     .copyright {
       text-align: center;
     }
 
-    .social-links {
-      text-align: center;
-
-      a {
-        color: $font-secundary;
-        margin-right: 5px;
-        text-decoration: none;
-
-        &:hover {
-          color: $font-primary;
-        }
-      }
-    }
   }
 
   .groups {
-    color: $font-primary;
-    margin-bottom: 3rem;
+    color: map_get($md-grey,900);
 
     .sub-group {
-      ul {
-        padding: 0;
+      margin-bottom: map_get($spacings, 3);
 
-        li {
-          list-style: none;
-          margin-bottom: .5rem;
+      b{
+        margin: map_get($spacings, 1);
+      }
 
-          a {
-            text-decoration: none;
+      a {
+        text-align: left;
+        padding-left:  map_get($spacings, 1);
 
-            span {
-              color: $font-secundary;
+        span {
+          color: map_get($md-grey,800);
 
-              &:hover {
-                color: $font-primary;
-              }
-            }
+          &:hover {
+            color: map_get($md-grey,900);
           }
         }
       }
@@ -67,6 +49,7 @@ $link-hover:      map_get($md-primary, 800);
 
     img {
       height: 60px;
+      filter: invert(100%);
     }
   }
 
@@ -86,22 +69,6 @@ $link-hover:      map_get($md-primary, 800);
     }
     100% {
       transform: scale(1);
-    }
-  }
-
-  $rot: 5deg;
-  @keyframes anim-bc {
-    0% {
-      transform: rotate(0deg);
-    }
-    10% {
-      transform: rotate($rot);
-    }
-    70% {
-      transform: rotate(-$rot);
-    }
-    100% {
-      transform: rotate(0deg);
     }
   }
 

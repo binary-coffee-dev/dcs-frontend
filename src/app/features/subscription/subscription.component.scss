@@ -1,5 +1,5 @@
-@import '../../../spacings';
-@import '../../../color';
+@import 'src/spacings';
+@import 'src/color';
 
 :host {
   .container {
@@ -8,53 +8,47 @@
     form {
       .card{
         padding: map_get($spacings, 4);
-        background-color: map-get($md-grey, A100);;
+        background-color: map-get($md-grey, A100);
         box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
-        border-radius: 0;
-
-        input,button{
-          font-size: 1.0em;
-          padding: map_get($spacings, 2);
+        border-radius: map_get($radius, 2);
+        
+        mat-form-field{
+          width: 100%;
         }
 
-        input,img,p{
+        img,p{
           margin-bottom: map_get($spacings, 4);
         }
 
         button {
           background-color: map_get($md-primary, 500);
-          border: solid map_get($md-primary, 500);
-          color: map_get($md-grey, 50);
           width: 100%;
-          cursor: pointer;
         }
-
-        input{
-          border-radius: 0;
-          border: 1px solid map-get($md-grey, 600);
-        }  
-        
       }
-
-      
     }
 
-      .message,.error {
-        padding-left: map_get($spacings, 1) ;
-        padding-right: map_get($spacings, 1) ;
-      }
-      .error{
-        color: map-get($md-grey, A100);
-        background-color: rgba(255, 0, 0, 0.2);
-      }
-      .message{
-        color: map-get($md-primary, 900);
-      }
+    .message,.error {
+      padding: map_get($spacings, 2) ;
+      text-align: center;
+    }
+
+    .error{
+      border-top-left-radius: map_get($radius, 2);;
+      border-top-right-radius: map_get($radius, 2);;
+      color: #dc0e0e;
+      background-color: #ffd4d4;
+    }
+
+    .message{
+      border-radius: map_get($radius, 2);;
+      color: map-get($md-primary, 900);
+    }
     
     .back-button {
       margin-top: map_get($spacings, 5);
       color: map-get($md-primary, 900);
       cursor: pointer;
+      
       &:hover{
         mat-icon{
           animation: anim-arrow 0.3s infinite alternate;

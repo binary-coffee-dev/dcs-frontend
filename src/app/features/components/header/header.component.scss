@@ -1,44 +1,39 @@
 @import "src/color";
 @import "src/spacings";
 
-$font-primary:    map_get($md-grey,900);
-$font-secundary:  map_get($md-grey,600);
-$background:      map_get($md-grey, 500);
-$border:          map-get($md-primary, 100);
-$link:            map_get($md-primary, 800);
-
 :host {
-  .logo{
-    filter: invert(100%);
-    width: 50px;
-    margin-right: map_get($spacings, 2);
-  }
-  @media (max-width: 599px) {
-    .logo{
-      width: 42px;
-    }
-    h1 {
-      font-size: 1.6rem!important;
-    }
-  }
+  
   mat-toolbar {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 99;
-    padding: 2.5rem 0 3rem;
-    background-image: linear-gradient(-90deg, map_get($md-primary, 900), map_get($md-primary, 500));
-    color: map_get($md-grey, 900);
+    padding: 2rem 0 2.5rem 0;
+    background-color: map_get($md-grey, A100);
     box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+    border-bottom-left-radius: map_get($radius, 2);
+    border-bottom-right-radius: map_get($radius, 2);
+
     a {
-      color: map_get($md-grey, A100);
+      color: map_get($md-primary, 800);
       text-decoration: none;
-      h1 {
+
+      .logo{
+        height: 2.5rem;
+        margin: 0 map_get($spacings, 3) 0 map_get($spacings, 3);
+      }
+      .binary{
+        margin-left: map_get($spacings, 3);
+      }
+      span {
         text-align: center;
         font-size: 2rem;
-        margin-top: map_get($spacings, 3);
-        font-family: 'Source Code Pro', Roboto,"Helvetica Neue",sans-serif;
+        font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+        font-weight: 200;
+        text-transform: uppercase;
       }
+
+
     }
   }
 }

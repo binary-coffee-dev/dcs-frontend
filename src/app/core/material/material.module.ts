@@ -4,7 +4,9 @@ import {
   MatIconModule,
   MatToolbarModule,
   MatFormFieldModule,
-  MatCardModule
+  MatCardModule,
+  MatButtonModule,
+  MatInputModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,7 +21,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule
   ],
   exports: [
     MatToolbarModule,
@@ -28,7 +32,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule
   ]
 })
 export class MaterialModule {
