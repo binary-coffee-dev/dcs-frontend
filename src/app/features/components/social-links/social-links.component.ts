@@ -20,6 +20,12 @@ export class SocialLinksComponent implements OnInit {
     this.links = [
       {
         enabled: true,
+        title: 'Facebook Page',
+        href: 'https://facebook.com/Binary-Coffee-111577483710684/',
+        icon: 'fa fa-facebook-official'
+      },
+      {
+        enabled: true,
         title: 'DC\'s Comunity',
         href: 'https://github.com/dcs-community/',
         icon: 'fa fa-github'
@@ -31,7 +37,7 @@ export class SocialLinksComponent implements OnInit {
         icon: 'fa fa-twitter'
       },
       {
-        enabled: true,
+        enabled: false,
         title: 'LinkedIn Page',
         href: 'https://www.linkedin.com/company/binarycoffee/',
         icon: 'fa fa-linkedin'
@@ -41,12 +47,6 @@ export class SocialLinksComponent implements OnInit {
         title: 'Instagram Page',
         href: 'https://www.instagram.com/binarycoffee.dev/',
         icon: 'fa fa-instagram'
-      },
-      {
-        enabled: false,
-        title: 'Facebook Page',
-        href: 'https://facebook.com/Binary-Coffee-111577483710684/',
-        icon: 'fa fa-facebook-official'
       },
       {
         enabled: false,
