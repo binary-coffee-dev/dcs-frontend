@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Store } from '@ngxs/store';
 
-import {Store} from '@ngxs/store';
-
-import {PaginationComponent} from './pagination.component';
-import {NextPageAction, PreviousPageAction} from '../../../core/redux/actions';
+import { PaginationComponent } from './pagination.component';
+import { NextPageAction, PreviousPageAction } from '../../../core/redux/actions';
 
 class StoreStub {
   dispatch = jest.fn();
@@ -18,8 +18,9 @@ describe('PaginationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [PaginationComponent],
       providers: [
-        {provide: Store, useClass: StoreStub}
-      ]
+        { provide: Store, useClass: StoreStub }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));
