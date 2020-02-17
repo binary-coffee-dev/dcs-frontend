@@ -12,8 +12,8 @@
 }
 a{
     margin-right: map_get($spacings, 1);
-    padding: map_get($spacings, 1) 0 map_get($spacings, 1) 0;
-    text-decoration: none;
+   //padding: map_get($spacings, 1) 0 map_get($spacings, 1) 0;
+    //text-decoration: none;
     .fa{
         color: white;
     }

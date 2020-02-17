@@ -10,6 +10,7 @@
       box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
       background-color: map_get($md-grey, A100);
       padding: map_get($spacings, 4);
+      border-radius: map_get($radius, 2);;
 
       h1 {
         margin: 0;
@@ -39,7 +40,8 @@
 
   @media screen and (max-width: 599px) {
     .post-container {
-      margin: 0;
+      margin: map_get($spacings, 1);
+      margin-bottom: map_get($spacings, 5);
     }
   }
 }

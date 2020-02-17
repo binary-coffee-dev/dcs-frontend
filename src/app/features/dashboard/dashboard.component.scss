@@ -8,12 +8,19 @@
       padding: map_get($spacings, 5);
       margin: 0 auto;
     }
+
+    
   }
 
   @media screen and (max-width: 599px) {
     .container {
       .posts-container {
         padding: map_get($spacings, 1);
+        margin-bottom: map_get($spacings, 3);
+
+        app-post-item{
+          margin-bottom: map_get($spacings, 1);
+        }
       }
     }
   }

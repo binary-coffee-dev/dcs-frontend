@@ -9,9 +9,10 @@ $post_image_size: 110px;
     background-color: map_get($md-grey, A100);
     width: 100%;
     padding: map_get($spacings, 4);
-    margin-bottom: map_get($spacings, 4);
     cursor: pointer;
     text-decoration: none;
+    margin-bottom: map_get($spacings, 4);
+    border-radius: map_get($radius, 2);;
   }
 
   .post-image-container {
@@ -20,12 +21,16 @@ $post_image_size: 110px;
     min-width: $post_image_size;
     margin-right: map_get($spacings, 4);
     background-color: map_get($md-primary, 500);
+    border-radius: map_get($radius, 2);
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
+      border-radius: map_get($radius, 2);
+      box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+      border-bottom: 2px solid map_get($md-primary, 800);
     }
   }
 
@@ -34,12 +39,11 @@ $post_image_size: 110px;
     h3 {
       margin: 0 0;
       font-size: 1.275rem;
-
-        text-decoration: none;
-        color: map_get($md-primary, 500);
-        font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
-        font-weight: 200;
-        text-transform: uppercase;
+      text-decoration: none;
+      color: map_get($md-primary, 500);
+      font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+      font-weight: 200;
+      text-transform: uppercase;
     }
   }
 
@@ -64,6 +68,12 @@ $post_image_size: 110px;
     background-color: transparent;
     i{
       font-size: 2.2rem;
+    }
+  }
+
+   @media screen and (max-width: 599px) {
+    .card-container{
+      margin-bottom: map_get($spacings, 1);
     }
   }
 }

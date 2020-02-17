@@ -1,14 +1,10 @@
-@import "../../../../color";
-@import "../../../../spacings";
+@import "src/color";
+@import "src/spacings";
 
 :host {
   input, textarea{
     font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
-    border-radius: 0!important;
-    padding: map_get($spacings, 2)!important;
     font-size: 0.875rem;
-    margin-top: 0!important;
-    margin-bottom: map_get($spacings, 3)!important;
   }
 
   textarea {
@@ -18,15 +14,15 @@
   button{
     font-size: 0.875rem;
     font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
-    padding: map_get($spacings, 2) map_get($spacings, 4)!important;
-    border-radius: 0!important;
-    color: map_get($md-grey, A100)!important;
+    color: map_get($md-grey, A100);
     text-transform: uppercase;
     background-color: map_get($md-primary, 900);
   }
+
   button[disabled]{
     background-color: map_get($md-primary, 600);
   }
+
   .comments-container {
     margin-top: map_get($spacings, 10);
 
@@ -65,54 +61,27 @@
       }
 
       .comment-item {
-        border: 1px solid map-get($md-grey, 600);
-        border-radius: 5px;
         width: 100%;
-      }
-
-      .comment-item-text {
-        width: calc(100% - 28px);
       }
 
       .comment-credentials {
         width: 100%;
 
-        .items-credentials-container {
+        .items-credentials-container{
           width: 100%;
-
-          .comment-form-styles {
-            width: auto;
-            max-width: 150px;
-            border: none;
-            padding: 6px;
-            border-radius: 3px;
-            color: #595959;
-            font-weight: 900;
-            cursor: pointer;
-
-            &:disabled {
-              color: #cacaca;
-              cursor: auto;
-            }
-          }
-        }
-
-        .comment-item-credentials {
-          padding: 6px;
-          margin-top: 12px;
         }
 
         .captcha-container {
-          margin-right: map_get($spacings, 3);
+          margin-right: map_get($spacings, 4);
 
           .captcha {
+            margin-right: map_get($spacings, 4);
             cursor: pointer;
-            margin-bottom: 8px;
           }
 
           .comment-item-captcha {
-            width: calc(150px - 12px - 4px);
-            margin-top: 0;
+            width: 100%;
+            margin-top: 10px;
           }
         }
       }
