@@ -1,5 +1,4 @@
-@import "color";
-@import "spacings";
+@import "theme";
 
 html, body {
   height: 100%;
@@ -60,7 +59,7 @@ body {
   }
 }
 
-app-post {
+markdown {
   h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
   }
@@ -72,7 +71,7 @@ app-post {
     font-size: 1.3rem;
     font-weight: 100;
     background-color: map_get($md-grey, A100) !important;
-    box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+    box-shadow: map_get($box-shadow, 0);
     border-bottom: 2px solid map_get($md-primary, 800);
 
     code {
@@ -113,6 +112,7 @@ app-post {
   .image-container{
     background-color: transparent !important;
     overflow-x: hidden;
+    
     img {
       width: 50%;
       object-fit: cover;
@@ -124,11 +124,9 @@ app-post {
 
   img{
     border-bottom: 2px solid map_get($md-primary, 800);
-    box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+    box-shadow: map_get($box-shadow, 0);
     border-radius: map_get($radius, 2) !important;
   }
-
-  
 
   @media screen and (max-width: 599px) {
     img {
