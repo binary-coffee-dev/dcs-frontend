@@ -1,10 +1,11 @@
 <div class="comments-container">
   <div class="comments-header"><span>Opiniones</span></div>
+  <div class="comments-header-separator"></div>
 
   <form class="comment-new-container" fxLayout="column" [formGroup]="commentForm" fxLayoutAlign="center end">
 
     <span class="comment-error-message" *ngIf="commentError">
-      <mat-icon aria-hidden="false">close</mat-icon>
+      <mat-icon mat-font-icon="fa-icon" class="fa fa-warning"></mat-icon>
       {{commentError}}
     </span>
 

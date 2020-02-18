@@ -1,5 +1,4 @@
-@import "src/spacings";
-@import "src/color";
+@import "src/theme";
 
 .twitter{
     background-color: #1da1f2;
@@ -12,8 +11,7 @@
 }
 a{
     margin-right: map_get($spacings, 1);
-   //padding: map_get($spacings, 1) 0 map_get($spacings, 1) 0;
-    //text-decoration: none;
+    
     .fa{
         color: white;
     }

@@ -1,5 +1,4 @@
-@import "src/color";
-@import "src/spacings";
+@import "src/theme";
 
 :host {
   
@@ -10,7 +9,7 @@
     z-index: 99;
     padding: 2rem 0 2.5rem 0;
     background-color: map_get($md-grey, A100);
-    box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+    box-shadow: map_get($box-shadow, 4);
     border-bottom-left-radius: map_get($radius, 2);
     border-bottom-right-radius: map_get($radius, 2);
 
@@ -23,33 +22,15 @@
         margin: 0 map_get($spacings, 3) 0 map_get($spacings, 3);
       }
       .binary{
-        margin-left: map_get($spacings, 3);
+        margin-left: map_get($spacings, 1);
       }
       span {
         text-align: center;
         font-size: 2rem;
         font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
-        font-weight: 200;
+        font-weight: 200; 
         text-transform: uppercase;
       }
-
-
     }
-  }
-}
-
-$rot:5deg;
-@keyframes anim-bc {
-   0% {   
-    transform: rotate(0deg); 
-  }
-  10% {
-    transform: rotate($rot);
-  }
-  70% {
-    transform: rotate(-$rot);
-  }
-  100% {   
-    transform: rotate(0deg); 
   }
 }

@@ -1,5 +1,4 @@
-@import "src/color";
-@import "src/spacings";
+@import "src/theme";
 
 :host {
   .pagination-container {
@@ -15,7 +14,7 @@
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+      box-shadow: map_get($box-shadow, 4);
 
       &:hover {
         background-color: map_get($md-primary, 50);

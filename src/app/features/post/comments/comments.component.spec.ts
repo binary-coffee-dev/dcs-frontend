@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed, tick} from '@angular/core/testing';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { async, ComponentFixture, TestBed, tick } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {CommentsComponent} from './comments.component';
+import { CommentsComponent } from './comments.component';
 
 class StoreStub {
 }

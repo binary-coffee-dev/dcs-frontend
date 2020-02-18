@@ -1,8 +1,6 @@
 <div class="card-container" [routerLink]="'post/' + post?.name" fxLayout="row">
   <div class="post-image-container" fxShow.xs="false">
-    <img *ngIf="post?.banner && post?.banner?.url"
-         [lazyLoad]="resource.addApiUrl(post?.banner?.url)"
-         alt="">
+    <img *ngIf="post?.banner && post?.banner?.url" [lazyLoad]="resource.addApiUrl(post?.banner?.url)" alt="">
   </div>
   <div class="post-body-container" fxFlex.gt-sm="80">
     <h3>{{post?.title}}</h3>
