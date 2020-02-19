@@ -1,6 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
+import {Actions} from '@ngxs/store';
+
 import {LoadingComponent} from './loading.component';
+
+class ActionsStub {}
 
 describe('LoadingComponent', () => {
   let component: LoadingComponent;
@@ -8,7 +12,8 @@ describe('LoadingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoadingComponent]
+      declarations: [LoadingComponent],
+      providers: [{ provide: Actions, useClass: ActionsStub }]
     })
       .compileComponents();
   }));
@@ -16,6 +21,9 @@ describe('LoadingComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoadingComponent);
     component = fixture.componentInstance;
+
+    spyOn(component, 'ngOnInit');
+
     fixture.detectChanges();
   });
 
