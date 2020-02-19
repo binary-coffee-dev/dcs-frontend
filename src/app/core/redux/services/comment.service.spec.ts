@@ -9,7 +9,10 @@ class ApolloStub {
 
 describe('CommentService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    providers: [{provide: Apollo, userClass: ApolloStub}]
+    providers: [
+      CommentService,
+      {provide: Apollo, userClass: ApolloStub}
+    ]
   }));
 
   it('should be created', () => {

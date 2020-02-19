@@ -1,11 +1,12 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {tap} from 'rxjs/operators';
+import {take, tap} from 'rxjs/operators';
 
 import {PostService} from '../services';
 import {CommentErrorAction, FetchPostAction, FetchPostsAction, NextPageAction, PreviousPageAction, RefreshPostAction} from '../actions';
 import {initPostStateModel, PostStateModel} from './post-state.model';
 import {Post, PostConnection} from '../models';
 import {ScrollService} from '../../services';
+import {of} from 'rxjs';
 
 export const MINIMUM_PAGE = 0;
 
@@ -73,10 +74,12 @@ export class PostState {
 
   @Action(FetchPostAction)
   fetchPostAction(ctx: StateContext<PostStateModel>, action: FetchPostAction) {
-    return this.postService.fetchPost(action.postId).pipe(tap(post => {
-      ctx.patchState({post});
-      ctx.dispatch(new CommentErrorAction(''));
-    }));
+    return this.postService.fetchPost(action.postId).pipe(
+      take(1),
+      tap(post => {
+        ctx.patchState({post});
+        ctx.dispatch(new CommentErrorAction(''));
+      }));
   }
 
   @Action(RefreshPostAction)
@@ -89,6 +92,7 @@ export class PostState {
       pageSize,
       start
     ).pipe(
+      take(1),
       tap((postConnection: PostConnection) => {
         const posts = postConnection ? postConnection.values : [];
         const count = postConnection ? postConnection.aggregate.count : 0;
