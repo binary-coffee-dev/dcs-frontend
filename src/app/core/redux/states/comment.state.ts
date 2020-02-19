@@ -1,5 +1,5 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, take, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
 import {CommentService} from '../services';
@@ -69,6 +69,9 @@ export class CommentState {
 
   @Action(FetchCommentsAction)
   fetchCommentsAction(ctx: StateContext<CommentStateModel>, action: FetchCommentsAction) {
-    return this.commentService.fetchComments(action.postId).pipe(tap(comments => ctx.patchState({comments})));
+    return this.commentService.fetchComments(action.postId).pipe(
+      take(1),
+      tap(comments => ctx.patchState({comments}))
+    );
   }
 }

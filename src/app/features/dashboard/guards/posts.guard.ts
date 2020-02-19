@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Store} from '@ngxs/store';
 
 import {FetchPostsAction} from '../../../core/redux/actions';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class PostsGuard implements CanActivate {
@@ -15,7 +16,6 @@ export class PostsGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this.store.dispatch(new FetchPostsAction()).subscribe(() => {});
-    return true;
+    return this.store.dispatch(new FetchPostsAction()).pipe(map(() => true));
   }
 }

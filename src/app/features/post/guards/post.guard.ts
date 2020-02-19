@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRoute, ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from '@angular/router';
 
 import {Observable} from 'rxjs';
 import {Store} from '@ngxs/store';
 
 import {FetchPostAction} from '../../../core/redux/actions';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class PostGuard implements CanActivate {
@@ -15,7 +16,6 @@ export class PostGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this.store.dispatch(new FetchPostAction((route.paramMap.get('id')))).subscribe(() => {});
-    return true;
+    return this.store.dispatch(new FetchPostAction((route.paramMap.get('id')))).pipe(map(() => true));
   }
 }

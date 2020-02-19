@@ -8,9 +8,7 @@ import {Captcha, Comment} from '../models';
 import {CAPTCHA_QUERY, COMMENTS_QUERY} from '../../graphql/queries';
 import {CREATE_COMMENT_MUTATION} from '../../graphql/mutations';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CommentService {
 
   constructor(private apollo: Apollo) {
