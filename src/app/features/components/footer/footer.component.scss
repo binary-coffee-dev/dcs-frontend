@@ -1,13 +1,12 @@
-@import "src/color";
-@import "src/spacings";
+@import "src/theme";
 
 :host {
 
   footer {
     padding: map_get($spacings, 5) map_get($spacings, 5);
     background-color: map_get($md-grey, A100);;
-    color: map_get($md-grey,800);
-    box-shadow: 1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+    color: map_get($md-grey, 800);
+    box-shadow: map_get($box-shadow-up, 4);
     border-top-left-radius: map_get($radius, 2);
     border-top-right-radius: map_get($radius, 2);
 
@@ -48,12 +47,13 @@
     padding-right: 20%;
 
     img {
-      height: 60px;
+      height: 80px;
       filter: invert(100%);
     }
   }
 
   .anim-pulse {
+    color:map_get($md-primary,800);
     animation: anim-pulse 0.9s infinite linear;
   }
 

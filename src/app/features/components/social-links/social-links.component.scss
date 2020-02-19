@@ -1,11 +1,6 @@
-@import "src/color";
-@import "src/spacings";
+@import "src/theme";
+
 :host{
-    $font:          map_get($md-grey,700);
-    $background:    map_get($md-grey, 500);
-    $border:        map-get($md-primary, 100);
-    $link:          map_get($md-primary, 400);
-    $link-hover:    map_get($md-primary, 900);
 
     .links {
         text-align: center;
@@ -14,19 +9,19 @@
 
         a{
             cursor: pointer;
-            color: $link;
+            color: map_get($md-primary, 300);
             list-style: none;
             font-size: 1.5em;
             text-decoration: none;
             padding: map_get($spacings, 1);
 
             &:hover {
-                color: $link-hover;
+                color: map_get($md-primary, 900);
             }
         }
 
         &.multi{
-            padding:  map_get($spacings, 1);
+            padding: map_get($spacings, 1);
             
             mat-icon{
                 margin: -3px;

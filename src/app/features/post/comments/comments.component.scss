@@ -1,9 +1,8 @@
-@import "src/color";
-@import "src/spacings";
+@import "src/theme";
 
 :host {
   input, textarea{
-    font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+    font-family: get($font-family);
     font-size: 0.875rem;
   }
 
@@ -13,7 +12,7 @@
 
   button{
     font-size: 0.875rem;
-    font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+    font-family: get($font-family);
     color: map_get($md-grey, A100);
     text-transform: uppercase;
     background-color: map_get($md-primary, 900);
@@ -25,39 +24,32 @@
 
   .comments-container {
     margin-top: map_get($spacings, 10);
-
-    .comments-header {
-      border-bottom: 2px solid map-get($md-grey, 600);
-      margin-bottom: 10px;
+    
+    .comments-header{
+      margin-bottom: map_get($spacings, 1);
 
       span {
-        font-weight: 500;
-        border-bottom: 2px solid map_get($md-primary, 600);
+        font-weight: 400;
       }
+    }
+    .comments-header-separator {
+      border-top: 2px solid map_get($md-primary, 900);
+      height: map_get($spacings, 2);
+      border-radius: map_get($radius, 2);     
     }
 
     .comment-new-container {
       margin-bottom: map_get($spacings, 10);
-
+      
       .comment-error-message {
-        width: calc(100% - 48px);
+        width: calc(100% - 24px);
         font-weight: 100;
-        margin-bottom: map_get($spacings, 2);
-        color: #dc0e0e;
-        background-color: #ffd4d4;
-        padding: map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 6);
+        margin-bottom: map_get($spacings, 1);
+        color: map_get($md-error, 500);
+        background-color: map_get($md-error, 100);
+        border-radius: map_get($radius, 2);
+        padding: map_get($spacings, 2) map_get($spacings,2) map_get($spacings, 1) map_get($spacings, 2);
         position: relative;
-
-        mat-icon {
-          background: #bb0b0b;
-          border-radius: 50%;
-          color: #ffd4d4;
-          font-weight: bold;
-          position: absolute;
-          left: map_get($spacings, 1);
-          top: 50%;
-          transform: translateY(-50%);
-        }
       }
 
       .comment-item {
@@ -94,8 +86,9 @@
         .comment-user-image {
           width: map_get($spacings, 8);
           height: map_get($spacings, 8);
-          border-radius: 3px;
+          border-radius: map_get($radius, 2);
           margin-right: map_get($spacings, 2);
+          box-shadow: map_get($box-shadow, 3);
         }
 
         .post-info-container {

@@ -1,4 +1,4 @@
-@import "src/spacings";
+@import "src/theme";
 
 :host {
   .container {
@@ -8,8 +8,6 @@
       padding: map_get($spacings, 5);
       margin: 0 auto;
     }
-
-    
   }
 
   @media screen and (max-width: 599px) {

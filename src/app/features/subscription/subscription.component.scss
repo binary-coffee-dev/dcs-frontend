@@ -1,5 +1,4 @@
-@import 'src/spacings';
-@import 'src/color';
+@import 'src/theme';
 
 :host {
   .container {
@@ -9,7 +8,7 @@
       .card{
         padding: map_get($spacings, 4);
         background-color: map-get($md-grey, A100);
-        box-shadow: -1px 6px 14px 0 rgba(101, 109, 120, 0.2);
+        box-shadow: map_get($box-shadow, 4);
         border-radius: map_get($radius, 2);
         
         mat-form-field{
@@ -35,8 +34,8 @@
     .error{
       border-top-left-radius: map_get($radius, 2);;
       border-top-right-radius: map_get($radius, 2);;
-      color: #dc0e0e;
-      background-color: #ffd4d4;
+      color: map_get($md-error, 500);
+      background-color: map_get($md-error, 400);
     }
 
     .message{
