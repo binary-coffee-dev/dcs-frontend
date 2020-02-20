@@ -1,8 +1,12 @@
 <app-header></app-header>
 
 <app-loading></app-loading>
-<app-social-links></app-social-links>
-<router-outlet></router-outlet>
+
+<app-social-links fxHide.sm fxHide.md fxHide.lg></app-social-links>
+
+<div fxLayout="row">
+    <router-outlet fxFlex.xs="100" fxFlex.sm="100" fxFlex="60"></router-outlet>
+</div>
 
 <app-scroll-top></app-scroll-top>
 
