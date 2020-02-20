@@ -1,13 +1,9 @@
-<div class="container"
-     fxLayout="row"
-     fxLayoutAlign="start start">
-  <div class="posts-container"
-       fxFlex.xs="100"
-       fxFlex.sm="100"
-       fxFlex="60">
-    <app-post-item class="post-element"
-                   *ngFor="let post of posts"
-                   [post]="post">
+<div class="container" fxLayout="row">
+  <div fxLayout="column" class="rows" fxLayoutAlign="end end" fxLayoutGap="fill">
+    <span class="row" *ngFor="let i of numbers">{{i}}</span>
+  </div>
+  <div class="posts-container">
+    <app-post-item class="post-element" *ngFor="let post of posts" [post]="post">
     </app-post-item>
     <app-pagination></app-pagination>
   </div>
