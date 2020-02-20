@@ -7,30 +7,32 @@
     position: sticky;
     top: 0;
     z-index: 99;
-    padding: 2rem 0 2.5rem 0;
-    background-color: map_get($md-grey, A100);
+    background-color: map_get($md-primary, A100);
     box-shadow: map_get($box-shadow, 4);
-    border-bottom-left-radius: map_get($radius, 2);
-    border-bottom-right-radius: map_get($radius, 2);
 
     a {
       color: map_get($md-primary, 800);
       text-decoration: none;
 
       .logo{
-        height: 2.5rem;
-        margin: 0 map_get($spacings, 3) 0 map_get($spacings, 3);
+        height: 2rem;
+        margin: 0 map_get($spacings, 1) map_get($spacings, 1) 0;
       }
       .binary{
-        margin-left: map_get($spacings, 1);
+        margin-right: map_get($spacings, 1);
       }
       span {
         text-align: center;
-        font-size: 2rem;
-        font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
-        font-weight: 200; 
+        font-size: 1.5rem;
+        font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
+        font-weight: 100; 
         text-transform: uppercase;
       }
     }
+
+    app-social-links{
+      font-size: 1rem;
+    }
+    
   }
 }
