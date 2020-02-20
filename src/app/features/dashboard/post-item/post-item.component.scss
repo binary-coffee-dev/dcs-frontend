@@ -3,6 +3,15 @@
 $post_image_size: 110px;
 
 :host {
+  .code-1{
+    color: map_get($md-primary, 800) !important;
+  }
+  .code-2{
+    color: map_get($md-error, 800) !important;
+  }
+  .code-string{
+    color: map_get($md-primary, 900) !important;
+  }
   .card-container{
     box-shadow: map_get($box-shadow, 4);
     background-color: map_get($md-grey, A100);
@@ -10,8 +19,11 @@ $post_image_size: 110px;
     padding: map_get($spacings, 4);
     cursor: pointer;
     text-decoration: none;
-    margin-bottom: map_get($spacings, 4);
-    border-radius: map_get($radius, 2);;
+    border-radius: map_get($radius, 2) 0 0 map_get($radius, 2);
+    color: map_get($md-grey, 600);
+    &:hover{
+      background-color: map_get($md-primary, 50);
+    }
   }
 
   .post-image-container {
@@ -33,37 +45,32 @@ $post_image_size: 110px;
     }
   }
 
-  .post-body-container {
+  .post-info-vars {
+    margin-bottom:map_get($spacings, 4);
 
-    h3 {
-      margin: 0 0;
-      font-size: 1.275rem;
-      text-decoration: none;
-      color: map_get($md-primary, 500);
-      font-family: get($font-family);
+    .post-title {
       font-weight: 200;
       text-transform: uppercase;
     }
   }
-
   .post-info-container {
-    margin: map_get($spacings, 1) 0;
+    margin:0;
     font-family: get($font-family);
-    font-weight: 400;
   }
 
   .post-body-extract {
     width: 100%;
     font-family: get($font-family);
-    color: map_get($md-grey, 900);
     letter-spacing: 0.45px;
-    font-weight: 300;
+    font-weight: 200;
     font-size: 0.95rem;
+    padding: 0 map_get($spacings, 4);
+    color:map_get($md-grey, 900);
   }
 
   @media screen and (max-width: 599px) {
     .card-container{
-      margin-bottom: map_get($spacings, 1);
+      //margin-bottom: map_get($spacings, 1);
     }
   }
 }
