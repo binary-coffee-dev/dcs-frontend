@@ -2,11 +2,11 @@
 
 <app-loading></app-loading>
 
-<app-social-links fxHide.sm fxHide.md fxHide.lg></app-social-links>
+<app-social-links [fxHide.sm]="true"
+                  [fxHide.md]="true"
+                  [fxHide.lg]="true"></app-social-links>
 
-<div fxLayout="row" fxLayoutAlign="center center">
-    <router-outlet fxFlex.xs="100" fxFlex.sm="100" fxFlex="60"></router-outlet>
-</div>
+<router-outlet></router-outlet>
 
 <app-scroll-top></app-scroll-top>
 

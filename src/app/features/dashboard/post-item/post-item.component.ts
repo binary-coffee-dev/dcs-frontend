@@ -15,6 +15,8 @@ export class PostItemComponent {
   @Input()
   post: Post;
 
+  @Input()
+  number: number;
 
   constructor(
     public moment: MomentService,

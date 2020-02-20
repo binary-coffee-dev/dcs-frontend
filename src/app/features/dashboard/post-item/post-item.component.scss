@@ -3,6 +3,18 @@
 $post_image_size: 110px;
 
 :host {
+  .container {
+    &:hover{
+      .line-number {
+        background-color: map_get($md-primary, 200);
+      }
+
+      .card-container {
+        background-color: map_get($md-primary, 50);
+      }
+    }
+  }
+
   .code-1{
     color: map_get($md-primary, 800) !important;
   }
@@ -21,10 +33,14 @@ $post_image_size: 110px;
     text-decoration: none;
     border-radius: map_get($radius, 2) 0 0 map_get($radius, 2);
     color: map_get($md-grey, 600);
+  }
 
-    &:hover{
-      background-color: map_get($md-primary, 50);
-    }
+  .line-number {
+    padding-top: 12px;
+    color: map_get($md-grey, 500);
+    background-color: map_get($md-primary, 100);
+    padding-right: 5px;
+    min-width: 40px;
   }
 
   .post-image-container {
