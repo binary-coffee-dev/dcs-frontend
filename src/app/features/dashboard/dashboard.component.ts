@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.store.select(PostState.posts).subscribe((posts) => {
       this.posts = posts;
-      for (let index = 1; index < posts.length * 13; index++) {
+      for (let index = 1; index < posts.length * 10; index++) {
         this.numbers[index] = index;
       }
     });

@@ -21,6 +21,7 @@ $post_image_size: 110px;
     text-decoration: none;
     border-radius: map_get($radius, 2) 0 0 map_get($radius, 2);
     color: map_get($md-grey, 600);
+
     &:hover{
       background-color: map_get($md-primary, 50);
     }
@@ -66,11 +67,5 @@ $post_image_size: 110px;
     font-size: 0.95rem;
     padding: 0 map_get($spacings, 4);
     color:map_get($md-grey, 900);
-  }
-
-  @media screen and (max-width: 599px) {
-    .card-container{
-      //margin-bottom: map_get($spacings, 1);
-    }
   }
 }
