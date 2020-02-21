@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "module": "commonjs",
     "outDir": "../../dist/out-tsc",
     "emitDecoratorMetadata": true,
     "types": [
@@ -9,7 +10,7 @@
     ]
   },
   "files": [
-    "src/polyfills.ts"
+    "src/test-setup.ts"
   ],
   "include": [
     "src/**/*.spec.ts",

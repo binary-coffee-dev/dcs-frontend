@@ -5,7 +5,11 @@
   "projects": {
     "dcs-frontend": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "apps/dcs-frontend",
       "sourceRoot": "apps/dcs-frontend/src",
       "prefix": "app",
@@ -18,7 +22,7 @@
             "main": "apps/dcs-frontend/src/main.ts",
             "polyfills": "apps/dcs-frontend/src/polyfills.ts",
             "tsConfig": "apps/dcs-frontend/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "apps/dcs-frontend/src/favicon.png",
               "apps/dcs-frontend/src/assets"
@@ -103,19 +107,12 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@nrwl/jest:jest",
           "options": {
-            "polyfills": "apps/dcs-frontend/src/polyfills.ts",
+            "jestConfig": "apps/dcs-frontend/jest.config.js",
             "tsConfig": "apps/dcs-frontend/tsconfig.spec.json",
-            "assets": [
-              "apps/dcs-frontend/src/favicon.png",
-              "apps/dcs-frontend/src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "apps/dcs-frontend/src/styles.scss"
-            ],
-            "scripts": []
+            "passWithNoTests": true,
+            "setupFile": "apps/dcs-frontend/src/test-setup.ts",
           }
         },
         "lint": {
