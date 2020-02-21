@@ -4,7 +4,10 @@ WORKDIR /app
 
 COPY . ./
 
+ARG ENVIRONMENT
+
 RUN npm install
-RUN npm run build:ssr
+RUN if [ "$ENVIRONMENT" = "dev" ] ; then npm run build:ssr:dev ; else npm run:buil ; fi
+#RUN npm run build:ssr
 
 CMD ["npm", "run", "serve:ssr"]

@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -20,10 +20,15 @@
       "esnext.asynciterable"
     ],
     "paths": {
-      "~environments/*": ["environments/*"],
-      "~graphql/*": ["app/core/graphql/*"]
+      "~environments/*": [
+        "environments/*"
+      ],
+      "~graphql/*": [
+        "app/core/graphql/*"
+      ]
     },
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "rootDir": "."
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
