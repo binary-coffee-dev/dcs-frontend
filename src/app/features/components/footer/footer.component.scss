@@ -1,19 +1,22 @@
 @import "src/theme";
 
 :host {
+ .copyright {
+    padding: map_get($spacings, 1) map_get($spacings, 1) 0 map_get($spacings, 1);
+    text-align: center;
+    background-color: map_get($md-primary, 800);
+    color: map_get($md-grey, A100);
+
+    mat-icon{
+      color: map_get($md-grey, A100);
+    }
+  }
 
   footer {
-    padding: map_get($spacings, 5) map_get($spacings, 5);
-    background-color: map_get($md-grey, A100);;
+    padding: map_get($spacings, 2) map_get($spacings, 2);
+    background-color: map_get($md-primary, A100);
     color: map_get($md-grey, 800);
     box-shadow: map_get($box-shadow-up, 4);
-    border-top-left-radius: map_get($radius, 2);
-    border-top-right-radius: map_get($radius, 2);
-
-    .copyright {
-      text-align: center;
-    }
-
   }
 
   .groups {
@@ -22,10 +25,13 @@
     .sub-group {
       margin-bottom: map_get($spacings, 3);
 
-      b{
-        margin: map_get($spacings, 1);
+      .sub-group-header{
+        margin-bottom: map_get($spacings, 2);
+        b{
+          margin: map_get($spacings, 1);
+          color: map_get($md-primary,900);
+        }
       }
-
       a {
         text-align: left;
         padding-left:  map_get($spacings, 1);

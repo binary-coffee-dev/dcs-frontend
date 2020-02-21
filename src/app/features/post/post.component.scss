@@ -2,14 +2,14 @@
 
 :host {
   .post-container {
-    margin: 0 map_get($spacings, 4) map_get($spacings, 4) map_get($spacings, 4);
+    //margin: 0 map_get($spacings, 4) map_get($spacings, 4) map_get($spacings, 4);
 
     .post-in-container {
-      margin-top: map_get($spacings, 4);
-      box-shadow: map_get($box-shadow, 4);
+      //margin-top: map_get($spacings, 4);
+      //box-shadow: map_get($box-shadow, 4);
       background-color: map_get($md-grey, A100);
       padding: map_get($spacings, 4);
-      border-radius: map_get($radius, 2);
+      //border-radius: map_get($radius, 2);
 
       h1 {
         margin: 0;

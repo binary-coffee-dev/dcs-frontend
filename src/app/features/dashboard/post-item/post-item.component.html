@@ -1,25 +1,40 @@
-<div class="card-container" [routerLink]="'post/' + post?.name" fxLayout="row">
-  <div class="post-image-container" fxShow.xs="false">
-    <img *ngIf="post?.banner && post?.banner?.url" [lazyLoad]="resource.addApiUrl(post?.banner?.url)" alt="">
+<div class="container"
+     fxLayout="row">
+  <div class="line-number"
+       fxLayout="row"
+       fxLayoutAlign="end start">
+    <span>{{number}}</span>
   </div>
-  <div class="post-body-container" fxFlex.gt-sm="80">
-    <h3>{{post?.title}}</h3>
-    <div class="post-info-container" fxLayout="row">
-      <span class="post-info separator" *ngIf="post?.author" fxLayout="row">
+  <div [routerLink]="'post/' + post?.name"
+       class="card-container"
+       fxLayout="row">
+    <div class="post-image-container" [fxShow.xs]="false">
+      <img *ngIf="post?.banner && post?.banner?.url" [lazyLoad]="resource.addApiUrl(post?.banner?.url)" alt="">
+    </div>
+    <div class="post-body-container" [fxFlex.gt-sm]="80" fxLayout="column">
+      <div class="post-info-vars">
+      <span><span class="code-1">const</span> título = <span class="code-string">"<span
+        class="post-title">{{post?.title}}</span>"</span>;</span><br>
+        <span><span class="code-1">var</span> autor = <span><a [href]="post?.author?.page || ''"
+                                                               [title]="post?.author?.email">{{post?.author?.username || 'none'}}</a></span></span>
+        <span>, vistas = {{post?.views || 0}}</span>
+        <span>, opiniones = {{post?.comments || 0}};</span>
+      </div>
+      <span class="post-info">// {{post?.publishedAt && moment.timeFromDate(post?.publishedAt) || ''}}</span>
+      <span><span class="code-1">function</span> articulo(título, autor, vistas, opiniones){{"{"}}</span>
+      <div class="post-info-container" fxLayout="row">
+      <span class="post-info" *ngIf="post?.author" fxLayout="row">
         <a [href]="post?.author?.page || ''" [title]="post?.author?.email" fxLayout="row" fxLayoutAlign="start center">
           {{post?.author?.username}}
         </a>
       </span>
-      <span class="post-info separator">{{post?.publishedAt && moment.timeFromDate(post?.publishedAt) || ''}}</span>
-      <span class="post-info" [ngClass]="{'separator': post?.comments}" fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon aria-hidden="false">remove_red_eye</mat-icon>
-        {{post?.views || 0}}
-      </span>
-      <span class="post-info" *ngIf="post?.comments" fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon aria-hidden="false">comment</mat-icon>
-        {{post?.comments || 0}}
-      </span>
+      </div>
+      <span class="post-body-extract" fxLayout="column">
+      <span>/*</span>
+        {{truncatePostDescription(post?.description)}}
+        <span>*/</span>
+    </span>
+      <span>{{"{"}}</span>
     </div>
-    <span class="post-body-extract">{{truncatePostDescription(post?.description)}}</span>
   </div>
 </div>

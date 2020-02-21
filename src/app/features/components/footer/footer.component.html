@@ -1,87 +1,99 @@
 <div>
-    <div class="bc-logo">
+    <div *ngIf="false" class="bc-logo">
         <img src="assets/images/svg/binarycoffee_2.0.0.svg">
     </div>
     <footer>
         <div class="groups" fxLayout="row wrap">
             <div class="sub-group" fxLayout="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start start"
-                fxFlex.xs="50" fxFlex="25">
-                <b>Binary Coffee</b>
+                fxFlex.xs="100" fxFlex="50" fxFlex.lg="25">
+                <span class="sub-group-header"><b>{{root}}</b>binarycoffee -h</span>
                 <div fxLayout="column">
                     <a mat-button [routerLink]="'/suscribe'" title="Subscríbace ahora">
-                        <span>Suscribirse</span>
-                    </a>
-                    <a mat-button *ngIf="false" [routerLink]="'/about'"
-                        title=" Que es Binary Coffee y sus planes futuros">
-                        <span>Conozca a Binary Coffee</span>
-                    </a>
-                    <a mat-button *ngIf="false" [routerLink]="'/questions'"
-                        title="Pregunte cualquier duda o revise las más frecuentes">
-                        <span>Preguntas</span>
-                    </a>
-                    <a mat-button *ngIf="false" [routerLink]="'/site-map'"
-                        title="Vea la estructura general del sitio web">
-                        <span>Mapa</span>
+                        <span>> Suscribirse</span>
                     </a>
                     <a mat-button href="mailto:website@binary-coffee.dev" target="blank"
                         title="Contactar directamete con el equipo de Binary Coffee">
-                        <span>Contáctenos</span>
+                        <span>> Contáctenos</span>
+                    </a>
+                    <a mat-button [routerLink]="'/about'" title=" Que es Binary Coffee y sus planes futuros">
+                        <span>> Conozca a Binary Coffee</span>
+                    </a>
+                    <a mat-button [routerLink]="'/questions'"
+                        title="Pregunte cualquier duda o revise las más frecuentes">
+                        <span>> Preguntas</span>
+                    </a>
+                    <a mat-button [routerLink]="'/site-map'" title="Vea la estructura general del sitio web">
+                        <span>> Mapa</span>
                     </a>
                 </div>
             </div>
 
-            <div *ngIf="false" class="sub-group" fxLayout="column" fxLayoutAlign="start start"
-                fxLayoutAlign.xs="start start" fxFlex.xs="50" fxFlex="25">
-                <b>Desarrolladores</b>
+            <div class="sub-group" fxLayout="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start start"
+                fxFlex.xs="100" fxFlex="50" fxFlex.lg="25">
+                <span class="sub-group-header"><b>{{root}}</b>dev -h</span>
                 <div fxLayout="column">
                     <a mat-button [routerLink]="'/join'" title="Colabore en DC's Community, toda ayuda es poca">
-                        <span>Contribuir</span>
+                        <span>> Contribuir</span>
                     </a>
                     <a mat-button [routerLink]="'/tecs'"
                         title="Tecnologías utilizadas por el aquipo de desarrolladores">
-                        <span>Tecnologías</span>
+                        <span>> Tecnologías</span>
                     </a>
                     <a mat-button [routerLink]="'/dcs-community'"
                         title="Conosca la comunidad que desarrolla Binary Coffee">
-                        <span>DC's Community</span>
+                        <span>> DC's Community</span>
                     </a>
                     <a mat-button [routerLink]="'/feedback'"
                         title="Ayúdenos con sus sugerencias a mejorar Binary Coffe">
-                        <span>Sugerencias</span>
+                        <span>> Sugerencias</span>
                     </a>
                     <a mat-button [routerLink]="'/dev-team'" title="Conosca al equipo de desarrolladores">
-                        <span>Equipo</span>
+                        <span>> Equipo</span>
                     </a>
                 </div>
             </div>
 
-            <div *ngIf="false" class="sub-group" fxLayout="column" fxLayoutAlign="start start"
-                fxLayoutAlign.xs="start start" fxFlex.xs="50" fxFlex="25">
-                <b>Escritores</b>
+            <div class="sub-group" fxLayout="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start start"
+                fxFlex.xs="100" fxFlex="50" fxFlex.lg="25">
+                <span class="sub-group-header"><b>{{root}}</b>escritores -h</span>
                 <div fxLayout="column">
                     <a mat-button [routerLink]="'/publish'" title="Colabore con publicaciones inéditas">
-                        <span>Publicar</span>
+                        <span>> Publicar</span>
                     </a>
                     <a mat-button [routerLink]="'/write-team'" title="Conosca al equipo de escritores">
-                        <span>Equipo</span>
+                        <span>> Equipo</span>
                     </a>
                 </div>
             </div>
 
-            <div *ngIf="false" class="sub-group" fxLayout="column" fxLayoutAlign="start start"
-                fxLayoutAlign.xs="start start" fxFlex.xs="50" fxFlex="25">
-                <b>Asociados</b>
+            <div class="sub-group" fxLayout="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start start"
+                fxFlex.xs="100" fxFlex="50" fxFlex.lg="25">
+                <span class="sub-group-header"><b>{{root}}</b>asociados -ls</span><b></b>
                 <div fxLayout="column">
-                    <a mat-button href="http://tecnolink.com" title="TecnoLike" target="blanck">
-                        <span>TecnoLike</span>
+                    <a mat-button href="http://asociado.com" title="Asociado 1" target="blanck">
+                        <span>> Asociado 1</span>
+                    </a>
+                    <a mat-button href="http://asociado.com" title="Asociado 2" target="blanck">
+                        <span>> Asociado 2</span>
+                    </a>
+                    <a mat-button href="http://asociado.com" title="Asociado 3" target="blanck">
+                        <span>> Asociado 3</span>
+                    </a>
+                    <a mat-button href="http://asociado.com" title="Asociado 4" target="blanck">
+                        <span>> Asociado 4</span>
                     </a>
                 </div>
             </div>
         </div>
-        <app-social-links></app-social-links>
-        <div class="copyright">
-            Copyright ©{{year}} Todos los derechos reservados | Hecho con<mat-icon mat-font-icon="fa-icon"
-                class="fa fa-heart anim-pulse"></mat-icon>por DC's Community
-        </div>
+
     </footer>
+</div>
+<div class="copyright" fxLayout.lg="row" fxLayout="column" fxLayoutAlign="center center">
+    <span fxFlex.lg="50" fxFlex="100" fxLayoutAlign="start center">Copyright ©{{year}} Todos los derechos
+        reservados</span>
+    <span fxFlex.lg="50" fxFlex="50" fxLayoutAlign="end center">Hecho con<mat-icon mat-font-icon=" fa-icon"
+            class="fa fa-heart anim-pulse">
+        </mat-icon>por
+        DC's
+        Community</span>
 </div>

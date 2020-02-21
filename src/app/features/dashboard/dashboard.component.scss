@@ -3,22 +3,14 @@
 :host {
   .container {
     min-height: calc(100vh - 248px);
+    background-color: map_get($md-grey,A100);
 
-    .posts-container {
-      padding: map_get($spacings, 5);
-      margin: 0 auto;
-    }
-  }
+    .rows{
+      color: map_get($md-grey, 500);
+      padding: map_get($spacings, 1);
 
-  @media screen and (max-width: 599px) {
-    .container {
-      .posts-container {
-        padding: map_get($spacings, 1);
-        margin-bottom: map_get($spacings, 3);
-
-        app-post-item{
-          margin-bottom: map_get($spacings, 1);
-        }
+      .row{
+        margin-bottom: map_get($spacings, 1);
       }
     }
   }

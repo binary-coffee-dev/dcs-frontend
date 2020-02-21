@@ -9,11 +9,13 @@ mat-form-field{
     filter: invert(100%);
   }
 }
+*{
+  font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback' ;
+}
 body {
   margin: 0;
-  font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
   font-weight: 400;
-  background-color: map_get($md-grey, 50);
+  background-color: map_get($md-grey, 400);
 }
 
 .post-info {

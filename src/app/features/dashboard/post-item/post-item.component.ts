@@ -1,9 +1,9 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import {truncate} from 'lodash';
+import { truncate } from 'lodash';
 
-import {Post} from '../../../core/redux/models';
-import {MomentService, ResourceService} from '../../../core/services';
+import { Post } from '../../../core/redux/models';
+import { MomentService, ResourceService } from '../../../core/services';
 
 @Component({
   selector: 'app-post-item',
@@ -15,6 +15,9 @@ export class PostItemComponent {
   @Input()
   post: Post;
 
+  @Input()
+  number: number;
+
   constructor(
     public moment: MomentService,
     public resource: ResourceService
@@ -22,7 +25,7 @@ export class PostItemComponent {
   }
 
   truncatePostDescription(t: string) {
-    return truncate(t, {length: 300});
+    return truncate(t, { length: 300 });
   }
 
 }

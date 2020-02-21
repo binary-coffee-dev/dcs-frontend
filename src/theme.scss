@@ -1,4 +1,4 @@
-$font-family: Raleway, Roboto,"Helvetica Neue",sans-serif;
+$font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
 
 $spacings: (
   0 : 0,
@@ -101,8 +101,8 @@ $md-grey: (
   200 : #fdfdfd,
   300 : #fcfcfc,
   400 : #fbfbfb,
-  450 : #f8f8f2,
-  500 : #fafafa,
+  450 : #d8d8d8,
+  500 : #c2c2c2,
   600 : #959595,
   700 : #616161,
   800 : #1f3b50,
@@ -135,7 +135,7 @@ $box-shadow:(
   1 : -1px 6px 2px 0 rgba(101, 109, 120, 0.2),
   2 : -1px 6px 6px 0 rgba(101, 109, 120, 0.2),
   3 : -1px 6px 10px 0 rgba(101, 109, 120, 0.2),
-  4 : -1px 6px 14px 0 rgba(101, 109, 120, 0.2),// recomended
+  4 : -1px 6px 14px 0 rgba(101, 109, 120, 0),// recomended
   5 : -1px 6px 18px 0 rgba(101, 109, 120, 0.2),
   6 : -1px 6px 22px 0 rgba(101, 109, 120, 0.2)
 );
