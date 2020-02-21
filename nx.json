@@ -17,6 +17,13 @@
     "dcs-frontend-e2e": {
       "tags": [],
       "implicitDependencies": ["dcs-frontend"]
+    },
+    "dcs-admin": {
+      "tags": []
+    },
+    "dcs-admin-e2e": {
+      "tags": [],
+      "implicitDependencies": ["dcs-admin"]
     }
   }
 }
