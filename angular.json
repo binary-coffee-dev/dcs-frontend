@@ -112,7 +112,7 @@
             "jestConfig": "apps/dcs-frontend/jest.config.js",
             "tsConfig": "apps/dcs-frontend/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "apps/dcs-frontend/src/test-setup.ts",
+            "setupFile": "apps/dcs-frontend/src/test-setup.ts"
           }
         },
         "lint": {
