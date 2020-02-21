@@ -1,0 +1,49 @@
+@import "apps/dcs-frontend/src/theme";
+
+:host {
+  .post-container {
+    //margin: 0 map_get($spacings, 4) map_get($spacings, 4) map_get($spacings, 4);
+
+    .post-in-container {
+      //margin-top: map_get($spacings, 4);
+      //box-shadow: map_get($box-shadow, 4);
+      background-color: map_get($md-grey, A100);
+      padding: map_get($spacings, 4);
+      //border-radius: map_get($radius, 2);
+
+      h1 {
+        margin: 0;
+        font-family: get($font-family);
+        font-weight: 200;
+        text-transform: uppercase;
+        color: map_get($md-primary, 900);
+      }
+
+      .post-info-container {
+        margin-top: map_get($spacings, 2);
+      }
+
+      .image-container {
+        margin: map_get($spacings, 4) 0;
+        width: 100%;
+        border-radius: map_get($radius, 2);
+
+        img {
+          width: 100%;
+          max-height: 50vh;
+          object-fit: cover;
+          object-position: center;
+          border-radius: map_get($radius, 2);
+          border-bottom: 2px solid map_get($md-primary, 900);
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .post-container {
+      margin: map_get($spacings, 1);
+      margin-bottom: map_get($spacings, 5);
+    }
+  }
+}
