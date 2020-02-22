@@ -14,13 +14,15 @@
       color: map_get($md-primary, 800);
       text-decoration: none;
 
-      .logo{
+      .logo {
         height: 2rem;
         margin: 0 map_get($spacings, 1) map_get($spacings, 1) 0;
       }
-      .binary{
+
+      .binary {
         margin-right: map_get($spacings, 1);
       }
+
       span {
         text-align: center;
         font-size: 1.5rem;
@@ -30,9 +32,10 @@
       }
     }
 
-    app-social-links{
+    app-social-links {
       font-size: 1rem;
     }
 
   }
+
 }
