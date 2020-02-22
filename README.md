@@ -1,9 +1,11 @@
 # Binary Coffee frontend application
 
-[![Build Status](https://travis-ci.com/dcs-community/dcs-frontend.svg?branch=master)](https://travis-ci.com/dcs-community/dcs-frontend)
-![codecov.io](https://img.shields.io/codecov/c/github/dcs-community/dcs-frontend/master.svg?style=flat-square)
+|branch|`master`|`develop`|
+|---|---|---|
+|build|[![Build Status](https://travis-ci.com/dcs-community/dcs-frontend.svg?branch=master)](https://travis-ci.com/dcs-community/dcs-frontend)|[![Build Status](https://travis-ci.com/dcs-community/dcs-frontend.svg?branch=master)](https://travis-ci.com/dcs-community/dcs-frontend)|
+|coverage|[![master](https://codecov.io/gh/dcs-community/dcs-frontend/branch/master/graph/badge.svg)](https://codecov.io/gh/dcs-community/dcs-frontend)|[![develop](https://codecov.io/gh/dcs-community/dcs-frontend/branch/develop/graph/badge.svg)](https://codecov.io/gh/dcs-community/dcs-frontend)|
 
-This is the frontend application of the Binary Coffee community.
+This is the frontend applications of the Binary Coffee community.
 
 ## Start application
 
