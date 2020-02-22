@@ -36,6 +36,10 @@ mat-card {
       font-weight: 300;
     }
   }
+
+  mat-card-content {
+    margin-top: 15px;
+  }
 }
 
 table {
