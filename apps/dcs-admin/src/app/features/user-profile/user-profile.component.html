@@ -1,84 +1,84 @@
-<div class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header card-header-success">
-            <h4 class="card-title">Edit Profile</h4>
-            <p class="card-category">Complete your profile</p>
+<div fxLayout="row wrap">
+  <mat-card fxFlex="50"
+            fxFlex.sm="100"
+            fxFlex.xs="100">
+    <mat-card-header fxLayout="column">
+      <h4>Edit Profile</h4>
+      <p>Complete your profile</p>
+    </mat-card-header>
+    <mat-card-content fxLayout="row">
+      <form [formGroup]="profileForm"
+            fxFlex="100"
+            (change)="onUserDataChange()"
+            (ngSubmit)="saveUserData()">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput
+                     formControlName="email"
+                     placeholder="Email address"
+                     type="email">
+            </mat-form-field>
           </div>
-          <div class="card-body">
-            <form [formGroup]="profileForm"
-                  (change)="onUserDataChange()"
-                  (ngSubmit)="saveUserData()">
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput
-                           formControlName="email"
-                           placeholder="Email address"
-                           type="email">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput
-                           formControlName="page"
-                           placeholder="Web site"
-                           type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-              <button mat-raised-button
-                      type="submit"
-                      [disabled]="!profileDataChange"
-                      class="btn btn-success pull-right">Update Profile
-              </button>
-              <div class="clearfix"></div>
-            </form>
-            <form [formGroup]="passwordForm"
-                  *ngIf="false">
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput
-                           formControlName="password"
-                           placeholder="Password"
-                           type="password">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput
-                           formControlName="password2"
-                           placeholder="Repeat password"
-                           type="password">
-                  </mat-form-field>
-                </div>
-              </div>
-              <button mat-raised-button
-                      type="submit"
-                      [disabled]="!passwordChange"
-                      class="btn btn-success pull-right">Update password
-              </button>
-              <div class="clearfix"></div>
-            </form>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput
+                     formControlName="page"
+                     placeholder="Web site"
+                     type="text">
+            </mat-form-field>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-profile">
-          <div class="card-avatar">
-            <a (click)="openUploadFileModal()">
-              <img class="img"
-                   [src]="getUserImage()"/>
-            </a>
+        <button mat-raised-button
+                type="submit"
+                [disabled]="!profileDataChange"
+                class="btn btn-success pull-right">Update Profile
+        </button>
+      </form>
+      <form [formGroup]="passwordForm"
+            fxFlex="100"
+            *ngIf="false">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput
+                     formControlName="password"
+                     placeholder="Password"
+                     type="password">
+            </mat-form-field>
           </div>
-          <div class="card-body">
-            <h4 class="card-title">{{me.username}}</h4>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input matInput
+                     formControlName="password2"
+                     placeholder="Repeat password"
+                     type="password">
+            </mat-form-field>
           </div>
         </div>
+        <button mat-raised-button
+                type="submit"
+                [disabled]="!passwordChange"
+                class="btn btn-success pull-right">Update password
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <mat-card fxFlex="40"
+            fxFlex.sm="100"
+            fxFlex.xs="100"
+            fxLayout="column"
+            fxLayoutAlign="start center">
+    <mat-card-content>
+      <div class="card-avatar">
+        <a (click)="openUploadFileModal()">
+          <img class="img"
+               [src]="getUserImage()"/>
+        </a>
       </div>
-    </div>
-  </div>
+      <div class="card-body">
+        <h4 class="card-title">{{me.username}}</h4>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
