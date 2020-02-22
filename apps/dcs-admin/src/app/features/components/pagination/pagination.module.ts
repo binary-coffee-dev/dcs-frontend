@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
+import {MaterialModule} from '@dcs-libs/shared';
 import {PaginationComponent} from './pagination.component';
 
 @NgModule({
@@ -9,7 +10,8 @@ import {PaginationComponent} from './pagination.component';
     PaginationComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
   ]
 })
 export class PaginationModule {

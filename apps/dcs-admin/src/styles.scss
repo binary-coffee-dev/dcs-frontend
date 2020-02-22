@@ -1,5 +1,4 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-
 @import 'apps/dcs-frontend/src/theme';
 
 body {
@@ -11,8 +10,8 @@ body, html {
   background-color: #eee;
 }
 
-*{
-  font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback' ;
+* {
+  font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
 }
 
 mat-card {
@@ -21,8 +20,8 @@ mat-card {
     margin-top: -40px !important;
     padding: 15px;
     color: #fff;
-    background: linear-gradient(60deg,map_get($md-primary, 900),map_get($md-primary, 900));
-    box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(76,175,80,.4);
+    background: linear-gradient(60deg, map_get($md-primary, 900), map_get($md-primary, 900));
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(76, 175, 80, .4);
 
     h4 {
       line-height: 1.4em;
@@ -35,6 +34,31 @@ mat-card {
       margin: 0;
       font-size: .775rem;
       font-weight: 300;
+    }
+  }
+}
+
+table {
+  width: 100%;
+  margin-top: 15px;
+
+  thead {
+    text-align: left;
+  }
+
+  tbody {
+    tr {
+      td {
+        border-top: 1px solid rgba(0, 0, 0, .06);
+
+        button {
+          height: 30px !important;
+          min-width: 30px !important;
+          width: 30px !important;
+          padding: 0 !important;
+          box-shadow: none !important;
+        }
+      }
     }
   }
 }
