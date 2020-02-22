@@ -47,12 +47,13 @@ export class NavbarComponent implements OnInit {
   }
 
   getTitle() {
-    let titlee = this.location.prepareExternalUrl(this.location.path());
-    if (titlee.charAt(0) === '#') {
-      titlee = titlee.slice(1);
+    let title = this.location.prepareExternalUrl(this.location.path());
+    if (title.charAt(0) === '#') {
+      title = title.slice(1);
     }
+    title = '/' + title.split('/')[1];
     for (const item of this.listTitles) {
-      if (item.path === titlee) {
+      if (item.path === title) {
         return item.title;
       }
     }

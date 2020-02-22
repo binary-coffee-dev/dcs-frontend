@@ -1,11 +1,11 @@
-:host {
-  .card-body {
-    height: calc(80vh - 100px);
-    padding: 5px 15px 5px 0;
+@import "apps/dcs-frontend/src/theme";
 
-    .items-container {
-      height: calc(100% - 50px);
-      overflow-y: auto;
+:host {
+  mat-card {
+    height: calc(80vh - 100px);
+
+    mat-card-content {
+      margin-top: 15px;
 
       .item {
         display: flex;
@@ -19,9 +19,10 @@
           object-fit: cover;
           object-position: center;
           cursor: pointer;
+          border: 2px solid transparent;
 
           &:hover {
-            border: 2px solid transparent;
+            border: 2px solid map_get($md-primary, 900);
           }
         }
       }

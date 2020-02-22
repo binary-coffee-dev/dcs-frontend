@@ -9,6 +9,8 @@
       text-decoration: none;
     }
     .menu-dropdown {
+      z-index: 1000;
+
       ul {
         list-style: none;
         padding: 0;

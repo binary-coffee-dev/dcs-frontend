@@ -1,5 +1,7 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+@import 'apps/dcs-frontend/src/theme';
+
 body {
   margin: 0;
 }
@@ -7,4 +9,60 @@ body {
 body, html {
   height: 100%;
   background-color: #eee;
+}
+
+*{
+  font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback' ;
+}
+
+mat-card {
+  mat-card-header {
+    border-radius: 3px;
+    margin-top: -40px !important;
+    padding: 15px;
+    color: #fff;
+    background: linear-gradient(60deg,map_get($md-primary, 900),map_get($md-primary, 900));
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(76,175,80,.4);
+
+    h4 {
+      line-height: 1.4em;
+      font-weight: 300;
+      margin-top: 0;
+      margin-bottom: 3px;
+    }
+
+    p {
+      margin: 0;
+      font-size: .775rem;
+      font-weight: 300;
+    }
+  }
+}
+
+mat-dialog-container {
+  box-shadow: none !important;
+  position: relative;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+
+
+markdown {
+  img {
+    width: 60%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  @media screen and (max-width: 599px) {
+    img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    img {
+      width: 80%;
+    }
+  }
 }
