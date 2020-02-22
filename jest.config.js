@@ -5,5 +5,6 @@ module.exports = {
   },
   resolver: '@nrwl/jest/plugins/resolver',
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageReporters: ['html', 'lcov']
+  preset: "jest-preset-angular",
+  setupFilesAfterEnv: ['./test-setup.ts']
 };

@@ -1,6 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+
+import {Store} from '@ngxs/store';
 
 import {AuthComponent} from './auth.component';
+
+class StoreStub {}
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -8,7 +14,10 @@ describe('AuthComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AuthComponent]
+      declarations: [AuthComponent],
+      imports: [RouterTestingModule],
+      providers: [{provide: Store, useClass: StoreStub}],
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));
@@ -16,6 +25,7 @@ describe('AuthComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthComponent);
     component = fixture.componentInstance;
+    spyOn(component, 'ngOnInit');
     fixture.detectChanges();
   });
 

@@ -3,22 +3,32 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {Location} from '@angular/common';
 import {RouterTestingModule} from '@angular/router/testing';
 
-import {Subject} from 'rxjs';
+import {Store} from '@ngxs/store';
 
 import {NavbarComponent} from './navbar.component';
+
+class StoreStub {
+}
+
+class LocationStub {
+  path = jest.fn();
+  prepareExternalUrl = jest.fn();
+}
+
+const EXAMPLE_PATH = '/admin/dashboard';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
-
-  const location = new Subject();
+  let location: LocationStub;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [NavbarComponent],
       providers: [
-        {provide: Location, useValue: location}
+        {provide: Location, useClass: LocationStub},
+        {provide: Store, useClass: StoreStub}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
@@ -26,7 +36,10 @@ describe('NavbarComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavbarComponent);
+    location = TestBed.get(Location);
     component = fixture.componentInstance;
+    spyOn(component, 'ngOnInit').and.callFake(jest.fn());
+    spyOn(component, 'getTitle').and.returnValue(EXAMPLE_PATH);
     fixture.detectChanges();
   });
 

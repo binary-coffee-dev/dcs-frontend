@@ -1,11 +1,19 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {Location} from '@angular/common';
 import {RouterTestingModule} from '@angular/router/testing';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {ChangeDetectorRef, NO_ERRORS_SCHEMA} from '@angular/core';
+import {MediaMatcher} from '@angular/cdk/layout';
 
 import {Subject} from 'rxjs';
 
 import {AdminLayoutComponent} from './admin-layout.component';
+
+class ChangeDetectorRefStub {
+  detectChanges = jest.fn();
+}
+
+class MediaMatcherStub {
+  matchMedia = () => ({addEventListener: jest.fn()});
+}
 
 describe('AdminLayoutComponent', () => {
   let component: AdminLayoutComponent;
@@ -18,7 +26,8 @@ describe('AdminLayoutComponent', () => {
       imports: [RouterTestingModule],
       declarations: [AdminLayoutComponent],
       providers: [
-        {provide: Location, useValue: location}
+        {provide: ChangeDetectorRef, useClass: ChangeDetectorRefStub},
+        {provide: MediaMatcher, useClass: MediaMatcherStub}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -28,6 +37,7 @@ describe('AdminLayoutComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AdminLayoutComponent);
     component = fixture.componentInstance;
+    spyOn(component, 'ngOnDestroy').and.callFake(jest.fn());
     fixture.detectChanges();
   });
 

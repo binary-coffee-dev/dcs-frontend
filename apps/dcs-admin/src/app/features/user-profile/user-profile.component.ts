@@ -46,7 +46,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUserImage() {
-    if (this.me.avatar && this.me.avatar.url) {
+    if (this.me && this.me.avatar && this.me.avatar.url) {
       return `${environment.apiUrl}${this.me.avatar.url}`;
     }
     return 'assets/img/profile.png';

@@ -178,31 +178,6 @@
         }
       }
     },
-    "dcs-frontend-e2e": {
-      "projectType": "application",
-      "root": "apps/dcs-frontend-e2e",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "apps/dcs-frontend-e2e/protractor.conf.js",
-            "devServerTarget": "dcs-frontend:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "dcs-frontend:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "apps/dcs-frontend-e2e/tsconfig.json",
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
-    },
     "dcs-admin": {
       "projectType": "application",
       "schematics": {
@@ -323,33 +298,6 @@
             "tsConfig": "apps/dcs-admin/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "apps/dcs-admin/src/test-setup.ts"
-          }
-        }
-      }
-    },
-    "dcs-admin-e2e": {
-      "root": "apps/dcs-admin-e2e",
-      "sourceRoot": "apps/dcs-admin-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/dcs-admin-e2e/cypress.json",
-            "tsConfig": "apps/dcs-admin-e2e/tsconfig.e2e.json",
-            "devServerTarget": "dcs-admin:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "dcs-admin:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["apps/dcs-admin-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/dcs-admin-e2e/**"]
           }
         }
       }
