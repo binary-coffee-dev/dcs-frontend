@@ -1,0 +1,89 @@
+@import "apps/dcs-frontend/src/theme";
+
+:host {
+  .logo {
+    position: relative;
+    padding: 15px;
+
+    a {
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      color: #3c4858;
+      white-space: nowrap;
+      font-weight: 400;
+      text-align: center;
+      display: block;
+      text-decoration: none;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 15px;
+      height: 1px;
+      width: calc(100% - 30px);
+      background-color: rgba(180,180,180,.3);
+    }
+  }
+
+  .content {
+    .profile-actions {
+      ul {
+        list-style: none;
+        li {
+          div {
+            i {
+              margin-right: 15px;
+            }
+            a {
+              text-decoration: none;
+              color: #3c4858;
+              padding: 10px 15px;
+              margin: 0 15px;
+
+              &:hover {
+                background-color: rgba(200,200,200,.2);
+              }
+            }
+          }
+        }
+      }
+    }
+    ul.nav {
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+      margin-top: 20px;
+      display: block;
+
+      li {
+        a {
+          padding: 10px 15px;
+          margin: 0 15px;
+          color: #3c4858;
+          text-decoration: none;
+
+          i {
+            margin-right: 15px;
+          }
+
+          p {
+            margin: 0;
+          }
+
+          &.active {
+            background-color: map_get($md-primary, 900);
+            color: #fff;
+          }
+        }
+
+        &:hover {
+          a.disable {
+            background-color: rgba(200,200,200,.2);
+          }
+        }
+      }
+    }
+  }
+}

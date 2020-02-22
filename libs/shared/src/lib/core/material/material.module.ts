@@ -6,7 +6,7 @@ import {
   MatFormFieldModule,
   MatCardModule,
   MatButtonModule,
-  MatInputModule, MatDialogModule, MatTooltipModule, MatSelectModule, MatRippleModule
+  MatInputModule, MatDialogModule, MatTooltipModule, MatSelectModule, MatRippleModule, MatSidenavModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,7 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatTooltipModule,
     MatSelectModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSidenavModule
   ],
   exports: [
     MatToolbarModule,
@@ -42,7 +43,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatTooltipModule,
     MatSelectModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSidenavModule
   ]
 })
 export class MaterialModule {

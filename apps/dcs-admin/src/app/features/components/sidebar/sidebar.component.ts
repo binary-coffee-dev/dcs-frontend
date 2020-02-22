@@ -1,12 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 import {Store} from '@ngxs/store';
 
 import {LogoutAction} from '../../../core/redux/actions';
 import {environment} from '../../../../environments/environment';
-
-declare const $: any;
 
 declare interface RouteInfo {
   path: string;
@@ -27,18 +26,20 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  menuItems: any[];
+  menuItems: RouteInfo[];
+  @Output()
+  routeChange = new EventEmitter<any>();
 
-  constructor(private store: Store, private router: Router) {
+  constructor(
+    private store: Store,
+    private router: Router,
+    private location: Location
+  ) {
   }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
-
-  isMobileMenu() {
-    return $(window).width() <= 991;
-  };
 
   logout() {
     this.store.dispatch(new LogoutAction()).subscribe(() => {
@@ -48,5 +49,13 @@ export class SidebarComponent implements OnInit {
 
   getSiteUrl() {
     return environment.siteUrl + '/admin';
+  }
+
+  getLocation() {
+    let title = this.location.prepareExternalUrl(this.location.path());
+    if (title.charAt(0) === '#') {
+      title = title.slice(1);
+    }
+    return title;
   }
 }

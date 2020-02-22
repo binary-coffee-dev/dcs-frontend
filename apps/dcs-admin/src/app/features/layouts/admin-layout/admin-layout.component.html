@@ -1,15 +1,14 @@
 <app-notifications></app-notifications>
-<div class="wrapper">
-  <div class="sidebar"
-       data-color="green"
-       data-background-color="white"
-       data-image="./assets/img/sidebar-1.jpg">
-    <app-sidebar></app-sidebar>
-    <div class="sidebar-background"></div>
-  </div>
-  <div class="main-panel">
-    <app-navbar></app-navbar>
+<mat-sidenav-container>
+  <mat-sidenav [mode]="mobileQuery?.matches ? 'over' : 'side'"
+               (closed)="showSidenav = false"
+               [opened]="mobileQuery?.matches && showSidenav || !mobileQuery?.matches">
+    <app-sidebar (routeChange)="showSidenav = false"></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <app-navbar (openSidenav)="showSidenav = true"></app-navbar>
+    </mat-toolbar>
     <router-outlet></router-outlet>
-    <app-footer></app-footer>
-  </div>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

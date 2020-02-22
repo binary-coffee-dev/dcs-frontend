@@ -1,43 +1,35 @@
 <div class="logo">
   <a [href]="getSiteUrl()"
      class="simple-text">
-    <div class="logo-img">
-      <img src=""/>
-    </div>
     Binary Coffee
   </a>
 </div>
-<div class="sidebar-wrapper">
-  <div *ngIf="isMobileMenu()">
-    <ul class="nav navbar-nav nav-mobile-menu">
-      <li class="nav-item dropdown">
-        <a class="nav-link"
-           href="javascript:void(0)"
-           id="navbarDropdownProfile"
-           data-toggle="dropdown"
-           aria-haspopup="true"
-           aria-expanded="false">
+<div class="content">
+  <div class="profile-actions"
+       fxShow.xs="true"
+       fxHide="true">
+    <ul>
+      <li>
+        <div fxLayout="row"
+             fxLayoutAlign="start center">
           <i class="material-icons">person</i>
-          <p>
-            <span class="d-lg-none d-md-block">Account</span>
-          </p>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right"
-             aria-labelledby="navbarDropdownProfile">
-          <a class="dropdown-item"
-             routerLink="/user-profile">Profile</a>
-          <a class="dropdown-item"
-             (click)="logout()"
+          <p><span>Account</span></p>
+        </div>
+        <div fxLayout="column">
+          <a routerLink="/user-profile"
+             href="javascript:void(0)">Profile</a>
+          <a (click)="logout()"
              href="javascript:void(0)">Log-out</a>
         </div>
       </li>
     </ul>
   </div>
   <ul class="nav">
-    <li routerLinkActive="active"
-        *ngFor="let menuItem of menuItems"
-        class="{{menuItem.class}} nav-item">
-      <a class="nav-link"
+    <li *ngFor="let menuItem of menuItems">
+      <a fxLayout="row"
+         [ngClass]="{'active': getLocation() === menuItem.path, 'disable': getLocation() !== menuItem.path}"
+         fxLayoutAlign="start center"
+         (click)="routeChange.emit()"
          [routerLink]="[menuItem.path]">
         <i class="material-icons">{{menuItem.icon}}</i>
         <p>{{menuItem.title}}</p>
