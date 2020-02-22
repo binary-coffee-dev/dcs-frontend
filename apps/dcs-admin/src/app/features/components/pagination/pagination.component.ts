@@ -13,8 +13,8 @@ export class PaginationComponent {
   @Output()
   pageEvent = new EventEmitter<number>();
 
-  private _currentPage: number = 0;
-  private _numberOfPages: number = 0;
+  private _currentPage = 0;
+  private _numberOfPages = 0;
   @Input()
   showPages = 2;
 

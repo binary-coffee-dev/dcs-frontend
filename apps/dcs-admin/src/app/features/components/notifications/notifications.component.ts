@@ -32,9 +32,9 @@ export class NotificationsComponent implements OnInit {
 
   startNotification(id) {
     this.notificationsMap.add(id);
-    setTimeout((id: number, notificationsMap: Set<number>, closeNotification: Function) => {
-      closeNotification(id);
-      notificationsMap.delete(id);
+    setTimeout((idInternal: number, notificationsMap: Set<number>, closeNotification: (id: number) => void) => {
+      closeNotification(idInternal);
+      notificationsMap.delete(idInternal);
     }, 2000, id, this.notificationsMap, this.closeNotification.bind(this));
   }
 

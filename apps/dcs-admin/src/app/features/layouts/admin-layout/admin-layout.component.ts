@@ -6,9 +6,9 @@ import {MediaMatcher} from '@angular/cdk/layout';
   templateUrl: './admin-layout.component.html',
   styleUrls: ['./admin-layout.component.scss']
 })
-export class AdminLayoutComponent implements OnDestroy{
+export class AdminLayoutComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
+  private readonly _mobileQueryListener: () => void;
 
   showSidenav = false;
 
@@ -18,10 +18,10 @@ export class AdminLayoutComponent implements OnDestroy{
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
 }
