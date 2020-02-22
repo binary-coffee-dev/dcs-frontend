@@ -1,0 +1,22 @@
+<div class="pagination-container">
+  <nav aria-label="...">
+    <ul class="pagination">
+      <li class="page-item"
+          [ngClass]="{'disabled': currentPage === 0}">
+                <span class="page-link"
+                      (click)="previousPageEvent.next()">Previous</span>
+      </li>
+      <li class="page-item"
+          [ngClass]="{'active': currentPage === page}"
+          *ngFor="let page of pages">
+                <span class="page-link"
+                      (click)="pageEvent.next(page)">{{page + 1}}</span>
+      </li>
+      <li class="page-item"
+          [ngClass]="{'disabled': currentPage === numberOfPages - 1}">
+                <span class="page-link"
+                      (click)="nextPageEvent.next()">Next</span>
+      </li>
+    </ul>
+  </nav>
+</div>

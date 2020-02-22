@@ -212,7 +212,7 @@
       },
       "root": "apps/dcs-admin",
       "sourceRoot": "apps/dcs-admin/src",
-      "prefix": "dcs-frontend",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

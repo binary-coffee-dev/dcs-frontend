@@ -1,0 +1,30 @@
+:host {
+  .card-body {
+    height: calc(80vh - 100px);
+    padding: 5px 15px 5px 0;
+
+    .items-container {
+      height: calc(100% - 50px);
+      overflow-y: auto;
+
+      .item {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 15px;
+
+        .image-tile {
+          height: 130px;
+          width: 130px;
+          object-fit: cover;
+          object-position: center;
+          cursor: pointer;
+
+          &:hover {
+            border: 2px solid transparent;
+          }
+        }
+      }
+    }
+  }
+}

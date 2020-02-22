@@ -1,0 +1,96 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-success header">
+            <h4 class="card-title">Articles</h4>
+            <div class="fill-space"></div>
+            <div class="item-actions">
+              <div class="item-action">
+                <button mat-button
+                        class="nav-link"
+                        routerLink="/articles/create">
+                  <i class="material-icons">add</i>
+                  new article
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-info">
+                <th>Title</th>
+                <th>Published</th>
+                <th>Enable</th>
+                <th>Name</th>
+                <th>Views</th>
+                <th class="td-actions text-right">Actions</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let post of posts">
+                  <td>{{post.title}}</td>
+                  <td>
+                    <div class="col-md-6 form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               [disabled]="true"
+                               [ngModel]="!!post.publishedAt">
+                        <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                      </label>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="col-md-6 form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               [disabled]="true"
+                               [(ngModel)]="post.enable">
+                        <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                      </label>
+                    </div>
+                  </td>
+                  <td>{{post.name}}</td>
+                  <td>{{post.views}}</td>
+                  <td class="td-actions text-right">
+                    <button mat-raised-button
+                            type="button"
+                            matTooltip="Edit"
+                            [routerLink]="'/articles/update/' + post.id"
+                            [matTooltipPosition]="'above'"
+                            class="btn btn-primary btn-link btn-sm btn-just-icon">
+                      <i class="material-icons">edit</i>
+                    </button>
+                    <button mat-raised-button
+                            *ngIf="true"
+                            type="button"
+                            matTooltip="Open article"
+                            [matTooltipPosition]="'above'"
+                            (click)="openArticle(post)"
+                            class="btn btn-success btn-link btn-sm btn-just-icon">
+                      <i class="material-icons">open_in_new</i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <app-pagination (nextPageEvent)="nextPageEvent()"
+                              (previousPageEvent)="previousPageEvent()"
+                              (pageEvent)="selectPageEvent($event)"
+                              [numberOfPages]="numberOfPages"
+                              [currentPage]="currentPage"></app-pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

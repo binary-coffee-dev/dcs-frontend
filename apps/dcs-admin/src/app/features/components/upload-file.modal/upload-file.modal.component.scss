@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  position: relative;
+
+  .pre-image-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px 0;
+
+    input {
+      display: none;
+    }
+
+    .upload-image {
+      height: 130px;
+      width: auto;
+      cursor: pointer;
+    }
+
+    .upload-pre-image {
+      width: 130px;
+      height: 130px;
+      border-radius: 5px;
+      background: #8c8c8c;
+      color: #fff;
+      position: relative;
+      cursor: pointer;
+
+      i {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        font-size: 6em;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

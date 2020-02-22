@@ -1,0 +1,83 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-success">
+            <h4 class="card-title">Edit article</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="articleForm"
+                  (change)="onPostChange()"
+                  (submit)="submitPost()">
+              <div class="row">
+                <div class="form-check enable-attribute">
+                  <label class="form-check-label">
+                    Enable
+                    <input class="form-check-input"
+                           formControlName="enable"
+                           type="checkbox"
+                           value="">
+                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput
+                           formControlName="title"
+                           placeholder="Title">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                                        <textarea matInput
+                                                  formControlName="description"
+                                                  placeholder="Article description"></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 banner-image-container">
+                  <img *ngIf="post?.banner?.url"
+                       [src]="normalizeUrl(post?.banner?.url)"
+                       alt="">
+                  <div *ngIf="!post?.banner?.url"
+                       class="no-banner"><span>No banner</span></div>
+                  <button mat-raised-button
+                          type="button"
+                          (click)="openImageSectorModal()"
+                          matTooltip="Use existing image"
+                          [matTooltipPosition]="'above'"
+                          class="btn btn-primary btn-link btn-sm btn-just-icon floating-button-banner">
+                    <i class="material-icons">edit</i>
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                                  <textarea class="body-editor"
+                                            formControlName="body"></textarea>
+                </div>
+                <div class="col-md-6">
+                  <markdown [data]="articleForm?.controls?.body?.value"
+                            katex
+                            lineNumbers></markdown>
+                </div>
+              </div>
+              <button mat-raised-button
+                      [disabled]="!formDataChange && !imageChange"
+                      type="submit"
+                      class="btn btn-success pull-right button-save">Save
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

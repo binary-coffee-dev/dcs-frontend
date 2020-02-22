@@ -1,0 +1,51 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-success">
+            <h4 class="card-title">Upload file</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="uploadFileForm">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input matInput
+                           formControlName="name"
+                           placeholder="Name">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="pre-image-container">
+                <input type="file"
+                       #uploader
+                       (change)="onFilesChange($event)"
+                       formControlName="file">
+                <div class="upload-pre-image"
+                     *ngIf="!image"
+                     (click)="uploader.click()">
+                  <i class="material-icons">cloud_upload</i>
+                </div>
+                <img class="upload-image"
+                     *ngIf="!!image"
+                     [src]="image"
+                     (click)="uploader.click()"
+                     alt="upload">
+              </div>
+              <p *ngIf="type">Type: {{type}}</p>
+              <p *ngIf="size">Size: {{getSize()}}</p>
+              <button mat-raised-button
+                      (click)="upload()"
+                      [disabled]="!file"
+                      type="submit"
+                      class="btn btn-success pull-right">Upload
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
