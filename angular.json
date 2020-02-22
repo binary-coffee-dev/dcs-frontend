@@ -224,7 +224,7 @@
             "tsConfig": "apps/dcs-admin/tsconfig.app.json",
             "aot": false,
             "assets": [
-              "apps/dcs-admin/src/favicon.ico",
+              "apps/dcs-admin/src/favicon.png",
               "apps/dcs-admin/src/assets"
             ],
             "styles": ["apps/dcs-admin/src/styles.scss"],
