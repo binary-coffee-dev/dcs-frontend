@@ -3,13 +3,12 @@
 :host {
   .container {
     min-height: calc(100vh - 248px);
-    background-color: map_get($md-grey,A100);
 
-    .rows{
+    .rows {
       color: map_get($md-grey, 500);
       padding: map_get($spacings, 1);
 
-      .row{
+      .row {
         margin-bottom: map_get($spacings, 1);
       }
     }

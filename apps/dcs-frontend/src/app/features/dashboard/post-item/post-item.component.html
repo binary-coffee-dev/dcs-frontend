@@ -1,40 +1,61 @@
-<div class="container"
-     fxLayout="row">
-  <div class="line-number"
-       fxLayout="row"
-       fxLayoutAlign="end start">
+<div class="container" fxLayout="row">
+  <div class="line-number" fxLayout="row" fxLayoutAlign="end start">
     <span>{{number}}</span>
   </div>
-  <div [routerLink]="'post/' + post?.name"
-       class="card-container"
-       fxLayout="row">
+  <div [routerLink]="'post/' + post?.name" class="card-container" fxLayout="row">
     <div class="post-image-container" [fxShow.xs]="false">
       <img *ngIf="post?.banner && post?.banner?.url" [lazyLoad]="resource.addApiUrl(post?.banner?.url)" alt="">
     </div>
     <div class="post-body-container" [fxFlex.gt-sm]="80" fxLayout="column">
       <div class="post-info-vars">
-      <span><span class="code-1">const</span> título = <span class="code-string">"<span
-        class="post-title">{{post?.title}}</span>"</span>;</span><br>
-        <span><span class="code-1">var</span> autor = <span><a [href]="post?.author?.page || ''"
-                                                               [title]="post?.author?.email">{{post?.author?.username || 'none'}}</a></span></span>
-        <span>, vistas = {{post?.views || 0}}</span>
-        <span>, opiniones = {{post?.comments || 0}};</span>
+
+        <div class="post-info-vars-title">
+          <span class="code-1">var</span>
+          Título = <br>
+          <span class="code-string">
+            "<span class="post-title">{{post?.title}}</span>"
+          </span>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx">
+          <div>
+            <span class="code-1">var</span>
+            Autor =
+            <span>
+              <a [href]="post?.author?.page || ''"
+                [title]="post?.author?.email">{{post?.author?.username || 'none'}}</a>
+            </span>
+          </div>
+
+          <div>
+            <span class="code-1">var</span>
+            Vistas = <b>{{post?.views || 0}}</b>
+          </div>
+
+          <div>
+            <span class="code-1">var</span>
+            Opiniones = <b>{{post?.comments || 0}}</b>
+          </div>
+        </div>
+
       </div>
       <span class="post-info">// {{post?.publishedAt && moment.timeFromDate(post?.publishedAt) || ''}}</span>
-      <span><span class="code-1">function</span> articulo(título, autor, vistas, opiniones){{"{"}}</span>
+      <span [fxHide.xs]="true"><span class="code-1">function</span> articulo(Título, Autor, Vistas,
+        Opiniones){{"{"}}</span>
       <div class="post-info-container" fxLayout="row">
-      <span class="post-info" *ngIf="post?.author" fxLayout="row">
-        <a [href]="post?.author?.page || ''" [title]="post?.author?.email" fxLayout="row" fxLayoutAlign="start center">
-          {{post?.author?.username}}
-        </a>
-      </span>
+        <span class="post-info" *ngIf="post?.author" fxLayout="row">
+          <a [href]="post?.author?.page || ''" [title]="post?.author?.email" fxLayout="row"
+            fxLayoutAlign="start center">
+            {{post?.author?.username}}
+          </a>
+        </span>
       </div>
-      <span class="post-body-extract" fxLayout="column">
-      <span>/*</span>
+      <div class="post-body-extract" fxLayout="column">
+        <div>/*</div>
         {{truncatePostDescription(post?.description)}}
-        <span>*/</span>
-    </span>
-      <span>{{"{"}}</span>
+        <div>*/</div>
+      </div>
+      <span [fxHide.xs]="true">{{"}"}}</span>
     </div>
   </div>
 </div>
