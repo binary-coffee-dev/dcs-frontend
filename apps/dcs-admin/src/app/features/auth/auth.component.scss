@@ -1,4 +1,35 @@
+@import 'apps/dcs-frontend/src/theme';
+
 :host {
+  .container {
+    width: 100vw;
+    height: 100vh;
+
+    mat-card {
+      mat-card-header {
+        border-radius: 3px;
+        margin-top: -40px;
+        padding: 15px;
+        color: #fff;
+        background: linear-gradient(60deg,map_get($md-primary, 900),map_get($md-primary, 900));
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(76,175,80,.4);
+
+        h4 {
+          line-height: 1.4em;
+          font-weight: 300;
+          margin-top: 0;
+          margin-bottom: 3px;
+        }
+
+        p {
+          margin: 0;
+          font-size: .775rem;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
