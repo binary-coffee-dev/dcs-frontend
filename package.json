@@ -6,17 +6,14 @@
     "start": "ng serve --watch --poll=2000 --host=0.0.0.0 --disable-host-check",
     "start:admin": "ng serve dcs-admin --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
     "build": "ng build",
-    "build.prod": "ng build --prod",
+    "build:admin": "ng build dcs-admin --configuration=dev",
+    "build:admin:prod": "ng build dcs-admin --prod",
     "test": "ng test --code-coverage",
     "lint": "nx workspace-lint && ng lint",
-    "e2e": "ng e2e",
-    "compile:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:ssr": "node dist/server",
-    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
-    "build:ssr:dev": "npm run build:client-and-server-bundles:dev && npm run compile:server",
-    "build:client-and-server-bundles": "ng build --prod && ng run dcs-frontend:server:production --bundleDependencies all",
-    "build:client-and-server-bundles:dev": "ng build --configuration=dev && ng run dcs-frontend:server:production --bundleDependencies all",
-    "check": "npm run test && npm run lint && npm run build:ssr",
+    "build:ssr": "ng build --prod && ng run dcs-frontend:server:production --bundleDependencies all && npm run compile:server",
+    "build:ssr:dev": "ng build --configuration=dev && ng run dcs-frontend:server:production --bundleDependencies all && npm run compile:server",
+    "compile:server": "webpack --config webpack.server.config.js --progress --colors",
     "nx": "nx",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
@@ -102,7 +99,8 @@
   },
   "pre-push": {
     "run": [
-      "check"
+      "lint",
+      "test"
     ]
   }
 }

@@ -12,4 +12,5 @@ script:
   - npm run test
 
 after_success:
-  - codecov --file coverage/lcov.info --disable search
+  - codecov --file coverage/apps/dcs-admin/lcov.info --disable search
+  - codecov --file coverage/apps/dcs-frontend/lcov.info --disable search
