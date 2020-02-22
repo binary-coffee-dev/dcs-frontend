@@ -24,6 +24,9 @@
     "dcs-admin-e2e": {
       "tags": [],
       "implicitDependencies": ["dcs-admin"]
+    },
+    "shared": {
+      "tags": []
     }
   }
 }
