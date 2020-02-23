@@ -1,0 +1,31 @@
+@import "apps/dcs-frontend/src/theme";
+
+:host {
+  mat-card {
+    height: calc(80vh - 100px);
+
+    mat-card-content {
+      margin-top: 15px;
+
+      .item {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 15px;
+
+        .image-tile {
+          height: 130px;
+          width: 130px;
+          object-fit: cover;
+          object-position: center;
+          cursor: pointer;
+          border: 2px solid transparent;
+
+          &:hover {
+            border: 2px solid map_get($md-primary, 900);
+          }
+        }
+      }
+    }
+  }
+}

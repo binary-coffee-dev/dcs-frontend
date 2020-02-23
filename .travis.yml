@@ -8,8 +8,10 @@ before_install:
 
 script:
   - npm run build:ssr
+  - npm run build:admin
   - npm run lint
   - npm run test
 
 after_success:
-  - codecov --file coverage/lcov.info --disable search
+  - codecov --file coverage/apps/dcs-admin/lcov.info --disable search
+  - codecov --file coverage/apps/dcs-frontend/lcov.info --disable search

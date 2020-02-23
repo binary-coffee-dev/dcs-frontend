@@ -1,0 +1,38 @@
+<div class="container"
+     fxLayout="row">
+  <a class="open-sidenav"
+     fxLayout="column"
+     fxLayoutAlign="center center"
+     href="javascript:void(0)"
+     (click)="openSidenav.emit()"
+     fxShow.xs="true"
+     fxHide="true">
+    <mat-icon>dehaze</mat-icon>
+  </a>
+  <div fxFlex="100"
+       fxShow.xs="true"
+       fxHide="true"></div>
+  <div>
+    <a>{{getTitle()}}</a>
+  </div>
+  <div fxFlex="100"
+       fxHide.xs="true"></div>
+  <div class="menu-dropdown"
+       fxHide.xs="true">
+    <ul>
+      <li>
+        <a href="javascript:void(0)"
+           (click)="showDropdown($event)">
+          <mat-icon>person</mat-icon>
+        </a>
+        <mat-card fxLayout="column"
+                  [ngClass]="{'visible': showProfileDropdown}">
+          <a routerLink="/user-profile"
+             href="javascript:void(0)">Profile</a>
+          <a (click)="logout()"
+             href="javascript:void(0)">Log-out</a>
+        </mat-card>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+:host {
+  mat-card {
+    margin: 40px 15px 15px 15px;
+
+    mat-card-content {
+      margin-top: 15px;
+
+      .file-image {
+        width: 200px;
+        height: auto;
+      }
+    }
+  }
+}

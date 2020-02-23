@@ -7,7 +7,6 @@ COPY . ./
 ARG ENVIRONMENT
 
 RUN npm install
-RUN if [ "$ENVIRONMENT" = "dev" ] ; then npm run build:ssr:dev ; else npm run:buil ; fi
-#RUN npm run build:ssr
+RUN if [ "$ENVIRONMENT" = "dev" ] ; then npm run build:ssr:dev ; else npm run:build ; fi
 
 CMD ["npm", "run", "serve:ssr"]
