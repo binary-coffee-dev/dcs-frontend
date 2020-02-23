@@ -15,6 +15,7 @@ import {NewLabelComponent} from './features/components/new-label';
 import {ScrollTopComponent} from './features/components/scroll-top/scroll-top.component';
 import {WINDOW, windowFactory} from './core/services';
 import {LoadingComponent} from './features/components/loading/loading.component';
+import { CliComponent } from './features/components/cli/cli.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {LoadingComponent} from './features/components/loading/loading.component'
     SocialLinksComponent,
     NewLabelComponent,
     ScrollTopComponent,
-    LoadingComponent
+    LoadingComponent,
+    CliComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
