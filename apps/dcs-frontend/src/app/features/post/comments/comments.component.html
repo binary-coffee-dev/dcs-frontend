@@ -10,8 +10,9 @@
     </span>
 
     <mat-form-field class="comment-item comment-item-text" appearance="outline">
-      <mat-label>
-        <span class="code-2">var</span> Opinión =
+      <mat-label class="code-none">
+        <span class="code-2"> var </span>
+        <span class="code-var"> Opinión </span> =
       </mat-label>
       <textarea matInput formControlName="body" type="text" maxlength="250" cols="30" rows="10">
       </textarea>
@@ -28,8 +29,9 @@
         </div>
 
         <mat-form-field appearance="outline" class="comment-item comment-item-captcha" fxFlex="100">
-          <mat-label>
-            <span class="code-2">var</span> Suma =
+          <mat-label class="code-none">
+            <span class="code-2"> var </span>
+            <span class="code-var"> Suma </span> =
           </mat-label>
           <input matInput type="text" placeholder="Captcha" formControlName="captcha">
         </mat-form-field>
@@ -38,21 +40,28 @@
       <div fxLayout="column" class="items-credentials-container" fxLayoutAlign="end end" fxFlex="100">
 
         <mat-form-field appearance="outline" class="comment-item" fxFlex="100">
-          <mat-label>
-            <span class="code-2">var</span> Nombre =
+          <mat-label class="code-none">
+            <span class="code-2"> var </span>
+            <span class="code-var"> Nombre </span> =
           </mat-label>
           <input matInput type="text" formControlName="name" placeholder="Nombre">
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="comment-item" fxFlex="100">
-          <mat-label>
-            <span class="code-2">var</span> Correo =
+          <mat-label class="code-none">
+            <span class="code-2"> var </span>
+            <span class="code-var"> Correo </span> =
           </mat-label>
           <input matInput type="email" formControlName="email" placeholder="Correo">
         </mat-form-field>
 
         <button mat-button class="comment-form-styles" [disabled]="!commentForm.valid" (click)="createComment()">
-          Opinar( Opinión, Nombre, Correo, Suma )
+          Opinar(
+          <span> Opinión </span>,
+          <span> Nombre </span>,
+          <span> Correo </span>,
+          <span> Suma </span>
+          )
         </button>
 
       </div>

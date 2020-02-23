@@ -1,22 +1,36 @@
 <div class="container" fxLayout="column" fxLayoutAlign="center center">
 
-  <form [formGroup]="subscribeForm" *ngIf="!subscriptionSent && !token" (ngSubmit)="subscribe()">
-    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="gappx">
-      <span class="error" *ngIf="subscriptionError !== '' && !subscriptionSent && !token"
-        fxFlex="100">{{subscriptionError}}</span>
-      <div class="card" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="gappx" fxFlex="100">
-        <img src="assets/images/svg/binarycoffee_2.1.1.svg" width="250">
-        <mat-form-field appearance="outline">
-          <mat-label>Escriba su e-mail...</mat-label>
-          <input matInput type="email" placeholder="Email" formControlName="email">
-        </mat-form-field>
-        <button mat-raised-button type="submit">Suscribirse</button>
+  <div class="container-in" fxLayout="column" fxLayoutAlign="center end">
+
+    <form [formGroup]="subscribeForm" *ngIf="!subscriptionSent && !token" (ngSubmit)="subscribe()">
+      <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="gappx">
+        <span class="error" *ngIf="subscriptionError !== '' && !subscriptionSent && !token"
+          fxFlex="100">{{subscriptionError}}</span>
+        <div class="card" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="gappx" fxFlex="100">
+          <mat-form-field appearance="outline">
+            <mat-label class="code-none">
+              <span class="code-1">var </span>
+              <b class="code-var"> eMail</b> =
+            </mat-label>
+            <input matInput type="email" placeholder="Email" formControlName="email">
+          </mat-form-field>
+          <div fxLayout="column" class="code-none">
+            <button mat-button type="submit">
+              <span class="code-1">return new</span>
+              Suscriptor(
+              <b class="code-var"> eMail </b>
+              )
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-  </form>
-  <p class="message" *ngIf="message">{{message}}</p>
-  <button mat-button class="back-button" (click)="backClicked()">
-    <mat-icon mat-font-icon="fa-icon" class="fa fa-arrow-left"></mat-icon>
-    Volver
-  </button>
+    </form>
+
+    <p class="message" *ngIf="message">{{message}}</p>
+
+    <button mat-button class="back-button" (click)="backClicked()">
+      <span class="fa fa-arrow-left"></span>
+      <b>Volver</b>
+    </button>
+  </div>
 </div>

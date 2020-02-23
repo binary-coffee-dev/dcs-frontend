@@ -9,16 +9,16 @@
     <div class="post-body-container" [fxFlex.gt-sm]="80" fxLayout="column">
       <div class="post-info-vars">
 
-        <span class="code-1">var</span>
-        Título =
+        <span class="code-1">var </span>
+        <span class="code-var"> Título </span> =
         <h3 class="code-2">
           "<span class="post-title">{{post?.title}}</span>"
         </h3>
 
         <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx">
           <div>
-            <span class="code-1">var</span>
-            Autor =
+            <span class="code-1"> var </span>
+            <span class="code-var"> Autor </span> =
             <a class="post-author-link code-2" [href]=" post?.author?.page || ''" [title]=" post?.author?.email">
               <b>"{{post?.author?.username || 'publico'}}"</b>
               <mat-icon *ngIf="post?.author?.page" mat-font-icon="fa-icon" class="code-1 fa fa-arrow-right"></mat-icon>
@@ -26,13 +26,15 @@
           </div>
 
           <div>
-            <span class="code-1">var</span>
-            Vistas = <b class="code-2">{{post?.views || 0}}</b>
+            <span class="code-1"> var </span>
+            <span class="code-var"> Vistas </span> =
+            <b class="code-2">{{post?.views || 0}}</b>
           </div>
 
           <div>
-            <span class="code-1">var</span>
-            Opiniones = <b class="code-2">{{post?.comments || 0}}</b>
+            <span class="code-1"> var </span>
+            <span class="code-var"> Opiniones </span> =
+            <b class="code-2">{{post?.comments || 0}}</b>
           </div>
         </div>
 
@@ -40,14 +42,20 @@
 
       <span class="post-info">// {{post?.publishedAt && moment.timeFromDate(post?.publishedAt) || ''}}</span>
 
-      <span [fxHide.xs]="true"><span class="code-1">function</span> articulo(Título, Autor, Vistas,
-        Opiniones){{"{"}}
+      <span [fxHide.xs]="true">
+        <span class="code-1">function</span>
+        Articulo(
+        <span class="code-var"> Título </span>,
+        <span class="code-var"> Autor </span>,
+        <span class="code-var"> Vistas </span>,
+        <span class="code-var"> Opiniones </span>
+        ){{"{"}}
       </span>
 
-      <div class="post-body-extract" fxLayout="column">
-        <div>/*</div>
-        {{truncatePostDescription(post?.description)}}
-        <div>*/</div>
+      <div class="post-body-extract code-2" fxLayout="column">
+        <b>/*</b>
+        <b>{{truncatePostDescription(post?.description)}}</b>
+        <b>*/</b>
       </div>
 
       <span [fxHide.xs]="true">{{"}"}}</span>

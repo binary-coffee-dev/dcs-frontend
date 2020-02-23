@@ -4,15 +4,6 @@ body {
   margin: 0;
 }
 
-mat-form-field {
-  filter: invert(100%);
-
-  input,
-  textarea {
-    filter: invert(100%);
-  }
-}
-
 * {
   font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
 }
@@ -27,6 +18,14 @@ mat-form-field {
 
 .code-string {
   color: map_get($md-primary, 900) !important;
+}
+
+.code-none {
+  color: map_get($md-grey, 800) !important;
+}
+
+.code-var {
+  color: map_get($md-secundary, 600) !important
 }
 
 .post-info {

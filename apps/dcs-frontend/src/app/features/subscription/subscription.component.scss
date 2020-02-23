@@ -2,63 +2,77 @@
 
 :host {
   .container {
-    min-height: calc(100vh - 255px);
 
-    form {
-      .card {
-        padding: map_get($spacings, 4);
-        background-color: map-get($md-grey, A100);
-        box-shadow: map_get($box-shadow, 4);
+    .container-in {
+      min-height: calc(100vh - 255px);
+
+      form {
+        .card {
+          padding: map_get($spacings, 4);
+          background-color: map-get($md-grey, A100);
+          border-radius: map_get($radius, 2);
+
+          mat-form-field {
+            width: 100%;
+          }
+
+          img,
+          p {
+            margin-bottom: map_get($spacings, 4);
+          }
+
+          button {
+            border: 1px solid map-get($md-primary, 100);
+
+            &:hover {
+              border: 1px solid map-get($md-primary, 500);
+            }
+          }
+
+        }
+      }
+
+      .message,
+      .error {
+        padding: map_get($spacings, 2);
+        text-align: center;
+      }
+
+      .error {
+        color: map_get($md-error, 500);
+      }
+
+      .message {
         border-radius: map_get($radius, 2);
+        color: map-get($md-primary, 900);
+      }
 
-        mat-form-field {
-          width: 100%;
+      .back-button {
+        color: map-get($md-primary, 300);
+        margin-right: map_get($radius, 4);
+        cursor: pointer;
+
+        .fa {
+          margin-right: map_get($spacings, 1);
         }
 
-        img,
-        p {
-          margin-bottom: map_get($spacings, 4);
-        }
+        &:hover {
 
-        button {
-          background-color: map_get($md-primary, 500);
-          width: 100%;
+          .fa {
+            animation: anim-arrow 0.3s infinite alternate;
+          }
         }
       }
     }
 
-    .message,
-    .error {
-      padding: map_get($spacings, 2);
-      text-align: center;
+
+  }
+
+  @media screen and (max-width: 599px) {
+    .container {
+      border-top: 1px solid map_get($md-primary, 100);
     }
 
-    .error {
-      border-top-left-radius: map_get($radius, 2);
-      ;
-      border-top-right-radius: map_get($radius, 2);
-      ;
-      color: map_get($md-error, 500);
-      background-color: map_get($md-error, 400);
-    }
-
-    .message {
-      border-radius: map_get($radius, 2);
-      ;
-      color: map-get($md-primary, 900);
-    }
-
-    .back-button {
-      margin-top: map_get($spacings, 5);
-      color: map-get($md-primary, 900);
-      cursor: pointer;
-
-      &:hover {
-        mat-icon {
-          animation: anim-arrow 0.3s infinite alternate;
-        }
-      }
-    }
   }
 
   @keyframes anim-arrow {

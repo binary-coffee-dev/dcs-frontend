@@ -25,7 +25,7 @@ $post_image_size: 110px;
     padding: map_get($spacings, 4);
     cursor: pointer;
     text-decoration: none;
-    color: map_get($md-grey, 600);
+    color: map_get($md-grey, 800);
   }
 
   .line-number {
@@ -91,7 +91,6 @@ $post_image_size: 110px;
     width: 100%;
     font-family: get($font-family);
     letter-spacing: 0.45px;
-    font-weight: 200;
     font-size: 0.95rem;
     font-stretch: expanded;
     padding: 0 map_get($spacings, 5);
