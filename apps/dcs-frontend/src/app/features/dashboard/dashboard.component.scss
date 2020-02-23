@@ -3,6 +3,7 @@
 :host {
   .container {
     min-height: calc(100vh - 248px);
+    margin-top: -1px;
 
     .rows {
       color: map_get($md-grey, 500);

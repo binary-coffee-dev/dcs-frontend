@@ -1,8 +1,7 @@
 @import "theme";
 
-html,
 body {
-  height: 100%;
+  margin: 0;
 }
 
 mat-form-field {
@@ -18,10 +17,16 @@ mat-form-field {
   font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
 }
 
-body {
-  margin: 0;
-  font-weight: 400;
-  background-color: map_get($md-grey, 450);
+.code-1 {
+  color: map_get($md-secundary, 300) !important;
+}
+
+.code-2 {
+  color: map_get($md-primary, 500) !important;
+}
+
+.code-string {
+  color: map_get($md-primary, 900) !important;
 }
 
 .post-info {
@@ -49,6 +54,7 @@ body {
       width: 30px;
       height: 30px;
       margin-right: 5px;
+      border-radius: 100%;
     }
   }
 
@@ -68,6 +74,7 @@ body {
 }
 
 markdown {
+  color: map_get($md-grey, 800);
 
   h1,
   h2,
@@ -75,11 +82,11 @@ markdown {
   h4,
   h5,
   h6 {
-    font-weight: 400;
+    font-weight: 300;
   }
 
   p {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 100;
   }
 
@@ -88,7 +95,7 @@ markdown {
     font-weight: 100;
     background-color: map_get($md-grey, A100) !important;
     box-shadow: map_get($box-shadow, 0);
-    border-bottom: 2px solid map_get($md-primary, 800);
+    border: 1px solid map_get($md-primary, 100);
 
     code {
       color: map_get($md-grey, 900) !important;
@@ -139,7 +146,6 @@ markdown {
   }
 
   img {
-    border-bottom: 2px solid map_get($md-primary, 800);
     box-shadow: map_get($box-shadow, 0);
     border-radius: map_get($radius, 2) !important;
   }

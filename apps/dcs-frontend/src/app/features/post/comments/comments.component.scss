@@ -1,7 +1,9 @@
 @import "apps/dcs-frontend/src/theme";
 
 :host {
-  input, textarea{
+
+  input,
+  textarea {
     font-family: get($font-family);
     font-size: 0.875rem;
   }
@@ -10,28 +12,30 @@
     resize: vertical;
   }
 
-  button{
+  button {
     font-size: 0.875rem;
     font-family: get($font-family);
     color: map_get($md-grey, A100);
-    text-transform: uppercase;
     background-color: map_get($md-primary, 900);
   }
 
-  button[disabled]{
-    background-color: map_get($md-primary, 600);
+  button[disabled] {
+    color: map_get($md-grey, 500);
+    background-color: transparent;
   }
 
   .comments-container {
     margin-top: map_get($spacings, 10);
 
-    .comments-header{
+
+    .comments-header {
       margin-bottom: map_get($spacings, 1);
 
       span {
         font-weight: 400;
       }
     }
+
     .comments-header-separator {
       border-top: 2px solid map_get($md-primary, 900);
       height: map_get($spacings, 2);
@@ -48,7 +52,7 @@
         color: map_get($md-error, 500);
         background-color: map_get($md-error, 100);
         border-radius: map_get($radius, 2);
-        padding: map_get($spacings, 2) map_get($spacings,2) map_get($spacings, 1) map_get($spacings, 2);
+        padding: map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 1) map_get($spacings, 2);
         position: relative;
       }
 
@@ -59,21 +63,37 @@
       .comment-credentials {
         width: 100%;
 
-        .items-credentials-container{
+        .items-credentials-container {
           width: 100%;
         }
 
         .captcha-container {
           margin-right: map_get($spacings, 4);
 
+          .fa-refresh {
+            position: absolute;
+            opacity: .2;
+            //transition: all .2s ease-in-out;
+          }
+
           .captcha {
-            margin-right: map_get($spacings, 4);
+            margin-top: map_get($spacings, 1);
+            margin-bottom: map_get($spacings, 4);
             cursor: pointer;
+            border: 1px solid map_get($md-primary, 100);
+            background-color: map_get($md-primary, 50);
+            color: map_get($md-secundary, 100);
+            border-radius: map_get($radius, 2);
+
+            &:hover {
+              .fa-refresh {
+                opacity: 1;
+              }
+            }
           }
 
           .comment-item-captcha {
             width: 100%;
-            margin-top: 10px;
           }
         }
       }
@@ -83,20 +103,25 @@
       .comment-item {
         margin-bottom: 30px;
 
+        h3 {
+          margin: 0;
+          padding: 0;
+        }
+
         .comment-user-image {
           width: map_get($spacings, 8);
           height: map_get($spacings, 8);
-          border-radius: map_get($radius, 2);
+          border-radius: 100%;
           margin-right: map_get($spacings, 2);
-          box-shadow: map_get($box-shadow, 3);
         }
 
         .post-info-container {
           margin-bottom: map_get($spacings, 1);
         }
 
-        .comment-body{
+        .comment-body {
           word-wrap: break-word;
+          text-align: justify;
         }
       }
     }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-share-buttons',
@@ -11,6 +11,7 @@ export class ShareButtonsComponent implements OnInit {
   urlFacebook: string;
   urlTwitter: string;
   urlLinkedIn: string;
+  info: string;
 
   constructor() {
   }
@@ -21,5 +22,6 @@ export class ShareButtonsComponent implements OnInit {
     this.urlTwitter = `https://twitter.com/intent/tweet/?hashtags=BinaryCoffee&url=${this.url}`;
     this.urlLinkedIn = `https://www.linkedin.com/shareArticle?mini=true&url=${this.url}`;
   }
+
 
 }

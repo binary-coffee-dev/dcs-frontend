@@ -4,6 +4,7 @@ $post_image_size: 110px;
 
 :host {
   .container {
+
     &:hover {
       .line-number {
         background-color: map_get($md-primary, 200);
@@ -16,20 +17,9 @@ $post_image_size: 110px;
     }
   }
 
-  .code-1 {
-    color: map_get($md-primary, 800) !important;
-  }
-
-  .code-2 {
-    color: map_get($md-error, 800) !important;
-  }
-
-  .code-string {
-    color: map_get($md-primary, 900) !important;
-  }
-
   .card-container {
-    box-shadow: map_get($box-shadow, 4);
+    border-right: 1px solid map_get($md-primary, 100);
+    border-top: 1px solid map_get($md-primary, 100);
     background-color: map_get($md-grey, A100);
     width: 100%;
     padding: map_get($spacings, 4);
@@ -61,7 +51,6 @@ $post_image_size: 110px;
       object-fit: cover;
       object-position: center;
       border-radius: map_get($radius, 2);
-      box-shadow: map_get($box-shadow, 0);
       border-bottom: 2px solid map_get($md-primary, 800);
     }
   }
@@ -69,15 +58,28 @@ $post_image_size: 110px;
   .post-info-vars {
     margin-bottom: map_get($spacings, 4);
 
-    .post-info-vars-title {
-      margin-bottom: map_get($spacings, 4);
-
-      .post-title {
-        font-weight: 200;
-        text-transform: uppercase;
-      }
+    h3 {
+      padding-top: 0;
+      margin-top: 0;
     }
 
+    .post-title {
+      text-transform: uppercase;
+    }
+
+    .post-author-link {
+      text-decoration: none;
+
+      mat-icon {
+        margin-left: map_get($spacings, 1);
+      }
+
+      &:hover {
+        mat-icon {
+          animation: anim-author-link 0.3s infinite alternate;
+        }
+      }
+    }
   }
 
   .post-info-container {
@@ -100,6 +102,16 @@ $post_image_size: 110px;
   @media screen and (max-width: 599px) {
     .post-body-extract {
       padding: 0;
+    }
+  }
+
+  @keyframes anim-author-link {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(5px);
     }
   }
 }

@@ -3,12 +3,10 @@
 :host {
 
   mat-toolbar {
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 99;
     background-color: map_get($md-primary, A100);
-    box-shadow: map_get($box-shadow, 4);
 
     a {
       color: map_get($md-primary, 800);
@@ -32,10 +30,10 @@
       }
     }
 
-    app-social-links {
-      font-size: 1rem;
-    }
+  }
 
+  app-social-links {
+    font-size: 1rem;
   }
 
 }

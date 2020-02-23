@@ -1,6 +1,5 @@
-<div class="post-container">
-  <div class="post-in-container">
-
+<div class="post-container" fxLayoutAlign="center start">
+  <div class="post-in-container" fxFlex="60" fxFlex.xs="100">
     <h1>{{post?.title}}</h1>
     <div class="post-info-container" fxLayout="row">
       <span class="post-info separator">
@@ -21,7 +20,11 @@
         {{post?.comments || 0}}
       </span>
     </div>
-    <app-share-buttons></app-share-buttons>
+
+    <div class="share-button-xs" [fxHide]="true" [fxShow.xs]="true" fxLayout="row" fxLayoutAlign="center">
+      <app-share-buttons></app-share-buttons>
+    </div>
+
     <div class="image-container">
       <img *ngIf="post?.banner && post?.banner?.url" [src]="resource.addApiUrl(post?.banner?.url)" alt="">
     </div>
@@ -29,4 +32,5 @@
 
     <app-comments *ngIf="post" [post]="post"></app-comments>
   </div>
+  <app-share-buttons class="share-buttons-side" [fxHide.xs]="true"></app-share-buttons>
 </div>

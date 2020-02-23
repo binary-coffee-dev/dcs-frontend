@@ -10,7 +10,9 @@
     </span>
 
     <mat-form-field class="comment-item comment-item-text" appearance="outline">
-      <mat-label>Deje su opinión...</mat-label>
+      <mat-label>
+        <span class="code-2">var</span> Opinión =
+      </mat-label>
       <textarea matInput formControlName="body" type="text" maxlength="250" cols="30" rows="10">
       </textarea>
     </mat-form-field>
@@ -20,25 +22,37 @@
       <div class="captcha-container" fxLayout="column" fxLayout.xs="column" fxLayout.sm="row" fxFlex="100"
         fxFlex.lg="20" fxFlex.md="30">
 
-        <div class="captcha" [innerHTML]="myCaptcha" (click)="reloadCaptcha()"></div>
+        <div>
+          <span class="fa fa-refresh"></span>
+          <div class="captcha" [innerHTML]="myCaptcha" (click)="reloadCaptcha()"></div>
+        </div>
 
-        <mat-form-field class="comment-item comment-item-captcha" fxFlex="100">
+        <mat-form-field appearance="outline" class="comment-item comment-item-captcha" fxFlex="100">
+          <mat-label>
+            <span class="code-2">var</span> Suma =
+          </mat-label>
           <input matInput type="text" placeholder="Captcha" formControlName="captcha">
         </mat-form-field>
 
       </div>
       <div fxLayout="column" class="items-credentials-container" fxLayoutAlign="end end" fxFlex="100">
 
-        <mat-form-field class="comment-item" fxFlex="100">
+        <mat-form-field appearance="outline" class="comment-item" fxFlex="100">
+          <mat-label>
+            <span class="code-2">var</span> Nombre =
+          </mat-label>
           <input matInput type="text" formControlName="name" placeholder="Nombre">
         </mat-form-field>
 
-        <mat-form-field class="comment-item" fxFlex="100">
+        <mat-form-field appearance="outline" class="comment-item" fxFlex="100">
+          <mat-label>
+            <span class="code-2">var</span> Correo =
+          </mat-label>
           <input matInput type="email" formControlName="email" placeholder="Correo">
         </mat-form-field>
 
         <button mat-button class="comment-form-styles" [disabled]="!commentForm.valid" (click)="createComment()">
-          <mat-label>Opinar</mat-label>
+          Opinar( Opinión, Nombre, Correo, Suma )
         </button>
 
       </div>
@@ -50,14 +64,14 @@
       <img class="comment-user-image" src="assets/images/noavatar.png" alt="noavatar">
 
       <div fxLayout="column" fxFlex="90" fxFlex.xs="80">
-        <div class="post-info-container" fxLayout="row">
-          <span class="post-info separator">{{comment.name}}</span>
-          <span class="post-info" fxLayout="row" fxLayoutAlign="start center">
-            {{comment?.publishedAt && moment.timeFromDate(comment.publishedAt) || ''}}
+        <div class="post-info-container" fxLayout="column">
+          <span class="post-info">
+            // {{comment?.publishedAt && moment.timeFromDate(comment.publishedAt) || ''}}
           </span>
+          <h3 class="code-2">"{{comment.name}}"</h3>
         </div>
         <div class="comment-body">
-          {{comment.body}}
+          /* {{comment.body}} */
         </div>
       </div>
     </div>
