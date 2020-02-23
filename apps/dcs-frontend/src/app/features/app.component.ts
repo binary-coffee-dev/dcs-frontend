@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 
 import {environment} from '../../environments/environment';
+import {consoleMessage} from './console.log';
 
 declare let gtag: (property: string, value: any, configs: any) => {};
 
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(consoleMessage);
   }
 
 }
