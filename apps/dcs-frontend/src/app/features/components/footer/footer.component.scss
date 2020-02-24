@@ -2,6 +2,11 @@
 
 :host {
 
+  app-cli {
+    position: sticky;
+    bottom: 0;
+  }
+
   .copyright {
     padding: map_get($spacings, 1);
     text-align: center;

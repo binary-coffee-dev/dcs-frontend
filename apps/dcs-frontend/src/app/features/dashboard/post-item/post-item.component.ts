@@ -25,8 +25,7 @@ export class PostItemComponent {
   }
 
   truncatePostDescription(t: string) {
-    let plus: string = (t.length > 300 ? "..." : "");
-    return truncate(t, { length: 300 }) + plus;
+    return truncate(t, { length: 300 });
   }
 
 }

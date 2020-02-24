@@ -4,8 +4,8 @@
 
   input,
   textarea {
-    font-family: get($font-family);
     font-size: 0.875rem;
+    font-weight: bold;
   }
 
   textarea {
@@ -15,23 +15,21 @@
   button {
     font-size: 0.875rem;
     font-family: get($font-family);
-    border: 1px solid map_get($md-primary, 100);
-    font-weight: bold;
-    background-color: map_get($md-primary, 500);
-    color: map_get($md-grey, A100);
-
-    span {
-      color: map_get($md-grey, A100);
-    }
+    border: 1px solid map_get($md-primary, 300);
+    background-color: transparent;
 
     &[disabled] {
-      background-color: transparent;
-      color: map_get($md-grey, 500);
+      border: 1px solid map_get($md-primary, 100);
+      color: map_get($md-primary, 100) !important;
 
-      span {
-        color: map_get($md-secundary, 500);
+      .code-none,
+      .code-var {
+        color: map_get($md-primary, 100) !important;
       }
 
+      &:hover {
+        border: 1px solid map_get($md-primary, 100);
+      }
     }
 
     &:hover {

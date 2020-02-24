@@ -1,20 +1,28 @@
 @import "apps/dcs-frontend/src/theme";
 
-:host{
-    .scroll-to-top {
-        position: fixed;
-        right: 0;
-        bottom: 8rem;
-        opacity: 0;
-        transition: all .2s ease-in-out;
-        padding: map-get($spacings, 4);
-    }
+:host {
+  .scroll-to-top {
+    position: fixed;
+    right: 0;
+    bottom: 3rem;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+    padding: map-get($spacings, 4);
+  }
 
-    .show-scrollTop {
-        opacity: 1;
-        transition: all .2s ease-in-out;
+  .show-scrollTop {
+    opacity: 1;
+    transition: all .2s ease-in-out;
+  }
+
+  mat-icon {
+    font-size: 50px;
+  }
+
+  @media screen and (max-width: 599px) {
+    .scroll-to-top {
+      bottom: 5rem;
     }
-    mat-icon{
-        font-size: 50px;
-    }
+  }
+
 }

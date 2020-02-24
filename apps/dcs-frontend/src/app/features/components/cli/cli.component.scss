@@ -1,0 +1,19 @@
+@import "apps/dcs-frontend/src/theme";
+
+:host {
+  .container {
+    padding: map_get($spacings, 1);
+    position: sticky;
+    bottom: 0;
+    background-color: transparentize(map_get($md-grey, A100), $amount: .2);
+    color: map_get($md-primary, 900);
+    border-top: 1px solid map_get($md-primary, 100);
+
+    input {
+      border: none;
+      background-color: transparent;
+      color: map_get($md-grey, 800);
+      margin-left: map_get($spacings, 1);
+    }
+  }
+}

@@ -11,10 +11,10 @@
 
     <mat-form-field class="comment-item comment-item-text" appearance="outline">
       <mat-label class="code-none">
-        <span class="code-2"> var </span>
+        <span class="code-1"> var </span>
         <span class="code-var"> Opinión </span> =
       </mat-label>
-      <textarea matInput formControlName="body" type="text" maxlength="250" cols="30" rows="10">
+      <textarea matInput class="code-2" formControlName="body" type="text" maxlength="250" cols="30" rows="4">
       </textarea>
     </mat-form-field>
 
@@ -30,10 +30,10 @@
 
         <mat-form-field appearance="outline" class="comment-item comment-item-captcha" fxFlex="100">
           <mat-label class="code-none">
-            <span class="code-2"> var </span>
+            <span class="code-1"> var </span>
             <span class="code-var"> Suma </span> =
           </mat-label>
-          <input matInput type="text" placeholder="Captcha" formControlName="captcha">
+          <input matInput class="code-2" type="text" placeholder="Captcha" formControlName="captcha">
         </mat-form-field>
 
       </div>
@@ -41,27 +41,28 @@
 
         <mat-form-field appearance="outline" class="comment-item" fxFlex="100">
           <mat-label class="code-none">
-            <span class="code-2"> var </span>
+            <span class="code-1"> var </span>
             <span class="code-var"> Nombre </span> =
           </mat-label>
-          <input matInput type="text" formControlName="name" placeholder="Nombre">
+          <input matInput class="code-2" type="text" formControlName="name" placeholder="Nombre">
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="comment-item" fxFlex="100">
           <mat-label class="code-none">
-            <span class="code-2"> var </span>
+            <span class="code-1"> var </span>
             <span class="code-var"> Correo </span> =
           </mat-label>
-          <input matInput type="email" formControlName="email" placeholder="Correo">
+          <input matInput class="code-2" type="email" formControlName="email" placeholder="Correo">
         </mat-form-field>
 
-        <button mat-button class="comment-form-styles" [disabled]="!commentForm.valid" (click)="createComment()">
-          Opinar(
-          <span> Opinión </span>,
-          <span> Nombre </span>,
-          <span> Correo </span>,
-          <span> Suma </span>
-          )
+        <button mat-button class="comment-form-styles code-none" [disabled]="!commentForm.valid"
+          (click)="createComment()">
+          Opinar(<span fxHide.xs>
+            <span class="code-var"> Opinión </span>,
+            <span class="code-var"> Nombre </span>,
+            <span class="code-var"> Correo </span>,
+            <span class="code-var"> Suma </span>
+          </span>)
         </button>
 
       </div>
