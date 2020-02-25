@@ -11,6 +11,7 @@ import { FeedbackComponent } from './features/info/feedback/feedback.component';
 import { DevTeamComponent } from './features/info/dev-team/dev-team.component';
 import { PublishComponent } from './features/info/publish/publish.component';
 import { WriteTeamComponent } from './features/info/write-team/write-team.component';
+import { DonateComponent } from './features/info/donate/donate.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,10 @@ const routes: Routes = [
   {
     path: 'write-team',
     component: WriteTeamComponent
+  },
+  {
+    path: 'donate',
+    component: DonateComponent
   }
 ];
 
