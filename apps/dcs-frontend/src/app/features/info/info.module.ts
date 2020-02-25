@@ -13,6 +13,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { DevTeamComponent } from './dev-team/dev-team.component';
 import { PublishComponent } from './publish/publish.component';
 import { WriteTeamComponent } from './write-team/write-team.component';
+import { DonateComponent } from './donate/donate.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { WriteTeamComponent } from './write-team/write-team.component';
     FeedbackComponent,
     DevTeamComponent,
     PublishComponent,
-    WriteTeamComponent
+    WriteTeamComponent,
+    DonateComponent
   ],
   imports: [
     MarkdownModule.forRoot(),

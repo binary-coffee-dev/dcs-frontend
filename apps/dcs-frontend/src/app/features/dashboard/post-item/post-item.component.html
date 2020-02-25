@@ -2,7 +2,7 @@
   <div class="line-number" fxLayout="row" fxLayoutAlign="end start">
     <span>{{number}}</span>
   </div>
-  <div [routerLink]="'post/' + post?.name" class="card-container" fxLayout="row">
+  <a [routerLink]="'post/' + post?.name" class="card-container" fxLayout="row">
     <div class="post-image-container" [fxShow.xs]="false">
       <img *ngIf="post?.banner && post?.banner?.url" [lazyLoad]="resource.addApiUrl(post?.banner?.url)" alt="">
     </div>
@@ -19,8 +19,8 @@
           <div>
             <span class="code-1"> var </span>
             <span class="code-var"> Autor </span> =
-            <a class="post-author-link code-2" [href]=" post?.author?.page || ''" [title]=" post?.author?.email">
-              <b>"{{post?.author?.username || 'publico'}}"</b>
+            <a class="post-author-link code-2">
+              <b>"{{post?.author?.username || 'público'}}"</b>
               <mat-icon *ngIf="post?.author?.page" mat-font-icon="fa-icon" class="code-1 fa fa-arrow-right"></mat-icon>
             </a>
           </div>
@@ -61,5 +61,5 @@
       <span [fxHide.xs]="true">{{"}"}}</span>
 
     </div>
-  </div>
+  </a>
 </div>

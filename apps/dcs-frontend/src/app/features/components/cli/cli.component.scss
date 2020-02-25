@@ -2,10 +2,10 @@
 
 :host {
   .container {
-    padding: map_get($spacings, 1);
+    padding: map_get($spacings, 2);
     position: sticky;
     bottom: 0;
-    background-color: transparentize(map_get($md-grey, A100), $amount: .2);
+    background-color: map_get($md-grey, A100);
     color: map_get($md-primary, 900);
     border-top: 1px solid map_get($md-primary, 100);
 

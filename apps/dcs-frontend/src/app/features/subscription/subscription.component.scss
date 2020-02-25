@@ -3,6 +3,12 @@
 :host {
   .container {
 
+    .description {
+      color: map_get($md-primary, 400);
+      text-align: justify;
+      padding: map_get($spacings, 4);
+    }
+
     .container-in {
       min-height: calc(100vh - 255px);
 
@@ -16,9 +22,8 @@
             width: 100%;
           }
 
-          img,
-          p {
-            margin-bottom: map_get($spacings, 4);
+          b {
+            padding: map_get($spacings, 4);
           }
 
           button {
@@ -71,6 +76,11 @@
   @media screen and (max-width: 599px) {
     .container {
       border-top: 1px solid map_get($md-primary, 100);
+
+      .container-in {
+        min-height: calc(100vh - 255px);
+        border: none;
+      }
     }
 
   }
