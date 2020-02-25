@@ -1,13 +1,9 @@
-<div class="social-links">
-  <div class="links social-links-box" [fxLayout]="dir" fxLayoutAlign="center center" fxLayoutGap="gappx">
-    <a class="social-link" routerLink="/suscribe" title="Suscríbase">
-      <mat-icon mat-font-icon="fa-icon" class="fa fa-envelope-open"></mat-icon>
-    </a>
-    <span *ngFor="let link of links">
-      <a class="social-link" *ngIf="link.enabled" [href]="link.href" [title]="link.title" target="blanck">
-        <mat-icon mat-font-icon="fa-icon" [class]="link.icon"></mat-icon>
-      </a>
-    </span>
-  </div>
-
-</div>
+<a mat-button routerLink="/suscribe" title="Suscríbase" *ngIf="!footer">
+  <mat-icon mat-font-icon="fa-icon" class="fa fa-envelope-open"></mat-icon>
+</a>
+<span *ngFor="let link of links">
+  <a mat-button *ngIf="link.enabled" [href]="link.href" [title]="link.title" target="blanck">
+    <mat-icon mat-font-icon="fa-icon" [class]="link.icon" *ngIf="!footer"></mat-icon>
+    <span *ngIf="footer">> {{link.title}}</span>
+  </a>
+</span>

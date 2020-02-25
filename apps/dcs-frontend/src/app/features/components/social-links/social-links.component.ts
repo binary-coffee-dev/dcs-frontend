@@ -10,7 +10,7 @@ import { SocialLink } from './social-link.model';
 export class SocialLinksComponent implements OnInit {
 
   @Input()
-  dir: string;
+  footer: boolean = false;
 
   links: SocialLink[];
 
@@ -26,7 +26,7 @@ export class SocialLinksComponent implements OnInit {
       },
       {
         enabled: true,
-        title: 'DC\'s Comunity',
+        title: 'GitHub',
         href: 'https://github.com/dcs-community/',
         icon: 'fa fa-github'
       },

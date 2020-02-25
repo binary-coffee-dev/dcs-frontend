@@ -3,7 +3,7 @@
       <div class="groups" fxLayout="row wrap">
         <div class="sub-group" fxLayout="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start start"
           fxFlex.xs="100" fxFlex="50" fxFlex.lg="25">
-          <span class="sub-group-header"><b>{{root}}</b>binarycoffee -h</span>
+          <span class="sub-group-header"><b>{{root}} </b>binarycoffee -h</span>
           <div fxLayout="column">
             <a mat-button [routerLink]="'/suscribe'" title="Subscríbace ahora">
               <span>> Suscribirse</span>
@@ -26,7 +26,7 @@
 
         <div class="sub-group" fxLayout="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start start"
           fxFlex.xs="100" fxFlex="50" fxFlex.lg="25">
-          <span class="sub-group-header"><b>{{root}}</b>dev -h</span>
+          <span class="sub-group-header"><b>{{root}} </b>dev -h</span>
           <div fxLayout="column">
             <a mat-button [routerLink]="'/join'" title="Colabore en DC's Community, toda ayuda es poca">
               <span>> Contribuir</span>
@@ -48,7 +48,7 @@
 
         <div class="sub-group" fxLayout="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start start"
           fxFlex.xs="100" fxFlex="50" fxFlex.lg="25">
-          <span class="sub-group-header"><b>{{root}}</b>escritores -h</span>
+          <span class="sub-group-header"><b>{{root}} </b>escritores -h</span>
           <div fxLayout="column">
             <a mat-button [routerLink]="'/publish'" title="Colabore con publicaciones inéditas">
               <span>> Publicar</span>
@@ -61,7 +61,14 @@
 
         <div class="sub-group" fxLayout="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start start"
           fxFlex.xs="100" fxFlex="50" fxFlex.lg="25">
-          <span class="sub-group-header"><b>{{root}}</b>asociados -ls</span><b></b>
+          <span class="sub-group-header"><b>{{root}} </b>sociales -h</span>
+          <app-social-links footer="true" fxLayout="column" fxLayoutAlign="start"></app-social-links>
+        </div>
+
+
+        <div *ngIf="false" class="sub-group" fxLayout="column" fxLayoutAlign="start start"
+          fxLayoutAlign.xs="start start" fxFlex.xs="100" fxFlex="50" fxFlex.lg="25">
+          <span class="sub-group-header"><b>{{root}} </b>asociados -ls</span><b></b>
           <div fxLayout="column">
             <a mat-button href="http://asociado.com" title="Asociado 1" target="blanck">
               <span>> Asociado 1</span>

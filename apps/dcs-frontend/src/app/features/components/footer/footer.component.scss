@@ -38,14 +38,13 @@
         margin-bottom: map_get($spacings, 2);
 
         b {
-          margin: map_get($spacings, 1);
           color: map_get($md-primary, 900);
         }
       }
 
       a {
         text-align: left;
-        padding-left: map_get($spacings, 1);
+        padding-left: map_get($spacings, 0);
 
         span {
           color: map_get($md-grey, 800);
