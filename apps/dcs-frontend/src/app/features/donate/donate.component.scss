@@ -27,8 +27,8 @@
 
       .paypal {
         $color: #2b5eaa;
-        background-color: transparent;
-        border: 1px solid transparent;
+        background-color: map_get($md-grey, 350);
+        border: 1px solid map_get($md-primary, 100);
         color: $color;
 
         &:hover {
@@ -38,8 +38,8 @@
 
       .visa {
         $color: #f3c018;
-        background-color: transparent;
-        border: 1px solid transparent;
+        background-color: map_get($md-grey, 350);
+        border: 1px solid map_get($md-primary, 100);
         color: $color;
 
 
@@ -50,8 +50,8 @@
 
       .mastercard {
         $color: #ff5100;
-        background-color: transparent;
-        border: 1px solid transparent;
+        background-color: map_get($md-grey, 350);
+        border: 1px solid map_get($md-primary, 100);
         color: $color;
 
         &:hover {

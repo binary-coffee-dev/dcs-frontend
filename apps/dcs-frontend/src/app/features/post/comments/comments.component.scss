@@ -1,6 +1,9 @@
 @import "apps/dcs-frontend/src/theme";
 
 :host {
+  .separator {
+    margin-left: map_get($spacings, 4);
+  }
 
   input,
   textarea {
@@ -16,7 +19,7 @@
     font-size: 0.875rem;
     font-family: get($font-family);
     border: 1px solid map_get($md-primary, 300);
-    background-color: transparent;
+    background-color: map_get($md-grey, 350);
 
     &[disabled] {
       border: 1px solid map_get($md-primary, 100);

@@ -4,6 +4,14 @@ body {
   margin: 0;
 }
 
+.mat-form-field-outline>* {
+  color: map_get($md-primary, 100);
+
+  &:focus {
+    font-weight: 100;
+  }
+}
+
 * {
   font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
 }
