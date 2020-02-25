@@ -16,6 +16,7 @@ import {ScrollTopComponent} from './features/components/scroll-top/scroll-top.co
 import {WINDOW, windowFactory} from './core/services';
 import {LoadingComponent} from './features/components/loading/loading.component';
 import { CliComponent } from './features/components/cli/cli.component';
+import { DonateModule } from './features/donate/donate.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CliComponent } from './features/components/cli/cli.component';
     BrowserAnimationsModule,
     ReduxModule,
     MaterialModule,
-    InfoModule
+    InfoModule,
+    DonateModule
   ],
   providers: [
     {provide: WINDOW, useFactory: windowFactory}

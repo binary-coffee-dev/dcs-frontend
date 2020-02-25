@@ -5,20 +5,29 @@
           fxFlex.xs="100" fxFlex="50" fxFlex.lg="25">
           <span class="sub-group-header"><b>{{root}} </b>binarycoffee -h</span>
           <div fxLayout="column">
-            <a mat-button [routerLink]="'/suscribe'" title="Subscríbace ahora">
-              <span>> Suscribirse</span>
+            <a mat-button [routerLink]="'/donate'" title="Apoye la plataforma con su granito de arena">
+              <span>> Donar</span>
             </a>
+
+            <a mat-button [routerLink]="'/subscribe'" title="Subscríbace ahora">
+              <span>> Subscribirse</span>
+            </a>
+
             <a mat-button href="mailto:website@binary-coffee.dev" target="blank"
-              title="Contactar directamete con el equipo de Binary Coffee">
+              title="Contactar directamete con de Binary Coffee">
               <span>> Contáctenos</span>
             </a>
-            <a mat-button [routerLink]="'/about'" title=" Que es Binary Coffee y sus planes futuros">
+
+            <a mat-button [routerLink]="'/about'" title="Que es Binary Coffee y sus planes futuros">
               <span>> Conozca a Binary Coffee</span>
             </a>
-            <a mat-button [routerLink]="'/questions'" title="Pregunte cualquier duda o revise las más frecuentes">
+
+            <a *ngIf="false" mat-button [routerLink]="'/questions'"
+              title="Pregunte cualquier duda o revise las más frecuentes">
               <span>> Preguntas</span>
             </a>
-            <a mat-button [routerLink]="'/site-map'" title="Vea la estructura general del sitio web">
+
+            <a *ngIf="false" mat-button [routerLink]="'/site-map'" title="Vea la estructura general del sitio web">
               <span>> Mapa</span>
             </a>
           </div>
@@ -61,7 +70,7 @@
 
         <div class="sub-group" fxLayout="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start start"
           fxFlex.xs="100" fxFlex="50" fxFlex.lg="25">
-          <span class="sub-group-header"><b>{{root}} </b>sociales -h</span>
+          <span class="sub-group-header"><b>{{root}} </b>sociales -ls</span>
           <app-social-links footer="true" fxLayout="column" fxLayoutAlign="start"></app-social-links>
         </div>
 

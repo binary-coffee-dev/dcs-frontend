@@ -1,5 +1,5 @@
 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
-  <div class="description" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx" fxFlex='25'
+  <div class="code-comment-1" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx" fxFlex='25'
     fxFlex.xs='100'>
     <p>
       /* <br>
@@ -9,7 +9,7 @@
     </p>
   </div>
 
-  <div class="container-in" fxLayout="column" fxLayoutAlign="center center" fxFlex='50' fxFlex.xs='100'>
+  <div class="container-in" fxLayout="column" fxLayoutAlign="center center" fxFlex='25' fxFlex.xs='100'>
 
     <form [formGroup]="subscribeForm" *ngIf="!subscriptionSent && !token" (ngSubmit)="subscribe()">
       <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="gappx">
@@ -26,7 +26,7 @@
           <div fxLayout="column" class="code-none">
             <button mat-button type="submit">
               <span class="code-1">return new</span>
-              Suscriptor(
+              Subscriptor(
               <span class="code-var"> Correo </span>
               )
             </button>
@@ -36,18 +36,13 @@
     </form>
 
     <b class="message" *ngIf="message">{{message}}</b>
-
-    <button mat-button class="back-button" (click)="backClicked()">
-      <span class="fa fa-arrow-left"></span>
-      <b>Volver</b>
-    </button>
   </div>
 
-  <div class="description" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx" fxFlex='25'
+  <div class="code-comment-1" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx" fxFlex='25'
     fxFlex.xs='100'>
     <p>
       /* <br>
-      La suscripción le permite mantenerce al tanto de todos los
+      La subscripción le permite mantenerce al tanto de todos los
       artículos publicados durante la semana en la plataforma.
       Además, recivirás información actualizada de nuevas funcionalidades interesántes desplegadas a la plataforma. <br>
       */

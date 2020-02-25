@@ -10,7 +10,7 @@ import { SocialLink } from './social-link.model';
 export class SocialLinksComponent implements OnInit {
 
   @Input()
-  footer: boolean = false;
+  footer = false;
 
   links: SocialLink[];
 
