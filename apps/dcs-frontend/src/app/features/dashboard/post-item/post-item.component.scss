@@ -4,9 +4,11 @@ $post_image_size: 110px;
 
 :host {
   .container {
-    &:hover{
+
+    &:hover {
       .line-number {
         background-color: map_get($md-primary, 200);
+        color: map_get($md-grey, A100);
       }
 
       .card-container {
@@ -15,32 +17,24 @@ $post_image_size: 110px;
     }
   }
 
-  .code-1{
-    color: map_get($md-primary, 800) !important;
-  }
-  .code-2{
-    color: map_get($md-error, 800) !important;
-  }
-  .code-string{
-    color: map_get($md-primary, 900) !important;
-  }
-  .card-container{
-    box-shadow: map_get($box-shadow, 4);
+  .card-container {
+    border-right: 1px solid map_get($md-primary, 100);
+    border-top: 1px solid map_get($md-primary, 100);
     background-color: map_get($md-grey, A100);
     width: 100%;
     padding: map_get($spacings, 4);
     cursor: pointer;
     text-decoration: none;
-    border-radius: map_get($radius, 2) 0 0 map_get($radius, 2);
-    color: map_get($md-grey, 600);
+    color: map_get($md-grey, 800);
   }
 
   .line-number {
-    padding-top: 12px;
-    color: map_get($md-grey, 500);
+    color: map_get($md-grey, 600);
     background-color: map_get($md-primary, 100);
-    padding-right: 5px;
-    min-width: 40px;
+
+    span {
+      padding: map_get($spacings, 4) map_get($spacings, 1) 0 map_get($spacings, 3);
+    }
   }
 
   .post-image-container {
@@ -57,21 +51,39 @@ $post_image_size: 110px;
       object-fit: cover;
       object-position: center;
       border-radius: map_get($radius, 2);
-      box-shadow: map_get($box-shadow, 0);
       border-bottom: 2px solid map_get($md-primary, 800);
     }
   }
 
   .post-info-vars {
-    margin-bottom:map_get($spacings, 4);
+    margin-bottom: map_get($spacings, 4);
+
+    h3 {
+      padding-top: 0;
+      margin-top: 0;
+    }
 
     .post-title {
-      font-weight: 200;
       text-transform: uppercase;
     }
+
+    .post-author-link {
+      text-decoration: none;
+
+      mat-icon {
+        margin-left: map_get($spacings, 1);
+      }
+
+      &:hover {
+        mat-icon {
+          animation: anim-author-link 0.3s infinite alternate;
+        }
+      }
+    }
   }
+
   .post-info-container {
-    margin:0;
+    margin: 0;
     font-family: get($font-family);
   }
 
@@ -79,9 +91,26 @@ $post_image_size: 110px;
     width: 100%;
     font-family: get($font-family);
     letter-spacing: 0.45px;
-    font-weight: 200;
     font-size: 0.95rem;
-    padding: 0 map_get($spacings, 4);
-    color:map_get($md-grey, 900);
+    font-stretch: expanded;
+    padding: 0 map_get($spacings, 5);
+    color: map_get($md-grey, 900);
+    text-align: justify;
+  }
+
+  @media screen and (max-width: 599px) {
+    .post-body-extract {
+      padding: 0;
+    }
+  }
+
+  @keyframes anim-author-link {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(5px);
+    }
   }
 }

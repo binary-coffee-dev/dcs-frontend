@@ -2,22 +2,25 @@
 
 :host {
   .pagination-container {
-    margin: 0 -13px;
+    margin: 0;
+    border: 1px solid map_get($md-primary, 100);
+    border-bottom: none;
+    position: sticky;
+    bottom: 2.7rem; // bottom: 0; if the "cli.component" is hide
+    background-color: map_get($md-grey, A100);
+
 
     .pagination-button {
-      border: none;
-      border-radius: map_get($radius, 2);
+      border-radius: 0;
       height: 48px;
-      margin: 0 map_get($spacings, 2);
-      background-color: map_get($md-grey, A100);
       color: map_get($md-primary, 800);
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: map_get($box-shadow, 4);
+      background-color: map_get($md-primary, 50);
 
       &:hover {
-        background-color: map_get($md-primary, 50);
+        background-color: map_get($md-primary, 100);
         color: map_get($md-primary, 900);
       }
     }

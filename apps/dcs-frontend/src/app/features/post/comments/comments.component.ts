@@ -1,21 +1,21 @@
-import {Component, Inject, Input, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
-import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Component, Inject, Input, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {Subject, timer} from 'rxjs';
-import {Store} from '@ngxs/store';
+import { Subject, timer } from 'rxjs';
+import { Store } from '@ngxs/store';
 
-import {CommentErrorAction, CreateCommentAction, FetchCaptchaAction, FetchCommentsAction} from '../../../core/redux/actions';
-import {CommentState} from '../../../core/redux/states';
-import {Captcha, Comment, Post} from '../../../core/redux/models';
-import {MomentService} from '../../../core/services';
-import {takeUntil} from 'rxjs/operators';
-import {isPlatformBrowser} from '@angular/common';
+import { CommentErrorAction, CreateCommentAction, FetchCaptchaAction, FetchCommentsAction } from '../../../core/redux/actions';
+import { CommentState } from '../../../core/redux/states';
+import { Captcha, Comment, Post } from '../../../core/redux/models';
+import { MomentService } from '../../../core/services';
+import { takeUntil } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss']
+  styleUrls: ['./comments.component.scss', '../post.component.scss']
 })
 export class CommentsComponent implements OnInit, OnDestroy {
 

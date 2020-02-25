@@ -10,7 +10,7 @@ import { SocialLink } from './social-link.model';
 export class SocialLinksComponent implements OnInit {
 
   @Input()
-  dir: string;
+  footer = false;
 
   links: SocialLink[];
 
@@ -26,7 +26,7 @@ export class SocialLinksComponent implements OnInit {
       },
       {
         enabled: true,
-        title: 'DC\'s Comunity',
+        title: 'GitHub Community',
         href: 'https://github.com/dcs-community/',
         icon: 'fa fa-github'
       },
@@ -50,13 +50,13 @@ export class SocialLinksComponent implements OnInit {
       },
       {
         enabled: false,
-        title: 'BinaryCoffee Chanel',
+        title: 'BinaryCoffee Channel',
         href: 'https://www.youtube.com/channel/UCmiGV-Amt7e4plFIxKH_v_g',
         icon: 'fa fa-youtube-play'
       },
       {
         enabled: true,
-        title: 'Telegram Chanel',
+        title: 'Telegram Channel',
         href: 'https://t.me/binarycoffeedev',
         icon: 'fa fa-telegram'
       }

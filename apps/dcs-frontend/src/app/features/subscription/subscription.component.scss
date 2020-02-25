@@ -2,66 +2,60 @@
 
 :host {
   .container {
-    min-height: calc(100vh - 255px);
+    min-height: calc(100vh - 300px);
 
-    form {
-      .card{
-        padding: map_get($spacings, 4);
-        background-color: map-get($md-grey, A100);
-        box-shadow: map_get($box-shadow, 4);
-        border-radius: map_get($radius, 2);
+    .code-comment-1 {
+      color: map_get($md-primary, 400);
+      text-align: justify;
+      padding: map_get($spacings, 4);
+    }
 
-        mat-form-field{
+    .container-in {
+      padding: map_get($spacings, 4);
+
+      form {
+        mat-form-field {
           width: 100%;
         }
 
-        img,p{
-          margin-bottom: map_get($spacings, 4);
+        b {
+          padding: map_get($spacings, 4);
         }
 
         button {
-          background-color: map_get($md-primary, 500);
-          width: 100%;
+          border: 1px solid transparent;
+
+          &:hover {
+            border: 1px solid map-get($md-primary, 500);
+          }
         }
       }
-    }
 
-    .message,.error {
-      padding: map_get($spacings, 2) ;
-      text-align: center;
-    }
+      .message,
+      .error {
+        padding: map_get($spacings, 2);
+        text-align: center;
+      }
 
-    .error{
-      border-top-left-radius: map_get($radius, 2);;
-      border-top-right-radius: map_get($radius, 2);;
-      color: map_get($md-error, 500);
-      background-color: map_get($md-error, 400);
-    }
+      .error {
+        color: map_get($md-error, 500);
+      }
 
-    .message{
-      border-radius: map_get($radius, 2);;
-      color: map-get($md-primary, 900);
-    }
-
-    .back-button {
-      margin-top: map_get($spacings, 5);
-      color: map-get($md-primary, 900);
-      cursor: pointer;
-
-      &:hover{
-        mat-icon{
-          animation: anim-arrow 0.3s infinite alternate;
-        }
+      .message {
+        border-radius: map_get($radius, 2);
+        color: map-get($md-primary, 900);
       }
     }
   }
-}
 
-@keyframes anim-arrow {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-5px);
+  @media screen and (max-width: 599px) {
+    .container {
+      border-top: 1px solid map_get($md-primary, 100);
+
+      .container-in {
+        min-height: 0;
+        border: none;
+      }
+    }
   }
 }

@@ -1,18 +1,22 @@
 @import "apps/dcs-frontend/src/theme";
 
 :host {
+  .share-buttons-side {
+    position: sticky;
+    top: 4.3rem;
+  }
+
   .post-container {
-    //margin: 0 map_get($spacings, 4) map_get($spacings, 4) map_get($spacings, 4);
 
     .post-in-container {
-      //margin-top: map_get($spacings, 4);
-      //box-shadow: map_get($box-shadow, 4);
       background-color: map_get($md-grey, A100);
       padding: map_get($spacings, 4);
-      //border-radius: map_get($radius, 2);
+      border-left: 1px solid map_get($md-primary, 100);
+      border-right: 1px solid map_get($md-primary, 100);
 
       h1 {
         margin: 0;
+        padding: 0;
         font-family: get($font-family);
         font-weight: 200;
         text-transform: uppercase;
@@ -21,10 +25,11 @@
 
       .post-info-container {
         margin-top: map_get($spacings, 2);
+        margin-bottom: map_get($spacings, 4);
       }
 
       .image-container {
-        margin: map_get($spacings, 4) 0;
+        margin-bottom: map_get($spacings, 4);
         width: 100%;
         border-radius: map_get($radius, 2);
 
@@ -34,16 +39,26 @@
           object-fit: cover;
           object-position: center;
           border-radius: map_get($radius, 2);
-          border-bottom: 2px solid map_get($md-primary, 900);
+          border: 1px solid map_get($md-primary, 100);
         }
+      }
+
+      .share-button-xs {
+        margin-bottom: map_get($spacings, 4);
       }
     }
   }
 
   @media screen and (max-width: 599px) {
-    .post-container {
-      margin: map_get($spacings, 1);
-      margin-bottom: map_get($spacings, 5);
+    .post-in-container {
+      border: none;
+      border-top: 1px solid map_get($md-primary, 100);
+
+
+    }
+
+    app-share-buttons {
+      margin-top: map_get($spacings, 4);
     }
   }
 }

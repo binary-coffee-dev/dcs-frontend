@@ -1,31 +1,24 @@
 @import "apps/dcs-frontend/src/theme";
 
-:host{
+:host {
+  mat-icon {
+    font-size: 1.5rem;
+    color: map_get($md-primary, 700);
+    padding-left: map_get($spacings, 2);
+  }
 
-    .links {
-        text-align: center;
-        padding: 0;
-        border-right: 0;
+  a {
+    cursor: pointer !important;
+    text-decoration: none;
+    color: map_get($md-grey, 800);
+    padding-left: map_get($spacings, 0);
 
-        a{
-            cursor: pointer;
-            color: map_get($md-primary, 300);
-            list-style: none;
-            font-size: 1.5em;
-            text-decoration: none;
-            padding: map_get($spacings, 1);
-
-            &:hover {
-                color: map_get($md-primary, 900);
-            }
-        }
-
-        &.multi{
-            padding: map_get($spacings, 1);
-
-            mat-icon{
-                margin: -3px;
-            }
-        }
+    &:hover {
+      mat-icon {
+        font-size: 1.5rem;
+        color: map_get($md-primary, 900);
+      }
     }
+  }
+
 }

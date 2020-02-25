@@ -1,21 +1,39 @@
 @import "theme";
 
-html, body {
-  height: 100%;
-}
-mat-form-field{
-  filter: invert(100%);
-  input,textarea{
-    filter: invert(100%);
-  }
-}
-*{
-  font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback' ;
-}
 body {
   margin: 0;
-  font-weight: 400;
-  background-color: map_get($md-grey, 400);
+}
+
+* {
+  font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
+}
+
+.code-1 {
+  color: map_get($md-secundary, 900) !important;
+}
+
+.code-2 {
+  color: map_get($md-primary, 500) !important;
+}
+
+.code-string {
+  color: map_get($md-primary, 900) !important;
+}
+
+.code-comment-1 {
+  color: map_get($md-grey, 600) !important;
+}
+
+.code-comment-2 {
+  color: map_get($md-primary, 700) !important;
+}
+
+.code-none {
+  color: map_get($md-grey, 800) !important;
+}
+
+.code-var {
+  color: map_get($md-secundary, 500) !important
 }
 
 .post-info {
@@ -43,6 +61,7 @@ body {
       width: 30px;
       height: 30px;
       margin-right: 5px;
+      border-radius: 100%;
     }
   }
 
@@ -62,22 +81,31 @@ body {
 }
 
 markdown {
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 400;
+  color: map_get($md-grey, 800);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 300;
   }
-  p{
-    font-size: 1.3rem;
+
+  p {
+    font-size: 1.1rem;
     font-weight: 100;
   }
+
   pre {
     font-size: 1.3rem;
     font-weight: 100;
     background-color: map_get($md-grey, A100) !important;
     box-shadow: map_get($box-shadow, 0);
-    border-bottom: 2px solid map_get($md-primary, 800);
+    border: 1px solid map_get($md-primary, 100);
 
     code {
-      color: map_get($md-grey, 900)  !important;
+      color: map_get($md-grey, 900) !important;
       padding: 0 3px;
       border-radius: map_get($radius, 2);
     }
@@ -111,7 +139,7 @@ markdown {
     }
   }
 
-  .image-container{
+  .image-container {
     background-color: transparent !important;
     overflow-x: hidden;
 
@@ -124,8 +152,7 @@ markdown {
     }
   }
 
-  img{
-    border-bottom: 2px solid map_get($md-primary, 800);
+  img {
     box-shadow: map_get($box-shadow, 0);
     border-radius: map_get($radius, 2) !important;
   }

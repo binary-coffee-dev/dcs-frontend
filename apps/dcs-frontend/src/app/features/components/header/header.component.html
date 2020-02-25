@@ -1,26 +1,15 @@
-<mat-toolbar fxLayout="row"
-             fxLayoutAlign="center center">
-  <div fxLayout="column"
-       fxLayoutAlign="center start"
-       fxLayoutAlign.xs="center center"
-       fxFlex="50"
-       [fxFlex.xs]="100">
-    <a [routerLink]="'/'"
-       fxLayoutAlign="center center">
-      <img class="logo"
-           src="assets/images/128x128/binarycoffee_2.0.1.png"
-           alt="Binary Coffee"
-           [fxHide.xs]="true">
-      <span class="binary">Binary </span>
-      <img class="logo" src="assets/images/128x128/binarycoffee_2.0.1.png"
-           alt="Binary Coffee"
-           [fxHide.sm]="true"
-           [fxHide.md]="true"
-           [fxHide.lg]="true">
-      <span class="coffee">Coffee</span>
-    </a>
+  <mat-toolbar fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayout="column" fxLayoutAlign="center start" fxLayoutAlign.xs="center center" fxFlex="50" fxFlex.xs="100">
+      <a [routerLink]="'/'" fxLayoutAlign="center center">
+        <img class="logo" src="assets/images/64x64/binarycoffee_2.0.1.png" alt="Binary Coffee" [fxHide.xs]="true">
+        <span class="binary"> Binary </span>
+        <img class="logo" src="assets/images/64x64/binarycoffee_2.0.1.png" alt="Binary Coffee" [fxHide]="true"
+          [fxShow.xs]="true">
+        <span class="coffee"> Coffee </span>
+      </a>
+    </div>
+    <app-social-links fxLayoutAlign="end center" fxFlex="50" [fxHide.xs]="true"></app-social-links>
+  </mat-toolbar>
+  <div class="social-links-xs" [fxHide]="true" [fxShow.xs]="true">
+    <app-social-links fxLayoutAlign="center center"></app-social-links>
   </div>
-  <app-social-links fxLayoutAlign="end center"
-                    fxFlex="50"
-                    [fxHide.xs]="true"></app-social-links>
-</mat-toolbar>

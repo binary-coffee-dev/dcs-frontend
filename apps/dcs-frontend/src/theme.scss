@@ -1,7 +1,9 @@
-$font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
+$font-family: 'Droid Sans Mono',
+'monospace',
+monospace,
+'Droid Sans Fallback';
 
-$spacings: (
-  0 : 0,
+$spacings: (0 : 0,
   1 : 6px,
   2 : 12px,
   3 : 18px,
@@ -11,11 +13,9 @@ $spacings: (
   7 : 42px,
   8 : 48px,
   9 : 54px,
-  10: 60px
-);
+  10: 60px);
 
-$radius:(
-  0:0,
+$radius:(0:0,
   1 : 2px,
   2 : 4px,
   3 : 6px,
@@ -25,11 +25,39 @@ $radius:(
   7 : 14px,
   8 : 16px,
   9 : 18px,
-  10: 20px
-);
+  10: 20px);
 
-$md-primary: (
-  50 : #ecf9f5,
+$md-secundary: (50 : rgb(247, 236, 249),
+  100 : #edcff0,
+  200 : #e1afe6,
+  300 : #d28edb,
+  400 : #c976d4,
+  500 : #8e01b1,
+  600 : #c756c1,
+  700 : #c04cb6,
+  800 : #b942b3,
+  900 : #cd01cd,
+  A100 : #fdf4ff,
+  A200 : #e1a7fc,
+  A400 : #cd61ff,
+  A700 : #a200ff,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  ));
+
+$md-primary: (50 : #ecf9f5,
   100 : #cff0e5,
   200 : #afe6d4,
   300 : #8edbc3,
@@ -43,8 +71,7 @@ $md-primary: (
   A200 : #c1ffe6,
   A400 : #8effd2,
   A700 : #74ffc8,
-  contrast: (
-    50 : #000000,
+  contrast: (50 : #000000,
     100 : #000000,
     200 : #000000,
     300 : #000000,
@@ -58,11 +85,9 @@ $md-primary: (
     A200 : #000000,
     A400 : #000000,
     A700 : #000000,
-  )
-);
+  ));
 
-$md-error: (
-  50 : #f9ecec,
+$md-error: (50 : #f9ecec,
   100 : #f0cfcf,
   200 : #e6afaf,
   300 : #db8e8e,
@@ -76,8 +101,7 @@ $md-error: (
   A200 : #ffc1c1,
   A400 : #ff8e8e,
   A700 : #ff7474,
-  contrast: (
-    50 : #000000,
+  contrast: (50 : #000000,
     100 : #000000,
     200 : #000000,
     300 : #000000,
@@ -91,12 +115,10 @@ $md-error: (
     A200 : #000000,
     A400 : #000000,
     A700 : #000000,
-  )
-);
+  ));
 
 
-$md-grey: (
-  50 : #e9ebf2,
+$md-grey: (50 : #e9ebf2,
   100 : #fefefe,
   200 : #fdfdfd,
   300 : #fcfcfc,
@@ -112,8 +134,7 @@ $md-grey: (
   A200 : #ffffff,
   A400 : #ffffff,
   A700 : #ffffff,
-  contrast: (
-    50 : #000000,
+  contrast: (50 : #000000,
     100 : #000000,
     200 : #000000,
     300 : #000000,
@@ -127,24 +148,19 @@ $md-grey: (
     A200 : #000000,
     A400 : #000000,
     A700 : #000000,
-  )
-);
+  ));
 
-$box-shadow:(
-  0 : 0,
+$box-shadow:(0 : 0,
   1 : -1px 6px 2px 0 rgba(101, 109, 120, 0.2),
   2 : -1px 6px 6px 0 rgba(101, 109, 120, 0.2),
   3 : -1px 6px 10px 0 rgba(101, 109, 120, 0.2),
-  4 : -1px 6px 14px 0 rgba(101, 109, 120, 0),// recomended
+  4 : -1px 6px 14px 0 rgba(101, 109, 120, 0.2), // recomended
   5 : -1px 6px 18px 0 rgba(101, 109, 120, 0.2),
-  6 : -1px 6px 22px 0 rgba(101, 109, 120, 0.2)
-);
-$box-shadow-up:(
-  0: 0,
+  6 : -1px 6px 22px 0 rgba(101, 109, 120, 0.2));
+$box-shadow-up:(0: 0,
   1 : 1px 6px 2px 0 rgba(101, 109, 120, 0.2),
   2 : 1px 6px 6px 0 rgba(101, 109, 120, 0.2),
   3 : 1px 6px 10px 0 rgba(101, 109, 120, 0.2),
-  4 : 1px 6px 14px 0 rgba(101, 109, 120, 0.2),// recomended
+  4 : 1px 6px 14px 0 rgba(101, 109, 120, 0.2), // recomended
   5 : 1px 6px 18px 0 rgba(101, 109, 120, 0.2),
-  6 : 1px 6px 22px 0 rgba(101, 109, 120, 0.2)
-);
+  6 : 1px 6px 22px 0 rgba(101, 109, 120, 0.2));
