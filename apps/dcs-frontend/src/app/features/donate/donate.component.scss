@@ -13,6 +13,10 @@
     .container-in {
       padding: map_get($spacings, 4);
 
+      form {
+        display: none;
+      }
+
       .code-comment-1 {
         font-size: .8rem;
       }
