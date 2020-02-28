@@ -12,34 +12,30 @@
         <span class="sub-group-header"><b>{{root}} </b>binarycoffee -h</span>
         <div fxLayout="column">
           <a mat-button
-             [routerLink]="'/donate'"
-             title="Apoye la plataforma con su granito de arena">
+             [routerLink]="'/donate'">
             <span>> Donar</span>
           </a>
 
           <a mat-button
-             [routerLink]="'/subscribe'"
-             title="Subscríbace ahora">
+             [routerLink]="'/subscribe'">
             <span>> Subscribirse</span>
           </a>
 
           <a mat-button
              href="mailto:website@binary-coffee.dev"
-             target="blank"
-             title="Contactar directamete con de Binary Coffee">
+             target="blank">
             <span>> Contáctenos</span>
           </a>
 
-          <a mat-button
-             [routerLink]="'/about'"
-             title="Que es Binary Coffee y sus planes futuros">
+          <a *ngIf="false"
+             mat-button
+             [routerLink]="'/about'">
             <span>> Conozca a Binary Coffee</span>
           </a>
 
           <a *ngIf="false"
              mat-button
-             [routerLink]="'/questions'"
-             title="Pregunte cualquier duda o revise las más frecuentes">
+             [routerLink]="'/questions'">
             <span>> Preguntas</span>
           </a>
 
