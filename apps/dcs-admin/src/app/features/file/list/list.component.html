@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-card-header fxLayout="row"
+                   fxLayoutAlign="center center">
+    <h4 class="card-title">Files</h4>
+    <div fxFlex="100"></div>
+    <div class="item-actions">
+      <div class="item-action">
+        <button mat-button
+                (click)="openUploadFileModal()"
+                class="nav-link">
+          <i class="material-icons">add</i>
+          new File
+          <div class="ripple-container"></div>
+        </button>
+      </div>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <table class="table">
+      <thead class=" text-info">
+      <th>Title</th>
+      <th>Image</th>
+      <th class="td-actions text-right">Actions</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let file of files">
+        <td>{{file.name}}</td>
+        <td><img class="file-image"
+                 [src]="normalizeUrl(file?.url)"
+                 [alt]="file.name"></td>
+        <td class="td-actions text-right">
+          <button mat-raised-button
+                  type="button"
+                  matTooltip="Copy Url"
+                  [matTooltipPosition]="'above'"
+                  ngxClipboard
+                  [cbContent]="normalizeUrl(file?.url)"
+                  class="btn btn-success btn-link btn-sm btn-just-icon">
+            <i class="material-icons">file_copy</i>
+          </button>
+          <button mat-raised-button
+                  *ngIf="false"
+                  type="button"
+                  matTooltip="Remove"
+                  [matTooltipPosition]="'above'"
+                  class="btn btn-success btn-link btn-sm btn-just-icon">
+            <i class="material-icons">close</i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <app-pagination (nextPageEvent)="nextPageEvent()"
+                    (previousPageEvent)="previousPageEvent()"
+                    (pageEvent)="selectPageEvent($event)"
+                    [numberOfPages]="numberOfPages"
+                    [currentPage]="currentPage"></app-pagination>
+  </mat-card-content>
+</mat-card>

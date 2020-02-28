@@ -1,0 +1,80 @@
+@import "apps/dcs-frontend/src/theme";
+
+:host {
+  .container {
+    margin-top: map_get($spacings, 4);
+    color: map_get($md-grey, 500);
+    padding: map_get($spacings, 4);
+    border-radius: 0 map_get($radius, 2) map_get($radius, 2) 0;
+    border-right: 1px solid map_get($md-primary, 100);
+    border-top: 1px solid map_get($md-primary, 100);
+    border-bottom: 1px solid map_get($md-primary, 100);
+
+
+    a {
+      margin: map_get($spacings, 1) map_get($spacings, 4) 0 map_get($spacings, 4);
+    }
+
+    p {
+      margin-left: map_get($spacings, 4);
+
+      b {
+        margin-left: map_get($spacings, 2);
+      }
+    }
+
+    .twitter {
+      $color: #1da1f2;
+      background-color: map_get($md-grey, 350);
+      border: 1px solid map_get($md-primary, 100);
+      color: $color;
+
+      &:hover {
+        border: 1px solid $color;
+      }
+    }
+
+    .facebook {
+      $color: #2d4a86;
+      background-color: map_get($md-grey, 350);
+      border: 1px solid map_get($md-primary, 100);
+      color: $color;
+
+      &:hover {
+        border: 1px solid $color;
+      }
+    }
+
+    .linkedin {
+      $color: #0077b5;
+      background-color: map_get($md-grey, 350);
+      border: 1px solid map_get($md-primary, 100);
+      color: $color;
+
+      &:hover {
+        border: 1px solid $color;
+      }
+    }
+
+  }
+
+  @media screen and (min-width: 599px) {
+    .fa {
+      margin: 0 map_get($spacings, 1);
+      padding: 0;
+    }
+  }
+
+  @media screen and (max-width: 959px) {
+    .container {
+      margin: 0;
+      padding: 0;
+      border: none;
+
+      a {
+        margin: 0 map_get($spacings, 1);
+      }
+    }
+  }
+
+}

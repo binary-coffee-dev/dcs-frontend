@@ -1,0 +1,26 @@
+<div class="container code-none" fxLayout="column" fxLayout.xs="row" fxLayout.sm="row">
+  <div [fxHide.xs]="true" [fxHide.sm]="true">
+    <span class="code-1">class</span>
+    <span> Compartir{{" {"}}</span>
+  </div>
+
+  <a mat-button [href]="urlFacebook" class="facebook" target="blank">
+    <span [fxHide.xs]="true" [fxHide.sm]="true">Facebook(</span>
+    <span class="fa fa-facebook"></span>
+    <span [fxHide.xs]="true" [fxHide.sm]="true">)</span>
+  </a>
+
+  <a mat-button [href]="urlTwitter" class="twitter" target="blank">
+    <span [fxHide.xs]="true" [fxHide.sm]="true">Twitter(</span>
+    <span class="fa fa-twitter"></span>
+    <span [fxHide.xs]="true" [fxHide.sm]="true">)</span>
+  </a>
+
+  <a mat-button [href]="urlLinkedIn" class="linkedin" target="blank">
+    <span [fxHide.xs]="true" [fxHide.sm]="true">LinkedIn(</span>
+    <span class="fa fa-linkedin"></span>
+    <span [fxHide.xs]="true" [fxHide.sm]="true">)</span>
+  </a>
+
+  <div [fxHide.xs]="true" [fxHide.sm]="true">{{"}"}}</div>
+</div>

@@ -1,0 +1,24 @@
+{
+  "npmScope": "dcs-frontend",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "dcs-frontend": {
+      "tags": []
+    },
+    "dcs-admin": {
+      "tags": []
+    },
+    "shared": {
+      "tags": []
+    }
+  }
+}

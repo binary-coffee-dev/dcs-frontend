@@ -1,0 +1,62 @@
+@import 'apps/dcs-frontend/src/theme';
+
+:host {
+  .container {
+    min-height: calc(100vh - 300px);
+
+    .code-comment-1 {
+      color: map_get($md-primary, 400);
+      text-align: justify;
+      padding: map_get($spacings, 4);
+    }
+
+    .container-in {
+      padding: map_get($spacings, 4);
+
+      form {
+        mat-form-field {
+          width: 100%;
+        }
+
+        b {
+          padding: map_get($spacings, 4);
+        }
+
+        button {
+          background-color: map_get($md-grey, 350);
+          border: 1px solid map_get($md-primary, 100);
+
+          &:hover {
+            border: 1px solid map-get($md-primary, 500);
+          }
+        }
+      }
+
+      .message,
+      .error {
+        padding: map_get($spacings, 2);
+        text-align: center;
+      }
+
+      .error {
+        color: map_get($md-error, 500);
+      }
+
+      .message {
+        border-radius: map_get($radius, 2);
+        color: map-get($md-primary, 900);
+      }
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .container {
+      border-top: 1px solid map_get($md-primary, 100);
+
+      .container-in {
+        min-height: 0;
+        border: none;
+      }
+    }
+  }
+}

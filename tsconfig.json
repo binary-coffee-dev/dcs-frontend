@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -11,19 +11,15 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom",
-      "esnext.asynciterable"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom", "esnext.asynciterable"],
     "paths": {
       "~environments/*": ["environments/*"],
-      "~graphql/*": ["app/core/graphql/*"]
+      "~graphql/*": ["app/core/graphql/*"],
+      "@dcs-libs/shared": ["libs/shared/src/index.ts"]
     },
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "rootDir": "."
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

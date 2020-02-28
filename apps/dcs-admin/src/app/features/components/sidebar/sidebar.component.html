@@ -1,0 +1,39 @@
+<div class="logo">
+  <a [href]="getSiteUrl()"
+     class="simple-text">
+    Binary Coffee
+  </a>
+</div>
+<div class="content">
+  <div class="profile-actions"
+       fxShow.xs="true"
+       fxHide="true">
+    <ul>
+      <li>
+        <div fxLayout="row"
+             fxLayoutAlign="start center">
+          <i class="material-icons">person</i>
+          <p><span>Account</span></p>
+        </div>
+        <div fxLayout="column">
+          <a routerLink="/user-profile"
+             href="javascript:void(0)">Profile</a>
+          <a (click)="logout()"
+             href="javascript:void(0)">Log-out</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <ul class="nav">
+    <li *ngFor="let menuItem of menuItems">
+      <a fxLayout="row"
+         [ngClass]="{'active': getLocation() === menuItem.path, 'disable': getLocation() !== menuItem.path}"
+         fxLayoutAlign="start center"
+         (click)="routeChange.emit()"
+         [routerLink]="[menuItem.path]">
+        <i class="material-icons">{{menuItem.icon}}</i>
+        <p>{{menuItem.title}}</p>
+      </a>
+    </li>
+  </ul>
+</div>

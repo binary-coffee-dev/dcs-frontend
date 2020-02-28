@@ -1,0 +1,9 @@
+<a mat-button routerLink="/subscribe" title="Suscríbase" *ngIf="!footer">
+  <mat-icon mat-font-icon="fa-icon" class="fa fa-envelope-open"></mat-icon>
+</a>
+<span *ngFor="let link of links">
+  <a mat-button *ngIf="link.enabled" [href]="link.href" [title]="link.title" target="blanck">
+    <mat-icon mat-font-icon="fa-icon" [class]="link.icon" *ngIf="!footer"></mat-icon>
+    <span *ngIf="footer">> {{link.title}}</span>
+  </a>
+</span>

@@ -1,0 +1,145 @@
+@import "apps/dcs-frontend/src/theme";
+
+:host {
+  .separator {
+    margin-left: map_get($spacings, 4);
+  }
+
+  input,
+  textarea {
+    font-size: 0.875rem;
+    font-weight: bold;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  button {
+    font-size: 0.875rem;
+    font-family: get($font-family);
+    border: 1px solid map_get($md-primary, 300);
+    background-color: map_get($md-grey, 350);
+
+    &[disabled] {
+      border: 1px solid map_get($md-primary, 100);
+      color: map_get($md-primary, 100) !important;
+
+      .code-none,
+      .code-var {
+        color: map_get($md-primary, 100) !important;
+      }
+
+      &:hover {
+        border: 1px solid map_get($md-primary, 100);
+      }
+    }
+
+    &:hover {
+      border: 1px solid map_get($md-primary, 500);
+    }
+  }
+
+  .comments-container {
+    margin-top: map_get($spacings, 10);
+
+
+    .comments-header {
+      margin-bottom: map_get($spacings, 1);
+
+      span {
+        font-weight: 400;
+      }
+    }
+
+    .comments-header-separator {
+      border-top: 2px solid map_get($md-primary, 900);
+      height: map_get($spacings, 2);
+      border-radius: map_get($radius, 2);
+    }
+
+    .comment-new-container {
+      margin-bottom: map_get($spacings, 10);
+
+      .comment-error-message {
+        width: calc(100% - 24px);
+        font-weight: 100;
+        margin-bottom: map_get($spacings, 1);
+        color: map_get($md-error, 500);
+        background-color: map_get($md-error, 100);
+        border-radius: map_get($radius, 2);
+        padding: map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 1) map_get($spacings, 2);
+        position: relative;
+      }
+
+      .comment-item {
+        width: 100%;
+      }
+
+      .comment-credentials {
+        width: 100%;
+
+        .items-credentials-container {
+          width: 100%;
+        }
+
+        .captcha-container {
+          margin-right: map_get($spacings, 4);
+
+          .fa-refresh {
+            position: absolute;
+            opacity: .2;
+            transition: all .2s ease-in-out;
+          }
+
+          .captcha {
+            margin-top: map_get($spacings, 1);
+            margin-bottom: map_get($spacings, 4);
+            cursor: pointer;
+            border: 1px solid map_get($md-primary, 100);
+            background-color: map_get($md-primary, 50);
+            color: map_get($md-secundary, 100);
+            border-radius: map_get($radius, 2);
+
+            &:hover {
+              .fa-refresh {
+                opacity: 1;
+              }
+            }
+          }
+
+          .comment-item-captcha {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .comments-list {
+      .comment-item {
+        margin-bottom: 30px;
+
+        h3 {
+          margin: 0;
+          padding: 0;
+        }
+
+        .comment-user-image {
+          width: map_get($spacings, 8);
+          height: map_get($spacings, 8);
+          border-radius: 100%;
+          margin-right: map_get($spacings, 2);
+        }
+
+        .post-info-container {
+          margin-bottom: map_get($spacings, 1);
+        }
+
+        .comment-body {
+          word-wrap: break-word;
+          text-align: justify;
+        }
+      }
+    }
+  }
+}

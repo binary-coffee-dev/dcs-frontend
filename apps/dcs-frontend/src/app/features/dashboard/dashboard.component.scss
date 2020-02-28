@@ -1,0 +1,17 @@
+@import "apps/dcs-frontend/src/theme";
+
+:host {
+  .container {
+    min-height: calc(100vh - 248px);
+    margin-top: -1px;
+
+    .rows {
+      color: map_get($md-grey, 500);
+      padding: map_get($spacings, 1);
+
+      .row {
+        margin-bottom: map_get($spacings, 1);
+      }
+    }
+  }
+}

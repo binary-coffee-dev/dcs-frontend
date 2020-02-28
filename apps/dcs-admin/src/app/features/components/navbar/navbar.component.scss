@@ -1,0 +1,54 @@
+@import "apps/dcs-frontend/src/theme";
+
+:host {
+  width: 100%;
+
+  .container {
+    .open-sidenav {
+      color: #333;
+      text-decoration: none;
+    }
+    .menu-dropdown {
+      z-index: 1000;
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          position: relative;
+
+          a {
+            text-decoration: none;
+            color: #333;
+          }
+          mat-card {
+            padding: 6px;
+            position: absolute;
+            transform: translateX(calc(-100% + 24px));
+            display: none !important;
+
+            &.visible {
+              display: flex !important;
+            }
+
+            a {
+              text-decoration: none;
+              font-size: .8125rem;
+              color: #333;
+              padding-right: 1.5rem;
+              padding-left: 1.5rem;
+
+              &:hover {
+                box-shadow: 0 4px 20px 0 map_get($md-grey, 500), 0 7px 10px -5px map_get($md-primary, 900);
+                background-color: map_get($md-primary, 900);
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

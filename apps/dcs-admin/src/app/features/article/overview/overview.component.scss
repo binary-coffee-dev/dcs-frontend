@@ -1,0 +1,71 @@
+:host {
+  background-color: transparent;
+
+  mat-card {
+    margin: 40px 15px 15px 15px;
+
+    mat-card-content {
+      margin-top: 15px;
+
+      .body-editor {
+        width: calc(100% - 6px);
+        min-width: calc(100% - 6px);
+        max-width: calc(100% - 6px);
+        min-height: 300px;
+        height: 100% !important;
+      }
+
+      .markdown-container {
+        padding: 0 10px;
+      }
+
+      .enable-attribute {
+        padding: 0 15px;
+      }
+
+      .row {
+        margin-bottom: 20px;
+      }
+
+      .banner-image-container {
+        min-height: 200px;
+        max-height: 200px;
+        position: relative;
+        background: #b1b1b1;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+
+        img {
+          height: 100%;
+          width: auto;
+        }
+
+        .no-banner {
+          align-items: center;
+          display: flex;
+          align-content: center;
+          height: 100%;
+
+          span {
+            width: 100%;
+            text-align: center;
+          }
+        }
+
+        .floating-button-banner {
+          position: absolute;
+          right: 15px;
+          bottom: 5px;
+        }
+      }
+
+      .button-save {
+        &:disabled {
+          cursor: inherit;
+        }
+      }
+    }
+  }
+}

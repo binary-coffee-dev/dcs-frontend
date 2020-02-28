@@ -1,0 +1,73 @@
+<mat-card>
+  <mat-card-header>
+    <h4 class="card-title">Edit article</h4>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="articleForm"
+          (change)="onPostChange()"
+          fxLayout="row wrap"
+          (submit)="submitPost()">
+      <label fxFlex="100">
+        Enable
+        <input class="form-check-input"
+               formControlName="enable"
+               type="checkbox"
+               value="">
+        <span class="form-check-sign">
+            <span class="check"></span>
+        </span>
+      </label>
+      <mat-form-field fxFlex="100">
+        <input matInput
+               formControlName="title"
+               placeholder="Title">
+      </mat-form-field>
+      <mat-form-field fxFlex="50"
+                      fxFlex.xs="100"
+                      fxFlex.sm="100">
+            <textarea matInput
+                      formControlName="description"
+                      placeholder="Article description"></textarea>
+      </mat-form-field>
+      <div class="banner-image-container"
+           fxFlex.sm="100"
+           fxFlex.xs="100"
+           fxFlex="50">
+        <img *ngIf="post?.banner?.url"
+             [src]="normalizeUrl(post?.banner?.url)"
+             alt="">
+        <div *ngIf="!post?.banner?.url"
+             class="no-banner"><span>No banner</span></div>
+        <button mat-raised-button
+                type="button"
+                (click)="openImageSectorModal()"
+                matTooltip="Use existing image"
+                [matTooltipPosition]="'above'"
+                class="btn btn-primary btn-link btn-sm btn-just-icon floating-button-banner">
+          <i class="material-icons">edit</i>
+        </button>
+      </div>
+      <div fxFlex="50"
+           fxFlex.xs="100"
+           fxFlex.sm="100">
+          <textarea class="body-editor"
+                    formControlName="body"></textarea>
+      </div>
+      <div class="markdown-container" fxFlex="50"
+           fxFlex.xs="100"
+           fxFlex.sm="100">
+        <markdown [data]="articleForm?.controls?.body?.value"
+                  katex
+                  lineNumbers></markdown>
+      </div>
+      <div fxFlex="100"
+           fxLayoutAlign="end start">
+        <button mat-raised-button
+                [disabled]="!formDataChange && !imageChange"
+                type="submit"
+                class="btn btn-success pull-right button-save">Save
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

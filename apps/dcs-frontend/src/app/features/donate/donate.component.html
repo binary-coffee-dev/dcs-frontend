@@ -1,0 +1,91 @@
+<div class="container"
+     fxLayout="row"
+     fxLayout.xs="column"
+     fxLayout.sm="column"
+     fxLayout.md="column"
+     fxLayout="row"
+     fxLayoutAlign="center center">
+  <div class="description code-comment-1"
+       fxLayout="column"
+       fxLayoutAlign="start start"
+       fxLayoutGap="gappx"
+       fxFlex='25'
+       fxFlex.xs='100'>
+    <p>
+      /* <br>
+      Apoye a la plataforma BinayCoffee con su grano de arena.
+      Cualquier ayuda será agredecida.<br>
+      */
+    </p>
+  </div>
+
+
+  <div class="container-in code-none"
+       fxLayout="column"
+       fxFlex="30">
+
+    <span class="code-comment-1">
+      // Para realizar una donación puede utilizar diferentes métodos de
+      pago.
+    </span>
+
+    <div>
+      <span class="code-1">class</span>
+      <span> Donar{{"{"}}</span>
+    </div>
+    <form action="https://www.paypal.com/cgi-bin/webscr"
+          method="post"
+          #paypal
+          target="_top">
+      <input type="hidden"
+             name="cmd"
+             value="_s-xclick"/>
+      <input type="hidden"
+             name="hosted_button_id"
+             value="UV58WWP2GW8DN"/>
+      <input type="image"
+             src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif"
+             border="0"
+             name="submit"
+             title="PayPal - The safer, easier way to pay online!"
+             alt="Donate with PayPal button"/>
+      <img alt=""
+           border="0"
+           src="https://www.paypal.com/en_DE/i/scr/pixel.gif"
+           width="1"
+           height="1"/>
+    </form>
+    <a mat-button
+       (click)="paypal.submit()"
+       class="paypal">
+      PayPal( <span class="fa fa-cc-paypal"></span> )
+    </a>
+
+    <a mat-button
+       class="visa"
+       *ngIf="false">
+      Visa( <span class="fa fa-cc-visa"></span> )
+    </a>
+
+    <a mat-button
+       class="mastercard"
+       *ngIf="false">
+      MasterCard( <span class="fa fa-cc-mastercard"></span> )
+    </a>
+
+    <div>{{"}"}}</div>
+  </div>
+
+  <div class="description code-comment-1"
+       fxLayout="column"
+       fxLayoutAlign="start start"
+       fxLayoutGap="gappx"
+       fxFlex='25'
+       fxFlex.xs='100'>
+    <p>
+      /* <br>
+      Su donación se empleará, principalmente, para mejorar las condiciones del equipo de desarrollo. <br>
+      */
+    </p>
+  </div>
+</div>

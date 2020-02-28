@@ -1,0 +1,65 @@
+<div class="container" fxLayout="row">
+  <div class="line-number" fxLayout="row" fxLayoutAlign="end start">
+    <span>{{number}}</span>
+  </div>
+  <a [routerLink]="'post/' + post?.name" class="card-container" fxLayout="row">
+    <div class="post-image-container" [fxShow.xs]="false">
+      <img *ngIf="post?.banner && post?.banner?.url" [lazyLoad]="resource.addApiUrl(post?.banner?.url)" alt="">
+    </div>
+    <div class="post-body-container" [fxFlex.gt-sm]="80" fxLayout="column">
+      <div class="post-info-vars">
+
+        <span class="code-1">var </span>
+        <span class="code-var"> Título </span> =
+        <h3 class="code-2">
+          "<span class="post-title">{{post?.title}}</span>"
+        </h3>
+
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx">
+          <div>
+            <span class="code-1"> var </span>
+            <span class="code-var"> Autor </span> =
+            <a class="post-author-link code-2">
+              <b>"{{post?.author?.username || 'público'}}"</b>
+              <mat-icon *ngIf="post?.author?.page" mat-font-icon="fa-icon" class="code-1 fa fa-arrow-right"></mat-icon>
+            </a>
+          </div>
+
+          <div>
+            <span class="code-1"> var </span>
+            <span class="code-var"> Vistas </span> =
+            <b class="code-2">{{post?.views || 0}}</b>
+          </div>
+
+          <div>
+            <span class="code-1"> var </span>
+            <span class="code-var"> Opiniones </span> =
+            <b class="code-2">{{post?.comments || 0}}</b>
+          </div>
+        </div>
+
+      </div>
+
+      <span class="post-info">// {{post?.publishedAt && moment.timeFromDate(post?.publishedAt) || ''}}</span>
+
+      <span [fxHide.xs]="true">
+        <span class="code-1">function</span>
+        Artículo(
+        <span class="code-var"> Título </span>,
+        <span class="code-var"> Autor </span>,
+        <span class="code-var"> Vistas </span>,
+        <span class="code-var"> Opiniones </span>
+        ){{"{"}}
+      </span>
+
+      <div class="post-body-extract code-2" fxLayout="column">
+        <b>/*</b>
+        <b>{{truncatePostDescription(post?.description)}}</b>
+        <b>*/</b>
+      </div>
+
+      <span [fxHide.xs]="true">{{"}"}}</span>
+
+    </div>
+  </a>
+</div>
