@@ -46,11 +46,46 @@
         text-align: left;
         padding-left: map_get($spacings, 0);
 
+        &:hover {
+          span {
+            color: map_get($md-grey, 900);
+
+            &:after {
+              animation: cursor-anim 2s ease infinite;
+            }
+          }
+        }
+
         span {
           color: map_get($md-grey, 800);
+          position: relative;
 
-          &:hover {
-            color: map_get($md-grey, 900);
+          @keyframes cursor-anim {
+            0% {
+              background-color: map_get($md-grey, 900);
+            }
+            25% {
+              background-color: transparent;
+            }
+            50% {
+              background-color: map_get($md-grey, 900);
+            }
+            75% {
+              background-color: transparent;
+            }
+            100% {
+              background-color: map_get($md-grey, 900);
+            }
+          }
+
+          &:after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 120%;
+            background-color: transparent;
+            margin-left: 8px;
+            bottom: 0;
           }
         }
       }
