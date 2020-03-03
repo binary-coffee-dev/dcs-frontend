@@ -18,9 +18,7 @@ export class ScrollService {
 
   smoothScroll() {
     if (isPlatformBrowser(this.platformId)) {
-      setTimeout(() => {
-        this.window.scrollTo(0, 0);
-      }, 200);
+      this.window.scrollTo(0, 0);
     }
   }
 }
