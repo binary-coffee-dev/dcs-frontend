@@ -1,8 +1,8 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {tap} from 'rxjs/operators';
+import {take, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
-import {PostService} from '../services/post.service';
+import {PostService} from '../services';
 import {
   CreateNotificationAction,
   FetchPostsAction,
@@ -81,7 +81,10 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
 
   @Action(PostAction)
   fetchPostAction(ctx: StateContext<PostStateModel>, action: PostAction) {
-    return this.postService.fetchPost(action.postId).pipe(tap(post => ctx.patchState({post})));
+    return this.postService.fetchPost(action.postId).pipe(
+      tap(post => ctx.patchState({post})),
+      take(1)
+    );
   }
 
   @Action(PostUpdateAction)

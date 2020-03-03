@@ -3,6 +3,7 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from 
 
 import {Observable} from 'rxjs';
 import {Store} from '@ngxs/store';
+import {map} from 'rxjs/operators';
 
 import {PostAction} from '@dcs-libs/shared';
 
@@ -16,9 +17,7 @@ export class PostGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this.store.dispatch(new PostAction(next.params['id'])).subscribe(() => {
-    });
-    return true;
+    return this.store.dispatch(new PostAction(next.params['id'])).pipe(map(() => true));
   }
 
 }
