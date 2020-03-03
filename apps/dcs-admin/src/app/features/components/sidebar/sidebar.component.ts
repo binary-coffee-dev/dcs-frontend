@@ -4,7 +4,7 @@ import {Location} from '@angular/common';
 
 import {Store} from '@ngxs/store';
 
-import {LogoutAction} from '../../../core/redux/actions';
+import {LogoutAction} from '@dcs-libs/shared';
 import {environment} from '../../../../environments/environment';
 
 declare interface RouteInfo {

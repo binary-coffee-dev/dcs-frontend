@@ -4,7 +4,7 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from 
 import {Observable} from 'rxjs';
 import {Store} from '@ngxs/store';
 
-import {PostAction} from '../redux/actions';
+import {PostAction} from '@dcs-libs/shared';
 
 @Injectable({
   providedIn: 'root'

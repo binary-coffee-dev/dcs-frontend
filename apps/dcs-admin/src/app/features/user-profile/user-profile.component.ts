@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Store} from '@ngxs/store';
 
-import {File, User} from '../../core/redux/models';
-import {AuthState} from '../../core/redux/states';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthState, File, UpdateMeAction, UpdateMyAvatarAction, User} from '@dcs-libs/shared';
 import {environment} from '../../../environments/environment';
-import {UpdateMeAction, UpdateMyAvatarAction} from '../../core/redux/actions';
 import {UploadFileModalComponent} from '../components/upload-file.modal';
 
 @Component({
@@ -36,7 +34,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(AuthState.me).subscribe(me => {
+    this.store.select(AuthState.me).subscribe((me: User) => {
       if (me) {
         this.me = me;
         this.profileForm.controls.email.setValue(me.email);

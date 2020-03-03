@@ -4,9 +4,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Store} from '@ngxs/store';
 
-import {AuthErrorAction, LoginAction} from '../../core/redux/actions';
-import {AuthState} from '../../core/redux/states';
-import {AuthError} from '../../core/redux/models';
+import {AuthError, AuthErrorAction, AuthState, LoginAction} from '@dcs-libs/shared';
+import {Provider, PROVIDERS} from './providers';
 
 @Component({
   selector: 'app-auth',
@@ -15,6 +14,8 @@ import {AuthError} from '../../core/redux/models';
 })
 export class AuthComponent implements OnInit {
   authError: AuthError = null;
+
+  providers = PROVIDERS;
 
   loginForm = new FormGroup({
     identifier: new FormControl('', Validators.required),
@@ -38,6 +39,10 @@ export class AuthComponent implements OnInit {
     } else {
       this.store.dispatch(new AuthErrorAction('Missing data in login'));
     }
+  }
+
+  loginWithProvider(provider: Provider) {
+    console.log(provider);
   }
 
   redirectToDashboard() {

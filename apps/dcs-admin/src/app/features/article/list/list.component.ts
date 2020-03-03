@@ -1,16 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 
 import {Store} from '@ngxs/store';
 
-import {Post} from '../../../core/redux/models';
-import {PostState} from '../../../core/redux/states';
 import {
+  ENVIRONMENT,
+  Environment,
   FetchPostsAction,
   NextPageAction,
+  Post,
+  PostState,
   PreviousPageAction,
   SelectPageAction
-} from '../../../core/redux/actions';
-import {environment} from '../../../../environments/environment';
+} from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-list',
@@ -24,7 +25,10 @@ export class ListComponent implements OnInit {
   currentPage = 0;
   numberOfPages = 0;
 
-  constructor(private store: Store) {
+  constructor(
+    private store: Store,
+    @Inject(ENVIRONMENT) private environment: Environment
+  ) {
   }
 
   ngOnInit() {
@@ -53,6 +57,6 @@ export class ListComponent implements OnInit {
   }
 
   openArticle(post: Post) {
-    window.open(`${environment.siteUrl}/post/${post.name}`);
+    window.open(`${this.environment.siteUrl}/post/${post.name}`);
   }
 }

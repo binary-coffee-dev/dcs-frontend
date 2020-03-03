@@ -2,7 +2,7 @@ import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
-import {PostService} from '../services';
+import {PostService} from '../services/post.service';
 import {
   CreateNotificationAction,
   FetchPostsAction,

@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 
 import {Store} from '@ngxs/store';
 
-import {Notification} from '../../../core/redux/models';
-import {NotificationState} from '../../../core/redux/states';
-import {CloseNotificationAction} from '../../../core/redux/actions';
+import {CloseNotificationAction, Notification, NotificationState} from '@dcs-libs/shared';
+
 
 @Component({
   selector: 'app-notifications',
@@ -22,7 +21,7 @@ export class NotificationsComponent implements OnInit {
 
   ngOnInit() {
     this.store.select(NotificationState.notifications)
-      .subscribe(notifications => {
+      .subscribe((notifications: Notification[]) => {
         notifications
           .filter(not => !this.notificationsMap.has(not.id))
           .forEach(not => this.startNotification(not.id));
