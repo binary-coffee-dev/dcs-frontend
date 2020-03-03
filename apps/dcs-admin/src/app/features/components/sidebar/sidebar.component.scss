@@ -1,4 +1,4 @@
-@import "apps/dcs-frontend/src/theme";
+@import "libs/shared/src/theme";
 
 :host {
   .logo {
@@ -23,7 +23,7 @@
       right: 15px;
       height: 1px;
       width: calc(100% - 30px);
-      background-color: rgba(180,180,180,.3);
+      background-color: rgba(180, 180, 180, .3);
     }
   }
 
@@ -31,11 +31,13 @@
     .profile-actions {
       ul {
         list-style: none;
+
         li {
           div {
             i {
               margin-right: 15px;
             }
+
             a {
               text-decoration: none;
               color: #3c4858;
@@ -43,13 +45,14 @@
               margin: 0 15px;
 
               &:hover {
-                background-color: rgba(200,200,200,.2);
+                background-color: rgba(200, 200, 200, .2);
               }
             }
           }
         }
       }
     }
+
     ul.nav {
       padding-left: 0;
       margin-bottom: 0;
@@ -80,7 +83,7 @@
 
         &:hover {
           a.disable {
-            background-color: rgba(200,200,200,.2);
+            background-color: rgba(200, 200, 200, .2);
           }
         }
       }
