@@ -1,7 +1,10 @@
 @import "theme";
 
+html,
 body {
+  padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 .mat-form-field-outline>* {
