@@ -1,43 +1,13 @@
-//@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import "libs/shared/src/theme";
-
-body {
-  margin: 0;
-}
-
 body,
 html {
-  height: 100%;
-  background-color: #eee;
+  margin: 0;
+  padding: 0;
 }
 
 * {
   font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
 }
 
-table {
-  width: 100%;
-
-  thead {
-    text-align: left;
-  }
-
-  tbody {
-    tr {
-      td {
-        border-top: 1px solid rgba(0, 0, 0, .06);
-
-        button {
-          height: 30px !important;
-          min-width: 30px !important;
-          width: 30px !important;
-          padding: 0 !important;
-          box-shadow: none !important;
-        }
-      }
-    }
-  }
-}
 
 mat-dialog-container {
   box-shadow: none !important;

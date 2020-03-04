@@ -7,13 +7,15 @@
     width: 100%;
 
     .page-item {
-      margin-left: 0;
+      border-top: 1px solid map_get($md-primary, 100);
+      border-bottom: 1px solid map_get($md-primary, 100);
       padding: .5rem .75rem;
+      background-color: map_get($md-grey, 350);
       cursor: pointer;
 
       &.active {
         cursor: default;
-        background-color: map_get($md-primary, 900);
+        background-color: map_get($md-primary, 100);
       }
 
       &.disabled {
@@ -22,27 +24,52 @@
       }
 
       &:hover {
-        background-color: map_get($md-grey, 400);
+        border-top: 1px solid map_get($md-primary, 500);
+        border-bottom: 1px solid map_get($md-primary, 500);
 
         &.active {
-          background-color: map_get($md-primary, 900);
+          background-color: map_get($md-primary, 8);
+          border-top: 1px solid map_get($md-primary, 100);
+          border-bottom: 1px solid map_get($md-primary, 100);
         }
 
         &.disabled {
-          background-color: transparent;
           color: map_get($md-grey, 600);
+          border-top: 1px solid map_get($md-primary, 100);
+          border-bottom: 1px solid map_get($md-primary, 100);
         }
       }
     }
 
-    .page-item:first-child {
-      border-top-left-radius: .25rem;
-      border-bottom-left-radius: .25rem;
-    }
+    .page-item {
 
-    .page-item:last-child {
-      border-top-right-radius: .25rem;
-      border-bottom-right-radius: .25rem;
+      &:first-child {
+        border-top-left-radius: map_get($radius, 2);
+        border-bottom-left-radius: map_get($radius, 2);
+        border-left: 1px solid map_get($md-primary, 100);
+
+        &:hover {
+          border-left: 1px solid map_get($md-primary, 500);
+
+          &.disabled {
+            border-left: 1px solid map_get($md-primary, 100);
+          }
+        }
+      }
+
+      &:last-child {
+        border-top-right-radius: map_get($radius, 2);
+        border-bottom-right-radius: map_get($radius, 2);
+        border-right: 1px solid map_get($md-primary, 100);
+
+        &:hover {
+          border-right: 1px solid map_get($md-primary, 500);
+
+          &.disabled {
+            border-right: 1px solid map_get($md-primary, 100);
+          }
+        }
+      }
     }
   }
 }

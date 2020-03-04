@@ -1,83 +1,81 @@
-<mat-card>
-  <mat-card-header fxLayout="row"
-                   fxLayoutAlign="center center">
-    <h4 class="card-title">Articles</h4>
-    <div fxFlex="100"></div>
-    <div class="item-actions">
-      <div class="item-action">
-        <button mat-button
-                class="nav-link"
-                routerLink="/articles/create">
-          <i class="material-icons">add</i>
-          new article
-          <div class="ripple-container"></div>
-        </button>
-      </div>
+<div class="container"
+     fxLayout="column">
+
+  <div fxLayout="row"
+       fxFlex="100"
+       fxLayoutAlign="center center"
+       class="header">
+
+    <div class="item-action-container">
+      <button mat-button
+              routerLink="/articles/create">
+        <span class="code-1"> new </span>
+        <span class="code-none"> Articulo() </span>
+      </button>
+
     </div>
-  </mat-card-header>
-  <mat-card-content>
-    <table>
-      <thead class=" text-info">
-      <th>Title</th>
-      <th>Published</th>
-      <th>Enable</th>
-      <th>Name</th>
-      <th>Views</th>
-      <th class="td-actions text-right">Actions</th>
-      </thead>
-      <tbody>
-      <tr *ngFor="let post of posts">
-        <td>{{post.title}}</td>
-        <td>
-          <div class="col-md-6 form-check">
-            <label class="form-check-label">
-              <input class="form-check-input"
-                     type="checkbox"
-                     [disabled]="true"
-                     [ngModel]="!!post.publishedAt">
-              <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-            </label>
-          </div>
-        </td>
-        <td>
-          <div class="col-md-6 form-check">
-            <label class="form-check-label">
-              <input class="form-check-input"
-                     type="checkbox"
-                     [disabled]="true"
-                     [(ngModel)]="post.enable">
-              <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-            </label>
-          </div>
-        </td>
-        <td>{{post.name}}</td>
-        <td>{{post.views}}</td>
-        <td class="td-actions text-right">
-          <button mat-raised-button
-                  matTooltip="Edit"
-                  [routerLink]="'/articles/update/' + post.id"
-                  [matTooltipPosition]="'above'">
-            <i class="material-icons">edit</i>
-          </button>
-          <button mat-raised-button
-                  *ngIf="true"
-                  matTooltip="Open article"
-                  [matTooltipPosition]="'above'"
-                  (click)="openArticle(post)">
-            <i class="material-icons">open_in_new</i>
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+
+    <div fxFlex="100"></div>
+
     <app-pagination (nextPageEvent)="nextPageEvent()"
                     (previousPageEvent)="previousPageEvent()"
                     (pageEvent)="selectPageEvent($event)"
                     [numberOfPages]="numberOfPages"
                     [currentPage]="currentPage"></app-pagination>
-  </mat-card-content>
-</mat-card>
+  </div>
+
+  <div fxLayout="row wrap"
+       fxFlex="100">
+
+    <div *ngFor="let post of posts"
+         class="article-container"
+         fxLayout="column"
+         fxFlex="33"
+         fxFlex.xs="100"
+         fxFlex.sm="100"
+         fxFlex.md="50">
+
+      <div class="code-none"
+           class="article-title"
+           fxLayout="column">
+        <div>
+          <span class="code-1"> var </span>
+          <span class="code-var"> Título </span> =
+        </div>
+        <span class="code-2"> "{{post.title}}" </span>
+      </div>
+
+      <div>
+        <span class="code-1"> var </span>
+        <span class="code-var"> Activo </span> =
+        <span class="code-1"> {{post.enable}} </span>
+      </div>
+
+      <div>
+        <span class="code-1"> var </span>
+        <span class="code-var"> Publicado </span> =
+        <span class="code-1"> {{!!post.publishedAt}} </span>
+      </div>
+
+      <div>
+        <button mat-button
+                class="article-option"
+                matTooltip="Editar"
+                [routerLink]="'/articles/update/' + post.id"
+                [matTooltipPosition]="'above'">
+          <i class="material-icons">edit</i>
+        </button>
+
+        <button mat-button
+                class="article-option"
+                matTooltip="Open article"
+                [matTooltipPosition]="'above'"
+                (click)="openArticle(post)">
+          <i class="material-icons">open_in_new</i>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

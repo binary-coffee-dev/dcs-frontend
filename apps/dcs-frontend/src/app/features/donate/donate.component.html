@@ -39,26 +39,31 @@
           target="_top">
       <input type="hidden"
              name="cmd"
-             value="_s-xclick"/>
+             value="_s-xclick" />
       <input type="hidden"
              name="hosted_button_id"
-             value="UV58WWP2GW8DN"/>
+             value="UV58WWP2GW8DN" />
       <input type="image"
              src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif"
              border="0"
              name="submit"
              title="PayPal - The safer, easier way to pay online!"
-             alt="Donate with PayPal button"/>
+             alt="Donate with PayPal button" />
       <img alt=""
            border="0"
            src="https://www.paypal.com/en_DE/i/scr/pixel.gif"
            width="1"
-           height="1"/>
+           height="1" />
     </form>
     <a mat-button
        (click)="paypal.submit()"
        class="paypal">
-      PayPal( <span class="fa fa-cc-paypal"></span> )
+      PayPal( <span class="fa fa-paypal"></span> )
+    </a>
+
+    <a mat-button
+       class="bitcoin">
+      Bitcoin( <span class="fa fa-bitcoin"></span> )
     </a>
 
     <div style="font-size:16px;margin:0 auto;width:300px"

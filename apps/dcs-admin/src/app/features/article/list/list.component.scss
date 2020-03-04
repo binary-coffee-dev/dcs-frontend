@@ -1,9 +1,45 @@
-:host {
-  mat-card {
-    margin: 40px 15px 15px 15px;
+@import 'libs/shared/src/theme';
 
-    mat-card-content {
-      margin-top: 15px;
+:host {
+  .container {
+    padding: map_get($spacings, 4);
+
+    .item-action-container {
+      button {
+        border: 1px solid map_get($md-primary, 100);
+        background-color: map_get($md-grey, 350);
+
+        &:hover {
+          border: 1px solid map-get($md-primary, 500);
+        }
+      }
+    }
+
+    .article-container {
+      padding: map_get($spacings, 4) 0 0 0;
+
+      .article-title {
+        margin-bottom: map_get($spacings, 1);
+      }
+
+      .article-option {
+        border: 1px solid map_get($md-primary, 100);
+        background-color: map_get($md-grey, 350);
+
+        &:hover {
+          border: 1px solid map_get($md-primary, 500);
+        }
+
+        &:first-child {
+          border-right: 0 !important;
+          border-radius: map_get($radius, 2) 0 0 map_get($radius, 2) !important;
+        }
+
+        &:last-child {
+          border-left: 0 !important;
+          border-radius: 0 map_get($radius, 2) map_get($radius, 2) 0 !important;
+        }
+      }
     }
   }
 }
