@@ -1,11 +1,15 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import {TestBed, inject} from '@angular/core/testing';
 
-import { ProviderGuard } from './provider.guard';
+import {ProviderGuard} from './provider.guard';
+import {Store} from '@ngxs/store';
+
+class StoreStub {
+}
 
 describe('ProviderGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ProviderGuard]
+      providers: [ProviderGuard, {provide: Store, useClass: StoreStub}]
     });
   });
 

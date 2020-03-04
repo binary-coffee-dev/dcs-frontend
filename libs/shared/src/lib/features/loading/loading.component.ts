@@ -3,7 +3,6 @@ import {Component, OnInit} from '@angular/core';
 import {Actions, ofActionCompleted, ofActionDispatched} from '@ngxs/store';
 
 import {FetchPostsAction, LoginWithProviderAction} from '../../core/redux/actions';
-import {FetchCommentsAction} from '../../../../../../apps/dcs-frontend/src/app/core/redux/actions';
 
 @Component({
   selector: 'app-loading',
@@ -17,7 +16,6 @@ export class LoadingComponent implements OnInit {
   actionToLoading = [
     FetchPostsAction,
     FetchPostsAction,
-    FetchCommentsAction,
     LoginWithProviderAction
   ];
 
