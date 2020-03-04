@@ -1,47 +1,15 @@
 @import "libs/shared/src/theme";
 
 :host {
-  width: 100%;
 
   .pagination {
-    width: 100%;
 
     .page-item {
       border-top: 1px solid map_get($md-primary, 100);
       border-bottom: 1px solid map_get($md-primary, 100);
-      padding: .5rem .75rem;
       background-color: map_get($md-grey, 350);
+      border-radius: map_get($radius, 0);
       cursor: pointer;
-
-      &.active {
-        cursor: default;
-        background-color: map_get($md-primary, 100);
-      }
-
-      &.disabled {
-        cursor: default;
-        color: map_get($md-grey, 600);
-      }
-
-      &:hover {
-        border-top: 1px solid map_get($md-primary, 500);
-        border-bottom: 1px solid map_get($md-primary, 500);
-
-        &.active {
-          background-color: map_get($md-primary, 8);
-          border-top: 1px solid map_get($md-primary, 100);
-          border-bottom: 1px solid map_get($md-primary, 100);
-        }
-
-        &.disabled {
-          color: map_get($md-grey, 600);
-          border-top: 1px solid map_get($md-primary, 100);
-          border-bottom: 1px solid map_get($md-primary, 100);
-        }
-      }
-    }
-
-    .page-item {
 
       &:first-child {
         border-top-left-radius: map_get($radius, 2);
@@ -68,6 +36,33 @@
           &.disabled {
             border-right: 1px solid map_get($md-primary, 100);
           }
+        }
+      }
+
+      &.active {
+        cursor: default;
+        background-color: map_get($md-primary, 100);
+      }
+
+      &.disabled {
+        cursor: default;
+        color: map_get($md-grey, 600);
+      }
+
+      &:hover {
+        border-top: 1px solid map_get($md-primary, 500);
+        border-bottom: 1px solid map_get($md-primary, 500);
+
+        &.active {
+          background-color: map_get($md-primary, 8);
+          border-top: 1px solid map_get($md-primary, 100);
+          border-bottom: 1px solid map_get($md-primary, 100);
+        }
+
+        &.disabled {
+          color: map_get($md-grey, 600);
+          border-top: 1px solid map_get($md-primary, 100);
+          border-bottom: 1px solid map_get($md-primary, 100);
         }
       }
     }

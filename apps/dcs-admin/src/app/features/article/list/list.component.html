@@ -1,12 +1,13 @@
 <div class="container"
      fxLayout="column">
 
+
   <div fxLayout="row"
-       fxFlex="100"
        fxLayoutAlign="center center"
        class="header">
 
-    <div class="item-action-container">
+    <div class="item-action-container"
+         fxFlex="100">
       <button mat-button
               routerLink="/articles/create">
         <span class="code-1"> new </span>
@@ -14,8 +15,6 @@
       </button>
 
     </div>
-
-    <div fxFlex="100"></div>
 
     <app-pagination (nextPageEvent)="nextPageEvent()"
                     (previousPageEvent)="previousPageEvent()"
@@ -28,51 +27,72 @@
        fxFlex="100">
 
     <div *ngFor="let post of posts"
-         class="article-container"
-         fxLayout="column"
-         fxFlex="33"
+         class="post-container"
+         fxFlex="50"
          fxFlex.xs="100"
-         fxFlex.sm="100"
-         fxFlex.md="50">
+         fxFlex.sm="100">
 
-      <div class="code-none"
-           class="article-title"
+
+      <div class="post-box"
            fxLayout="column">
-        <div>
-          <span class="code-1"> var </span>
-          <span class="code-var"> Título </span> =
+
+        <div class="code-none"
+             class="post-title"
+             fxLayout="column">
+          <div>
+            <span class="code-1"> var </span>
+            Título =
+          </div>
+          <b class="code-2"> "{{post.title}}" </b>
         </div>
-        <span class="code-2"> "{{post.title}}" </span>
-      </div>
 
-      <div>
-        <span class="code-1"> var </span>
-        <span class="code-var"> Activo </span> =
-        <span class="code-1"> {{post.enable}} </span>
-      </div>
+        <div class="post-image-container">
+          <img src="https://api-dev.binary-coffee.dev/uploads/67bf43fd4ab3497b89969befc8582e78.jpg">
+        </div>
 
-      <div>
-        <span class="code-1"> var </span>
-        <span class="code-var"> Publicado </span> =
-        <span class="code-1"> {{!!post.publishedAt}} </span>
-      </div>
+        <div fxLayout="column">
 
-      <div>
-        <button mat-button
-                class="article-option"
-                matTooltip="Editar"
-                [routerLink]="'/articles/update/' + post.id"
-                [matTooltipPosition]="'above'">
-          <i class="material-icons">edit</i>
-        </button>
+          <div fxLayout="column">
+            <div>
+              <span class="code-1"> var </span>
+              Activo =
+              <b class="code-2"> {{post.enable}} </b>
+            </div>
 
-        <button mat-button
-                class="article-option"
-                matTooltip="Open article"
-                [matTooltipPosition]="'above'"
-                (click)="openArticle(post)">
-          <i class="material-icons">open_in_new</i>
-        </button>
+            <div>
+              <span class="code-1"> var </span>
+              Publicado =
+              <b class="code-2"> {{!!post.publishedAt}} </b>
+            </div>
+          </div>
+
+          <div fxLayout="row"
+               fxLayoutAlign="start">
+            <button mat-button
+                    class="post-option"
+                    (click)="openArticle(post)">
+              <i fxHide
+                 fxShow.xs
+                 class="material-icons">open_in_new</i>
+              <span fxHide.xs>
+                <span class="code-1"> public </span>
+                Ver()
+              </span>
+            </button>
+
+            <button mat-button
+                    class="post-option"
+                    [routerLink]="'/articles/update/' + post.id">
+              <i fxHide
+                 fxShow.xs
+                 class="material-icons">edit</i>
+              <span fxHide.xs>
+                <span class="code-1"> private </span>
+                Editar()
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>

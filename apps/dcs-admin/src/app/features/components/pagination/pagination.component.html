@@ -1,20 +1,23 @@
 <div class="pagination"
      fxLayout="row"
      fxLayoutAlign="center center">
-  <div class="page-item"
-       (click)="previousPageEvent.next()"
-       [ngClass]="{'disabled': currentPage === 0}">
-      <span class="page-link">Previous</span>
-  </div>
-  <div class="page-item"
-       [ngClass]="{'active': currentPage === page}"
-       (click)="pageEvent.next(page)"
-       *ngFor="let page of pages">
-      <span class="page-link">{{page + 1}}</span>
-  </div>
-  <div class="page-item"
-       (click)="nextPageEvent.next()"
-       [ngClass]="{'disabled': currentPage === numberOfPages - 1}">
-      <span class="page-link">Next</span>
-  </div>
+  <button class="page-item"
+          mat-button
+          (click)="previousPageEvent.next()"
+          [ngClass]="{'disabled': currentPage === 0}">
+    <span class="page-link">Previous</span>
+  </button>
+  <button class="page-item"
+          mat-button
+          [ngClass]="{'active': currentPage === page}"
+          (click)="pageEvent.next(page)"
+          *ngFor="let page of pages">
+    <span class="page-link">{{page + 1}}</span>
+  </button>
+  <button class="page-item"
+          mat-button
+          (click)="nextPageEvent.next()"
+          [ngClass]="{'disabled': currentPage === numberOfPages - 1}">
+    <span class="page-link">Next</span>
+  </button>
 </div>
