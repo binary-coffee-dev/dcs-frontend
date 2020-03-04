@@ -19,34 +19,6 @@ body {
   font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
 }
 
-.code-1 {
-  color: map_get($md-secundary, 900) !important;
-}
-
-.code-2 {
-  color: map_get($md-primary, 500) !important;
-}
-
-.code-string {
-  color: map_get($md-primary, 900) !important;
-}
-
-.code-comment-1 {
-  color: map_get($md-grey, 600) !important;
-}
-
-.code-comment-2 {
-  color: map_get($md-primary, 700) !important;
-}
-
-.code-none {
-  color: map_get($md-grey, 800) !important;
-}
-
-.code-var {
-  color: map_get($md-secundary, 500) !important
-}
-
 .post-info {
   color: map_get($md-grey, 600);
   font-size: 0.8125rem;

@@ -40,6 +40,18 @@
         }
       }
 
+      .bitcoin {
+        $color: #ffa600;
+        background-color: map_get($md-grey, 350);
+        border: 1px solid map_get($md-primary, 100);
+        color: $color;
+
+
+        &:hover {
+          border: 1px solid $color;
+        }
+      }
+
       .visa {
         $color: #f3c018;
         background-color: map_get($md-grey, 350);
