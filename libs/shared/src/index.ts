@@ -7,3 +7,5 @@ export * from './lib/core/redux/redux.module';
 export * from './lib/core/redux/states';
 export * from './lib/core/redux/models';
 export * from './lib/core/redux/actions';
+
+export * from './lib/features/loading/loading.component';
