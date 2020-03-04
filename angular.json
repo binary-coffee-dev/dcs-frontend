@@ -335,7 +335,7 @@
       "projectType": "library",
       "root": "libs/shared",
       "sourceRoot": "libs/shared/src",
-      "prefix": "dcs-frontend",
+      "prefix": "app",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
