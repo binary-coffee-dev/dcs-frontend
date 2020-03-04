@@ -12,4 +12,14 @@
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
   }
+
+  .provider-container {
+    mat-icon {
+      font-size: 2rem;
+      height: 2rem;
+      text-align: center;
+      width: 2rem;
+      cursor: pointer;
+    }
+  }
 }

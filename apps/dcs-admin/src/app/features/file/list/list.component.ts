@@ -3,14 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
 
-import {File} from '../../../core/redux/models';
-import {
-  ChangeFilesPageAction,
-  FetchFilesAction,
-  NextFilesPageAction,
-  PreviousFilesPageAction
-} from '../../../core/redux/actions';
-import {FileState} from '../../../core/redux/states';
+import {ChangeFilesPageAction, FetchFilesAction, File, FileState, NextFilesPageAction, PreviousFilesPageAction} from '@dcs-libs/shared';
 import {normalizeImageUrl} from '../../../core/utils/url-utils';
 import {UploadFileModalComponent} from '../../components/upload-file.modal';
 
@@ -30,7 +23,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(FileState.files).subscribe(files => this.files = files);
+    this.store.select(FileState.files).subscribe((files: File[]) => this.files = files);
     this.refreshPage();
     this.store.select(FileState.pageIndicators).subscribe(indicators => {
       if (indicators) {

@@ -1,20 +1,22 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {Apollo} from 'apollo-angular';
 import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 import {FILES_QUERY} from '../../graphql/queries';
-import {environment} from '../../../../environments/environment';
-import {Observable} from 'rxjs';
 import {File as FileModel} from '../models';
+import {ENVIRONMENT, Environment} from '../../models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class FileService {
 
-  constructor(private apollo: Apollo, private http: HttpClient) {
+  constructor(
+    private apollo: Apollo,
+    private http: HttpClient,
+    @Inject(ENVIRONMENT) private environment: Environment
+  ) {
   }
 
   fetchFiles(limit, start = 0) {
@@ -26,6 +28,6 @@ export class FileService {
   uploadFile(file: File, name: string = null): Observable<FileModel> {
     const formData = new FormData();
     formData.append('files', file, name);
-    return this.http.post<FileModel>(`${environment.apiUrl}upload`, formData).pipe(map(response => response[0]));
+    return this.http.post<FileModel>(`${this.environment.apiUrl}upload`, formData).pipe(map(response => response[0]));
   }
 }

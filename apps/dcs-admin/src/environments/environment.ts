@@ -1,6 +1,9 @@
+import {Environment} from '@dcs-libs/shared';
+
 export const environment = {
   apiUrl: 'http://localhost:1337/',
   graphqlUrl: 'http://localhost:1337/graphql',
-  siteUrl: 'https://localhost:4200',
-  production: false
-};
+  siteUrl: 'https://localhost:4201',
+  production: false,
+  githubClientId: 'f38efc18b8d63221e637'
+} as Environment;

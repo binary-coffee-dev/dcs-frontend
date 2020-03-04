@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {Store} from '@ngxs/store';
 
 import {ROUTES} from '../sidebar/sidebar.component';
-import {LogoutAction} from '../../../core/redux/actions';
+import {LogoutAction} from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-navbar',

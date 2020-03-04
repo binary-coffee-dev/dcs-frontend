@@ -1,7 +1,16 @@
+import {Provider} from '../models';
+
 export class LoginAction {
   static readonly type = '[Auth] Login action';
 
   constructor(public identifier: string, public password: string) {
+  }
+}
+
+export class LoginWithProviderAction {
+  static readonly type = '[Auth] Login with provider action';
+
+  constructor(public provider: string, public code: string) {
   }
 }
 

@@ -4,6 +4,7 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {Store} from '@ngxs/store';
 
 import {ListComponent} from './list.component';
+import {ENVIRONMENT} from '@dcs-libs/shared';
 
 class StoreStub {
 }
@@ -15,7 +16,7 @@ describe('ListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ListComponent],
-      providers: [{provide: Store, useClass: StoreStub}],
+      providers: [{provide: Store, useClass: StoreStub}, {provide: ENVIRONMENT, useValue: {}}],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();

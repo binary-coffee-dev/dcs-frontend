@@ -4,9 +4,11 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {Store} from '@ngxs/store';
 
+import {ENVIRONMENT, WINDOW} from '@dcs-libs/shared';
 import {AuthComponent} from './auth.component';
 
-class StoreStub {}
+class StoreStub {
+}
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -16,7 +18,7 @@ describe('AuthComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AuthComponent],
       imports: [RouterTestingModule],
-      providers: [{provide: Store, useClass: StoreStub}],
+      providers: [{provide: Store, useClass: StoreStub}, {provide: WINDOW, useValue: {}}, {provide: ENVIRONMENT, useValue: {}}],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();

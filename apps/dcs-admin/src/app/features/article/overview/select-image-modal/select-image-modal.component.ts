@@ -3,14 +3,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
 
-import {FileState} from '../../../../core/redux/states';
-import {File} from '../../../../core/redux/models';
-import {
-  ChangeFilesPageAction,
-  FetchFilesAction,
-  NextFilesPageAction,
-  PreviousFilesPageAction,
-} from '../../../../core/redux/actions';
+import {ChangeFilesPageAction, FetchFilesAction, File, FileState, NextFilesPageAction, PreviousFilesPageAction} from '@dcs-libs/shared';
 import {normalizeImageUrl} from '../../../../core/utils/url-utils';
 
 @Component({
@@ -29,7 +22,7 @@ export class SelectImageModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(FileState.files).subscribe(files => {
+    this.store.select(FileState.files).subscribe((files: File[]) => {
       if (files) {
         this.files = files;
       }

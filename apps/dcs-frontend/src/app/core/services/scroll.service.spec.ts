@@ -1,14 +1,14 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ScrollService } from './scroll.service';
-import { WINDOW } from './configs';
+import {ScrollService} from './scroll.service';
+import {WINDOW} from '@dcs-libs/shared';
 
 const EXAMPLE_SCROLL_TOP = 23;
 
 const window = {
   document: {
-    documentElement: { scrollTop: EXAMPLE_SCROLL_TOP },
-    body: { scrollTop: EXAMPLE_SCROLL_TOP }
+    documentElement: {scrollTop: EXAMPLE_SCROLL_TOP},
+    body: {scrollTop: EXAMPLE_SCROLL_TOP}
   },
   scrollTo: jest.fn(),
   requestAnimationFrame: jest.fn()
@@ -19,7 +19,7 @@ describe('ScrollService', () => {
 
   beforeEach(() =>
     TestBed.configureTestingModule({
-      providers: [{ provide: WINDOW, useValue: window }]
+      providers: [{provide: WINDOW, useValue: window}]
     })
   );
 

@@ -1,12 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Store} from '@ngxs/store';
 
-import {AuthErrorAction, LoginAction} from '../../core/redux/actions';
-import {AuthState} from '../../core/redux/states';
-import {AuthError} from '../../core/redux/models';
+import {AuthError, AuthErrorAction, AuthState, Environment, ENVIRONMENT, LoginAction, Provider, WINDOW} from '@dcs-libs/shared';
+import {PROVIDERS} from './providers';
 
 @Component({
   selector: 'app-auth',
@@ -16,12 +15,19 @@ import {AuthError} from '../../core/redux/models';
 export class AuthComponent implements OnInit {
   authError: AuthError = null;
 
+  providers = PROVIDERS;
+
   loginForm = new FormGroup({
     identifier: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private store: Store, private router: Router) {
+  constructor(
+    private store: Store,
+    private router: Router,
+    @Inject(WINDOW) private window: Window,
+    @Inject(ENVIRONMENT) private environment: Environment
+  ) {
   }
 
   ngOnInit(): void {
@@ -38,6 +44,24 @@ export class AuthComponent implements OnInit {
     } else {
       this.store.dispatch(new AuthErrorAction('Missing data in login'));
     }
+  }
+
+  loginWithProvider(provider: Provider) {
+    const queryParams = {
+      client_id: this.environment.githubClientId,
+      scope: provider.scope
+    };
+    console.log(this.queryParamsToString(queryParams));
+    this.window.location.href = `${provider.url}?${this.queryParamsToString(queryParams)}`;
+  }
+
+  queryParamsToString(object) {
+    return Object.keys(object).reduce((p, k) => {
+      if (p !== '') {
+        p += '&';
+      }
+      return p + `${k}=${encodeURIComponent(object[k])}`;
+    }, '');
   }
 
   redirectToDashboard() {

@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 
 import {Actions, ofActionCompleted, ofActionDispatched} from '@ngxs/store';
-import {FetchCommentsAction, FetchPostAction, FetchPostsAction} from '../../../core/redux/actions';
+
+import {FetchPostsAction, LoginWithProviderAction} from '../../core/redux/actions';
 
 @Component({
   selector: 'app-loading',
@@ -14,8 +15,8 @@ export class LoadingComponent implements OnInit {
 
   actionToLoading = [
     FetchPostsAction,
-    FetchPostAction,
-    FetchCommentsAction,
+    FetchPostsAction,
+    LoginWithProviderAction
   ];
 
   constructor(private actions: Actions) {

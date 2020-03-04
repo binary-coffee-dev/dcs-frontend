@@ -5,9 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
 
-import {File, Post} from '../../../core/redux/models';
-import {AuthState, PostState} from '../../../core/redux/states';
-import {PostCreateAction, PostUpdateAction} from '../../../core/redux/actions';
+import {AuthState, File, Post, PostCreateAction, PostState, PostUpdateAction} from '@dcs-libs/shared';
 import {SelectImageModalComponent} from './select-image-modal/select-image-modal.component';
 import {normalizeImageUrl} from '../../../core/utils/url-utils';
 
@@ -18,7 +16,7 @@ import {normalizeImageUrl} from '../../../core/utils/url-utils';
 })
 export class OverviewComponent implements OnInit {
 
-  post: Post = {
+  post = {
     body: ''
   } as Post;
 

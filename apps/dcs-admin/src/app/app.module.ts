@@ -5,9 +5,22 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {NgxsModule} from '@ngxs/store';
+import {APOLLO_OPTIONS} from 'apollo-angular';
+import {HttpLink} from 'apollo-angular-link-http';
+import {InMemoryCache} from 'apollo-cache-inmemory';
+
+import {AuthState, ENVIRONMENT, FileState, NotificationState, PostState, ReduxModule, SharedModule} from '@dcs-libs/shared';
 import {AppComponent} from './features/app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {ReduxModule} from './core/redux/redux.module';
+import {environment} from '../environments/environment';
+
+export function createApollo(httpLink: HttpLink) {
+  return {
+    link: httpLink.create({uri: environment.graphqlUrl}),
+    cache: new InMemoryCache(),
+  };
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,9 +32,23 @@ import {ReduxModule} from './core/redux/redux.module';
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
-    ReduxModule
+    ReduxModule,
+    SharedModule,
+    NgxsModule.forRoot([PostState, AuthState, FileState, NotificationState], {
+      developmentMode: !environment.production
+    }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ENVIRONMENT,
+      useValue: environment
+    },
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: createApollo,
+      deps: [HttpLink]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

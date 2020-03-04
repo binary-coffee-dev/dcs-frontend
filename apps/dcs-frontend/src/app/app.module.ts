@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {SharedModule} from '@dcs-libs/shared';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './features/app.component';
 import {ReduxModule} from './core/redux';
@@ -13,10 +14,7 @@ import {SocialLinksComponent} from './features/components/social-links';
 import {InfoModule} from './features/info/info.module';
 import {NewLabelComponent} from './features/components/new-label';
 import {ScrollTopComponent} from './features/components/scroll-top/scroll-top.component';
-import {WINDOW, windowFactory} from './core/services';
-import {LoadingComponent} from './features/components/loading/loading.component';
-import { CliComponent } from './features/components/cli/cli.component';
-import { DonateModule } from './features/donate/donate.module';
+import {CliComponent} from './features/components/cli/cli.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +24,6 @@ import { DonateModule } from './features/donate/donate.module';
     SocialLinksComponent,
     NewLabelComponent,
     ScrollTopComponent,
-    LoadingComponent,
     CliComponent
   ],
   imports: [
@@ -37,10 +34,7 @@ import { DonateModule } from './features/donate/donate.module';
     ReduxModule,
     MaterialModule,
     InfoModule,
-    DonateModule
-  ],
-  providers: [
-    {provide: WINDOW, useFactory: windowFactory}
+    SharedModule
   ],
   bootstrap: [AppComponent]
 })
