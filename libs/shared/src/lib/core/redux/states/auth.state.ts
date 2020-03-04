@@ -1,10 +1,18 @@
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, take, tap} from 'rxjs/operators';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {of} from 'rxjs';
 
 import {AuthStateModel, initAuthStateModel} from './auth-state.model';
 import {AuthService} from '../services/auth.service';
-import {AuthErrorAction, LoginAction, LogoutAction, MeAction, UpdateMeAction, UpdateMyAvatarAction} from '../actions';
+import {
+  AuthErrorAction,
+  LoginAction,
+  LoginWithProviderAction,
+  LogoutAction,
+  MeAction,
+  UpdateMeAction,
+  UpdateMyAvatarAction
+} from '../actions';
 import {AuthError, User} from '../models';
 
 @State<AuthStateModel>({
@@ -41,6 +49,14 @@ export class AuthState {
         });
         return of({});
       })
+    );
+  }
+
+  @Action(LoginWithProviderAction)
+  loginWithProviderAction(ctx: StateContext<AuthStateModel>, action: LoginWithProviderAction) {
+    return this.authService.loginWithProvider(action.provider, action.code).pipe(
+      tap((authData) => ctx.patchState({token: authData.jwt, error: null})),
+      take(1)
     );
   }
 

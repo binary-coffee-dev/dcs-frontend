@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Store} from '@ngxs/store';
 
-import {AuthError, AuthErrorAction, AuthState, LoginAction} from '@dcs-libs/shared';
-import {Provider, PROVIDERS} from './providers';
+import {AuthError, AuthErrorAction, AuthState, Environment, ENVIRONMENT, LoginAction, Provider, WINDOW} from '@dcs-libs/shared';
+import {PROVIDERS} from './providers';
 
 @Component({
   selector: 'app-auth',
@@ -22,7 +22,12 @@ export class AuthComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private store: Store, private router: Router) {
+  constructor(
+    private store: Store,
+    private router: Router,
+    @Inject(WINDOW) private window: Window,
+    @Inject(ENVIRONMENT) private environment: Environment
+  ) {
   }
 
   ngOnInit(): void {
@@ -42,7 +47,21 @@ export class AuthComponent implements OnInit {
   }
 
   loginWithProvider(provider: Provider) {
-    console.log(provider);
+    const queryParams = {
+      client_id: this.environment.githubClientId,
+      scope: provider.scope
+    };
+    console.log(this.queryParamsToString(queryParams));
+    this.window.location.href = `${provider.url}?${this.queryParamsToString(queryParams)}`;
+  }
+
+  queryParamsToString(object) {
+    return Object.keys(object).reduce((p, k) => {
+      if (p !== '') {
+        p += '&';
+      }
+      return p + `${k}=${encodeURIComponent(object[k])}`;
+    }, '');
   }
 
   redirectToDashboard() {
