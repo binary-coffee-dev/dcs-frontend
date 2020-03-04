@@ -6,11 +6,16 @@ import {
   MatFormFieldModule,
   MatCardModule,
   MatButtonModule,
-  MatInputModule, MatDialogModule, MatTooltipModule, MatSelectModule, MatRippleModule, MatSidenavModule
+  MatInputModule,
+  MatDialogModule,
+  MatTooltipModule,
+  MatSelectModule,
+  MatRippleModule,
+  MatSidenavModule,
+  MatCheckboxModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 
 @NgModule({
   imports: [
@@ -28,7 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
     MatSelectModule,
     MatRippleModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCheckboxModule
   ],
   exports: [
     MatToolbarModule,
@@ -44,8 +50,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
     MatSelectModule,
     MatRippleModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCheckboxModule
   ]
 })
-export class MaterialModule {
-}
+export class MaterialModule {}

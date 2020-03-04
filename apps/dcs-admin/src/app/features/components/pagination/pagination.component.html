@@ -5,7 +5,10 @@
           mat-button
           (click)="previousPageEvent.next()"
           [ngClass]="{'disabled': currentPage === 0}">
-    <span class="page-link">Previous</span>
+    <span class="page-link">
+      <span class="fa fa-chevron-left"></span>
+      <span class="fa fa-chevron-left"></span>
+    </span>
   </button>
   <button class="page-item"
           mat-button
@@ -18,6 +21,9 @@
           mat-button
           (click)="nextPageEvent.next()"
           [ngClass]="{'disabled': currentPage === numberOfPages - 1}">
-    <span class="page-link">Next</span>
+    <span class="page-link">
+      <span class="fa fa-chevron-right"></span>
+      <span class="fa fa-chevron-right"></span>
+    </span>
   </button>
 </div>

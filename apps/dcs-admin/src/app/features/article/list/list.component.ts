@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import { Component, Inject, OnInit, Input } from '@angular/core';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
 import {
   ENVIRONMENT,
@@ -10,7 +10,8 @@ import {
   Post,
   PostState,
   PreviousPageAction,
-  SelectPageAction
+  SelectPageAction,
+  MomentService
 } from '@dcs-libs/shared';
 
 @Component({
@@ -19,20 +20,21 @@ import {
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
   posts: Post[];
 
   currentPage = 0;
   numberOfPages = 0;
 
+  tableOrCard = true;
+
   constructor(
     private store: Store,
+    public moment: MomentService,
     @Inject(ENVIRONMENT) private environment: Environment
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
-    this.store.select(PostState.posts).subscribe((posts) => {
+    this.store.select(PostState.posts).subscribe(posts => {
       this.posts = posts || [];
     });
     this.store.dispatch(new FetchPostsAction());
@@ -58,5 +60,10 @@ export class ListComponent implements OnInit {
 
   openArticle(post: Post) {
     window.open(`${this.environment.siteUrl}/post/${post.name}`);
+  }
+
+  toggleTableCard() {
+    this.tableOrCard = !this.tableOrCard;
+    console.log(this.tableOrCard);
   }
 }
