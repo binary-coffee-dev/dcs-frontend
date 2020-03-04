@@ -165,3 +165,31 @@ $box-shadow-up:(0: 0,
   4 : 1px 6px 14px 0 rgba(101, 109, 120, 0.2), // recomended
   5 : 1px 6px 18px 0 rgba(101, 109, 120, 0.2),
   6 : 1px 6px 22px 0 rgba(101, 109, 120, 0.2));
+
+.code-1 {
+  color: map_get($md-secundary, 900) !important;
+}
+
+.code-2 {
+  color: map_get($md-primary, 500) !important;
+}
+
+.code-string {
+  color: map_get($md-primary, 900) !important;
+}
+
+.code-comment-1 {
+  color: map_get($md-grey, 600) !important;
+}
+
+.code-comment-2 {
+  color: map_get($md-primary, 700) !important;
+}
+
+.code-none {
+  color: map_get($md-grey, 800) !important;
+}
+
+.code-var {
+  color: map_get($md-secundary, 500) !important
+}
