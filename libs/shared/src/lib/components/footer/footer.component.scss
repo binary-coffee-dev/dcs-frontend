@@ -17,8 +17,6 @@
       color: map_get($md-grey, A100);
       margin: 0 map_get($spacings, 1);
     }
-
-
   }
 
   footer {
@@ -48,33 +46,26 @@
 
         &:hover {
           span {
-            color: map_get($md-grey, 900);
 
             &:after {
-              animation: cursor-anim 2s ease infinite;
+              animation: cursor-anim .5s infinite alternate;
             }
           }
         }
 
         span {
-          color: map_get($md-grey, 800);
+          background-color: transparent;
           position: relative;
 
           @keyframes cursor-anim {
-            0% {
-              background-color: map_get($md-grey, 900);
+
+            0%,
+            49% {
+              background-color: map_get($md-grey, 800);
             }
-            25% {
-              background-color: transparent;
-            }
+
             50% {
-              background-color: map_get($md-grey, 900);
-            }
-            75% {
               background-color: transparent;
-            }
-            100% {
-              background-color: map_get($md-grey, 900);
             }
           }
 

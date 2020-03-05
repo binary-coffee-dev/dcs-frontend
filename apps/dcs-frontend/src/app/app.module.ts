@@ -1,20 +1,22 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {SharedModule} from '@dcs-libs/shared';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './features/app.component';
-import {ReduxModule} from './core/redux';
-import {MaterialModule} from './core/material';
-import {HeaderComponent} from './features/components/header';
-import {FooterComponent} from './features/components/footer';
-import {SocialLinksComponent} from './features/components/social-links';
-import {InfoModule} from './features/info/info.module';
-import {NewLabelComponent} from './features/components/new-label';
-import {ScrollTopComponent} from './features/components/scroll-top/scroll-top.component';
-import {CliComponent} from './features/components/cli/cli.component';
+import {
+  SharedModule,
+  FooterComponent,
+  SocialLinksComponent
+} from '@dcs-libs/shared';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './features/app.component';
+import { ReduxModule } from './core/redux';
+import { MaterialModule } from './core/material';
+import { HeaderComponent } from './features/components/header';
+import { InfoModule } from './features/info/info.module';
+import { ScrollTopComponent } from './features/components/scroll-top';
+import { NewLabelComponent } from './features/components/new-label';
+import { CliComponent } from './features/components/cli/cli.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import {CliComponent} from './features/components/cli/cli.component';
     CliComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -38,5 +40,4 @@ import {CliComponent} from './features/components/cli/cli.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
