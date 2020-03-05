@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate} from '@angular/router';
+import {ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router} from '@angular/router';
 
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -12,14 +12,14 @@ import {LoginWithProviderAction} from '@dcs-libs/shared';
 })
 export class ProviderGuard implements CanActivate {
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
   }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const provide = next.paramMap.get('provider');
+    const provider = next.paramMap.get('provider');
     const code = next.queryParamMap.get('code');
-    return this.store.dispatch(new LoginWithProviderAction(provide, code)).pipe(map(() => true));
+    return this.store.dispatch(new LoginWithProviderAction(provider, code)).pipe(map(() => true));
   }
 }

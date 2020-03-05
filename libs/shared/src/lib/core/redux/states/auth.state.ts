@@ -55,7 +55,7 @@ export class AuthState {
   @Action(LoginWithProviderAction)
   loginWithProviderAction(ctx: StateContext<AuthStateModel>, action: LoginWithProviderAction) {
     return this.authService.loginWithProvider(action.provider, action.code).pipe(
-      tap((authData) => ctx.patchState({token: authData.jwt, error: null})),
+      tap(jwt => ctx.patchState({token: jwt, error: null})),
       take(1)
     );
   }
