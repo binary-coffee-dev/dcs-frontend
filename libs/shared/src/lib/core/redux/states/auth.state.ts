@@ -1,4 +1,4 @@
-import {catchError, take, tap} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {of} from 'rxjs';
 
@@ -14,6 +14,8 @@ import {
   UpdateMyAvatarAction
 } from '../actions';
 import {AuthError, User} from '../models';
+import {Router} from '@angular/router';
+import {NgZone} from '@angular/core';
 
 @State<AuthStateModel>({
   name: 'auth',
@@ -36,7 +38,7 @@ export class AuthState {
     return state.error;
   }
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router, private zone: NgZone) {
   }
 
   @Action(LoginAction)
@@ -55,8 +57,20 @@ export class AuthState {
   @Action(LoginWithProviderAction)
   loginWithProviderAction(ctx: StateContext<AuthStateModel>, action: LoginWithProviderAction) {
     return this.authService.loginWithProvider(action.provider, action.code).pipe(
-      tap(jwt => ctx.patchState({token: jwt, error: null})),
-      take(1)
+      tap(jwt => {
+        ctx.patchState({token: jwt, error: null});
+        if (jwt) {
+          this.zone.run(() => {
+            this.router.navigate(['dashboard']);
+          });
+        }
+      }),
+      catchError(err => {
+        ctx.patchState({
+          error: {id: new Date().getTime(), title: 'Invalid credentials'} as AuthError
+        });
+        return of({});
+      })
     );
   }
 
