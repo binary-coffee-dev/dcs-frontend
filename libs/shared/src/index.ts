@@ -10,3 +10,5 @@ export * from './lib/core/redux/actions';
 export * from './lib/core/redux/services';
 
 export * from './lib/features/loading/loading.component';
+export * from './lib/components/footer/footer.component';
+export * from './lib/components/social-links/social-links.component';
