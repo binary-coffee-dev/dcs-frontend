@@ -1,13 +1,18 @@
 import {Injectable} from '@angular/core';
 
 import {Apollo} from 'apollo-angular';
-import {Observable, timer} from 'rxjs';
+import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-import {LOGIN_MUTATION, UPDATE_PROFILE_IMAGE_MUTATION, UPDATE_PROFILE_MUTATION} from '../../graphql/mutations';
+import {
+  LOGIN_MUTATION,
+  LOGIN_WITH_PROVIDER_MUTATION,
+  UPDATE_PROFILE_IMAGE_MUTATION,
+  UPDATE_PROFILE_MUTATION
+} from '../../graphql/mutations';
 import {ME_QUERY} from '../../graphql/queries';
 import {LoginResponseModel} from '../models/login-response.model';
-import {Provider, User} from '../models';
+import {User} from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +28,10 @@ export class AuthService {
       .pipe(map((result: any) => result.data.login));
   }
 
-  loginWithProvider(provider: string, code: string): Observable<LoginResponseModel> {
-    return timer(2000).pipe(map(() => ({jwt: 'tmp'} as LoginResponseModel)));
-    // return this.apollo
-    //   .mutate({mutation: LOGIN_MUTATION, variables: {provider, code}})
-    //   .pipe(map((result: any) => result.data.login));
+  loginWithProvider(provider: string, code: string): Observable<string> {
+    return this.apollo
+      .mutate({mutation: LOGIN_WITH_PROVIDER_MUTATION, variables: {provider, code}})
+      .pipe(map((result: any) => result.data.loginWithProvider));
   }
 
   me(): Observable<User> {

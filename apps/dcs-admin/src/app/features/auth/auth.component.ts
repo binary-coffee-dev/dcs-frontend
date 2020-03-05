@@ -51,7 +51,6 @@ export class AuthComponent implements OnInit {
       client_id: this.environment.githubClientId,
       scope: provider.scope
     };
-    console.log(this.queryParamsToString(queryParams));
     this.window.location.href = `${provider.url}?${this.queryParamsToString(queryParams)}`;
   }
 
