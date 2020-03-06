@@ -1,12 +1,19 @@
-import {Component, OnInit, ElementRef, Output, EventEmitter} from '@angular/core';
-import {Location} from '@angular/common';
-import {Router} from '@angular/router';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  Output,
+  EventEmitter
+} from '@angular/core';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {ROUTES} from '../sidebar/sidebar.component';
-import {LogoutAction} from '@dcs-libs/shared';
+import { ROUTES } from '../sidebar/sidebar.component';
+import { LogoutAction } from '@dcs-libs/shared';
 
+const PATH_NAME_POSITION = 2;
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -24,8 +31,7 @@ export class NavbarComponent implements OnInit {
     private element: ElementRef,
     private router: Router,
     private store: Store
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
@@ -51,12 +57,12 @@ export class NavbarComponent implements OnInit {
     if (title.charAt(0) === '#') {
       title = title.slice(1);
     }
-    title = '/' + title.split('/')[1];
+    title = '/' + title.split('/')[PATH_NAME_POSITION];
     for (const item of this.listTitles) {
       if (item.path === title) {
         return item.title;
       }
     }
-    return 'Dashboard';
+    return 'Binary Coffee';
   }
 }
