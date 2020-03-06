@@ -17,6 +17,7 @@ import {AuthError, User} from '../models';
 import {Router} from '@angular/router';
 import {NgZone} from '@angular/core';
 import {LoginResponseModel} from '../models/login-response.model';
+import {Role} from '../../permissions';
 
 @State<AuthStateModel>({
   name: 'auth',
@@ -32,6 +33,11 @@ export class AuthState {
   @Selector()
   static me(state: AuthStateModel): User {
     return state.me;
+  }
+
+  @Selector()
+  static role(state: AuthStateModel): Role {
+    return state.me && state.me.role || null;
   }
 
   @Selector()

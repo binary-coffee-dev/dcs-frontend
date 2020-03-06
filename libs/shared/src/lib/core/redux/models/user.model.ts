@@ -1,4 +1,5 @@
 import {File} from './file.model';
+import {Role} from '../../permissions';
 
 export interface User {
   id: string;
@@ -6,4 +7,5 @@ export interface User {
   email: string;
   avatar: File;
   page: string;
+  role: Role;
 }

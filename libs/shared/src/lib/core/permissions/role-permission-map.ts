@@ -1,5 +1,6 @@
 import {Role} from './role';
 import {Permission} from './permission';
+import {InjectionToken} from '@angular/core';
 
 export const rolePermissionMap = new Map<Role, Permission[]>();
 
@@ -16,3 +17,5 @@ rolePermissionMap.set(Role.administrator, [
   Permission.EDIT_ANY_ARTICLE,
   Permission.REMOVE_ANY_ARTICLE
 ]);
+
+export const ROLE_PERMISSION_MAP = new InjectionToken<Map<Role, Permission[]>>('ROLE_PERMISSION_MAP');
