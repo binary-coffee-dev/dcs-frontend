@@ -10,7 +10,7 @@ export class FooterComponent implements OnInit {
   root: string;
 
   @Input()
-  full: boolean = true;
+  full = true;
 
   constructor() {}
 

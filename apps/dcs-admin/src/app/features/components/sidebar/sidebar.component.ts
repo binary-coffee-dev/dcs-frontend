@@ -27,11 +27,11 @@ export let ACCEESS: Access[] = [
 ];
 
 export const ROUTES: RouteInfo[] = [
-  //usuario
+  // usuario
   { path: '/dashboard', title: 'Dashboard', icon: '', class: '' },
   { path: '/user-profile', title: 'Perfil', icon: '', class: '' },
 
-  //tablero
+  // tablero
   { path: '/articles', title: 'Artículos', icon: '', class: '' },
   { path: '/files', title: 'Archivos', icon: '', class: '' }
 ];
@@ -65,13 +65,12 @@ export class SidebarComponent implements OnInit {
   }
 
   getSiteUrl() {
-    return environment.siteUrl; //+ '/admin';
+    return environment.siteUrl; // + '/admin';
   }
 
   setAccess(item: Access) {
     this.menuAccess.forEach(element => {
-      if (element != item) element.active = false;
-      else element.active = true;
+      element.active = element === item;
     });
   }
 
