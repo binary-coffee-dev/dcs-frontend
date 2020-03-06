@@ -7,7 +7,6 @@
             [ngClass]="{'active': menuAccessItem.active}"
             *ngFor="let menuAccessItem of menuAccess"
             (click)="setAccess(menuAccessItem)">
-      <i></i>
       <span [class]="menuAccessItem.icon"></span>
     </button>
   </div>

@@ -11,8 +11,10 @@
         padding: map_get($spacings, 2);
         border-radius: 0;
         color: map_get($md-primary, 400);
+        font-size: 2rem;
 
-        i {
+        &::before {
+          content: "";
           position: absolute;
           left: 0;
           width: 5px;
@@ -21,20 +23,13 @@
           transform: translateY(- map_get($spacings, 2));
         }
 
-
-        .fa {
-          font-size: 2rem;
-        }
-
-
-
         &.active,
         &:hover {
           color: map_get($md-primary, 900);
         }
 
         &.active {
-          i {
+          &::before {
             background-color: map_get($md-primary, 900);
           }
         }
