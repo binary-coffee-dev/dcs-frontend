@@ -16,6 +16,7 @@ import {
 import {AuthError, User} from '../models';
 import {Router} from '@angular/router';
 import {NgZone} from '@angular/core';
+import {LoginResponseModel} from '../models/login-response.model';
 
 @State<AuthStateModel>({
   name: 'auth',
@@ -44,8 +45,8 @@ export class AuthState {
   @Action(LoginAction)
   loginAction(ctx: StateContext<AuthStateModel>, action: LoginAction) {
     return this.authService.login(action.identifier, action.password).pipe(
-      tap((authData) => ctx.patchState({token: authData.jwt, error: null})),
-      catchError(err => {
+      tap((authData: LoginResponseModel) => ctx.patchState({token: authData.jwt, error: null})),
+      catchError(() => {
         ctx.patchState({
           error: {id: new Date().getTime(), title: 'Invalid credentials'} as AuthError
         });
@@ -57,7 +58,7 @@ export class AuthState {
   @Action(LoginWithProviderAction)
   loginWithProviderAction(ctx: StateContext<AuthStateModel>, action: LoginWithProviderAction) {
     return this.authService.loginWithProvider(action.provider, action.code).pipe(
-      tap(jwt => {
+      tap((jwt: string) => {
         ctx.patchState({token: jwt, error: null});
         if (jwt) {
           this.zone.run(() => {
@@ -65,7 +66,7 @@ export class AuthState {
           });
         }
       }),
-      catchError(err => {
+      catchError(() => {
         ctx.patchState({
           error: {id: new Date().getTime(), title: 'Invalid credentials'} as AuthError
         });
@@ -87,21 +88,21 @@ export class AuthState {
   @Action(MeAction)
   meAction(ctx: StateContext<AuthStateModel>) {
     return this.authService.me().pipe(
-      tap(me => ctx.patchState({me}))
+      tap((me: User) => ctx.patchState({me}))
     );
   }
 
   @Action(UpdateMeAction)
   updateMeAction(ctx: StateContext<AuthStateModel>, action: UpdateMeAction) {
     return this.authService.updateMeAction(action.id, action.email, action.page).pipe(
-      tap(me => ctx.patchState({me}))
+      tap((me: User) => ctx.patchState({me}))
     );
   }
 
   @Action(UpdateMyAvatarAction)
   updateMyAvatarAction(ctx: StateContext<AuthStateModel>, action: UpdateMyAvatarAction) {
     return this.authService.updateMyAvatarAction(action.id, action.avatar).pipe(
-      tap(me => ctx.patchState({me}))
+      tap((me: User) => ctx.patchState({me}))
     );
   }
 }
