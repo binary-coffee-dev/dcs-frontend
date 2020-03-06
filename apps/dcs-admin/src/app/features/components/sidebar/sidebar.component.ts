@@ -36,6 +36,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/files', title: 'Archivos', icon: '', class: '' }
 ];
 
+const PATH_NAME_POSITION = 2;
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -79,7 +80,7 @@ export class SidebarComponent implements OnInit {
     if (title.charAt(0) === '#') {
       title = title.slice(1);
     }
-    title = '/' + title.split('/')[1];
+    title = '/' + title.split('/')[PATH_NAME_POSITION];
     return title;
   }
 }
