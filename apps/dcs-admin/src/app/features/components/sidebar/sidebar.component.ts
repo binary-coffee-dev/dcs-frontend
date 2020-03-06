@@ -20,16 +20,20 @@ declare interface RouteInfo {
   icon: string;
   class: string;
 }
-export let ROUTES: RouteInfo[] = [
-  { path: '/articles', title: 'Artículos', icon: '', class: '' },
-  { path: '/files', title: 'Archivos', icon: '', class: '' },
-  { path: '/user-profile', title: 'Perfil', icon: '', class: '' },
-  { path: '/dashboard', title: 'Dashboard', icon: '', class: '' }
-];
 
 export let ACCEESS: Access[] = [
-  { active: true, title: 'Tablero', icon: 'fa fa-dashboard', route: [] },
-  { active: false, title: 'Usuario', icon: 'fa fa-user-circle', route: [] }
+  { active: true, title: 'Usuario', icon: 'fa fa-user-circle', route: [] },
+  { active: false, title: 'Tablero', icon: 'fa fa-dashboard', route: [] }
+];
+
+export const ROUTES: RouteInfo[] = [
+  //usuario
+  { path: '/dashboard', title: 'Dashboard', icon: '', class: '' },
+  { path: '/user-profile', title: 'Perfil', icon: '', class: '' },
+
+  //tablero
+  { path: '/articles', title: 'Artículos', icon: '', class: '' },
+  { path: '/files', title: 'Archivos', icon: '', class: '' }
 ];
 
 @Component({
