@@ -1,39 +1,34 @@
-<div class="logo">
-  <a [href]="getSiteUrl()"
-     class="simple-text">
-    Binary Coffee
-  </a>
-</div>
-<div class="content">
-  <div class="profile-actions"
-       fxShow.xs="true"
-       fxHide="true">
-    <ul>
-      <li>
-        <div fxLayout="row"
-             fxLayoutAlign="start center">
-          <i class="material-icons">person</i>
-          <p><span>Account</span></p>
-        </div>
-        <div fxLayout="column">
-          <a routerLink="/user-profile"
-             href="javascript:void(0)">Profile</a>
-          <a (click)="logout()"
-             href="javascript:void(0)">Log-out</a>
-        </div>
-      </li>
-    </ul>
+<div class="side-nav"
+     fxLayout="row">
+
+  <div class="access"
+       fxLayout="column">
+    <button mat-button
+            [ngClass]="{'active': menuAccessItem.active}"
+            *ngFor="let menuAccessItem of menuAccess"
+            (click)="setAccess(menuAccessItem)">
+      <i></i>
+      <span [class]="menuAccessItem.icon"></span>
+    </button>
   </div>
-  <ul class="nav">
-    <li *ngFor="let menuItem of menuItems">
-      <a fxLayout="row"
-         [ngClass]="{'active': getLocation() === menuItem.path, 'disable': getLocation() !== menuItem.path}"
-         fxLayoutAlign="start center"
-         (click)="routeChange.emit()"
-         [routerLink]="[menuItem.path]">
-        <i class="material-icons">{{menuItem.icon}}</i>
-        <p>{{menuItem.title}}</p>
-      </a>
-    </li>
-  </ul>
+
+  <div class="content"
+       fxLayout="column">
+    <div class="nav">
+      <div *ngFor="let menuAccessItem of menuAccess">
+        <div *ngIf="menuAccessItem.active">
+          <a fxLayout="row"
+             *ngFor="let menuItem of menuAccessItem.route"
+             mat-button
+             [ngClass]="{'active': getLocation() === menuItem.path, 'disable': getLocation() !== menuItem.path}"
+             fxLayoutAlign="start"
+             (click)="routeChange.emit()"
+             [routerLink]="[menuItem.path]">
+            <!--span class="material-icons">{{menuItem.icon}}</span-->
+            <span>{{menuItem.title}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,7 @@
 <div class="container"
-     fxLayout="row">
+     fxLayout="row"
+     fxLayoutAlign="start center">
+
   <a class="open-sidenav"
      fxLayout="column"
      fxLayoutAlign="center center"
@@ -9,28 +11,36 @@
      fxHide="true">
     <mat-icon>dehaze</mat-icon>
   </a>
+
   <div fxFlex="100"
        fxShow.xs="true"
-       fxHide="true"></div>
-  <div>
-    <a>{{getTitle()}}</a>
+       fxHide="true">
   </div>
+
+  <div class="menu-title">
+    <b>{{getTitle()}}</b>
+  </div>
+
   <div fxFlex="100"
-       fxHide.xs="true"></div>
+       fxHide.xs="true">
+  </div>
+
   <div class="menu-dropdown"
        fxHide.xs="true">
     <ul>
       <li>
-        <a href="javascript:void(0)"
-           (click)="showDropdown($event)">
-          <mat-icon>person</mat-icon>
-        </a>
+        <button mat-button
+                (click)="showDropdown($event)">
+          <span class="fa fa-user"></span>
+        </button>
         <mat-card fxLayout="column"
                   [ngClass]="{'visible': showProfileDropdown}">
-          <a routerLink="/user-profile"
-             href="javascript:void(0)">Profile</a>
-          <a (click)="logout()"
-             href="javascript:void(0)">Log-out</a>
+          <a mat-button
+             routerLink='/user-profile'
+             href="javascript:void(0)">Perfil</a>
+          <a mat-button
+             (click)="logout()"
+             href="javascript:void(0)">Salir</a>
         </mat-card>
       </li>
     </ul>

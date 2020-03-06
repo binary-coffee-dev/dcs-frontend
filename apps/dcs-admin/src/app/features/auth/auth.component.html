@@ -1,50 +1,59 @@
 <div class="container"
      fxLayout="row"
      fxLayoutAlign="center center">
-  <mat-card>
-    <mat-card-header fxLayout="column">
-      <h4 class="card-title">Authentication</h4>
-      <p class="card-category">Enter your credentials</p>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="loginForm"
-            (ngSubmit)="login()">
-        <div fxLayout="column">
-          <mat-form-field class="example-full-width">
-            <input matInput
-                   formControlName="identifier"
-                   placeholder="Username"
-                   type="text">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input matInput
-                   formControlName="password"
-                   placeholder="Password"
-                   type="password">
-          </mat-form-field>
-        </div>
-        <div fxLayout="row"
-             fxLayoutAlign="center center"
-             *ngIf="authError">
-          <span>{{authError.title}}</span>
-        </div>
-        <div class="provider-container"
-             fxLayout="row"
-             fxLayoutAlign="center center">
-          <mat-icon *ngFor="let provider of providers"
-                    mat-font-icon="fa-icon"
-                    (click)="loginWithProvider(provider)"
-                    [class]="provider.icon"></mat-icon>
-        </div>
-        <div fxLayout="row"
-             fxLayoutAlign="end start">
-          <button mat-raised-button
-                  type="submit"
-                  class="btn btn-success
-                       pull-right">Login
-          </button>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
+
+
+
+  <div fxLayout="column">
+    <div>
+      <img src="assets/images/128x128/binarycoffee_2.0.1.png"
+           alt="BC">
+    </div>
+    <h4>
+      le da la bienvenida
+    </h4>
+  </div>
+
+  <div>
+    <form [formGroup]="loginForm"
+          (ngSubmit)="login()">
+      <div fxLayout="column">
+        <mat-form-field class="example-full-width">
+          <input matInput
+                 formControlName="identifier"
+                 placeholder="Username"
+                 type="text">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput
+                 formControlName="password"
+                 placeholder="Password"
+                 type="password">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row"
+           fxLayoutAlign="center center"
+           *ngIf="authError">
+        <span>{{authError.title}}</span>
+      </div>
+      <div class="provider-container"
+           fxLayout="row"
+           fxLayoutAlign="center center">
+        <mat-icon *ngFor="let provider of providers"
+                  mat-font-icon="fa-icon"
+                  (click)="loginWithProvider(provider)"
+                  [class]="provider.icon">
+        </mat-icon>
+      </div>
+      <div fxLayout="row"
+           fxLayoutAlign="end start">
+        <button mat-raised-button
+                type="submit"
+                class="btn btn-success
+                       pull-right">
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

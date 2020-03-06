@@ -9,6 +9,7 @@
       border-bottom: 1px solid map_get($md-primary, 100);
       background-color: map_get($md-grey, 350);
       border-radius: map_get($radius, 0);
+      color: map_get($md-primary, 500);
       cursor: pointer;
 
       &:first-child {

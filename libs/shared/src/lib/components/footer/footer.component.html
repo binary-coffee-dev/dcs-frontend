@@ -1,6 +1,13 @@
 <div>
   <footer>
-    <div class="groups"
+
+    <div *ngIf="!full"
+         fxLayoutAlign="center center">
+      <app-social-links></app-social-links>
+    </div>
+
+    <div *ngIf="full"
+         class="groups"
          fxLayout="row wrap">
       <div class="sub-group"
            fxLayout="column"
@@ -160,6 +167,8 @@
         </div>
       </div>
     </div>
+
+
   </footer>
 
 </div>

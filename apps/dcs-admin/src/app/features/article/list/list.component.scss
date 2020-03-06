@@ -12,6 +12,7 @@
         border: 1px solid map_get($md-primary, 100);
         background-color: map_get($md-grey, 350);
         margin-left: map_get($spacings, 4);
+        color: map_get($md-primary, 500);
 
         &:hover {
           border: 1px solid map-get($md-primary, 500);

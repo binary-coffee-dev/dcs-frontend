@@ -1,11 +1,18 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Router} from '@angular/router';
-import {Location} from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {LogoutAction} from '@dcs-libs/shared';
-import {environment} from '../../../../environments/environment';
+import { LogoutAction } from '@dcs-libs/shared';
+import { environment } from '../../../../environments/environment';
+
+declare interface Access {
+  active: boolean;
+  icon: string;
+  title: string;
+  route: RouteInfo[];
+}
 
 declare interface RouteInfo {
   path: string;
@@ -13,11 +20,16 @@ declare interface RouteInfo {
   icon: string;
   class: string;
 }
+export let ROUTES: RouteInfo[] = [
+  { path: '/articles', title: 'Artículos', icon: '', class: '' },
+  { path: '/files', title: 'Archivos', icon: '', class: '' },
+  { path: '/user-profile', title: 'Perfil', icon: '', class: '' },
+  { path: '/dashboard', title: 'Dashboard', icon: '', class: '' }
+];
 
-export const ROUTES: RouteInfo[] = [
-  {path: '/dashboard', title: 'Dashboard', icon: 'dashboard', class: ''},
-  {path: '/articles', title: 'Articles', icon: 'content_paste', class: ''},
-  {path: '/files', title: 'Files', icon: 'library_books', class: ''}
+export let ACCEESS: Access[] = [
+  { active: true, title: 'Tablero', icon: 'fa fa-dashboard', route: [] },
+  { active: false, title: 'Usuario', icon: 'fa fa-user-circle', route: [] }
 ];
 
 @Component({
@@ -26,7 +38,7 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  menuItems: RouteInfo[];
+  menuAccess: Access[];
   @Output()
   routeChange = new EventEmitter<any>();
 
@@ -34,11 +46,12 @@ export class SidebarComponent implements OnInit {
     private store: Store,
     private router: Router,
     private location: Location
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    ACCEESS[0].route = ROUTES.map(route => route).splice(0, 2);
+    ACCEESS[1].route = ROUTES.map(route => route).splice(2, 3);
+    this.menuAccess = ACCEESS.filter(menuAccess => menuAccess);
   }
 
   logout() {
@@ -48,7 +61,14 @@ export class SidebarComponent implements OnInit {
   }
 
   getSiteUrl() {
-    return environment.siteUrl + '/admin';
+    return environment.siteUrl; //+ '/admin';
+  }
+
+  setAccess(item: Access) {
+    this.menuAccess.forEach(element => {
+      if (element != item) element.active = false;
+      else element.active = true;
+    });
   }
 
   getLocation() {
