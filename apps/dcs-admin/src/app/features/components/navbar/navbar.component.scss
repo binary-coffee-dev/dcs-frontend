@@ -4,13 +4,30 @@
   width: 100%;
 
   .container {
+    color: map_get($md-primary, 800);
+
     .open-sidenav {
-      color: #333;
+      color: inherit;
       text-decoration: none;
+    }
+
+    .menu-title {
+      color: inherit;
     }
 
     .menu-dropdown {
       z-index: 1000;
+      color: inherit;
+
+      button {
+        background-color: map_get($md-grey, 350);
+        border: 1px solid map_get($md-primary, 100);
+        color: inherit !important;
+
+        &:hover {
+          border: 1px solid map_get($md-primary, 900);
+        }
+      }
 
       ul {
         list-style: none;
@@ -22,31 +39,21 @@
 
           a {
             text-decoration: none;
-            color: #333;
+            color: map-get($md-grey, 900);
           }
 
           mat-card {
-            padding: 6px;
+            padding: map_get($spacings, 1);
             position: absolute;
-            transform: translateX(calc(-100% + 24px));
+            transform: translate(calc(-100% + 4rem), map_get($spacings, 1));
+            transition-property: .5s;
             display: none !important;
+            box-shadow: none;
+            background-color: map-get($md-grey, 350);
+            border: 1px solid map-get($md-primary, 100);
 
             &.visible {
               display: flex !important;
-            }
-
-            a {
-              text-decoration: none;
-              font-size: .8125rem;
-              color: #333;
-              padding-right: 1.5rem;
-              padding-left: 1.5rem;
-
-              &:hover {
-                box-shadow: 0 4px 20px 0 map_get($md-grey, 500), 0 7px 10px -5px map_get($md-primary, 900);
-                background-color: map_get($md-primary, 900);
-                color: #fff;
-              }
             }
           }
         }
