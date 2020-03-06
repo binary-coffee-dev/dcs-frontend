@@ -79,7 +79,7 @@ export class SidebarComponent implements OnInit {
     if (title.charAt(0) === '#') {
       title = title.slice(1);
     }
-    title = '/' + title.split('/')[1];
+    title = '/' + title.split('/')[2];
     return title;
   }
 }
