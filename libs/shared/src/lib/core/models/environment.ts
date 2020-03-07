@@ -6,6 +6,7 @@ export interface Environment {
   siteUrl: string;
   production: boolean;
   githubClientId?: string;
+  googleAnalyticsId?: string;
 }
 
 export const ENVIRONMENT = new InjectionToken<Environment>('ENVIRONMENT');
