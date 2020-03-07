@@ -36,7 +36,7 @@ export class AuthService {
 
   me(): Observable<User> {
     return this.apollo
-      .watchQuery({query: ME_QUERY})
+      .watchQuery({query: ME_QUERY, fetchPolicy: 'no-cache'})
       .valueChanges.pipe(map((result: any) => result.data.myData));
   }
 
