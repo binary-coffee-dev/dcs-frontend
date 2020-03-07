@@ -1,4 +1,4 @@
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, take, tap} from 'rxjs/operators';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {of} from 'rxjs';
 
@@ -83,7 +83,7 @@ export class AuthState {
 
   @Action(LogoutAction)
   logoutAction(ctx: StateContext<AuthStateModel>) {
-    ctx.patchState({token: ''});
+    ctx.patchState({token: '', me: {} as User, error: null});
   }
 
   @Action(AuthErrorAction)
@@ -94,7 +94,8 @@ export class AuthState {
   @Action(MeAction)
   meAction(ctx: StateContext<AuthStateModel>) {
     return this.authService.me().pipe(
-      tap((me: User) => ctx.patchState({me}))
+      tap((me: User) => ctx.patchState({me})),
+      take(1)
     );
   }
 
