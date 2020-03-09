@@ -4,67 +4,52 @@
   .container {
     padding: map_get($spacings, 4) 0 map_get($spacings, 4) map_get($spacings, 4);
 
-    .header,
-    .footer {
+    .separator {
+      padding-top: map_get($spacings, 4);
+    }
+
+    .header {
       padding-right: map_get($spacings, 4);
 
       .toogle-table-card {
-        border: 1px solid map_get($md-primary, 100);
-        background-color: map_get($md-grey, 350);
         margin-left: map_get($spacings, 4);
         color: map_get($md-primary, 500);
-
-        &:hover {
-          border: 1px solid map-get($md-primary, 500);
-        }
       }
     }
 
-    .item-action-container {
-      button {
-        border: 1px solid map_get($md-primary, 100);
-        background-color: map_get($md-grey, 350);
+    .table-content {
+      overflow-x: auto;
+      width: calc(100% - 24px);
+      margin: map_get($spacings, 4) 0;
+      border: 1px solid map_get($md-primary, 100);
+      border-radius: map_get($radius, 2);
 
-        &:hover {
-          border: 1px solid map-get($md-primary, 500);
+      table {
+        width: 100%;
+
+        thead {
+          text-align: left;
         }
-      }
-    }
 
-    table {
-      width: 100%;
-      margin: map_get($spacings, 4) 0 map_get($spacings, 4) 0;
-      padding-right: map_get($spacings, 4);
+        tbody {
+          tr {
+            td {
+              border-top: 1px solid rgba(0, 0, 0, .06);
 
-      thead {
-        text-align: left;
-      }
-
-      tbody {
-        tr {
-          td {
-            border-top: 1px solid rgba(0, 0, 0, .06);
-
-            mat-checkbox {
-              *.mat-checkbox-background {
-                background-color: rgb(0, 178, 0);
+              button {
+                color: map_get($md-primary, 800);
               }
-
             }
 
-            button {
-              color: map_get($md-primary, 800);
+            .activo {
+              text-align: center;
             }
-          }
-
-          .activo {
-            text-align: center;
           }
         }
       }
     }
 
-    .post-container {
+    .post-content {
       padding: map_get($spacings, 4) map_get($spacings, 4) map_get($spacings, 4) 0;
       $post_image_size: 200px;
 

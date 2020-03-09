@@ -9,37 +9,48 @@
        class="header">
 
     <div class="item-action-container"
-         fxFlex="100">
+         fxFlex="100"
+         fxLayout="row">
+
       <button mat-button
+              class="bc-button"
               routerLink="/articles/create">
         <span class="code-1"> new </span>
         <span class="code-none"> Articulo() </span>
       </button>
 
+      <button (click)="toggleTableCard()"
+              class="toogle-table-card bc-button"
+              mat-button>
+        <span *ngIf="tableOrCard"
+              class="fa fa-table"></span>
+        <span *ngIf="!tableOrCard"
+              class="fa fa-list"></span>
+      </button>
+
     </div>
 
-    <app-pagination (nextPageEvent)="nextPageEvent()"
-                    (previousPageEvent)="previousPageEvent()"
-                    (pageEvent)="selectPageEvent($event)"
-                    [numberOfPages]="numberOfPages"
-                    [currentPage]="currentPage"></app-pagination>
+    <div fxHide
+         fxShow.xs
+         fxShow.sm
+         fxFlex.md
+         class="separator"></div>
 
-    <button (click)="toggleTableCard()"
-            class="toogle-table-card"
-            mat-button>
-      <span *ngIf="tableOrCard"
-            class="fa fa-table"></span>
-      <span *ngIf="!tableOrCard"
-            class="fa fa-list"></span>
-    </button>
+    <div fxLayoutAlign="center center"
+         class="pagination-content">
+      <app-pagination (nextPageEvent)="nextPageEvent()"
+                      (previousPageEvent)="previousPageEvent()"
+                      (pageEvent)="selectPageEvent($event)"
+                      [numberOfPages]="numberOfPages"
+                      [currentPage]="currentPage">
+      </app-pagination>
+    </div>
   </div>
 
   <div *ngIf="!tableOrCard"
-       fxLayout="row wrap"
-       fxFlex="100">
-
+       fxLayout="row wrap">
     <div *ngFor="let post of posts"
-         class="post-container"
+         class="post-content"
          fxFlex="50"
          fxFlex.xs="100"
          fxFlex.sm="100">
@@ -66,7 +77,8 @@
 
           <div fxFlex="100">
             <mat-checkbox [(ngModel)]="post.enable"
-                          [disabled]="false">
+                          [disabled]="false"
+                          color="primary">
               Activo
             </mat-checkbox>
           </div>
@@ -97,48 +109,52 @@
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 
-  <table *ngIf="tableOrCard">
-    <thead class=" text-info">
-      <th>Titulo</th>
-      <th>Publicado</th>
-      <th>Activo</th>
-      <th></th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let post of posts">
-        <td>{{post.title}}</td>
-        <td>
-          {{moment.timeFromDate(post.publishedAt) || ''}}
-        </td>
-        <td class="activo">
-          <mat-checkbox [(ngModel)]="post.enable"
-                        [disabled]="false"
-                        color="primary">
-          </mat-checkbox>
-        </td>
-        <td class="td-actions text-right">
-          <button mat-button
-                  matTooltip="Editar articulo"
-                  [routerLink]="'/articles/update/' + post.id"
-                  [matTooltipPosition]="'above'">
-            <i class="material-icons">edit</i>
-          </button>
-          <button mat-button
-                  *ngIf="true"
-                  matTooltip="Ver articulo"
-                  [matTooltipPosition]="'above'"
-                  (click)="openArticle(post)">
-            <i class="material-icons">open_in_new</i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-content"
+       *ngIf="tableOrCard">
+    <table>
+      <thead class=" text-info">
+        <th></th>
+        <th>Titulo</th>
+        <th>Publicado</th>
+        <th>Activo</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of posts">
+          <td>
+            <button mat-button
+                    matTooltip="Editar articulo"
+                    [routerLink]="'/articles/update/' + post.id"
+                    [matTooltipPosition]="'above'">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+          <td>{{post.title}}</td>
+          <td>
+            {{moment.timeFromDate(post.publishedAt) || ''}}
+          </td>
+          <td class="activo">
+            <mat-checkbox [(ngModel)]="post.enable"
+                          [disabled]="false"
+                          color="primary">
+            </mat-checkbox>
+          </td>
+          <td class="td-actions text-right">
+
+            <button mat-button
+                    matTooltip="Ver articulo"
+                    [matTooltipPosition]="'above'"
+                    (click)="openArticle(post)">
+              <i class="fa fa-external-link"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <div fxLayout="row"
        fxLayout.xs="column"
@@ -147,28 +163,45 @@
        class="header">
 
     <div class="item-action-container"
-         fxFlex="100">
+         fxFlex="100"
+         fxLayout="row">
+
       <button mat-button
+              class="bc-button"
               routerLink="/articles/create">
         <span class="code-1"> new </span>
         <span class="code-none"> Articulo() </span>
       </button>
 
+      <button (click)="toggleTableCard()"
+              class="toogle-table-card bc-button"
+              mat-button>
+        <span *ngIf="tableOrCard"
+              class="fa fa-table"></span>
+        <span *ngIf="!tableOrCard"
+              class="fa fa-list"></span>
+      </button>
+
     </div>
 
-    <app-pagination (nextPageEvent)="nextPageEvent()"
-                    (previousPageEvent)="previousPageEvent()"
-                    (pageEvent)="selectPageEvent($event)"
-                    [numberOfPages]="numberOfPages"
-                    [currentPage]="currentPage"></app-pagination>
+    <div fxHide
+         fxShow.xs
+         fxShow.sm
+         fxFlex.md
+         fxFlexOrder.xs="-1"
+         fxFlexOrder.sm="-1"
+         class="separator"></div>
 
-    <button (click)="toggleTableCard()"
-            class="toogle-table-card"
-            mat-button>
-      <span *ngIf="tableOrCard"
-            class="fa fa-table"></span>
-      <span *ngIf="!tableOrCard"
-            class="fa fa-list"></span>
-    </button>
+    <div fxLayoutAlign="center center"
+         class="pagination-content"
+         fxFlexOrder.xs="-2"
+         fxFlexOrder.sm="-2">
+      <app-pagination (nextPageEvent)="nextPageEvent()"
+                      (previousPageEvent)="previousPageEvent()"
+                      (pageEvent)="selectPageEvent($event)"
+                      [numberOfPages]="numberOfPages"
+                      [currentPage]="currentPage">
+      </app-pagination>
+    </div>
   </div>
 </div>

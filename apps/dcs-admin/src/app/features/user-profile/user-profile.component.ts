@@ -1,12 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {AuthState, File, UpdateMeAction, UpdateMyAvatarAction, User} from '@dcs-libs/shared';
-import {environment} from '../../../environments/environment';
-import {UploadFileModalComponent} from '../components/upload-file.modal';
+import {
+  AuthState,
+  File,
+  UpdateMeAction,
+  UpdateMyAvatarAction,
+  User
+} from '@dcs-libs/shared';
+import { environment } from '../../../environments/environment';
+import { UploadFileModalComponent } from '../components/upload-file.modal';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,7 +20,6 @@ import {UploadFileModalComponent} from '../components/upload-file.modal';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-
   profileDataChange = false;
   passwordChange = false;
 
@@ -27,11 +32,10 @@ export class UserProfileComponent implements OnInit {
 
   passwordForm = new FormGroup({
     password: new FormControl('', Validators.required),
-    password2: new FormControl('', Validators.required),
+    password2: new FormControl('', Validators.required)
   });
 
-  constructor(private store: Store, private dialog: MatDialog) {
-  }
+  constructor(private store: Store, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.store.select(AuthState.me).subscribe((me: User) => {
@@ -47,32 +51,33 @@ export class UserProfileComponent implements OnInit {
     if (this.me && this.me.avatar && this.me.avatar.url) {
       return `${environment.apiUrl}${this.me.avatar.url}`;
     }
-    return 'assets/img/profile.png';
+    return 'assets/images/noavatar.png';
   }
 
   saveUserData() {
     if (this.profileForm.valid) {
-      this.store.dispatch(new UpdateMeAction(
-        this.me.id,
-        this.profileForm.controls.email.value,
-        this.profileForm.controls.page.value
-      ));
+      this.store.dispatch(
+        new UpdateMeAction(
+          this.me.id,
+          this.profileForm.controls.email.value,
+          this.profileForm.controls.page.value
+        )
+      );
     }
   }
 
   onUserDataChange() {
-    this.profileDataChange = this.me.page !== this.profileForm.controls.page.value ||
+    this.profileDataChange =
+      this.me.page !== this.profileForm.controls.page.value ||
       this.me.email !== this.profileForm.controls.email.value;
   }
 
-  savePassword() {
-
-  }
+  savePassword() {}
 
   openUploadFileModal() {
     const dialog = this.dialog.open(UploadFileModalComponent, {
       height: 'auto',
-      width: '50vh',
+      width: '50vh'
     });
     dialog.afterClosed().subscribe((result: File) => {
       if (result) {

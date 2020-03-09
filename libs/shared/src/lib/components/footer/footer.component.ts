@@ -12,6 +12,9 @@ export class FooterComponent implements OnInit {
   @Input()
   full = true;
 
+  @Input()
+  socialLinks = true;
+
   constructor() {}
 
   ngOnInit() {

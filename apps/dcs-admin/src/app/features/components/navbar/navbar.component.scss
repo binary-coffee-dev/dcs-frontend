@@ -15,47 +15,21 @@
       color: inherit;
     }
 
-    .menu-dropdown {
-      z-index: 1000;
-      color: inherit;
+    .binary-coffee {
+      animation: rotate-color 2s infinite forwards;
+      animation-play-state: paused;
 
-      button {
-        background-color: map_get($md-grey, 350);
-        border: 1px solid map_get($md-primary, 100);
-        color: inherit !important;
-
-        &:hover {
-          border: 1px solid map_get($md-primary, 900);
-        }
+      img {
+        max-height: 2rem;
       }
 
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+      &:hover {
+        animation-play-state: running;
+      }
 
-        li {
-          position: relative;
-
-          a {
-            text-decoration: none;
-            color: map-get($md-grey, 900);
-          }
-
-          mat-card {
-            padding: map_get($spacings, 1);
-            position: absolute;
-            transform: translate(calc(-100% + 4rem), map_get($spacings, 1));
-            transition-property: .5s;
-            display: none !important;
-            box-shadow: none;
-            background-color: map-get($md-grey, 350);
-            border: 1px solid map-get($md-primary, 100);
-
-            &.visible {
-              display: flex !important;
-            }
-          }
+      @keyframes rotate-color {
+        to {
+          filter: hue-rotate(1turn);
         }
       }
     }

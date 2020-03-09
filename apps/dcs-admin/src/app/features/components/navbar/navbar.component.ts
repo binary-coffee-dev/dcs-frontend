@@ -1,17 +1,10 @@
-import {
-  Component,
-  OnInit,
-  ElementRef,
-  Output,
-  EventEmitter
-} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngxs/store';
 
-import { ROUTES } from '../sidebar/sidebar.component';
-import { LogoutAction } from '@dcs-libs/shared';
+import { ROUTES } from '../sidebar/sidebar.model';
 
 const PATH_NAME_POSITION = 2;
 @Component({
@@ -26,30 +19,10 @@ export class NavbarComponent implements OnInit {
   @Output()
   openSidenav = new EventEmitter<any>();
 
-  constructor(
-    private location: Location,
-    private element: ElementRef,
-    private router: Router,
-    private store: Store
-  ) {}
+  constructor(private location: Location) {}
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
-    // toDo: inject window instance
-    window.addEventListener('click', () => {
-      this.showProfileDropdown = false;
-    });
-  }
-
-  showDropdown(event) {
-    this.showProfileDropdown = !this.showProfileDropdown;
-    event.stopPropagation();
-  }
-
-  logout() {
-    this.store.dispatch(new LogoutAction()).subscribe(() => {
-      this.router.navigate(['login']);
-    });
   }
 
   getTitle() {

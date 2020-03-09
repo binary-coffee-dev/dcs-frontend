@@ -3,6 +3,7 @@
 :host {
   .side-nav {
 
+
     .access {
       background-color: map_get($md-primary, 50);
       min-height: 100vh;
@@ -12,6 +13,20 @@
         border-radius: 0;
         color: map_get($md-primary, 400);
         font-size: 2rem;
+
+
+        .avatar {
+          display: inline-block;
+          border-radius: 50%;
+          max-width: 2rem;
+          max-height: 2rem;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
 
         &::before {
           content: "";
@@ -38,11 +53,20 @@
 
     .content {
       width: 100%;
+      left: -100px !important;
 
       .nav {
         a {
           color: map_get($md-grey, 800);
           border-radius: 0;
+
+          &:hover {
+            background-color: map_get($md-primary, 50);
+
+            &.active {
+              background-color: map_get($md-primary, 100);
+            }
+          }
 
           &.active {
             background-color: map_get($md-primary, 100);
