@@ -4,37 +4,9 @@ import { Location } from '@angular/common';
 
 import { Store } from '@ngxs/store';
 
-import { LogoutAction } from '@dcs-libs/shared';
+import { LogoutAction, AuthState, User } from '@dcs-libs/shared';
 import { environment } from '../../../../environments/environment';
-
-declare interface Access {
-  active: boolean;
-  icon: string;
-  title: string;
-  route: RouteInfo[];
-}
-
-declare interface RouteInfo {
-  path: string;
-  title: string;
-  icon: string;
-  class: string;
-}
-
-export let ACCEESS: Access[] = [
-  { active: true, title: 'Usuario', icon: 'fa fa-user-circle', route: [] },
-  { active: false, title: 'Tablero', icon: 'fa fa-dashboard', route: [] }
-];
-
-export const ROUTES: RouteInfo[] = [
-  // usuario
-  { path: '/dashboard', title: 'Dashboard', icon: '', class: '' },
-  { path: '/user-profile', title: 'Perfil', icon: '', class: '' },
-
-  // tablero
-  { path: '/articles', title: 'Artículos', icon: '', class: '' },
-  { path: '/files', title: 'Archivos', icon: '', class: '' }
-];
+import { Access, AccessIds, ROUTES, ACCESS } from './sidebar.model';
 
 const PATH_NAME_POSITION = 2;
 @Component({
@@ -44,6 +16,8 @@ const PATH_NAME_POSITION = 2;
 })
 export class SidebarComponent implements OnInit {
   menuAccess: Access[];
+  me: User;
+
   @Output()
   routeChange = new EventEmitter<any>();
 
@@ -54,19 +28,39 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    ACCEESS[0].route = ROUTES.map(route => route).splice(0, 2);
-    ACCEESS[1].route = ROUTES.map(route => route).splice(2, 3);
-    this.menuAccess = ACCEESS.filter(menuAccess => menuAccess);
+    ROUTES.forEach(newRoute => {
+      const accessTemp = ACCESS.find(a => a.id === newRoute.accessId);
+
+      // to evit duplicated links
+      if (accessTemp.route.findIndex(r => r === newRoute) < 0) {
+        accessTemp.route.push(newRoute);
+      }
+    });
+
+    // order by access id
+    this.menuAccess = ACCESS.sort((a, b) => a.id - b.id);
+
+    this.store.select(AuthState.me).subscribe((me: User) => {
+      if (me) {
+        this.me = me;
+        const userMenu = this.menuAccess.find(m => m.id === AccessIds.USER);
+        userMenu.img = this.getUserImage();
+        userMenu.title = me.username;
+      }
+    });
+  }
+
+  getUserImage() {
+    if (this.me && this.me.avatar && this.me.avatar.url) {
+      return `${environment.apiUrl}${this.me.avatar.url}`;
+    }
+    return 'assets/images/noavatar.png';
   }
 
   logout() {
     this.store.dispatch(new LogoutAction()).subscribe(() => {
       this.router.navigate(['login']);
     });
-  }
-
-  getSiteUrl() {
-    return environment.siteUrl; // + '/admin';
   }
 
   setAccess(item: Access) {

@@ -122,14 +122,14 @@ $md-grey: (50 : #e9ebf2,
   100 : #fefefe,
   200 : #fdfdfd,
   300 : #fcfcfc,
-  350 : #fafafa,
-  400 : #e9e9e9,
-  450 : #d8d8d8,
+  350 : #f9f9f9,
+  400 : #f0f0f0,
+  450 : #dadada,
   500 : #c2c2c2,
   600 : #959595,
   700 : #616161,
-  800 : #1f3b50,
-  850 : #272822,
+  800 : #4d4d4d,
+  850 : #292929,
   900 : #000000,
   A100 : #ffffff,
   A200 : #ffffff,
@@ -191,5 +191,25 @@ $box-shadow-up:(0: 0,
 }
 
 .code-var {
-  color: map_get($md-secundary, 500) !important
+  font-weight: bold;
+  color: map_get($md-grey, 800) !important
+}
+
+.bc-button {
+  border: 1px solid map_get($md-primary, 300);
+  background-color: map_get($md-grey, 400);
+  border-radius: map_get($radius, 2);
+  box-shadow: none;
+
+  &:hover {
+    border: 1px solid map_get($md-primary, 500);
+  }
+
+  &:disabled {
+    border: 1px solid map_get($md-grey, 500) !important;
+
+    span {
+      color: map_get($md-grey, 500) !important;
+    }
+  }
 }

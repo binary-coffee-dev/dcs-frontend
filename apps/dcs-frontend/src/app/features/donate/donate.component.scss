@@ -31,8 +31,6 @@
 
       .paypal {
         $color: #2b5eaa;
-        background-color: map_get($md-grey, 350);
-        border: 1px solid map_get($md-primary, 100);
         color: $color;
 
         &:hover {
@@ -42,10 +40,7 @@
 
       .bitcoin {
         $color: #ffa600;
-        background-color: map_get($md-grey, 350);
-        border: 1px solid map_get($md-primary, 100);
         color: $color;
-
 
         &:hover {
           border: 1px solid $color;
@@ -54,8 +49,6 @@
 
       .visa {
         $color: #f3c018;
-        background-color: map_get($md-grey, 350);
-        border: 1px solid map_get($md-primary, 100);
         color: $color;
 
 
@@ -66,8 +59,6 @@
 
       .mastercard {
         $color: #ff5100;
-        background-color: map_get($md-grey, 350);
-        border: 1px solid map_get($md-primary, 100);
         color: $color;
 
         &:hover {

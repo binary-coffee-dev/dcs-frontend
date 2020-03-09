@@ -57,12 +57,12 @@
     </form>
     <a mat-button
        (click)="paypal.submit()"
-       class="paypal">
+       class="paypal bc-button">
       PayPal( <span class="fa fa-paypal"></span> )
     </a>
 
     <a mat-button
-       class="bitcoin">
+       class="bitcoin bc-button">
       Bitcoin( <span class="fa fa-bitcoin"></span> )
     </a>
 
@@ -71,11 +71,11 @@
          data-address="1DpxSVZz3cTCNegZR2SVgNts25eLTDQixx"
          data-shared="false">
       <div class="blockchain stage-begin">
-        <img src="https://blockchain.info/Resources/buttons/donate_64.png"/>
+        <img src="https://blockchain.info/Resources/buttons/donate_64.png" />
       </div>
       <div class="blockchain stage-loading"
            style="text-align:center">
-        <img src="https://blockchain.info/Resources/loading-large.gif"/>
+        <img src="https://blockchain.info/Resources/loading-large.gif" />
       </div>
       <div class="blockchain stage-ready">
         <p align="center">Please Donate To Bitcoin Address: <b>[[address]]</b></p>
@@ -91,13 +91,13 @@
     </div>
 
     <a mat-button
-       class="visa"
+       class="visa bc-button"
        *ngIf="false">
       Visa( <span class="fa fa-cc-visa"></span> )
     </a>
 
     <a mat-button
-       class="mastercard"
+       class="mastercard bc-button"
        *ngIf="false">
       MasterCard( <span class="fa fa-cc-mastercard"></span> )
     </a>

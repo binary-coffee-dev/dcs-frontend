@@ -1,6 +1,13 @@
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
-  <div class="code-comment-1" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx" fxFlex='25'
-    fxFlex.xs='100'>
+<div class="container"
+     fxLayout="row"
+     fxLayout.xs="column"
+     fxLayoutAlign="center center">
+  <div class="code-comment-1"
+       fxLayout="column"
+       fxLayoutAlign="start start"
+       fxLayoutGap="gappx"
+       fxFlex='25'
+       fxFlex.xs='100'>
     <p>
       /* <br>
       Únase hoy y tendrá su café binario en cualquier parte del mundo.
@@ -9,22 +16,40 @@
     </p>
   </div>
 
-  <div class="container-in" fxLayout="column" fxLayoutAlign="center center" fxFlex='25' fxFlex.xs='100'>
+  <div class="container-in"
+       fxLayout="column"
+       fxLayoutAlign="center center"
+       fxFlex='25'
+       fxFlex.xs='100'>
 
-    <form [formGroup]="subscribeForm" *ngIf="!subscriptionSent && !token" (ngSubmit)="subscribe()">
-      <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="gappx">
-        <span class="error" *ngIf="subscriptionError !== '' && !subscriptionSent && !token"
-          fxFlex="100">{{subscriptionError}}</span>
-        <div class="card" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="gappx" fxFlex="100">
+    <form [formGroup]="subscribeForm"
+          *ngIf="!subscriptionSent && !token"
+          (ngSubmit)="subscribe()">
+      <div fxLayout="column"
+           fxLayoutAlign="center"
+           fxLayoutGap="gappx">
+        <span class="error"
+              *ngIf="subscriptionError !== '' && !subscriptionSent && !token"
+              fxFlex="100">{{subscriptionError}}</span>
+        <div class="card"
+             fxLayout="column"
+             fxLayoutAlign="center center"
+             fxLayoutGap="gappx"
+             fxFlex="100">
           <mat-form-field appearance="outline">
             <mat-label class="code-none">
               <span class="code-1">var </span>
               <span class="code-var"> Correo </span> =
             </mat-label>
-            <input matInput type="email" placeholder="Email" formControlName="email">
+            <input matInput
+                   type="email"
+                   placeholder="Email"
+                   formControlName="email">
           </mat-form-field>
-          <div fxLayout="column" class="code-none">
-            <button mat-button type="submit">
+          <div fxLayout="column">
+            <button mat-button
+                    class="bc-button"
+                    type="submit">
               <span class="code-1">return new</span>
               Subscriptor(
               <span class="code-var"> Correo </span>
@@ -35,11 +60,16 @@
       </div>
     </form>
 
-    <b class="message" *ngIf="message">{{message}}</b>
+    <b class="message"
+       *ngIf="message">{{message}}</b>
   </div>
 
-  <div class="code-comment-1" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx" fxFlex='25'
-    fxFlex.xs='100'>
+  <div class="code-comment-1"
+       fxLayout="column"
+       fxLayoutAlign="start start"
+       fxLayoutGap="gappx"
+       fxFlex='25'
+       fxFlex.xs='100'>
     <p>
       /* <br>
       La subscripción le permite mantenerse al tanto de todos los artículos publicados durante la semana en la

@@ -7,14 +7,14 @@
      fxLayoutAlign="center center"
      href="javascript:void(0)"
      (click)="openSidenav.emit()"
-     fxShow.xs="true"
-     fxHide="true">
+     fxShow.xs
+     fxHide>
     <mat-icon>dehaze</mat-icon>
   </a>
 
   <div fxFlex="100"
-       fxShow.xs="true"
-       fxHide="true">
+       fxShow.xs
+       fxHide>
   </div>
 
   <div class="menu-title">
@@ -22,27 +22,14 @@
   </div>
 
   <div fxFlex="100"
-       fxHide.xs="true">
+       fxHide.xs>
   </div>
 
-  <div class="menu-dropdown"
-       fxHide.xs="true">
-    <ul>
-      <li>
-        <button mat-button
-                (click)="showDropdown($event)">
-          <span class="fa fa-user"></span>
-        </button>
-        <mat-card fxLayout="column"
-                  [ngClass]="{'visible': showProfileDropdown}">
-          <a mat-button
-             routerLink='/user-profile'
-             href="javascript:void(0)">Perfil</a>
-          <a mat-button
-             (click)="logout()"
-             href="javascript:void(0)">Salir</a>
-        </mat-card>
-      </li>
-    </ul>
-  </div>
+  <a fxHide.xs
+     routerLink="/"
+     matTooltip="Ir a Binary Coffee"
+     class="binary-coffee">
+    <img src="assets/images/128x128/binarycoffee_2.0.1-i.png"
+         alt="BC">
+  </a>
 </div>

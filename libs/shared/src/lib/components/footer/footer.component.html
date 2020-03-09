@@ -1,5 +1,5 @@
 <div>
-  <footer>
+  <footer *ngIf="(!full && socialLinks) || full">
 
     <div *ngIf="!full"
          fxLayoutAlign="center center">
@@ -117,6 +117,7 @@
       </div>
 
       <div class="sub-group"
+           *ngIf="socialLinks"
            fxLayout="column"
            fxLayoutAlign="start start"
            fxLayoutAlign.xs="start start"

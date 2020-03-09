@@ -21,15 +21,6 @@
         b {
           padding: map_get($spacings, 4);
         }
-
-        button {
-          background-color: map_get($md-grey, 350);
-          border: 1px solid map_get($md-primary, 100);
-
-          &:hover {
-            border: 1px solid map-get($md-primary, 500);
-          }
-        }
       }
 
       .message,

@@ -6,8 +6,16 @@
     <button mat-button
             [ngClass]="{'active': menuAccessItem.active}"
             *ngFor="let menuAccessItem of menuAccess"
+            [matTooltip]="menuAccessItem.title"
             (click)="setAccess(menuAccessItem)">
-      <span [class]="menuAccessItem.icon"></span>
+      <span *ngIf="menuAccessItem.icon"
+            [class]="menuAccessItem.icon"></span>
+
+      <i class="avatar"
+         *ngIf="menuAccessItem.img && !menuAccessItem.icon">
+        <img [src]="menuAccessItem.img">
+      </i>
+
     </button>
   </div>
 
@@ -16,16 +24,29 @@
     <div class="nav">
       <div *ngFor="let menuAccessItem of menuAccess">
         <div *ngIf="menuAccessItem.active">
-          <a fxLayout="row"
-             *ngFor="let menuItem of menuAccessItem.route"
-             mat-button
-             [ngClass]="{'active': getLocation() === menuItem.path, 'disable': getLocation() !== menuItem.path}"
-             fxLayoutAlign="start"
-             (click)="routeChange.emit()"
-             [routerLink]="[menuItem.path]">
-            <!--span class="material-icons">{{menuItem.icon}}</span-->
-            <span>{{menuItem.title}}</span>
-          </a>
+          <div *ngFor="let menuItem of menuAccessItem.route">
+
+            <a *ngIf="menuItem.path"
+               fxLayout="row"
+               fxLayoutAlign="start"
+               mat-button
+               [ngClass]="{'active': getLocation() === menuItem.path, 'disable': getLocation() !== menuItem.path}"
+               [matTooltip]="menuItem.title"
+               (click)="routeChange.emit()"
+               [routerLink]="[menuItem.path]">
+              <span>{{menuItem.text}}</span>
+            </a>
+
+            <a *ngIf="!menuItem.path"
+               fxLayout="row"
+               fxLayoutAlign="start"
+               mat-button
+               [matTooltip]="menuItem.title"
+               (click)="logout()">
+              <span>{{menuItem.text}}</span>
+            </a>
+
+          </div>
         </div>
       </div>
     </div>
