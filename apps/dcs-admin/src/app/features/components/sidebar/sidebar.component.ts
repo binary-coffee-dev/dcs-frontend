@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     ROUTES.forEach(newRoute => {
-      let accessTemp = ACCESS.find(a => a.id === newRoute.accessId);
+      const accessTemp = ACCESS.find(a => a.id === newRoute.accessId);
 
       // to evit duplicated links
       if (accessTemp.route.findIndex(r => r === newRoute) < 0) {
@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit {
     this.store.select(AuthState.me).subscribe((me: User) => {
       if (me) {
         this.me = me;
-        let userMenu = this.menuAccess.find(m => m.id === AccessIds.USER);
+        const userMenu = this.menuAccess.find(m => m.id === AccessIds.USER);
         userMenu.img = this.getUserImage();
         userMenu.title = me.username;
       }
