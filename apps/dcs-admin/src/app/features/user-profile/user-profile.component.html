@@ -29,10 +29,11 @@
        fxFlex.sm="100"
        fxFlex.xs="100"
        fxLayout="column"
-       fxLayoutAlign="center start">
+       fxLayoutAlign="center cetner">
 
     <div fxLayout="column"
-         class="header-data-content">
+         class="header-data-content"
+         fxLayoutAlign="start">
       <span class="header-data">Datos del perfil</span>
       <i class="header-data code-comment-1">// complete su perfil</i>
     </div>
@@ -69,7 +70,7 @@
                 type="submit"
                 [disabled]="!profileDataChange"
                 matTooltip="Actualizar el perfil con nuevas características"
-                class="bc-button">
+                class="bc-button submit">
           <span> Actualizar( </span>
           <span class="code-var"
                 *ngIf="me?.email !== profileForm?.controls?.email?.value"> Correo </span>
