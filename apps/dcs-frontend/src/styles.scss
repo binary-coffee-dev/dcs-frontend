@@ -136,23 +136,8 @@ markdown {
   }
 
   img {
+    max-width: 100%;
     box-shadow: map_get($box-shadow, 0);
     border-radius: map_get($radius, 2) !important;
-  }
-
-  @media screen and (max-width: 599px) {
-    img {
-      width: 100%;
-      margin-left: 0;
-      transform: none;
-    }
-  }
-
-  @media screen and (min-width: 600px) and (max-width: 959px) {
-    img {
-      width: 80%;
-      margin-left: 0;
-      transform: none;
-    }
   }
 }
