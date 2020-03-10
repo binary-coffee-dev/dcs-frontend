@@ -4,7 +4,7 @@ import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {Store} from '@ngxs/store';
 import {of} from 'rxjs';
 
-import {FetchPostAction} from '../../../core/redux/actions';
+import {FetchPostAction} from '@dcs-libs/shared';
 import {PostGuard} from './post.guard';
 
 class StoreStub {
