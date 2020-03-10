@@ -7,8 +7,6 @@ import {WINDOW} from '@dcs-libs/shared';
   providedIn: 'root'
 })
 export class ScrollService {
-  static DECELERATION_RATE = 8;
-
   constructor(
     @Inject(WINDOW) private window: Window,
     @Inject(PLATFORM_ID) private platformId: any

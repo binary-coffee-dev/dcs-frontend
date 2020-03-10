@@ -4,7 +4,7 @@ import {Title} from '@angular/platform-browser';
 import {Store} from '@ngxs/store';
 
 import {Environment, ENVIRONMENT, Post, PostState} from '@dcs-libs/shared';
-import {MetaTag, MetaTagsService, MomentService, ResourceService} from '../../core/services';
+import {MetaTag, MetaTagsService, MomentService, ResourceService, ScrollService} from '../../core/services';
 import {FetchCommentsAction} from '../../core/redux/actions';
 
 @Component({
@@ -22,11 +22,13 @@ export class PostComponent implements OnInit {
     public resource: ResourceService,
     private metaTags: MetaTagsService,
     private title: Title,
+    private scroll: ScrollService,
     @Inject(ENVIRONMENT) private environment: Environment
   ) {
   }
 
   ngOnInit() {
+    this.scroll.smoothScroll();
     this.store.select(PostState.post).subscribe((post: Post) => {
       if (post) {
         this.post = post;

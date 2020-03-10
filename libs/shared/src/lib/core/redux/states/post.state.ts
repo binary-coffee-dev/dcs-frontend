@@ -72,17 +72,17 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
 
   @Action(NextPageAction)
   nextPageAction(ctx: StateContext<PostStateModel>) {
-    return this.nextPage(ctx);
+    return this.nextPage(ctx).pipe(take(1));
   }
 
   @Action(PreviousPageAction)
   previousPageAction(ctx: StateContext<PostStateModel>) {
-    return this.previousPage(ctx);
+    return this.previousPage(ctx).pipe(take(1));
   }
 
   @Action(SelectPageAction)
   selectPageAction(ctx: StateContext<PostStateModel>, action: SelectPageAction) {
-    return this.pageByNumber(ctx, action.page);
+    return this.pageByNumber(ctx, action.page).pipe(take(1));
   }
 
   @Action(PostAction)
