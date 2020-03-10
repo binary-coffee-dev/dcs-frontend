@@ -2,14 +2,14 @@ import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {catchError, take, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
+import {RefreshPostAction} from '@dcs-libs/shared';
 import {CommentService} from '../services';
 import {CommentStateModel, initCommentStateModel} from './comment-state.model';
 import {
   CommentErrorAction,
   CreateCommentAction,
   FetchCaptchaAction,
-  FetchCommentsAction,
-  RefreshPostAction
+  FetchCommentsAction
 } from '../actions';
 import {Captcha, Comment, CommentError} from '../models';
 

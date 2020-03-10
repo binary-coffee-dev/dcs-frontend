@@ -4,13 +4,13 @@ import {Observable} from 'rxjs';
 
 import {PostService} from '../services';
 import {
-  CreateNotificationAction,
+  CreateNotificationAction, FetchPostAction,
   FetchPostsAction,
   NextPageAction,
   PostAction,
   PostCreateAction,
   PostUpdateAction,
-  PreviousPageAction,
+  PreviousPageAction, RefreshPostAction,
   SelectPageAction
 } from '../actions';
 import {initPostStateModel, PostStateModel} from './post-state.model';
@@ -82,6 +82,22 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   @Action(PostAction)
   fetchPostAction(ctx: StateContext<PostStateModel>, action: PostAction) {
     return this.postService.fetchPost(action.postId).pipe(
+      tap(post => ctx.patchState({post})),
+      take(1)
+    );
+  }
+
+  @Action(FetchPostAction)
+  fetchPostByNameAction(ctx: StateContext<PostStateModel>, action: FetchPostAction) {
+    return this.postService.fetchPostByName(action.postName).pipe(
+      tap(post => ctx.patchState({post})),
+      take(1)
+    );
+  }
+
+  @Action(RefreshPostAction)
+  refreshPostAction(ctx: StateContext<PostStateModel>) {
+    return this.postService.fetchPostByName(ctx.getState().post.name).pipe(
       tap(post => ctx.patchState({post})),
       take(1)
     );

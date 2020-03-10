@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 
 import {Store} from '@ngxs/store';
-
-import {NextPageAction, PreviousPageAction} from '../../../core/redux/actions';
 import {Observable} from 'rxjs';
-import {PostState} from '../../../core/redux/states';
+
+import {NextPageAction, PostState, PreviousPageAction} from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-pagination',

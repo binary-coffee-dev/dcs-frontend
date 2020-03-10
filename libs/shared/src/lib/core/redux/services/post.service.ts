@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
 import {Apollo} from 'apollo-angular';
 
 import {Post, PostConnection, User} from '../models';
-import {POST_QUERY, POSTS_QUERY} from '../../graphql/queries';
+import {POST_BY_NAME_QUERY, POST_QUERY, POSTS_QUERY} from '../../graphql/queries';
 import {POST_CREATE_MUTATION, POST_UPDATE_MUTATION} from '../../graphql/mutations';
 
 @Injectable({
@@ -31,6 +31,12 @@ export class PostService {
     return this.apollo
       .watchQuery({query: POST_QUERY, variables: {id}, fetchPolicy: 'no-cache'})
       .valueChanges.pipe(map((result: any) => result.data.post));
+  }
+
+  fetchPostByName(name: string): Observable<Post> {
+    return this.apollo
+      .watchQuery({query: POST_BY_NAME_QUERY, variables: {id: name}, fetchPolicy: 'no-cache'})
+      .valueChanges.pipe(map((result: any) => result.data.postByName));
   }
 
   updatePost(post: Post) {

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --watch --poll=2000 --host=0.0.0.0 --disable-host-check",
+    "start": "ng serve --watch --poll=2000 --port=4201 --host=0.0.0.0 --disable-host-check",
     "start:admin": "ng serve dcs-admin --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
     "build": "ng build",
     "build:admin": "ng build dcs-admin --configuration=dev --base-href /admin/",

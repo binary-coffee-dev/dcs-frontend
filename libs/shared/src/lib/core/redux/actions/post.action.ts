@@ -7,6 +7,17 @@ export class PostAction {
   }
 }
 
+export class FetchPostAction {
+  static readonly type = '[Post] Fetch post by name';
+
+  constructor(public postName: string) {
+  }
+}
+
+export class RefreshPostAction {
+  static readonly type = '[Post] Refresh current post';
+}
+
 export class PostUpdateAction {
   static readonly type = '[Post] Post update';
 
