@@ -36,6 +36,11 @@ export class AuthState {
   }
 
   @Selector()
+  static isLogin(state: AuthStateModel): boolean {
+    return state.token !== '';
+  }
+
+  @Selector()
   static role(state: AuthStateModel): Role {
     return state.me && state.me.role || null;
   }
