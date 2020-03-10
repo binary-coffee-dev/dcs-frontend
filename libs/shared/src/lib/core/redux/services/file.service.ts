@@ -22,7 +22,12 @@ export class FileService {
   fetchFiles(limit, start = 0) {
     return this.apollo
       .watchQuery({query: FILES_QUERY, variables: {limit, start}, fetchPolicy: 'no-cache'})
-      .valueChanges.pipe(map((result: any) => result.data.uploadsConnection));
+      .valueChanges.pipe(map((result: any) => ({
+        ...result.data.uploadsConnection,
+        aggregate: {
+          count: result.data.countUploads
+        }
+      })));
   }
 
   uploadFile(file: File, name: string = null): Observable<FileModel> {

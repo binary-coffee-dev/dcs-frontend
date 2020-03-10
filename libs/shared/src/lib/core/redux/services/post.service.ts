@@ -19,7 +19,12 @@ export class PostService {
   fetchPosts(limit, start = 0): Observable<PostConnection> {
     return this.apollo
       .watchQuery({query: POSTS_QUERY, variables: {limit, start}, fetchPolicy: 'no-cache'})
-      .valueChanges.pipe(map((result: any) => result.data.postsConnection));
+      .valueChanges.pipe(map((result: any) => ({
+        ...result.data.postsConnection,
+        aggregate: {
+          count: result.data.countPosts
+        }
+      })));
   }
 
   fetchPost(id: string): Observable<Post> {

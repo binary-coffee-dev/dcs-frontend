@@ -13,5 +13,6 @@ export const FILES_QUERY = gql`
                 count
             }
         }
+        countUploads
     }
 `;
