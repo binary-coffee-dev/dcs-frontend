@@ -21,6 +21,10 @@ export interface ResponseData {
 }
 
 export class PaginationBaseClass<T extends StateBase> {
+  changePageSize(ctx: StateContext<T>, pageSize: number) {
+    ctx.patchState({pageSize} as unknown as Partial<T>);
+  }
+
   nextPage(ctx: StateContext<T>) {
     const pageSize = ctx.getState().pageSize;
     const currentPage = this.nextPageNumber(ctx.getState().page, ctx.getState().count, pageSize);

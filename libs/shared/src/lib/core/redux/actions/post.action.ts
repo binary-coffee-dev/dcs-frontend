@@ -50,3 +50,10 @@ export class SelectPageAction {
   constructor(public page: number) {
   }
 }
+
+export class ChangePageSizeAction {
+  static readonly type = '[Post] Change page size';
+
+  constructor(public pageSize: number) {
+  }
+}

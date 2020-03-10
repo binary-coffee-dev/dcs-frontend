@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 
 import {PostService} from '../services';
 import {
+  ChangePageSizeAction,
   CreateNotificationAction, FetchPostAction,
   FetchPostsAction,
   NextPageAction,
@@ -55,6 +56,11 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
 
   constructor(private postService: PostService) {
     super();
+  }
+
+  @Action(ChangePageSizeAction)
+  changePageSizeAction(ctx: StateContext<PostStateModel>, action: ChangePageSizeAction) {
+    this.changePageSize(ctx, action.pageSize);
   }
 
   @Action(FetchPostsAction)
