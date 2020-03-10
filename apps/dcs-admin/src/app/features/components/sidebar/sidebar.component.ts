@@ -51,10 +51,11 @@ export class SidebarComponent implements OnInit {
   }
 
   getUserImage() {
+    let url = 'assets/images/noavatar.png';
     if (this.me && this.me.avatar && this.me.avatar.url) {
-      return `${environment.apiUrl}${this.me.avatar.url}`;
+      url = this.me.avatar.url.startsWith('http') ? this.me.avatar.url : `${environment.apiUrl}${this.me.avatar.url}`;
     }
-    return 'assets/images/noavatar.png';
+    return url;
   }
 
   logout() {
