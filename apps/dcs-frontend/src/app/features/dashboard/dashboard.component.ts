@@ -13,6 +13,8 @@ export class DashboardComponent implements OnInit {
 
   posts: Post[] = [];
   numbers: number[] = [];
+  currentPage = 0;
+  pageSize = 0;
 
   constructor(private store: Store) {
   }
@@ -25,6 +27,10 @@ export class DashboardComponent implements OnInit {
           this.numbers[index] = index;
         }
       }
+    });
+    this.store.select(PostState.pageIndicator).subscribe(indicator => {
+      this.currentPage = indicator.page || 0;
+      this.pageSize = indicator.pageSize || 0;
     });
   }
 }
