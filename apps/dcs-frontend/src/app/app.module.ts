@@ -18,6 +18,7 @@ import {ScrollTopComponent} from './features/components/scroll-top';
 import {NewLabelComponent} from './features/components/new-label';
 import {CliComponent} from './features/components/cli/cli.component';
 import {environment} from '../environments/environment';
+import { LoginButtonComponent } from './features/components/login-button/login-button.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {environment} from '../environments/environment';
     SocialLinksComponent,
     NewLabelComponent,
     ScrollTopComponent,
-    CliComponent
+    CliComponent,
+    LoginButtonComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
