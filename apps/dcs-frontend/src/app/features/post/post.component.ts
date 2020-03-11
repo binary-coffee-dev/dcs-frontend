@@ -32,9 +32,9 @@ export class PostComponent implements OnInit {
     this.store.select(PostState.post).subscribe((post: Post) => {
       if (post) {
         this.post = post;
-        const imageUrl = post.banner ? `${this.environment.apiUrl}${post.banner.url}` : '';
+        const imageUrl = post.banner ? new URL(post.banner.url, this.environment.apiUrl).toString() : '';
         this.metaTags.updateMetas([
-          {key: MetaTagsService.metas, value: this.environment.siteUrl} as MetaTag,
+          {key: MetaTagsService.metas, value: new URL(`post/${post.name}`, this.environment.siteUrl).toString()} as MetaTag,
           {key: MetaTagsService.titleMeta, value: post.title} as MetaTag,
           {key: MetaTagsService.imageMeta, value: imageUrl} as MetaTag,
           {key: MetaTagsService.descriptionMeta, value: post.description} as MetaTag,
