@@ -1,20 +1,21 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {BrowserModule} from '@angular/platform-browser';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { Routes, RouterModule } from '@angular/router';
 
-import {AuthGuard} from './core/guards/auth.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
+    redirectTo: 'articles',
+    pathMatch: 'full'
   },
   {
     path: '',
     canActivate: [AuthGuard],
-    loadChildren: './features/layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+    loadChildren:
+      './features/layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   },
   {
     path: 'login',
@@ -27,12 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    RouterModule.forRoot(routes)
-  ],
-  exports: [],
+  imports: [CommonModule, BrowserModule, RouterModule.forRoot(routes)],
+  exports: []
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
