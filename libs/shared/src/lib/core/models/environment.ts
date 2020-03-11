@@ -4,6 +4,7 @@ export interface Environment {
   apiUrl: string;
   graphqlUrl: string;
   siteUrl: string;
+  siteDashboardUrl?: string;
   production: boolean;
   githubClientId?: string;
   googleAnalyticsId?: string;
