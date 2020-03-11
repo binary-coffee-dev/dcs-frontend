@@ -17,7 +17,7 @@ import {environment} from '../../../environments/environment';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsModule.forRoot([CommentState, AuthState, PostState], {
       developmentMode: !environment.production
-    }),
+    })
   ],
   providers: [CommentService]
 })

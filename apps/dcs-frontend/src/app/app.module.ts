@@ -6,7 +6,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   SharedModule,
   FooterComponent,
-  SocialLinksComponent, ENVIRONMENT
+  SocialLinksComponent,
+  ENVIRONMENT,
+  ReduxModule as ReduxSharedModule
 } from '@dcs-libs/shared';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './features/app.component';
@@ -37,6 +39,7 @@ import { LoginButtonComponent } from './features/components/login-button/login-b
     AppRoutingModule,
     BrowserAnimationsModule,
     ReduxModule,
+    ReduxSharedModule,
     MaterialModule,
     InfoModule,
     SharedModule

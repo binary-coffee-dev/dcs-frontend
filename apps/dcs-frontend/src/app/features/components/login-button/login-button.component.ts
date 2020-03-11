@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 
 import {Store} from '@ngxs/store';
 
-import {ENVIRONMENT, Environment, WINDOW} from '@dcs-libs/shared';
+import {AuthState, ENVIRONMENT, Environment, User, WINDOW} from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-login-button',
@@ -10,6 +10,10 @@ import {ENVIRONMENT, Environment, WINDOW} from '@dcs-libs/shared';
   styleUrls: ['./login-button.component.scss']
 })
 export class LoginButtonComponent implements OnInit {
+
+  isLogin = false;
+  me: User;
+
   constructor(
     @Inject(WINDOW) private window: Window,
     @Inject(ENVIRONMENT) private env: Environment,
@@ -18,6 +22,8 @@ export class LoginButtonComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.select(AuthState.isLogin).subscribe(isLogin => this.isLogin = isLogin);
+    this.store.select(AuthState.me).subscribe(me => this.me = me);
   }
 
   loginAction() {

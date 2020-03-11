@@ -1,6 +1,14 @@
 @import 'libs/shared/src/theme';
 
 :host {
+  .user-data {
+    img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+  }
+
   .login-button {
     background-color: map_get($md-primary, 900);
     border: 2px solid transparent;
