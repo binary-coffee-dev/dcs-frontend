@@ -1,59 +1,118 @@
-<mat-card>
-  <mat-card-header fxLayout="row"
-                   fxLayoutAlign="center center">
-    <h4 class="card-title">Files</h4>
-    <div fxFlex="100"></div>
-    <div class="item-actions">
-      <div class="item-action">
-        <button mat-button
-                (click)="openUploadFileModal()"
-                class="nav-link">
-          <i class="material-icons">add</i>
-          new File
-          <div class="ripple-container"></div>
-        </button>
-      </div>
+<div class="content">
+
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayout.sm="column"
+       fxLayoutAlign="start start"
+       class="header">
+
+    <div class="item-action-container"
+         fxFlex="100"
+         fxLayout="row">
+
+      <button mat-button
+              class="bc-button"
+              (click)="openUploadFileModal()">
+        <span class="code-1"> new </span>
+        <span class="code-none"> Archivo() </span>
+      </button>
+
     </div>
-  </mat-card-header>
-  <mat-card-content>
+
+    <div fxHide
+         fxShow.xs
+         fxShow.sm
+         fxFlex.md
+         class="separator"></div>
+
+    <div fxLayoutAlign="center center"
+         class="pagination-content">
+      <app-pagination (nextPageEvent)="nextPageEvent()"
+                      (previousPageEvent)="previousPageEvent()"
+                      (pageEvent)="selectPageEvent($event)"
+                      [numberOfPages]="numberOfPages"
+                      [currentPage]="currentPage">
+      </app-pagination>
+    </div>
+  </div>
+
+  <div class="file-content">
     <table class="table">
       <thead class=" text-info">
-      <th>Title</th>
-      <th>Image</th>
-      <th class="td-actions text-right">Actions</th>
+        <th>Title</th>
+        <th>Image</th>
+        <th class="td-actions text-right">Actions</th>
       </thead>
       <tbody>
-      <tr *ngFor="let file of files">
-        <td>{{file.name}}</td>
-        <td><img class="file-image"
+        <tr *ngFor="let file of files">
+          <td>{{file.name}}</td>
+          <td>
+            <img class="file-image"
                  [src]="normalizeUrl(file?.url)"
-                 [alt]="file.name"></td>
-        <td class="td-actions text-right">
-          <button mat-raised-button
-                  type="button"
-                  matTooltip="Copy Url"
-                  [matTooltipPosition]="'above'"
-                  ngxClipboard
-                  [cbContent]="normalizeUrl(file?.url)"
-                  class="btn btn-success btn-link btn-sm btn-just-icon">
-            <i class="material-icons">file_copy</i>
-          </button>
-          <button mat-raised-button
-                  *ngIf="false"
-                  type="button"
-                  matTooltip="Remove"
-                  [matTooltipPosition]="'above'"
-                  class="btn btn-success btn-link btn-sm btn-just-icon">
-            <i class="material-icons">close</i>
-          </button>
-        </td>
-      </tr>
+                 [alt]="file.name">
+          </td>
+          <td class="td-actions text-right">
+            <button mat-button
+                    type="button"
+                    matTooltip="Copy Url"
+                    [matTooltipPosition]="'above'"
+                    ngxClipboard
+                    [cbContent]="normalizeUrl(file?.url)"
+                    class="bc-button">
+              <i class="material-icons">file_copy</i>
+            </button>
+            <button mat-button
+                    *ngIf="false"
+                    type="button"
+                    matTooltip="Remove"
+                    [matTooltipPosition]="'above'"
+                    class="bc-button">
+              <i class="material-icons">close</i>
+            </button>
+          </td>
+        </tr>
       </tbody>
     </table>
-    <app-pagination (nextPageEvent)="nextPageEvent()"
-                    (previousPageEvent)="previousPageEvent()"
-                    (pageEvent)="selectPageEvent($event)"
-                    [numberOfPages]="numberOfPages"
-                    [currentPage]="currentPage"></app-pagination>
-  </mat-card-content>
-</mat-card>
+  </div>
+
+
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayout.sm="column"
+       fxLayoutAlign="start start"
+       class="header">
+
+    <div class="item-action-container"
+         fxFlex="100"
+         fxLayout="row">
+
+      <button mat-button
+              class="bc-button"
+              (click)="openUploadFileModal()">
+        <span class="code-1"> new </span>
+        <span class="code-none"> Archivo() </span>
+      </button>
+
+    </div>
+
+    <div fxHide
+         fxShow.xs
+         fxShow.sm
+         fxFlex.md
+         fxFlexOrder.xs="-1"
+         fxFlexOrder.sm="-1"
+         class="separator"></div>
+
+    <div fxLayoutAlign="center center"
+         class="pagination-content"
+         fxFlexOrder.xs="-2"
+         fxFlexOrder.sm="-2">
+      <app-pagination (nextPageEvent)="nextPageEvent()"
+                      (previousPageEvent)="previousPageEvent()"
+                      (pageEvent)="selectPageEvent($event)"
+                      [numberOfPages]="numberOfPages"
+                      [currentPage]="currentPage">
+      </app-pagination>
+    </div>
+  </div>
+</div>
