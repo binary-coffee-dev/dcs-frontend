@@ -1,6 +1,7 @@
 export declare interface Access {
   id: number;
   active: boolean;
+  visible: boolean;
   icon: string;
   img: string;
   class: string;
@@ -11,6 +12,7 @@ export declare interface Access {
 
 export declare interface RouteInfo {
   accessId: number;
+  visible: boolean;
   path: string;
   icon: string;
   class: string;
@@ -27,7 +29,8 @@ export enum AccessIds {
 export let ACCESS: Access[] = [
   {
     id: AccessIds.USER,
-    active: true,
+    active: false,
+    visible: true,
     text: 'Usuario',
     title: 'Usuario',
     class: '',
@@ -37,7 +40,8 @@ export let ACCESS: Access[] = [
   },
   {
     id: AccessIds.BOARD,
-    active: false,
+    active: true,
+    visible: true,
     text: 'Tablero',
     title: 'Tablero',
     class: '',
@@ -51,6 +55,7 @@ export let ACCESS: Access[] = [
 export let ROUTES: RouteInfo[] = [
   {
     accessId: AccessIds.USER,
+    visible: false,
     path: '/dashboard',
     text: 'Tablero',
     title: '',
@@ -59,6 +64,7 @@ export let ROUTES: RouteInfo[] = [
   },
   {
     accessId: AccessIds.USER,
+    visible: true,
     path: '/user-profile',
     text: 'Perfil',
     title: 'Administar mi perfil',
@@ -67,6 +73,7 @@ export let ROUTES: RouteInfo[] = [
   },
   {
     accessId: AccessIds.USER,
+    visible: true,
     path: '',
     text: 'Salir',
     title: 'Salir del Binary Board',
@@ -75,6 +82,7 @@ export let ROUTES: RouteInfo[] = [
   },
   {
     accessId: AccessIds.BOARD,
+    visible: true,
     path: '/articles',
     text: 'Artículos',
     title: 'Gestionar mis artículos',
@@ -83,6 +91,7 @@ export let ROUTES: RouteInfo[] = [
   },
   {
     accessId: AccessIds.BOARD,
+    visible: true,
     path: '/files',
     text: 'Archivos',
     title: 'Gestionar mis archivos',
