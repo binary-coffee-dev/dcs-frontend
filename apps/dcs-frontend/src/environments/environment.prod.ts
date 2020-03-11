@@ -5,5 +5,6 @@ export const environment = {
   graphqlUrl: 'https://api.binary-coffee.dev/graphql',
   siteUrl: 'https://binary-coffee.dev',
   googleAnalyticsId: 'UA-157555549-1',
-  production: true
+  production: true,
+  postPageSize: 6
 } as Environment;

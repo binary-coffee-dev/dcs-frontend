@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 
-import {environment} from '../../environments/environment';
+import {Store} from '@ngxs/store';
+
+import {ChangePageSizeAction, Environment, ENVIRONMENT} from '@dcs-libs/shared';
 import {consoleMessage} from './console.log';
 
 declare let gtag: (property: string, value: any, configs: any) => {};
@@ -14,18 +16,22 @@ declare let gtag: (property: string, value: any, configs: any) => {};
 export class AppComponent implements OnInit {
   title = 'dcs-frontend';
 
-  constructor(public router: Router) {
+  constructor(
+    public router: Router,
+    private store: Store,
+    @Inject(ENVIRONMENT) private environment: Environment
+  ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        gtag('config', environment.googleAnalyticsId, {
+        gtag('config', this.environment.googleAnalyticsId, {
           page_path: event.urlAfterRedirects
         });
       }
     });
+    this.store.dispatch(new ChangePageSizeAction(this.environment.postPageSize));
   }
 
   ngOnInit(): void {
     console.log(consoleMessage);
   }
-
 }

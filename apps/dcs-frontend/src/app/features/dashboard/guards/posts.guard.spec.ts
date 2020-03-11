@@ -4,8 +4,8 @@ import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {Store} from '@ngxs/store';
 import {of} from 'rxjs';
 
+import {FetchPostsAction} from '@dcs-libs/shared';
 import {PostsGuard} from './posts.guard';
-import {FetchPostsAction} from '../../../core/redux/actions';
 
 class StoreStub {
   dispatch = jest.fn();

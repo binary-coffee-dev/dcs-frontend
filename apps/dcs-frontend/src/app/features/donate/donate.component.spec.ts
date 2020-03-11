@@ -1,6 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {MatDialog} from '@angular/material';
 
-import { DonateComponent } from './donate.component';
+import {DonateComponent} from './donate.component';
+import {ScrollService} from '../../core/services';
+
+class MatDialogStub {
+}
+
+class ScrollServiceStub {
+  smoothScroll = jest.fn();
+}
 
 describe('DonateComponent', () => {
   let component: DonateComponent;
@@ -8,9 +17,13 @@ describe('DonateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DonateComponent ]
+      declarations: [DonateComponent],
+      providers: [
+        {provide: MatDialog, useClass: MatDialogStub},
+        {provide: ScrollService, useClass: ScrollServiceStub}
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

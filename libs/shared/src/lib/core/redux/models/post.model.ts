@@ -12,4 +12,5 @@ export interface Post {
   author: User;
   enable: boolean;
   views: string;
+  comments: number;
 }

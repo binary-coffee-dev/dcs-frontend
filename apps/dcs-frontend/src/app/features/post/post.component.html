@@ -23,10 +23,6 @@
             fxLayoutAlign="start center">
         {{post?.publishedAt && moment.timeFromDate(post.publishedAt) || ''}}
       </span>
-      <!--span class="post-info" [ngClass]="{'separator': post?.comments}" fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon aria-hidden="false">remove_red_eye</mat-icon>
-        {{post?.views || 0}}
-      </span-->
       <span class="post-info"
             *ngIf="post?.comments"
             fxLayout="row"

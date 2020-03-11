@@ -3,9 +3,9 @@ import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from 
 
 import {Observable} from 'rxjs';
 import {Store} from '@ngxs/store';
-
-import {FetchPostsAction} from '../../../core/redux/actions';
 import {map} from 'rxjs/operators';
+
+import {FetchPostsAction} from '@dcs-libs/shared';
 
 @Injectable()
 export class PostsGuard implements CanActivate {

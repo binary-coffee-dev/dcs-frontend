@@ -39,21 +39,21 @@
           target="_top">
       <input type="hidden"
              name="cmd"
-             value="_s-xclick" />
+             value="_s-xclick"/>
       <input type="hidden"
              name="hosted_button_id"
-             value="UV58WWP2GW8DN" />
+             value="UV58WWP2GW8DN"/>
       <input type="image"
              src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif"
              border="0"
              name="submit"
              title="PayPal - The safer, easier way to pay online!"
-             alt="Donate with PayPal button" />
+             alt="Donate with PayPal button"/>
       <img alt=""
            border="0"
            src="https://www.paypal.com/en_DE/i/scr/pixel.gif"
            width="1"
-           height="1" />
+           height="1"/>
     </form>
     <a mat-button
        (click)="paypal.submit()"
@@ -62,44 +62,15 @@
     </a>
 
     <a mat-button
+       (click)="openBitcoinDialog()"
        class="bitcoin bc-button">
       Bitcoin( <span class="fa fa-bitcoin"></span> )
     </a>
 
-    <div style="font-size:16px;margin:0 auto;width:300px"
-         class="blockchain-btn"
-         data-address="1DpxSVZz3cTCNegZR2SVgNts25eLTDQixx"
-         data-shared="false">
-      <div class="blockchain stage-begin">
-        <img src="https://blockchain.info/Resources/buttons/donate_64.png" />
-      </div>
-      <div class="blockchain stage-loading"
-           style="text-align:center">
-        <img src="https://blockchain.info/Resources/loading-large.gif" />
-      </div>
-      <div class="blockchain stage-ready">
-        <p align="center">Please Donate To Bitcoin Address: <b>[[address]]</b></p>
-        <p align="center"
-           class="qr-code"></p>
-      </div>
-      <div class="blockchain stage-paid">
-        Donation of <b>[[value]] BTC</b> Received. Thank You.
-      </div>
-      <div class="blockchain stage-error">
-        <font color="red">[[error]]</font>
-      </div>
-    </div>
-
     <a mat-button
-       class="visa bc-button"
-       *ngIf="false">
-      Visa( <span class="fa fa-cc-visa"></span> )
-    </a>
-
-    <a mat-button
-       class="mastercard bc-button"
-       *ngIf="false">
-      MasterCard( <span class="fa fa-cc-mastercard"></span> )
+       (click)="openEnzonaDialog()"
+       class="visa bc-button">
+      Enzona( <span class="fa fa-credit-card"></span> )
     </a>
 
     <div>{{"}"}}</div>

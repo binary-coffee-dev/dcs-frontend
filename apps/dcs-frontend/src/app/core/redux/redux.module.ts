@@ -2,10 +2,11 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {NgxsModule} from '@ngxs/store';
+import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 
-import {AuthState} from '@dcs-libs/shared';
-import {CommentService, PostService} from './services';
-import {CommentState, PostState} from './states';
+import {AuthState, PostState} from '@dcs-libs/shared';
+import {CommentService} from './services';
+import {CommentState} from './states';
 import {GraphQLModule} from '../graphql';
 import {environment} from '../../../environments/environment';
 
@@ -13,11 +14,12 @@ import {environment} from '../../../environments/environment';
   imports: [
     CommonModule,
     GraphQLModule,
-    NgxsModule.forRoot([PostState, CommentState, AuthState], {
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsModule.forRoot([CommentState, AuthState, PostState], {
       developmentMode: !environment.production
     }),
   ],
-  providers: [PostService, CommentService]
+  providers: [CommentService]
 })
 export class ReduxModule {
 }

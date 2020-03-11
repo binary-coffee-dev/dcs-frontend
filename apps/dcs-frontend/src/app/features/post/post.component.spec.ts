@@ -4,7 +4,8 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {Store} from '@ngxs/store';
 
 import {PostComponent} from './post.component';
-import {MomentService, ResourceService} from '../../core/services';
+import {MomentService, ResourceService, ScrollService} from '../../core/services';
+import {ENVIRONMENT} from '@dcs-libs/shared';
 
 class StoreStub {
 }
@@ -13,6 +14,9 @@ class MomentServiceStub {
 }
 
 class ResourceServiceStub {
+}
+
+class ScrollServiceStub {
 }
 
 describe('PostComponent', () => {
@@ -25,7 +29,9 @@ describe('PostComponent', () => {
       providers: [
         {provide: Store, useClass: StoreStub},
         {provide: MomentService, useClass: MomentServiceStub},
-        {provide: ResourceService, useClass: ResourceServiceStub}
+        {provide: ScrollService, useClass: ScrollServiceStub},
+        {provide: ResourceService, useClass: ResourceServiceStub},
+        {provide: ENVIRONMENT, useValue: {}}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

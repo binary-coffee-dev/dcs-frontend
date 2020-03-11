@@ -1,5 +1,5 @@
 import {StateContext} from '@ngxs/store';
-import {tap} from 'rxjs/operators';
+import {take, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 
 export const MINIMUM_PAGE = 0;
@@ -21,6 +21,10 @@ export interface ResponseData {
 }
 
 export class PaginationBaseClass<T extends StateBase> {
+  changePageSize(ctx: StateContext<T>, pageSize: number) {
+    ctx.patchState({pageSize} as unknown as Partial<T>);
+  }
+
   nextPage(ctx: StateContext<T>) {
     const pageSize = ctx.getState().pageSize;
     const currentPage = this.nextPageNumber(ctx.getState().page, ctx.getState().count, pageSize);
@@ -57,7 +61,9 @@ export class PaginationBaseClass<T extends StateBase> {
           count,
           pageSize
         );
-      }));
+      }),
+      take(1)
+    );
   }
 
   fetchElements(pageSize, start): Observable<ResponseData> {

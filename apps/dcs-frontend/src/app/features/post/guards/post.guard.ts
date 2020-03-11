@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Store} from '@ngxs/store';
 
-import {FetchPostAction} from '../../../core/redux/actions';
+import {FetchPostAction} from '@dcs-libs/shared';
 
 @Injectable()
 export class PostGuard implements CanActivate {
