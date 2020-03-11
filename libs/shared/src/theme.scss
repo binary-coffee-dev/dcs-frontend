@@ -212,6 +212,7 @@ $box-shadow-up:(0: 0,
   background-color: map_get($md-grey, 400);
   border-radius: map_get($radius, 2);
   box-shadow: none;
+  cursor: pointer;
 
   &:hover {
     border: 1px solid map_get($md-primary, 500);
@@ -219,6 +220,7 @@ $box-shadow-up:(0: 0,
 
   &:disabled {
     border: 1px solid map_get($md-grey, 500) !important;
+    cursor: default;
 
     span {
       color: map_get($md-grey, 500) !important;
