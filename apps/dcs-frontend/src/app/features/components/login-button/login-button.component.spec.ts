@@ -35,6 +35,9 @@ describe('LoginButtonComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginButtonComponent);
     component = fixture.componentInstance;
+
+    spyOn(component, 'ngOnInit');
+
     fixture.detectChanges();
   });
 
