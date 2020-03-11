@@ -28,14 +28,16 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //fill all router of the access
+    // fill all router of the access
     ROUTES.forEach(newRoute => {
       const accessTemp = ACCESS.find(a => a.id === newRoute.accessId);
 
       // to evit duplicated links
       if (accessTemp.route.findIndex(r => r === newRoute) < 0) {
         // only add the visible route
-        if (newRoute.visible) accessTemp.route.push(newRoute);
+        if (newRoute.visible) {
+          accessTemp.route.push(newRoute);
+        }
       }
     });
 
