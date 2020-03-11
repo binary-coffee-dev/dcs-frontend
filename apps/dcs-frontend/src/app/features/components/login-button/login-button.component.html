@@ -9,6 +9,7 @@
        class="user-data">
     <img *ngIf="me?.avatar?.url"
          [src]="me?.avatar?.url"
+         (click)="logoutAction()"
          alt="user avatar">
   </div>
 </div>

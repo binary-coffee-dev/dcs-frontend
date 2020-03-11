@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 
 import {Store} from '@ngxs/store';
 
-import {AuthState, ENVIRONMENT, Environment, User, WINDOW} from '@dcs-libs/shared';
+import {AuthState, ENVIRONMENT, Environment, LogoutAction, User, WINDOW} from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-login-button',
@@ -31,5 +31,9 @@ export class LoginButtonComponent implements OnInit {
     const urlBase = this.env.siteDashboardUrl + (this.env.siteDashboardUrl.endsWith('/') ? '' : '/');
     const loginUrl = new URL('./login', urlBase);
     this.window.location.href = `${loginUrl}?redir=${redir}`;
+  }
+
+  logoutAction() {
+    this.store.dispatch(new LogoutAction());
   }
 }
