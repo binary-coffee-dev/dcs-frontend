@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Store} from '@ngxs/store';
@@ -25,8 +25,9 @@ export class AuthComponent implements OnInit {
   constructor(
     private store: Store,
     private router: Router,
+    private route: ActivatedRoute,
     @Inject(WINDOW) private window: Window,
-    @Inject(ENVIRONMENT) private environment: Environment
+    @Inject(ENVIRONMENT) private env: Environment
   ) {
   }
 
@@ -39,7 +40,12 @@ export class AuthComponent implements OnInit {
       const identifier = this.loginForm.controls.identifier.value;
       const password = this.loginForm.controls.password.value;
       this.store.dispatch(new LoginAction(identifier, password)).subscribe(() => {
-        this.redirectToDashboard();
+        const redir = this.route.snapshot.queryParamMap.get('redir');
+        if (redir) {
+          this.window.location.href = redir;
+        } else {
+          this.redirectToDashboard();
+        }
       });
     } else {
       this.store.dispatch(new AuthErrorAction('Missing data in login'));
@@ -47,9 +53,14 @@ export class AuthComponent implements OnInit {
   }
 
   loginWithProvider(provider: Provider) {
+    const siteDashboardUrl = this.env.siteDashboardUrl + (this.env.siteDashboardUrl.endsWith('/') ? '' : '/');
+    const redir = this.route.snapshot.queryParamMap.get('redir');
+    const redirectUri =
+      new URL(`./provider/${provider.name}` + (redir ? `?redir=${encodeURIComponent(redir)}` : ''), siteDashboardUrl).href;
     const queryParams = {
-      client_id: this.environment.githubClientId,
-      scope: provider.scope
+      client_id: this.env.githubClientId,
+      scope: provider.scope,
+      redirect_uri: redirectUri
     };
     this.window.location.href = `${provider.url}?${this.queryParamsToString(queryParams)}`;
   }
@@ -66,7 +77,7 @@ export class AuthComponent implements OnInit {
   redirectToDashboard() {
     const token = this.store.selectSnapshot(AuthState.token);
     if (token !== '') {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['']);
     }
   }
 
