@@ -9,7 +9,6 @@ export interface AuthStateModel {
 export const initAuthStateModel = () => {
   return {
     token: '',
-    me: {},
     error: null
   } as AuthStateModel;
 };

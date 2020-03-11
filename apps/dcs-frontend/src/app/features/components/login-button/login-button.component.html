@@ -1,4 +1,15 @@
-<button mat-button
-        class="login-button">
-  Login
-</button>
+<div>
+  <button mat-button
+          *ngIf="!isLogin"
+          (click)="loginAction()"
+          class="login-button">
+    Login
+  </button>
+  <div *ngIf="isLogin"
+       class="user-data">
+    <img *ngIf="me?.avatar?.url"
+         [src]="me?.avatar?.url"
+         (click)="logoutAction()"
+         alt="user avatar">
+  </div>
+</div>
