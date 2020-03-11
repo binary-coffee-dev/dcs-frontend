@@ -28,17 +28,22 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    //fill all router of the access
     ROUTES.forEach(newRoute => {
       const accessTemp = ACCESS.find(a => a.id === newRoute.accessId);
 
       // to evit duplicated links
       if (accessTemp.route.findIndex(r => r === newRoute) < 0) {
-        accessTemp.route.push(newRoute);
+        // only add the visible route
+        if (newRoute.visible) accessTemp.route.push(newRoute);
       }
     });
 
     // order by access id
-    this.menuAccess = ACCESS.sort((a, b) => a.id - b.id);
+    // get only the visible access
+    this.menuAccess = ACCESS.filter(a => a.visible === true).sort(
+      (a, b) => a.id - b.id
+    );
 
     this.store.select(AuthState.me).subscribe((me: User) => {
       if (me) {
@@ -53,7 +58,9 @@ export class SidebarComponent implements OnInit {
   getUserImage() {
     let url = 'assets/images/noavatar.png';
     if (this.me && this.me.avatar && this.me.avatar.url) {
-      url = this.me.avatar.url.startsWith('http') ? this.me.avatar.url : `${environment.apiUrl}${this.me.avatar.url}`;
+      url = this.me.avatar.url.startsWith('http')
+        ? this.me.avatar.url
+        : `${environment.apiUrl}${this.me.avatar.url}`;
     }
     return url;
   }
