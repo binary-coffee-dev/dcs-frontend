@@ -20,12 +20,15 @@
       <span class="coffee"> Coffee </span>
     </a>
   </div>
-  <app-social-links fxLayoutAlign="end center"
-                    fxFlex="50"
-                    [fxHide.xs]="true"></app-social-links>
+  <div fxLayoutAlign="end center"
+       fxFlex="50"
+       [fxHide.xs]="true">
+    <app-login-button></app-login-button>
+  </div>
 </mat-toolbar>
-<div class="social-links-xs"
+<div class="links-xs"
      [fxHide]="true"
-     [fxShow.xs]="true">
-  <app-social-links fxLayoutAlign="center center"></app-social-links>
+     [fxShow.xs]="true"
+     fxLayoutAlign="center center">
+  <app-login-button></app-login-button>
 </div>

@@ -1,0 +1,30 @@
+@import 'libs/shared/src/theme';
+
+:host {
+  .login-button {
+    background-color: map_get($md-primary, 900);
+    border: 2px solid transparent;
+    color: map_get($md-grey, A100);
+    font-weight: bold;
+    animation: atent 10s 5s infinite cubic-bezier(0, .74, .27, .99);
+
+    &:hover {
+      border: 2px solid map_get($md-primary, 500);
+    }
+
+    @keyframes atent {
+
+      2% {
+        transform: translateX(-5px);
+      }
+
+      3% {
+        transform: translateX(5px);
+      }
+
+      6% {
+        transform: translateX(0);
+      }
+    }
+  }
+}
