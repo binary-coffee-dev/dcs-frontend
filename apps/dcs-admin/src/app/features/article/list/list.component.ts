@@ -64,6 +64,5 @@ export class ListComponent implements OnInit {
 
   toggleTableCard() {
     this.tableOrCard = !this.tableOrCard;
-    console.log(this.tableOrCard);
   }
 }

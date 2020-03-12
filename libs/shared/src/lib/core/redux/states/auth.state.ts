@@ -30,7 +30,6 @@ export class AuthState {
 
   @Selector()
   static me(state: AuthStateModel): User {
-    console.log(state);
     return state.me;
   }
 
