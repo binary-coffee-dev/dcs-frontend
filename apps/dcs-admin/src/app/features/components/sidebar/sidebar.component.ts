@@ -62,7 +62,7 @@ export class SidebarComponent implements OnInit {
     if (this.me && this.me.avatar && this.me.avatar.url) {
       url = this.me.avatar.url.startsWith('http')
         ? this.me.avatar.url
-        : `${environment.apiUrl}${this.me.avatar.url}`;
+        : new URL(this.me.avatar.url, environment.apiUrl).href;
     }
     return url;
   }

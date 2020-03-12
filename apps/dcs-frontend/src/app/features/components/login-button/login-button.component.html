@@ -7,8 +7,7 @@
   </button>
   <div *ngIf="isLogin"
        class="user-data">
-    <img *ngIf="me?.avatar?.url"
-         [src]="me?.avatar?.url"
+    <img [src]="getUserImage()"
          (click)="logoutAction()"
          alt="user avatar">
   </div>

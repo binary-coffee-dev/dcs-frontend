@@ -21,6 +21,16 @@ export class LoginButtonComponent implements OnInit {
   ) {
   }
 
+  getUserImage() {
+    let url = 'assets/images/noavatar.png';
+    if (this.me && this.me.avatar && this.me.avatar.url) {
+      url = this.me.avatar.url.startsWith('http')
+        ? this.me.avatar.url
+        : new URL(this.me.avatar.url, this.env.apiUrl).href;
+    }
+    return url;
+  }
+
   ngOnInit(): void {
     this.store.select(AuthState.isLogin).subscribe(isLogin => this.isLogin = isLogin);
     this.store.select(AuthState.me).subscribe(me => this.me = me);
