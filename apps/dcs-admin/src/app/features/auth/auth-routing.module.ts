@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 
 import {AuthComponent} from './auth.component';
 import {ProviderGuard} from '../../core/guards/provider.guard';
-import {AuthGuard} from '../../core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: ':provider',
-    canActivate: [ProviderGuard, AuthGuard],
+    canActivate: [ProviderGuard],
     component: AuthComponent
   }
 ];

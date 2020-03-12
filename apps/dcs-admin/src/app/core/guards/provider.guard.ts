@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate} from '@angular/router';
+import {ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router} from '@angular/router';
 
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -14,6 +14,7 @@ export class ProviderGuard implements CanActivate {
 
   constructor(
     private store: Store,
+    private router: Router,
     @Inject(WINDOW) private window: Window
   ) {
   }
@@ -25,12 +26,13 @@ export class ProviderGuard implements CanActivate {
     const code = next.queryParamMap.get('code');
     const redir = next.queryParamMap.get('redir');
     return this.store.dispatch(new LoginWithProviderAction(provider, code)).pipe(
-      map(() => {
+      map((result) => {
         if (redir) {
           this.window.location.href = redir;
           return false;
         }
-        return true;
+        this.router.navigate(['dashboard']);
+        return result;
       })
     );
   }

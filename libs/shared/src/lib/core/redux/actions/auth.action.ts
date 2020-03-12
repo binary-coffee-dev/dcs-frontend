@@ -1,5 +1,3 @@
-import {Provider} from '../models';
-
 export class LoginAction {
   static readonly type = '[Auth] Login action';
 
