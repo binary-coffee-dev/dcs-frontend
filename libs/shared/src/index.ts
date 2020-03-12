@@ -14,3 +14,5 @@ export * from './lib/components/footer/footer.component';
 export * from './lib/components/social-links/social-links.component';
 
 export * from './lib/core/permissions';
+
+export * from './lib/core/resolvers';

@@ -99,10 +99,12 @@ export class AuthState {
 
   @Action(MeAction)
   meAction(ctx: StateContext<AuthStateModel>) {
-    return this.authService.me().pipe(
-      tap((me: User) => ctx.patchState({me})),
-      take(1)
-    );
+    if (ctx.getState().token !== '') {
+      return this.authService.me().pipe(
+        tap((me: User) => ctx.patchState({me})),
+        take(1)
+      );
+    }
   }
 
   @Action(UpdateMeAction)

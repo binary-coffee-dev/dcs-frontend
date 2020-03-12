@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Store} from '@ngxs/store';
 
-import {MeAction} from '@dcs-libs/shared';
+import {MeAction} from '../redux/actions';
 
 @Injectable()
 export class MeResolver implements Resolve<any> {
