@@ -5,5 +5,6 @@ export const environment = {
   graphqlUrl: 'https://api.binary-coffee.dev/graphql',
   siteUrl: 'https://binary-coffee.dev',
   siteDashboardUrl: 'https://binary-coffee.dev/admin',
-  production: true
+  production: true,
+  local: false
 } as Environment;

@@ -35,6 +35,10 @@ export class AuthComponent implements OnInit {
     this.store.select(AuthState.authError).subscribe(error => this.authError = error);
   }
 
+  isLocalEnvironment() {
+    return Boolean(this.env.local);
+  }
+
   login() {
     if (this.loginForm.valid && this.checkEmptySpaces(this.loginForm.controls.identifier.value)) {
       const identifier = this.loginForm.controls.identifier.value;

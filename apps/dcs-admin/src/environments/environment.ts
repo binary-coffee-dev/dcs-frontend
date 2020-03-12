@@ -6,5 +6,6 @@ export const environment = {
   siteUrl: 'http://localhost:4201',
   siteDashboardUrl: 'http://localhost:4201',
   production: false,
+  local: true,
   githubClientId: 'f38efc18b8d63221e637'
 } as Environment;
