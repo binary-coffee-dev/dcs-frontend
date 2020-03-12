@@ -1,45 +1,45 @@
+@import 'libs/shared/src/theme';
+
 :host {
-  background-color: transparent;
+  mat-form-field {
+    margin: 0;
+  }
 
-  mat-card {
-    margin: 40px 15px 15px 15px;
+  .content {
+    margin: map_get($spacings, 4);
 
-    mat-card-content {
-      margin-top: 15px;
+    .header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: map_get($md-primary, 800);
+    }
 
-      .body-editor {
-        width: calc(100% - 6px);
-        min-width: calc(100% - 6px);
-        max-width: calc(100% - 6px);
-        min-height: 300px;
-        height: 100% !important;
+    .article {
+      margin-top: map_get($spacings, 4);
+
+      .enable {
+        margin-bottom: map_get($spacings, 4);
       }
 
-      .markdown-container {
-        padding: 0 10px;
+      .description {
+        min-height: 150px;
       }
 
-      .enable-attribute {
-        padding: 0 15px;
-      }
-
-      .row {
-        margin-bottom: 20px;
-      }
-
-      .banner-image-container {
+      .banner-image-content {
         min-height: 200px;
         max-height: 200px;
         position: relative;
-        background: #b1b1b1;
+        background: map_get($md-primary, 100);
         display: flex;
         align-items: center;
         flex-direction: column;
         overflow: hidden;
+        border-radius: map_get($radius, 2);
 
         img {
           height: 100%;
           width: auto;
+          border-radius: map_get($radius, 2);
         }
 
         .no-banner {
@@ -61,11 +61,45 @@
         }
       }
 
-      .button-save {
-        &:disabled {
-          cursor: inherit;
+      .comment {
+        margin: map_get($spacings, 4) 0;
+      }
+
+      .body-content {
+        border: 1px solid map_get($md-primary, 100);
+        border-radius: map_get($radius, 2) 0 0 map_get($radius, 2);
+        padding: map_get($spacings, 2);
+
+        .body {
+          min-height: 60vh;
+          height: 120%;
+          border: none;
+          resize: none;
         }
+
+        @media only screen and (max-width: 1024px) {
+          border-radius: map_get($radius, 2) map_get($radius, 2) 0 0;
+        }
+      }
+
+      .markdown-content {
+        word-wrap: break-word;
+        border: 1px solid map_get($md-primary, 100);
+        border-radius: 0 map_get($radius, 2) map_get($radius, 2) 0;
+        padding: map_get($spacings, 2);
+
+        @media only screen and (max-width: 1024px) {
+          border-radius: 0 0 map_get($radius, 2) map_get($radius, 2);
+        }
+      }
+
+      .submit {
+        position: fixed;
+        bottom: map_get($spacings, 5);
+        right: map_get($spacings, 5);
       }
     }
   }
+
+
 }

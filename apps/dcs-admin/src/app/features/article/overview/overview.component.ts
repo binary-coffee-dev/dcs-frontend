@@ -1,13 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {AuthState, File, Post, PostCreateAction, PostState, PostUpdateAction} from '@dcs-libs/shared';
-import {SelectImageModalComponent} from './select-image-modal/select-image-modal.component';
-import {normalizeImageUrl} from '../../../core/utils/url-utils';
+import {
+  AuthState,
+  File,
+  Post,
+  PostCreateAction,
+  PostState,
+  PostUpdateAction
+} from '@dcs-libs/shared';
+import { SelectImageModalComponent } from './select-image-modal/select-image-modal.component';
+import { normalizeImageUrl } from '../../../core/utils/url-utils';
 
 @Component({
   selector: 'app-overview',
@@ -15,7 +22,6 @@ import {normalizeImageUrl} from '../../../core/utils/url-utils';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
-
   post = {
     body: ''
   } as Post;
@@ -35,16 +41,15 @@ export class OverviewComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     if (!this.isNewPost()) {
       this.store.select(PostState.post).subscribe(post => {
         if (post) {
-          const newPost = {...post};
+          const newPost = { ...post };
           if (newPost.banner) {
-            newPost.banner = {...newPost.banner};
+            newPost.banner = { ...newPost.banner };
             newPost.banner.url = normalizeImageUrl(newPost.banner.url);
           }
           this.post = newPost;
@@ -68,7 +73,10 @@ export class OverviewComponent implements OnInit {
   onPostChange() {
     const keyNames = ['body', 'description', 'title', 'enable'];
     this.formDataChange = keyNames.reduce((prev, key) => {
-      return prev || this.post && this.post[key] !== this.articleForm.controls[key].value;
+      return (
+        prev ||
+        (this.post && this.post[key] !== this.articleForm.controls[key].value)
+      );
     }, false);
   }
 
@@ -79,9 +87,18 @@ export class OverviewComponent implements OnInit {
     this.post.enable = !!this.articleForm.controls.enable.value;
 
     if (this.isNewPost()) {
-      this.store.dispatch(new PostCreateAction(this.post, this.store.selectSnapshot(AuthState.me))).subscribe(() => {
-        this.router.navigate([`/articles/update/${this.store.selectSnapshot(PostState.newPostId)}`]);
-      });
+      this.store
+        .dispatch(
+          new PostCreateAction(
+            this.post,
+            this.store.selectSnapshot(AuthState.me)
+          )
+        )
+        .subscribe(() => {
+          this.router.navigate([
+            `/articles/update/${this.store.selectSnapshot(PostState.newPostId)}`
+          ]);
+        });
     } else {
       this.store.dispatch(new PostUpdateAction(this.post)).subscribe(() => {
         this.imageChange = this.formDataChange = false;
@@ -92,7 +109,7 @@ export class OverviewComponent implements OnInit {
   openImageSectorModal() {
     const dialog = this.dialog.open(SelectImageModalComponent, {
       height: 'auto',
-      width: '50vw',
+      width: '50vw'
     });
 
     dialog.afterClosed().subscribe((image: File) => {
