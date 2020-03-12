@@ -24,10 +24,14 @@ export class ProviderGuard implements CanActivate {
     const provider = next.paramMap.get('provider');
     const code = next.queryParamMap.get('code');
     const redir = next.queryParamMap.get('redir');
-    if (redir) {
-      this.window.location.href = redir;
-      return false;
-    }
-    return this.store.dispatch(new LoginWithProviderAction(provider, code)).pipe(map(() => true));
+    return this.store.dispatch(new LoginWithProviderAction(provider, code)).pipe(
+      map(() => {
+        if (redir) {
+          this.window.location.href = redir;
+          return false;
+        }
+        return true;
+      })
+    );
   }
 }
