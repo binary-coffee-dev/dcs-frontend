@@ -3,9 +3,8 @@ import {Title} from '@angular/platform-browser';
 
 import {Store} from '@ngxs/store';
 
-import {Environment, ENVIRONMENT, Post, PostState} from '@dcs-libs/shared';
+import {Environment, ENVIRONMENT, FetchCommentsAction, Post, PostState} from '@dcs-libs/shared';
 import {MetaTag, MetaTagsService, MomentService, ResourceService, ScrollService} from '../../core/services';
-import {FetchCommentsAction} from '../../core/redux/actions';
 
 @Component({
   selector: 'app-post',

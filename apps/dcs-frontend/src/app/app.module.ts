@@ -3,16 +3,23 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
+import {NgxsModule} from '@ngxs/store';
+import {APOLLO_OPTIONS} from 'apollo-angular';
+import {HttpLink} from 'apollo-angular-link-http';
+
 import {
   SharedModule,
   FooterComponent,
   SocialLinksComponent,
   ENVIRONMENT,
-  ReduxModule as ReduxSharedModule
+  ReduxModule,
+  AuthState,
+  PostState,
+  CommentState, CommentService
 } from '@dcs-libs/shared';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './features/app.component';
-import {ReduxModule} from './core/redux';
 import {MaterialModule} from './core/material';
 import {HeaderComponent} from './features/components/header';
 import {InfoModule} from './features/info/info.module';
@@ -20,7 +27,8 @@ import {ScrollTopComponent} from './features/components/scroll-top';
 import {NewLabelComponent} from './features/components/new-label';
 import {CliComponent} from './features/components/cli/cli.component';
 import {environment} from '../environments/environment';
-import { LoginButtonComponent } from './features/components/login-button/login-button.component';
+import {LoginButtonComponent} from './features/components/login-button/login-button.component';
+import {createApollo} from './core/graphql';
 
 @NgModule({
   declarations: [
@@ -38,8 +46,11 @@ import { LoginButtonComponent } from './features/components/login-button/login-b
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsModule.forRoot([CommentState, AuthState, PostState], {
+      developmentMode: !environment.production
+    }),
     ReduxModule,
-    ReduxSharedModule,
     MaterialModule,
     InfoModule,
     SharedModule
@@ -48,7 +59,13 @@ import { LoginButtonComponent } from './features/components/login-button/login-b
     {
       provide: ENVIRONMENT,
       useValue: environment
-    }
+    },
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: createApollo,
+      deps: [HttpLink],
+    },
+    CommentService
   ],
   bootstrap: [AppComponent]
 })
