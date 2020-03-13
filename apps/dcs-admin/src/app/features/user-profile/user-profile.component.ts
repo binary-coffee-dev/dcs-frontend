@@ -48,8 +48,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUserImage() {
-    if (this.me && this.me.avatar && this.me.avatar.url) {
-      return `${environment.apiUrl}${this.me.avatar.url}`;
+    // toDo: fix this, if the url is complete
+    if (this.me && this.me.avatarUrl) {
+      return `${environment.apiUrl}${this.me.avatarUrl}`;
     }
     return 'assets/images/noavatar.png';
   }

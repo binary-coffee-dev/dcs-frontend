@@ -8,4 +8,5 @@ export interface User {
   avatar: File;
   page: string;
   role: Role;
+  avatarUrl: string;
 }

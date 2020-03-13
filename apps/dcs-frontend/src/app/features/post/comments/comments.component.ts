@@ -63,6 +63,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
     }
   }
 
+  getName(comment: Comment) {
+    return comment.name || comment.user.username;
+  }
+
   checkEmptySpaces(value: string): boolean {
     return value.replace(/ /gi, '') !== '';
   }

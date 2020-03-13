@@ -14,9 +14,7 @@ export const COMMENTS_QUERY = gql`
                 name
                 user {
                     username
-                    avatar {
-                        url
-                    }
+                    avatarUrl
                 }
             }
             aggregate {

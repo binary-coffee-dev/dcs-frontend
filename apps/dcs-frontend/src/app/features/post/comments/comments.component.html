@@ -77,10 +77,10 @@
           <span class="post-info">
             // {{comment?.publishedAt && moment.timeFromDate(comment.publishedAt) || ''}}
           </span>
-          <h3 class="code-2">"{{comment.name}}"</h3>
+          <h3 class="code-2">"{{getName(comment)}}"</h3>
         </div>
         <div class="comment-body">
-          /* {{comment.body}} */
+          {{comment.body}}
         </div>
       </div>
     </div>

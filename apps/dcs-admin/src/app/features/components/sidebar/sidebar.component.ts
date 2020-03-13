@@ -58,11 +58,12 @@ export class SidebarComponent implements OnInit {
   }
 
   getUserImage() {
+    // toDo: make this a util function
     let url = 'assets/images/noavatar.png';
-    if (this.me && this.me.avatar && this.me.avatar.url) {
-      url = this.me.avatar.url.startsWith('http')
-        ? this.me.avatar.url
-        : new URL(this.me.avatar.url, environment.apiUrl).href;
+    if (this.me && this.me.avatarUrl) {
+      url = this.me.avatarUrl.startsWith('http')
+        ? this.me.avatarUrl
+        : new URL(this.me.avatarUrl, environment.apiUrl).href;
     }
     return url;
   }

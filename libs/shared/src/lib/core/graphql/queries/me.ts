@@ -7,9 +7,7 @@ export const ME_QUERY = gql`
             username
             email
             page
-            avatar {
-                url
-            }
+            avatarUrl
         }
     }
 `;

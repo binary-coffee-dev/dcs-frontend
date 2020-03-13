@@ -17,7 +17,10 @@ export class CommentService {
   fetchComments(postId): Observable<Comment[]> {
     return this.apollo
       .watchQuery({query: COMMENTS_QUERY, variables: {postId}, fetchPolicy: 'no-cache'})
-      .valueChanges.pipe(map((result: any) => result.data.commentsConnection.values));
+      .valueChanges.pipe(map((result: any) => {
+        console.log(result.data.commentsConnection.values);
+        return result.data.commentsConnection.values;
+      }));
   }
 
   createComment(comment: Comment) {
