@@ -41,8 +41,13 @@ export class CommentState {
     return this.commentService.createComment(action.comment).pipe(
       tap(() => ctx.dispatch(new RefreshPostAction())),
       catchError((error: Error) => {
-        if (error.message === 'GraphQL error: invalid-data') {
-          ctx.dispatch(new CommentErrorAction('Error al crear el comentario'));
+        switch (error.message) {
+          case 'GraphQL error: invalid-data':
+            ctx.dispatch(new CommentErrorAction('Error al crear el comentario'));
+            break;
+          case 'Forbidden':
+            ctx.dispatch(new CommentErrorAction('Debe autenticarse para comentar'));
+            break;
         }
         return of();
       })

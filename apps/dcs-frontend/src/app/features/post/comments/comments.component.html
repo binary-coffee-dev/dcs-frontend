@@ -3,6 +3,7 @@
   <div class="comments-header-separator"></div>
 
   <form class="comment-new-container"
+        *ngIf="isLogin"
         fxLayout="column"
         [formGroup]="commentForm"
         fxLayoutAlign="center end">

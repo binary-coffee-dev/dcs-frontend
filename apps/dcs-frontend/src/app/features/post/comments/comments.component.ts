@@ -4,7 +4,16 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {Store} from '@ngxs/store';
 
-import {Comment, CommentErrorAction, CommentState, CreateCommentAction, FetchCommentsAction, Post, UrlUtilsService} from '@dcs-libs/shared';
+import {
+  AuthState,
+  Comment,
+  CommentErrorAction,
+  CommentState,
+  CreateCommentAction,
+  FetchCommentsAction,
+  Post,
+  UrlUtilsService
+} from '@dcs-libs/shared';
 import {MomentService} from '../../../core/services';
 
 @Component({
@@ -21,6 +30,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   comments: Comment[] = [];
   commentError = '';
+
+  isLogin = false;
 
   commentForm = new FormGroup({
     body: new FormControl('', Validators.required),
@@ -42,6 +53,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
     this.store.select(CommentState.error).subscribe(error => {
       this.commentError = error.message;
     });
+    this.store.select(AuthState.isLogin).subscribe(isLogin => this.isLogin = isLogin);
   }
 
   ngOnDestroy(): void {
