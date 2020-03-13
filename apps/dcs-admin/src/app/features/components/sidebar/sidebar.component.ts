@@ -4,8 +4,7 @@ import { Location } from '@angular/common';
 
 import { Store } from '@ngxs/store';
 
-import { LogoutAction, AuthState, User } from '@dcs-libs/shared';
-import { environment } from '../../../../environments/environment';
+import {LogoutAction, AuthState, User, UrlUtilsService} from '@dcs-libs/shared';
 import { Access, AccessIds, ROUTES, ACCESS } from './sidebar.model';
 
 const PATH_NAME_POSITION = 2;
@@ -24,7 +23,8 @@ export class SidebarComponent implements OnInit {
   constructor(
     private store: Store,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private url: UrlUtilsService
   ) {}
 
   ngOnInit() {
@@ -58,14 +58,7 @@ export class SidebarComponent implements OnInit {
   }
 
   getUserImage() {
-    // toDo: make this a util function
-    let url = 'assets/images/noavatar.png';
-    if (this.me && this.me.avatarUrl) {
-      url = this.me.avatarUrl.startsWith('http')
-        ? this.me.avatarUrl
-        : new URL(this.me.avatarUrl, environment.apiUrl).href;
-    }
-    return url;
+    return this.url.getUserImage(this.me);
   }
 
   logout() {

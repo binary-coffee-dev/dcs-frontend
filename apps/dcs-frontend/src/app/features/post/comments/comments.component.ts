@@ -4,7 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {Store} from '@ngxs/store';
 
-import {Comment, CommentErrorAction, CommentState, CreateCommentAction, FetchCommentsAction, Post} from '@dcs-libs/shared';
+import {Comment, CommentErrorAction, CommentState, CreateCommentAction, FetchCommentsAction, Post, UrlUtilsService} from '@dcs-libs/shared';
 import {MomentService} from '../../../core/services';
 
 @Component({
@@ -28,7 +28,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
-    public moment: MomentService
+    public moment: MomentService,
+    private url: UrlUtilsService
   ) {
   }
 
@@ -61,6 +62,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
     } else {
       this.store.dispatch(new CommentErrorAction('Missing data in the comment'));
     }
+  }
+
+  getUserAvatar(user) {
+    return this.url.getUserImage(user);
   }
 
   getName(comment: Comment) {

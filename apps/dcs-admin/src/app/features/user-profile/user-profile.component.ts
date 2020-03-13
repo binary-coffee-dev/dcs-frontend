@@ -9,6 +9,7 @@ import {
   File,
   UpdateMeAction,
   UpdateMyAvatarAction,
+  UrlUtilsService,
   User
 } from '@dcs-libs/shared';
 import { environment } from '../../../environments/environment';
@@ -35,7 +36,11 @@ export class UserProfileComponent implements OnInit {
     password2: new FormControl('', Validators.required)
   });
 
-  constructor(private store: Store, private dialog: MatDialog) {}
+  constructor(
+    private store: Store,
+    private dialog: MatDialog,
+    private url: UrlUtilsService
+  ) {}
 
   ngOnInit() {
     this.store.select(AuthState.me).subscribe((me: User) => {
@@ -48,11 +53,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUserImage() {
-    // toDo: fix this, if the url is complete
-    if (this.me && this.me.avatarUrl) {
-      return `${environment.apiUrl}${this.me.avatarUrl}`;
-    }
-    return 'assets/images/noavatar.png';
+    return this.url.getUserImage(this.me);
   }
 
   saveUserData() {
