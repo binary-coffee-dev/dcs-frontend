@@ -12,7 +12,6 @@ import {
   UrlUtilsService,
   User
 } from '@dcs-libs/shared';
-import { environment } from '../../../environments/environment';
 import { UploadFileModalComponent } from '../components/upload-file.modal';
 
 @Component({
