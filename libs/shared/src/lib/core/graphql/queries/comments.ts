@@ -12,6 +12,10 @@ export const COMMENTS_QUERY = gql`
                 body
                 publishedAt
                 name
+                user {
+                    username
+                    avatarUrl
+                }
             }
             aggregate {
                 count

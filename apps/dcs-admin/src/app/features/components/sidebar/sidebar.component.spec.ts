@@ -1,12 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
 
-import { Store } from '@ngxs/store';
+import {Store} from '@ngxs/store';
 
-import { SidebarComponent } from './sidebar.component';
+import {UrlUtilsService} from '@dcs-libs/shared';
+import {SidebarComponent} from './sidebar.component';
 
-class StoreStub {}
+class StoreStub {
+}
+
+class UrlUtilsServiceStub {
+}
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -15,7 +20,7 @@ describe('SidebarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SidebarComponent],
-      providers: [{ provide: Store, useClass: StoreStub }],
+      providers: [{provide: Store, useClass: StoreStub}, {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}],
       schemas: [NO_ERRORS_SCHEMA],
       imports: [RouterTestingModule]
     }).compileComponents();

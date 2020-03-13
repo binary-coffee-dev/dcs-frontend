@@ -17,7 +17,8 @@
            fxLayout.sm="column"
            fxLayoutAlign="center center">
 
-        <div fxLayout="column">
+        <div fxLayout="column"
+             *ngIf="isLocalEnvironment()">
           <mat-form-field appearance="outline">
             <mat-label class="code-none">
               <span class="code-1"> var </span>
@@ -59,10 +60,12 @@
         </div>
 
         <div class="separator"
+             *ngIf="isLocalEnvironment()"
              fxLayout="column"
              fxLayout.xs="row"
              fxLayout.sm="row"
-             fxLayoutAlign="center center"> or </div>
+             fxLayoutAlign="center center"> or
+        </div>
 
         <div class="provider-container"
              fxLayout="column"

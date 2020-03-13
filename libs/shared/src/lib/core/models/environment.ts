@@ -6,6 +6,7 @@ export interface Environment {
   siteUrl: string;
   siteDashboardUrl?: string;
   production: boolean;
+  local?: boolean;
   githubClientId?: string;
   googleAnalyticsId?: string;
   postPageSize?: number;

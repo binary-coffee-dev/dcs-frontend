@@ -3,12 +3,13 @@
   <div class="comments-header-separator"></div>
 
   <form class="comment-new-container"
+        *ngIf="isLogin"
         fxLayout="column"
         [formGroup]="commentForm"
         fxLayoutAlign="center end">
 
     <span class="comment-error-message"
-          *ngIf="commentError && false">
+          *ngIf="commentError">
       <mat-icon mat-font-icon="fa-icon"
                 class="fa fa-warning"></mat-icon>
       {{commentError}}
@@ -36,86 +37,20 @@
          fxLayout.xs="column"
          fxLayoutAlign="start start">
 
-      <div class="captcha-container"
-           fxLayout="column"
-           fxLayout.xs="column"
-           fxLayout.sm="row"
-           fxFlex="100"
-           fxFlex.lg="20"
-           fxFlex.md="30">
-
-        <div>
-          <span class="fa fa-refresh"></span>
-          <div class="captcha"
-               [innerHTML]="myCaptcha"
-               (click)="reloadCaptcha()"></div>
-        </div>
-
-        <span fxHie
-              fxShow.md
-              class="separator"></span>
-
-        <mat-form-field appearance="outline"
-                        class="comment-item comment-item-captcha"
-                        fxFlex="100">
-          <mat-label class="code-none">
-            <span class="code-1"> var </span>
-            <span class="code-var"> Suma </span> =
-          </mat-label>
-          <input matInput
-                 type="text"
-                 placeholder="Suma"
-                 formControlName="captcha">
-          <mat-error>Suma incorrecta</mat-error>
-        </mat-form-field>
-
-      </div>
-
       <div fxLayout="column"
            class="items-credentials-container"
            fxLayoutAlign="end end"
            fxFlex="100">
-
-        <mat-form-field appearance="outline"
-                        class="comment-item"
-                        fxFlex="100">
-          <mat-label class="code-none">
-            <span class="code-1"> var </span>
-            <span class="code-var"> Nombre </span> =
-          </mat-label>
-          <input matInput
-                 type="text"
-                 formControlName="name"
-                 placeholder="Nombre">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline"
-                        class="comment-item"
-                        fxFlex="100">
-          <mat-label class="code-none">
-            <span class="code-1"> var </span>
-            <span class="code-var"> Correo </span> =
-          </mat-label>
-          <input matInput
-                 type="email"
-                 formControlName="email"
-                 placeholder="Correo">
-          <mat-error>Correo incorrecto</mat-error>
-        </mat-form-field>
 
         <button mat-button
                 matTooltip="Opinar sobre el tema"
                 class="bc-button"
                 [disabled]="!commentForm.valid"
                 (click)="createComment()">
-          <span class="code-1"> new </span>
-          Opinión(
+          enviar (
           <span fxHide.xs
                 fxHide.sm>
-            <span class="code-var"> Opinión </span>,
-            <span class="code-var"> Nombre </span>,
-            <span class="code-var"> Correo </span>,
-            <span class="code-var"> Suma </span>
+            <span class="code-var"> Opinión </span>
           </span>)
         </button>
 
@@ -128,7 +63,7 @@
          class="comment-item"
          *ngFor="let comment of comments">
       <img class="comment-user-image"
-           src="assets/images/noavatar.png"
+           [src]="getUserAvatar(comment.user)"
            alt="noavatar">
 
       <div fxLayout="column"
@@ -139,10 +74,10 @@
           <span class="post-info">
             // {{comment?.publishedAt && moment.timeFromDate(comment.publishedAt) || ''}}
           </span>
-          <h3 class="code-2">"{{comment.name}}"</h3>
+          <h3 class="code-2">"{{getName(comment)}}"</h3>
         </div>
         <div class="comment-body">
-          /* {{comment.body}} */
+          {{comment.body}}
         </div>
       </div>
     </div>

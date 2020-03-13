@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 
 import {Store} from '@ngxs/store';
 
-import {AuthState, ENVIRONMENT, Environment, LogoutAction, User, WINDOW} from '@dcs-libs/shared';
+import {AuthState, ENVIRONMENT, Environment, LogoutAction, UrlUtilsService, User, WINDOW} from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-login-button',
@@ -17,18 +17,13 @@ export class LoginButtonComponent implements OnInit {
   constructor(
     @Inject(WINDOW) private window: Window,
     @Inject(ENVIRONMENT) private env: Environment,
-    private store: Store
+    private store: Store,
+    private url: UrlUtilsService
   ) {
   }
 
   getUserImage() {
-    let url = 'assets/images/noavatar.png';
-    if (this.me && this.me.avatar && this.me.avatar.url) {
-      url = this.me.avatar.url.startsWith('http')
-        ? this.me.avatar.url
-        : new URL(this.me.avatar.url, this.env.apiUrl).href;
-    }
-    return url;
+    return this.url.getUserImage(this.me);
   }
 
   ngOnInit(): void {

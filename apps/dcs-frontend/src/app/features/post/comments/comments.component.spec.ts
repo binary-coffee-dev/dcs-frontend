@@ -1,11 +1,15 @@
-import { async, ComponentFixture, TestBed, tick } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
-import { Store } from '@ngxs/store';
+import {Store} from '@ngxs/store';
 
-import { CommentsComponent } from './comments.component';
+import {UrlUtilsService} from '@dcs-libs/shared';
+import {CommentsComponent} from './comments.component';
 
 class StoreStub {
+}
+
+class UrlUtilsServiceStub {
 }
 
 describe('CommentsComponent', () => {
@@ -17,7 +21,8 @@ describe('CommentsComponent', () => {
       declarations: [CommentsComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: Store, useClass: StoreStub }
+        {provide: Store, useClass: StoreStub},
+        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
       ]
     })
       .compileComponents();

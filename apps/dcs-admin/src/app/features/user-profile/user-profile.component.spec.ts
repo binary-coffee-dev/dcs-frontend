@@ -1,13 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 
-import { Store } from '@ngxs/store';
+import {Store} from '@ngxs/store';
 
-import { UserProfileComponent } from './user-profile.component';
+import {UrlUtilsService} from '@dcs-libs/shared';
+import {UserProfileComponent} from './user-profile.component';
 
-class StoreStub {}
-class MatDialogStub {}
+class StoreStub {
+}
+
+class MatDialogStub {
+}
+
+class UrlUtilsServiceStub {
+  getUserImage = jest.fn();
+}
 
 describe('UserProfileComponent', () => {
   let component: UserProfileComponent;
@@ -17,8 +25,9 @@ describe('UserProfileComponent', () => {
     TestBed.configureTestingModule({
       declarations: [UserProfileComponent],
       providers: [
-        { provide: Store, useClass: StoreStub },
-        { provide: MatDialog, useClass: MatDialogStub }
+        {provide: Store, useClass: StoreStub},
+        {provide: MatDialog, useClass: MatDialogStub},
+        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();

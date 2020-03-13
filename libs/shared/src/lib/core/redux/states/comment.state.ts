@@ -2,27 +2,21 @@ import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {catchError, take, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
-import {RefreshPostAction} from '@dcs-libs/shared';
 import {CommentService} from '../services';
 import {CommentStateModel, initCommentStateModel} from './comment-state.model';
 import {
   CommentErrorAction,
   CreateCommentAction,
-  FetchCaptchaAction,
-  FetchCommentsAction
+  FetchCommentsAction,
+  RefreshPostAction
 } from '../actions';
-import {Captcha, Comment, CommentError} from '../models';
+import {CommentError, Comment} from '../models';
 
 @State<CommentStateModel>({
   name: 'comment',
   defaults: initCommentStateModel()
 })
 export class CommentState {
-
-  @Selector()
-  static captcha(state: CommentStateModel): Captcha {
-    return state.captcha;
-  }
 
   @Selector()
   static comments(state: CommentStateModel): Comment[] {
@@ -42,20 +36,18 @@ export class CommentState {
   constructor(private commentService: CommentService) {
   }
 
-  @Action(FetchCaptchaAction)
-  fetchCaptchaAction(ctx: StateContext<CommentStateModel>) {
-    return this.commentService.fetchCaptcha().pipe(tap(captcha => {
-      ctx.patchState({captcha});
-    }));
-  }
-
   @Action(CreateCommentAction)
   createCommentAction(ctx: StateContext<CommentStateModel>, action: CreateCommentAction) {
-    return this.commentService.createComment(action.comment, action.captcha).pipe(
+    return this.commentService.createComment(action.comment).pipe(
       tap(() => ctx.dispatch(new RefreshPostAction())),
       catchError((error: Error) => {
-        if (error.message === 'GraphQL error: invalid-captcha') {
-          ctx.dispatch(new CommentErrorAction('Invalid captcha'));
+        switch (error.message) {
+          case 'GraphQL error: invalid-data':
+            ctx.dispatch(new CommentErrorAction('Error al crear el comentario'));
+            break;
+          case 'Forbidden':
+            ctx.dispatch(new CommentErrorAction('Debe autenticarse para comentar'));
+            break;
         }
         return of();
       })

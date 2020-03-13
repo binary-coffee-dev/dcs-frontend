@@ -5,3 +5,5 @@ export * from './notification.model';
 export * from './auth-error.model';
 export * from './post-connection.model';
 export * from './provider.model';
+export * from './comment.model';
+export * from './error.model';

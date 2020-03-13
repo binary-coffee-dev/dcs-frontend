@@ -15,7 +15,7 @@ export const POST_BY_NAME_QUERY = gql`
             author {
                 username
                 email
-                avatar { url }
+                avatarUrl
                 page
             }
         }
