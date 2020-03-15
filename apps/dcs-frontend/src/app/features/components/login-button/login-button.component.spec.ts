@@ -1,19 +1,17 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {ENVIRONMENT, WINDOW} from '@dcs-libs/shared';
-import {LoginButtonComponent} from './login-button.component';
+import { ENVIRONMENT, WINDOW, MaterialModule } from '@dcs-libs/shared';
+import { LoginButtonComponent } from './login-button.component';
 
-class StoreStub {
-}
-
+class StoreStub {}
 
 const env = {
   siteDashboardUrl: 'http://binary-coffee.dev/dasboard'
 };
 const window = {
-  location: {href: ''}
+  location: { href: '' }
 };
 
 describe('LoginButtonComponent', () => {
@@ -24,12 +22,12 @@ describe('LoginButtonComponent', () => {
     TestBed.configureTestingModule({
       declarations: [LoginButtonComponent],
       providers: [
-        {provide: WINDOW, useFactory: () => window},
-        {provide: ENVIRONMENT, useFactory: () => env},
-        {provide: Store, useClass: StoreStub},
-      ]
-    })
-      .compileComponents();
+        { provide: WINDOW, useFactory: () => window },
+        { provide: ENVIRONMENT, useFactory: () => env },
+        { provide: Store, useClass: StoreStub }
+      ],
+      imports: [MaterialModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -50,8 +48,9 @@ describe('LoginButtonComponent', () => {
 
     component.loginAction();
 
-    expect(window.location.href)
-      .toEqual('http://binary-coffee.dev/dasboard/login?redir=http%3A%2F%2Fbinary-coffee.dev%2Fpost%2Fthis-is-a-test');
+    expect(window.location.href).toEqual(
+      'http://binary-coffee.dev/dasboard/login?redir=http%3A%2F%2Fbinary-coffee.dev%2Fpost%2Fthis-is-a-test'
+    );
   });
 
   it('should redirect to login (with slash symbol in the env)', () => {
@@ -60,8 +59,9 @@ describe('LoginButtonComponent', () => {
 
     component.loginAction();
 
-    expect(window.location.href)
-      .toEqual('http://binary-coffee.dev/dasboard/login?redir=http%3A%2F%2Fbinary-coffee.dev%2Fpost%2Fthis-is-a-test');
+    expect(window.location.href).toEqual(
+      'http://binary-coffee.dev/dasboard/login?redir=http%3A%2F%2Fbinary-coffee.dev%2Fpost%2Fthis-is-a-test'
+    );
   });
 
   it('should redirect to login (local environment)', () => {
@@ -70,7 +70,8 @@ describe('LoginButtonComponent', () => {
 
     component.loginAction();
 
-    expect(window.location.href)
-      .toEqual('http://localhost:4201/login?redir=http%3A%2F%2Flocalhost%3A4200%2Fpost%2Ftest-sip');
+    expect(window.location.href).toEqual(
+      'http://localhost:4201/login?redir=http%3A%2F%2Flocalhost%3A4200%2Fpost%2Ftest-sip'
+    );
   });
 });
