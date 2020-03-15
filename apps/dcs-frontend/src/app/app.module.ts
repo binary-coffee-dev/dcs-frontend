@@ -1,12 +1,12 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
-import {NgxsModule} from '@ngxs/store';
-import {APOLLO_OPTIONS} from 'apollo-angular';
-import {HttpLink} from 'apollo-angular-link-http';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsModule } from '@ngxs/store';
+import { APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular-link-http';
 
 import {
   SharedModule,
@@ -16,19 +16,20 @@ import {
   ReduxModule,
   AuthState,
   PostState,
-  CommentState, CommentService
+  CommentState,
+  CommentService,
+  MaterialModule
 } from '@dcs-libs/shared';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './features/app.component';
-import {MaterialModule} from './core/material';
-import {HeaderComponent} from './features/components/header';
-import {InfoModule} from './features/info/info.module';
-import {ScrollTopComponent} from './features/components/scroll-top';
-import {NewLabelComponent} from './features/components/new-label';
-import {CliComponent} from './features/components/cli/cli.component';
-import {environment} from '../environments/environment';
-import {LoginButtonComponent} from './features/components/login-button/login-button.component';
-import {createApollo} from './core/graphql';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './features/app.component';
+import { HeaderComponent } from './features/components/header';
+import { InfoModule } from './features/info/info.module';
+import { ScrollTopComponent } from './features/components/scroll-top';
+import { NewLabelComponent } from './features/components/new-label';
+import { CliComponent } from './features/components/cli/cli.component';
+import { environment } from '../environments/environment';
+import { LoginButtonComponent } from './features/components/login-button/login-button.component';
+import { createApollo } from './core/graphql';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import {createApollo} from './core/graphql';
     LoginButtonComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -63,11 +64,10 @@ import {createApollo} from './core/graphql';
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
-      deps: [HttpLink],
+      deps: [HttpLink]
     },
     CommentService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
