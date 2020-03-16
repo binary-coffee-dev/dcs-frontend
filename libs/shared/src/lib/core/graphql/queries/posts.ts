@@ -9,6 +9,7 @@ export const POSTS_QUERY = gql`
                 title
                 enable
                 body
+                comments
                 description
                 publishedAt
                 views
