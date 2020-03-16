@@ -20,4 +20,8 @@ export class UrlUtilsService {
     }
     return url.startsWith('http') ? url : new URL(url, this.environment.apiUrl).href;
   }
+
+  normalizeSiteUrl(url) {
+    return url.startsWith('http') ? url : new URL(url, this.environment.apiUrl).href;
+  }
 }
