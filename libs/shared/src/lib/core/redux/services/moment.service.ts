@@ -11,6 +11,9 @@ export class MomentService {
   }
 
   timeFromDate(date) {
+    if (!date) {
+      return 'Sin publicar';
+    }
     return moment(date).fromNow();
   }
 }
