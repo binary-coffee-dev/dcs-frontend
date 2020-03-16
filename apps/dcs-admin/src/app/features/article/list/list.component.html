@@ -120,6 +120,7 @@
         <th></th>
         <th>Titulo</th>
         <th>Publicado</th>
+        <th>Autor</th>
         <th>Activo</th>
         <th></th>
       </thead>
@@ -136,6 +137,9 @@
           <td>{{post.title}}</td>
           <td>
             {{moment.timeFromDate(post.publishedAt) || ''}}
+          </td>
+          <td>
+            {{post?.author?.username}}
           </td>
           <td class="activo">
             <mat-checkbox [(ngModel)]="post.enable"
