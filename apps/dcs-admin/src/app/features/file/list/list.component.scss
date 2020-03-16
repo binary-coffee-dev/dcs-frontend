@@ -15,6 +15,8 @@
 
       .file-img {
         border-radius: map-get($radius, 2);
+        max-height: 300px;
+        max-width: 30%;
         border: 1px solid map_get($md-primary, 100);
       }
     }
