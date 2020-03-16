@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit, Input } from '@angular/core';
+import {Component, Inject, OnInit, Input} from '@angular/core';
 
-import { Store } from '@ngxs/store';
+import {Store} from '@ngxs/store';
 
 import {
   ENVIRONMENT,
@@ -11,7 +11,8 @@ import {
   PostState,
   PreviousPageAction,
   SelectPageAction,
-  MomentService
+  MomentService,
+  UrlUtilsService
 } from '@dcs-libs/shared';
 
 @Component({
@@ -30,8 +31,10 @@ export class ListComponent implements OnInit {
   constructor(
     private store: Store,
     public moment: MomentService,
-    @Inject(ENVIRONMENT) private environment: Environment
-  ) {}
+    @Inject(ENVIRONMENT) private environment: Environment,
+    public url: UrlUtilsService
+  ) {
+  }
 
   ngOnInit() {
     this.store.select(PostState.posts).subscribe(posts => {
