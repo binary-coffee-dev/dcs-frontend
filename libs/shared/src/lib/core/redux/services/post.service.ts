@@ -16,9 +16,9 @@ export class PostService {
   constructor(private apollo: Apollo) {
   }
 
-  fetchPosts(limit, start = 0): Observable<PostConnection> {
+  fetchPosts(limit, start = 0, where = {}): Observable<PostConnection> {
     return this.apollo
-      .watchQuery({query: POSTS_QUERY, variables: {limit, start}, fetchPolicy: 'no-cache'})
+      .watchQuery({query: POSTS_QUERY, variables: {limit, start, where}, fetchPolicy: 'no-cache'})
       .valueChanges.pipe(map((result: any) => ({
         ...result.data.postsConnection,
         aggregate: {

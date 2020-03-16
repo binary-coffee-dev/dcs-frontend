@@ -3,8 +3,15 @@ import {MatDialogRef} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
 
-import {ChangeFilesPageAction, FetchFilesAction, File, FileState, NextFilesPageAction, PreviousFilesPageAction} from '@dcs-libs/shared';
-import {normalizeImageUrl} from '../../../../core/utils/url-utils';
+import {
+  ChangeFilesPageAction,
+  FetchFilesAction,
+  File,
+  FileState,
+  NextFilesPageAction,
+  PreviousFilesPageAction,
+  UrlUtilsService
+} from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-select-image-modal',
@@ -18,7 +25,11 @@ export class SelectImageModalComponent implements OnInit {
   currentPage = 0;
   numberOfPages = 0;
 
-  constructor(private store: Store, private dialogRef: MatDialogRef<SelectImageModalComponent>) {
+  constructor(
+    private store: Store,
+    private dialogRef: MatDialogRef<SelectImageModalComponent>,
+    private url: UrlUtilsService
+  ) {
   }
 
   ngOnInit() {
@@ -41,7 +52,7 @@ export class SelectImageModalComponent implements OnInit {
   }
 
   normalizeUrl(url) {
-    return normalizeImageUrl(url);
+    return this.url.normalizeImageUrl(url);
   }
 
   nextPageEvent() {

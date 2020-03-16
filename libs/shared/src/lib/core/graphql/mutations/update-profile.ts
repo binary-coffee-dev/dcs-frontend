@@ -13,6 +13,7 @@ export const UPDATE_PROFILE_MUTATION = gql`
                     name
                 }
                 page
+                avatarUrl
                 avatar {
                     url
                 }
@@ -34,6 +35,7 @@ export const UPDATE_PROFILE_IMAGE_MUTATION = gql`
                     name
                 }
                 page
+                avatarUrl
                 avatar {
                     url
                 }

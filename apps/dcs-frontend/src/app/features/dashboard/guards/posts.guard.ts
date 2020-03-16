@@ -3,9 +3,9 @@ import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from 
 
 import {Observable} from 'rxjs';
 import {Store} from '@ngxs/store';
-import {map} from 'rxjs/operators';
+import {flatMap, map} from 'rxjs/operators';
 
-import {FetchPostsAction} from '@dcs-libs/shared';
+import {FetchPostsAction, SetFiltersAction} from '@dcs-libs/shared';
 
 @Injectable()
 export class PostsGuard implements CanActivate {
@@ -16,6 +16,9 @@ export class PostsGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.store.dispatch(new FetchPostsAction()).pipe(map(() => true));
+    return this.store.dispatch(new SetFiltersAction({enable: true})).pipe(
+      flatMap(() => this.store.dispatch(new FetchPostsAction())),
+      map(() => true)
+    );
   }
 }

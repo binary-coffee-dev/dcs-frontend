@@ -57,3 +57,10 @@ export class ChangePageSizeAction {
   constructor(public pageSize: number) {
   }
 }
+
+export class SetFiltersAction {
+  static readonly type = '[Post] Set post filters';
+
+  constructor(public where: any) {
+  }
+}

@@ -12,7 +12,7 @@ import {
   PostCreateAction,
   PostUpdateAction,
   PreviousPageAction, RefreshPostAction,
-  SelectPageAction
+  SelectPageAction, SetFiltersAction
 } from '../actions';
 import {initPostStateModel, PostStateModel} from './post-state.model';
 import {NotificationType, Post} from '../models';
@@ -67,12 +67,18 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   fetchPostsAction(ctx: StateContext<PostStateModel>) {
     const pageSize = ctx.getState().pageSize;
     const start = ctx.getState().page * pageSize;
-    return this.fetchPage(pageSize, start, ctx);
+    const where = ctx.getState().where || {};
+    return this.fetchPage(pageSize, start, where, ctx);
   }
 
   @Action(NextPageAction)
   nextPageAction(ctx: StateContext<PostStateModel>) {
     return this.nextPage(ctx).pipe(take(1));
+  }
+
+  @Action(SetFiltersAction)
+  setFiltersAction(ctx: StateContext<PostStateModel>, action: SetFiltersAction) {
+    ctx.patchState({where: action.where});
   }
 
   @Action(PreviousPageAction)
@@ -124,8 +130,8 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
     }));
   }
 
-  fetchElements(pageSize, start): Observable<ResponseData> {
-    return this.postService.fetchPosts(pageSize, start);
+  fetchElements(pageSize, start, where = {}): Observable<ResponseData> {
+    return this.postService.fetchPosts(pageSize, start, where);
   }
 
 }

@@ -69,7 +69,8 @@
           // publicado {{moment.timeFromDate(post.publishedAt) || ''}}
         </div>
         <div class="post-image-container">
-          <img src="https://api-dev.binary-coffee.dev/uploads/67bf43fd4ab3497b89969befc8582e78.jpg">
+          <img *ngIf="post?.banner?.url"
+               [src]="url.normalizeImageUrl(post?.banner?.url)">
         </div>
 
         <div fxLayout="row"
@@ -77,7 +78,7 @@
 
           <div fxFlex="100">
             <mat-checkbox [(ngModel)]="post.enable"
-                          [disabled]="false"
+                          [disabled]="true"
                           color="primary">
               Activo
             </mat-checkbox>
@@ -119,6 +120,7 @@
         <th></th>
         <th>Titulo</th>
         <th>Publicado</th>
+        <th>Autor</th>
         <th>Activo</th>
         <th></th>
       </thead>
@@ -136,9 +138,12 @@
           <td>
             {{moment.timeFromDate(post.publishedAt) || ''}}
           </td>
+          <td>
+            {{post?.author?.username}}
+          </td>
           <td class="activo">
             <mat-checkbox [(ngModel)]="post.enable"
-                          [disabled]="false"
+                          [disabled]="true"
                           color="primary">
             </mat-checkbox>
           </td>

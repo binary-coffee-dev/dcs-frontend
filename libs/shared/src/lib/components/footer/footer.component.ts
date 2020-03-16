@@ -1,4 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Inject} from '@angular/core';
+
+import {Environment, ENVIRONMENT} from '../../core/models';
+import {UrlUtilsService} from '../../core/services';
 
 @Component({
   selector: 'app-footer',
@@ -15,10 +18,21 @@ export class FooterComponent implements OnInit {
   @Input()
   socialLinks = true;
 
-  constructor() {}
+  constructor(
+    private url: UrlUtilsService
+  ) {
+  }
 
   ngOnInit() {
     this.root = 'bc@dev:';
     this.year = new Date().getFullYear();
+  }
+
+  getSitemapUrl() {
+    return this.url.normalizeSiteUrl('sitemap');
+  }
+
+  getRSSUrl() {
+    return this.url.normalizeSiteUrl('posts/feed/rss2');
   }
 }

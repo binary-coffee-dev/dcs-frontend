@@ -11,6 +11,7 @@ export interface StateBase {
   pageSize: number;
   firstPage: boolean;
   lastPage: boolean;
+  where?: any;
 }
 
 export interface ResponseData {
@@ -36,20 +37,21 @@ export class PaginationBaseClass<T extends StateBase> {
     return this.pageByNumber(ctx, currentPage);
   }
 
-  pageByNumber(ctx: StateContext<T>, page: number) {
+  pageByNumber(ctx: StateContext<T>, page: number, where = {}) {
     const count = ctx.getState().count;
     const pageSize = ctx.getState().pageSize;
     if (page >= 0 && page <= this.lastPage(count, pageSize)) {
-      return this.fetchPage(pageSize, page * pageSize, ctx, page).pipe(tap(() => {
+      return this.fetchPage(pageSize, page * pageSize, where, ctx, page).pipe(tap(() => {
         ctx.patchState({page} as unknown as Partial<T>);
       }));
     }
   }
 
-  fetchPage(pageSize: number, start: number, ctx: StateContext<T>, page?: number) {
+  fetchPage(pageSize: number, start: number, where = {}, ctx: StateContext<T>, page?: number) {
     return this.fetchElements(
       pageSize,
-      start
+      start,
+      where
     ).pipe(
       tap((response: ResponseData) => {
         const elements = response ? response.values : [];
@@ -66,7 +68,7 @@ export class PaginationBaseClass<T extends StateBase> {
     );
   }
 
-  fetchElements(pageSize, start): Observable<ResponseData> {
+  fetchElements(pageSize, start, where = {}): Observable<ResponseData> {
     return of({} as ResponseData);
   }
 

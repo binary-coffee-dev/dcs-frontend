@@ -1,12 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import {Component, OnInit, Output, EventEmitter, Inject} from '@angular/core';
+import {Location} from '@angular/common';
 
-import { Store } from '@ngxs/store';
-
-import { ROUTES } from '../sidebar/sidebar.model';
+import {Environment, ENVIRONMENT} from '@dcs-libs/shared';
+import {ROUTES} from '../sidebar/sidebar.model';
 
 const PATH_NAME_POSITION = 2;
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -14,12 +13,19 @@ const PATH_NAME_POSITION = 2;
 })
 export class NavbarComponent implements OnInit {
   private listTitles: any[];
-  showProfileDropdown = false;
 
   @Output()
   openSidenav = new EventEmitter<any>();
 
-  constructor(private location: Location) {}
+  constructor(
+    private location: Location,
+    @Inject(ENVIRONMENT) private env: Environment
+  ) {
+  }
+
+  getBlogUrl() {
+    return this.env.siteUrl;
+  }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);

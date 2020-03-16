@@ -55,7 +55,8 @@ export class FileState extends PaginationBaseClass<FileStateModel> {
     ctx.patchState({pageSize: action.pageSize || ctx.getState().pageSize});
     const pageSize = ctx.getState().pageSize;
     const start = ctx.getState().page * pageSize;
-    return this.fetchPage(pageSize, start, ctx);
+    const where = ctx.getState().where || {};
+    return this.fetchPage(pageSize, start, where, ctx);
   }
 
   @Action(NextFilesPageAction)
@@ -88,7 +89,7 @@ export class FileState extends PaginationBaseClass<FileStateModel> {
     );
   }
 
-  fetchElements(pageSize, start): Observable<ResponseData> {
+  fetchElements(pageSize, start, where): Observable<ResponseData> {
     return this.fileService.fetchFiles(pageSize, start);
   }
 }

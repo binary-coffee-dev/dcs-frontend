@@ -46,11 +46,18 @@
             <span>> Preguntas</span>
           </a>
 
-          <a *ngIf="false"
-             mat-button
-             [routerLink]="'/site-map'"
+          <a mat-button
+             [href]="getSitemapUrl()"
+             target="_blank"
              title="Vea la estructura general del sitio web">
             <span>> Mapa</span>
+          </a>
+
+          <a mat-button
+             [href]="getRSSUrl()"
+             target="_blank"
+             title="Sígannos por medio de nuestro RSS">
+            <span>> RSS</span>
           </a>
         </div>
       </div>

@@ -3,8 +3,15 @@ import {MatDialog} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
 
-import {ChangeFilesPageAction, FetchFilesAction, File, FileState, NextFilesPageAction, PreviousFilesPageAction} from '@dcs-libs/shared';
-import {normalizeImageUrl} from '../../../core/utils/url-utils';
+import {
+  ChangeFilesPageAction,
+  FetchFilesAction,
+  File,
+  FileState,
+  NextFilesPageAction,
+  PreviousFilesPageAction,
+  UrlUtilsService
+} from '@dcs-libs/shared';
 import {UploadFileModalComponent} from '../../components/upload-file.modal';
 
 @Component({
@@ -19,7 +26,11 @@ export class ListComponent implements OnInit {
   numberOfPages = 0;
   currentPage = 0;
 
-  constructor(private store: Store, private dialog: MatDialog) {
+  constructor(
+    private store: Store,
+    private dialog: MatDialog,
+    private url: UrlUtilsService
+  ) {
   }
 
   ngOnInit() {
@@ -51,7 +62,7 @@ export class ListComponent implements OnInit {
   }
 
   normalizeUrl(url: string) {
-    return normalizeImageUrl(url);
+    return this.url.normalizeImageUrl(url);
   }
 
   nextPageEvent() {
