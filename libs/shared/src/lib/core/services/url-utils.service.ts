@@ -11,12 +11,13 @@ export class UrlUtilsService {
   }
 
   getUserImage(user) {
-    let defaultAvatarUrl = 'assets/images/noavatar.png';
-    if (user && user.avatarUrl) {
-      defaultAvatarUrl = user.avatarUrl.startsWith('http')
-        ? user.avatarUrl
-        : new URL(user.avatarUrl, this.environment.apiUrl).href;
+    return this.normalizeImageUrl(user && user.avatarUrl);
+  }
+
+  normalizeImageUrl(url, defaultUrl =  'assets/images/noavatar.png') {
+    if (!url) {
+      return defaultUrl;
     }
-    return defaultAvatarUrl;
+    return url.startsWith('http') ? url : new URL(url, this.environment.apiUrl).href;
   }
 }
