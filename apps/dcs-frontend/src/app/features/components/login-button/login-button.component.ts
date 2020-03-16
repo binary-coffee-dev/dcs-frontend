@@ -38,6 +38,10 @@ export class LoginButtonComponent implements OnInit {
     this.window.location.href = `${loginUrl}?redir=${redir}`;
   }
 
+  openDashboard() {
+    this.window.location.href = this.env.siteDashboardUrl;
+  }
+
   logoutAction() {
     this.store.dispatch(new LogoutAction());
   }
