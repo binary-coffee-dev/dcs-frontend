@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
 
-import { Store } from '@ngxs/store';
+import {Store} from '@ngxs/store';
 
 import {
   AuthState,
@@ -11,10 +11,10 @@ import {
   Post,
   PostCreateAction,
   PostState,
-  PostUpdateAction
+  PostUpdateAction,
+  UrlUtilsService
 } from '@dcs-libs/shared';
-import { SelectImageModalComponent } from './select-image-modal/select-image-modal.component';
-import { normalizeImageUrl } from '../../../core/utils/url-utils';
+import {SelectImageModalComponent} from './select-image-modal/select-image-modal.component';
 
 @Component({
   selector: 'app-overview',
@@ -40,17 +40,19 @@ export class OverviewComponent implements OnInit {
     private store: Store,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private url: UrlUtilsService
+  ) {
+  }
 
   ngOnInit() {
     if (!this.isNewPost()) {
       this.store.select(PostState.post).subscribe(post => {
         if (post) {
-          const newPost = { ...post };
+          const newPost = {...post};
           if (newPost.banner) {
-            newPost.banner = { ...newPost.banner };
-            newPost.banner.url = normalizeImageUrl(newPost.banner.url);
+            newPost.banner = {...newPost.banner};
+            newPost.banner.url = this.url.normalizeImageUrl(newPost.banner.url);
           }
           this.post = newPost;
           this.articleForm.controls.body.setValue(this.post.body);
@@ -63,7 +65,7 @@ export class OverviewComponent implements OnInit {
   }
 
   normalizeUrl(url) {
-    return normalizeImageUrl(url);
+    return this.url.normalizeImageUrl(url);
   }
 
   isNewPost() {
