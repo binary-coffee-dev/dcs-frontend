@@ -8,6 +8,7 @@ export const ME_QUERY = gql`
             email
             page
             avatarUrl
+            role { name type }
         }
     }
 `;

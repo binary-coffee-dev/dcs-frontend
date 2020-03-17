@@ -15,7 +15,7 @@ import {
 } from '../actions';
 import {AuthError, User} from '../models';
 import {LoginResponseModel} from '../models/login-response.model';
-import {Role} from '../../permissions';
+import {RoleEnum} from '../../permissions';
 
 @State<AuthStateModel>({
   name: 'auth',
@@ -39,8 +39,8 @@ export class AuthState {
   }
 
   @Selector()
-  static role(state: AuthStateModel): Role {
-    return state.me && state.me.role || null;
+  static role(state: AuthStateModel): RoleEnum {
+    return state.me && state.me.role && state.me.role.type;
   }
 
   @Selector()

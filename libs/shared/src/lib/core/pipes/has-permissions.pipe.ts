@@ -4,7 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {Store} from '@ngxs/store';
 
 import {AuthState} from '../redux/states';
-import {Permission, Role, ROLE_PERMISSION_MAP} from '../permissions';
+import {Permission, RoleEnum, ROLE_PERMISSION_MAP} from '../permissions';
 
 @Pipe({
   name: 'hasPermissions'
@@ -15,7 +15,7 @@ export class HasPermissionsPipe implements PipeTransform {
 
   constructor(
     private store: Store,
-    @Inject(ROLE_PERMISSION_MAP) private rolePermissionMap: Map<Role, Permission[]>) {
+    @Inject(ROLE_PERMISSION_MAP) private rolePermissionMap: Map<RoleEnum, Permission[]>) {
   }
 
   transform(permissions: Permission[]): Observable<boolean> {
