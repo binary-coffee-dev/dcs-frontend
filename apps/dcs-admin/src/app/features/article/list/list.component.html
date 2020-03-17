@@ -98,6 +98,7 @@
             </button>
 
             <button mat-button
+                    *ngIf="([permissions().EDIT_ANY_ARTICLE] | hasPermissions | async) || isMyPost(post)"
                     class="post-option"
                     [routerLink]="'/articles/update/' + post.id">
               <i fxHide
