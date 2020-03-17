@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
+
+import {BitcoinComponent} from './bitcoin/bitcoin.component';
+import {EnzonaComponent} from './enzona/enzona.component';
+import {ScrollService} from '../../core/services';
 
 @Component({
   selector: 'app-donate',
@@ -7,9 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DonateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog, private scroll: ScrollService) {
+  }
 
   ngOnInit() {
+    this.scroll.smoothScroll();
+  }
+
+  openBitcoinDialog() {
+    this.dialog.open(BitcoinComponent);
+  }
+
+  openEnzonaDialog() {
+    this.dialog.open(EnzonaComponent);
   }
 
 }

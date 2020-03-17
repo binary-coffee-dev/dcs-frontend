@@ -1,7 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 
 import {ScrollService} from './scroll.service';
-import {WINDOW} from './configs';
+import {WINDOW} from '@dcs-libs/shared';
 
 const EXAMPLE_SCROLL_TOP = 23;
 
@@ -17,9 +17,11 @@ const window = {
 describe('ScrollService', () => {
   let service: ScrollService;
 
-  beforeEach(() => TestBed.configureTestingModule({
-    providers: [{provide: WINDOW, useValue: window}]
-  }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      providers: [{provide: WINDOW, useValue: window}]
+    })
+  );
 
   beforeEach(() => {
     service = TestBed.get(ScrollService);
@@ -31,8 +33,6 @@ describe('ScrollService', () => {
 
   it('should scroll to the top', () => {
     service.smoothScroll();
-
     expect(window.scrollTo).toHaveBeenCalled();
-    expect(window.requestAnimationFrame).toHaveBeenCalled();
   });
 });

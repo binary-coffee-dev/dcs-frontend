@@ -57,20 +57,20 @@
     </form>
     <a mat-button
        (click)="paypal.submit()"
-       class="paypal">
-      PayPal( <span class="fa fa-cc-paypal"></span> )
+       class="paypal bc-button">
+      PayPal( <span class="fa fa-paypal"></span> )
     </a>
 
     <a mat-button
-       class="visa"
-       *ngIf="false">
-      Visa( <span class="fa fa-cc-visa"></span> )
+       (click)="openBitcoinDialog()"
+       class="bitcoin bc-button">
+      Bitcoin( <span class="fa fa-bitcoin"></span> )
     </a>
 
     <a mat-button
-       class="mastercard"
-       *ngIf="false">
-      MasterCard( <span class="fa fa-cc-mastercard"></span> )
+       (click)="openEnzonaDialog()"
+       class="visa bc-button">
+      Enzona( <span class="fa fa-credit-card"></span> )
     </a>
 
     <div>{{"}"}}</div>

@@ -1,16 +1,22 @@
-<mat-card>
-  <mat-card-header>
-    <h4 class="card-title">Upload file</h4>
-  </mat-card-header>
+<mat-card class="card">
+  <div class="title">
+    Agregar archivo
+  </div>
   <mat-card-content>
     <form [formGroup]="uploadFileForm"
           fxLayout="column">
-      <mat-form-field>
+      <mat-form-field class="field"
+                      appearance="outline">
+        <mat-label class="code-none">
+          <span class="code-1"> var </span>
+          <span class="code-var"> Nombre </span> =
+        </mat-label>
         <input matInput
                formControlName="name"
-               placeholder="Name">
+               placeholder="Nombre">
       </mat-form-field>
-      <div class="pre-image-container">
+      <label class="pre-image-container bc-button"
+             mat-button>
         <input type="file"
                #uploader
                (change)="onFilesChange($event)"
@@ -18,21 +24,32 @@
         <div class="upload-pre-image"
              *ngIf="!image"
              (click)="uploader.click()">
-          <i class="material-icons">cloud_upload</i>
+          <i class="fa fa-file-image-o"></i>
         </div>
         <img class="upload-image"
              *ngIf="!!image"
              [src]="image"
              (click)="uploader.click()"
              alt="upload">
-      </div>
-      <p *ngIf="type">Type: {{type}}</p>
-      <p *ngIf="size">Size: {{getSize()}}</p>
-      <button mat-raised-button
+      </label>
+      <p *ngIf="type"
+         class="data">
+        <span class="code-1"> var </span>
+        <span class="code-var"> Tipo </span> = {{type}}
+      </p>
+      <p *ngIf="size"
+         class="data">
+        <span class="code-1"> var </span>
+        <span class="code-var"> Tamaño </span> = {{getSize()}}
+      </p>
+      <button mat-button
+              class="bc-button"
               fxFlex="50"
               (click)="upload()"
               [disabled]="!file"
-              type="submit">Upload
+              type="submit">
+        <span class="code-1"> new </span>
+        <span class="code-none"> Archivo() </span>
       </button>
       <div class="clearfix"></div>
     </form>

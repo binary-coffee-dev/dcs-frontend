@@ -1,4 +1,4 @@
-@import "apps/dcs-frontend/src/theme";
+@import "libs/shared/src/theme";
 
 :host {
 
@@ -32,7 +32,7 @@
 
   }
 
-  .social-links-xs {
+  .links-xs {
     padding: map_get($spacings, 2);
   }
 }

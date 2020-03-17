@@ -1,83 +1,214 @@
-<mat-card>
-  <mat-card-header fxLayout="row"
-                   fxLayoutAlign="center center">
-    <h4 class="card-title">Articles</h4>
-    <div fxFlex="100"></div>
-    <div class="item-actions">
-      <div class="item-action">
-        <button mat-button
-                class="nav-link"
-                routerLink="/articles/create">
-          <i class="material-icons">add</i>
-          new article
-          <div class="ripple-container"></div>
-        </button>
+<div class="container"
+     fxLayout="column">
+
+
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayout.sm="column"
+       fxLayoutAlign="start start"
+       class="header">
+
+    <div class="item-action-container"
+         fxFlex="100"
+         fxLayout="row">
+
+      <button mat-button
+              class="bc-button"
+              routerLink="/articles/create">
+        <span class="code-1"> new </span>
+        <span class="code-none"> Articulo() </span>
+      </button>
+
+      <button (click)="toggleTableCard()"
+              class="toogle-table-card bc-button"
+              mat-button>
+        <span *ngIf="tableOrCard"
+              class="fa fa-table"></span>
+        <span *ngIf="!tableOrCard"
+              class="fa fa-list"></span>
+      </button>
+
+    </div>
+
+    <div fxHide
+         fxShow.xs
+         fxShow.sm
+         fxFlex.md
+         class="separator"></div>
+
+    <div fxLayoutAlign="center center"
+         class="pagination-content">
+      <app-pagination (nextPageEvent)="nextPageEvent()"
+                      (previousPageEvent)="previousPageEvent()"
+                      (pageEvent)="selectPageEvent($event)"
+                      [numberOfPages]="numberOfPages"
+                      [currentPage]="currentPage">
+      </app-pagination>
+    </div>
+  </div>
+
+  <div *ngIf="!tableOrCard"
+       fxLayout="row wrap">
+    <div *ngFor="let post of posts"
+         class="post-content"
+         fxFlex="50"
+         fxFlex.xs="100"
+         fxFlex.sm="100">
+
+
+      <div class="post-box"
+           fxLayout="column">
+
+        <div class="code-none"
+             class="post-title"
+             fxLayout="column">
+          <b class="code-2">{{post.title}}</b>
+        </div>
+        <div class="code-comment-1"
+             *ngIf="post.publishedAt">
+          // publicado {{moment.timeFromDate(post.publishedAt) || ''}}
+        </div>
+        <div class="post-image-container">
+          <img *ngIf="post?.banner?.url"
+               [src]="url.normalizeImageUrl(post?.banner?.url)">
+        </div>
+
+        <div fxLayout="row"
+             fxLayoutAlign="center start">
+
+          <div fxFlex="100">
+            <mat-checkbox [(ngModel)]="post.enable"
+                          [disabled]="true"
+                          color="primary">
+              Activo
+            </mat-checkbox>
+          </div>
+
+
+          <div fxLayout="row">
+            <button mat-button
+                    class="post-option"
+                    (click)="openArticle(post)">
+              <i fxHide
+                 fxShow.xs
+                 class="material-icons">open_in_new</i>
+              <span fxHide.xs>
+                Ver
+              </span>
+            </button>
+
+            <button mat-button
+                    *ngIf="([permissions().EDIT_ANY_ARTICLE] | hasPermissions | async) || isMyPost(post)"
+                    class="post-option"
+                    [routerLink]="'/articles/update/' + post.id">
+              <i fxHide
+                 fxShow.xs
+                 class="material-icons">edit</i>
+              <span fxHide.xs>
+                Editar
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </mat-card-header>
-  <mat-card-content>
+  </div>
+
+  <div class="table-content"
+       *ngIf="tableOrCard">
     <table>
       <thead class=" text-info">
-      <th>Title</th>
-      <th>Published</th>
-      <th>Enable</th>
-      <th>Name</th>
-      <th>Views</th>
-      <th class="td-actions text-right">Actions</th>
+        <th></th>
+        <th>Titulo</th>
+        <th>Publicado</th>
+        <th>Autor</th>
+        <th>Activo</th>
+        <th></th>
       </thead>
       <tbody>
-      <tr *ngFor="let post of posts">
-        <td>{{post.title}}</td>
-        <td>
-          <div class="col-md-6 form-check">
-            <label class="form-check-label">
-              <input class="form-check-input"
-                     type="checkbox"
-                     [disabled]="true"
-                     [ngModel]="!!post.publishedAt">
-              <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-            </label>
-          </div>
-        </td>
-        <td>
-          <div class="col-md-6 form-check">
-            <label class="form-check-label">
-              <input class="form-check-input"
-                     type="checkbox"
-                     [disabled]="true"
-                     [(ngModel)]="post.enable">
-              <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-            </label>
-          </div>
-        </td>
-        <td>{{post.name}}</td>
-        <td>{{post.views}}</td>
-        <td class="td-actions text-right">
-          <button mat-raised-button
-                  matTooltip="Edit"
-                  [routerLink]="'/articles/update/' + post.id"
-                  [matTooltipPosition]="'above'">
-            <i class="material-icons">edit</i>
-          </button>
-          <button mat-raised-button
-                  *ngIf="true"
-                  matTooltip="Open article"
-                  [matTooltipPosition]="'above'"
-                  (click)="openArticle(post)">
-            <i class="material-icons">open_in_new</i>
-          </button>
-        </td>
-      </tr>
+        <tr *ngFor="let post of posts">
+          <td>
+            <button mat-button
+                    *ngIf="([permissions().EDIT_ANY_ARTICLE] | hasPermissions | async) || isMyPost(post)"
+                    matTooltip="Editar articulo"
+                    [routerLink]="'/articles/update/' + post.id"
+                    [matTooltipPosition]="'above'">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+          <td>{{post.title}}</td>
+          <td>
+            {{moment.timeFromDate(post.publishedAt) || ''}}
+          </td>
+          <td>
+            {{post?.author?.username}}
+          </td>
+          <td class="activo">
+            <mat-checkbox [(ngModel)]="post.enable"
+                          [disabled]="true"
+                          color="primary">
+            </mat-checkbox>
+          </td>
+          <td class="td-actions text-right">
+
+            <button mat-button
+                    matTooltip="Ver articulo"
+                    [matTooltipPosition]="'above'"
+                    (click)="openArticle(post)">
+              <i class="fa fa-external-link"></i>
+            </button>
+          </td>
+        </tr>
       </tbody>
     </table>
-    <app-pagination (nextPageEvent)="nextPageEvent()"
-                    (previousPageEvent)="previousPageEvent()"
-                    (pageEvent)="selectPageEvent($event)"
-                    [numberOfPages]="numberOfPages"
-                    [currentPage]="currentPage"></app-pagination>
-  </mat-card-content>
-</mat-card>
+  </div>
+
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayout.sm="column"
+       fxLayoutAlign="start start"
+       class="header">
+
+    <div class="item-action-container"
+         fxFlex="100"
+         fxLayout="row">
+
+      <button mat-button
+              class="bc-button"
+              routerLink="/articles/create">
+        <span class="code-1"> new </span>
+        <span class="code-none"> Articulo() </span>
+      </button>
+
+      <button (click)="toggleTableCard()"
+              class="toogle-table-card bc-button"
+              mat-button>
+        <span *ngIf="tableOrCard"
+              class="fa fa-table"></span>
+        <span *ngIf="!tableOrCard"
+              class="fa fa-list"></span>
+      </button>
+
+    </div>
+
+    <div fxHide
+         fxShow.xs
+         fxShow.sm
+         fxFlex.md
+         fxFlexOrder.xs="-1"
+         fxFlexOrder.sm="-1"
+         class="separator"></div>
+
+    <div fxLayoutAlign="center center"
+         class="pagination-content"
+         fxFlexOrder.xs="-2"
+         fxFlexOrder.sm="-2">
+      <app-pagination (nextPageEvent)="nextPageEvent()"
+                      (previousPageEvent)="previousPageEvent()"
+                      (pageEvent)="selectPageEvent($event)"
+                      [numberOfPages]="numberOfPages"
+                      [currentPage]="currentPage">
+      </app-pagination>
+    </div>
+  </div>
+</div>

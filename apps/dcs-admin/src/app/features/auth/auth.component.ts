@@ -1,12 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {Store} from '@ngxs/store';
 
-import {AuthErrorAction, LoginAction} from '../../core/redux/actions';
-import {AuthState} from '../../core/redux/states';
-import {AuthError} from '../../core/redux/models';
+import {AuthError, AuthErrorAction, AuthState, Environment, ENVIRONMENT, LoginAction, Provider, WINDOW} from '@dcs-libs/shared';
+import {PROVIDERS} from './providers';
 
 @Component({
   selector: 'app-auth',
@@ -16,16 +15,28 @@ import {AuthError} from '../../core/redux/models';
 export class AuthComponent implements OnInit {
   authError: AuthError = null;
 
+  providers = PROVIDERS;
+
   loginForm = new FormGroup({
     identifier: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private store: Store, private router: Router) {
+  constructor(
+    private store: Store,
+    private router: Router,
+    private route: ActivatedRoute,
+    @Inject(WINDOW) private window: Window,
+    @Inject(ENVIRONMENT) private env: Environment
+  ) {
   }
 
   ngOnInit(): void {
     this.store.select(AuthState.authError).subscribe(error => this.authError = error);
+  }
+
+  isLocalEnvironment() {
+    return Boolean(this.env.local);
   }
 
   login() {
@@ -33,17 +44,44 @@ export class AuthComponent implements OnInit {
       const identifier = this.loginForm.controls.identifier.value;
       const password = this.loginForm.controls.password.value;
       this.store.dispatch(new LoginAction(identifier, password)).subscribe(() => {
-        this.redirectToDashboard();
+        const redir = this.route.snapshot.queryParamMap.get('redir');
+        if (redir) {
+          this.window.location.href = redir;
+        } else {
+          this.redirectToDashboard();
+        }
       });
     } else {
       this.store.dispatch(new AuthErrorAction('Missing data in login'));
     }
   }
 
+  loginWithProvider(provider: Provider) {
+    const siteDashboardUrl = this.env.siteDashboardUrl + (this.env.siteDashboardUrl.endsWith('/') ? '' : '/');
+    const redir = this.route.snapshot.queryParamMap.get('redir');
+    const redirectUri =
+      new URL(`./provider/${provider.name}` + (redir ? `?redir=${encodeURIComponent(redir)}` : ''), siteDashboardUrl).href;
+    const queryParams = {
+      client_id: this.env.githubClientId,
+      scope: provider.scope,
+      redirect_uri: redirectUri
+    };
+    this.window.location.href = `${provider.url}?${this.queryParamsToString(queryParams)}`;
+  }
+
+  queryParamsToString(object) {
+    return Object.keys(object).reduce((p, k) => {
+      if (p !== '') {
+        p += '&';
+      }
+      return p + `${k}=${encodeURIComponent(object[k])}`;
+    }, '');
+  }
+
   redirectToDashboard() {
     const token = this.store.selectSnapshot(AuthState.token);
     if (token !== '') {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['']);
     }
   }
 

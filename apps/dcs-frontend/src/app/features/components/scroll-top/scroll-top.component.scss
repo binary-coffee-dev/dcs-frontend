@@ -1,24 +1,26 @@
-@import "apps/dcs-frontend/src/theme";
+@import "libs/shared/src/theme";
 
 :host {
   .scroll-to-top {
     position: fixed;
     right: 0;
+    transform: translateX(100%);
     bottom: 3rem;
-    opacity: 0;
     transition: all .2s ease-in-out;
     border-radius: map_get($radius, 2) 0 0 map_get($radius, 2);
     background-color: map_get($md-grey, 350);
     border: 1px solid map_get($md-primary, 100);
+    border-right: none !important;
+    color: map_get($md-primary, 500);
+
+    &:hover {
+      border: 1px solid map_get($md-primary, 900);
+    }
   }
 
   .show-scrollTop {
-    opacity: 1;
+    transform: translateX(0);
     transition: all .2s ease-in-out;
-  }
-
-  mat-icon {
-    font-size: 50px;
   }
 
   @media screen and (max-width: 599px) {
@@ -26,5 +28,4 @@
       bottom: 5rem;
     }
   }
-
 }

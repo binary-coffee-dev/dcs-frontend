@@ -4,8 +4,8 @@ import {MatDialogRef} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
 
-import {UploadFileAction} from '../../../core/redux/actions';
-import {FileState} from '../../../core/redux/states';
+import {FileState, UploadFileAction} from '@dcs-libs/shared';
+
 
 @Component({
   selector: 'app-upload-file.modal',

@@ -3,15 +3,15 @@ import {MatDialogRef} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
 
-import {FileState} from '../../../../core/redux/states';
-import {File} from '../../../../core/redux/models';
 import {
   ChangeFilesPageAction,
   FetchFilesAction,
+  File,
+  FileState,
   NextFilesPageAction,
   PreviousFilesPageAction,
-} from '../../../../core/redux/actions';
-import {normalizeImageUrl} from '../../../../core/utils/url-utils';
+  UrlUtilsService
+} from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-select-image-modal',
@@ -25,11 +25,15 @@ export class SelectImageModalComponent implements OnInit {
   currentPage = 0;
   numberOfPages = 0;
 
-  constructor(private store: Store, private dialogRef: MatDialogRef<SelectImageModalComponent>) {
+  constructor(
+    private store: Store,
+    private dialogRef: MatDialogRef<SelectImageModalComponent>,
+    private url: UrlUtilsService
+  ) {
   }
 
   ngOnInit() {
-    this.store.select(FileState.files).subscribe(files => {
+    this.store.select(FileState.files).subscribe((files: File[]) => {
       if (files) {
         this.files = files;
       }
@@ -48,7 +52,7 @@ export class SelectImageModalComponent implements OnInit {
   }
 
   normalizeUrl(url) {
-    return normalizeImageUrl(url);
+    return this.url.normalizeImageUrl(url);
   }
 
   nextPageEvent() {

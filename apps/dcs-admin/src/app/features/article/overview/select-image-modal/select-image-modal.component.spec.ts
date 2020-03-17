@@ -4,12 +4,17 @@ import {MatDialogRef} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
 
+import {UrlUtilsService} from '@dcs-libs/shared';
 import {SelectImageModalComponent} from './select-image-modal.component';
 
 class StoreStub {
 }
 
-class MatDialogRefStub {}
+class MatDialogRefStub {
+}
+
+class UrlUtilsServiceStub {
+}
 
 describe('SelectImageModalComponent', () => {
   let component: SelectImageModalComponent;
@@ -18,7 +23,11 @@ describe('SelectImageModalComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SelectImageModalComponent],
-      providers: [{provide: Store, useClass: StoreStub}, {provide: MatDialogRef, useClass: MatDialogRefStub}],
+      providers: [
+        {provide: Store, useClass: StoreStub},
+        {provide: MatDialogRef, useClass: MatDialogRefStub},
+        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
+      ],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();

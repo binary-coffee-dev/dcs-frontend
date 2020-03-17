@@ -1,14 +1,25 @@
+@import 'libs/shared/src/theme';
+
 :host {
-  mat-card {
-    margin: 40px 15px 15px 15px;
+  .content {
+    padding: map_get($spacings, 4);
 
-    mat-card-content {
-      margin-top: 15px;
+    .separator {
+      padding-top: map_get($spacings, 4);
+    }
 
-      .file-image {
-        width: 200px;
-        height: auto;
+    .file-content {
+      border: 1px solid map_get($md-primary, 100);
+      border-radius: map-get($radius, 2);
+      margin: map_get($spacings, 4) 0;
+
+      .file-img {
+        border-radius: map-get($radius, 2);
+        max-height: 300px;
+        max-width: 30%;
+        border: 1px solid map_get($md-primary, 100);
       }
     }
+
   }
 }

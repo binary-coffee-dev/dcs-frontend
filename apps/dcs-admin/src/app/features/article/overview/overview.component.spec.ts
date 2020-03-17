@@ -5,12 +5,17 @@ import {MatDialog} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
 
+import {UrlUtilsService} from '@dcs-libs/shared';
 import {OverviewComponent} from './overview.component';
 
 class StoreStub {
 }
 
-class MatDialogStub {}
+class MatDialogStub {
+}
+
+class UrlUtilsServiceStub {
+}
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
@@ -19,7 +24,11 @@ describe('OverviewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [OverviewComponent],
-      providers: [{provide: Store, useClass: StoreStub}, {provide: MatDialog, useClass: MatDialogStub}],
+      providers: [
+        {provide: Store, useClass: StoreStub},
+        {provide: MatDialog, useClass: MatDialogStub},
+        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
+      ],
       imports: [RouterTestingModule],
       schemas: [NO_ERRORS_SCHEMA]
     })

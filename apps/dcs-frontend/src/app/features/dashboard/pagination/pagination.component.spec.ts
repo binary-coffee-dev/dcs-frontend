@@ -1,13 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
-import { Store } from '@ngxs/store';
+import {Store} from '@ngxs/store';
+import {of} from 'rxjs';
 
-import { PaginationComponent } from './pagination.component';
-import { NextPageAction, PreviousPageAction } from '../../../core/redux/actions';
+import {NextPageAction, PreviousPageAction} from '@dcs-libs/shared';
+import {PaginationComponent} from './pagination.component';
+import {ScrollService} from '../../../core/services';
 
 class StoreStub {
   dispatch = jest.fn();
+}
+
+class ScrollServiceStub {
+  smoothScroll = jest.fn();
 }
 
 describe('PaginationComponent', () => {
@@ -19,7 +25,8 @@ describe('PaginationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [PaginationComponent],
       providers: [
-        { provide: Store, useClass: StoreStub }
+        {provide: Store, useClass: StoreStub},
+        {provide: ScrollService, useClass: ScrollServiceStub}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -41,7 +48,7 @@ describe('PaginationComponent', () => {
   });
 
   it('should dispatch the next page', () => {
-    jest.spyOn(store, 'dispatch').mockImplementation(jest.fn());
+    jest.spyOn(store, 'dispatch').mockReturnValue(of({}));
 
     component.nextPage();
 
@@ -49,7 +56,7 @@ describe('PaginationComponent', () => {
   });
 
   it('should dispatch the previous page', () => {
-    jest.spyOn(store, 'dispatch').mockImplementation(jest.fn());
+    jest.spyOn(store, 'dispatch').mockReturnValue(of({}));
 
     component.previousPage();
 

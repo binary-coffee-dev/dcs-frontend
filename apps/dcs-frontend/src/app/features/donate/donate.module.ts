@@ -1,17 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { DonateComponent } from './donate.component';
-import { MaterialModule } from '../../core/material';
-import { DonateRoutingModule } from './donate-routing.module';
+import {MaterialModule} from '@dcs-libs/shared';
+import {DonateComponent} from './donate.component';
+import {DonateRoutingModule} from './donate-routing.module';
+import {BitcoinComponent} from './bitcoin/bitcoin.component';
+import { EnzonaComponent } from './enzona/enzona.component';
 
 
 @NgModule({
-  declarations: [DonateComponent],
+  declarations: [DonateComponent, BitcoinComponent, EnzonaComponent],
+  entryComponents: [BitcoinComponent, EnzonaComponent],
   imports: [
     CommonModule,
     MaterialModule,
     DonateRoutingModule
   ]
 })
-export class DonateModule { }
+export class DonateModule {
+}

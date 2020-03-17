@@ -7,7 +7,7 @@
        fxFlex.xs="100">
     <app-post-item class="post-element"
                    *ngFor="let post of posts; let i = index"
-                   [number]="i + 1"
+                   [number]="i + 1 + currentPage * pageSize"
                    [post]="post">
     </app-post-item>
     <app-pagination></app-pagination>

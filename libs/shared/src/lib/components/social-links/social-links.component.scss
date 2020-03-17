@@ -1,0 +1,61 @@
+@import "libs/shared/src/theme";
+
+:host {
+  mat-icon {
+    font-size: 1.5rem;
+    color: map_get($md-primary, 700);
+    padding-left: map_get($spacings, 2);
+  }
+
+  a {
+    cursor: pointer !important;
+    text-decoration: none;
+
+    padding-left: map_get($spacings, 0);
+
+    &:hover {
+      span {
+
+        &:after {
+          animation: cursor-anim .5s infinite alternate;
+        }
+      }
+    }
+
+    span {
+      background-color: transparent;
+      color: map_get($md-grey, 900);
+      position: relative;
+
+      @keyframes cursor-anim {
+
+        0%,
+        49% {
+          background-color: map_get($md-grey, 800);
+        }
+
+        50% {
+          background-color: transparent;
+        }
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 120%;
+        background-color: transparent;
+        margin-left: 8px;
+        bottom: 0;
+      }
+    }
+
+    &:hover {
+      mat-icon {
+        font-size: 1.5rem;
+        color: map_get($md-primary, 900);
+      }
+    }
+  }
+
+}

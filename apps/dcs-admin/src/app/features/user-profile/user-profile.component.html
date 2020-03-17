@@ -1,46 +1,95 @@
-<div fxLayout="row wrap">
-  <mat-card fxFlex="50"
-            fxFlex.sm="100"
-            fxFlex.xs="100">
-    <mat-card-header fxLayout="column">
-      <h4>Edit Profile</h4>
-      <p>Complete your profile</p>
-    </mat-card-header>
-    <mat-card-content fxLayout="row">
+<div fxLayout="row wrap"
+     class="content">
+
+  <div class="avatar-content"
+       fxFlex="40"
+       fxFlex.sm="100"
+       fxFlex.xs="100"
+       fxLayout="column"
+       fxLayoutAlign="center center">
+
+    <div class="avatar">
+
+      <a (click)="openUploadFileModal()">
+        <i class="icon-hover fa fa-camera"
+           fxLayoutAlign="center center"></i>
+        <img class="img"
+             [src]="getUserImage()" />
+      </a>
+    </div>
+
+    <div class="user-name-content"
+         fxLayout="row">
+      <b class="user-name">{{me?.username}}</b>
+    </div>
+  </div>
+
+  <div class="user-data"
+       fxFlex="50"
+       fxFlex.sm="100"
+       fxFlex.xs="100"
+       fxLayout="column"
+       fxLayoutAlign="center center">
+
+    <div fxLayout="column"
+         class="header-data-content"
+         fxLayoutAlign="start">
+      <span class="header-data">Datos del perfil</span>
+      <i class="header-data code-comment-1">// complete su perfil</i>
+    </div>
+
+    <div fxLayout="row">
       <form [formGroup]="profileForm"
             fxFlex="100"
             (change)="onUserDataChange()"
             (ngSubmit)="saveUserData()">
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput
-                     formControlName="email"
-                     placeholder="Email address"
-                     type="email">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="example-full-width">
-              <input matInput
-                     formControlName="page"
-                     placeholder="Web site"
-                     type="text">
-            </mat-form-field>
-          </div>
-        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label class="code-none">
+            <span class="code-1"> var </span>
+            <span class="code-var"> Correo </span> =
+          </mat-label>
+          <input matInput
+                 formControlName="email"
+                 placeholder="Correo"
+                 type="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label class="code-none">
+            <span class="code-1"> var </span>
+            <span class="code-var"> Sitio web </span> =
+          </mat-label>
+          <input matInput
+                 formControlName="page"
+                 placeholder="Sitio web"
+                 type="text">
+        </mat-form-field>
+
         <button mat-raised-button
                 type="submit"
                 [disabled]="!profileDataChange"
-                class="btn btn-success pull-right">Update Profile
+                matTooltip="Actualizar el perfil con nuevas características"
+                class="bc-button submit">
+          <span> Actualizar( </span>
+          <span class="code-var"
+                *ngIf="me?.email !== profileForm?.controls?.email?.value"> Correo </span>
+          <span
+                *ngIf="me?.page !== profileForm?.controls?.page?.value && me?.email !== profileForm?.controls.email.value">
+            ,
+          </span>
+          <span class="code-var"
+                *ngIf="me?.page !== profileForm?.controls.page.value"> Sitio web </span>
+          <span> ) </span>
         </button>
       </form>
+
       <form [formGroup]="passwordForm"
             fxFlex="100"
             *ngIf="false">
         <div class="row">
           <div class="col-md-6">
-            <mat-form-field class="example-full-width">
+            <mat-form-field>
               <input matInput
                      formControlName="password"
                      placeholder="Password"
@@ -48,7 +97,7 @@
             </mat-form-field>
           </div>
           <div class="col-md-6">
-            <mat-form-field class="example-full-width">
+            <mat-form-field>
               <input matInput
                      formControlName="password2"
                      placeholder="Repeat password"
@@ -56,29 +105,16 @@
             </mat-form-field>
           </div>
         </div>
-        <button mat-raised-button
+        <button mat-button
+                class="bc-button"
                 type="submit"
                 [disabled]="!passwordChange"
-                class="btn btn-success pull-right">Update password
+                class="bc-button">
+          Update password
         </button>
       </form>
-    </mat-card-content>
-  </mat-card>
-  <mat-card fxFlex="40"
-            fxFlex.sm="100"
-            fxFlex.xs="100"
-            fxLayout="column"
-            fxLayoutAlign="start center">
-    <mat-card-content>
-      <div class="card-avatar">
-        <a (click)="openUploadFileModal()">
-          <img class="img"
-               [src]="getUserImage()"/>
-        </a>
-      </div>
-      <div class="card-body">
-        <h4 class="card-title">{{me?.username}}</h4>
-      </div>
-    </mat-card-content>
-  </mat-card>
+
+    </div>
+  </div>
+
 </div>

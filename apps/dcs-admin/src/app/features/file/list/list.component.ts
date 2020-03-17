@@ -3,15 +3,15 @@ import {MatDialog} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
 
-import {File} from '../../../core/redux/models';
 import {
   ChangeFilesPageAction,
   FetchFilesAction,
+  File,
+  FileState,
   NextFilesPageAction,
-  PreviousFilesPageAction
-} from '../../../core/redux/actions';
-import {FileState} from '../../../core/redux/states';
-import {normalizeImageUrl} from '../../../core/utils/url-utils';
+  PreviousFilesPageAction,
+  UrlUtilsService
+} from '@dcs-libs/shared';
 import {UploadFileModalComponent} from '../../components/upload-file.modal';
 
 @Component({
@@ -26,11 +26,15 @@ export class ListComponent implements OnInit {
   numberOfPages = 0;
   currentPage = 0;
 
-  constructor(private store: Store, private dialog: MatDialog) {
+  constructor(
+    private store: Store,
+    private dialog: MatDialog,
+    private url: UrlUtilsService
+  ) {
   }
 
   ngOnInit() {
-    this.store.select(FileState.files).subscribe(files => this.files = files);
+    this.store.select(FileState.files).subscribe((files: File[]) => this.files = files);
     this.refreshPage();
     this.store.select(FileState.pageIndicators).subscribe(indicators => {
       if (indicators) {
@@ -58,7 +62,7 @@ export class ListComponent implements OnInit {
   }
 
   normalizeUrl(url: string) {
-    return normalizeImageUrl(url);
+    return this.url.normalizeImageUrl(url);
   }
 
   nextPageEvent() {

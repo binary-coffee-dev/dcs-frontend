@@ -1,13 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 import {Store} from '@ngxs/store';
 
-import {CommentState, PostState} from '../../core/redux/states';
-import {Post} from '../../core/redux/models';
-import {MetaTag, MetaTagsService, MomentService, ResourceService} from '../../core/services';
-import {environment} from '../../../environments/environment';
-import {FetchCommentsAction} from '../../core/redux/actions';
-import {Title} from '@angular/platform-browser';
+import {Environment, ENVIRONMENT, FetchCommentsAction, Post, PostState} from '@dcs-libs/shared';
+import {MetaTag, MetaTagsService, MomentService, ResourceService, ScrollService} from '../../core/services';
 
 @Component({
   selector: 'app-post',
@@ -23,17 +20,20 @@ export class PostComponent implements OnInit {
     public moment: MomentService,
     public resource: ResourceService,
     private metaTags: MetaTagsService,
-    private title: Title
+    private title: Title,
+    private scroll: ScrollService,
+    @Inject(ENVIRONMENT) private environment: Environment
   ) {
   }
 
   ngOnInit() {
+    this.scroll.smoothScroll();
     this.store.select(PostState.post).subscribe((post: Post) => {
       if (post) {
         this.post = post;
-        const imageUrl = post.banner ? `${environment.apiUrl}${post.banner.url}` : '';
+        const imageUrl = post.banner ? new URL(post.banner.url, this.environment.apiUrl).toString() : '';
         this.metaTags.updateMetas([
-          {key: MetaTagsService.metas, value: environment.siteUrl} as MetaTag,
+          {key: MetaTagsService.metas, value: new URL(`post/${post.name}`, this.environment.siteUrl).toString()} as MetaTag,
           {key: MetaTagsService.titleMeta, value: post.title} as MetaTag,
           {key: MetaTagsService.imageMeta, value: imageUrl} as MetaTag,
           {key: MetaTagsService.descriptionMeta, value: post.description} as MetaTag,

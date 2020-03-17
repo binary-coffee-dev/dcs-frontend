@@ -4,9 +4,13 @@ import {RouterTestingModule} from '@angular/router/testing';
 
 import {Store} from '@ngxs/store';
 
+import {UrlUtilsService} from '@dcs-libs/shared';
 import {SidebarComponent} from './sidebar.component';
 
 class StoreStub {
+}
+
+class UrlUtilsServiceStub {
 }
 
 describe('SidebarComponent', () => {
@@ -16,16 +20,16 @@ describe('SidebarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SidebarComponent],
-      providers: [{provide: Store, useClass: StoreStub}],
+      providers: [{provide: Store, useClass: StoreStub}, {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}],
       schemas: [NO_ERRORS_SCHEMA],
       imports: [RouterTestingModule]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;
+    spyOn(component, 'ngOnInit').and.callFake(jest.fn());
     fixture.detectChanges();
   });
 

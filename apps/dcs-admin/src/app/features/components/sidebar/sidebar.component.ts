@@ -1,44 +1,64 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Router} from '@angular/router';
-import {Location} from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {LogoutAction} from '../../../core/redux/actions';
-import {environment} from '../../../../environments/environment';
+import {LogoutAction, AuthState, User, UrlUtilsService} from '@dcs-libs/shared';
+import { Access, AccessIds, ROUTES, ACCESS } from './sidebar.model';
 
-declare interface RouteInfo {
-  path: string;
-  title: string;
-  icon: string;
-  class: string;
-}
-
-export const ROUTES: RouteInfo[] = [
-  {path: '/dashboard', title: 'Dashboard', icon: 'dashboard', class: ''},
-  {path: '/articles', title: 'Articles', icon: 'content_paste', class: ''},
-  {path: '/files', title: 'Files', icon: 'library_books', class: ''}
-];
-
+const PATH_NAME_POSITION = 2;
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  menuItems: RouteInfo[];
+  menuAccess: Access[];
+  me: User;
+
   @Output()
   routeChange = new EventEmitter<any>();
 
   constructor(
     private store: Store,
     private router: Router,
-    private location: Location
-  ) {
-  }
+    private location: Location,
+    private url: UrlUtilsService
+  ) {}
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    // fill all router of the access
+    ROUTES.forEach(newRoute => {
+      const accessTemp = ACCESS.find(a => a.id === newRoute.accessId);
+
+      // to evit duplicated links
+      if (accessTemp.route.findIndex(r => r === newRoute) < 0) {
+        // only add the visible route
+        if (newRoute.visible) {
+          accessTemp.route.push(newRoute);
+        }
+      }
+    });
+
+    // order by access id
+    // get only the visible access
+    this.menuAccess = ACCESS.filter(a => a.visible === true).sort(
+      (a, b) => a.id - b.id
+    );
+
+    this.store.select(AuthState.me).subscribe((me: User) => {
+      if (me) {
+        this.me = me;
+        const userMenu = this.menuAccess.find(m => m.id === AccessIds.USER);
+        userMenu.img = this.getUserImage();
+        userMenu.title = me.username;
+      }
+    });
+  }
+
+  getUserImage() {
+    return this.url.getUserImage(this.me);
   }
 
   logout() {
@@ -47,8 +67,10 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  getSiteUrl() {
-    return environment.siteUrl + '/admin';
+  setAccess(item: Access) {
+    this.menuAccess.forEach(element => {
+      element.active = element === item;
+    });
   }
 
   getLocation() {
@@ -56,7 +78,7 @@ export class SidebarComponent implements OnInit {
     if (title.charAt(0) === '#') {
       title = title.slice(1);
     }
-    title = '/' + title.split('/')[1];
+    title = '/' + title.split('/')[PATH_NAME_POSITION];
     return title;
   }
 }

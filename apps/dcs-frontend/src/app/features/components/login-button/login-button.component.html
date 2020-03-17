@@ -1,0 +1,32 @@
+<div>
+  <button mat-button
+          *ngIf="!isLogin"
+          (click)="loginAction()"
+          class="login-button">
+    Login
+  </button>
+  <div *ngIf="isLogin"
+       class="user-data">
+
+
+    <button mat-button
+            [matMenuTriggerFor]="beforeMenu">
+      <img [src]="getUserImage()"
+           alt="user avatar">
+    </button>
+    <mat-menu #beforeMenu="matMenu"
+              xPosition="before">
+
+      <button mat-menu-item
+              (click)="openDashboard()">
+        Gestionar artículos
+      </button>
+
+      <button mat-menu-item
+              (click)="logoutAction()">
+        Salir
+      </button>
+    </mat-menu>
+
+  </div>
+</div>

@@ -1,0 +1,4 @@
+export enum Permission {
+  'EDIT_ANY_ARTICLE'= 'EDIT_ANY_ARTICLE',
+  'REMOVE_ANY_ARTICLE'= 'REMOVE_ANY_ARTICLE'
+}

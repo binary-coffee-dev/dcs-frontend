@@ -5,6 +5,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 
 import {Store} from '@ngxs/store';
 
+import {ENVIRONMENT} from '@dcs-libs/shared';
 import {NavbarComponent} from './navbar.component';
 
 class StoreStub {
@@ -28,7 +29,8 @@ describe('NavbarComponent', () => {
       declarations: [NavbarComponent],
       providers: [
         {provide: Location, useClass: LocationStub},
-        {provide: Store, useClass: StoreStub}
+        {provide: Store, useClass: StoreStub},
+        {provide: ENVIRONMENT, useValue: {}}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();

@@ -1,7 +1,10 @@
-@import "theme";
+@import "libs/shared/src/theme";
 
+html,
 body {
+  padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 .mat-form-field-outline>* {
@@ -14,34 +17,6 @@ body {
 
 * {
   font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
-}
-
-.code-1 {
-  color: map_get($md-secundary, 900) !important;
-}
-
-.code-2 {
-  color: map_get($md-primary, 500) !important;
-}
-
-.code-string {
-  color: map_get($md-primary, 900) !important;
-}
-
-.code-comment-1 {
-  color: map_get($md-grey, 600) !important;
-}
-
-.code-comment-2 {
-  color: map_get($md-primary, 700) !important;
-}
-
-.code-none {
-  color: map_get($md-grey, 800) !important;
-}
-
-.code-var {
-  color: map_get($md-secundary, 500) !important
 }
 
 .post-info {
@@ -161,23 +136,8 @@ markdown {
   }
 
   img {
+    max-width: 100%;
     box-shadow: map_get($box-shadow, 0);
     border-radius: map_get($radius, 2) !important;
-  }
-
-  @media screen and (max-width: 599px) {
-    img {
-      width: 100%;
-      margin-left: 0;
-      transform: none;
-    }
-  }
-
-  @media screen and (min-width: 600px) and (max-width: 959px) {
-    img {
-      width: 80%;
-      margin-left: 0;
-      transform: none;
-    }
   }
 }

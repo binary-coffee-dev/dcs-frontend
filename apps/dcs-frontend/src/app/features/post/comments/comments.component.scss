@@ -1,43 +1,12 @@
-@import "apps/dcs-frontend/src/theme";
+@import "libs/shared/src/theme";
 
 :host {
   .separator {
     margin-left: map_get($spacings, 4);
   }
 
-  input,
-  textarea {
-    font-size: 0.875rem;
-    font-weight: bold;
-  }
-
   textarea {
     resize: vertical;
-  }
-
-  button {
-    font-size: 0.875rem;
-    font-family: get($font-family);
-    border: 1px solid map_get($md-primary, 300);
-    background-color: map_get($md-grey, 350);
-
-    &[disabled] {
-      border: 1px solid map_get($md-primary, 100);
-      color: map_get($md-primary, 100) !important;
-
-      .code-none,
-      .code-var {
-        color: map_get($md-primary, 100) !important;
-      }
-
-      &:hover {
-        border: 1px solid map_get($md-primary, 100);
-      }
-    }
-
-    &:hover {
-      border: 1px solid map_get($md-primary, 500);
-    }
   }
 
   .comments-container {

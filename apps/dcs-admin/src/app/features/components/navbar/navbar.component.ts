@@ -1,11 +1,10 @@
-import {Component, OnInit, ElementRef, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Inject} from '@angular/core';
 import {Location} from '@angular/common';
-import {Router} from '@angular/router';
 
-import {Store} from '@ngxs/store';
+import {Environment, ENVIRONMENT} from '@dcs-libs/shared';
+import {ROUTES} from '../sidebar/sidebar.model';
 
-import {ROUTES} from '../sidebar/sidebar.component';
-import {LogoutAction} from '../../../core/redux/actions';
+const PATH_NAME_POSITION = 2;
 
 @Component({
   selector: 'app-navbar',
@@ -14,36 +13,22 @@ import {LogoutAction} from '../../../core/redux/actions';
 })
 export class NavbarComponent implements OnInit {
   private listTitles: any[];
-  showProfileDropdown = false;
 
   @Output()
   openSidenav = new EventEmitter<any>();
 
   constructor(
     private location: Location,
-    private element: ElementRef,
-    private router: Router,
-    private store: Store
+    @Inject(ENVIRONMENT) private env: Environment
   ) {
+  }
+
+  getBlogUrl() {
+    return this.env.siteUrl;
   }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
-    // toDo: inject window instance
-    window.addEventListener('click', () => {
-      this.showProfileDropdown = false;
-    });
-  }
-
-  showDropdown(event) {
-    this.showProfileDropdown = !this.showProfileDropdown;
-    event.stopPropagation();
-  }
-
-  logout() {
-    this.store.dispatch(new LogoutAction()).subscribe(() => {
-      this.router.navigate(['login']);
-    });
   }
 
   getTitle() {
@@ -51,12 +36,12 @@ export class NavbarComponent implements OnInit {
     if (title.charAt(0) === '#') {
       title = title.slice(1);
     }
-    title = '/' + title.split('/')[1];
+    title = '/' + title.split('/')[PATH_NAME_POSITION];
     for (const item of this.listTitles) {
       if (item.path === title) {
         return item.title;
       }
     }
-    return 'Dashboard';
+    return 'Binary Coffee';
   }
 }
