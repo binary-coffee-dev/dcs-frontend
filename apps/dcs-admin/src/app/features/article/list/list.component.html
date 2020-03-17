@@ -128,6 +128,7 @@
         <tr *ngFor="let post of posts">
           <td>
             <button mat-button
+                    *ngIf="([permissions().EDIT_ANY_ARTICLE] | hasPermissions | async) || isMyPost(post)"
                     matTooltip="Editar articulo"
                     [routerLink]="'/articles/update/' + post.id"
                     [matTooltipPosition]="'above'">

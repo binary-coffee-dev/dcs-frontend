@@ -12,7 +12,7 @@ import {
   PreviousPageAction,
   SelectPageAction,
   MomentService,
-  UrlUtilsService
+  UrlUtilsService, Permissions, AuthState
 } from '@dcs-libs/shared';
 
 @Component({
@@ -20,7 +20,7 @@ import {
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent extends Permissions implements OnInit {
   posts: Post[];
 
   currentPage = 0;
@@ -34,6 +34,7 @@ export class ListComponent implements OnInit {
     @Inject(ENVIRONMENT) private environment: Environment,
     public url: UrlUtilsService
   ) {
+    super();
   }
 
   ngOnInit() {
@@ -47,6 +48,11 @@ export class ListComponent implements OnInit {
         this.numberOfPages = Math.ceil(indicator.count / indicator.pageSize);
       }
     });
+  }
+
+  isMyPost(post) {
+    const user = this.store.selectSnapshot(AuthState.me);
+    return !!user && !!post.author && post.author.id === user.id;
   }
 
   nextPageEvent() {

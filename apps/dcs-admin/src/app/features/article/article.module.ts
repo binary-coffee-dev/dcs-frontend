@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 
 import {MarkdownModule} from 'ngx-markdown';
 
-import {MaterialModule} from '@dcs-libs/shared';
+import {MaterialModule, SharedModule} from '@dcs-libs/shared';
 import {OverviewComponent} from './overview/overview.component';
 import {ListComponent} from './list/list.component';
 import {ArticleRoutingModule} from './article-routing.module';
@@ -17,6 +17,7 @@ import {PaginationModule} from '../components/pagination/pagination.module';
     ArticleRoutingModule,
     MaterialModule,
     PaginationModule,
+    SharedModule,
     MarkdownModule.forRoot()
   ],
   entryComponents: [SelectImageModalComponent]

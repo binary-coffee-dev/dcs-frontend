@@ -1,6 +1,6 @@
 import {Store} from '@ngxs/store';
 
-import {Permission, Role} from '../permissions';
+import {Permission, RoleEnum} from '../permissions';
 import {HasPermissionsPipe} from './has-permissions.pipe';
 
 describe('HasPermissionsPipe', () => {
@@ -11,9 +11,9 @@ describe('HasPermissionsPipe', () => {
     store = {
       selectSnapshot: jest.fn
     } as unknown as Store;
-    const map = new Map<Role, Permission[]>();
-    map.set(Role.authenticated, []);
-    map.set(Role.staff, [
+    const map = new Map<RoleEnum, Permission[]>();
+    map.set(RoleEnum.authenticated, []);
+    map.set(RoleEnum.staff, [
       Permission.EDIT_ANY_ARTICLE
     ]);
     pipe = new HasPermissionsPipe(store, map);

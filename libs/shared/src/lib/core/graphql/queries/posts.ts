@@ -18,6 +18,7 @@ export const POSTS_QUERY = gql`
                     url
                 }
                 author {
+                    id
                     username
                     email
                     page

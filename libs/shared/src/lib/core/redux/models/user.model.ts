@@ -1,5 +1,5 @@
 import {File} from './file.model';
-import {Role} from '../../permissions';
+import {RoleEnum} from '../../permissions';
 
 export interface User {
   id: string;
@@ -9,4 +9,10 @@ export interface User {
   page: string;
   role: Role;
   avatarUrl: string;
+}
+
+export interface Role {
+  id: string;
+  name: string;
+  type: RoleEnum;
 }
