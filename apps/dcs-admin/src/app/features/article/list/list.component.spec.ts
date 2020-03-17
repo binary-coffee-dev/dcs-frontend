@@ -4,7 +4,8 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {Store} from '@ngxs/store';
 
 import {ListComponent} from './list.component';
-import {ENVIRONMENT} from '@dcs-libs/shared';
+import {ENVIRONMENT, ROLE_PERMISSION_MAP, rolePermissionMap} from '@dcs-libs/shared';
+import {HasPermissionsPipe} from '@dcs-libs/shared';
 
 class StoreStub {
 }
@@ -15,8 +16,12 @@ describe('ListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ListComponent],
-      providers: [{provide: Store, useClass: StoreStub}, {provide: ENVIRONMENT, useValue: {}}],
+      declarations: [ListComponent, HasPermissionsPipe],
+      providers: [
+        {provide: Store, useClass: StoreStub},
+        {provide: ENVIRONMENT, useValue: {}},
+        {provide: ROLE_PERMISSION_MAP, useValue: rolePermissionMap}
+      ],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();

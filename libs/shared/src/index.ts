@@ -16,3 +16,4 @@ export * from './lib/components/social-links/social-links.component';
 export * from './lib/core/permissions';
 export * from './lib/core/resolvers';
 export * from './lib/core/services';
+export * from './lib/core/pipes';
