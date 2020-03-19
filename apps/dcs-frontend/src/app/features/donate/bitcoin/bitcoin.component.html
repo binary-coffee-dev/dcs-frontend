@@ -1,7 +1,17 @@
-<div fxLayout="column"
+<div class="content"
+     fxLayout="column"
      fxLayoutAlign="center center">
-  Este es nuestro wallet de bitcoin:
-  <p>1DpxSVZz3cTCNegZR2SVgNts25eLTDQixx</p>
-  <img src="assets/images/binary-bitcoin-qr.png"
+  <h2 class="header-title">Bitcoin</h2>
+  <b class="header-description">Esta es nuestra cartera</b>
+
+  <img class="img"
+       src="assets/images/qr-bitcoin.png"
        alt="Bitcoin QR">
+
+  <button mat-button
+          class="bc-button copy-button"
+          (click)="copyText('1DpxSVZz3cTCNegZR2SVgNts25eLTDQixx')">
+    copy
+  </button>
+
 </div>
