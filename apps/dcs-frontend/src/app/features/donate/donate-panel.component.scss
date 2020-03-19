@@ -1,0 +1,24 @@
+@import "libs/shared/src/theme";
+
+:host {
+  .content {
+    color: map-get($map: $md-grey, $key: 900);
+    border-radius: map-get($map: $radius, $key: 2);
+    background-color: map-get($map: $md-grey, $key: A100);
+
+    .header-description {
+      color: map_get($md-grey, 600);
+      font-weight: bold;
+      padding: 0 map-get($map: $spacings, $key: 4);
+    }
+
+    .copy-button {
+      margin-bottom: map-get($map: $spacings, $key: 4);
+    }
+
+    .img {
+      border-radius: map-get($map: $radius, $key: 2);
+      width: 100%;
+    }
+  }
+}
