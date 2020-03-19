@@ -65,6 +65,15 @@
           border: 1px solid $color;
         }
       }
+
+      .enzona {
+        $color: #2b5eaa;
+        color: $color;
+
+        &:hover {
+          border: 1px solid $color;
+        }
+      }
     }
   }
 
