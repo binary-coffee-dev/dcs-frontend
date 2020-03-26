@@ -10,7 +10,9 @@
 
   <button mat-button
           class="bc-button copy-button"
-          (click)="copyText('1DpxSVZz3cTCNegZR2SVgNts25eLTDQixx')">
+          matTooltip="Copiar el id de la cartera"
+          ngxClipboard
+          [cbContent]="'1DpxSVZz3cTCNegZR2SVgNts25eLTDQixx'">
     copy
   </button>
 

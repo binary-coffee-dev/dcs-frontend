@@ -9,7 +9,9 @@
 
   <button mat-button
           class="bc-button copy-button"
-          (click)="copyText('0292af8fa3c25145e1856e40a8fa0554a1')">
-    copy
+          matTooltip="Copiar el id de la cuenta"
+          ngxClipboard
+          [cbContent]="'0292af8fa3c25145e1856e40a8fa0554a1'">
+    copiar
   </button>
 </div>
