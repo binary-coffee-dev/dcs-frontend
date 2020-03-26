@@ -39,11 +39,11 @@ export class LoginButtonComponent implements OnInit {
   }
 
   openUserProfile() {
-    this.window.location.href = this.env.siteDashboardUrl + "/user-profile";
+    this.window.location.href = `${this.env.siteDashboardUrl}/user-profile`;
   }
 
   openArticles() {
-    this.window.location.href = this.env.siteDashboardUrl + "/articles";
+    this.window.location.href = `${this.env.siteDashboardUrl}/articles`;
   }
 
   logoutAction() {
