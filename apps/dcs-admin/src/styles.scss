@@ -1,36 +1,8 @@
 @import 'libs/shared/src/theme';
 
-body,
-html {
-  margin: 0;
-  padding: 0;
-}
-
-.mat-button-focus-overlay {
-  background-color: transparent !important;
-  color: transparent !important;
-}
-
-.mat-form-field-outline>* {
-  color: map_get($md-primary, 100);
-
-  &:focus {
-    font-weight: 100;
-  }
-}
-
 * {
   font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
 }
-
-
-mat-dialog-container {
-  box-shadow: none !important;
-  position: relative;
-  background: transparent !important;
-  overflow: hidden !important;
-}
-
 
 markdown {
   img {
