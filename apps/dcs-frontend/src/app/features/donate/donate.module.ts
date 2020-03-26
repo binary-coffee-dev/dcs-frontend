@@ -1,10 +1,12 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {MaterialModule} from '@dcs-libs/shared';
-import {DonateComponent} from './donate.component';
-import {DonateRoutingModule} from './donate-routing.module';
-import {BitcoinComponent} from './bitcoin/bitcoin.component';
+import { ClipboardModule } from 'ngx-clipboard';
+
+import { MaterialModule } from '@dcs-libs/shared';
+import { DonateComponent } from './donate.component';
+import { DonateRoutingModule } from './donate-routing.module';
+import { BitcoinComponent } from './bitcoin/bitcoin.component';
 import { EnzonaComponent } from './enzona/enzona.component';
 
 
@@ -14,7 +16,8 @@ import { EnzonaComponent } from './enzona/enzona.component';
   imports: [
     CommonModule,
     MaterialModule,
-    DonateRoutingModule
+    DonateRoutingModule,
+    ClipboardModule
   ]
 })
 export class DonateModule {
