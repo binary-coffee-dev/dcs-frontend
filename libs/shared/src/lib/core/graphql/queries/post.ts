@@ -19,6 +19,9 @@ export const POST_QUERY = gql`
                 avatarUrl
                 page
             }
+            tags{
+                name
+            }
         }
     }
 `;
