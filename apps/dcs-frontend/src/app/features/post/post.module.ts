@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MarkdownModule } from 'ngx-markdown';
 
+import { TagsModule } from '@dcs-libs/shared';
 import { PostComponent } from './post.component';
 import { PostRoutingModule } from './post-routing.module';
 import { PostGuard } from './guards';
@@ -22,7 +23,8 @@ import { ShareButtonsComponent } from './share-buttons/share-buttons.component';
     PostRoutingModule,
     MaterialModule,
     MarkdownModule.forRoot(),
-    ServicesModule
+    ServicesModule,
+    TagsModule
   ],
   providers: [PostGuard]
 })
