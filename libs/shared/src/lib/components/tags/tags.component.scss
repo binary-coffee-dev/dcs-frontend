@@ -1,0 +1,31 @@
+@import "libs/shared/src/theme";
+
+:host {
+  .content {
+
+    .tag {
+      background-color: map-get($map: $md-secundary, $key: 50);
+      border-radius: 1rem map-get($map: $radius, $key: 2) map-get($map: $radius, $key: 2) 1rem;
+      color: map-get($map: $md-secundary, $key: 500);
+      border: 1px solid map-get($map: $md-secundary, $key: 100);
+      padding: .25rem .25rem .25rem .75rem;
+      margin: map-get($map: $spacings, $key: 1) map-get($map: $spacings, $key: 1) 0 0;
+      font-weight: lighter;
+      font-size: .60rem;
+      display: inline-block;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        height: .25rem;
+        width: .25rem;
+        border-radius: 50%;
+        border: 1px solid map-get($map: $md-secundary, $key: 200);
+        transform: translate3d(-.5rem, -.55rem, 0);
+        background-color: map-get($map: $md-grey, $key: A100);
+      }
+    }
+  }
+
+}
