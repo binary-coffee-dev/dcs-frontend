@@ -1,5 +1,6 @@
-import {File} from './file.model';
-import {User} from './user.model';
+import { File } from './file.model';
+import { User } from './user.model';
+import { Tag } from "./tag.model";
 
 export interface Post {
   id: string;
@@ -13,4 +14,5 @@ export interface Post {
   enable: boolean;
   views: string;
   comments: number;
+  tags: Tag[];
 }
