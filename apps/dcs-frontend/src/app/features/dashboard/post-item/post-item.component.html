@@ -7,13 +7,24 @@
   </div>
   <a [routerLink]="'post/' + post?.name"
      class="card-container"
-     fxLayout="row">
-    <div class="post-image-container"
-         [fxShow.xs]="false">
-      <img *ngIf="post?.banner && post?.banner?.url"
-           [lazyLoad]="resource.addApiUrl(post?.banner?.url)"
-           alt="">
+     fxLayout="row"
+     fxLayout.xs="column">
+
+    <div fxLayout="column"
+         fxLayoutAlign="start"
+         fxFlexOrder.xs="1">
+
+      <div class="post-image-container"
+           [fxShow.xs]="false">
+        <img *ngIf="post?.banner && post?.banner?.url"
+             [lazyLoad]="resource.addApiUrl(post?.banner?.url)">
+      </div>
+
+      <div class="post-tag-content">
+        <app-tags [tags]="post?.tags"></app-tags>
+      </div>
     </div>
+
     <div class="post-body-container"
          [fxFlex.gt-sm]="80"
          fxLayout="column">
