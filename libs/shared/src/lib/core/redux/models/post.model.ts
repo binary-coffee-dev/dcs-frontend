@@ -1,6 +1,6 @@
 import { File } from './file.model';
 import { User } from './user.model';
-import { Tag } from "./tag.model";
+import { Tag } from './tag.model';
 
 export interface Post {
   id: string;
