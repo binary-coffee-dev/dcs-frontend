@@ -1,3 +1,4 @@
+export * from './tag.model';
 export * from './post.model';
 export * from './file.model';
 export * from './user.model';
