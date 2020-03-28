@@ -1,20 +1,5 @@
 @import "libs/shared/src/theme";
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  scroll-behavior: smooth;
-}
-
-.mat-form-field-outline>* {
-  color: map_get($md-primary, 100);
-
-  &:focus {
-    font-weight: 100;
-  }
-}
-
 * {
   font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
 }

@@ -1,0 +1,28 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+.mat-dialog-container {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.cdk-global-overlay-wrapper {
+  background-color: rgba($color: map_get($md-primary, 900), $alpha: .1);
+}
+
+.mat-form-field-outline>* {
+  color: map_get($md-primary, 100);
+
+  &:focus {
+    font-weight: 100;
+  }
+}
+
+.mat-button-focus-overlay {
+  background-color: transparent !important;
+  color: transparent !important;
+}

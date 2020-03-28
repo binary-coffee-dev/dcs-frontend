@@ -18,6 +18,9 @@ export const POST_BY_NAME_QUERY = gql`
                 avatarUrl
                 page
             }
+            tags{
+                name
+            }
         }
     }
 `;

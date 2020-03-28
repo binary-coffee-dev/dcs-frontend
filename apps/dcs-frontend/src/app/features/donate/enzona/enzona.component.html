@@ -1,6 +1,17 @@
-<div fxLayout="column"
+<div class="content"
+     fxLayout="column"
      fxLayoutAlign="center center">
-  Esta es nuestra cuenta de enzona:
-  <img src="assets/images/enzona-qr.jpeg"
+  <h2 class="header-title">EnZona</h2>
+  <b class="header-description">Esta es nuestra cuenta</b>
+  <img class="img"
+       src="assets/images/qr-enzona.png"
        alt="Enzona QR">
+
+  <button mat-button
+          class="bc-button copy-button"
+          matTooltip="Copiar el id de la cuenta"
+          ngxClipboard
+          [cbContent]="'0292af8fa3c25145e1856e40a8fa0554a1'">
+    copiar
+  </button>
 </div>

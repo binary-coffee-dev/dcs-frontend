@@ -1,0 +1,56 @@
+.code-1 {
+  color: map_get($md-secundary, 900) !important;
+}
+
+.code-2 {
+  color: map_get($md-primary, 500) !important;
+}
+
+.code-string {
+  color: map_get($md-primary, 900) !important;
+}
+
+.code-comment-1 {
+  color: map_get($md-grey, 600) !important;
+}
+
+.code-comment-2 {
+  color: map_get($md-primary, 700) !important;
+}
+
+.code-none {
+  color: map_get($md-grey, 800) !important;
+}
+
+.code-var {
+  font-weight: bold;
+  color: map_get($md-grey, 800) !important
+}
+
+.bc-button {
+  border: 1px solid map_get($md-primary, 300);
+  background-color: map_get($md-grey, 400);
+  border-radius: map_get($radius, 2);
+  box-shadow: none;
+  cursor: pointer !important;
+
+  &:hover {
+    border: 1px solid map_get($md-primary, 500);
+  }
+
+  &:disabled {
+    border: 1px solid map_get($md-grey, 500) !important;
+    cursor: default;
+
+    span {
+      color: map_get($md-grey, 500) !important;
+    }
+  }
+}
+
+.bc-panel {
+  border: 1px solid map_get($md-primary, 100);
+  background-color: map_get($md-grey, A100);
+  border-radius: map_get($radius, 2);
+  box-shadow: none;
+}
