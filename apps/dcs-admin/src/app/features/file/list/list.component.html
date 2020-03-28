@@ -17,6 +17,15 @@
         <span class="code-none"> Archivo() </span>
       </button>
 
+      <button (click)="toggleTableCard()"
+              class="toogle-table-card bc-button"
+              mat-button>
+        <span *ngIf="tableOrCard"
+              class="fa fa-table"></span>
+        <span *ngIf="!tableOrCard"
+              class="fa fa-list"></span>
+      </button>
+
     </div>
 
     <div fxHide
@@ -36,7 +45,44 @@
     </div>
   </div>
 
-  <div class="file-content">
+  <div *ngIf="!tableOrCard"
+       class="file-content-card">
+
+    <div class="file-card"
+         fxLayoutAlign="center center"
+         *ngFor="let file of files">
+
+
+      <div class="file-image-card"
+           fxLayoutAlign="center center">
+
+        <a fxLayoutAlign="center center"
+           ngxClipboard
+           [cbContent]="normalizeUrl(file?.url)">
+
+          <i fxLayoutAlign="center center"
+             class="icon-hover material-icons">file_copy</i>
+
+          <img class="img"
+               [src]="normalizeUrl(file?.url)"
+               [alt]="file.name" />
+        </a>
+      </div>
+
+      <button mat-button
+              *ngIf="false"
+              type="button"
+              matTooltip="Remove"
+              [matTooltipPosition]="'above'"
+              class="bc-button">
+        <i class="material-icons">close</i>
+      </button>
+
+    </div>
+  </div>
+
+  <div *ngIf="tableOrCard"
+       class="file-content">
     <table class="table">
       <thead class=" text-info">
         <th>Title</th>
@@ -91,6 +137,15 @@
               (click)="openUploadFileModal()">
         <span class="code-1"> new </span>
         <span class="code-none"> Archivo() </span>
+      </button>
+
+      <button (click)="toggleTableCard()"
+              class="toogle-table-card bc-button"
+              mat-button>
+        <span *ngIf="tableOrCard"
+              class="fa fa-table"></span>
+        <span *ngIf="!tableOrCard"
+              class="fa fa-list"></span>
       </button>
 
     </div>

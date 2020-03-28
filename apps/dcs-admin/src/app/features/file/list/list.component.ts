@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
 import {
   ChangeFilesPageAction,
@@ -12,7 +12,7 @@ import {
   PreviousFilesPageAction,
   UrlUtilsService
 } from '@dcs-libs/shared';
-import {UploadFileModalComponent} from '../../components/upload-file.modal';
+import { UploadFileModalComponent } from '../../components/upload-file.modal';
 
 @Component({
   selector: 'app-list',
@@ -20,11 +20,12 @@ import {UploadFileModalComponent} from '../../components/upload-file.modal';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
   files: File[] = [];
 
   numberOfPages = 0;
   currentPage = 0;
+
+  tableOrCard = true;
 
   constructor(
     private store: Store,
@@ -75,5 +76,9 @@ export class ListComponent implements OnInit {
 
   selectPageEvent(page) {
     this.store.dispatch(new ChangeFilesPageAction(page));
+  }
+
+  toggleTableCard() {
+    this.tableOrCard = !this.tableOrCard;
   }
 }
