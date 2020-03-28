@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
 import {
   ChangeFilesPageAction,
@@ -12,7 +12,7 @@ import {
   PreviousFilesPageAction,
   UrlUtilsService
 } from '@dcs-libs/shared';
-import {UploadFileModalComponent} from '../../components/upload-file.modal';
+import { UploadFileModalComponent } from '../../components/upload-file.modal';
 
 @Component({
   selector: 'app-list',
