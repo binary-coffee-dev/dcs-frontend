@@ -20,11 +20,12 @@ import { UploadFileModalComponent } from '../../components/upload-file.modal';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
   files: File[] = [];
 
   numberOfPages = 0;
   currentPage = 0;
+
+  tableOrCard = true;
 
   constructor(
     private store: Store,
@@ -75,5 +76,9 @@ export class ListComponent implements OnInit {
 
   selectPageEvent(page) {
     this.store.dispatch(new ChangeFilesPageAction(page));
+  }
+
+  toggleTableCard() {
+    this.tableOrCard = !this.tableOrCard;
   }
 }
