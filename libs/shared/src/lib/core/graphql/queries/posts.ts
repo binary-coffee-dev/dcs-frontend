@@ -23,6 +23,9 @@ export const POSTS_QUERY = gql`
                     email
                     page
                 }
+                tags{
+                    name
+                }
             }
             aggregate {
                 count
