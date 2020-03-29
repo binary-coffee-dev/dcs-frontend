@@ -9,7 +9,8 @@ import { ENVIRONMENT, Environment, WINDOW } from '@dcs-libs/shared';
 })
 export class HeaderComponent {
 
-  constructor(@Inject(WINDOW) private window: Window,
+  constructor(
+    @Inject(WINDOW) private window: Window,
     @Inject(ENVIRONMENT) private env: Environment) { }
 
   openRoot() {
