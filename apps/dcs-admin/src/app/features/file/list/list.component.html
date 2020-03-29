@@ -57,6 +57,8 @@
            fxLayoutAlign="center center">
 
         <a fxLayoutAlign="center center"
+           matTooltip="Copiar Url"
+           [matTooltipPosition]="'above'"
            ngxClipboard
            [cbContent]="normalizeUrl(file?.url)">
 
@@ -85,13 +87,11 @@
        class="file-content">
     <table class="table">
       <thead class=" text-info">
-        <th>Title</th>
-        <th>Image</th>
-        <th class="td-actions text-right">Actions</th>
+        <th>Imagen</th>
+        <th></th>
       </thead>
       <tbody>
         <tr *ngFor="let file of files">
-          <td>{{file.name}}</td>
           <td>
             <img class="file-image"
                  [src]="normalizeUrl(file?.url)"
@@ -100,19 +100,17 @@
           <td class="td-actions text-right">
             <button mat-button
                     type="button"
-                    matTooltip="Copy Url"
+                    matTooltip="Copiar Url"
                     [matTooltipPosition]="'above'"
                     ngxClipboard
-                    [cbContent]="normalizeUrl(file?.url)"
-                    class="bc-button">
+                    [cbContent]="normalizeUrl(file?.url)">
               <i class="material-icons">file_copy</i>
             </button>
             <button mat-button
                     *ngIf="false"
                     type="button"
-                    matTooltip="Remove"
-                    [matTooltipPosition]="'above'"
-                    class="bc-button">
+                    matTooltip="Eliminar"
+                    [matTooltipPosition]="'above'">
               <i class="material-icons">close</i>
             </button>
           </td>

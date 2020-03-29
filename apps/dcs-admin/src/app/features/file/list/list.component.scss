@@ -20,6 +20,10 @@
 
       .table {
         width: 100%;
+
+        button {
+          color: map_get($md-primary, 800);
+        }
       }
 
       .file-image {
