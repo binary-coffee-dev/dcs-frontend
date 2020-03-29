@@ -54,11 +54,11 @@
 
 
       <div class="file-image-card"
+           matTooltip="Copiar Url"
+           [matTooltipPosition]="'above'"
            fxLayoutAlign="center center">
 
         <a fxLayoutAlign="center center"
-           matTooltip="Copiar Url"
-           [matTooltipPosition]="'above'"
            ngxClipboard
            [cbContent]="normalizeUrl(file?.url)">
 
