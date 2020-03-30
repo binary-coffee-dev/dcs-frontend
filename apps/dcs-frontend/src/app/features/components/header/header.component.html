@@ -5,7 +5,8 @@
        fxLayoutAlign.xs="center center"
        fxFlex="50"
        fxFlex.xs="100">
-    <a [routerLink]="'/'"
+    <a class="go-root"
+       (click)="openRoot()"
        fxLayoutAlign="center center">
       <img class="logo"
            src="assets/images/64x64/binarycoffee_2.0.1.png"

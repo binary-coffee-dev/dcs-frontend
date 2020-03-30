@@ -8,9 +8,10 @@
     z-index: 99;
     background-color: map_get($md-primary, A100);
 
-    a {
+    .go-root {
       color: map_get($md-primary, 800);
       text-decoration: none;
+      cursor: pointer;
 
       .logo {
         height: 2rem;
