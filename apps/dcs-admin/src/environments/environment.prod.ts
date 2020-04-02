@@ -7,5 +7,6 @@ export const environment = {
   siteDashboardUrl: 'https://binary-coffee.dev/dashboard',
   production: true,
   local: false,
-  githubClientId: '266886104e2ecf88e43b'
+  githubClientId: '266886104e2ecf88e43b',
+  isDashboard: true
 } as Environment;
