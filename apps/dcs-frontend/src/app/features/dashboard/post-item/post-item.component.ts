@@ -20,7 +20,7 @@ export class PostItemComponent {
 
   constructor(
     public moment: MomentService,
-    public resource: ResourceService
+    private resource: ResourceService
   ) {
   }
 
@@ -28,4 +28,10 @@ export class PostItemComponent {
     return truncate(t, {length: 300});
   }
 
+  getPostBanner(post: Post) {
+    if (post && post.banner && post.banner.url) {
+      return this.resource.addApiUrl(post.banner.url);
+    }
+    return '/assets/images/banner-default.jpg';
+  }
 }
