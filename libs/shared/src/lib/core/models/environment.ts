@@ -10,6 +10,7 @@ export interface Environment {
   githubClientId?: string;
   googleAnalyticsId?: string;
   postPageSize?: number;
+  isDashboard?: boolean;
 }
 
 export const ENVIRONMENT = new InjectionToken<Environment>('ENVIRONMENT');
