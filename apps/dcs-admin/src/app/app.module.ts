@@ -12,6 +12,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import {
   AuthState,
+  ConfigState,
   ENVIRONMENT,
   FileState,
   NotificationState,
@@ -44,7 +45,7 @@ export function createApollo(httpLink: HttpLink) {
     AppRoutingModule,
     ReduxModule,
     SharedModule,
-    NgxsModule.forRoot([PostState, AuthState, FileState, NotificationState], {
+    NgxsModule.forRoot([PostState, AuthState, FileState, NotificationState, ConfigState], {
       developmentMode: !environment.production
     })
   ],

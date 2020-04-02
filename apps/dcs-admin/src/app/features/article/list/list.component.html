@@ -22,10 +22,8 @@
       <button (click)="toggleTableCard()"
               class="toogle-table-card bc-button"
               mat-button>
-        <span *ngIf="tableOrCard"
-              class="fa fa-table"></span>
-        <span *ngIf="!tableOrCard"
-              class="fa fa-list"></span>
+        <span class="fa"
+              [ngClass]="{'fa-table': !tableOrCard, 'fa-list': tableOrCard}"></span>
       </button>
 
     </div>
@@ -47,7 +45,7 @@
     </div>
   </div>
 
-  <div *ngIf="!tableOrCard"
+  <div *ngIf="tableOrCard"
        fxLayout="row wrap">
     <div *ngFor="let post of posts"
          class="post-content"
@@ -115,7 +113,7 @@
   </div>
 
   <div class="table-content"
-       *ngIf="tableOrCard">
+       *ngIf="!tableOrCard">
     <table>
       <thead class=" text-info">
         <th></th>
@@ -183,10 +181,8 @@
       <button (click)="toggleTableCard()"
               class="toogle-table-card bc-button"
               mat-button>
-        <span *ngIf="tableOrCard"
-              class="fa fa-table"></span>
-        <span *ngIf="!tableOrCard"
-              class="fa fa-list"></span>
+        <span class="fa"
+              [ngClass]="{'fa-table': !tableOrCard, 'fa-list': tableOrCard}"></span>
       </button>
 
     </div>

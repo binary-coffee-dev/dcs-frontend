@@ -50,6 +50,7 @@
     "@nguniversal/module-map-ngfactory-loader": "v8.2.6",
     "@ngxs/devtools-plugin": "^3.6.2",
     "@ngxs/storage-plugin": "^3.6.2",
+    "@ngxs/schematics": "0.0.1-alpha.5",
     "@ngxs/store": "^3.6.2",
     "@nrwl/angular": "^9.0.2",
     "@nrwl/schematics": "^8.12.7",

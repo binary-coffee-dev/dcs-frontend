@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 
-import { Store } from '@ngxs/store';
+import {Store} from '@ngxs/store';
 
 import {
   ENVIRONMENT,
@@ -12,7 +12,7 @@ import {
   PreviousPageAction,
   SelectPageAction,
   MomentService,
-  UrlUtilsService, Permissions, AuthState
+  UrlUtilsService, Permissions, AuthState, ConfigState, SetConfigAction
 } from '@dcs-libs/shared';
 
 @Component({
@@ -26,7 +26,7 @@ export class ListComponent extends Permissions implements OnInit {
   currentPage = 0;
   numberOfPages = 0;
 
-  tableOrCard = true;
+  tableOrCard = false;
 
   constructor(
     private store: Store,
@@ -48,6 +48,7 @@ export class ListComponent extends Permissions implements OnInit {
         this.numberOfPages = Math.ceil(indicator.count / indicator.pageSize);
       }
     });
+    this.store.select(ConfigState.getConfigItem('dashboard-post-tableOrCard')).subscribe(value => this.tableOrCard = !!value);
   }
 
   isMyPost(post) {
@@ -73,5 +74,6 @@ export class ListComponent extends Permissions implements OnInit {
 
   toggleTableCard() {
     this.tableOrCard = !this.tableOrCard;
+    this.store.dispatch(new SetConfigAction('dashboard-post-tableOrCard', this.tableOrCard));
   }
 }

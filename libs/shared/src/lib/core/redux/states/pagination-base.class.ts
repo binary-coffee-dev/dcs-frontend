@@ -29,12 +29,14 @@ export class PaginationBaseClass<T extends StateBase> {
   nextPage(ctx: StateContext<T>) {
     const pageSize = ctx.getState().pageSize;
     const currentPage = this.nextPageNumber(ctx.getState().page, ctx.getState().count, pageSize);
-    return this.pageByNumber(ctx, currentPage);
+    const where = ctx.getState().where;
+    return this.pageByNumber(ctx, currentPage, where);
   }
 
   previousPage(ctx: StateContext<T>) {
     const currentPage = Math.max(ctx.getState().page - 1, MINIMUM_PAGE);
-    return this.pageByNumber(ctx, currentPage);
+    const where = ctx.getState().where;
+    return this.pageByNumber(ctx, currentPage, where);
   }
 
   pageByNumber(ctx: StateContext<T>, page: number, where = {}) {
