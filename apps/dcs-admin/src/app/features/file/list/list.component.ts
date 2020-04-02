@@ -4,12 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 
 import {
-  ChangeFilesPageAction,
+  ChangeFilesPageAction, ConfigState,
   FetchFilesAction,
   File,
   FileState,
   NextFilesPageAction,
-  PreviousFilesPageAction,
+  PreviousFilesPageAction, SetConfigAction,
   UrlUtilsService
 } from '@dcs-libs/shared';
 import { UploadFileModalComponent } from '../../components/upload-file.modal';
@@ -25,7 +25,7 @@ export class ListComponent implements OnInit {
   numberOfPages = 0;
   currentPage = 0;
 
-  tableOrCard = true;
+  tableOrCard = false;
 
   constructor(
     private store: Store,
@@ -43,6 +43,7 @@ export class ListComponent implements OnInit {
         this.numberOfPages = Math.ceil(indicators.count / indicators.pageSize);
       }
     });
+    this.store.select(ConfigState.getConfigItem('dashboard-file-tableOrCard')).subscribe(value => this.tableOrCard = !!value);
   }
 
   openUploadFileModal() {
@@ -80,5 +81,6 @@ export class ListComponent implements OnInit {
 
   toggleTableCard() {
     this.tableOrCard = !this.tableOrCard;
+    this.store.dispatch(new SetConfigAction('dashboard-file-tableOrCard', this.tableOrCard));
   }
 }

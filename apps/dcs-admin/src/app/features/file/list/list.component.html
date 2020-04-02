@@ -20,10 +20,8 @@
       <button (click)="toggleTableCard()"
               class="toogle-table-card bc-button"
               mat-button>
-        <span *ngIf="tableOrCard"
-              class="fa fa-table"></span>
-        <span *ngIf="!tableOrCard"
-              class="fa fa-list"></span>
+        <span class="fa"
+              [ngClass]="{'fa-table': !tableOrCard, 'fa-list': tableOrCard}"></span>
       </button>
 
     </div>
@@ -45,7 +43,7 @@
     </div>
   </div>
 
-  <div *ngIf="!tableOrCard"
+  <div *ngIf="tableOrCard"
        class="file-content-card">
 
     <div class="file-card"
@@ -83,7 +81,7 @@
     </div>
   </div>
 
-  <div *ngIf="tableOrCard"
+  <div *ngIf="!tableOrCard"
        class="file-content">
     <table class="table">
       <thead class=" text-info">
@@ -140,10 +138,8 @@
       <button (click)="toggleTableCard()"
               class="toogle-table-card bc-button"
               mat-button>
-        <span *ngIf="tableOrCard"
-              class="fa fa-table"></span>
-        <span *ngIf="!tableOrCard"
-              class="fa fa-list"></span>
+        <span class="fa"
+              [ngClass]="{'fa-table': !tableOrCard, 'fa-list': tableOrCard}"></span>
       </button>
 
     </div>
