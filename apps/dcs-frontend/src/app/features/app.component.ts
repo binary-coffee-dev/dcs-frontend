@@ -14,7 +14,6 @@ declare let gtag: (property: string, value: any, configs: any) => {};
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'dcs-frontend';
 
   constructor(
     public router: Router,

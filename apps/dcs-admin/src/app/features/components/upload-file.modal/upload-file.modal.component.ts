@@ -44,7 +44,6 @@ export class UploadFileModalComponent implements OnInit {
     }
   }
 
-
   getSize() {
     return `${Math.round(this.size / 1024 * 100) / 100} kB`;
   }

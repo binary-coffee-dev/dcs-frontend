@@ -12,7 +12,7 @@ import {FileService} from './services';
     CommonModule,
     GraphQLModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsStoragePluginModule.forRoot({key: ['auth']})
+    NgxsStoragePluginModule.forRoot({key: ['auth', 'config']})
   ],
   providers: [FileService]
 })

@@ -34,6 +34,28 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+## Code generation
+
+**Generate component**
+
+```
+$ ng g c component-name
+```
+
+NOTE: be sure to be in the folder where you want to create the new component
+
+**Generate library**
+
+```
+$ ng g @nrwl/angular:lib library-name
+```
+
+**Generate ngxs state**
+
+```
+$ ng g @ngxs/schematics:store --name state-name
+```
+
 ## Contributing
 
 Any contribution is welcome, but please first read the CONTRIBUTING guide: [CONTRIBUTING.md](https://github.com/dcs-community/dcs-frontend/blob/master/CONTRIBUTING.md)

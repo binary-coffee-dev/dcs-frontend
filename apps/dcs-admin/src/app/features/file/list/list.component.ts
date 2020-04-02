@@ -1,18 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
 import {
-  ChangeFilesPageAction,
+  ChangeFilesPageAction, ConfigState,
   FetchFilesAction,
   File,
   FileState,
   NextFilesPageAction,
-  PreviousFilesPageAction,
+  PreviousFilesPageAction, SetConfigAction,
   UrlUtilsService
 } from '@dcs-libs/shared';
-import {UploadFileModalComponent} from '../../components/upload-file.modal';
+import { UploadFileModalComponent } from '../../components/upload-file.modal';
 
 @Component({
   selector: 'app-list',
@@ -20,11 +20,12 @@ import {UploadFileModalComponent} from '../../components/upload-file.modal';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
   files: File[] = [];
 
   numberOfPages = 0;
   currentPage = 0;
+
+  tableOrCard = false;
 
   constructor(
     private store: Store,
@@ -42,6 +43,7 @@ export class ListComponent implements OnInit {
         this.numberOfPages = Math.ceil(indicators.count / indicators.pageSize);
       }
     });
+    this.store.select(ConfigState.getConfigItem('dashboard-file-tableOrCard')).subscribe(value => this.tableOrCard = !!value);
   }
 
   openUploadFileModal() {
@@ -75,5 +77,10 @@ export class ListComponent implements OnInit {
 
   selectPageEvent(page) {
     this.store.dispatch(new ChangeFilesPageAction(page));
+  }
+
+  toggleTableCard() {
+    this.tableOrCard = !this.tableOrCard;
+    this.store.dispatch(new SetConfigAction('dashboard-file-tableOrCard', this.tableOrCard));
   }
 }

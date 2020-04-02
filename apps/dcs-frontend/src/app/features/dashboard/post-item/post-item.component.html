@@ -16,8 +16,7 @@
 
       <div class="post-image-container"
            [fxShow.xs]="false">
-        <img *ngIf="post?.banner && post?.banner?.url"
-             [lazyLoad]="resource.addApiUrl(post?.banner?.url)">
+        <img [lazyLoad]="getPostBanner(post)">
       </div>
 
       <div class="post-tag-content">

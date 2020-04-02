@@ -17,6 +17,13 @@
         <span class="code-none"> Archivo() </span>
       </button>
 
+      <button (click)="toggleTableCard()"
+              class="toogle-table-card bc-button"
+              mat-button>
+        <span class="fa"
+              [ngClass]="{'fa-table': !tableOrCard, 'fa-list': tableOrCard}"></span>
+      </button>
+
     </div>
 
     <div fxHide
@@ -36,16 +43,53 @@
     </div>
   </div>
 
-  <div class="file-content">
+  <div *ngIf="tableOrCard"
+       class="file-content-card">
+
+    <div class="file-card"
+         fxLayoutAlign="center center"
+         *ngFor="let file of files">
+
+
+      <div class="file-image-card"
+           matTooltip="Copiar Url"
+           [matTooltipPosition]="'above'"
+           fxLayoutAlign="center center">
+
+        <a fxLayoutAlign="center center"
+           ngxClipboard
+           [cbContent]="normalizeUrl(file?.url)">
+
+          <i fxLayoutAlign="center center"
+             class="icon-hover material-icons">file_copy</i>
+
+          <img class="img"
+               [src]="normalizeUrl(file?.url)"
+               [alt]="file.name" />
+        </a>
+      </div>
+
+      <button mat-button
+              *ngIf="false"
+              type="button"
+              matTooltip="Remove"
+              [matTooltipPosition]="'above'"
+              class="bc-button">
+        <i class="material-icons">close</i>
+      </button>
+
+    </div>
+  </div>
+
+  <div *ngIf="!tableOrCard"
+       class="file-content">
     <table class="table">
       <thead class=" text-info">
-        <th>Title</th>
-        <th>Image</th>
-        <th class="td-actions text-right">Actions</th>
+        <th>Imagen</th>
+        <th></th>
       </thead>
       <tbody>
         <tr *ngFor="let file of files">
-          <td>{{file.name}}</td>
           <td>
             <img class="file-image"
                  [src]="normalizeUrl(file?.url)"
@@ -54,19 +98,17 @@
           <td class="td-actions text-right">
             <button mat-button
                     type="button"
-                    matTooltip="Copy Url"
+                    matTooltip="Copiar Url"
                     [matTooltipPosition]="'above'"
                     ngxClipboard
-                    [cbContent]="normalizeUrl(file?.url)"
-                    class="bc-button">
+                    [cbContent]="normalizeUrl(file?.url)">
               <i class="material-icons">file_copy</i>
             </button>
             <button mat-button
                     *ngIf="false"
                     type="button"
-                    matTooltip="Remove"
-                    [matTooltipPosition]="'above'"
-                    class="bc-button">
+                    matTooltip="Eliminar"
+                    [matTooltipPosition]="'above'">
               <i class="material-icons">close</i>
             </button>
           </td>
@@ -91,6 +133,13 @@
               (click)="openUploadFileModal()">
         <span class="code-1"> new </span>
         <span class="code-none"> Archivo() </span>
+      </button>
+
+      <button (click)="toggleTableCard()"
+              class="toogle-table-card bc-button"
+              mat-button>
+        <span class="fa"
+              [ngClass]="{'fa-table': !tableOrCard, 'fa-list': tableOrCard}"></span>
       </button>
 
     </div>
