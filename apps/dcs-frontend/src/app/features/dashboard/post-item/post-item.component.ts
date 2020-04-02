@@ -29,7 +29,7 @@ export class PostItemComponent {
   }
 
   getPostBanner(post: Post) {
-    if (post.banner && post.banner.url) {
+    if (post && post.banner && post.banner.url) {
       return this.resource.addApiUrl(post.banner.url);
     }
     return '/assets/images/banner-default.jpg';
