@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const POSTS_QUERY = gql`
-    query pageQuery($limit: Int!, $start: Int!, $where: JSON!) {
-        postsConnection(sort: "createdAt:desc", limit: $limit, start: $start, where: $where){
+    query pageQuery($limit: Int!, $start: Int!, $where: JSON!, $sort: String!) {
+        postsConnection(sort: $sort, limit: $limit, start: $start, where: $where){
             values {
                 id
                 name

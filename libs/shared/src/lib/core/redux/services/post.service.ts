@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -7,18 +7,20 @@ import {Apollo} from 'apollo-angular';
 import {Post, PostConnection, User} from '../models';
 import {POST_BY_NAME_QUERY, POST_QUERY, POSTS_QUERY} from '../../graphql/queries';
 import {POST_CREATE_MUTATION, POST_UPDATE_MUTATION} from '../../graphql/mutations';
+import {Environment, ENVIRONMENT} from '../../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor(private apollo: Apollo) {
+  constructor(private apollo: Apollo, @Inject(ENVIRONMENT) private env: Environment) {
   }
 
   fetchPosts(limit, start = 0, where = {}): Observable<PostConnection> {
+    const sort = !!this.env.isDashboard ? 'createdAt:desc' : 'publishedAt:desc';
     return this.apollo
-      .watchQuery({query: POSTS_QUERY, variables: {limit, start, where}, fetchPolicy: 'no-cache'})
+      .watchQuery({query: POSTS_QUERY, variables: {limit, start, where, sort}, fetchPolicy: 'no-cache'})
       .valueChanges.pipe(map((result: any) => ({
         ...result.data.postsConnection,
         aggregate: {
