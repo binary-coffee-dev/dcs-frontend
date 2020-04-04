@@ -1,35 +1,32 @@
 <mat-toolbar fxLayout="row"
              fxLayoutAlign="center center">
+
+  <div fxLayoutAlign="start center"
+       fxFlex="33"
+       fxFlex.xs="50">
+    <app-login-button></app-login-button>
+  </div>
+
+  <div class="bc"
+       fxLayout="column"
+       fxLayoutAlign="center center"
+       fxFlex="33"
+       [fxHide.xs]="true">
+    Binary Coffee
+  </div>
+
   <div fxLayout="column"
-       fxLayoutAlign="center start"
-       fxLayoutAlign.xs="center center"
-       fxFlex="50"
-       fxFlex.xs="100">
+       fxLayoutAlign="center end"
+       fxFlex="33"
+       fxFlex.xs="50">
+
     <a class="go-root"
        (click)="openRoot()"
        fxLayoutAlign="center center">
       <img class="logo"
-           src="assets/images/64x64/binarycoffee_2.0.1.png"
-           alt="Binary Coffee"
-           [fxHide.xs]="true">
-      <span class="binary"> Binary </span>
-      <img class="logo"
-           src="assets/images/64x64/binarycoffee_2.0.1.png"
-           alt="Binary Coffee"
-           [fxHide]="true"
-           [fxShow.xs]="true">
-      <span class="coffee"> Coffee </span>
+           src="assets/images/64x64/binarycoffee_2.0.1-i.png"
+           alt="Binary Coffee">
     </a>
-  </div>
-  <div fxLayoutAlign="end center"
-       fxFlex="50"
-       [fxHide.xs]="true">
-    <app-login-button></app-login-button>
+
   </div>
 </mat-toolbar>
-<div class="links-xs"
-     [fxHide]="true"
-     [fxShow.xs]="true"
-     fxLayoutAlign="center center">
-  <app-login-button></app-login-button>
-</div>

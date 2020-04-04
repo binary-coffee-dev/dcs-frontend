@@ -8,6 +8,13 @@
     z-index: 99;
     background-color: map_get($md-primary, A100);
 
+    .bc {
+      color: map_get($md-primary, 800);
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: larger;
+    }
+
     .go-root {
       color: map_get($md-primary, 800);
       text-decoration: none;
