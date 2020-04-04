@@ -16,11 +16,12 @@
     }
 
     mat-toolbar {
+
       position: sticky;
       top: 0;
       z-index: 500;
       padding: map_get($spacings, 4);
-      max-height: calc(3rem - 5px);
+      min-height: 64px;
       background-color: map_get($md-primary, 50);
     }
   }

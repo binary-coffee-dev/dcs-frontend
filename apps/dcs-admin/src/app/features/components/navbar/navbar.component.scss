@@ -13,6 +13,9 @@
 
     .menu-title {
       color: inherit;
+      text-transform: uppercase;
+      font-weight: 100;
+      font-size: 1.5rem;
     }
 
     .binary-coffee {
@@ -20,7 +23,8 @@
       animation-play-state: paused;
 
       img {
-        max-height: 2rem;
+        height: 2rem;
+        transform: translate3d(.5px, .5px, 0);
       }
 
       &:hover {
