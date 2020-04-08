@@ -68,11 +68,12 @@
       .body-content {
         border: 1px solid map_get($md-primary, 100);
         border-radius: map_get($radius, 2) 0 0 map_get($radius, 2);
-        padding: map_get($spacings, 2);
+        padding: 0 map_get($spacings, 3) map_get($spacings, 3) map_get($spacings, 3);
 
         .body {
           min-height: 60vh;
-          height: 120%;
+          padding: map-get($map: $spacings, $key: 3) map-get($map: $spacings, $key: 3) 0 0;
+          height: 100%;
           border: none;
           resize: none;
         }
@@ -86,7 +87,7 @@
         word-wrap: break-word;
         border: 1px solid map_get($md-primary, 100);
         border-radius: 0 map_get($radius, 2) map_get($radius, 2) 0;
-        padding: map_get($spacings, 2);
+        padding: 0 map_get($spacings, 3) map_get($spacings, 3) map_get($spacings, 3);
 
         @media only screen and (max-width: 1024px) {
           border-radius: 0 0 map_get($radius, 2) map_get($radius, 2);
