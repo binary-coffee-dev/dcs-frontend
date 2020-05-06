@@ -36,6 +36,8 @@
            fxFlex.xs="100"
            fxFlex.sm="100">
         <tag-input [onlyFromAutocomplete]="true"
+                   (onAdd)="onPostChange()"
+                   (onRemove)="onPostChange()"
                    *ngIf="[permissions().EDIT_TAGS_IN_ARTICLE] | hasPermissions | async"
                    formControlName="tags">
           <tag-input-dropdown [showDropdownIfEmpty]="true"

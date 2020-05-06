@@ -16,7 +16,7 @@ import {
 } from '@dcs-libs/shared';
 import {SelectImageModalComponent} from './select-image-modal/select-image-modal.component';
 import {BehaviorSubject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, reduce} from 'rxjs/operators';
 
 @Component({
   selector: 'app-overview',
@@ -96,6 +96,17 @@ export class OverviewComponent extends Permissions implements OnInit {
         (this.post && this.post[key] !== this.articleForm.controls[key].value)
       );
     }, false);
+    this.formDataChange = this.formDataChange || this.tagChange();
+  }
+
+  tagChange() {
+    const tset = new Set();
+    if (this.post.tags.length !== this.articleForm.controls.tags.value.length) {
+      return true;
+    }
+    this.post.tags.forEach(tag => tset.add(tag.id));
+    console.log(this.articleForm.controls.tags.value.reduce((p, v) => p || !tset.has(v.value), false));
+    return this.articleForm.controls.tags.value.reduce((p, v) => p || !tset.has(v.value), false);
   }
 
   submitPost() {
