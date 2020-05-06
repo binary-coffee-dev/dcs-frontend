@@ -44,15 +44,17 @@ export class PostService {
   updatePost(post: Post) {
     const banner = post.banner && post.banner.id;
     const author = post.author && post.author.id;
+    const tags = post.tags.map(tag => tag.id);
     return this.apollo
-      .mutate({mutation: POST_UPDATE_MUTATION, variables: {...post, banner, author}})
+      .mutate({mutation: POST_UPDATE_MUTATION, variables: {...post, banner, author, tags}})
       .pipe(map((result: any) => result.data.updatePost.post));
   }
 
   createPost(post: Post, me: User) {
     const banner = post.banner && post.banner.id;
+    const tags = post.tags.map(tag => tag.id);
     return this.apollo
-      .mutate({mutation: POST_CREATE_MUTATION, variables: {...post, author: me.id, banner}})
+      .mutate({mutation: POST_CREATE_MUTATION, variables: {...post, author: me.id, banner, tags}})
       .pipe(map((result: any) => result.data.createPost.post));
   }
 }

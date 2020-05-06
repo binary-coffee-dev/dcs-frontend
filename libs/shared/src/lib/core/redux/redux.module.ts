@@ -5,7 +5,7 @@ import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 
 import {GraphQLModule} from '../graphql';
-import {FileService} from './services';
+import {FileService, TagService} from './services';
 
 @NgModule({
   imports: [
@@ -14,7 +14,7 @@ import {FileService} from './services';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot({key: ['auth', 'config']})
   ],
-  providers: [FileService]
+  providers: [FileService, TagService]
 })
 export class ReduxModule {
 }

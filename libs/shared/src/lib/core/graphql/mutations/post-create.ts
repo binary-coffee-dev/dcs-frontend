@@ -8,6 +8,7 @@ export const POST_CREATE_MUTATION = gql`
         $enable: Boolean
         $banner: ID
         $author: ID
+        $tags: [ID]
     ){
         createPost(
             input: {
@@ -17,7 +18,8 @@ export const POST_CREATE_MUTATION = gql`
                     description: $description,
                     enable: $enable,
                     banner: $banner,
-                    author: $author
+                    author: $author,
+                    tags: $tags
                 }
             }
         ){
