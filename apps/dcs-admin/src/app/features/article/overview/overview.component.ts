@@ -105,7 +105,6 @@ export class OverviewComponent extends Permissions implements OnInit {
       return true;
     }
     this.post.tags.forEach(tag => tset.add(tag.id));
-    console.log(this.articleForm.controls.tags.value.reduce((p, v) => p || !tset.has(v.value), false));
     return this.articleForm.controls.tags.value.reduce((p, v) => p || !tset.has(v.value), false);
   }
 
