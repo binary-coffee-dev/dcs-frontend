@@ -5,10 +5,14 @@ import {MatDialog} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
 
-import {UrlUtilsService} from '@dcs-libs/shared';
+import {HasPermissionsPipeStub, MaterialModule, UrlUtilsService} from '@dcs-libs/shared';
 import {OverviewComponent} from './overview.component';
+import {of} from 'rxjs';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 class StoreStub {
+  dispatch = jest.fn();
+  select = jest.fn();
 }
 
 class MatDialogStub {
@@ -19,17 +23,18 @@ class UrlUtilsServiceStub {
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
+  let store: StoreStub;
   let fixture: ComponentFixture<OverviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OverviewComponent],
+      declarations: [OverviewComponent, HasPermissionsPipeStub],
       providers: [
         {provide: Store, useClass: StoreStub},
         {provide: MatDialog, useClass: MatDialogStub},
         {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
       ],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, MaterialModule, BrowserAnimationsModule],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
@@ -38,6 +43,10 @@ describe('OverviewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(OverviewComponent);
     component = fixture.componentInstance;
+
+    store = TestBed.get(Store);
+    spyOn(store, 'select').and.returnValue(of([]));
+
     fixture.detectChanges();
   });
 

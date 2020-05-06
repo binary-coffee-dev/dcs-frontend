@@ -18,7 +18,8 @@ import {
   NotificationState,
   PostState,
   ReduxModule,
-  SharedModule
+  SharedModule,
+  TagState
 } from '@dcs-libs/shared';
 import { AppComponent } from './features/app.component';
 import { ComponentsModule } from './features/components/components.module';
@@ -45,7 +46,7 @@ export function createApollo(httpLink: HttpLink) {
     AppRoutingModule,
     ReduxModule,
     SharedModule,
-    NgxsModule.forRoot([PostState, AuthState, FileState, NotificationState, ConfigState], {
+    NgxsModule.forRoot([PostState, AuthState, FileState, NotificationState, ConfigState, TagState], {
       developmentMode: !environment.production
     })
   ],
