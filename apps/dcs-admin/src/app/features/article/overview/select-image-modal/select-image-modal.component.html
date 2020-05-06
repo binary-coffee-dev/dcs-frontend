@@ -22,34 +22,3 @@
                     [currentPage]="currentPage"></app-pagination>
   </mat-card-content>
 </mat-card>
-<!--
-<div class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-success">
-            <h4 class="card-title">Select image</h4>
-          </div>
-          <div class="card-body">
-            <div class="row items-container">
-              <div class="col-md-6 item"
-                   *ngFor="let file of files">
-                <img class="image-tile"
-                     (click)="selectImage(file)"
-                     [src]="normalizeUrl(file.url)"
-                     alt="">
-              </div>
-            </div>
-            <app-pagination (nextPageEvent)="nextPageEvent()"
-                            (previousPageEvent)="previousPageEvent()"
-                            (pageEvent)="selectPageEvent($event)"
-                            [numberOfPages]="numberOfPages"
-                            [currentPage]="currentPage"></app-pagination>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
--->
