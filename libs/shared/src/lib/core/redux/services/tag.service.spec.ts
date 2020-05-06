@@ -5,9 +5,12 @@ import { TagService } from './tag.service';
 describe('TagService', () => {
   let service: TagService;
 
+  beforeEach(() => TestBed.configureTestingModule({
+    providers: [TagService]
+  }));
+
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(TagService);
+    service = TestBed.get(TagService);
   });
 
   it('should be created', () => {

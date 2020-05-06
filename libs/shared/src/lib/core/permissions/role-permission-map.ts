@@ -9,13 +9,15 @@ rolePermissionMap.set(RoleEnum.authenticated, []);
 
 // Staff role permissions list
 rolePermissionMap.set(RoleEnum.staff, [
-  Permission.EDIT_ANY_ARTICLE
+  Permission.EDIT_ANY_ARTICLE,
+  Permission.EDIT_TAGS_IN_ARTICLE
 ]);
 
 // Admin role permissions list
 rolePermissionMap.set(RoleEnum.administrator, [
   Permission.EDIT_ANY_ARTICLE,
-  Permission.REMOVE_ANY_ARTICLE
+  Permission.REMOVE_ANY_ARTICLE,
+  Permission.EDIT_TAGS_IN_ARTICLE
 ]);
 
 export class Permissions {

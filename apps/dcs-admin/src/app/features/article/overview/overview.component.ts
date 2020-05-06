@@ -7,7 +7,7 @@ import {Store} from '@ngxs/store';
 
 import {
   AuthState, FetchTagsAction,
-  File,
+  File, Permissions,
   Post,
   PostCreateAction,
   PostState,
@@ -23,7 +23,7 @@ import {map} from 'rxjs/operators';
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent extends Permissions implements OnInit {
   post = {
     body: ''
   } as Post;
@@ -48,6 +48,7 @@ export class OverviewComponent implements OnInit {
     private dialog: MatDialog,
     private url: UrlUtilsService
   ) {
+    super();
   }
 
   ngOnInit() {

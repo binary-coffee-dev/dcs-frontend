@@ -32,15 +32,17 @@
                placeholder="Título">
       </mat-form-field>
 
-      <tag-input [onlyFromAutocomplete]="true"
-                 formControlName="tags"
-                 fxFlex="48.5"
-                 fxFlex.xs="100"
-                 fxFlex.sm="100">
-        <tag-input-dropdown [showDropdownIfEmpty]="true"
-                            [autocompleteObservable]="getTags">
-        </tag-input-dropdown>
-      </tag-input>
+      <div fxFlex="48.5"
+           fxFlex.xs="100"
+           fxFlex.sm="100">
+        <tag-input [onlyFromAutocomplete]="true"
+                   *ngIf="[permissions().EDIT_TAGS_IN_ARTICLE] | hasPermissions | async"
+                   formControlName="tags">
+          <tag-input-dropdown [showDropdownIfEmpty]="true"
+                              [autocompleteObservable]="getTags">
+          </tag-input-dropdown>
+        </tag-input>
+      </div>
 
       <mat-form-field appearance="outline"
                       fxFlex="48.5"
