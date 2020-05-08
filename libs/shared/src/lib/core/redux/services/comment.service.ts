@@ -18,7 +18,6 @@ export class CommentService {
     return this.apollo
       .watchQuery({query: COMMENTS_QUERY, variables: {postId}, fetchPolicy: 'no-cache'})
       .valueChanges.pipe(map((result: any) => {
-        console.log(result.data.commentsConnection.values);
         return result.data.commentsConnection.values;
       }));
   }
