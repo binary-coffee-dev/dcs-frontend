@@ -20,20 +20,6 @@ import 'zone.js/dist/zone-node';
 import express from 'express';
 import {join} from 'path';
 
-// -------------------------------------
-// --THIS IS A WORKAROUND FOR NGX-CHIP--
-// -------------------------------------
-const domino = require('domino');
-const fs = require('fs');
-const path = require('path');
-const template = fs.readFileSync(path.join(__dirname, '.', 'dist', 'index.html')).toString();
-const win = domino.createWindow(template);
-global['window'] = win;
-global['document'] = win.document;
-// -------------------------------------
-// --THIS IS A WORKAROUND FOR NGX-CHIP--
-// -------------------------------------
-
 // Express server
 const app = express();
 
