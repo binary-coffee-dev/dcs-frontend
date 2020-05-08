@@ -1,4 +1,5 @@
 export * from './lib/shared.module';
+export * from './lib/shared.stub.module';
 
 export * from './lib/core/material';
 export * from './lib/core/models';
