@@ -2,13 +2,14 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {RouterTestingModule} from '@angular/router/testing';
 import {MatDialog} from '@angular/material/dialog';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {of} from 'rxjs';
 import {Store} from '@ngxs/store';
+import {TagInputModule} from 'ngx-chips';
 
 import {HasPermissionsPipeStub, MaterialModule, UrlUtilsService} from '@dcs-libs/shared';
 import {OverviewComponent} from './overview.component';
-import {of} from 'rxjs';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 class StoreStub {
   dispatch = jest.fn();
@@ -34,7 +35,7 @@ describe('OverviewComponent', () => {
         {provide: MatDialog, useClass: MatDialogStub},
         {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
       ],
-      imports: [RouterTestingModule, MaterialModule, BrowserAnimationsModule],
+      imports: [RouterTestingModule, MaterialModule, BrowserAnimationsModule, TagInputModule],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
