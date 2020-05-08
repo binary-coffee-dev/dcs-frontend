@@ -18,8 +18,6 @@ import {
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {TagInputModule} from 'ngx-chips';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -38,8 +36,7 @@ import {TagInputModule} from 'ngx-chips';
     MatRippleModule,
     MatSidenavModule,
     MatCheckboxModule,
-    MatMenuModule,
-    TagInputModule
+    MatMenuModule
   ],
   exports: [
     MatToolbarModule,
@@ -57,8 +54,7 @@ import {TagInputModule} from 'ngx-chips';
     MatRippleModule,
     MatSidenavModule,
     MatCheckboxModule,
-    MatMenuModule,
-    TagInputModule
+    MatMenuModule
   ]
 })
 export class MaterialModule {}
