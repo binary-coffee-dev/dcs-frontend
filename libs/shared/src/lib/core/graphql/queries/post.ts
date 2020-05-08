@@ -11,6 +11,10 @@ export const POST_QUERY = gql`
             body
             publishedAt
             views
+            tags {
+                id
+                name
+            }
             comments
             banner { id url }
             author {

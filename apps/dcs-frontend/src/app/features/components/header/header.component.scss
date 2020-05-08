@@ -6,31 +6,41 @@
     position: sticky;
     top: 0;
     z-index: 99;
-    background-color: map_get($md-primary, A100);
+    background-color: map_get($md-primary, 50);
+    padding: initial map-get($map: $spacings, $key: 4);
+    height: 64px;
+    max-height: 64px;
+    min-height: 64px;
+
+    .bc {
+      color: map_get($md-primary, 800);
+      text-transform: uppercase;
+      font-weight: 100;
+      font-size: 1.5rem;
+    }
 
     .go-root {
       color: map_get($md-primary, 800);
       text-decoration: none;
       cursor: pointer;
+      animation: rotate-color 2s infinite forwards;
+      animation-play-state: paused;
 
       .logo {
         height: 2rem;
-        margin: 0 map_get($spacings, 1) map_get($spacings, 1) 0;
+        margin: 0 0 map_get($spacings, 1) 0;
       }
 
-      .binary {
-        margin-right: map_get($spacings, 1);
+      &:hover {
+        animation-play-state: running;
       }
 
-      span {
-        text-align: center;
-        font-size: 1.5rem;
-        font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
-        font-weight: 100;
-        text-transform: uppercase;
+      @keyframes rotate-color {
+        to {
+          filter: hue-rotate(1turn);
+        }
       }
     }
-
   }
 
   .links-xs {

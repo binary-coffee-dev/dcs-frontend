@@ -6,22 +6,24 @@ import {MatDialog} from '@angular/material/dialog';
 import {Store} from '@ngxs/store';
 
 import {
-  AuthState,
-  File,
+  AuthState, FetchTagsAction,
+  File, Permissions,
   Post,
   PostCreateAction,
   PostState,
-  PostUpdateAction,
+  PostUpdateAction, Tag, TagState,
   UrlUtilsService
 } from '@dcs-libs/shared';
 import {SelectImageModalComponent} from './select-image-modal/select-image-modal.component';
+import {BehaviorSubject} from 'rxjs';
+import {map, reduce} from 'rxjs/operators';
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent extends Permissions implements OnInit {
   post = {
     body: ''
   } as Post;
@@ -33,8 +35,11 @@ export class OverviewComponent implements OnInit {
     body: new FormControl(''),
     enable: new FormControl(''),
     description: new FormControl(''),
-    title: new FormControl('')
+    title: new FormControl(''),
+    tags: new FormControl([])
   });
+
+  tags = new BehaviorSubject([]);
 
   constructor(
     private store: Store,
@@ -43,6 +48,7 @@ export class OverviewComponent implements OnInit {
     private dialog: MatDialog,
     private url: UrlUtilsService
   ) {
+    super();
   }
 
   ngOnInit() {
@@ -59,9 +65,19 @@ export class OverviewComponent implements OnInit {
           this.articleForm.controls.description.setValue(this.post.description);
           this.articleForm.controls.title.setValue(this.post.title);
           this.articleForm.controls.enable.setValue(Boolean(this.post.enable));
+          this.articleForm.controls.tags.setValue(this.post.tags.map(tag => ({display: tag.name, value: tag.id})));
         }
       });
     }
+    this.store.dispatch(new FetchTagsAction());
+    this.store.select(TagState.tags)
+      .pipe(map(tags => tags.map(tag => ({display: tag.name, value: tag.id}))))
+      .subscribe(values => this.tags.next(values));
+    this.getTags = this.getTags.bind(this);
+  }
+
+  getTags() {
+    return this.tags;
   }
 
   normalizeUrl(url) {
@@ -80,6 +96,16 @@ export class OverviewComponent implements OnInit {
         (this.post && this.post[key] !== this.articleForm.controls[key].value)
       );
     }, false);
+    this.formDataChange = this.formDataChange || this.tagChange();
+  }
+
+  tagChange() {
+    const tset = new Set();
+    if (this.post.tags.length !== this.articleForm.controls.tags.value.length) {
+      return true;
+    }
+    this.post.tags.forEach(tag => tset.add(tag.id));
+    return this.articleForm.controls.tags.value.reduce((p, v) => p || !tset.has(v.value), false);
   }
 
   submitPost() {
@@ -87,6 +113,7 @@ export class OverviewComponent implements OnInit {
     this.post.description = this.articleForm.controls.description.value;
     this.post.title = this.articleForm.controls.title.value;
     this.post.enable = !!this.articleForm.controls.enable.value;
+    this.post.tags = this.articleForm.controls.tags.value.map(tag => ({name: tag.display, id: tag.value} as Tag));
 
     if (this.isNewPost()) {
       this.store

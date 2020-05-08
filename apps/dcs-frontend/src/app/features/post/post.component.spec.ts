@@ -3,9 +3,9 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {Store} from '@ngxs/store';
 
+import {ENVIRONMENT, HasPermissionsPipeStub, WINDOW} from '@dcs-libs/shared';
 import {PostComponent} from './post.component';
 import {MomentService, ResourceService, ScrollService} from '../../core/services';
-import {ENVIRONMENT} from '@dcs-libs/shared';
 
 class StoreStub {
 }
@@ -25,13 +25,14 @@ describe('PostComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PostComponent],
+      declarations: [PostComponent, HasPermissionsPipeStub],
       providers: [
         {provide: Store, useClass: StoreStub},
         {provide: MomentService, useClass: MomentServiceStub},
         {provide: ScrollService, useClass: ScrollServiceStub},
         {provide: ResourceService, useClass: ResourceServiceStub},
-        {provide: ENVIRONMENT, useValue: {}}
+        {provide: ENVIRONMENT, useValue: {}},
+        {provide: WINDOW, useValue: {}}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

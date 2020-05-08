@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {MarkdownModule} from 'ngx-markdown';
+import {TagInputModule} from 'ngx-chips';
+
 
 import {MaterialModule, SharedModule} from '@dcs-libs/shared';
 import {OverviewComponent} from './overview/overview.component';
@@ -16,6 +18,7 @@ import {PaginationModule} from '../components/pagination/pagination.module';
     CommonModule,
     ArticleRoutingModule,
     MaterialModule,
+    TagInputModule,
     PaginationModule,
     SharedModule,
     MarkdownModule.forRoot()

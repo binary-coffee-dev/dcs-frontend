@@ -4,7 +4,16 @@
        fxFlex="60"
        fxFlex.xs="100"
        fxFlex.sm="100">
-    <h1>{{post?.title}}</h1>
+    <h1 fxLayout="row">
+      <span fxFlex="100">{{post?.title}}</span>
+      <button mat-button
+              *ngIf="([permissions().EDIT_ANY_ARTICLE] | hasPermissions | async) || isMyPost(post)"
+              matTooltip="Editar articulo"
+              (click)="editPost(post)">
+        <i class="fa fa-edit"></i>
+      </button>
+    </h1>
+
     <div class="post-info-container"
          fxLayout="row">
       <span class="post-info separator">

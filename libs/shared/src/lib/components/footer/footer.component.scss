@@ -21,7 +21,7 @@
 
   footer {
     padding: map_get($spacings, 2) map_get($spacings, 2);
-    background-color: map_get($md-primary, A100);
+    background-color: map_get($md-primary, 50);
     color: map_get($md-grey, 800);
     box-shadow: map_get($box-shadow-up, 4);
   }
