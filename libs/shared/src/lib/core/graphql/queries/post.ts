@@ -18,6 +18,7 @@ export const POST_QUERY = gql`
             comments
             banner { id url }
             author {
+                id
                 username
                 email
                 avatarUrl
