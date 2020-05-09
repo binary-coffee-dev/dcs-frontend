@@ -8,7 +8,7 @@
       <span fxFlex="100">{{post?.title}}</span>
       <button mat-button
               *ngIf="([permissions().EDIT_ANY_ARTICLE] | hasPermissions | async) || isMyPost(post)"
-              matTooltip="Editar articulo"
+              matTooltip="Editar artículo"
               (click)="editPost(post)">
         <i class="fa fa-edit"></i>
       </button>
