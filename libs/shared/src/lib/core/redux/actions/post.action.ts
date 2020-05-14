@@ -64,3 +64,10 @@ export class SetFiltersAction {
   constructor(public where: any) {
   }
 }
+
+export class FetchSimilarPostsAction {
+  static readonly type = '[Post] Fetch similar posts';
+
+  constructor(public id: string, public limit: number) {
+  }
+}

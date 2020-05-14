@@ -4,6 +4,7 @@ import {StateBase} from './pagination-base.class';
 export interface PostStateModel extends StateBase {
   elements: Post[];
   post: Post;
+  similarPosts: Post[];
   newPostId: string;
 }
 
@@ -13,6 +14,7 @@ export const initPostStateModel = () => {
     page: 0,
     pageSize: 10,
     firstPage: false,
-    lastPage: false
+    lastPage: false,
+    similarPosts: []
   } as PostStateModel;
 };
