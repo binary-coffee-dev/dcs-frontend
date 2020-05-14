@@ -8,7 +8,7 @@ import {Store} from '@ngxs/store';
   styleUrls: ['./similar-posts-list.component.scss']
 })
 export class SimilarPostsListComponent implements OnInit {
-  private posts: Post[];
+  posts: Post[];
   private _postId: string;
 
   get postId(): string {
