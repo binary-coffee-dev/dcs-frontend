@@ -68,6 +68,6 @@ export class SetFiltersAction {
 export class FetchSimilarPostsAction {
   static readonly type = '[Post] Fetch similar posts';
 
-  constructor(public id: string, public limit: number) {
+  constructor(public id: string, public limit = 10) {
   }
 }
