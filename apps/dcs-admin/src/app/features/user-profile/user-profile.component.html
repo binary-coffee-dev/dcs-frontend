@@ -47,17 +47,6 @@
         <mat-form-field appearance="outline">
           <mat-label class="code-none">
             <span class="code-1"> var </span>
-            <span class="code-var"> Correo </span> =
-          </mat-label>
-          <input matInput
-                 formControlName="email"
-                 placeholder="Correo"
-                 type="email">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label class="code-none">
-            <span class="code-1"> var </span>
             <span class="code-var"> Sitio web </span> =
           </mat-label>
           <input matInput
@@ -73,44 +62,8 @@
                 class="bc-button submit">
           <span> Actualizar( </span>
           <span class="code-var"
-                *ngIf="me?.email !== profileForm?.controls?.email?.value"> Correo </span>
-          <span
-                *ngIf="me?.page !== profileForm?.controls?.page?.value && me?.email !== profileForm?.controls.email.value">
-            ,
-          </span>
-          <span class="code-var"
-                *ngIf="me?.page !== profileForm?.controls.page.value"> Sitio web </span>
+                *ngIf="me?.page !== profileForm?.controls?.page?.value"> Sitio web </span>
           <span> ) </span>
-        </button>
-      </form>
-
-      <form [formGroup]="passwordForm"
-            fxFlex="100"
-            *ngIf="false">
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field>
-              <input matInput
-                     formControlName="password"
-                     placeholder="Password"
-                     type="password">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field>
-              <input matInput
-                     formControlName="password2"
-                     placeholder="Repeat password"
-                     type="password">
-            </mat-form-field>
-          </div>
-        </div>
-        <button mat-button
-                class="bc-button"
-                type="submit"
-                [disabled]="!passwordChange"
-                class="bc-button">
-          Update password
         </button>
       </form>
 

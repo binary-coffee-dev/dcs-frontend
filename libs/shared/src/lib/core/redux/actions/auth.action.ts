@@ -30,7 +30,7 @@ export class AuthErrorAction {
 export class UpdateMeAction {
   static readonly type = '[Auth] Update me action';
 
-  constructor(public id: string, public email: string, public page: string) {
+  constructor(public id: string, public page: string) {
   }
 }
 

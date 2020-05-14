@@ -21,18 +21,11 @@ import { UploadFileModalComponent } from '../components/upload-file.modal';
 })
 export class UserProfileComponent implements OnInit {
   profileDataChange = false;
-  passwordChange = false;
 
   me: User;
 
   profileForm = new FormGroup({
-    email: new FormControl('', Validators.required),
     page: new FormControl('')
-  });
-
-  passwordForm = new FormGroup({
-    password: new FormControl('', Validators.required),
-    password2: new FormControl('', Validators.required)
   });
 
   constructor(
@@ -45,7 +38,6 @@ export class UserProfileComponent implements OnInit {
     this.store.select(AuthState.me).subscribe((me: User) => {
       if (me) {
         this.me = me;
-        this.profileForm.controls.email.setValue(me.email);
         this.profileForm.controls.page.setValue(me.page);
       }
     });
@@ -60,7 +52,6 @@ export class UserProfileComponent implements OnInit {
       this.store.dispatch(
         new UpdateMeAction(
           this.me.id,
-          this.profileForm.controls.email.value,
           this.profileForm.controls.page.value
         )
       );
@@ -68,12 +59,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   onUserDataChange() {
-    this.profileDataChange =
-      this.me.page !== this.profileForm.controls.page.value ||
-      this.me.email !== this.profileForm.controls.email.value;
+    this.profileDataChange = this.me.page !== this.profileForm.controls.page.value;
   }
-
-  savePassword() {}
 
   openUploadFileModal() {
     const dialog = this.dialog.open(UploadFileModalComponent, {
