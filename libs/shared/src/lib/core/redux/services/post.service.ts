@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
 import {Apollo} from 'apollo-angular';
 
 import {Post, PostConnection, User} from '../models';
-import {POST_BY_NAME_QUERY, POST_QUERY, POSTS_QUERY} from '../../graphql/queries';
+import {POST_BY_NAME_QUERY, POST_QUERY, POSTS_QUERY, SIMILAR_POSTS_QUERY} from '../../graphql/queries';
 import {POST_CREATE_MUTATION, POST_UPDATE_MUTATION} from '../../graphql/mutations';
 import {Environment, ENVIRONMENT} from '../../models';
 
@@ -56,5 +56,10 @@ export class PostService {
     return this.apollo
       .mutate({mutation: POST_CREATE_MUTATION, variables: {...post, author: me.id, banner, tags}})
       .pipe(map((result: any) => result.data.createPost.post));
+  }
+
+  fetchSimilarPostsAction(id: string, limit = 10): Observable<Post[]> {
+    return this.apollo.watchQuery({query: SIMILAR_POSTS_QUERY, variables: {id, limit}, fetchPolicy: 'no-cache'})
+      .valueChanges.pipe(map((result: any) => result.data.similarPosts));
   }
 }

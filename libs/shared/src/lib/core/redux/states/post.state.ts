@@ -6,7 +6,7 @@ import {PostService} from '../services';
 import {
   ChangePageSizeAction,
   CreateNotificationAction, FetchPostAction,
-  FetchPostsAction,
+  FetchPostsAction, FetchSimilarPostsAction,
   NextPageAction,
   PostAction,
   PostCreateAction,
@@ -32,6 +32,11 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   @Selector()
   static post(state: PostStateModel): Post {
     return state.post;
+  }
+
+  @Selector()
+  static similarPosts(state: PostStateModel): Post[] {
+    return state.similarPosts;
   }
 
   @Selector()
@@ -127,6 +132,13 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
     return this.postService.createPost(action.post, action.me).pipe(tap(post => {
       ctx.patchState({newPostId: post.id});
       ctx.dispatch(new CreateNotificationAction('Artículo creado correctamente', NotificationType.info));
+    }));
+  }
+
+  @Action(FetchSimilarPostsAction)
+  fetchSimilarPostsAction(ctx: StateContext<PostStateModel>, action: FetchSimilarPostsAction) {
+    return this.postService.fetchSimilarPostsAction(action.id, action.limit).pipe(tap(posts => {
+      ctx.patchState({similarPosts: posts || []});
     }));
   }
 

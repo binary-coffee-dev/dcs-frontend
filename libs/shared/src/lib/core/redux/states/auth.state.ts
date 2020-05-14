@@ -102,7 +102,7 @@ export class AuthState {
 
   @Action(UpdateMeAction)
   updateMeAction(ctx: StateContext<AuthStateModel>, action: UpdateMeAction) {
-    return this.authService.updateMeAction(action.id, action.email, action.page).pipe(
+    return this.authService.updateMeAction({id: action.id, page: action.page}).pipe(
       tap((me: User) => ctx.patchState({me}))
     );
   }

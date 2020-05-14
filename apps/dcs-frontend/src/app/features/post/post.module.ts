@@ -10,12 +10,14 @@ import { PostGuard } from './guards';
 import { ServicesModule } from '../../core/services';
 import { CommentsComponent } from './comments/comments.component';
 import { ShareButtonsComponent } from './share-buttons/share-buttons.component';
+import { SimilarPostsListComponent } from './similar-posts-list/similar-posts-list.component';
 
 @NgModule({
   declarations: [
     PostComponent,
     CommentsComponent,
-    ShareButtonsComponent
+    ShareButtonsComponent,
+    SimilarPostsListComponent
   ],
   imports: [
     CommonModule,
