@@ -5,6 +5,7 @@ export const SIMILAR_POSTS_QUERY = gql`
       similarPosts(id: $id, limit: $limit){
         title
         description
+        name
         banner {
           url
         }

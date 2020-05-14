@@ -66,7 +66,10 @@
     <app-comments *ngIf="post"
                   [post]="post"></app-comments>
   </div>
-  <app-share-buttons class="share-buttons-side"
-                     [fxHide.xs]="true"
-                     [fxHide.sm]="true"></app-share-buttons>
+  <div>
+    <app-share-buttons class="share-buttons-side"
+                       [fxHide.xs]="true"
+                       [fxHide.sm]="true"></app-share-buttons>
+    <app-similar-posts-list [postId]="post?.id"></app-similar-posts-list>
+  </div>
 </div>

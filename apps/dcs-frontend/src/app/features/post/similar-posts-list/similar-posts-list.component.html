@@ -1,1 +1,14 @@
-<p>similar-posts-list works!</p>
+<div *ngIf="posts.length > 0"
+     class="container code-none">
+  <div [fxHide.xs]="true"
+       [fxHide.sm]="true">
+    <span class="code-1">class</span>
+    <span> Relacionado{{" {"}}</span>
+  </div>
+  <a *ngFor="let post of posts"
+     [routerLink]="'/post/' + post.name">
+    "{{post.title}}"
+  </a>
+  <div [fxHide.xs]="true"
+       [fxHide.sm]="true">{{"}"}}</div>
+</div>
