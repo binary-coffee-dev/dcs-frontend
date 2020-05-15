@@ -40,9 +40,9 @@ export class AuthService {
       .valueChanges.pipe(map((result: any) => result.data.myData));
   }
 
-  updateMeAction(id: string, email: string, page: string): Observable<User> {
+  updateMeAction(variables: {id: string, page: string}): Observable<User> {
     return this.apollo
-      .mutate({mutation: UPDATE_PROFILE_MUTATION, variables: {id, email, page}})
+      .mutate({mutation: UPDATE_PROFILE_MUTATION, variables})
       .pipe(map((result: any) => result.data.updateUser.user));
   }
 

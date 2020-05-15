@@ -50,6 +50,20 @@
       .share-button-xs {
         margin-bottom: map_get($spacings, 4);
       }
+
+      app-similar-posts-list.inside {
+        ::ng-deep.container {
+          border: none;
+          padding: 10px 0 0 0;
+
+          .link-container {
+            a {
+              max-width: 100%;
+              font-size: 1rem;
+            }
+          }
+        }
+      }
     }
   }
 
