@@ -1,11 +1,6 @@
 @import "libs/shared/src/theme";
 
 :host {
-  .share-buttons-side {
-    position: sticky;
-    top: 4.3rem;
-  }
-
   .post-container {
 
     .post-in-container {
@@ -71,8 +66,6 @@
     .post-in-container {
       border: none;
       border-top: 1px solid map_get($md-primary, 100);
-
-
     }
 
     app-share-buttons {
