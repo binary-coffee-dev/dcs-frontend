@@ -34,6 +34,11 @@ export class CommentState {
     return state.error;
   }
 
+  @Selector()
+  static recentComments(state: CommentStateModel): Comment[] {
+    return state.recentComments;
+  }
+
   constructor(private commentService: CommentService) {
   }
 

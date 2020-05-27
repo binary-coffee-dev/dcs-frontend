@@ -1,0 +1,23 @@
+@import "libs/shared/src/theme";
+
+:host {
+  .container {
+    color: map_get($md-grey, 500);
+    padding: map_get($spacings, 4);
+    border-radius: 0 map_get($radius, 2) map_get($radius, 2) 0;
+    border-right: 1px solid map_get($md-primary, 100);
+    border-bottom: 1px solid map_get($md-primary, 100);
+    max-width: 300px;
+
+    a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: map_get($md-primary, 500);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

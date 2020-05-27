@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import {Store} from '@ngxs/store';
+
+import {Comment, CommentState} from '@dcs-libs/shared';
+
 @Component({
   selector: 'app-recent-comments',
   templateUrl: './recent-comments.component.html',
@@ -7,9 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecentCommentsComponent implements OnInit {
 
-  constructor() { }
+  comments: Comment[] = [];
 
-  ngOnInit(): void {
+  constructor(private store: Store) {
   }
 
+  ngOnInit(): void {
+    this.store.select(CommentState.recentComments).subscribe(comments => {
+      this.comments = comments || [];
+      console.log(comments);
+    });
+  }
 }

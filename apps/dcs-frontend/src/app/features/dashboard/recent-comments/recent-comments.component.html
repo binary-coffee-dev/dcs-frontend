@@ -1,1 +1,24 @@
-<p>recent-comments works!</p>
+<div *ngIf="comments?.length > 0"
+     class="container code-none">
+  <div [fxHide.xs]="true"
+       [fxHide.sm]="true">
+    <span class="code-1">class</span>
+    <span> Comentarios_Recientes</span>
+    <span> {{" {"}}</span>
+  </div>
+  <div class="link-container"
+       fxLayout="column">
+    <ng-container *ngFor="let comment of comments">
+      <a *ngIf="comment?.body"
+         fxFlex="100"
+         [routerLink]="'/post/' + comment?.post?.name">
+        <mat-icon mat-font-icon="fa-icon"
+                  class="fa fa-comment">
+        </mat-icon>
+        "{{comment?.body | limitText: 40}}..."
+      </a>
+    </ng-container>
+  </div>
+  <div [fxHide.xs]="true"
+       [fxHide.sm]="true">{{"}"}}</div>
+</div>
