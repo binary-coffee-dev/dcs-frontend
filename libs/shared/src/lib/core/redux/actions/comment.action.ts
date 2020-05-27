@@ -20,3 +20,6 @@ export class CommentErrorAction {
   constructor(public errorMessage: string) {
   }
 }
+export class RecentCommentAction {
+  static readonly type = '[Comment] Fetch recent comment error';
+}

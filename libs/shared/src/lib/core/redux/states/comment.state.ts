@@ -8,6 +8,7 @@ import {
   CommentErrorAction,
   CreateCommentAction,
   FetchCommentsAction,
+  RecentCommentAction,
   RefreshPostAction
 } from '../actions';
 import {CommentError, Comment} from '../models';
@@ -64,6 +65,14 @@ export class CommentState {
     return this.commentService.fetchComments(action.postId).pipe(
       take(1),
       tap(comments => ctx.patchState({comments}))
+    );
+  }
+
+  @Action(RecentCommentAction)
+  fetchRecentCommentAction(ctx: StateContext<CommentStateModel>) {
+    return this.commentService.recentComments().pipe(
+      take(1),
+      tap(recentComments => ctx.patchState({recentComments}))
     );
   }
 }
