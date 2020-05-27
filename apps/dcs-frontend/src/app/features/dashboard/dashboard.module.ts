@@ -11,9 +11,10 @@ import { PostItemComponent } from './post-item/post-item.component';
 import { PostsGuard } from './guards';
 import { ServicesModule } from '../../core/services';
 import { PaginationComponent } from './pagination';
+import { RecentCommentsComponent } from './recent-comments/recent-comments.component';
 
 @NgModule({
-  declarations: [DashboardComponent, PostItemComponent, PaginationComponent],
+  declarations: [DashboardComponent, PostItemComponent, PaginationComponent, RecentCommentsComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
