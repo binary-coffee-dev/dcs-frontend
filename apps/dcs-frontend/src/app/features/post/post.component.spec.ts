@@ -6,6 +6,7 @@ import {Store} from '@ngxs/store';
 import {ENVIRONMENT, HasPermissionsPipeStub, WINDOW} from '@dcs-libs/shared';
 import {PostComponent} from './post.component';
 import {MomentService, ResourceService, ScrollService} from '../../core/services';
+import {RouterTestingModule} from '@angular/router/testing';
 
 class StoreStub {
 }
@@ -25,6 +26,7 @@ describe('PostComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [PostComponent, HasPermissionsPipeStub],
       providers: [
         {provide: Store, useClass: StoreStub},
