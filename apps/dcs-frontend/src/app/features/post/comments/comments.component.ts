@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
-import {Subject} from 'rxjs';
+import {Subject, timer} from 'rxjs';
 import {Store} from '@ngxs/store';
 
 import {
@@ -14,7 +14,8 @@ import {
   Post,
   UrlUtilsService
 } from '@dcs-libs/shared';
-import {MomentService} from '../../../core/services';
+import {MomentService, ScrollService} from '../../../core/services';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-comments',
@@ -40,7 +41,9 @@ export class CommentsComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store,
     public moment: MomentService,
-    private url: UrlUtilsService
+    private url: UrlUtilsService,
+    private scroll: ScrollService,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -49,6 +52,12 @@ export class CommentsComponent implements OnInit, OnDestroy {
       if (comments) {
         this.comments = comments;
       }
+      timer(100).subscribe(() => {
+        const fragment = this.route.snapshot.fragment;
+        if (fragment) {
+          this.scroll.scrollToFragment(fragment);
+        }
+      });
     });
     this.store.select(CommentState.error).subscribe(error => {
       this.commentError = error.message;

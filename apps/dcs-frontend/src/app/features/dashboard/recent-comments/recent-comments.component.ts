@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {Store} from '@ngxs/store';
 
@@ -19,7 +19,6 @@ export class RecentCommentsComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(CommentState.recentComments).subscribe(comments => {
       this.comments = comments || [];
-      console.log(comments);
     });
   }
 }
