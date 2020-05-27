@@ -9,6 +9,7 @@ export const COMMENTS_QUERY = gql`
             where: {post: $postId}
         ){
             values {
+                id
                 body
                 publishedAt
                 name
