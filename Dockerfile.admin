@@ -2,11 +2,12 @@ FROM node:10.16.3 AS build-env
 
 WORKDIR /app
 
+COPY package.json ./
+RUN npm install
+
 COPY . ./
 
 ARG ENVIRONMENT
-
-RUN npm install
 RUN if [ "$ENVIRONMENT" = "dev" ] ; then npm run build:admin ; else npm run build:admin:prod ; fi
 
 FROM nginx:1.13.9-alpine
