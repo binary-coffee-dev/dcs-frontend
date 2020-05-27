@@ -6,6 +6,6 @@ export interface Comment {
   email?: string;
   name?: string;
   user?: User;
-  post?: Post;
+  post?: Post | string;
   publishedAt: Date;
 }
