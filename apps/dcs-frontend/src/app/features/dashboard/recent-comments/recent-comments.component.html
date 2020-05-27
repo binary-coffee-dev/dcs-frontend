@@ -11,6 +11,7 @@
     <ng-container *ngFor="let comment of comments">
       <a *ngIf="comment?.body"
          fxFlex="100"
+         [title]="comment?.user?.username"
          [routerLink]="'/post/' + comment?.post?.name"
          [fragment]="comment?.id">
         <mat-icon mat-font-icon="fa-icon"
