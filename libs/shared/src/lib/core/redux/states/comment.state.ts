@@ -8,6 +8,7 @@ import {
   CommentErrorAction,
   CreateCommentAction,
   FetchCommentsAction,
+  RecentCommentAction,
   RefreshPostAction
 } from '../actions';
 import {CommentError, Comment} from '../models';
@@ -31,6 +32,11 @@ export class CommentState {
   @Selector()
   static error(state: CommentStateModel): CommentError {
     return state.error;
+  }
+
+  @Selector()
+  static recentComments(state: CommentStateModel): Comment[] {
+    return state.recentComments;
   }
 
   constructor(private commentService: CommentService) {
@@ -64,6 +70,14 @@ export class CommentState {
     return this.commentService.fetchComments(action.postId).pipe(
       take(1),
       tap(comments => ctx.patchState({comments}))
+    );
+  }
+
+  @Action(RecentCommentAction)
+  fetchRecentCommentAction(ctx: StateContext<CommentStateModel>) {
+    return this.commentService.recentComments().pipe(
+      take(1),
+      tap(recentComments => ctx.patchState({recentComments}))
     );
   }
 }

@@ -19,4 +19,11 @@ export class ScrollService {
       this.window.scrollTo(0, 0);
     }
   }
+
+  scrollToFragment(fragment) {
+    const value = this.window.document.getElementById(fragment);
+    if (value) {
+      value.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});
+    }
+  }
 }

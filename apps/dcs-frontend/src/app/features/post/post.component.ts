@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { Store } from '@ngxs/store';
@@ -14,6 +14,7 @@ import {
   WINDOW
 } from '@dcs-libs/shared';
 import { MetaTag, MetaTagsService, MomentService, ResourceService, ScrollService } from '../../core/services';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -32,20 +33,20 @@ export class PostComponent extends Permissions implements OnInit {
     private title: Title,
     private scroll: ScrollService,
     @Inject(WINDOW) private window: Window,
-    @Inject(ENVIRONMENT) private environment: Environment
+    @Inject(ENVIRONMENT) private environment: Environment,
+    private route: ActivatedRoute
   ) {
     super();
   }
 
   ngOnInit() {
-    this.scroll.smoothScroll();
     this.store.select(PostState.post).subscribe((post: Post) => {
       if (post) {
         this.post = post;
         const imageUrl = post.banner ? new URL(post.banner.url, this.environment.apiUrl).toString() : '';
         this.metaTags.updateMetas([
           { key: MetaTagsService.metas, value: new URL(`post/${post.name}`, this.environment.siteUrl).toString() } as MetaTag,
-          { key: MetaTagsService.titleMeta, value: `🥇 | ${post.title}` } as MetaTag,
+          { key: MetaTagsService.titleMeta, value: `${post.title} | 🥇` } as MetaTag,
           { key: MetaTagsService.imageMeta, value: imageUrl } as MetaTag,
           { key: MetaTagsService.descriptionMeta, value: `✅ ${post.description}` } as MetaTag,
           { key: MetaTagsService.twitterImageMeta, value: imageUrl } as MetaTag,
@@ -57,6 +58,10 @@ export class PostComponent extends Permissions implements OnInit {
         this.store.dispatch(new FetchCommentsAction(post.id));
       }
     });
+    const fragment = this.route.snapshot.fragment;
+    if (!fragment) {
+      this.scroll.smoothScroll();
+    }
   }
 
   isMyPost(post) {

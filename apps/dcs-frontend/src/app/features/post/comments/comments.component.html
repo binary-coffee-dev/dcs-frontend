@@ -61,7 +61,8 @@
   <div class="comments-list">
     <div fxLayout="row"
          class="comment-item"
-         *ngFor="let comment of comments">
+         *ngFor="let comment of comments"
+         [id]="comment?.id">
       <img class="comment-user-image"
            [src]="getUserAvatar(comment.user)"
            alt="noavatar">

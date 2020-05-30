@@ -5,11 +5,16 @@ import {Store} from '@ngxs/store';
 
 import {UrlUtilsService} from '@dcs-libs/shared';
 import {CommentsComponent} from './comments.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ScrollService} from '../../../core/services';
 
 class StoreStub {
 }
 
 class UrlUtilsServiceStub {
+}
+
+class ScrollServiceStub {
 }
 
 describe('CommentsComponent', () => {
@@ -18,11 +23,13 @@ describe('CommentsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [CommentsComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         {provide: Store, useClass: StoreStub},
-        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
+        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub},
+        {provide: ScrollService, useClass: ScrollServiceStub}
       ]
     })
       .compileComponents();
