@@ -17,7 +17,8 @@ rolePermissionMap.set(RoleEnum.staff, [
 rolePermissionMap.set(RoleEnum.administrator, [
   Permission.EDIT_ANY_ARTICLE,
   Permission.REMOVE_ANY_ARTICLE,
-  Permission.EDIT_TAGS_IN_ARTICLE
+  Permission.EDIT_TAGS_IN_ARTICLE,
+  Permission.PUBLISH_ARTICLE,
 ]);
 
 export class Permissions {

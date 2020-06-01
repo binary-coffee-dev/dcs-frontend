@@ -16,7 +16,7 @@ import {
 } from '@dcs-libs/shared';
 import {SelectImageModalComponent} from './select-image-modal/select-image-modal.component';
 import {BehaviorSubject} from 'rxjs';
-import {map, reduce} from 'rxjs/operators';
+import {map,} from 'rxjs/operators';
 
 @Component({
   selector: 'app-overview',
@@ -31,12 +31,16 @@ export class OverviewComponent extends Permissions implements OnInit {
   formDataChange = false;
   imageChange = false;
 
+  timesSelections = [];
+
   articleForm = new FormGroup({
     body: new FormControl(''),
     enable: new FormControl(''),
     description: new FormControl(''),
     title: new FormControl(''),
-    tags: new FormControl([])
+    tags: new FormControl([]),
+    publishedAt: new FormControl(),
+    time: new FormControl()
   });
 
   tags = new BehaviorSubject([]);
@@ -49,6 +53,11 @@ export class OverviewComponent extends Permissions implements OnInit {
     private url: UrlUtilsService
   ) {
     super();
+    this.timesSelections = [...Array(24).keys()].reduce((p, v) => {
+      p.push({minutes: v * 60, title: `${v}:00`});
+      p.push({minutes: v * 60 + 30, title: `${v}:30`});
+      return p;
+    }, []);
   }
 
   ngOnInit() {
