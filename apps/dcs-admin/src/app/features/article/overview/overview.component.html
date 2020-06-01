@@ -17,7 +17,8 @@
              fxFlex.xs="100"
              fxFlex.sm="100"
              class="enable">
-          <mat-checkbox formControlName="enable">
+          <mat-checkbox formControlName="enable"
+                        (change)="onPostChange()">
             Activo
           </mat-checkbox>
         </div>
