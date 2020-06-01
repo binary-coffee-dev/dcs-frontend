@@ -96,7 +96,7 @@
             </button>
 
             <button mat-button
-                    *ngIf="([permissions().EDIT_ANY_ARTICLE] | hasPermissions | async) || isMyPost(post)"
+                    *ngIf="([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)"
                     class="post-option"
                     [routerLink]="'/articles/update/' + post.id">
               <i fxHide
@@ -127,7 +127,7 @@
         <tr *ngFor="let post of posts">
           <td>
             <button mat-button
-                    *ngIf="([permissions().EDIT_ANY_ARTICLE] | hasPermissions | async) || isMyPost(post)"
+                    *ngIf="([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)"
                     matTooltip="Editar articulo"
                     [routerLink]="'/articles/update/' + post.id"
                     [matTooltipPosition]="'above'">

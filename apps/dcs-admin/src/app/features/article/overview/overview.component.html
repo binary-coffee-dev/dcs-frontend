@@ -27,7 +27,7 @@
              fxFlex.xs="100"
              fxFlex.sm="100"
              class="datetime">
-          <mat-form-field *ngIf="[permissions().PUBLISH_ARTICLE] | hasPermissions | async">
+          <mat-form-field *ngIf="[permissions().PUBLISH_ARTICLE] | hasPermissions">
             <mat-label>Fecha</mat-label>
             <input matInput
                    readonly
@@ -41,10 +41,11 @@
             </mat-datepicker>
           </mat-form-field>
 
-          <mat-form-field *ngIf="[permissions().PUBLISH_ARTICLE] | hasPermissions | async">
+          <mat-form-field *ngIf="[permissions().PUBLISH_ARTICLE] | hasPermissions">
             <mat-label>Hora</mat-label>
             <mat-select formControlName="time">
-              <mat-option *ngFor="let time of timesSelections" [value]="time.minutes">
+              <mat-option *ngFor="let time of timesSelections"
+                          [value]="time.minutes">
                 {{time.title}}
               </mat-option>
             </mat-select>
@@ -71,7 +72,7 @@
         <tag-input [onlyFromAutocomplete]="true"
                    (onAdd)="onPostChange()"
                    (onRemove)="onPostChange()"
-                   *ngIf="[permissions().EDIT_TAGS_IN_ARTICLE] | hasPermissions | async"
+                   *ngIf="[permissions().EDIT_TAGS_IN_ARTICLE] | hasPermissions"
                    formControlName="tags">
           <tag-input-dropdown [showDropdownIfEmpty]="true"
                               [autocompleteObservable]="getTags">
