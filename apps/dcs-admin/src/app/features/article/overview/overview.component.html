@@ -24,8 +24,9 @@
 
         <div fxFlex="48.5"
              fxFlex.xs="100"
-             fxFlex.sm="100">
-          <mat-form-field>
+             fxFlex.sm="100"
+             class="datetime">
+          <mat-form-field *ngIf="[permissions().PUBLISH_ARTICLE] | hasPermissions | async">
             <mat-label>Fecha</mat-label>
             <input matInput
                    readonly
@@ -39,7 +40,7 @@
             </mat-datepicker>
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field *ngIf="[permissions().PUBLISH_ARTICLE] | hasPermissions | async">
             <mat-label>Hora</mat-label>
             <mat-select formControlName="time">
               <mat-option *ngFor="let time of timesSelections" [value]="time.minutes">
