@@ -39,7 +39,7 @@ export class OverviewComponent extends Permissions implements OnInit {
     description: new FormControl(''),
     title: new FormControl(''),
     tags: new FormControl([]),
-    publishedAt: new FormControl(),
+    date: new FormControl(),
     time: new FormControl()
   });
 
@@ -75,6 +75,14 @@ export class OverviewComponent extends Permissions implements OnInit {
           this.articleForm.controls.title.setValue(this.post.title);
           this.articleForm.controls.enable.setValue(Boolean(this.post.enable));
           this.articleForm.controls.tags.setValue(this.post.tags.map(tag => ({display: tag.name, value: tag.id})));
+
+          if (this.post.publishedAt) {
+            this.post.publishedAt = new Date(this.post.publishedAt);
+            this.articleForm.controls.date.setValue(this.post.publishedAt);
+
+            const time = this.post.publishedAt.getHours() * 60 + this.post.publishedAt.getMinutes();
+            this.articleForm.controls.time.setValue(time);
+          }
         }
       });
     }
@@ -105,7 +113,17 @@ export class OverviewComponent extends Permissions implements OnInit {
         (this.post && this.post[key] !== this.articleForm.controls[key].value)
       );
     }, false);
-    this.formDataChange = this.formDataChange || this.tagChange();
+
+    const date = this.post.publishedAt ? this.getDatesParameters(new Date(this.post.publishedAt)) : {};
+    const date2 = this.articleForm.controls.date.value ? this.getDatesParameters(new Date(this.articleForm.controls.date.value)) : {};
+    const {hours, minutes} = this.getHMFromMinutes(this.articleForm.controls.time.value);
+    const publishedAtChange = date.minutes !== minutes ||
+      date.hours !== hours ||
+      date.day !== date2.day ||
+      date.month !== date2.month ||
+      date.year !== date2.year;
+
+    this.formDataChange = this.formDataChange || publishedAtChange || this.tagChange();
   }
 
   tagChange() {
@@ -123,6 +141,15 @@ export class OverviewComponent extends Permissions implements OnInit {
     this.post.title = this.articleForm.controls.title.value;
     this.post.enable = !!this.articleForm.controls.enable.value;
     this.post.tags = this.articleForm.controls.tags.value.map(tag => ({name: tag.display, id: tag.value} as Tag));
+
+    let date;
+    if (this.articleForm.controls.date.value && this.articleForm.controls.time.value) {
+      date = new Date(this.articleForm.controls.date.value);
+      const {hours, minutes} = this.getHMFromMinutes(this.articleForm.controls.time.value);
+      date.setHours(hours);
+      date.setMinutes(minutes);
+    }
+    this.post.publishedAt = date;
 
     if (this.isNewPost()) {
       this.store
@@ -142,6 +169,27 @@ export class OverviewComponent extends Permissions implements OnInit {
         this.imageChange = this.formDataChange = false;
       });
     }
+  }
+
+  getHMFromMinutes(time) {
+    if (!time) {
+      return {hours: null, minutes: null};
+    }
+    const hours = Math.floor(time / 60);
+    const minutes = time - (hours * 60);
+    return {hours, minutes};
+  }
+
+  getDatesParameters(date: Date): { day?: number, month?: number, year?: number, hours?: number, minutes?: number } {
+    if (!date) {
+      return {};
+    }
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    return {day, month, year, hours, minutes};
   }
 
   openImageSectorModal() {

@@ -31,19 +31,21 @@
             <mat-label>Fecha</mat-label>
             <input matInput
                    readonly
+                   (dateChange)="onPostChange()"
                    [matDatepicker]="dp"
-                   formControlName="publishedAt">
+                   formControlName="date">
             <mat-datepicker-toggle matSuffix
                                    [for]="dp"></mat-datepicker-toggle>
             <mat-datepicker #dp
-                            startView="multi-year"
+                            startView="month"
                             panelClass="example-month-picker">
             </mat-datepicker>
           </mat-form-field>
 
           <mat-form-field *ngIf="[permissions().PUBLISH_ARTICLE] | hasPermissions">
             <mat-label>Hora</mat-label>
-            <mat-select formControlName="time">
+            <mat-select formControlName="time"
+                        (selectionChange)="onPostChange()">
               <mat-option *ngFor="let time of timesSelections"
                           [value]="time.minutes">
                 {{time.title}}
