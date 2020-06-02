@@ -25,6 +25,24 @@
         min-height: 150px;
       }
 
+      .datetime {
+        ::ng-deep .mat-form-field-wrapper {
+          .mat-form-field-flex {
+            padding: 1em .75em 1em .75em;
+            border: 1px solid map_get($md-primary, 100) !important;
+            border-radius: map_get($radius, 2) 0 0 map_get($radius, 2) !important;
+
+            .mat-form-field-infix, .mat-select-placeholder {
+              border: none;
+              padding: .1em 0;
+            }
+          }
+          .mat-form-field-underline {
+            display: none;
+          }
+        }
+      }
+
       ::ng-deep tag-input {
         margin: .25em 0;
 

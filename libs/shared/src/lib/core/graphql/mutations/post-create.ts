@@ -9,6 +9,7 @@ export const POST_CREATE_MUTATION = gql`
         $banner: ID
         $author: ID
         $tags: [ID]
+        $publishedAt: DateTime
     ){
         createPost(
             input: {
@@ -19,7 +20,8 @@ export const POST_CREATE_MUTATION = gql`
                     enable: $enable,
                     banner: $banner,
                     author: $author,
-                    tags: $tags
+                    tags: $tags,
+                    publishedAt: $publishedAt
                 }
             }
         ){

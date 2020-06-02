@@ -13,7 +13,7 @@ import {
   MatRippleModule,
   MatSidenavModule,
   MatCheckboxModule,
-  MatMenuModule
+  MatMenuModule, MatDatepickerModule, MatNativeDateModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -36,7 +36,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatRippleModule,
     MatSidenavModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatToolbarModule,
@@ -54,7 +56,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatRippleModule,
     MatSidenavModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule {}
