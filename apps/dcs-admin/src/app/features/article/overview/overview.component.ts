@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
+import {BehaviorSubject} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 import {
   AuthState, FetchTagsAction,
@@ -15,8 +17,6 @@ import {
   UrlUtilsService
 } from '@dcs-libs/shared';
 import {SelectImageModalComponent} from './select-image-modal/select-image-modal.component';
-import {BehaviorSubject} from 'rxjs';
-import {map,} from 'rxjs/operators';
 
 @Component({
   selector: 'app-overview',
