@@ -23,47 +23,35 @@ describe('HasPermissionsPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('should return false if the permissions are not in the list', (end) => {
+  it('should return false if the permissions are not in the list', () => {
     spyOn(store, 'selectSnapshot').and.returnValue('authenticated');
 
     const actual = pipe.transform([Permission.REMOVE_ANY_ARTICLE]);
 
-    actual.subscribe((allow) => {
-      expect(allow).toEqual(false);
-      end();
-    });
+    expect(actual).toEqual(false);
   });
 
-  it('should return false if the permissions are not in the list (example 2)', (end) => {
+  it('should return false if the permissions are not in the list (example 2)', () => {
     spyOn(store, 'selectSnapshot').and.returnValue('staff');
 
     const actual = pipe.transform([Permission.REMOVE_ANY_ARTICLE, Permission.EDIT_ANY_ARTICLE]);
 
-    actual.subscribe((allow) => {
-      expect(allow).toEqual(false);
-      end();
-    });
+    expect(actual).toEqual(false);
   });
 
-  it('should return true if the permissions are in the list', (end) => {
+  it('should return true if the permissions are in the list', () => {
     spyOn(store, 'selectSnapshot').and.returnValue('staff');
 
     const actual = pipe.transform([Permission.EDIT_ANY_ARTICLE]);
 
-    actual.subscribe((allow) => {
-      expect(allow).toEqual(true);
-      end();
-    });
+    expect(actual).toEqual(true);
   });
 
-  it('should return false if the user do not have role', (end) => {
+  it('should return false if the user do not have role', () => {
     spyOn(store, 'selectSnapshot').and.returnValue(null);
 
     const actual = pipe.transform([Permission.EDIT_ANY_ARTICLE]);
 
-    actual.subscribe((allow) => {
-      expect(allow).toEqual(false);
-      end();
-    });
+    expect(actual).toEqual(false);
   });
 });
