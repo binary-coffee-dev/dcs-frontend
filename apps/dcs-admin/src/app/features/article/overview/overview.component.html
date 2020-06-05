@@ -11,12 +11,48 @@
          fxLayoutAlign="space-between">
 
       <div fxFlex="100"
-           fxFlex.xs="100"
-           fxFlex.sm="100"
-           class="enable">
-        <mat-checkbox formControlName="enable">
-          Activo
-        </mat-checkbox>
+           fxLayout="row wrap"
+           fxLayoutAlign="space-between">
+        <div fxFlex="48.5"
+             fxFlex.xs="100"
+             fxFlex.sm="100"
+             class="enable">
+          <mat-checkbox formControlName="enable"
+                        (change)="onPostChange()">
+            Activo
+          </mat-checkbox>
+        </div>
+
+        <div fxFlex="48.5"
+             fxFlex.xs="100"
+             fxFlex.sm="100"
+             class="datetime">
+          <mat-form-field *ngIf="[permissions().PUBLISH_ARTICLE] | hasPermissions">
+            <mat-label>Fecha</mat-label>
+            <input matInput
+                   readonly
+                   (dateChange)="onPostChange()"
+                   [matDatepicker]="dp"
+                   formControlName="date">
+            <mat-datepicker-toggle matSuffix
+                                   [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp
+                            startView="month"
+                            panelClass="example-month-picker">
+            </mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="[permissions().PUBLISH_ARTICLE] | hasPermissions">
+            <mat-label>Hora</mat-label>
+            <mat-select formControlName="time"
+                        (selectionChange)="onPostChange()">
+              <mat-option *ngFor="let time of timesSelections"
+                          [value]="time.minutes">
+                {{time.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
 
       <mat-form-field appearance="outline"
@@ -38,7 +74,7 @@
         <tag-input [onlyFromAutocomplete]="true"
                    (onAdd)="onPostChange()"
                    (onRemove)="onPostChange()"
-                   *ngIf="[permissions().EDIT_TAGS_IN_ARTICLE] | hasPermissions | async"
+                   *ngIf="[permissions().EDIT_TAGS_IN_ARTICLE] | hasPermissions"
                    formControlName="tags">
           <tag-input-dropdown [showDropdownIfEmpty]="true"
                               [autocompleteObservable]="getTags">
