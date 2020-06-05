@@ -12,7 +12,8 @@ import {
   CreateCommentAction,
   FetchCommentsAction,
   Post,
-  UrlUtilsService
+  UrlUtilsService,
+  RoleEnum
 } from '@dcs-libs/shared';
 import {MomentService, ScrollService} from '../../../core/services';
 import {ActivatedRoute} from '@angular/router';
@@ -83,6 +84,18 @@ export class CommentsComponent implements OnInit, OnDestroy {
     } else {
       this.store.dispatch(new CommentErrorAction('Missing data in the comment'));
     }
+  }
+
+  getIsStaff(comment: Comment) {
+    return comment.user ? comment.user.role.name === RoleEnum.staff : false;
+  }
+
+  getIsAdmin(comment: Comment) {
+    return comment.user ? comment.user.role.name === RoleEnum.administrator : false;
+  }
+
+  getRole(comment: Comment) {
+    return comment.user ? comment.user.role.name : '';
   }
 
   getUserAvatar(user) {
