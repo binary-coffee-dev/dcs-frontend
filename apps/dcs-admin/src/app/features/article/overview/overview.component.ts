@@ -143,7 +143,7 @@ export class OverviewComponent extends Permissions implements OnInit {
     this.post.tags = this.articleForm.controls.tags.value.map(tag => ({name: tag.display, id: tag.value} as Tag));
 
     let date;
-    if (this.articleForm.controls.date.value && this.articleForm.controls.time.value) {
+    if (this.articleForm.controls.date.value && (this.articleForm.controls.time.value || this.articleForm.controls.time.value === 0)) {
       date = new Date(this.articleForm.controls.date.value);
       const {hours, minutes} = this.getHMFromMinutes(this.articleForm.controls.time.value);
       date.setHours(hours);
