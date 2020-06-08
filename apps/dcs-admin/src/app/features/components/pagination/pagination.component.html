@@ -3,7 +3,7 @@
      fxLayoutAlign="center center">
   <button class="page-item"
           mat-button
-          *ngIf="_numberOfPages > 0"
+          *ngIf="numberOfPages > 0"
           (click)="goToFirstPage()"
           [ngClass]="{'disabled': currentPage === 0}">
     <span class="page-link">
@@ -13,7 +13,7 @@
   </button>
   <button class="page-item"
           mat-button
-          *ngIf="_numberOfPages > 0"
+          *ngIf="numberOfPages > 0"
           (click)="previousPageEvent.next()"
           [ngClass]="{'disabled': currentPage === 0}">
     <span class="page-link">
@@ -29,7 +29,7 @@
   </button>
   <button class="page-item"
           mat-button
-          *ngIf="_numberOfPages > 0"
+          *ngIf="numberOfPages > 0"
           (click)="nextPageEvent.next()"
           [ngClass]="{'disabled': currentPage === numberOfPages - 1}">
     <span class="page-link">
@@ -37,7 +37,7 @@
     </span>
   </button>
   <button class="page-item"
-          *ngIf="_numberOfPages > 0"
+          *ngIf="numberOfPages > 0"
           mat-button
           (click)="goToLastPage()"
           [ngClass]="{'disabled': currentPage === numberOfPages - 1}">
