@@ -31,6 +31,11 @@ export class UploadFileModalComponent implements OnInit {
   ngOnInit() {
   }
 
+  openFile(inputFile) {
+    console.log('a');
+    inputFile.click();
+  }
+
   onFilesChange(event) {
     if (event.target.files && event.target.files.length > 0 && event.target.files[0]) {
       this.file = event.target.files[0];

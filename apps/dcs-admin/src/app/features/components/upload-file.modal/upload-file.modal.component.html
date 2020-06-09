@@ -15,21 +15,22 @@
                formControlName="name"
                placeholder="Nombre">
       </mat-form-field>
+      <input type="file"
+             class="input-file"
+             #uploader
+             (change)="onFilesChange($event)"
+             formControlName="file">
       <label class="pre-image-container bc-button"
              mat-button>
-        <input type="file"
-               #uploader
-               (change)="onFilesChange($event)"
-               formControlName="file">
         <div class="upload-pre-image"
              *ngIf="!image"
-             (click)="uploader.click()">
+             (click)="openFile(uploader)">
           <i class="fa fa-file-image-o"></i>
         </div>
         <img class="upload-image"
              *ngIf="!!image"
              [src]="image"
-             (click)="uploader.click()"
+             (click)="openFile(uploader)"
              alt="upload">
       </label>
       <p *ngIf="type"
