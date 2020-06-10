@@ -3,10 +3,20 @@
      fxLayoutAlign="center center">
   <button class="page-item"
           mat-button
-          (click)="previousPageEvent.next()"
+          *ngIf="numberOfPages > 0"
+          (click)="goToFirstPage()"
           [ngClass]="{'disabled': currentPage === 0}">
     <span class="page-link">
       <span class="fa fa-chevron-left"></span>
+      <span class="fa fa-chevron-left"></span>
+    </span>
+  </button>
+  <button class="page-item"
+          mat-button
+          *ngIf="numberOfPages > 0"
+          (click)="previousPageEvent.next()"
+          [ngClass]="{'disabled': currentPage === 0}">
+    <span class="page-link">
       <span class="fa fa-chevron-left"></span>
     </span>
   </button>
@@ -19,7 +29,17 @@
   </button>
   <button class="page-item"
           mat-button
+          *ngIf="numberOfPages > 0"
           (click)="nextPageEvent.next()"
+          [ngClass]="{'disabled': currentPage === numberOfPages - 1}">
+    <span class="page-link">
+      <span class="fa fa-chevron-right"></span>
+    </span>
+  </button>
+  <button class="page-item"
+          *ngIf="numberOfPages > 0"
+          mat-button
+          (click)="goToLastPage()"
           [ngClass]="{'disabled': currentPage === numberOfPages - 1}">
     <span class="page-link">
       <span class="fa fa-chevron-right"></span>

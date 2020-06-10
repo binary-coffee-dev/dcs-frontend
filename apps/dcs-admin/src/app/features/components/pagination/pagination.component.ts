@@ -43,6 +43,14 @@ export class PaginationComponent {
   constructor() {
   }
 
+  goToFirstPage() {
+    this.pageEvent.next(0);
+  }
+
+  goToLastPage() {
+    this.pageEvent.next(this._numberOfPages - 1);
+  }
+
   calculatePages() {
     if (this.numberOfPages > 0 && typeof this.currentPage === 'number') {
       const pages = [];
