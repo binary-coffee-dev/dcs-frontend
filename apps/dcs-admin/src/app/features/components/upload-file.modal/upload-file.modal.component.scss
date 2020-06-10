@@ -18,15 +18,15 @@
       margin: 0 0 map_get($spacings, 4) 0;
     }
 
+    .input-file {
+      display: none;
+    }
+
     .pre-image-container {
       display: flex;
       align-items: center;
       flex-direction: column;
       margin-bottom: map_get($spacings, 4);
-
-      input {
-        display: none;
-      }
 
       .upload-image {
         height: 130px;
