@@ -79,6 +79,12 @@ markdown {
     }
   }
 
+  p code, li code{
+    background: #00000014;
+    color: #706060;
+    padding: 0 1px;
+  }
+
   ul {
     font-size: 1.2rem;
     font-weight: 100;

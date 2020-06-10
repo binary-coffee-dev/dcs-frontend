@@ -34,7 +34,6 @@ export class UploadFileModalComponent implements OnInit {
   }
 
   openFile(inputFile) {
-    console.log('a');
     inputFile.click();
   }
 
