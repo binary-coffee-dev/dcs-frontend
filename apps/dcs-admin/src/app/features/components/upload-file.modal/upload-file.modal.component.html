@@ -47,7 +47,7 @@
               class="bc-button"
               fxFlex="50"
               (click)="upload()"
-              [disabled]="!file"
+              [disabled]="!file || uploadingImage"
               type="submit">
         <span class="code-1"> new </span>
         <span class="code-none"> Archivo() </span>

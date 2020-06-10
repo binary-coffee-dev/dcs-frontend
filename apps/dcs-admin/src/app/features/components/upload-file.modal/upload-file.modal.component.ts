@@ -25,6 +25,8 @@ export class UploadFileModalComponent implements OnInit {
   type: string = null;
   image: string | ArrayBuffer = null;
 
+  uploadingImage = false;
+
   constructor(private store: Store, private dialogRef: MatDialogRef<UploadFileModalComponent>) {
   }
 
@@ -54,8 +56,11 @@ export class UploadFileModalComponent implements OnInit {
   }
 
   upload() {
-    this.store.dispatch(new UploadFileAction(this.file, this.uploadFileForm.controls.name.value)).subscribe(() => {
-      this.dialogRef.close(this.store.selectSnapshot(FileState.newFile));
-    });
+    if (!this.uploadingImage) {
+      this.uploadingImage = true;
+      this.store.dispatch(new UploadFileAction(this.file, this.uploadFileForm.controls.name.value)).subscribe(() => {
+        this.dialogRef.close(this.store.selectSnapshot(FileState.newFile));
+      });
+    }
   }
 }
