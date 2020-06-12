@@ -21,6 +21,10 @@
       .post-info-container {
         margin-top: map_get($spacings, 2);
         margin-bottom: map_get($spacings, 3);
+
+        .like {
+          cursor: pointer;
+        }
       }
 
       .tags-content {

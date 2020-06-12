@@ -35,6 +35,11 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   }
 
   @Selector()
+  static likes(state: PostStateModel): number {
+    return state.likes;
+  }
+
+  @Selector()
   static similarPosts(state: PostStateModel): Post[] {
     return state.similarPosts;
   }
@@ -107,7 +112,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   @Action(FetchPostAction)
   fetchPostByNameAction(ctx: StateContext<PostStateModel>, action: FetchPostAction) {
     return this.postService.fetchPostByName(action.postName).pipe(
-      tap(post => ctx.patchState({post})),
+      tap(({post, userLike, likes}) => ctx.patchState({post, likes, userLike})),
       take(1)
     );
   }
@@ -115,7 +120,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   @Action(RefreshPostAction)
   refreshPostAction(ctx: StateContext<PostStateModel>) {
     return this.postService.fetchPostByName(ctx.getState().post.name).pipe(
-      tap(post => ctx.patchState({post})),
+      tap(({post, userLike, likes}) => ctx.patchState({post, likes, userLike})),
       take(1)
     );
   }

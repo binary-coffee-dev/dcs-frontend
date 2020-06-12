@@ -24,6 +24,7 @@ import {ActivatedRoute} from '@angular/router';
 export class PostComponent extends Permissions implements OnInit {
 
   post: Post;
+  likes = 0;
 
   constructor(
     private store: Store,
@@ -58,6 +59,7 @@ export class PostComponent extends Permissions implements OnInit {
         this.store.dispatch(new FetchCommentsAction(post.id));
       }
     });
+    this.store.select(PostState.likes).subscribe(likes => this.likes = likes);
     const fragment = this.route.snapshot.fragment;
     if (!fragment) {
       this.scroll.smoothScroll();
@@ -71,5 +73,9 @@ export class PostComponent extends Permissions implements OnInit {
 
   editPost(post) {
     this.window.location.href = `${this.environment.siteDashboardUrl}/articles/update/${post.id}`;
+  }
+
+  postLikeClick() {
+
   }
 }
