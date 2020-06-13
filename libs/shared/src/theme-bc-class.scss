@@ -54,3 +54,15 @@
   border-radius: map_get($radius, 2);
   box-shadow: none;
 }
+
+.bc-card-modal {
+  padding: map_get($spacings, 4) !important;
+  box-shadow: none;
+  border: 1px solid map_get($md-primary, 900);
+  background: map_get($md-primary, 50);
+
+  .title {
+    color: map_get($md-primary, 900) !important;
+    padding-bottom: map_get($spacings, 4);
+  }
+}
