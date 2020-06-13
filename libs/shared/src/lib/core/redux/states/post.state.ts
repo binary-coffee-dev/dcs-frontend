@@ -1,6 +1,6 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {take, tap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {catchError, take, tap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
 
 import {PostService} from '../services';
 import {
@@ -154,14 +154,26 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
 
   @Action(CreateLikeArticle)
   likeArticle(ctx: StateContext<PostStateModel>, action: CreateLikeArticle) {
-    return this.postService.likeArticle(action.userId, action.postId)
-      .pipe(tap(() => ctx.dispatch(new RefreshPostAction())));
+    ctx.patchState({userLike: 1, likes: ctx.getState().likes + 1});
+    return this.postService.likeArticle(action.userId, action.postId).pipe(
+      tap(() => ctx.dispatch(new RefreshPostAction())),
+      catchError(() => {
+        ctx.patchState({userLike: 0, likes: ctx.getState().likes - 1});
+        return of({});
+      })
+    );
   }
 
   @Action(RemoveLikeArticle)
   removeLikeArticle(ctx: StateContext<PostStateModel>, action: RemoveLikeArticle) {
-    return this.postService.removeLikeArticle(action.postId)
-      .pipe(tap(() => ctx.dispatch(new RefreshPostAction())));
+    ctx.patchState({userLike: 0, likes: ctx.getState().likes - 1});
+    return this.postService.removeLikeArticle(action.postId).pipe(
+      tap(() => ctx.dispatch(new RefreshPostAction())),
+      catchError(() => {
+        ctx.patchState({userLike: 1, likes: ctx.getState().likes + 1});
+        return of({});
+      })
+    );
   }
 
   fetchElements(pageSize, start, where = {}): Observable<ResponseData> {
