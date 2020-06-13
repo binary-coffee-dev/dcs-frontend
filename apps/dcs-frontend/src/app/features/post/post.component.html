@@ -16,7 +16,9 @@
 
     <div class="post-info-container"
          fxLayout="row">
-      <span class="post-info separator">
+      <span class="post-info separator"
+            fxLayout="row"
+            fxLayoutAlign="start center">
         <a [href]="post?.author?.page || ''"
            [title]="post?.author?.email"
            fxLayout="row"
@@ -24,20 +26,29 @@
           <img *ngIf="post?.author?.avatar?.url"
                [src]="resource.addApiUrl(post?.author?.avatar?.url)"
                alt="">
-          {{post?.author?.username}}
+          <span>{{post?.author?.username}}</span>
         </a>
       </span>
       <span class="post-info separator"
             fxLayout="row"
             fxLayoutAlign="start center">
-        {{post?.publishedAt && moment.timeFromDate(post.publishedAt) || ''}}
+        <span>{{post?.publishedAt && moment.timeFromDate(post.publishedAt) || ''}}</span>
       </span>
-      <span class="post-info"
-            *ngIf="post?.comments"
+      <span class="post-info separator"
             fxLayout="row"
             fxLayoutAlign="start center">
+
         <mat-icon aria-hidden="false">comment</mat-icon>
-        {{post?.comments || 0}}
+        <span>{{post?.comments || 0}}</span>
+      </span>
+      <span class="post-info like"
+            fxLayout="row"
+            [title]="postLikeTitle()"
+            (click)="postLikeClick()"
+            [ngClass]="{'active': userLike > 0}"
+            fxLayoutAlign="start center">
+        <mat-icon aria-hidden="false">local_cafe</mat-icon>
+        <span>{{likes}}</span>
       </span>
     </div>
 

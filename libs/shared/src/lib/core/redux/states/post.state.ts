@@ -6,13 +6,13 @@ import {PostService} from '../services';
 import {
   ChangePageSizeAction,
   CreateNotificationAction, FetchPostAction,
-  FetchPostsAction, FetchSimilarPostsAction,
+  FetchPostsAction, FetchSimilarPostsAction, CreateLikeArticle,
   NextPageAction,
   PostAction,
   PostCreateAction,
   PostUpdateAction,
   PreviousPageAction, RefreshPostAction,
-  SelectPageAction, SetFiltersAction
+  SelectPageAction, SetFiltersAction, RemoveLikeArticle
 } from '../actions';
 import {initPostStateModel, PostStateModel} from './post-state.model';
 import {NotificationType, Post} from '../models';
@@ -32,6 +32,16 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   @Selector()
   static post(state: PostStateModel): Post {
     return state.post;
+  }
+
+  @Selector()
+  static likes(state: PostStateModel): number {
+    return state.likes;
+  }
+
+  @Selector()
+  static userLike(state: PostStateModel): number {
+    return state.userLike;
   }
 
   @Selector()
@@ -107,7 +117,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   @Action(FetchPostAction)
   fetchPostByNameAction(ctx: StateContext<PostStateModel>, action: FetchPostAction) {
     return this.postService.fetchPostByName(action.postName).pipe(
-      tap(post => ctx.patchState({post})),
+      tap(({post, userLike, likes}) => ctx.patchState({post, likes, userLike})),
       take(1)
     );
   }
@@ -115,7 +125,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   @Action(RefreshPostAction)
   refreshPostAction(ctx: StateContext<PostStateModel>) {
     return this.postService.fetchPostByName(ctx.getState().post.name).pipe(
-      tap(post => ctx.patchState({post})),
+      tap(({post, userLike, likes}) => ctx.patchState({post, likes, userLike})),
       take(1)
     );
   }
@@ -140,6 +150,18 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
     return this.postService.fetchSimilarPostsAction(action.id, action.limit).pipe(tap(posts => {
       ctx.patchState({similarPosts: posts || []});
     }));
+  }
+
+  @Action(CreateLikeArticle)
+  likeArticle(ctx: StateContext<PostStateModel>, action: CreateLikeArticle) {
+    return this.postService.likeArticle(action.userId, action.postId)
+      .pipe(tap(() => ctx.dispatch(new RefreshPostAction())));
+  }
+
+  @Action(RemoveLikeArticle)
+  removeLikeArticle(ctx: StateContext<PostStateModel>, action: RemoveLikeArticle) {
+    return this.postService.removeLikeArticle(action.postId)
+      .pipe(tap(() => ctx.dispatch(new RefreshPostAction())));
   }
 
   fetchElements(pageSize, start, where = {}): Observable<ResponseData> {

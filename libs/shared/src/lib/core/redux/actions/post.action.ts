@@ -71,3 +71,17 @@ export class FetchSimilarPostsAction {
   constructor(public id: string, public limit = 10) {
   }
 }
+
+export class CreateLikeArticle {
+  static readonly type = '[Post] Create like article';
+
+  constructor(public userId: string, public postId: string) {
+  }
+}
+
+export class RemoveLikeArticle {
+  static readonly type = '[Post] Remove like article';
+
+  constructor(public postId: string) {
+  }
+}

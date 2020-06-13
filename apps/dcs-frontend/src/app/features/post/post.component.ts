@@ -11,7 +11,7 @@ import {
   PostState,
   AuthState,
   Permissions,
-  WINDOW
+  WINDOW, CreateLikeArticle, RemoveLikeArticle
 } from '@dcs-libs/shared';
 import { MetaTag, MetaTagsService, MomentService, ResourceService, ScrollService } from '../../core/services';
 import {ActivatedRoute} from '@angular/router';
@@ -24,6 +24,8 @@ import {ActivatedRoute} from '@angular/router';
 export class PostComponent extends Permissions implements OnInit {
 
   post: Post;
+  likes = 0;
+  userLike = 0;
 
   constructor(
     private store: Store,
@@ -58,6 +60,8 @@ export class PostComponent extends Permissions implements OnInit {
         this.store.dispatch(new FetchCommentsAction(post.id));
       }
     });
+    this.store.select(PostState.likes).subscribe(likes => this.likes = likes);
+    this.store.select(PostState.userLike).subscribe(userLike => this.userLike = userLike);
     const fragment = this.route.snapshot.fragment;
     if (!fragment) {
       this.scroll.smoothScroll();
@@ -71,5 +75,21 @@ export class PostComponent extends Permissions implements OnInit {
 
   editPost(post) {
     this.window.location.href = `${this.environment.siteDashboardUrl}/articles/update/${post.id}`;
+  }
+
+  postLikeTitle() {
+    if (this.userLike > 0) {
+      return 'Dejar sin café al autor';
+    }
+    return 'Invitarías a un café al autor';
+  }
+
+  postLikeClick() {
+    if (this.userLike === 0) {
+      const user = this.store.selectSnapshot(AuthState.me);
+      this.store.dispatch(new CreateLikeArticle(user.id, this.post.id));
+    } else {
+      this.store.dispatch(new RemoveLikeArticle(this.post.id));
+    }
   }
 }
