@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LoginRequestModalComponent } from './login-request-modal.component';
+import {LoginRequestModalComponent} from './login-request-modal.component';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 describe('LoginRequestModalComponent', () => {
   let component: LoginRequestModalComponent;
@@ -8,9 +9,10 @@ describe('LoginRequestModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginRequestModalComponent ]
+      declarations: [LoginRequestModalComponent],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
