@@ -1,7 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute} from '@angular/router';
+import {MatDialog} from '@angular/material';
 
-import { Store } from '@ngxs/store';
+import {Store} from '@ngxs/store';
 
 import {
   ENVIRONMENT,
@@ -13,8 +15,8 @@ import {
   Permissions,
   WINDOW, CreateLikeArticle, RemoveLikeArticle
 } from '@dcs-libs/shared';
-import { MetaTag, MetaTagsService, MomentService, ResourceService, ScrollService } from '../../core/services';
-import {ActivatedRoute} from '@angular/router';
+import {MetaTag, MetaTagsService, MomentService, ResourceService, ScrollService} from '../../core/services';
+import {LoginRequestModalComponent} from '../components/login-request-modal';
 
 @Component({
   selector: 'app-post',
@@ -36,6 +38,7 @@ export class PostComponent extends Permissions implements OnInit {
     private scroll: ScrollService,
     @Inject(WINDOW) private window: Window,
     @Inject(ENVIRONMENT) private environment: Environment,
+    private dialog: MatDialog,
     private route: ActivatedRoute
   ) {
     super();
@@ -47,13 +50,13 @@ export class PostComponent extends Permissions implements OnInit {
         this.post = post;
         const imageUrl = post.banner ? new URL(post.banner.url, this.environment.apiUrl).toString() : '';
         this.metaTags.updateMetas([
-          { key: MetaTagsService.metas, value: new URL(`post/${post.name}`, this.environment.siteUrl).toString() } as MetaTag,
-          { key: MetaTagsService.titleMeta, value: `${post.title} | 🥇` } as MetaTag,
-          { key: MetaTagsService.imageMeta, value: imageUrl } as MetaTag,
-          { key: MetaTagsService.descriptionMeta, value: `✅ ${post.description}` } as MetaTag,
-          { key: MetaTagsService.twitterImageMeta, value: imageUrl } as MetaTag,
-          { key: MetaTagsService.typeMeta, value: 'article' } as MetaTag,
-          { key: MetaTagsService.twitterTitleMeta, value: post.title } as MetaTag
+          {key: MetaTagsService.metas, value: new URL(`post/${post.name}`, this.environment.siteUrl).toString()} as MetaTag,
+          {key: MetaTagsService.titleMeta, value: `${post.title} | 🥇`} as MetaTag,
+          {key: MetaTagsService.imageMeta, value: imageUrl} as MetaTag,
+          {key: MetaTagsService.descriptionMeta, value: `✅ ${post.description}`} as MetaTag,
+          {key: MetaTagsService.twitterImageMeta, value: imageUrl} as MetaTag,
+          {key: MetaTagsService.typeMeta, value: 'article'} as MetaTag,
+          {key: MetaTagsService.twitterTitleMeta, value: post.title} as MetaTag
         ]);
         this.title.setTitle(`🥇 | ${post.title}`);
 
@@ -85,10 +88,13 @@ export class PostComponent extends Permissions implements OnInit {
   }
 
   postLikeClick() {
-    if (this.userLike === 0) {
-      const user = this.store.selectSnapshot(AuthState.me);
+    const user = this.store.selectSnapshot(AuthState.me);
+    if (!user) {
+      this.dialog.open(LoginRequestModalComponent, {});
+    }
+    if (this.userLike === 0 && user) {
       this.store.dispatch(new CreateLikeArticle(user.id, this.post.id));
-    } else {
+    } else if (user) {
       this.store.dispatch(new RemoveLikeArticle(this.post.id));
     }
   }
