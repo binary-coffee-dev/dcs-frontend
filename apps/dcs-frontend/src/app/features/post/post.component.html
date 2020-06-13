@@ -43,8 +43,9 @@
       </span>
       <span class="post-info like"
             fxLayout="row"
-            title="Invitarías a un café al autor"
+            [title]="postLikeTitle()"
             (click)="postLikeClick()"
+            [ngClass]="{'active': userLike > 0}"
             fxLayoutAlign="start center">
         <mat-icon aria-hidden="false">local_cafe</mat-icon>
         <span>{{likes}}</span>

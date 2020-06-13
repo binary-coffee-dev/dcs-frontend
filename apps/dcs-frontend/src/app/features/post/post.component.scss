@@ -24,6 +24,12 @@
 
         .like {
           cursor: pointer;
+
+          &.active {
+            mat-icon {
+              color: map_get($md-secundary, 500);
+            }
+          }
         }
       }
 

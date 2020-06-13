@@ -6,7 +6,7 @@ import {Apollo} from 'apollo-angular';
 
 import {Post, PostConnection, User} from '../models';
 import {POST_BY_NAME_QUERY, POST_QUERY, POSTS_QUERY, SIMILAR_POSTS_QUERY} from '../../graphql/queries';
-import {POST_CREATE_MUTATION, POST_UPDATE_MUTATION} from '../../graphql/mutations';
+import {LIKE_CREATE_MUTATION, LIKE_REMOVE_MUTATION, POST_CREATE_MUTATION, POST_UPDATE_MUTATION} from '../../graphql/mutations';
 import {Environment, ENVIRONMENT} from '../../models';
 
 @Injectable({
@@ -65,5 +65,17 @@ export class PostService {
   fetchSimilarPostsAction(id: string, limit = 10): Observable<Post[]> {
     return this.apollo.watchQuery({query: SIMILAR_POSTS_QUERY, variables: {id, limit}, fetchPolicy: 'no-cache'})
       .valueChanges.pipe(map((result: any) => result.data.similarPosts));
+  }
+
+  likeArticle(userId, postId) {
+    return this.apollo
+      .mutate({mutation: LIKE_CREATE_MUTATION, variables: {user: userId, post: postId, type: 'like'}})
+      .pipe(map((result: any) => result.data.createOpinion.opinion));
+  }
+
+  removeLikeArticle(postId) {
+    return this.apollo
+      .mutate({mutation: LIKE_REMOVE_MUTATION, variables: {id: postId}})
+      .pipe(map((result: any) => result.data.deleteOpinion.opinion));
   }
 }
