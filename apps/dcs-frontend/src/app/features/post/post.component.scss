@@ -18,19 +18,8 @@
         color: map_get($md-primary, 900);
       }
 
-      .post-info-container {
-        margin-top: map_get($spacings, 2);
-        margin-bottom: map_get($spacings, 3);
-
-        .like {
-          cursor: pointer;
-
-          &.active {
-            mat-icon {
-              color: map_get($md-secundary, 500);
-            }
-          }
-        }
+      .markdown-container {
+        margin-bottom: map_get($spacings, 6);
       }
 
       .tags-content {

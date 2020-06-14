@@ -7,6 +7,7 @@ import {UrlUtilsService} from '@dcs-libs/shared';
 import {CommentsComponent} from './comments.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ScrollService} from '../../../core/services';
+import {MatDialog} from '@angular/material';
 
 class StoreStub {
 }
@@ -15,6 +16,9 @@ class UrlUtilsServiceStub {
 }
 
 class ScrollServiceStub {
+}
+
+class MatDialogStub {
 }
 
 describe('CommentsComponent', () => {
@@ -29,7 +33,8 @@ describe('CommentsComponent', () => {
       providers: [
         {provide: Store, useClass: StoreStub},
         {provide: UrlUtilsService, useClass: UrlUtilsServiceStub},
-        {provide: ScrollService, useClass: ScrollServiceStub}
+        {provide: ScrollService, useClass: ScrollServiceStub},
+        {provide: MatDialog, useClass: MatDialogStub}
       ]
     })
       .compileComponents();
