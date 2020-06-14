@@ -64,6 +64,7 @@
           <span class="code-var"> Título </span> =
         </mat-label>
         <input matInput
+               (keyup)="textChange()"
                formControlName="title"
                placeholder="Título">
       </mat-form-field>
@@ -91,6 +92,7 @@
           <span class="code-var"> Descripción </span> =
         </mat-label>
         <textarea matInput
+                  (keyup)="textChange()"
                   class="description"
                   formControlName="description"
                   placeholder="Descripción del artículo"></textarea>
@@ -126,6 +128,7 @@
            fxFlex.xs="100"
            fxFlex.sm="100">
         <textarea class="body"
+                  (keyup)="textChange()"
                   matInput
                   formControlName="body"
                   placeholder="Artículo"></textarea>

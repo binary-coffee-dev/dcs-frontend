@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
-import {BehaviorSubject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {BehaviorSubject, Subject, timer} from 'rxjs';
+import {map, takeUntil} from 'rxjs/operators';
 
 import {
   AuthState, FetchTagsAction,
@@ -23,7 +23,7 @@ import {SelectImageModalComponent} from './select-image-modal/select-image-modal
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent extends Permissions implements OnInit {
+export class OverviewComponent extends Permissions implements OnInit, OnDestroy {
   post = {
     body: ''
   } as Post;
@@ -45,6 +45,9 @@ export class OverviewComponent extends Permissions implements OnInit {
 
   tags = new BehaviorSubject([]);
 
+  _unsubscribe = new Subject();
+  _stopTimer = new Subject();
+
   constructor(
     private store: Store,
     private activatedRoute: ActivatedRoute,
@@ -62,7 +65,7 @@ export class OverviewComponent extends Permissions implements OnInit {
 
   ngOnInit() {
     if (!this.isNewPost()) {
-      this.store.select(PostState.post).subscribe(post => {
+      this.store.select(PostState.post).pipe(takeUntil(this._unsubscribe)).subscribe(post => {
         if (post) {
           const newPost = {...post};
           if (newPost.banner) {
@@ -88,9 +91,17 @@ export class OverviewComponent extends Permissions implements OnInit {
     }
     this.store.dispatch(new FetchTagsAction());
     this.store.select(TagState.tags)
-      .pipe(map(tags => tags.map(tag => ({display: tag.name, value: tag.id}))))
+      .pipe(
+        takeUntil(this._unsubscribe),
+        map(tags => tags.map(tag => ({display: tag.name, value: tag.id})))
+      )
       .subscribe(values => this.tags.next(values));
     this.getTags = this.getTags.bind(this);
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe.next();
+    this._stopTimer.next();
   }
 
   getTags() {
@@ -103,6 +114,14 @@ export class OverviewComponent extends Permissions implements OnInit {
 
   isNewPost() {
     return !this.activatedRoute.snapshot.params.id;
+  }
+
+  textChange() {
+    const TIME_TO_WAIT_UNTIL_REFRESH = 500;
+    this._stopTimer.next();
+    timer(TIME_TO_WAIT_UNTIL_REFRESH)
+      .pipe(takeUntil(this._stopTimer))
+      .subscribe(() => this.onPostChange());
   }
 
   onPostChange() {
@@ -165,9 +184,11 @@ export class OverviewComponent extends Permissions implements OnInit {
           ]);
         });
     } else {
-      this.store.dispatch(new PostUpdateAction(this.post)).subscribe(() => {
-        this.imageChange = this.formDataChange = false;
-      });
+      this.store.dispatch(new PostUpdateAction(this.post))
+        .pipe(takeUntil(this._unsubscribe))
+        .subscribe(() => {
+          this.imageChange = this.formDataChange = false;
+        });
     }
   }
 
@@ -198,7 +219,9 @@ export class OverviewComponent extends Permissions implements OnInit {
       width: '50vw'
     });
 
-    dialog.afterClosed().subscribe((image: File) => {
+    dialog.afterClosed()
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe((image: File) => {
       if (image) {
         this.post.banner = image;
         this.imageChange = true;
