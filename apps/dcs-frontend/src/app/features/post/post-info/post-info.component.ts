@@ -1,7 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 
 import {Store} from '@ngxs/store';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 import {AuthState, CreateLikeArticle, Post, PostState, RemoveLikeArticle} from '@dcs-libs/shared';
 import {LoginRequestModalComponent} from '../../components/login-request-modal';
@@ -12,12 +14,14 @@ import {MomentService, ResourceService} from '../../../core/services';
   templateUrl: './post-info.component.html',
   styleUrls: ['./post-info.component.scss']
 })
-export class PostInfoComponent implements OnInit {
+export class PostInfoComponent implements OnInit, OnDestroy {
 
   @Input() post: Post;
 
   likes = 0;
   userLike = 0;
+
+  _unsubscribe = new Subject();
 
   constructor(
     private store: Store,
@@ -28,8 +32,16 @@ export class PostInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(PostState.likes).subscribe(likes => this.likes = likes);
-    this.store.select(PostState.userLike).subscribe(userLike => this.userLike = userLike);
+    this.store.select(PostState.likes)
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe(likes => this.likes = likes);
+    this.store.select(PostState.userLike)
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe(userLike => this.userLike = userLike);
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe.next();
   }
 
   postLikeTitle() {
