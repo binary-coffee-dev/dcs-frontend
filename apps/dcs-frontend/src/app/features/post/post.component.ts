@@ -89,12 +89,12 @@ export class PostComponent extends Permissions implements OnInit {
 
   postLikeClick() {
     const user = this.store.selectSnapshot(AuthState.me);
-    if (!user.id) {
+    if (!user || !user.id) {
       this.dialog.open(LoginRequestModalComponent, {});
     }
-    if (this.userLike === 0 && user.id) {
+    if (this.userLike === 0 && user && user.id) {
       this.store.dispatch(new CreateLikeArticle(user.id, this.post.id));
-    } else if (user.id) {
+    } else if (user && user.id) {
       this.store.dispatch(new RemoveLikeArticle(this.post.id));
     }
   }
