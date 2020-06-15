@@ -7,6 +7,7 @@ import {ENVIRONMENT, HasPermissionsPipeStub, WINDOW} from '@dcs-libs/shared';
 import {PostComponent} from './post.component';
 import {MomentService, ResourceService, ScrollService} from '../../core/services';
 import {RouterTestingModule} from '@angular/router/testing';
+import {MatDialog} from '@angular/material';
 
 class StoreStub {
 }
@@ -18,6 +19,9 @@ class ResourceServiceStub {
 }
 
 class ScrollServiceStub {
+}
+
+class MatDialogStub {
 }
 
 describe('PostComponent', () => {
@@ -34,7 +38,8 @@ describe('PostComponent', () => {
         {provide: ScrollService, useClass: ScrollServiceStub},
         {provide: ResourceService, useClass: ResourceServiceStub},
         {provide: ENVIRONMENT, useValue: {}},
-        {provide: WINDOW, useValue: {}}
+        {provide: WINDOW, useValue: {}},
+        {provide: MatDialog, useClass: MatDialogStub}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

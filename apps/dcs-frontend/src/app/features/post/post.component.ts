@@ -1,7 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute} from '@angular/router';
 
-import { Store } from '@ngxs/store';
+import {Store} from '@ngxs/store';
 
 import {
   ENVIRONMENT,
@@ -13,8 +14,7 @@ import {
   Permissions,
   WINDOW
 } from '@dcs-libs/shared';
-import { MetaTag, MetaTagsService, MomentService, ResourceService, ScrollService } from '../../core/services';
-import {ActivatedRoute} from '@angular/router';
+import {MetaTag, MetaTagsService, ResourceService, ScrollService} from '../../core/services';
 
 @Component({
   selector: 'app-post',
@@ -27,7 +27,6 @@ export class PostComponent extends Permissions implements OnInit {
 
   constructor(
     private store: Store,
-    public moment: MomentService,
     public resource: ResourceService,
     private metaTags: MetaTagsService,
     private title: Title,
@@ -45,13 +44,13 @@ export class PostComponent extends Permissions implements OnInit {
         this.post = post;
         const imageUrl = post.banner ? new URL(post.banner.url, this.environment.apiUrl).toString() : '';
         this.metaTags.updateMetas([
-          { key: MetaTagsService.metas, value: new URL(`post/${post.name}`, this.environment.siteUrl).toString() } as MetaTag,
-          { key: MetaTagsService.titleMeta, value: `${post.title} | 🥇` } as MetaTag,
-          { key: MetaTagsService.imageMeta, value: imageUrl } as MetaTag,
-          { key: MetaTagsService.descriptionMeta, value: `✅ ${post.description}` } as MetaTag,
-          { key: MetaTagsService.twitterImageMeta, value: imageUrl } as MetaTag,
-          { key: MetaTagsService.typeMeta, value: 'article' } as MetaTag,
-          { key: MetaTagsService.twitterTitleMeta, value: post.title } as MetaTag
+          {key: MetaTagsService.metas, value: new URL(`post/${post.name}`, this.environment.siteUrl).toString()} as MetaTag,
+          {key: MetaTagsService.titleMeta, value: `${post.title} | 🥇`} as MetaTag,
+          {key: MetaTagsService.imageMeta, value: imageUrl} as MetaTag,
+          {key: MetaTagsService.descriptionMeta, value: `✅ ${post.description}`} as MetaTag,
+          {key: MetaTagsService.twitterImageMeta, value: imageUrl} as MetaTag,
+          {key: MetaTagsService.typeMeta, value: 'article'} as MetaTag,
+          {key: MetaTagsService.twitterTitleMeta, value: post.title} as MetaTag
         ]);
         this.title.setTitle(`🥇 | ${post.title}`);
 

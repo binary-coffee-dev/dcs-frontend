@@ -11,13 +11,16 @@ import { ServicesModule } from '../../core/services';
 import { CommentsComponent } from './comments/comments.component';
 import { ShareButtonsComponent } from './share-buttons/share-buttons.component';
 import { SimilarPostsListComponent } from './similar-posts-list/similar-posts-list.component';
+import {LoginRequestModalComponent} from '../components/login-request-modal';
+import { PostInfoComponent } from './post-info/post-info.component';
 
 @NgModule({
   declarations: [
     PostComponent,
     CommentsComponent,
     ShareButtonsComponent,
-    SimilarPostsListComponent
+    SimilarPostsListComponent,
+    PostInfoComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +31,7 @@ import { SimilarPostsListComponent } from './similar-posts-list/similar-posts-li
     TagsModule,
     SharedModule
   ],
+  entryComponents: [LoginRequestModalComponent],
   providers: [PostGuard]
 })
 export class PostModule {

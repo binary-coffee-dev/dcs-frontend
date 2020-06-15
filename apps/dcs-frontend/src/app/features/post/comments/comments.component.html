@@ -3,7 +3,6 @@
   <div class="comments-header-separator"></div>
 
   <form class="comment-new-container"
-        *ngIf="isLogin"
         fxLayout="column"
         [formGroup]="commentForm"
         fxLayoutAlign="center end">
@@ -22,6 +21,7 @@
         <span class="code-var"> Opinión </span> =
       </mat-label>
       <textarea matInput
+                (keyup)="commentChangeEvent()"
                 formControlName="body"
                 type="text"
                 maxlength="250"
@@ -76,7 +76,7 @@
             // {{comment?.publishedAt && moment.timeFromDate(comment.publishedAt) || ''}}
           </span>
           <h3 class="code-2">
-            "{{getName(comment)}}" 
+            "{{getName(comment)}}"
               <i class="fa fa-star"
                  *ngIf="getIsStaff(comment)"
                  [matTooltip]="getRole(comment)">

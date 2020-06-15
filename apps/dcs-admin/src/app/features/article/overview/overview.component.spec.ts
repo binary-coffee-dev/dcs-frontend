@@ -8,7 +8,7 @@ import {of} from 'rxjs';
 import {Store} from '@ngxs/store';
 import {TagInputModule} from 'ngx-chips';
 
-import {HasPermissionsPipeStub, MaterialModule, UrlUtilsService} from '@dcs-libs/shared';
+import {HasPermissionsPipeStub, MaterialModule, UrlUtilsService, WINDOW} from '@dcs-libs/shared';
 import {OverviewComponent} from './overview.component';
 
 class StoreStub {
@@ -22,6 +22,10 @@ class MatDialogStub {
 class UrlUtilsServiceStub {
 }
 
+const window = {
+  document: {addEventListener: jest.fn()}
+};
+
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
   let store: StoreStub;
@@ -33,7 +37,8 @@ describe('OverviewComponent', () => {
       providers: [
         {provide: Store, useClass: StoreStub},
         {provide: MatDialog, useClass: MatDialogStub},
-        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
+        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub},
+        {provide: WINDOW, useValue: window}
       ],
       imports: [RouterTestingModule, MaterialModule, BrowserAnimationsModule, TagInputModule],
       schemas: [NO_ERRORS_SCHEMA]

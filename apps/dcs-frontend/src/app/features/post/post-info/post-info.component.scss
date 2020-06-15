@@ -1,0 +1,18 @@
+@import "libs/shared/src/theme";
+
+:host {
+  .post-info-container {
+    margin-top: map_get($spacings, 2);
+    margin-bottom: map_get($spacings, 3);
+
+    .like {
+      cursor: pointer;
+
+      &.active {
+        mat-icon {
+          color: map_get($md-secundary, 500);
+        }
+      }
+    }
+  }
+}

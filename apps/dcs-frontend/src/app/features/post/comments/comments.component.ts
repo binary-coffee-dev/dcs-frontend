@@ -1,5 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {MatDialog} from '@angular/material';
 
 import {Subject, timer} from 'rxjs';
 import {Store} from '@ngxs/store';
@@ -16,7 +18,7 @@ import {
   RoleEnum
 } from '@dcs-libs/shared';
 import {MomentService, ScrollService} from '../../../core/services';
-import {ActivatedRoute} from '@angular/router';
+import {LoginRequestModalComponent} from '../../components/login-request-modal';
 
 @Component({
   selector: 'app-comments',
@@ -44,7 +46,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
     public moment: MomentService,
     private url: UrlUtilsService,
     private scroll: ScrollService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
   ) {
   }
 
@@ -68,6 +71,17 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribe.next();
+  }
+
+  commentChangeEvent() {
+    if (!this.isLogin) {
+      this.postLikeClick();
+      this.commentForm.controls.body.setValue('');
+    }
+  }
+
+  postLikeClick() {
+    this.dialog.open(LoginRequestModalComponent, {});
   }
 
   createComment() {

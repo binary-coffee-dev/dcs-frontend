@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 
 import {Store} from '@ngxs/store';
-import {BehaviorSubject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {BehaviorSubject, Subject, timer} from 'rxjs';
+import {map, takeUntil} from 'rxjs/operators';
 
 import {
   AuthState, FetchTagsAction,
@@ -14,7 +14,7 @@ import {
   PostCreateAction,
   PostState,
   PostUpdateAction, Tag, TagState,
-  UrlUtilsService
+  UrlUtilsService, WINDOW
 } from '@dcs-libs/shared';
 import {SelectImageModalComponent} from './select-image-modal/select-image-modal.component';
 
@@ -23,7 +23,7 @@ import {SelectImageModalComponent} from './select-image-modal/select-image-modal
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent extends Permissions implements OnInit {
+export class OverviewComponent extends Permissions implements OnInit, OnDestroy {
   post = {
     body: ''
   } as Post;
@@ -45,12 +45,16 @@ export class OverviewComponent extends Permissions implements OnInit {
 
   tags = new BehaviorSubject([]);
 
+  _unsubscribe = new Subject();
+  _stopTimer = new Subject();
+
   constructor(
     private store: Store,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
-    private url: UrlUtilsService
+    private url: UrlUtilsService,
+    @Inject(WINDOW) private window: Window
   ) {
     super();
     this.timesSelections = [...Array(24).keys()].reduce((p, v) => {
@@ -58,11 +62,12 @@ export class OverviewComponent extends Permissions implements OnInit {
       p.push({minutes: v * 60 + 30, title: `${v}:30`});
       return p;
     }, []);
+    this.window.document.addEventListener('keydown', this.shortCutHandlerMethod.bind(this));
   }
 
   ngOnInit() {
     if (!this.isNewPost()) {
-      this.store.select(PostState.post).subscribe(post => {
+      this.store.select(PostState.post).pipe(takeUntil(this._unsubscribe)).subscribe(post => {
         if (post) {
           const newPost = {...post};
           if (newPost.banner) {
@@ -88,9 +93,26 @@ export class OverviewComponent extends Permissions implements OnInit {
     }
     this.store.dispatch(new FetchTagsAction());
     this.store.select(TagState.tags)
-      .pipe(map(tags => tags.map(tag => ({display: tag.name, value: tag.id}))))
+      .pipe(
+        takeUntil(this._unsubscribe),
+        map(tags => tags.map(tag => ({display: tag.name, value: tag.id})))
+      )
       .subscribe(values => this.tags.next(values));
     this.getTags = this.getTags.bind(this);
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe.next();
+    this._stopTimer.next();
+    this.window.document.removeEventListener('keydown', this.shortCutHandlerMethod.bind(this));
+  }
+
+  shortCutHandlerMethod(event) {
+    if (event.ctrlKey && (event.which === 83)) {
+      event.preventDefault();
+      this.submitPost();
+      return false;
+    }
   }
 
   getTags() {
@@ -103,6 +125,14 @@ export class OverviewComponent extends Permissions implements OnInit {
 
   isNewPost() {
     return !this.activatedRoute.snapshot.params.id;
+  }
+
+  textChange() {
+    const TIME_TO_WAIT_UNTIL_REFRESH = 500;
+    this._stopTimer.next();
+    timer(TIME_TO_WAIT_UNTIL_REFRESH)
+      .pipe(takeUntil(this._stopTimer))
+      .subscribe(() => this.onPostChange());
   }
 
   onPostChange() {
@@ -136,38 +166,42 @@ export class OverviewComponent extends Permissions implements OnInit {
   }
 
   submitPost() {
-    this.post.body = this.articleForm.controls.body.value;
-    this.post.description = this.articleForm.controls.description.value;
-    this.post.title = this.articleForm.controls.title.value;
-    this.post.enable = !!this.articleForm.controls.enable.value;
-    this.post.tags = this.articleForm.controls.tags.value.map(tag => ({name: tag.display, id: tag.value} as Tag));
+    if (this.formDataChange) {
+      this.post.body = this.articleForm.controls.body.value;
+      this.post.description = this.articleForm.controls.description.value;
+      this.post.title = this.articleForm.controls.title.value;
+      this.post.enable = !!this.articleForm.controls.enable.value;
+      this.post.tags = this.articleForm.controls.tags.value.map(tag => ({name: tag.display, id: tag.value} as Tag));
 
-    let date;
-    if (this.articleForm.controls.date.value && (this.articleForm.controls.time.value || this.articleForm.controls.time.value === 0)) {
-      date = new Date(this.articleForm.controls.date.value);
-      const {hours, minutes} = this.getHMFromMinutes(this.articleForm.controls.time.value);
-      date.setHours(hours);
-      date.setMinutes(minutes);
-    }
-    this.post.publishedAt = date;
+      let date;
+      if (this.articleForm.controls.date.value && (this.articleForm.controls.time.value || this.articleForm.controls.time.value === 0)) {
+        date = new Date(this.articleForm.controls.date.value);
+        const {hours, minutes} = this.getHMFromMinutes(this.articleForm.controls.time.value);
+        date.setHours(hours);
+        date.setMinutes(minutes);
+      }
+      this.post.publishedAt = date;
 
-    if (this.isNewPost()) {
-      this.store
-        .dispatch(
-          new PostCreateAction(
-            this.post,
-            this.store.selectSnapshot(AuthState.me)
+      if (this.isNewPost()) {
+        this.store
+          .dispatch(
+            new PostCreateAction(
+              this.post,
+              this.store.selectSnapshot(AuthState.me)
+            )
           )
-        )
-        .subscribe(() => {
-          this.router.navigate([
-            `/articles/update/${this.store.selectSnapshot(PostState.newPostId)}`
-          ]);
-        });
-    } else {
-      this.store.dispatch(new PostUpdateAction(this.post)).subscribe(() => {
-        this.imageChange = this.formDataChange = false;
-      });
+          .subscribe(() => {
+            this.router.navigate([
+              `/articles/update/${this.store.selectSnapshot(PostState.newPostId)}`
+            ]);
+          });
+      } else {
+        this.store.dispatch(new PostUpdateAction(this.post))
+          .pipe(takeUntil(this._unsubscribe))
+          .subscribe(() => {
+            this.imageChange = this.formDataChange = false;
+          });
+      }
     }
   }
 
@@ -198,11 +232,13 @@ export class OverviewComponent extends Permissions implements OnInit {
       width: '50vw'
     });
 
-    dialog.afterClosed().subscribe((image: File) => {
-      if (image) {
-        this.post.banner = image;
-        this.imageChange = true;
-      }
-    });
+    dialog.afterClosed()
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe((image: File) => {
+        if (image) {
+          this.post.banner = image;
+          this.imageChange = true;
+        }
+      });
   }
 }
