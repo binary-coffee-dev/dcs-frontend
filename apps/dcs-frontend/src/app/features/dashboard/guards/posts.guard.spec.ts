@@ -4,7 +4,7 @@ import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {Store} from '@ngxs/store';
 import {Observable, of} from 'rxjs';
 
-import {FetchPostsAction, SetFiltersAction} from '@dcs-libs/shared';
+import {FetchPostsAction, SetFiltersAction, Where} from '@dcs-libs/shared';
 import {PostsGuard} from './posts.guard';
 
 class StoreStub {
@@ -32,7 +32,7 @@ describe('PostsGuard', () => {
 
     (guard.canActivate({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot) as Observable<boolean>).subscribe((result) => {
       expect(result).toBeTruthy();
-      expect(store.dispatch).toHaveBeenNthCalledWith(1, new SetFiltersAction({enable: true}));
+      expect(store.dispatch).toHaveBeenNthCalledWith(1, new SetFiltersAction({enable: true} as Where));
       expect(store.dispatch).toHaveBeenNthCalledWith(2, new FetchPostsAction());
       done();
     });

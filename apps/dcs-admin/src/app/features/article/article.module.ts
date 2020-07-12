@@ -11,9 +11,10 @@ import {ListComponent} from './list/list.component';
 import {ArticleRoutingModule} from './article-routing.module';
 import {SelectImageModalComponent} from './overview/select-image-modal/select-image-modal.component';
 import {PaginationModule} from '../components/pagination/pagination.module';
+import { FilterComponent } from './list/filter/filter.component';
 
 @NgModule({
-  declarations: [OverviewComponent, ListComponent, SelectImageModalComponent],
+  declarations: [OverviewComponent, ListComponent, SelectImageModalComponent, FilterComponent],
   imports: [
     CommonModule,
     ArticleRoutingModule,
