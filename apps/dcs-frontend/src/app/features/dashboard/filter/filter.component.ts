@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 
 import {Subject, timer} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
@@ -23,10 +24,22 @@ export class FilterComponent implements OnInit, OnDestroy {
   resetTime = new Subject();
   _unsubscribe = new Subject();
 
-  constructor(private store: Store) {
+  constructor(
+    private store: Store,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
+    this.extractParams();
+  }
+
+  extractParams() {
+    this.filter = this.route.snapshot.queryParamMap.get('filter') || '';
+    this.filterForm.controls.filter.setValue(this.filter);
+
+    this.dispatchNewFilter({title: this.filter});
   }
 
   ngOnDestroy(): void {
@@ -45,14 +58,33 @@ export class FilterComponent implements OnInit, OnDestroy {
     if (this.checkIfFilterChange()) {
       this.filter = this.filterForm.controls.filter.value;
 
-      const filter = {
-        ...(this.store.selectSnapshot(PostState.where) || {}),
-        title: this.filter
-      } as Where;
-      this.store.dispatch(new SetFiltersAction(filter))
-        .pipe(takeUntil(this._unsubscribe))
-        .subscribe(() => this.store.dispatch(new FetchPostsAction()));
+      this.dispatchNewFilter({title: this.filter});
     }
+  }
+
+  dispatchNewFilter(newFilters) {
+    const filter = {
+      ...(this.store.selectSnapshot(PostState.where) || {}),
+      ...newFilters
+    } as Where;
+    this.store.dispatch(new SetFiltersAction(filter))
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe(() => {
+        this.store.dispatch(new FetchPostsAction());
+        this.updateRoute();
+      });
+  }
+
+  updateRoute() {
+    const queryParams = {};
+    if (this.filter !== '') {
+      queryParams['filter'] = this.filter;
+    }
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParamsHandling: null,
+      queryParams
+    });
   }
 
   checkIfFilterChange(): boolean {
