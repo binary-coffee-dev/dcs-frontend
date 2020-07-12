@@ -10,5 +10,11 @@
     border-top: 1px solid map_get($md-primary, 100);
     max-width: 300px;
     margin-top: 30px;
+
+    form {
+      ::ng-deep.mat-form-field-wrapper {
+        padding-bottom: 0;
+      }
+    }
   }
 }
