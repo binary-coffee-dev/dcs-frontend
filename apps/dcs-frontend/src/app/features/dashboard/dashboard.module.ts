@@ -13,6 +13,7 @@ import {ServicesModule} from '../../core/services';
 import {PaginationComponent} from './pagination';
 import {RecentCommentsComponent} from './recent-comments/recent-comments.component';
 import {LimitTextPipe} from './recent-comments/limit-text.pipe';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {LimitTextPipe} from './recent-comments/limit-text.pipe';
     PostItemComponent,
     PaginationComponent,
     RecentCommentsComponent,
-    LimitTextPipe
+    LimitTextPipe,
+    FilterComponent
   ],
   imports: [
     CommonModule,

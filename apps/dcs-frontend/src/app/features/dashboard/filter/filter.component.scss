@@ -7,26 +7,17 @@
     border-radius: 0 map_get($radius, 2) map_get($radius, 2) 0;
     border-right: 1px solid map_get($md-primary, 100);
     border-bottom: 1px solid map_get($md-primary, 100);
+    border-top: 1px solid map_get($md-primary, 100);
     max-width: 300px;
+    margin-top: 30px;
 
-    .link-container {
-      margin: 10px 0;
-    }
-
-    a {
-      margin-left: 20px;
-      text-decoration: none;
-      font-size: 0.85rem;
-      color: map_get($md-primary, 500);
-
-      &:hover {
-        text-decoration: underline;
+    form {
+      ::ng-deep.mat-form-field-wrapper {
+        padding-bottom: 0;
       }
 
-      mat-icon {
-        height: 10px;
-        width: 10px;
-        font-size: 0.6rem;
+      input {
+        color: map_get($md-grey, 850);
       }
     }
   }
