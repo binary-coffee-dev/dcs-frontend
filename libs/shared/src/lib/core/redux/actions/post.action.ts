@@ -1,4 +1,5 @@
 import {Post, User} from '../models';
+import {Where} from '../states/pagination-base.class';
 
 export class PostAction {
   static readonly type = '[Post] Fetch post';
@@ -61,7 +62,7 @@ export class ChangePageSizeAction {
 export class SetFiltersAction {
   static readonly type = '[Post] Set post filters';
 
-  constructor(public where: any) {
+  constructor(public where: Where) {
   }
 }
 

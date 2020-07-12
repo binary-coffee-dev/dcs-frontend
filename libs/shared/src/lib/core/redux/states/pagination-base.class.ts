@@ -11,7 +11,12 @@ export interface StateBase {
   pageSize: number;
   firstPage: boolean;
   lastPage: boolean;
-  where?: any;
+  where?: Where;
+}
+
+export interface Where {
+  enable?: boolean;
+  author?: string | string[];
 }
 
 export interface ResponseData {

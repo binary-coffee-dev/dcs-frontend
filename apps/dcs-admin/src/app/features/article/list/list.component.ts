@@ -12,8 +12,9 @@ import {
   PreviousPageAction,
   SelectPageAction,
   MomentService,
-  UrlUtilsService, Permissions, AuthState, ConfigState, SetConfigAction
+  UrlUtilsService, Permissions, AuthState, ConfigState, SetConfigAction, SetFiltersAction, User
 } from '@dcs-libs/shared';
+import {flatMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -38,10 +39,13 @@ export class ListComponent extends Permissions implements OnInit {
   }
 
   ngOnInit() {
+    const me = this.meUser();
+    this.store.dispatch(new SetFiltersAction({author: me.id})).subscribe(() => {
+      this.store.dispatch(new FetchPostsAction());
+    });
     this.store.select(PostState.posts).subscribe(posts => {
       this.posts = posts || [];
     });
-    this.store.dispatch(new FetchPostsAction());
     this.store.select(PostState.pageIndicator).subscribe(indicator => {
       if (indicator) {
         this.currentPage = indicator.page;
@@ -52,8 +56,12 @@ export class ListComponent extends Permissions implements OnInit {
   }
 
   isMyPost(post) {
-    const user = this.store.selectSnapshot(AuthState.me);
+    const user = this.meUser();
     return !!user && !!post.author && post.author.id === user.id;
+  }
+
+  meUser(): User {
+    return this.store.selectSnapshot(AuthState.me);
   }
 
   nextPageEvent() {
