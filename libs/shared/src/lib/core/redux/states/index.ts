@@ -5,3 +5,5 @@ export * from './notification.state';
 export * from './comment.state';
 export * from './config';
 export * from './tag.state';
+
+export * from './pagination-base.class';
