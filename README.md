@@ -109,6 +109,10 @@ $ ng g @ngxs/schematics:store --name state-name
 
 Any contribution is welcome, but please first read the CONTRIBUTING guide: [CONTRIBUTING.md](./CONTRIBUTING.md)
 
+And remember that you can invite us to a coffee:
+
+[![](https://cdn.buymeacoffee.com/buttons/arial-green.png)](https://www.buymeacoffee.com/binarycoffee)
+
 ## License
 
 The license of this application can be found here [LICENSE.md](./LICENSE.md)
