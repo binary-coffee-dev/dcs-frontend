@@ -12,7 +12,7 @@ import {
   PreviousPageAction,
   SelectPageAction,
   MomentService,
-  UrlUtilsService, Permissions, AuthState, ConfigState, SetConfigAction, SetFiltersAction, User
+  UrlUtilsService, Permissions, AuthState, ConfigState, SetConfigAction, SetFiltersAction, User, Where
 } from '@dcs-libs/shared';
 
 @Component({
@@ -39,7 +39,7 @@ export class ListComponent extends Permissions implements OnInit {
 
   ngOnInit() {
     const me = this.meUser();
-    this.store.dispatch(new SetFiltersAction({author: me.id})).subscribe(() => {
+    this.store.dispatch(new SetFiltersAction({author: me.id} as Where)).subscribe(() => {
       this.store.dispatch(new FetchPostsAction());
     });
     this.store.select(PostState.posts).subscribe(posts => {
