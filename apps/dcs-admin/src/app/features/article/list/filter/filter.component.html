@@ -1,0 +1,25 @@
+<div>
+  <form [formGroup]="filterForm">
+    <mat-form-field appearance="outline"
+                    fxFlex="48.5"
+                    fxFlex.xs="100"
+                    fxFlex.sm="100">
+      <mat-label class="code-none">
+        <span class="code-1"> function </span>
+        <span class="code-var"> filtrar() </span>
+      </mat-label>
+      <input matInput
+             (keyup)="filterChange()"
+             formControlName="filter"
+             placeholder="Buscar">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Usuario</mat-label>
+      <mat-select formControlName="users"
+                  (selectionChange)="changeFilter()">
+        <mat-option value="me">Mis artículos</mat-option>
+        <mat-option value="all">Todos los artículos</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>

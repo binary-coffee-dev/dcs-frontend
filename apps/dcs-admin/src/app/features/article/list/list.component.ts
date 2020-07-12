@@ -14,7 +14,6 @@ import {
   MomentService,
   UrlUtilsService, Permissions, AuthState, ConfigState, SetConfigAction, SetFiltersAction, User
 } from '@dcs-libs/shared';
-import {flatMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
