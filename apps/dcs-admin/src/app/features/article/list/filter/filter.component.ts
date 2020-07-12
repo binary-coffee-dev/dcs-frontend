@@ -48,8 +48,10 @@ export class FilterComponent implements OnInit, OnDestroy {
       this.usersFilter = this.filterForm.controls.users.value;
 
       const author = this.usersFilter === 'me' ? this.store.selectSnapshot(AuthState.me).id : undefined;
+      const filterStr = this.currentFilter || '';
       const filter = {
-        author
+        author,
+        title: filterStr
       } as Where;
       this.store.dispatch(new SetFiltersAction(filter))
         .pipe(takeUntil(this._unsubscribe))

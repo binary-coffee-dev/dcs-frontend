@@ -17,6 +17,7 @@ export interface StateBase {
 export interface Where {
   enable?: boolean;
   author?: string | string[];
+  title: string;
 }
 
 export interface ResponseData {
