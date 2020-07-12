@@ -1,5 +1,6 @@
 <div>
-  <form [formGroup]="filterForm">
+  <form [formGroup]="filterForm"
+        (submit)="changeFilter()">
     <mat-form-field appearance="outline"
                     fxFlex="48.5"
                     fxFlex.xs="100"
