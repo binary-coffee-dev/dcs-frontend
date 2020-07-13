@@ -16,7 +16,7 @@ import {
 } from '../actions';
 import {initPostStateModel, PostStateModel} from './post-state.model';
 import {NotificationType, Post} from '../models';
-import {PaginationBaseClass, ResponseData, StateBase} from './pagination-base.class';
+import {PaginationBaseClass, ResponseData, StateBase, Where} from './pagination-base.class';
 
 @State<PostStateModel>({
   name: 'post',
@@ -69,6 +69,11 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
     return state.newPostId;
   }
 
+  @Selector()
+  static where(state: PostStateModel): Where {
+    return state.where;
+  }
+
   constructor(private postService: PostService) {
     super();
   }
@@ -103,7 +108,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
 
   @Action(SelectPageAction)
   selectPageAction(ctx: StateContext<PostStateModel>, action: SelectPageAction) {
-    return this.pageByNumber(ctx, action.page).pipe(take(1));
+    return this.pageByNumber(ctx, action.page, ctx.getState().where).pipe(take(1));
   }
 
   @Action(PostAction)

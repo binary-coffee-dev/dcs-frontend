@@ -6,6 +6,7 @@
         <a [href]="post?.author?.page || ''"
            [title]="post?.author?.email"
            fxLayout="row"
+           target="_blank"
            fxLayoutAlign="start center">
           <img *ngIf="post?.author?.avatar?.url"
                [src]="resource.addApiUrl(post?.author?.avatar?.url)"
