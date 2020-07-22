@@ -4,29 +4,48 @@
   .container {
     color: map_get($md-grey, 500);
     padding: map_get($spacings, 4);
-    border-radius: 0 map_get($radius, 2) map_get($radius, 2) 0;
-    border-right: 1px solid map_get($md-primary, 100);
-    border-bottom: 1px solid map_get($md-primary, 100);
+    //border-radius: 0 map_get($radius, 2) map_get($radius, 2) 0;
+    //border-top: 1px solid map_get($md-primary, 100);  
+    //border-right: 1px solid map_get($md-primary, 100);
+    //border-bottom: 1px solid map_get($md-primary, 100);
     max-width: 300px;
 
     .link-container {
       margin: 10px 0;
     }
 
-    a {
-      margin-left: 20px;
+    .recent-comment {
+      margin-left: map-get($map: $spacings, $key: 1);
+      margin-bottom: map-get($map: $spacings, $key: 1);
       text-decoration: none;
       font-size: 0.85rem;
-      color: map_get($md-primary, 500);
+      border-radius: map-get($map: $radius, $key: 2);
+      padding: map-get($map: $spacings, $key: 1);
+      
 
-      &:hover {
-        text-decoration: underline;
+      &:last-of-type{
+        margin-bottom: map-get($map: $spacings, $key: 0);
+      }
+
+      &:hover{
+        background-color: map_get($md-primary , 50);
       }
 
       mat-icon {
         height: 10px;
         width: 10px;
         font-size: 0.6rem;
+      }
+
+      .comment-user-image {
+        max-width: map_get($spacings, 8);
+        height: map_get($spacings, 6);
+        border-radius: 100%;
+        margin-right: map_get($spacings, 2);
+      }
+
+      .comment-content{
+        color: map_get($md-primary, 500);
       }
     }
   }

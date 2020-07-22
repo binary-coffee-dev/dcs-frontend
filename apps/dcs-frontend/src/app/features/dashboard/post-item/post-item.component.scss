@@ -19,7 +19,7 @@ $post_image_size: 110px;
 
   .card-container {
     border-right: 1px solid map_get($md-primary, 100);
-    border-top: 1px solid map_get($md-primary, 100);
+    border-bottom: 1px solid map_get($md-primary, 100);
     background-color: map_get($md-grey, A100);
     width: 100%;
     padding: map_get($spacings, 4);
