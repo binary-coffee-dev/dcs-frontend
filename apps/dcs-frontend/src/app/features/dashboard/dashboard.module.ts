@@ -14,6 +14,7 @@ import {PaginationComponent} from './pagination';
 import {RecentCommentsComponent} from './recent-comments/recent-comments.component';
 import {LimitTextPipe} from './recent-comments/limit-text.pipe';
 import { FilterComponent } from './filter/filter.component';
+import { RecentPodcastsComponent } from './recent-podcasts/recent-podcasts.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FilterComponent } from './filter/filter.component';
     PaginationComponent,
     RecentCommentsComponent,
     LimitTextPipe,
-    FilterComponent
+    FilterComponent,
+    RecentPodcastsComponent
   ],
   imports: [
     CommonModule,
