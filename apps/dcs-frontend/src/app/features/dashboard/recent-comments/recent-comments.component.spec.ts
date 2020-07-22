@@ -1,12 +1,17 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import {RecentCommentsComponent} from './recent-comments.component';
-import {LimitTextPipe} from './limit-text.pipe';
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
+
+import { UrlUtilsService } from '@dcs-libs/shared';
+import { RecentCommentsComponent } from './recent-comments.component';
+import { LimitTextPipe } from './limit-text.pipe';
 
 class StoreStub {
   select = jest.fn();
+}
+
+class UrlUtilsServiceStub {
 }
 
 describe('RecentCommentsComponent', () => {
@@ -17,7 +22,7 @@ describe('RecentCommentsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [RecentCommentsComponent, LimitTextPipe],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [{provide: Store, useClass: StoreStub}]
+      providers: [{provide: Store, useClass: StoreStub}, {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}]
     })
       .compileComponents();
   }));
