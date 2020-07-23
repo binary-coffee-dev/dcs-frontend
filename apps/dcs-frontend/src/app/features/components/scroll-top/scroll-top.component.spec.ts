@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import {ScrollTopComponent} from './scroll-top.component';
-import {ScrollService} from '../../../core/services';
+import { ScrollTopComponent } from './scroll-top.component';
+import { ScrollService } from '../../../core/services';
 
 class ScrollServiceStub {
   smoothScroll = jest.fn();

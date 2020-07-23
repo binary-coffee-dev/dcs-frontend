@@ -1,10 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {ChangePageSizeAction, Environment, ENVIRONMENT} from '@dcs-libs/shared';
-import {consoleMessage} from './console.log';
+import { ChangePageSizeAction, Environment, ENVIRONMENT } from '@dcs-libs/shared';
+import { consoleMessage } from './console.log';
 
 declare let gtag: (property: string, value: any, configs: any) => {};
 

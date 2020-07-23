@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {MaterialModule} from '@dcs-libs/shared';
-import {UploadFileModalComponent} from './upload-file.modal.component';
+import { MaterialModule } from '@dcs-libs/shared';
+import { UploadFileModalComponent } from './upload-file.modal.component';
 
 @NgModule({
   declarations: [UploadFileModalComponent],

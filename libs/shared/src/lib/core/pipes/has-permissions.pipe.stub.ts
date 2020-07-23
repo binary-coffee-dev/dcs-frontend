@@ -1,8 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
-import {Observable, of} from 'rxjs';
+import { Observable, of } from 'rxjs';
 
-import {Permission} from '../permissions';
+import { Permission } from '../permissions';
 
 @Pipe({
   name: 'hasPermissions'

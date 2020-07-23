@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 
-import {Observable} from 'rxjs';
-import {Store} from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
 
-import {AuthState} from '@dcs-libs/shared';
+import { AuthState } from '@dcs-libs/shared';
 
 @Injectable({
   providedIn: 'root'

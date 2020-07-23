@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
-import {BitcoinComponent} from './bitcoin/bitcoin.component';
-import {EnzonaComponent} from './enzona/enzona.component';
-import {ScrollService} from '../../core/services';
+import { BitcoinComponent } from './bitcoin/bitcoin.component';
+import { EnzonaComponent } from './enzona/enzona.component';
+import { ScrollService } from '../../core/services';
 
 @Component({
   selector: 'app-donate',

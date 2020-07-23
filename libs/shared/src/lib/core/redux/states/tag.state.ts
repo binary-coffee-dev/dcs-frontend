@@ -1,11 +1,11 @@
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {tap} from 'rxjs/operators';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { tap } from 'rxjs/operators';
 
-import {TagService} from '../services';
-import {FetchTagsAction} from '../actions';
-import {PaginationBaseClass} from './pagination-base.class';
-import {initTagStateModel, TagStateModel} from './tag-state.model';
-import {Tag} from '../models';
+import { TagService } from '../services';
+import { FetchTagsAction } from '../actions';
+import { PaginationBaseClass } from './pagination-base.class';
+import { initTagStateModel, TagStateModel } from './tag-state.model';
+import { Tag } from '../models';
 
 @State<TagStateModel>({
   name: 'tag',

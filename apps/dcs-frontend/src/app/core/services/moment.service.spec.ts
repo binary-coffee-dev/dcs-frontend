@@ -1,6 +1,6 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {MomentService} from './moment.service';
+import { MomentService } from './moment.service';
 
 describe('MomentService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

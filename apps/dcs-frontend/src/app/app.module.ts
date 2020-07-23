@@ -30,7 +30,7 @@ import { CliComponent } from './features/components/cli/cli.component';
 import { environment } from '../environments/environment';
 import { LoginButtonComponent } from './features/components/login-button/login-button.component';
 import { createApollo } from './core/graphql';
-import {LoginRequestModalComponent} from './features/components/login-request-modal';
+import { LoginRequestModalComponent } from './features/components/login-request-modal';
 
 @NgModule({
   declarations: [

@@ -1,8 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {Title} from '@angular/platform-browser';
-import {ActivatedRoute} from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
 import {
   ENVIRONMENT,
@@ -14,7 +14,7 @@ import {
   Permissions,
   WINDOW
 } from '@dcs-libs/shared';
-import {MetaTag, MetaTagsService, ResourceService, ScrollService} from '../../core/services';
+import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
 
 @Component({
   selector: 'app-post',

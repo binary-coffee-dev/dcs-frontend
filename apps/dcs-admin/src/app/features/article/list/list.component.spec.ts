@@ -1,11 +1,11 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {ListComponent} from './list.component';
-import {ENVIRONMENT, ROLE_PERMISSION_MAP, rolePermissionMap} from '@dcs-libs/shared';
-import {HasPermissionsPipe} from '@dcs-libs/shared';
+import { ListComponent } from './list.component';
+import { ENVIRONMENT, ROLE_PERMISSION_MAP, rolePermissionMap } from '@dcs-libs/shared';
+import { HasPermissionsPipe } from '@dcs-libs/shared';
 
 class StoreStub {
 }

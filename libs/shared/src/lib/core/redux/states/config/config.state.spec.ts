@@ -1,7 +1,7 @@
-import {TestBed, async} from '@angular/core/testing';
-import {NgxsModule, Store} from '@ngxs/store';
+import { TestBed, async } from '@angular/core/testing';
+import { NgxsModule, Store } from '@ngxs/store';
 
-import {ConfigState} from './config.state';
+import { ConfigState } from './config.state';
 
 describe('Config store', () => {
   let store: Store;

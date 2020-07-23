@@ -1,8 +1,8 @@
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {catchError, take, tap} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { catchError, take, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
-import {PostService} from '../services';
+import { PostService } from '../services';
 import {
   ChangePageSizeAction,
   CreateNotificationAction, FetchPostAction,
@@ -14,9 +14,9 @@ import {
   PreviousPageAction, RefreshPostAction,
   SelectPageAction, SetFiltersAction, RemoveLikeArticle
 } from '../actions';
-import {initPostStateModel, PostStateModel} from './post-state.model';
-import {NotificationType, Post} from '../models';
-import {PaginationBaseClass, ResponseData, StateBase, Where} from './pagination-base.class';
+import { initPostStateModel, PostStateModel } from './post-state.model';
+import { NotificationType, Post } from '../models';
+import { PaginationBaseClass, ResponseData, StateBase, Where } from './pagination-base.class';
 
 @State<PostStateModel>({
   name: 'post',

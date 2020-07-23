@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Store} from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Store } from '@ngxs/store';
 
-import {FetchPostAction} from '@dcs-libs/shared';
+import { FetchPostAction } from '@dcs-libs/shared';
 
 @Injectable()
 export class PostGuard implements CanActivate {

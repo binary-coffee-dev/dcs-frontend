@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {Actions} from '@ngxs/store';
+import { Actions } from '@ngxs/store';
 
-import {LoadingComponent} from './loading.component';
+import { LoadingComponent } from './loading.component';
 
 class ActionsStub {}
 

@@ -1,8 +1,8 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {Apollo} from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
 
-import {CommentService} from './comment.service';
+import { CommentService } from './comment.service';
 
 class ApolloStub {
 }

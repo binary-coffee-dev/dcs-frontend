@@ -1,7 +1,7 @@
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {Permission, RoleEnum} from '../permissions';
-import {HasPermissionsPipe} from './has-permissions.pipe';
+import { Permission, RoleEnum } from '../permissions';
+import { HasPermissionsPipe } from './has-permissions.pipe';
 
 describe('HasPermissionsPipe', () => {
   let pipe: HasPermissionsPipe;

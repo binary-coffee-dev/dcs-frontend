@@ -1,8 +1,8 @@
-import {TestBed, inject} from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {PostGuard} from './post.guard';
+import { PostGuard } from './post.guard';
 
 class StoreStub {
 }

@@ -1,10 +1,10 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
-import {MatDialog} from '@angular/material';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
-import {Subject, timer} from 'rxjs';
-import {Store} from '@ngxs/store';
+import { Subject, timer } from 'rxjs';
+import { Store } from '@ngxs/store';
 
 import {
   AuthState,
@@ -17,8 +17,8 @@ import {
   UrlUtilsService,
   RoleEnum
 } from '@dcs-libs/shared';
-import {MomentService, ScrollService} from '../../../core/services';
-import {LoginRequestModalComponent} from '../../components/login-request-modal';
+import { MomentService, ScrollService } from '../../../core/services';
+import { LoginRequestModalComponent } from '../../components/login-request-modal';
 
 @Component({
   selector: 'app-comments',

@@ -1,11 +1,11 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {ENVIRONMENT, WINDOW} from '@dcs-libs/shared';
-import {AuthComponent} from './auth.component';
+import { ENVIRONMENT, WINDOW } from '@dcs-libs/shared';
+import { AuthComponent } from './auth.component';
 
 class StoreStub {
 }

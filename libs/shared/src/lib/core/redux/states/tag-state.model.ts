@@ -1,5 +1,5 @@
-import {Tag} from '../models';
-import {StateBase} from './pagination-base.class';
+import { Tag } from '../models';
+import { StateBase } from './pagination-base.class';
 
 export interface TagStateModel extends StateBase {
   elements: Tag[];

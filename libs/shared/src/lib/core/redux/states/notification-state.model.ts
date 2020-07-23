@@ -1,4 +1,4 @@
-import {Notification} from '../models';
+import { Notification } from '../models';
 
 export interface NotificationStateModel {
   notifications: Notification[];

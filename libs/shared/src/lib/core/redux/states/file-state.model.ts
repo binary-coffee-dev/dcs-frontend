@@ -1,5 +1,5 @@
-import {File} from '../models';
-import {StateBase} from './pagination-base.class';
+import { File } from '../models';
+import { StateBase } from './pagination-base.class';
 
 export interface FileStateModel extends StateBase {
   elements: File[];

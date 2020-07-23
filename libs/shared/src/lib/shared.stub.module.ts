@@ -1,9 +1,9 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {WINDOW, windowFactory} from './core/models';
-import {HasPermissionsPipeStub} from './core/pipes';
-import {ROLE_PERMISSION_MAP, rolePermissionMap} from './core/permissions';
+import { WINDOW, windowFactory } from './core/models';
+import { HasPermissionsPipeStub } from './core/pipes';
+import { ROLE_PERMISSION_MAP, rolePermissionMap } from './core/permissions';
 
 @NgModule({
   imports: [CommonModule],
