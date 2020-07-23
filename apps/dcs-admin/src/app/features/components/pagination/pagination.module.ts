@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {MaterialModule} from '@dcs-libs/shared';
-import {PaginationComponent} from './pagination.component';
+import { MaterialModule } from '@dcs-libs/shared';
+import { PaginationComponent } from './pagination.component';
 
 @NgModule({
   declarations: [PaginationComponent],

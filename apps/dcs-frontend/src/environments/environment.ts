@@ -1,4 +1,4 @@
-import {Environment} from '@dcs-libs/shared';
+import { Environment } from '@dcs-libs/shared';
 
 export const environment = {
   apiUrl: 'http://localhost:1337/',

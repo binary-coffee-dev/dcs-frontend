@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {Store} from '@ngxs/store';
-import {Observable} from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
-import {NextPageAction, PostState, PreviousPageAction} from '@dcs-libs/shared';
-import {ScrollService} from '../../../core/services';
+import { NextPageAction, PostState, PreviousPageAction } from '@dcs-libs/shared';
+import { ScrollService } from '../../../core/services';
 
 @Component({
   selector: 'app-pagination',

@@ -1,9 +1,9 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import {truncate} from 'lodash';
+import { truncate } from 'lodash';
 
-import {Post} from '@dcs-libs/shared';
-import {MomentService, ResourceService} from '../../../core/services';
+import { Post } from '@dcs-libs/shared';
+import { MomentService, ResourceService } from '../../../core/services';
 
 @Component({
   selector: 'app-post-item',

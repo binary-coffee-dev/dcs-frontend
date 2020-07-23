@@ -1,5 +1,5 @@
-import {Post} from '../models';
-import {StateBase} from './pagination-base.class';
+import { Post } from '../models';
+import { StateBase } from './pagination-base.class';
 
 export interface PostStateModel extends StateBase {
   elements: Post[];

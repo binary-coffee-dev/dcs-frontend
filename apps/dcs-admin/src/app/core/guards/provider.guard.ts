@@ -1,11 +1,11 @@
-import {Inject, Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router} from '@angular/router';
+import { Inject, Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Store} from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Store } from '@ngxs/store';
 
-import {LoginWithProviderAction, WINDOW} from '@dcs-libs/shared';
+import { LoginWithProviderAction, WINDOW } from '@dcs-libs/shared';
 
 @Injectable({
   providedIn: 'root'

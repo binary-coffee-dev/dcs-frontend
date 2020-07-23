@@ -1,9 +1,9 @@
-import {TestBed, inject} from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
+import { TestBed, inject } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {AuthGuard} from './auth.guard';
+import { AuthGuard } from './auth.guard';
 
 class StoreStub {
 }

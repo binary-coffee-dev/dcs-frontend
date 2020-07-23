@@ -1,11 +1,11 @@
-import {TestBed, async} from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {ENVIRONMENT} from '@dcs-libs/shared';
-import {AppComponent} from './app.component';
+import { ENVIRONMENT } from '@dcs-libs/shared';
+import { AppComponent } from './app.component';
 
 class StoreStub {
   dispatch = jest.fn();

@@ -1,11 +1,11 @@
-import {TestBed} from '@angular/core/testing';
-import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import { TestBed } from '@angular/core/testing';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import {Store} from '@ngxs/store';
-import {Observable, of} from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Observable, of } from 'rxjs';
 
-import {FetchPostsAction, SetFiltersAction, Where} from '@dcs-libs/shared';
-import {PostsGuard} from './posts.guard';
+import { FetchPostsAction, SetFiltersAction, Where } from '@dcs-libs/shared';
+import { PostsGuard } from './posts.guard';
 
 class StoreStub {
   dispatch = jest.fn();

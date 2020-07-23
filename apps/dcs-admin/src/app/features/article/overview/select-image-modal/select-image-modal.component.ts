@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
 import {
   ChangeFilesPageAction,

@@ -1,10 +1,10 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MatDialogRef} from '@angular/material/dialog';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogRef } from '@angular/material/dialog';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {UploadFileModalComponent} from './upload-file.modal.component';
+import { UploadFileModalComponent } from './upload-file.modal.component';
 
 
 class StoreStub {

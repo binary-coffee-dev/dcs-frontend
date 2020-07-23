@@ -1,6 +1,6 @@
-import {State, Action, Selector, StateContext, createSelector} from '@ngxs/store';
+import { State, Action, Selector, StateContext, createSelector } from '@ngxs/store';
 
-import {SetConfigAction} from './config.actions';
+import { SetConfigAction } from './config.actions';
 
 export interface ConfigStateModel {
   configurations: {[key: string]: any};

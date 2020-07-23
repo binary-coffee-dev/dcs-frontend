@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {Comment, CommentState} from '@dcs-libs/shared';
+import { Comment, CommentState, UrlUtilsService } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-recent-comments',
@@ -13,12 +13,17 @@ export class RecentCommentsComponent implements OnInit {
 
   comments: Comment[] = [];
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private url: UrlUtilsService) {
   }
 
   ngOnInit(): void {
     this.store.select(CommentState.recentComments).subscribe(comments => {
       this.comments = comments || [];
     });
+  }
+
+  getUserAvatar(user) {
+    console.log(user);
+    return this.url.getUserImage(user);
   }
 }

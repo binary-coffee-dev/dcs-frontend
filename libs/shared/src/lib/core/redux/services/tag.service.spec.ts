@@ -1,7 +1,7 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {TagService} from './tag.service';
-import {Apollo} from 'apollo-angular';
+import { TagService } from './tag.service';
+import { Apollo } from 'apollo-angular';
 
 class ApolloStub {
 }

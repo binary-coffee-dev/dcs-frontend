@@ -1,8 +1,8 @@
-import {Inject, Pipe, PipeTransform} from '@angular/core';
-import {Store} from '@ngxs/store';
+import { Inject, Pipe, PipeTransform } from '@angular/core';
+import { Store } from '@ngxs/store';
 
-import {AuthState} from '../redux/states';
-import {Permission, ROLE_PERMISSION_MAP, RoleEnum} from '../permissions';
+import { AuthState } from '../redux/states';
+import { Permission, ROLE_PERMISSION_MAP, RoleEnum } from '../permissions';
 
 @Pipe({
   name: 'hasPermissions'

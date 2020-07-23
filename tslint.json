@@ -75,7 +75,8 @@
           }
         ]
       }
-    ]
+    ],
+    "whitespace": [true, "check-module"]
   },
   "rulesDirectory": [
     "codelyzer",

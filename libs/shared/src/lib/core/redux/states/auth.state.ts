@@ -1,9 +1,9 @@
-import {catchError, map, take, tap} from 'rxjs/operators';
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {of} from 'rxjs';
+import { catchError, map, take, tap } from 'rxjs/operators';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { of } from 'rxjs';
 
-import {AuthStateModel, initAuthStateModel} from './auth-state.model';
-import {AuthService} from '../services/auth.service';
+import { AuthStateModel, initAuthStateModel } from './auth-state.model';
+import { AuthService } from '../services/auth.service';
 import {
   AuthErrorAction,
   LoginAction,
@@ -13,9 +13,9 @@ import {
   UpdateMeAction,
   UpdateMyAvatarAction
 } from '../actions';
-import {AuthError, User} from '../models';
-import {LoginResponseModel} from '../models/login-response.model';
-import {RoleEnum} from '../../permissions';
+import { AuthError, User } from '../models';
+import { LoginResponseModel } from '../models/login-response.model';
+import { RoleEnum } from '../../permissions';
 
 @State<AuthStateModel>({
   name: 'auth',

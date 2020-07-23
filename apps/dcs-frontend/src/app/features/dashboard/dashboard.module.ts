@@ -1,19 +1,20 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {LazyLoadImageModule, scrollPreset} from 'ng-lazyload-image';
+import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
 
-import {TagsModule} from '@dcs-libs/shared';
-import {DashboardComponent} from './dashboard.component';
-import {DashboardRoutingModule} from './dashboard-routing.module';
-import {MaterialModule} from '../../core/material';
-import {PostItemComponent} from './post-item/post-item.component';
-import {PostsGuard} from './guards';
-import {ServicesModule} from '../../core/services';
-import {PaginationComponent} from './pagination';
-import {RecentCommentsComponent} from './recent-comments/recent-comments.component';
-import {LimitTextPipe} from './recent-comments/limit-text.pipe';
+import { TagsModule } from '@dcs-libs/shared';
+import { DashboardComponent } from './dashboard.component';
+import { DashboardRoutingModule } from './dashboard-routing.module';
+import { MaterialModule } from '../../core/material';
+import { PostItemComponent } from './post-item/post-item.component';
+import { PostsGuard } from './guards';
+import { ServicesModule } from '../../core/services';
+import { PaginationComponent } from './pagination';
+import { RecentCommentsComponent } from './recent-comments/recent-comments.component';
+import { LimitTextPipe } from './recent-comments/limit-text.pipe';
 import { FilterComponent } from './filter/filter.component';
+import { RecentPodcastsComponent } from './recent-podcasts/recent-podcasts.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FilterComponent } from './filter/filter.component';
     PaginationComponent,
     RecentCommentsComponent,
     LimitTextPipe,
-    FilterComponent
+    FilterComponent,
+    RecentPodcastsComponent
   ],
   imports: [
     CommonModule,

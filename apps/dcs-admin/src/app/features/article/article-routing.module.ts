@@ -1,9 +1,9 @@
-import {RouterModule, Routes} from '@angular/router';
-import {NgModule} from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
-import {ListComponent} from './list/list.component';
-import {OverviewComponent} from './overview/overview.component';
-import {PostGuard} from '../../core/guards/post.guard';
+import { ListComponent } from './list/list.component';
+import { OverviewComponent } from './overview/overview.component';
+import { PostGuard } from '../../core/guards/post.guard';
 
 const routes: Routes = [
   {

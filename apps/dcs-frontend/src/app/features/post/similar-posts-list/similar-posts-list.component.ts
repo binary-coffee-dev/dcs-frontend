@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FetchSimilarPostsAction, Post, PostState} from '@dcs-libs/shared';
-import {Store} from '@ngxs/store';
+import { Component, Input, OnInit } from '@angular/core';
+import { FetchSimilarPostsAction, Post, PostState } from '@dcs-libs/shared';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-similar-posts-list',

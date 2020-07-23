@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {LoginRequestModalComponent} from './login-request-modal.component';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { LoginRequestModalComponent } from './login-request-modal.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('LoginRequestModalComponent', () => {
   let component: LoginRequestModalComponent;

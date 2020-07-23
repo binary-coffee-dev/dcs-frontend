@@ -1,6 +1,6 @@
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {catchError, tap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { catchError, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import {
   ChangeFilesPageAction,
@@ -10,10 +10,10 @@ import {
   PreviousFilesPageAction,
   UploadFileAction
 } from '../actions';
-import {File, NotificationType} from '../models';
-import {FileStateModel, initFileStateModel} from './file-state.model';
-import {PaginationBaseClass, ResponseData, StateBase} from './pagination-base.class';
-import {FileService} from '../services';
+import { File, NotificationType } from '../models';
+import { FileStateModel, initFileStateModel } from './file-state.model';
+import { PaginationBaseClass, ResponseData, StateBase } from './pagination-base.class';
+import { FileService } from '../services';
 
 @State<FileStateModel>({
   name: 'file',

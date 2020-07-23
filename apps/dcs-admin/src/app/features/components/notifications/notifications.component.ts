@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {CloseNotificationAction, Notification, NotificationState} from '@dcs-libs/shared';
+import { CloseNotificationAction, Notification, NotificationState } from '@dcs-libs/shared';
 
 
 @Component({

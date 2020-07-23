@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {MatDialogRef} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {FileState, UploadFileAction} from '@dcs-libs/shared';
+import { FileState, UploadFileAction } from '@dcs-libs/shared';
 
 
 @Component({

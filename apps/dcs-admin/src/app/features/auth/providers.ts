@@ -1,4 +1,4 @@
-import {Provider} from '@dcs-libs/shared';
+import { Provider } from '@dcs-libs/shared';
 
 export const PROVIDERS = [
   {

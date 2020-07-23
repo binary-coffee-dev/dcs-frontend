@@ -1,5 +1,5 @@
-import {File} from './file.model';
-import {RoleEnum} from '../../permissions';
+import { File } from './file.model';
+import { RoleEnum } from '../../permissions';
 
 export interface User {
   id: string;

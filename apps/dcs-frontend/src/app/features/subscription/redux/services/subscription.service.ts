@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {map} from 'rxjs/operators';
-import {Apollo} from 'apollo-angular';
-import {Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Apollo } from 'apollo-angular';
+import { Observable } from 'rxjs';
 
-import {SUBSCRIBE_MUTATION, VERIFY_SUBSCRIPTION_MUTATION} from '../../../../core/graphql/mutations';
-import {Subscription} from '../models';
+import { SUBSCRIBE_MUTATION, VERIFY_SUBSCRIPTION_MUTATION } from '../../../../core/graphql/mutations';
+import { Subscription } from '../models';
 
 @Injectable({
   providedIn: 'root'
