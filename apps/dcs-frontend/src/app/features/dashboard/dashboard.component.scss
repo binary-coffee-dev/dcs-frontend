@@ -6,7 +6,6 @@
     margin-top: -1px; 
 
     .posts-container {
-      padding: map-get($map: $spacings, $key: 1) 0 0 map-get($map: $spacings, $key: 1);
     
       .post-element-content {
         margin-top: -9px;
