@@ -1,1 +1,33 @@
-<p>recent-podcasts works!</p>
+<div class="container code-none">
+  <div fxLayout="column" class="comment-class code-comment-1">
+    <span>/*</span>
+    <span>* Podcasts de la comunidad,</span>
+    <span>* para la comunidad,</span>
+    <span>* aprobeche su tiempo</span>
+    <span>* escuchando de tecnología</span>
+    <span>*/</span>
+  </div>
+  <div [fxHide.xs]="true" [fxHide.sm]="true">
+    <span class="code-1">class</span>
+    <span> EspacioBinario</span>
+    <span> {{ ' {' }}</span>
+  </div>
+  <div class="link-container" fxLayout="column" fxLayoutAlign="left">
+    <ng-container *ngFor="let podcast of podcasts">
+      <a class="podcast-link" fxLayout="column">  
+        <span class="code-comment-1">// {{ podcast?.date }}</span>
+        <div fxLayout="row">
+          <span class="podcast-name">
+            <mat-icon
+              mat-font-icon="fa-icon"
+              class="fa fa-file-audio-o"
+            ></mat-icon>
+            {{ podcast?.name }}
+          </span>
+          <b class="code-comment-1"> // {{ podcast?.duration }}</b>
+        </div>
+      </a>
+    </ng-container>
+  </div>
+  <div [fxHide.xs]="true" [fxHide.sm]="true">{{ '}' }}</div>
+</div>
