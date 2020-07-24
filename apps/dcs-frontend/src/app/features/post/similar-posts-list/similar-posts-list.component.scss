@@ -3,10 +3,7 @@
 :host {
   .container {
     color: map_get($md-grey, 500);
-    padding: map_get($spacings, 4);
-    border-radius: 0 map_get($radius, 2) map_get($radius, 2) 0;
-    border-right: 1px solid map_get($md-primary, 100);
-    border-bottom: 1px solid map_get($md-primary, 100);
+    padding: map_get($spacings, 4); 
 
     a {
       margin: map_get($spacings, 1) map_get($spacings, 4) 0 map_get($spacings, 4);

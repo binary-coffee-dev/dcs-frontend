@@ -3,10 +3,13 @@
 :host {
   .container {
     min-height: calc(100vh - 248px);
-    margin-top: -1px;
+    margin-top: -1px; 
 
-    .post-element-content {
-      margin-top: -9px;  
+    .posts-container {
+    
+      .post-element-content {
+        margin-top: -9px;
+      }
     }
 
     .rows {
