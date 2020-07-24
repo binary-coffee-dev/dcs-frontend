@@ -1,4 +1,4 @@
-<div class="container code-none">
+<div class="container code-none"  fxHide.xs fxHide.sm>
   <div fxLayout="column" class="comment-class code-comment-1">
     <span>/*</span>
     <span>* Podcasts de la comunidad,</span>
@@ -7,7 +7,7 @@
     <span>* escuchando de tecnología</span>
     <span>*/</span>
   </div>
-  <div [fxHide.xs]="true" [fxHide.sm]="true">
+  <div>
     <span class="code-1">class</span>
     <span> EspacioBinario</span>
     <span> {{ ' {' }}</span>
@@ -26,5 +26,5 @@
       </a>
     </ng-container>
   </div>
-  <div [fxHide.xs]="true" [fxHide.sm]="true">{{ '}' }}</div>
+  <div>{{ '}' }}</div>
 </div>
