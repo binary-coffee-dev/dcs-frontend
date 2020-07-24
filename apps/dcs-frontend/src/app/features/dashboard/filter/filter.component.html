@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" fxFlex="100">
   <form [formGroup]="filterForm"
         (submit)="changeFilter()"
         fxLayout="row wrap">
@@ -6,7 +6,7 @@
                     fxFlex="100">
       <mat-label class="code-none">
         <span class="code-1"> function </span>
-        <span class="code-var"> Filtrar() </span>
+        <span> Filtrar( <span class="code-var">Título</span> ) </span>
       </mat-label>
       <input matInput
              (keyup)="filterChange()"

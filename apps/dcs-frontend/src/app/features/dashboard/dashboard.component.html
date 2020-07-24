@@ -1,19 +1,26 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
-  <div>
+  <div fxFlex="23">
     <app-recent-podcasts></app-recent-podcasts>
   </div>
-  <div class="posts-container" fxFlex="60" fxFlex.sm="100" fxFlex.xs="100">
-    <app-post-item
+
+  <div class="posts-container" fxFlex="52" fxFlex.sm="100" fxFlex.xs="100">
+    <div class="filter">
+      <app-filter fxHide.sm fxHide.xs></app-filter>
+    </div>
+
+    <div class="post-element-content">
+      <app-post-item
       class="post-element"
       *ngFor="let post of posts; let i = index"
       [number]="i + 1 + currentPage * pageSize"
       [post]="post"
     >
     </app-post-item>
+    </div>
     <app-pagination></app-pagination>
   </div>
-  <div>
-    <app-filter fxHide.sm fxHide.xs></app-filter>
+
+  <div fxFlex="25">
     <app-recent-comments
       class="recent-comments"
       fxHide.sm

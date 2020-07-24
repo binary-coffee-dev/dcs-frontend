@@ -1,0 +1,42 @@
+@import 'libs/shared/src/theme';
+
+:host {
+  .container {
+    color: map_get($md-grey, 500);
+    padding: map_get($spacings, 4);
+    max-width: 300px;
+
+    .comment-class{
+      font-size: 0.85rem; 
+    }
+
+    .link-container {
+      padding: map_get($spacings, 2);
+
+      .podcast-link {
+        padding: map_get($spacings, 2);
+        border-radius: map_get($radius, 3);
+        margin-bottom: map_get($spacings, 1);
+        font-size: 0.85rem;
+        cursor: pointer;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+          background-color: map_get($md-primary, 50);
+        }
+
+        .podcast-name {
+          color: map_get($md-primary, 500);
+          padding-right: map-get($map: $spacings, $key: 1);
+        }
+        mat-icon {
+          height: 10px;
+          width: 10px;
+        }
+      }
+    }
+  }
+}
