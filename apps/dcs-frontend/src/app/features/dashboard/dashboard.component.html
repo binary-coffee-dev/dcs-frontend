@@ -1,11 +1,11 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center start">
-  <div fxFlex="23">
+  <div fxFlex="23"  fxHide.xs fxHide.sm>
     <app-recent-podcasts></app-recent-podcasts>
   </div>
 
   <div class="posts-container" fxFlex="52" fxFlex.sm="100" fxFlex.xs="100">
     <div class="filter">
-      <app-filter fxHide.sm fxHide.xs></app-filter>
+      <app-filter></app-filter>
     </div>
 
     <div class="post-element-content">
@@ -20,7 +20,7 @@
     <app-pagination></app-pagination>
   </div>
 
-  <div fxFlex="25">
+  <div fxFlex="25"  fxHide.xs fxHide.sm>
     <app-recent-comments
       class="recent-comments"
       fxHide.sm
