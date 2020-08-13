@@ -1,8 +1,7 @@
-@import "libs/shared/src/theme";
+@import 'libs/shared/src/theme';
 
 :host {
   .post-container {
-
     .post-in-container {
       background-color: map_get($md-grey, A100);
       padding: map_get($spacings, 4);
@@ -45,15 +44,21 @@
         margin-bottom: map_get($spacings, 4);
       }
 
-      app-similar-posts-list.inside {
-        ::ng-deep.container {
-          border: none;
-          padding: 10px 0 0 0;
+      .app-similar-post-list-inside-container {
+        margin-bottom: map-get($map: $spacings, $key: 6);
 
-          .link-container {
-            a {
-              max-width: 100%;
-              font-size: 1rem;
+        app-similar-posts-list {
+          &.inside {
+            ::ng-deep.container {
+              border: none;
+              padding: 10px 0 0 0;
+
+              .link-container {
+                a {
+                  max-width: 100%;
+                  font-size: 1rem;
+                }
+              }
             }
           }
         }
