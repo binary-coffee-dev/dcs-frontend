@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MarkdownModule } from 'ngx-markdown';
+import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
 
 import { MaterialModule, SharedModule, TagsModule } from '@dcs-libs/shared';
 import { PostComponent } from './post.component';
@@ -28,6 +29,7 @@ import { PostInfoComponent } from './post-info/post-info.component';
     MaterialModule,
     MarkdownModule.forRoot(),
     ServicesModule,
+    LazyLoadImageModule.forRoot({preset: scrollPreset}),
     TagsModule,
     SharedModule
   ],

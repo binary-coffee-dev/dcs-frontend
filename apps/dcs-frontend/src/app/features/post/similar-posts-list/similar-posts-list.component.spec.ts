@@ -1,14 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 
 import { Store } from '@ngxs/store';
 import { of } from 'rxjs';
 
 import { MaterialModule } from '@dcs-libs/shared';
 import { SimilarPostsListComponent } from './similar-posts-list.component';
+import { ResourceService } from '../../../core/services';
 
 class StoreStub {
   select = jest.fn();
+}
+
+class ResourceServiceStub {
 }
 
 describe('SimilarPostsListComponent', () => {
@@ -19,7 +25,11 @@ describe('SimilarPostsListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SimilarPostsListComponent],
-      providers: [{provide: Store, useClass: StoreStub}],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        { provide: Store, useClass: StoreStub },
+        { provide: ResourceService, useClass: ResourceServiceStub }
+      ],
       imports: [MaterialModule, RouterTestingModule]
     })
       .compileComponents();

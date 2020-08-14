@@ -1,15 +1,15 @@
-<div class="post-container"
-     fxLayoutAlign="center start">
-  <div class="post-in-container"
-       fxFlex="60"
-       fxFlex.xs="100"
-       fxFlex.sm="100">
+<div class="post-container" fxLayoutAlign="center start">
+  <div class="post-in-container" fxFlex="60" fxFlex.xs="100" fxFlex.sm="100">
     <h1 fxLayout="row">
-      <span fxFlex="100">{{post?.title}}</span>
-      <button mat-button
-              *ngIf="([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)"
-              matTooltip="Editar artículo"
-              (click)="editPost(post)">
+      <span fxFlex="100">{{ post?.title }}</span>
+      <button
+        mat-button
+        *ngIf="
+          ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)
+        "
+        matTooltip="Editar artículo"
+        (click)="editPost(post)"
+      >
         <i class="fa fa-edit"></i>
       </button>
     </h1>
@@ -20,44 +20,45 @@
       <app-tags [tags]="post?.tags"></app-tags>
     </div>
 
-    <div class="share-button-xs"
-         [fxHide]="true"
-         [fxShow.xs]="true"
-         [fxShow.sm]="true"
-         fxLayout="row"
-         fxLayoutAlign="center">
+    <div
+      class="share-button-xs"
+      [fxHide]="true"
+      [fxShow.xs]="true"
+      [fxShow.sm]="true"
+      fxLayout="row"
+      fxLayoutAlign="center"
+    >
       <app-share-buttons></app-share-buttons>
     </div>
 
     <div class="image-container">
-      <img *ngIf="post?.banner && post?.banner?.url"
-           [src]="resource.addApiUrl(post?.banner?.url)"
-           alt="">
+      <img
+        *ngIf="post?.banner && post?.banner?.url"
+        [src]="resource.addApiUrl(post?.banner?.url)"
+        alt=""
+      />
     </div>
 
     <div class="markdown-container">
-      <markdown [data]="post?.body"
-                katex
-                lineNumbers></markdown>
+      <markdown [data]="post?.body" katex lineNumbers></markdown>
     </div>
-
-    <app-similar-posts-list class="inside"
-                            [postId]="post?.id"
-                            [fxHide]="true"
-                            [fxShow.xs]="true"
-                            [fxShow.sm]="true"></app-similar-posts-list>
 
     <app-post-info [post]="post"></app-post-info>
 
-    <app-comments *ngIf="post"
-                  [post]="post"></app-comments>
+    <div class="app-similar-post-list-inside-container">
+      <app-similar-posts-list
+        [inside]="true"
+        class="inside"
+        [postId]="post?.id"
+      ></app-similar-posts-list>
+    </div>
+    <app-comments *ngIf="post" [post]="post"></app-comments>
   </div>
-  <div>
-    <app-share-buttons class="share-buttons-side"
-                       [fxHide.xs]="true"
-                       [fxHide.sm]="true"></app-share-buttons>
-    <app-similar-posts-list [postId]="post?.id"
-                            [fxHide.xs]="true"
-                            [fxHide.sm]="true"></app-similar-posts-list>
+  <div fxFlex="25" fxHide.xs fxHide.xs>
+    <app-share-buttons class="share-buttons-side"></app-share-buttons>
+    <app-similar-posts-list
+      class="outside"
+      [postId]="post?.id"
+    ></app-similar-posts-list>
   </div>
 </div>
