@@ -23,7 +23,6 @@ export class RecentCommentsComponent implements OnInit {
   }
 
   getUserAvatar(user) {
-    console.log(user);
     return this.url.getUserImage(user);
   }
 }
