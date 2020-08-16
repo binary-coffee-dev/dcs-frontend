@@ -1,5 +1,15 @@
-<div fxLayout="row wrap">
-    <a>
+<div class="podcast-container" fxLayout="row wrap" fxLayoutAlign="center center">
+    <a
+      class="podcast-link"      
+      [routerLink]="'/podcast/espacio-binario'"
+      fxLayoutAling="center center"
+    >
+      <div class="podcast-image-container">
+        <img src="/assets/images/banner-default.jpg" />
+      </div>
+      <div class="podcast-title-container" fxLayoutAlign="center center">
         Espacio Binario
+      </div>
     </a>
-</div>
+
+  </div>
