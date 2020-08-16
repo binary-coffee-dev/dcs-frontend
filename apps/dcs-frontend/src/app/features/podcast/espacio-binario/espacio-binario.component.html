@@ -1,1 +1,16 @@
-<p>espacio-binario works!</p>
+<div
+  class="podcast-container"
+  fxLayout="row wrap"
+  fxLayoutAlign="center center"
+>
+  <ng-container *ngFor="let podcast of podcasts">
+    <a class="podcast-link" fxLayoutAling="center center" [href]="podcast.link">
+      <div class="podcast-image-container">
+        <img [src]="podcast.imgUrl" />
+      </div>
+      <div class="podcast-title-container" fxLayoutAlign="center center">
+        {{ podcast.name }}
+      </div>
+    </a>
+  </ng-container>
+</div>
