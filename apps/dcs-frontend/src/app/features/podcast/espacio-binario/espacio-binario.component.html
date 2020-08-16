@@ -1,16 +1,29 @@
-<div
-  class="podcast-container"
-  fxLayout="row wrap"
-  fxLayoutAlign="center center"
->
-  <ng-container *ngFor="let podcast of podcasts">
-    <a class="podcast-link" fxLayoutAling="center center" [href]="podcast.link">
-      <div class="podcast-image-container">
-        <img [src]="podcast.imgUrl" />
-      </div>
-      <div class="podcast-title-container" fxLayoutAlign="center center">
-        {{ podcast.name }}
-      </div>
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayoutAlign="center center">
+    <a [routerLink]="'/podcast'" class="more-podcast">
+      <i class="fa fa-arrow-left"></i> Mas podcasts de tecnologia
     </a>
-  </ng-container>
+  </div>
+
+  <div
+    class="podcast-container"
+    fxLayout="row wrap"
+    fxLayoutAlign="center center"
+  >
+    <ng-container *ngFor="let podcast of podcasts">
+      <a
+        class="podcast-link"
+        fxLayoutAling="center center"
+        [href]="podcast.link"
+      >
+        <div class="podcast-image-container">
+          <img [src]="podcast.imgUrl" />
+        </div>
+        <div class="podcast-title-container" fxLayout="column">
+          <span class="podcast-title">{{ podcast.name }}</span>  
+          <span class="code-comment-1">// {{ podcast.duration }}</span>
+        </div>
+      </a>
+    </ng-container>
+  </div>
 </div>

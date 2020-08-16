@@ -1,43 +1,76 @@
 @import 'libs/shared/src/theme';
 
 :host {
-  .podcast-container {
-    padding: map-get($map: $spacings, $key: 4) 0 0
-      map-get($map: $spacings, $key: 4);
+  .container {
+    padding-top: map-get($map: $spacings, $key: 4);
 
-    .podcast-link {
-      background-color: map-get($map: $md-grey, $key: A100);
-      margin: 0 map-get($map: $spacings, $key: 4)
-        map-get($map: $spacings, $key: 4) 0;
-      width: 210px;
-      font-size: 0.9rem;
+    .more-podcast {
+      color: map-get($map: $md-primary, $key: 300);
       text-decoration: none;
-      color: map_get($md-primary, 500);
-      border: 1px solid map-get($map: $md-primary, $key: 100);
-      border-radius: map-get($map: $radius, $key: 2);
 
       &:hover {
-        border: 1px solid map-get($map: $md-primary, $key: 500);
-      }
-
-      .podcast-image-container {
-        width: 210px;
-        height: 110px;
-        min-width: 210px;
-
-        img {
-          border-radius: map-get($map: $radius, $key: 2)
-            map-get($map: $radius, $key: 2) 0 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
+        color: map-get($map: $md-primary, $key: 500);
+        i {
+          animation-play-state: running;
         }
       }
-      .podcast-title-container {
-        text-align: center;
-        text-transform: uppercase;
-        padding: map-get($map: $spacings, $key: 1);
+
+      i {
+        margin-right: map-get($map: $spacings, $key: 1);
+        animation: atent 0.3s infinite alternate;
+        animation-play-state: paused;
+      }
+
+      @keyframes atent {
+        0% {
+          transform: translateX(0px);
+        }
+        100% {
+          transform: translateX(5px);
+        }
+      }
+    }
+
+    .podcast-container {
+      padding: map-get($map: $spacings, $key: 4) 0 0
+        map-get($map: $spacings, $key: 4);
+
+      .podcast-link {
+        background-color: map-get($map: $md-grey, $key: A100);
+        margin: 0 map-get($map: $spacings, $key: 4)
+          map-get($map: $spacings, $key: 4) 0;
+        width: 210px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        color: map_get($md-primary, 500);
+        border: 1px solid map-get($map: $md-primary, $key: 100);
+        border-radius: map-get($map: $radius, $key: 2);
+
+        &:hover {
+          border: 1px solid map-get($map: $md-primary, $key: 500);
+        }
+
+        .podcast-image-container {
+          width: 210px;
+          height: 110px;
+          min-width: 210px;
+
+          img {
+            border-radius: map-get($map: $radius, $key: 2)
+              map-get($map: $radius, $key: 2) 0 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+        .podcast-title-container {
+          padding: map-get($map: $spacings, $key: 1);
+
+          .podcast-title {
+            text-transform: uppercase; 
+          }
+        }
       }
     }
   }
