@@ -7,7 +7,7 @@
     max-width: 300px;
 
     .comment-class{
-      font-size: 0.85rem; 
+      font-size: 0.85rem;
     }
 
     .link-container {
@@ -19,6 +19,7 @@
         margin-bottom: map_get($spacings, 1);
         font-size: 0.85rem;
         cursor: pointer;
+        text-decoration: none;
 
         &:last-of-type {
           margin-bottom: 0;
