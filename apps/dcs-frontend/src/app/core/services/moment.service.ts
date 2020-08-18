@@ -13,4 +13,9 @@ export class MomentService {
   timeFromDate(date) {
     return moment(date).fromNow();
   }
+
+  secondsToDuration(seconds: number): string {
+    const milliseconds = seconds * 1000;
+    return moment(new Date().getTime() + milliseconds).fromNow().replace('in ', '');
+  }
 }
