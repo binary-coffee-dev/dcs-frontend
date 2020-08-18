@@ -2,25 +2,24 @@ import { TestBed, async } from '@angular/core/testing';
 
 import { NgxsModule, Store } from '@ngxs/store';
 
-import { PodcastState, PodcastStateModel } from './podcast.state';
-import { PodcastAction } from './podcast.actions';
+import { PodcastService } from '@dcs-libs/shared';
+import { PodcastState } from './podcast.state';
+
+class PodcastServiceStub {
+}
 
 describe('Podcast store', () => {
   let store: Store;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot([PodcastState])]
+      imports: [NgxsModule.forRoot([PodcastState])],
+      providers: [{provide: PodcastService, useClass: PodcastServiceStub}]
     }).compileComponents();
     store = TestBed.get(Store);
   }));
 
-  it('should create an action and add an item', () => {
-    const expected: PodcastStateModel = {
-      items: ['item-1']
-    };
-    store.dispatch(new PodcastAction('item-1'));
-    const actual = store.selectSnapshot(PodcastState.getState);
-    expect(actual).toEqual(expected);
+  it('should be created', () => {
+    expect(store).toBeTruthy();
   });
 
 });
