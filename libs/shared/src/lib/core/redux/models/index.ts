@@ -8,3 +8,4 @@ export * from './post-connection.model';
 export * from './provider.model';
 export * from './comment.model';
 export * from './error.model';
+export * from './podcast';
