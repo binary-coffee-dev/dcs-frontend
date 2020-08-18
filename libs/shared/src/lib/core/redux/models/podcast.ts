@@ -1,6 +1,8 @@
 export interface Podcast {
-  _id: string;
+  id: string;
   name: string;
   banner: string;
   url: string;
+  duration: number;
+  date: string;
 }
