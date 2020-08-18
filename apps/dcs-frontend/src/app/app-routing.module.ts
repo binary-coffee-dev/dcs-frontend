@@ -39,6 +39,10 @@ const routes: Routes = [
         loadChildren: () => import('./features/donate/donate.module').then(m => m.DonateModule)
       },
       {
+        path: 'podcast',
+        loadChildren: () => import('./features/podcast/podcast.module').then(m => m.PodcastModule)
+      },
+      {
         path: 'contact',
         component: ContactComponent
       },
