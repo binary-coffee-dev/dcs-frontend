@@ -20,6 +20,8 @@
        fxLayoutAlign="left">
     <ng-container *ngFor="let podcast of podcasts">
       <a class="podcast-link"
+         [href]="podcast?.url"
+         target="blank"
          fxLayout="column">
         <span class="code-comment-1">// {{ moment.timeFromDate(toDate(podcast)) }}</span>
         <div fxLayout="row">
