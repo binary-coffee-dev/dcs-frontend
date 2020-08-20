@@ -1,21 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Store } from '@ngxs/store';
+
+import { FetchPodcastAction, Podcast, PodcastState } from '@dcs-libs/shared';
+import { MomentService } from '../../../core/services';
 
 @Component({
   selector: 'app-espacio-binario',
   templateUrl: './espacio-binario.component.html',
   styleUrls: ['./espacio-binario.component.scss']
 })
-export class EspacioBinarioComponent implements OnInit {
+export class EspacioBinarioComponent implements OnInit, OnDestroy {
 
-  podcasts = [
-    { name: 'Episodio 02', duration: '10m', date: '1 day ago', imgUrl: '/assets/images/banner-default.jpg', link: '' },
-    { name: 'Episodio 01', duration: '17m', date: '5 days ago', imgUrl: '/assets/images/banner-default.jpg', link: '' },
-    { name: 'Episodio 00', duration: '13m', date: '10 days ago', imgUrl: '/assets/images/banner-default.jpg', link: '' }
-  ];
+  _unsubscribe = new Subject();
 
-  constructor() { }
+  podcasts: Podcast[] = [];
+
+  constructor(
+    private store: Store,
+    public moment: MomentService,
+  ) {
+  }
 
   ngOnInit(): void {
+    this.store.dispatch(new FetchPodcastAction());
+    this.store.select(PodcastState.podcastList)
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe(list => this.podcasts = list || []);
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe.next();
   }
 
 }
