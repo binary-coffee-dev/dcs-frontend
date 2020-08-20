@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
 import { FetchPodcastAction, Podcast, PodcastState } from '@dcs-libs/shared';
 import { MomentService } from '../../../core/services';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-espacio-binario',

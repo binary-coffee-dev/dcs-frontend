@@ -1,19 +1,18 @@
-<div class="container" fxLayout="column" fxLayoutAlign="center center">
-  <div
-    class="podcast-container"
-    fxLayout="row wrap"
-    fxLayoutAlign="center center"
-  >
+<div class="container"
+     fxLayout="column"
+     fxLayoutAlign="center center">
+  <div class="podcast-container"
+       fxLayout="row wrap"
+       fxLayoutAlign="center center">
     <ng-container *ngFor="let podcast of podcasts">
-      <a
-        class="podcast-link"
-        fxLayoutAling="center center"
-        [href]="podcast.url"
-      >
+      <a class="podcast-link"
+         fxLayoutAling="center center"
+         [href]="podcast.url">
         <div class="podcast-image-container">
-          <img [src]="podcast.banner" />
+          <img [src]="podcast.banner"/>
         </div>
-        <div class="podcast-title-container" fxLayout="column">
+        <div class="podcast-title-container"
+             fxLayout="column">
           <span class="podcast-title">{{ podcast.name }}</span>
           <span class="code-comment-1">// {{ moment.secondsToDuration(podcast.duration) }}</span>
         </div>

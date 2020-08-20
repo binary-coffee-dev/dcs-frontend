@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import { EspacioBinarioComponent } from './espacio-binario.component';
 import { Store } from '@ngxs/store';
+
+import { EspacioBinarioComponent } from './espacio-binario.component';
 import { MomentService } from '../../../core/services';
 
 class StoreStub {
