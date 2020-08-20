@@ -6,6 +6,15 @@
     padding: map_get($spacings, 4);
     max-width: 300px;
 
+    .podcast-class-code {
+      color: #4d4d4d !important;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
     .comment-class{
       font-size: 0.85rem;
     }
