@@ -1,13 +1,13 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
-import {Store} from '@ngxs/store';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import { Store } from '@ngxs/store';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-import {AuthState, CreateLikeArticle, Post, PostState, RemoveLikeArticle} from '@dcs-libs/shared';
-import {LoginRequestModalComponent} from '../../components/login-request-modal';
-import {MomentService, ResourceService} from '../../../core/services';
+import { AuthState, CreateLikeArticle, Post, PostState, RemoveLikeArticle } from '@dcs-libs/shared';
+import { LoginRequestModalComponent } from '../../components/login-request-modal';
+import { MomentService, ResourceService } from '../../../core/services';
 
 @Component({
   selector: 'app-post-info',

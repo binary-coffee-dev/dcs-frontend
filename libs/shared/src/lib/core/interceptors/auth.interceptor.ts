@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Router } from '@angular/router';
 
-import {Store} from '@ngxs/store';
-import {Observable, of} from 'rxjs';
-import {flatMap, map, tap} from 'rxjs/operators';
+import { Store } from '@ngxs/store';
+import { Observable, of } from 'rxjs';
+import { flatMap, map, tap } from 'rxjs/operators';
 
-import {AuthState} from '../redux/states';
-import {LogoutAction} from '../redux/actions';
+import { AuthState } from '../redux/states';
+import { LogoutAction } from '../redux/actions';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

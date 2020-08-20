@@ -1,11 +1,11 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {AuthError, AuthErrorAction, AuthState, Environment, ENVIRONMENT, LoginAction, Provider, WINDOW} from '@dcs-libs/shared';
-import {PROVIDERS} from './providers';
+import { AuthError, AuthErrorAction, AuthState, Environment, ENVIRONMENT, LoginAction, Provider, WINDOW } from '@dcs-libs/shared';
+import { PROVIDERS } from './providers';
 
 @Component({
   selector: 'app-auth',

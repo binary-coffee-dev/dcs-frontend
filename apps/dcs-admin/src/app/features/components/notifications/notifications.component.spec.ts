@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {NotificationsComponent} from './notifications.component';
+import { NotificationsComponent } from './notifications.component';
 
 class StoreStub {
 }

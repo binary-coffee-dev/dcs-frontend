@@ -1,4 +1,4 @@
-import {AuthError, User} from '../models';
+import { AuthError, User } from '../models';
 
 export interface AuthStateModel {
   token: string;

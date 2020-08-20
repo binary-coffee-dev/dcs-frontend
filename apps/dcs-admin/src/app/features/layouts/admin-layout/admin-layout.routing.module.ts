@@ -1,8 +1,8 @@
-import {RouterModule, Routes} from '@angular/router';
-import {NgModule} from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
-import {MeResolver} from '@dcs-libs/shared';
-import {AdminLayoutComponent} from './admin-layout.component';
+import { MeResolver } from '@dcs-libs/shared';
+import { AdminLayoutComponent } from './admin-layout.component';
 
 const routes: Routes = [
   {

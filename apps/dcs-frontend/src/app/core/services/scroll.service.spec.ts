@@ -1,7 +1,7 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {ScrollService} from './scroll.service';
-import {WINDOW} from '@dcs-libs/shared';
+import { ScrollService } from './scroll.service';
+import { WINDOW } from '@dcs-libs/shared';
 
 const EXAMPLE_SCROLL_TOP = 23;
 

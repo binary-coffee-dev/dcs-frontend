@@ -1,10 +1,10 @@
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Injectable} from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { Injectable } from '@angular/core';
 
-import {Observable} from 'rxjs';
-import {Store} from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
 
-import {MeAction} from '../redux/actions';
+import { MeAction } from '../redux/actions';
 
 @Injectable()
 export class MeResolver implements Resolve<any> {

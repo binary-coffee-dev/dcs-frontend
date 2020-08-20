@@ -1,9 +1,9 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {Apollo} from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
 
-import {ENVIRONMENT} from '@dcs-libs/shared';
-import {PostService} from './post.service';
+import { ENVIRONMENT } from '@dcs-libs/shared';
+import { PostService } from './post.service';
 
 class ApolloStub {
 }

@@ -1,8 +1,8 @@
-import {Component, OnInit, Output, EventEmitter, Inject} from '@angular/core';
-import {Location} from '@angular/common';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import { Location } from '@angular/common';
 
-import {Environment, ENVIRONMENT} from '@dcs-libs/shared';
-import {ROUTES} from '../sidebar/sidebar.model';
+import { Environment, ENVIRONMENT } from '@dcs-libs/shared';
+import { ROUTES } from '../sidebar/sidebar.model';
 
 const PATH_NAME_POSITION = 2;
 

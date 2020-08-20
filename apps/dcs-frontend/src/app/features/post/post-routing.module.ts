@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import {MarkdownModule} from 'ngx-markdown';
+import { MarkdownModule } from 'ngx-markdown';
 
-import {PostComponent} from './post.component';
-import {PostGuard} from './guards';
+import { PostComponent } from './post.component';
+import { PostGuard } from './guards';
 
 const routes: Routes = [
   {

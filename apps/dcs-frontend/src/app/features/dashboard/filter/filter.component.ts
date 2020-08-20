@@ -1,12 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {Subject, timer} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {Store} from '@ngxs/store';
+import { Subject, timer } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Store } from '@ngxs/store';
 
-import {FetchPostsAction, PostState, SetFiltersAction, Where} from '@dcs-libs/shared';
+import { FetchPostsAction, PostState, SetFiltersAction, Where } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-filter',

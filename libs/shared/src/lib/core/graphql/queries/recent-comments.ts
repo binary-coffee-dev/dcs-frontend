@@ -11,6 +11,7 @@ export const RECENT_COMMENTS_QUERY = gql`
       }
       user {
         username
+        avatarUrl
       }
     }
   }

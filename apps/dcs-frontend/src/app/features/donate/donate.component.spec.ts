@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MatDialog} from '@angular/material';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material';
 
-import {DonateComponent} from './donate.component';
-import {ScrollService} from '../../core/services';
+import { DonateComponent } from './donate.component';
+import { ScrollService } from '../../core/services';
 
 class MatDialogStub {
 }

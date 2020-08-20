@@ -1,8 +1,9 @@
-import {InjectionToken} from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
 export interface Environment {
   apiUrl: string;
   graphqlUrl: string;
+  podcastApiUrl: string;
   siteUrl: string;
   siteDashboardUrl?: string;
   production: boolean;

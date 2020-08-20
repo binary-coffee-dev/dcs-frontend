@@ -1,9 +1,9 @@
-import {async, TestBed} from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
-import {NgxsModule, Store} from '@ngxs/store';
+import { NgxsModule, Store } from '@ngxs/store';
 
-import {PostState} from './post.state';
-import {PostService} from '../services';
+import { PostState } from './post.state';
+import { PostService } from '../services';
 
 class PostServiceStub {
   fetchPosts = jest.fn();

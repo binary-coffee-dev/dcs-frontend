@@ -1,7 +1,7 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {MetaTagsService} from './meta-tags.service';
-import {Meta, Title} from '@angular/platform-browser';
+import { MetaTagsService } from './meta-tags.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 class TitleStub {
 }

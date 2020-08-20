@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
 import {
   ENVIRONMENT,

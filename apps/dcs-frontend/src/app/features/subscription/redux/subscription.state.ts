@@ -1,10 +1,10 @@
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {tap} from 'rxjs/operators';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { tap } from 'rxjs/operators';
 
-import {SubscribeAction, VerifySubscriptionAction} from './subscription.action';
-import {initSubscriptionStateModel, SubscriptionStateModel} from './subscription-state.model';
-import {SubscriptionService} from './services/subscription.service';
-import {Subscription} from './models';
+import { SubscribeAction, VerifySubscriptionAction } from './subscription.action';
+import { initSubscriptionStateModel, SubscriptionStateModel } from './subscription-state.model';
+import { SubscriptionService } from './services/subscription.service';
+import { Subscription } from './models';
 
 @State<SubscriptionStateModel>({
   name: 'subscription',

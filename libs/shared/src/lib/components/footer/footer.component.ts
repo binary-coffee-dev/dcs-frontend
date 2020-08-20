@@ -1,7 +1,7 @@
-import {Component, OnInit, Input, Inject} from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 
-import {Environment, ENVIRONMENT} from '../../core/models';
-import {UrlUtilsService} from '../../core/services';
+import { Environment, ENVIRONMENT } from '../../core/models';
+import { UrlUtilsService } from '../../core/services';
 
 @Component({
   selector: 'app-footer',

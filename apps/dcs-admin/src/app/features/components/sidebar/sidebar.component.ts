@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 
 import { Store } from '@ngxs/store';
 
-import {LogoutAction, AuthState, User, UrlUtilsService} from '@dcs-libs/shared';
+import { LogoutAction, AuthState, User, UrlUtilsService } from '@dcs-libs/shared';
 import { Access, AccessIds, ROUTES, ACCESS } from './sidebar.model';
 
 const PATH_NAME_POSITION = 2;

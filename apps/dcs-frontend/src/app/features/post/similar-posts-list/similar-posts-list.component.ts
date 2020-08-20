@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FetchSimilarPostsAction, Post, PostState} from '@dcs-libs/shared';
-import {Store} from '@ngxs/store';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
+
+import { FetchSimilarPostsAction, Post, PostState } from '@dcs-libs/shared';
+import { ResourceService } from '../../../core/services';
 
 @Component({
   selector: 'app-similar-posts-list',
@@ -23,10 +25,20 @@ export class SimilarPostsListComponent implements OnInit {
     this._postId = value;
   }
 
-  constructor(private store: Store) {
+  @Input()
+  inside = false;
+
+  constructor(private store: Store, private resource: ResourceService) {
   }
 
   ngOnInit(): void {
     this.store.select(PostState.similarPosts).subscribe(posts => this.posts = posts);
+  }
+
+  getPostBanner(post: Post) {
+    if (post && post.banner && post.banner.url) {
+      return this.resource.addApiUrl(post.banner.url);
+    }
+    return '/assets/images/banner-default.jpg';
   }
 }

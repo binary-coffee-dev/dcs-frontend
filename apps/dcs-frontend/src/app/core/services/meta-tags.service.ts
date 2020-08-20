@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Meta, Title} from '@angular/platform-browser';
+import { Injectable } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 
 export interface MetaTag {
   key: string;

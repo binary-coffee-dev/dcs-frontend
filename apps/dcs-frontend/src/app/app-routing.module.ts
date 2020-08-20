@@ -1,17 +1,17 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import {MeResolver} from '@dcs-libs/shared';
-import {ContactComponent} from './features/info/contact/contact.component';
-import {AboutComponent} from './features/info/about/about.component';
-import {QuestionsComponent} from './features/info/questions/questions.component';
-import {JoinComponent} from './features/info/join/join.component';
-import {TecsComponent} from './features/info/tecs/tecs.component';
-import {DcsCommunityComponent} from './features/info/dcs-community/dcs-community.component';
-import {FeedbackComponent} from './features/info/feedback/feedback.component';
-import {DevTeamComponent} from './features/info/dev-team/dev-team.component';
-import {PublishComponent} from './features/info/publish/publish.component';
-import {WriteTeamComponent} from './features/info/write-team/write-team.component';
+import { MeResolver } from '@dcs-libs/shared';
+import { ContactComponent } from './features/info/contact/contact.component';
+import { AboutComponent } from './features/info/about/about.component';
+import { QuestionsComponent } from './features/info/questions/questions.component';
+import { JoinComponent } from './features/info/join/join.component';
+import { TecsComponent } from './features/info/tecs/tecs.component';
+import { DcsCommunityComponent } from './features/info/dcs-community/dcs-community.component';
+import { FeedbackComponent } from './features/info/feedback/feedback.component';
+import { DevTeamComponent } from './features/info/dev-team/dev-team.component';
+import { PublishComponent } from './features/info/publish/publish.component';
+import { WriteTeamComponent } from './features/info/write-team/write-team.component';
 
 const routes: Routes = [
   {
@@ -37,6 +37,10 @@ const routes: Routes = [
       {
         path: 'donate',
         loadChildren: () => import('./features/donate/donate.module').then(m => m.DonateModule)
+      },
+      {
+        path: 'podcast',
+        loadChildren: () => import('./features/podcast/podcast.module').then(m => m.PodcastModule)
       },
       {
         path: 'contact',

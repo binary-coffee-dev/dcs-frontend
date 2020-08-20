@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {Store} from '@ngxs/store';
+import { Store } from '@ngxs/store';
 
-import {Post, PostState} from '@dcs-libs/shared';
+import { Post, PostState } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-dashboard',

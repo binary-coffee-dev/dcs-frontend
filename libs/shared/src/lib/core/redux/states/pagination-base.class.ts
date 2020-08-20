@@ -1,6 +1,6 @@
-import {StateContext} from '@ngxs/store';
-import {take, tap} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
+import { StateContext } from '@ngxs/store';
+import { take, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 export const MINIMUM_PAGE = 0;
 

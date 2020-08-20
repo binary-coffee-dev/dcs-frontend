@@ -1,13 +1,13 @@
-import {Inject, Injectable} from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Apollo} from 'apollo-angular';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Apollo } from 'apollo-angular';
 
-import {Post, PostConnection, User} from '../models';
-import {POST_BY_NAME_QUERY, POST_QUERY, POSTS_QUERY, SIMILAR_POSTS_QUERY} from '../../graphql/queries';
-import {LIKE_CREATE_MUTATION, LIKE_REMOVE_MUTATION, POST_CREATE_MUTATION, POST_UPDATE_MUTATION} from '../../graphql/mutations';
-import {Environment, ENVIRONMENT} from '../../models';
+import { Post, PostConnection, User } from '../models';
+import { POST_BY_NAME_QUERY, POST_QUERY, POSTS_QUERY, SIMILAR_POSTS_QUERY } from '../../graphql/queries';
+import { LIKE_CREATE_MUTATION, LIKE_REMOVE_MUTATION, POST_CREATE_MUTATION, POST_UPDATE_MUTATION } from '../../graphql/mutations';
+import { Environment, ENVIRONMENT } from '../../models';
 
 @Injectable({
   providedIn: 'root'

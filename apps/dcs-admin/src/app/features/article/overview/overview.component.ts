@@ -1,11 +1,11 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
-import {Store} from '@ngxs/store';
-import {BehaviorSubject, Subject, timer} from 'rxjs';
-import {map, takeUntil} from 'rxjs/operators';
+import { Store } from '@ngxs/store';
+import { BehaviorSubject, Subject, timer } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 import {
   AuthState, FetchTagsAction,
@@ -16,7 +16,7 @@ import {
   PostUpdateAction, Tag, TagState,
   UrlUtilsService, WINDOW
 } from '@dcs-libs/shared';
-import {SelectImageModalComponent} from './select-image-modal/select-image-modal.component';
+import { SelectImageModalComponent } from './select-image-modal/select-image-modal.component';
 
 @Component({
   selector: 'app-overview',

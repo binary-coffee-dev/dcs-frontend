@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import {UrlUtilsService} from '@dcs-libs/shared';
-import {FooterComponent} from './footer.component';
+import { UrlUtilsService } from '@dcs-libs/shared';
+import { FooterComponent } from './footer.component';
 
 class UrlUtilsServiceStub {
   normalizeSiteUrl = jest.fn();

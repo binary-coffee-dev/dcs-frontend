@@ -1,8 +1,8 @@
-import {Action, Selector, State, StateContext} from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 
-import {CloseNotificationAction, CreateNotificationAction} from '../actions';
-import {initNotificationStateModel, NotificationStateModel} from './notification-state.model';
-import {Notification} from '../models';
+import { CloseNotificationAction, CreateNotificationAction } from '../actions';
+import { initNotificationStateModel, NotificationStateModel } from './notification-state.model';
+import { Notification } from '../models';
 
 @State<NotificationStateModel>({
   name: 'notification',

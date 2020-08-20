@@ -1,4 +1,4 @@
-import {Subscription} from './models';
+import { Subscription } from './models';
 
 export interface SubscriptionStateModel {
   subscription: Subscription;

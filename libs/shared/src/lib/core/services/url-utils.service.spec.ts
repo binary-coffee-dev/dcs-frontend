@@ -1,7 +1,7 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {ENVIRONMENT} from '@dcs-libs/shared';
-import {UrlUtilsService} from './url-utils.service';
+import { ENVIRONMENT } from '@dcs-libs/shared';
+import { UrlUtilsService } from './url-utils.service';
 
 describe('UrlUtilsService', () => {
   beforeEach(() => TestBed.configureTestingModule({

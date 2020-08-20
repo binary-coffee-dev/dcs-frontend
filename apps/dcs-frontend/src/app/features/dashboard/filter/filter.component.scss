@@ -1,23 +1,23 @@
-@import "libs/shared/src/theme";
+@import 'libs/shared/src/theme';
 
 :host {
   .container {
     color: map_get($md-grey, 500);
-    padding: map_get($spacings, 4);
-    border-radius: 0 map_get($radius, 2) map_get($radius, 2) 0;
-    border-right: 1px solid map_get($md-primary, 100);
-    border-bottom: 1px solid map_get($md-primary, 100);
-    border-top: 1px solid map_get($md-primary, 100);
-    max-width: 300px;
-    margin-top: 30px;
+    padding: 0;
+    background-color: map_get($md-grey, A100);
+    border-radius: map_get($radius, 3);
 
     form {
       ::ng-deep.mat-form-field-wrapper {
         padding-bottom: 0;
+        background-color: map_get($md-grey, A100);
+        border-radius: map_get($radius, 3);
       }
 
       input {
         color: map_get($md-grey, 850);
+        background-color: map_get($md-grey, A100);
+        border-radius: map_get($radius, 3); 
       }
     }
   }

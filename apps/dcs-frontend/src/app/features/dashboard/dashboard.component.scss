@@ -1,9 +1,16 @@
-@import "libs/shared/src/theme";
+@import 'libs/shared/src/theme';
 
 :host {
   .container {
     min-height: calc(100vh - 248px);
-    margin-top: -1px;
+    margin-top: -1px; 
+
+    .posts-container {
+    
+      .post-element-content {
+        margin-top: -9px;
+      }
+    }
 
     .rows {
       color: map_get($md-grey, 500);
@@ -12,6 +19,10 @@
       .row {
         margin-bottom: map_get($spacings, 1);
       }
+    }
+
+    .recent-comments {
+      margin-top: map-get($map: $spacings, $key: 4);
     }
   }
 }

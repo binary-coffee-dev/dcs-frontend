@@ -1,7 +1,7 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import {WINDOW} from '@dcs-libs/shared';
+import { WINDOW } from '@dcs-libs/shared';
 
 @Injectable({
   providedIn: 'root'
