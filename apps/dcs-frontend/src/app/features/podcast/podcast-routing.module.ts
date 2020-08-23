@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PodcastComponent } from './podcast.component';
-import { EspacioBinarioComponent } from './espacio-binario/espacio-binario.component';
+import { PodcastListComponent } from './podcast-list/podcast-list.component';
 
 
 const routes: Routes = [
@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'espacio-binario',
-    component: EspacioBinarioComponent
+    component: PodcastListComponent
   }
 ];
 
