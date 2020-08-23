@@ -4,29 +4,40 @@
   .container {
     padding-top: map-get($map: $spacings, $key: 4);
 
-    .more-podcast {
-      color: map-get($map: $md-primary, $key: 300);
-      text-decoration: none;
+    .item-action-container {
+      padding: 0 map-get($map: $spacings, $key: 4) 0
+        map-get($map: $spacings, $key: 4);
 
-      &:hover {
-        color: map-get($map: $md-primary, $key: 500);
+      .podcast-name {
+        text-transform: uppercase;
+        font-weight: bold;
+        color: map-get($map: $md-primary, $key: 900);
+      }
+
+      .more-podcast {
+        color: map-get($map: $md-primary, $key: 300);
+        text-decoration: none;
+
+        &:hover {
+          color: map-get($map: $md-primary, $key: 500);
+          i {
+            animation-play-state: running;
+          }
+        }
+
         i {
-          animation-play-state: running;
+          margin-right: map-get($map: $spacings, $key: 1);
+          animation: atent 0.3s infinite alternate;
+          animation-play-state: paused;
         }
-      }
 
-      i {
-        margin-right: map-get($map: $spacings, $key: 1);
-        animation: atent 0.3s infinite alternate;
-        animation-play-state: paused;
-      }
-
-      @keyframes atent {
-        0% {
-          transform: translateX(0px);
-        }
-        100% {
-          transform: translateX(5px);
+        @keyframes atent {
+          0% {
+            transform: translateX(0px);
+          }
+          100% {
+            transform: translateX(5px);
+          }
         }
       }
     }
@@ -34,6 +45,29 @@
     .podcast-container {
       padding: map-get($map: $spacings, $key: 4) 0 0
         map-get($map: $spacings, $key: 4);
+
+      .options {
+        color: map-get($map: $md-grey, $key: 600); 
+        margin: map-get($map: $spacings, $key: 1) map-get($map: $spacings, $key: 5 ) 0 0 ;
+        border-bottom: none;
+        position: absolute;
+        background-color: rgba(
+            $color: map-get($map: $md-grey, $key: A100), 
+            $alpha: 0.5
+          );
+
+        &:hover {
+          color: map-get($map: $md-grey, $key: 850);
+          background-color: rgba(
+            $color: map-get($map: $md-primary, $key: 100),
+            $alpha: 0.5
+          );
+        }
+
+        .separator {
+          margin-left: map-get($map: $spacings, $key: 1);
+        }
+      }
 
       .podcast-link {
         background-color: map-get($map: $md-grey, $key: A100);
@@ -64,11 +98,18 @@
             object-position: center;
           }
         }
+
+        .podcast-add {
+          height: 100%;
+          min-height: 100%;
+          cursor: pointer;
+        }
+
         .podcast-title-container {
           padding: map-get($map: $spacings, $key: 1);
 
           .podcast-title {
-            text-transform: uppercase; 
+            text-transform: uppercase;
           }
         }
       }
