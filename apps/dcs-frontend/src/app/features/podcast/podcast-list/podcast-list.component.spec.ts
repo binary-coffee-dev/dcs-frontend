@@ -3,6 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
+import { MaterialModule } from '@dcs-libs/shared';
 import { PodcastListComponent } from './podcast-list.component';
 import { MomentService } from '../../../core/services';
 
@@ -23,7 +24,8 @@ describe('PodcastListComponent', () => {
         {provide: Store, useClass: StoreStub},
         {provide: MomentService, useClass: MomentServiceStub}
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [MaterialModule]
     })
       .compileComponents();
   }));
