@@ -6,6 +6,33 @@
     padding: map_get($spacings, 4);
     max-width: 300px;
 
+    .more-podcast {
+      color: map-get($map: $md-primary, $key: 300);
+      text-decoration: none;
+
+      &:hover {
+        color: map-get($map: $md-primary, $key: 500);
+        i {
+          animation-play-state: running;
+        }
+      }
+
+      i {
+        margin-right: map-get($map: $spacings, $key: 1);
+        animation: atent 0.3s infinite alternate;
+        animation-play-state: paused;
+      }
+
+      @keyframes atent {
+        0% {
+          transform: translateX(0px);
+        }
+        100% {
+          transform: translateX(5px);
+        }
+      }
+    }
+
     .podcast-class-code {
       color: #4d4d4d !important;
       text-decoration: none;

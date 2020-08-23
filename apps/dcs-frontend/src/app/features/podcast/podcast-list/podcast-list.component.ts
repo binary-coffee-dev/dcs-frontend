@@ -8,14 +8,16 @@ import { FetchPodcastAction, Podcast, PodcastState } from '@dcs-libs/shared';
 import { MomentService } from '../../../core/services';
 
 @Component({
-  selector: 'app-espacio-binario',
-  templateUrl: './espacio-binario.component.html',
-  styleUrls: ['./espacio-binario.component.scss']
+  selector: 'app-podcast-list',
+  templateUrl: './podcast-list.component.html',
+  styleUrls: ['./podcast-list.component.scss']
 })
-export class EspacioBinarioComponent implements OnInit, OnDestroy {
+export class PodcastListComponent implements OnInit, OnDestroy {
 
   _unsubscribe = new Subject();
 
+  podcastName: 'Espacio Binario';
+  isAdmin: true;
   podcasts: Podcast[] = [];
 
   constructor(

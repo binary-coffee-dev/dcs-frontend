@@ -3,7 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
-import { EspacioBinarioComponent } from './espacio-binario.component';
+import { MaterialModule } from '@dcs-libs/shared';
+import { PodcastListComponent } from './podcast-list.component';
 import { MomentService } from '../../../core/services';
 
 class StoreStub {
@@ -12,24 +13,25 @@ class StoreStub {
 class MomentServiceStub {
 }
 
-describe('EspacioBinarioComponent', () => {
-  let component: EspacioBinarioComponent;
-  let fixture: ComponentFixture<EspacioBinarioComponent>;
+describe('PodcastListComponent', () => {
+  let component: PodcastListComponent;
+  let fixture: ComponentFixture<PodcastListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EspacioBinarioComponent],
+      declarations: [PodcastListComponent],
       providers: [
         {provide: Store, useClass: StoreStub},
         {provide: MomentService, useClass: MomentServiceStub}
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [MaterialModule]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EspacioBinarioComponent);
+    fixture = TestBed.createComponent(PodcastListComponent);
     component = fixture.componentInstance;
 
     spyOn(component, 'ngOnInit');
