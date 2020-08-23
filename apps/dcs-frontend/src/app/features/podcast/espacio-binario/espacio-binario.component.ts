@@ -16,6 +16,8 @@ export class EspacioBinarioComponent implements OnInit, OnDestroy {
 
   _unsubscribe = new Subject();
 
+  podcastName: 'Espacio Binario';
+  isAdmin: true;
   podcasts: Podcast[] = [];
 
   constructor(

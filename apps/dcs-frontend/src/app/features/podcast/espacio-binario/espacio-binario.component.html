@@ -1,22 +1,82 @@
-<div class="container"
-     fxLayout="column"
-     fxLayoutAlign="center center">
-  <div class="podcast-container"
-       fxLayout="row wrap"
-       fxLayoutAlign="center center">
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+  <div
+    class="item-action-container"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+  >
+    <div *ngIf="isAdmin">
+      <button class="bc-button" mat-button>
+        <span class="code-var">new</span> Podcast()
+      </button>
+    </div>
+
+    <div
+      *ngIf="isAdmin"
+      class="podcast-name"
+      fxFlex="100"
+      fxLayoutAlign="center"
+    >
+      {{ podcastName }}
+    </div>
+
+    <div
+      *ngIf="!isAdmin"
+      class="podcast-name"
+      fxFlex="100"
+      fxLayoutAlign="start"
+    >
+      {{ podcastName }}
+    </div>
+
+    <a [routerLink]="'/podcast'" class="more-podcast">
+      <i class="fa fa-arrow-left"></i> Mas podcasts
+    </a>
+  </div>
+
+  <div
+    class="podcast-container"
+    fxLayout="row wrap"
+    fxLayoutAlign="center center"
+  >
     <ng-container *ngFor="let podcast of podcasts">
-      <a class="podcast-link"
-         fxLayoutAling="center center"
-         [href]="podcast.url">
-        <div class="podcast-image-container">
-          <img [src]="podcast.banner"/>
-        </div>
-        <div class="podcast-title-container"
-             fxLayout="column">
-          <span class="podcast-title">{{ podcast.name }}</span>
-          <span class="code-comment-1">// {{ moment.secondsToDuration(podcast.duration) }}</span>
-        </div>
-      </a>
+      <div fxLayout="column" fxLayoutAlign="start end">
+        <a
+          *ngIf="isAdmin"
+          class="options"
+          mat-button
+          [matMenuTriggerFor]="beforeMenu"
+        >
+          <i class="fa fa-cog"></i>
+          <span class="separator"></span>
+          <i class="fa fa-caret-down"></i>
+        </a>
+
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item>
+            <i class="fa fa-pencil"></i> Editar
+          </button>
+
+          <button mat-menu-item>
+            <i class="fa fa-trash"></i> Eliminar
+          </button>
+        </mat-menu>
+
+        <a
+          class="podcast-link"
+          fxLayoutAling="center center"
+          [href]="podcast.url"
+        >
+          <div class="podcast-image-container">
+            <img [src]="podcast.banner" />
+          </div>
+          <div class="podcast-title-container" fxLayout="column">
+            <span class="podcast-title">{{ podcast.name }}</span>
+            <span class="code-comment-1"
+              >// {{ moment.secondsToDuration(podcast.duration) }}</span
+            >
+          </div>
+        </a>
+      </div>
     </ng-container>
   </div>
 </div>
