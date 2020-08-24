@@ -43,6 +43,10 @@ const routes: Routes = [
         loadChildren: () => import('./features/podcast/podcast.module').then(m => m.PodcastModule)
       },
       {
+        path: 'user/:id',
+        loadChildren: () => import('./features/user/user.module').then(m => m.UserModule)
+      },
+      {
         path: 'contact',
         component: ContactComponent
       },
