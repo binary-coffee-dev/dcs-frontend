@@ -20,6 +20,19 @@
       cursor: pointer;
     }
 
+    .go-link{
+      color: map-get($map: $md-grey, $key: 900);
+      padding: map-get($map: $spacings, $key: 1); 
+      margin-right: map-get($map: $spacings, $key: 1);
+      border-radius: map-get($map: $radius, $key: 2);
+      width: 1.5em;
+      text-align: center;
+
+      &:hover{
+        background-color: map-get($map: $md-primary, $key: 100); 
+      }
+    }
+
     .go-root {
       color: map_get($md-primary, 800);
       text-decoration: none;
