@@ -32,6 +32,7 @@ import { LoginButtonComponent } from './features/components/login-button/login-b
 import { createApollo } from './core/graphql';
 import { LoginRequestModalComponent } from './features/components/login-request-modal';
 import { PodcastModule } from './features/podcast/podcast.module';
+import { UserModule } from './features/user/user.module';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { PodcastModule } from './features/podcast/podcast.module';
     MaterialModule,
     InfoModule,
     SharedModule,
-    PodcastModule
+    PodcastModule,
+    UserModule
   ],
   providers: [
     {
