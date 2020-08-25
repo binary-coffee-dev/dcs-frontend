@@ -1,3 +1,4 @@
+/* tslint:disable */
 export const cookiesInfo = `
 <h1>Cookie Policy for Binary Coffee</h1>
 

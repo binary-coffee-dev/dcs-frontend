@@ -1,3 +1,4 @@
+/* tslint:disable */
 export const privacyInfo = `
 <h1>Privacy Policy for Binary Coffee</h1>
 
