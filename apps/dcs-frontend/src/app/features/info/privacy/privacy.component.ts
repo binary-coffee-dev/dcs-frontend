@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { privacyInfo } from './privacy.info';
+
 @Component({
   selector: 'app-privacy',
   templateUrl: './privacy.component.html',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivacyComponent implements OnInit {
 
-  constructor() { }
+  info = privacyInfo;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
