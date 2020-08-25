@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MarkdownModule } from 'ngx-markdown';
 
+import { MaterialModule } from '@dcs-libs/shared';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { CookiesComponent } from './cookies/cookies.component';
 
@@ -14,7 +15,12 @@ import { CookiesComponent } from './cookies/cookies.component';
   ],
   imports: [
     MarkdownModule.forRoot(),
-    CommonModule
+    CommonModule,
+    MaterialModule,
+  ],
+  exports: [
+    PrivacyComponent,
+    CookiesComponent
   ]
 })
 export class InfoModule {
