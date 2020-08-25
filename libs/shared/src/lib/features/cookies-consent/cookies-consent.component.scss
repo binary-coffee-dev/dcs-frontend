@@ -1,0 +1,25 @@
+@import "libs/shared/src/theme";
+
+:host {
+  .cookies-consent {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    padding: 15px 5%;
+    background-color: map_get($md-primary, 900);
+
+    span {
+      font-size: 0.85rem;
+
+      &.first-span {
+        margin-bottom: 10px;
+      }
+    }
+
+    button {
+      padding: 10px;
+    }
+  }
+}
