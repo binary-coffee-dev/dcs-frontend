@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigState, SetConfigAction } from '@dcs-libs/shared';
+
 import { Store } from '@ngxs/store';
+
+import { ConfigState, SetConfigAction } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-cookies-consent',
