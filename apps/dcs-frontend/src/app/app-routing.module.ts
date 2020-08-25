@@ -35,11 +35,11 @@ const routes: Routes = [
         loadChildren: () => import('./features/podcast/podcast.module').then(m => m.PodcastModule)
       },
       {
-        path: 'info/privacy-policy',
+        path: 'privacy-policy',
         component: PrivacyComponent
       },
       {
-        path: 'info/cookies',
+        path: 'cookies',
         component: CookiesComponent
       }
     ]
