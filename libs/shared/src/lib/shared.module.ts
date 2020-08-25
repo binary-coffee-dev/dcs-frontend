@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { LoadingComponent } from './features/loading/loading.component';
 import { WINDOW, windowFactory } from './core/models';
@@ -9,7 +10,7 @@ import { CookiesConsentComponent } from './features/cookies-consent';
 import { MaterialModule } from './core/material';
 
 @NgModule({
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, RouterModule],
   declarations: [
     LoadingComponent,
     HasPermissionsPipe,
