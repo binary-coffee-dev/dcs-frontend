@@ -1,0 +1,104 @@
+@import 'libs/shared/src/theme';
+
+:host {
+  .user-container {
+    padding: map-get($map: $spacings, $key: 4);
+
+    .user-name-content {
+      transform: translate3d(0, 10px, 0);
+      font-size: 1.2rem;
+
+      &::after,
+      &::before {
+        content: '';
+        display: block;
+        background-color: transparentize(map_get($md-primary, 900), 0.4);
+        width: 2.5rem;
+      }
+
+      //L
+      &::before {
+        transform: translate3d(17px, -10px, 0);
+        clip-path: polygon(0 0, 40% 55%, 0 90%, 100% 100%, 100% 20%);
+      }
+
+      //R
+      &::after {
+        transform: translate3d(-17px, -10px, 0);
+        clip-path: polygon(0 20%, 0 100%, 100% 90%, 60% 55%, 100% 0);
+      }
+
+      .user-name {
+        background-color: map_get($md-primary, 900);
+        padding: 0.25rem 0.75rem;
+        z-index: 100;
+        color: map_get($md-grey, A100);
+      }
+    }
+
+    .user-image {
+      width: 15rem;
+      height: 15rem;
+      border-radius: 100%;
+      margin-right: map_get($spacings, 2);
+    }
+  }
+
+  .stadistic-container {
+    margin-top: map-get($map: $spacings, $key: 4);
+    padding: map-get($map: $spacings, $key: 1);
+    background-color: map-get($map: $md-primary, $key: 50);
+    border-radius: map-get($map: $radius, $key: 2);
+
+    .stadistic {
+      padding: map-get($map: $spacings, $key: 1);
+
+      .sta-n {
+        color: map-get($map: $md-primary, $key: 500);
+      }
+    }
+  }
+
+  .post-content {
+    padding: map_get($spacings, 4) map_get($spacings, 4) map_get($spacings, 4) 0;
+    text-decoration: none;
+
+    @media screen and (max-width: 599px) { 
+      padding: 0 map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 2); 
+    }
+
+    .post-image-container {
+      width: 100%;
+      height: 150px;
+      border-radius: map_get($radius, 2);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: map_get($radius, 2) map_get($radius, 2) 0 0;
+        z-index: -1;
+      }
+    }
+
+    .post-box {
+      border: 1px solid map_get($md-primary, 100);
+      border-radius: map_get($radius, 2);
+      cursor: pointer;
+
+      &:hover {
+        border: 1px solid map_get($md-primary, 500);
+      }
+
+      .post-title {
+        padding: map_get($spacings, 2);
+        text-transform: uppercase;
+
+        b {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
