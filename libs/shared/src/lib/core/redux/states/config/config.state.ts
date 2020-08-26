@@ -10,7 +10,7 @@ export interface ConfigStateModel {
   name: 'config',
   defaults: {
     configurations: {}
-  }
+  } as ConfigStateModel
 })
 export class ConfigState {
 
