@@ -18,7 +18,10 @@ export class UserViewComponent implements OnInit {
 
   posts: Post[] = [];
 
-  constructor(private store: Store, public moment: MomentService, public url: UrlUtilsService) { 
+  constructor(
+    private store: Store,
+    public moment: MomentService,
+    public url: UrlUtilsService) {
   }
 
   ngOnInit(): void {
@@ -28,6 +31,6 @@ export class UserViewComponent implements OnInit {
   }
 
   getUserAvatar() {
-    return 'assets/images/noavatar.png'
+    return 'assets/images/noavatar.png';
   }
 }

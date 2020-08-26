@@ -3,8 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
-import { UserViewComponent } from './user-view.component';
 import { ENVIRONMENT } from '@dcs-libs/shared';
+import { UserViewComponent } from './user-view.component';
 
 class StoreStub {
   select = jest.fn();
@@ -13,14 +13,13 @@ class StoreStub {
 describe('UserViewComponent', () => {
   let component: UserViewComponent;
   let fixture: ComponentFixture<UserViewComponent>;
-  let store: StoreStub;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [UserViewComponent],
       providers: [
-        { provide: Store, useClass: StoreStub },
-        { provide: ENVIRONMENT, useValue: {} }
+        {provide: Store, useClass: StoreStub},
+        {provide: ENVIRONMENT, useValue: {}}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

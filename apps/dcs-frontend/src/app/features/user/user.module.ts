@@ -8,7 +8,6 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserViewComponent } from './user-view/user-view.component';
 
 
-
 @NgModule({
   declarations: [UserComponent, UserViewComponent],
   imports: [
@@ -17,4 +16,5 @@ import { UserViewComponent } from './user-view/user-view.component';
     UserRoutingModule
   ]
 })
-export class UserModule { }
+export class UserModule {
+}
