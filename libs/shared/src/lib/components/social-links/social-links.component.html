@@ -5,7 +5,7 @@
   <mat-icon mat-font-icon="fa-icon"
             class="fa fa-envelope-open"></mat-icon>
 </a>
-<div *ngFor="let link of links">
+<ng-container *ngFor="let link of links">
   <a mat-button
      *ngIf="link.enabled"
      [href]="link.href"
@@ -16,4 +16,4 @@
               *ngIf="!footer"></mat-icon>
     <span *ngIf="footer">> {{link.title}}</span>
   </a>
-</div>
+</ng-container>
