@@ -1,4 +1,4 @@
-@import "libs/shared/src/theme";
+@import 'libs/shared/src/theme';
 
 :host {
   mat-card {
@@ -11,7 +11,7 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin-bottom: 15px;
+        margin: map-get($map: $spacings, $key: 2);
 
         .image-tile {
           height: 130px;
@@ -19,10 +19,11 @@
           object-fit: cover;
           object-position: center;
           cursor: pointer;
+          border-radius: map-get($map: $radius, $key: 2);
           border: 2px solid transparent;
 
           &:hover {
-            border: 2px solid map_get($md-primary, 900);
+            border: 2px solid map_get($md-primary, 500);
           }
         }
       }

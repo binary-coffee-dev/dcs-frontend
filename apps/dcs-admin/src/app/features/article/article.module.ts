@@ -12,6 +12,7 @@ import { ArticleRoutingModule } from './article-routing.module';
 import { SelectImageModalComponent } from './overview/select-image-modal/select-image-modal.component';
 import { PaginationModule } from '../components/pagination/pagination.module';
 import { FilterComponent } from './list/filter/filter.component';
+import { UploadFileModalModule } from '../components/upload-file.modal';
 
 @NgModule({
   declarations: [OverviewComponent, ListComponent, SelectImageModalComponent, FilterComponent],
@@ -22,7 +23,8 @@ import { FilterComponent } from './list/filter/filter.component';
     TagInputModule,
     PaginationModule,
     SharedModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    UploadFileModalModule
   ],
   entryComponents: [SelectImageModalComponent]
 })
