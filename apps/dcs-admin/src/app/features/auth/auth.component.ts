@@ -85,6 +85,12 @@ export class AuthComponent implements OnInit {
     }
   }
 
+  redirectToSiteMainView() {
+    const urlBase = this.env.siteUrl;
+    const loginUrl = new URL(urlBase);
+    this.window.location.href = `${loginUrl}`;
+  }
+
   checkEmptySpaces(value: string): boolean {
     return value.replace(/ /gi, '') !== '';
   }

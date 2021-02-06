@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
-import { ConfigState, SetConfigAction } from '@dcs-libs/shared';
+import { ConfigState, SetConfigAction } from '../../core/redux/states/config';
 
 @Component({
   selector: 'app-cookies-consent',

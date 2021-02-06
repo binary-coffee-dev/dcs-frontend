@@ -13,6 +13,17 @@
       "sourceRoot": "apps/dcs-frontend/src",
       "prefix": "app",
       "architect": {
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "static-app:build:production",
+            "serverTarget": "static-app:server:production",
+            "routes": ["/post/*"]
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -257,8 +268,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 }
               ]
             },
