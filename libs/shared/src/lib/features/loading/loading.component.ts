@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Actions, ofActionCompleted, ofActionDispatched } from '@ngxs/store';
 
-import { FetchPostsAction, LoginWithProviderAction, PostAction } from '../../core/redux/actions';
+import { LoginWithProviderAction } from '../../core/redux/states/auth';
+import { FetchPostsAction, PostAction } from '../../core/redux/states/post';
 
 @Component({
   selector: 'app-loading',

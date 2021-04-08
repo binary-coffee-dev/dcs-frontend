@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 import { flatMap, map, tap } from 'rxjs/operators';
 
 import { AuthState } from '../redux/states';
-import { LogoutAction } from '../redux/actions';
+import { LogoutAction } from '../redux/states/auth';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

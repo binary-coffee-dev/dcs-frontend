@@ -9,3 +9,4 @@ export * from './provider.model';
 export * from './comment.model';
 export * from './error.model';
 export * from './podcast';
+export * from './top-users.model';

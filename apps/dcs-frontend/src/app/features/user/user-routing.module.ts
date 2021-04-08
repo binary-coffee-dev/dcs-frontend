@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UserComponent } from './user.component';
+import { UsersOverviewComponent } from './users-overview/users-overview.component';
 import { UserViewComponent } from './user-view/user-view.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: UserComponent
+    component: UsersOverviewComponent
   },
   {
     path: 'binary-coffee',
