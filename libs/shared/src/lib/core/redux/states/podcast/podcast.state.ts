@@ -2,8 +2,8 @@ import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
 import { FetchPodcastAction } from './podcast.actions';
-import { Podcast } from '../models';
-import { PodcastService } from '../services';
+import { Podcast } from '../../models';
+import { PodcastService } from '../../services';
 
 export interface PodcastStateModel {
   items: Podcast[];

@@ -5,5 +5,6 @@ export * from './notification';
 export * from './comment';
 export * from './config';
 export * from './tag';
+export * from './podcast';
 
 export * from './pagination-base.class';
