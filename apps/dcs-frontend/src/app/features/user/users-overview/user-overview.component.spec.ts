@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import { UserComponent } from './user.component';
+import { UsersOverviewComponent } from './users-overview.component';
 
 describe('UserComponent', () => {
-  let component: UserComponent;
-  let fixture: ComponentFixture<UserComponent>;
+  let component: UsersOverviewComponent;
+  let fixture: ComponentFixture<UsersOverviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UserComponent],
+      declarations: [UsersOverviewComponent],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserComponent);
+    fixture = TestBed.createComponent(UsersOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -34,10 +34,12 @@
           }
 
           .top-user-image {
-            max-width: map_get($spacings, 8);
+            max-width: map_get($spacings, 6);
+            min-width: map_get($spacings, 6);
             height: map_get($spacings, 6);
             border-radius: 100%;
             margin-right: map_get($spacings, 2);
+            overflow: hidden;
           }
         }
       }
