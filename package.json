@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --watch --poll=2000 --port=4200 --host=0.0.0.0 --disable-host-check",
-    "start:admin": "ng serve dcs-admin --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
+    "start:admin": "ng serve dcs-admin --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check --base-href /dashboard/",
     "build": "ng build",
     "build:admin": "ng build dcs-admin --configuration=dev --base-href /dashboard/",
     "build:admin:prod": "ng build dcs-admin --prod --base-href /dashboard/",
