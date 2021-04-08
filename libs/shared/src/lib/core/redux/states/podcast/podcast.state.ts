@@ -3,7 +3,7 @@ import { tap } from 'rxjs/operators';
 
 import { FetchPodcastAction } from './podcast.actions';
 import { Podcast } from '../../models';
-import { PodcastService } from '../../services';
+import { PodcastService } from './podcast.service';
 
 export interface PodcastStateModel {
   items: Podcast[];

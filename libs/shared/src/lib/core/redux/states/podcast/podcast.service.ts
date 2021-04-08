@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Podcast } from '../models';
-import { Environment, ENVIRONMENT } from '../../models';
+import { Podcast } from '../../models';
+import { Environment, ENVIRONMENT } from '../../../models';
 
 @Injectable()
 export class PodcastService {
