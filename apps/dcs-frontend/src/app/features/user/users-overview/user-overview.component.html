@@ -2,27 +2,43 @@
      fxFlex="100">
   <div
     class="filter-container"
+    fxLayout="column"
     fxFlex="50"
     fxFlex.md="100"
     fxFlex.sm="100"
-    fxFlex.xs="100"
-  >
-    <mat-form-field appearance="outline"
-                    fxFlex="100">
+    fxFlex.xs="100">
+    <mat-form-field appearance="outline">
       <mat-label class="code-none">
         <span class="code-1"> function </span>
         <span> BuscarUsuario() </span>
       </mat-label>
       <input
         matInput
-        (keyup)="filterUser()"
+        (keyup)="filterUser($event)"
         formControlName="filter"
         placeholder="Buscar"
       />
     </mat-form-field>
 
     <div class="user-container"
-         fxLayout="column"></div>
+         fxLayout="column">
+      <a
+        *ngFor="let user of users; let i = index"
+        class="top-link"
+        [routerLink]="'/user/' + user?.username"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <img class="top-user-image"
+             [src]="user?.avatarUrl || getUserAvatar()"
+             alt="noavatar"/>
+        <div fxLayout="column"
+             fxFlex="90"
+             fxLayoutAlign="left left">
+          <span class="top-user-name">"{{ user?.username }}"</span>
+        </div>
+      </a>
+    </div>
   </div>
 
   <div
@@ -38,7 +54,7 @@
            class="comment-class code-comment-1">
         <span>/*</span>
         <span>* Usuarios con </span>
-        <span>* mas articulos</span>
+        <span>* mas artículos</span>
         <span>*/</span>
       </div>
 
