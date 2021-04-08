@@ -1,10 +1,10 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { FetchTopActiveUsersAction, FetchTopPopularUsersAction } from './user-info.actions';
+import { FetchTopActiveUsersAction, FetchTopPopularUsersAction, FetchUsersAction } from './user-info.actions';
 import { initUserInfoStateModel, UserInfoStateModel } from './user-info-state.model';
 import { UserInfoService } from './user-info.service';
-import { TopUsers } from '../../models';
+import { TopUsers, User } from '../../models';
 
 @State<UserInfoStateModel>({
   name: 'userInfo',
@@ -25,6 +25,11 @@ export class UserInfoState {
     return state.topPopularUsers;
   }
 
+  @Selector()
+  public static users(state: UserInfoStateModel): User[] {
+    return state.users;
+  }
+
   @Action(FetchTopActiveUsersAction)
   public fetchTopActiveUsersAction(ctx: StateContext<UserInfoStateModel>) {
     return this.userInfoService.topActiveUsers()
@@ -35,5 +40,11 @@ export class UserInfoState {
   public fetchTopPopularUsersAction(ctx: StateContext<UserInfoStateModel>) {
     return this.userInfoService.topPopularUsers()
       .pipe(tap((topPopularUsers) => ctx.patchState({topPopularUsers})));
+  }
+
+  @Action(FetchUsersAction)
+  public fetchUsersAction(ctx: StateContext<UserInfoStateModel>, action: FetchUsersAction) {
+    return this.userInfoService.getUsers(action.search)
+      .pipe(tap((users) => ctx.patchState({users})));
   }
 }
