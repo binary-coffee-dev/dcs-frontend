@@ -4,16 +4,16 @@ import { Observable } from 'rxjs';
 
 import {
   ChangeFilesPageAction,
-  CreateNotificationAction,
   FetchFilesAction,
   NextFilesPageAction,
   PreviousFilesPageAction,
   UploadFileAction
-} from '../actions';
-import { File, NotificationType } from '../models';
+} from './file.action';
+import { File, NotificationType } from '../../models';
 import { FileStateModel, initFileStateModel } from './file-state.model';
-import { PaginationBaseClass, ResponseData, StateBase } from './pagination-base.class';
-import { FileService } from '../services';
+import { PaginationBaseClass, ResponseData, StateBase } from '../pagination-base.class';
+import { FileService } from '../../services';
+import { CreateNotificationAction } from '../notification/notification.action';
 
 @State<FileStateModel>({
   name: 'file',

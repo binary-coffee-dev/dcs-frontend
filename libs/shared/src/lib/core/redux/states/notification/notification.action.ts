@@ -1,4 +1,4 @@
-import { NotificationType } from '../models';
+import { NotificationType } from '../../models';
 
 export class CreateNotificationAction {
   static readonly type = '[Notification] create notification action';

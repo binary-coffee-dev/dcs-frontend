@@ -1,5 +1,5 @@
-import { Post, User } from '../models';
-import { Where } from '../states/pagination-base.class';
+import { Post, User } from '../../models';
+import { Where } from '../pagination-base.class';
 
 export class PostAction {
   static readonly type = '[Post] Fetch post';

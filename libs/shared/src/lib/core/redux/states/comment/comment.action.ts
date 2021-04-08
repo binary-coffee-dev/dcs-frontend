@@ -1,4 +1,4 @@
-import { Comment } from '../models';
+import { Comment } from '../../models';
 
 export class FetchCommentsAction {
   static readonly type = '[Comment] Fetch comments';

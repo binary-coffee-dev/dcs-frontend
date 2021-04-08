@@ -1,4 +1,4 @@
-import { Comment, CommentError } from '../models';
+import { Comment, CommentError } from '../../models';
 
 export interface CommentStateModel {
   comments: Comment[];

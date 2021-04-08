@@ -3,7 +3,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { of } from 'rxjs';
 
 import { AuthStateModel, initAuthStateModel } from './auth-state.model';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import {
   AuthErrorAction,
   LoginAction,
@@ -12,10 +12,10 @@ import {
   MeAction,
   UpdateMeAction,
   UpdateMyAvatarAction
-} from '../actions';
-import { AuthError, User } from '../models';
-import { LoginResponseModel } from '../models/login-response.model';
-import { RoleEnum } from '../../permissions';
+} from './auth.action';
+import { AuthError, User } from '../../models';
+import { LoginResponseModel } from '../../models/login-response.model';
+import { RoleEnum } from '../../../permissions';
 
 @State<AuthStateModel>({
   name: 'auth',

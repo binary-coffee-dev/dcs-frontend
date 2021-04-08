@@ -2,16 +2,16 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { CommentService } from '../services';
+import { CommentService } from '../../services';
 import { CommentStateModel, initCommentStateModel } from './comment-state.model';
 import {
   CommentErrorAction,
   CreateCommentAction,
   FetchCommentsAction,
-  RecentCommentAction,
-  RefreshPostAction
-} from '../actions';
-import { CommentError, Comment } from '../models';
+  RecentCommentAction
+} from './comment.action';
+import { RefreshPostAction } from '../post/post.action';
+import { CommentError, Comment } from '../../models';
 
 @State<CommentStateModel>({
   name: 'comment',
