@@ -12,7 +12,7 @@ import {
 import { File, NotificationType } from '../../models';
 import { FileStateModel, initFileStateModel } from './file-state.model';
 import { PaginationBaseClass, ResponseData, StateBase } from '../pagination-base.class';
-import { FileService } from '../../services';
+import { FileService } from './file.service';
 import { CreateNotificationAction } from '../notification/notification.action';
 
 @State<FileStateModel>({

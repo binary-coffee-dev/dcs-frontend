@@ -9,10 +9,10 @@ import {
   LOGIN_WITH_PROVIDER_MUTATION,
   UPDATE_PROFILE_IMAGE_MUTATION,
   UPDATE_PROFILE_MUTATION
-} from '../../graphql/mutations';
-import { ME_QUERY } from '../../graphql/queries';
-import { LoginResponseModel } from '../models/login-response.model';
-import { User } from '../models';
+} from '../../../graphql/mutations';
+import { ME_QUERY } from '../../../graphql/queries';
+import { LoginResponseModel } from '../../models/login-response.model';
+import { User } from '../../models';
 
 @Injectable({
   providedIn: 'root'

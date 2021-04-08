@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
-import { Tag } from '../models';
-import { TAGS_QUERY } from '../../graphql/queries';
+import { Tag } from '../../models';
+import { TAGS_QUERY } from '../../../graphql/queries';
 
 @Injectable()
 export class TagService {

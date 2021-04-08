@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
-import { Comment } from '../models';
-import { COMMENTS_QUERY, RECENT_COMMENTS_QUERY } from '../../graphql/queries';
-import { CREATE_COMMENT_MUTATION } from '../../graphql/mutations';
+import { Comment } from '../../models';
+import { COMMENTS_QUERY, RECENT_COMMENTS_QUERY } from '../../../graphql/queries';
+import { CREATE_COMMENT_MUTATION } from '../../../graphql/mutations';
 
 @Injectable()
 export class CommentService {

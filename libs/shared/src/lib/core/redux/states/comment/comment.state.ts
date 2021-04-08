@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { CommentService } from '../../services';
+import { CommentService } from './comment.service';
 import { CommentStateModel, initCommentStateModel } from './comment-state.model';
 import {
   CommentErrorAction,

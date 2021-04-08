@@ -5,9 +5,9 @@ import { Apollo } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { FILES_QUERY } from '../../graphql/queries';
-import { File as FileModel } from '../models';
-import { ENVIRONMENT, Environment } from '../../models';
+import { FILES_QUERY } from '../../../graphql/queries';
+import { File as FileModel } from '../../models';
+import { ENVIRONMENT, Environment } from '../../../models';
 
 @Injectable()
 export class FileService {

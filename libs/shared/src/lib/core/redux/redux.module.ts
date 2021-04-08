@@ -5,7 +5,9 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 import { GraphQLModule } from '../graphql';
-import { FileService, PodcastService, TagService } from './services';
+import { PodcastService } from './services';
+import { FileService } from './states/file';
+import { TagService } from './states/tag';
 
 @NgModule({
   imports: [

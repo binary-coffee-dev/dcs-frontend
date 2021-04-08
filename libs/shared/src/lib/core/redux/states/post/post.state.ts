@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, take, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
-import { PostService } from '../../services';
+import { PostService } from './post.service';
 import {
   ChangePageSizeAction,
   FetchPostAction,

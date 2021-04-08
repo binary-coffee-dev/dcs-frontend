@@ -3,7 +3,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { of } from 'rxjs';
 
 import { AuthStateModel, initAuthStateModel } from './auth-state.model';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from './auth.service';
 import {
   AuthErrorAction,
   LoginAction,
