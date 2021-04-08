@@ -3,7 +3,7 @@ import { async, TestBed } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 
 import { PostState } from './post.state';
-import { PostService } from '../../services';
+import { PostService } from './post.service';
 
 class PostServiceStub {
   fetchPosts = jest.fn();
