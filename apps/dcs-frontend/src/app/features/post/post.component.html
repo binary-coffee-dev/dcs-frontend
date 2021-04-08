@@ -1,5 +1,9 @@
-<div class="post-container" fxLayoutAlign="center start">
-  <div class="post-in-container" fxFlex="60" fxFlex.xs="100" fxFlex.sm="100">
+<div class="post-container"
+     fxLayoutAlign="center start">
+  <div class="post-in-container"
+       fxFlex="60"
+       fxFlex.xs="100"
+       fxFlex.sm="100">
     <h1 fxLayout="row">
       <span fxFlex="100">{{ post?.title }}</span>
       <button
@@ -39,8 +43,12 @@
       />
     </div>
 
-    <div class="markdown-container">
-      <markdown [data]="post?.body" katex lineNumbers></markdown>
+    <div class="markdown-container"
+         markdown
+         katex
+         lineNumbers>
+      {{post?.body}}
+      <!--      <markdown [data]="post?.body" katex lineNumbers></markdown>-->
     </div>
 
     <app-post-info [post]="post"></app-post-info>
@@ -52,9 +60,12 @@
         [postId]="post?.id"
       ></app-similar-posts-list>
     </div>
-    <app-comments *ngIf="post" [post]="post"></app-comments>
+    <app-comments *ngIf="post"
+                  [post]="post"></app-comments>
   </div>
-  <div fxFlex="25" fxHide.xs fxHide.xs>
+  <div fxFlex="25"
+       fxHide.xs
+       fxHide.xs>
     <app-share-buttons class="share-buttons-side"></app-share-buttons>
     <app-similar-posts-list
       class="outside"

@@ -7,7 +7,6 @@ import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
 import { MaterialModule, SharedModule, TagsModule } from '@dcs-libs/shared';
 import { PostComponent } from './post.component';
 import { PostRoutingModule } from './post-routing.module';
-import { PostGuard } from './guards';
 import { ServicesModule } from '../../core/services';
 import { CommentsComponent } from './comments/comments.component';
 import { ShareButtonsComponent } from './share-buttons/share-buttons.component';
@@ -33,8 +32,7 @@ import { PostInfoComponent } from './post-info/post-info.component';
     TagsModule,
     SharedModule
   ],
-  entryComponents: [LoginRequestModalComponent],
-  providers: [PostGuard]
+  entryComponents: [LoginRequestModalComponent]
 })
 export class PostModule {
 }
