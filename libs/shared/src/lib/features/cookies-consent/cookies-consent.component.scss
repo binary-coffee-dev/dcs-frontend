@@ -6,9 +6,12 @@
     right: 0;
     bottom: 0;
     left: 0;
-
+    border-radius: map-get($map: $radius, $key:2);
+    margin: map-get($map: $spacings, $key: 2);
     padding: 15px 5%;
-    background-color: map_get($md-primary, 900);
+    background-color: map_get($md-grey, A100);
+    box-shadow: map-get($map: $box-shadow, $key: 6);
+    color: map-get($map: $md-grey, $key: 800);
 
     span {
       font-size: 0.85rem;
@@ -18,8 +21,5 @@
       }
     }
 
-    button {
-      padding: 10px;
-    }
   }
 }
