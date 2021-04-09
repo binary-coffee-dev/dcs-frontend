@@ -16,7 +16,7 @@ import { LimitTextPipe } from './recent-comments/limit-text.pipe';
 import { FilterComponent } from './filter/filter.component';
 import { RecentPodcastsComponent } from './recent-podcasts/recent-podcasts.component';
 import { TopActiveUsersComponent } from './top-active-users/top-active-users.component';
-import { TopLikeUsersComponent } from './top-like-users/top-like-users.component';
+import { TopPopularUsersComponent } from './top-popular-users/top-popular-users.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { TopLikeUsersComponent } from './top-like-users/top-like-users.component
     FilterComponent,
     RecentPodcastsComponent,
     TopActiveUsersComponent,
-    TopLikeUsersComponent
+    TopPopularUsersComponent
   ],
   imports: [
     CommonModule,
