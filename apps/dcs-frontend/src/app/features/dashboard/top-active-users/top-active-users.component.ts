@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 
-import { FetchTopActiveUsersAction, FetchTopPopularUsersAction, FetchUsersAction, TopUsers, User, UserInfoState } from '@dcs-libs/shared';
+import { FetchTopActiveUsersAction, TopUsers, UserInfoState } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-top-active-users',
