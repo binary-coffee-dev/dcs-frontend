@@ -25,10 +25,11 @@
          fxLayoutAlign="center center">
       <div fxLayout="column">
         <span class="stadistic">
-          <b class="sta-n">{{ posts.length }}</b> articulos
+          <b class="sta-n">{{ count }}</b> artículos
         </span>
-        <span class="stadistic"><b class="sta-n">200</b> likes</span>
-        <span class="stadistic"><b class="sta-n">30</b> comentarios</span>
+        <span class="stadistic"
+              *ngIf="false"><b class="sta-n">200</b> likes</span>
+        <span class="stadistic"><b class="sta-n">{{ commentsCount }}</b> comentarios</span>
       </div>
     </div>
   </div>
@@ -64,6 +65,14 @@
 
           </div>
         </a>
+      </div>
+      <div>
+        <button *ngIf="(firstPage | async)  === false"
+                (click)="articlesPreviousPage()">previous
+        </button>
+        <button *ngIf="(lastPage | async)  === false"
+                (click)="articlesNextPage()">next
+        </button>
       </div>
     </div>
   </div>

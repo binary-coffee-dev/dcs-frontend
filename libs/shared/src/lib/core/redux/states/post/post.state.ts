@@ -31,6 +31,11 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   }
 
   @Selector()
+  static count(state: PostStateModel): number {
+    return state.count;
+  }
+
+  @Selector()
   static post(state: PostStateModel): Post {
     return state.post;
   }

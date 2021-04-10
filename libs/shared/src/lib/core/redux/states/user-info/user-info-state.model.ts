@@ -5,6 +5,7 @@ export interface UserInfoStateModel {
   topPopularUsers: TopUsers;
   users: User[];
   user: User;
+  commentsCount: number;
 }
 
 export const initUserInfoStateModel = () => {
@@ -12,6 +13,7 @@ export const initUserInfoStateModel = () => {
     topActiveUsers: {},
     topPopularUsers: {},
     users: [],
-    user: {}
+    user: {},
+    commentsCount: 0
   } as UserInfoStateModel;
 };

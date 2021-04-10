@@ -14,7 +14,7 @@ const routes: Routes = [
     path: ':username',
     component: UserViewComponent,
     resolve: {
-      user: UserViewResolver
+      userInfo: UserViewResolver
     }
   }
 ];

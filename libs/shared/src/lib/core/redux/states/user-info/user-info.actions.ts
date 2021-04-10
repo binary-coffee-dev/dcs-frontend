@@ -19,3 +19,10 @@ export class FetchUserByUsernameAction {
   constructor(public username: string) {
   }
 }
+
+export class FetchCommentsCountAction {
+  public static readonly type = '[UserInfo] Fetch comments count';
+
+  constructor(public userId: string) {
+  }
+}

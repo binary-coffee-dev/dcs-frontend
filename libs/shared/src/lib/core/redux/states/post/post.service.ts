@@ -20,8 +20,8 @@ export class PostService {
   fetchPosts(limit, start = 0, where = {}): Observable<PostConnection> {
     const sort = !!this.env.isDashboard ? 'createdAt:desc' : 'publishedAt:desc';
     return this.apollo
-      .watchQuery({query: POSTS_QUERY, variables: {limit, start, where, sort}, fetchPolicy: 'no-cache'})
-      .valueChanges.pipe(map((result: any) => ({
+      .query({query: POSTS_QUERY, variables: {limit, start, where, sort}, fetchPolicy: 'no-cache'})
+      .pipe(map((result: any) => ({
         ...result.data.postsConnection,
         aggregate: {
           count: result.data.countPosts
