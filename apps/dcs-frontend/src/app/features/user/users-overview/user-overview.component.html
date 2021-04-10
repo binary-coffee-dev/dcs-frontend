@@ -68,7 +68,7 @@
         <a
           *ngFor="let user of top5Post.users; let i = index"
           class="top-link"
-          [routerLink]="'/user/' + user?.username"
+          [routerLink]="'/users/' + user?.username"
           fxLayout="row"
           fxLayoutAlign="center center"
         >
@@ -108,7 +108,7 @@
         <a
           *ngFor="let user of top5Likes.users; let i = index"
           class="top-link"
-          [routerLink]="'/user/' + user?.username"
+          [routerLink]="'/users/' + user?.username"
           fxLayout="row"
           fxLayoutAlign="center center"
         >

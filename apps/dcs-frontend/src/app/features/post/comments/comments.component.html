@@ -63,9 +63,11 @@
          class="comment-item"
          *ngFor="let comment of comments"
          [id]="comment?.id">
-      <img class="comment-user-image"
-           [src]="getUserAvatar(comment.user)"
-           alt="noavatar">
+      <a [href]="'/users/' + comment.user.username">
+        <img class="comment-user-image"
+             [src]="getUserAvatar(comment.user)"
+             alt="noavatar">
+      </a>
 
       <div fxLayout="column"
            fxFlex="90"
@@ -75,17 +77,18 @@
           <span class="post-info">
             // {{comment?.publishedAt && moment.timeFromDate(comment.publishedAt) || ''}}
           </span>
-          <h3 class="code-2">
+          <a [href]="'/users/' + comment.user.username"
+             class="code-2">
             "{{getName(comment)}}"
-              <i class="fa fa-star"
-                 *ngIf="getIsStaff(comment)"
-                 [matTooltip]="getRole(comment)">
-              </i>
-              <i class="fa fa-check-circle"
-                 *ngIf="getIsAdmin(comment)"
-                 [matTooltip]="getRole(comment)">
-              </i>
-          </h3>
+            <i class="fa fa-star"
+               *ngIf="getIsStaff(comment)"
+               [matTooltip]="getRole(comment)">
+            </i>
+            <i class="fa fa-check-circle"
+               *ngIf="getIsAdmin(comment)"
+               [matTooltip]="getRole(comment)">
+            </i>
+          </a>
         </div>
         <div class="comment-body">
           {{comment.body}}
