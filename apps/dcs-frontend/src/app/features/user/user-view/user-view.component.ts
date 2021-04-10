@@ -6,8 +6,9 @@ import {
   UrlUtilsService,
   MomentService,
   Post,
-  PostState
+  PostState, User
 } from '@dcs-libs/shared';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-view',
@@ -16,15 +17,20 @@ import {
 })
 export class UserViewComponent implements OnInit {
 
+  user = {} as User;
   posts: Post[] = [];
 
   constructor(
     private store: Store,
     public moment: MomentService,
-    public url: UrlUtilsService) {
+    public url: UrlUtilsService,
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit(): void {
+    this.user = this.route.snapshot.data.user;
+    console.log(this.user);
     this.store.select(PostState.posts).subscribe(posts => {
       this.posts = posts;
     });

@@ -1,15 +1,28 @@
-<div class="container" fxLayout="row" fxLayout.xs="column">
-  <div class="user-container" fxLayout="column" fxLayoutAlign="start center" fxFlex="30" fxFlex.sm="50" fxFlex.xs="100">
-    <div class="user-image-container" fxLayoutAlign="center center">
+<div class="container"
+     fxLayout="row"
+     fxLayout.xs="column">
+  <div class="user-container"
+       fxLayout="column"
+       fxLayoutAlign="start center"
+       fxFlex="30"
+       fxFlex.sm="50"
+       fxFlex.xs="100">
+    <div class="user-image-container"
+         fxLayoutAlign="center center">
       <div>
-        <img class="user-image" [src]="getUserAvatar()" alt="noavatar" />
-        <div class="user-name-content" fxLayout="row">
-          <b class="user-name">binary-coffee</b>
+        <img class="user-image"
+             [src]="user.avatarUrl || getUserAvatar()"
+             alt="noavatar"/>
+        <div class="user-name-content"
+             fxLayoutAlign="center"
+             fxLayout="row">
+          <b class="user-name">{{ user?.username }}</b>
         </div>
       </div>
     </div>
 
-    <div class="stadistic-container" fxLayoutAlign="center center">
+    <div class="stadistic-container"
+         fxLayoutAlign="center center">
       <div fxLayout="column">
         <span class="stadistic">
           <b class="sta-n">{{ posts.length }}</b> articulos
@@ -20,8 +33,10 @@
     </div>
   </div>
 
-  <div class="post-container" fxLayout="row wrap">
-    <div class="container" fxLayout="column">
+  <div class="post-container"
+       fxLayout="row wrap">
+    <div class="container"
+         fxLayout="column">
       <div fxLayout="row wrap">
         <a
           *ngFor="let post of posts"
@@ -31,8 +46,9 @@
           fxFlex.xs="100"
           fxFlex.sm="100"
         >
-          <div class="post-box" fxLayout="column">
-            
+          <div class="post-box"
+               fxLayout="column">
+
             <div class="post-image-container">
               <img
                 *ngIf="post?.banner?.url"
@@ -40,10 +56,12 @@
               />
             </div>
 
-            <div class="code-none" class="post-title" fxLayout="column">
+            <div class="code-none"
+                 class="post-title"
+                 fxLayout="column">
               <b class="code-2">{{ post.title }}</b>
             </div>
-            
+
           </div>
         </a>
       </div>
