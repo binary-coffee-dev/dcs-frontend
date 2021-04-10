@@ -12,3 +12,17 @@ export class FetchUsersAction {
   constructor(public search: string) {
   }
 }
+
+export class FetchUserByUsernameAction {
+  public static readonly type = '[UserInfo] Fetch user by username';
+
+  constructor(public username: string) {
+  }
+}
+
+export class FetchCommentsCountAction {
+  public static readonly type = '[UserInfo] Fetch comments count';
+
+  constructor(public userId: string) {
+  }
+}

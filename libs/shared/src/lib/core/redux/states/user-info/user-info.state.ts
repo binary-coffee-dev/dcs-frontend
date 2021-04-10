@@ -1,7 +1,13 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { FetchTopActiveUsersAction, FetchTopPopularUsersAction, FetchUsersAction } from './user-info.actions';
+import {
+  FetchCommentsCountAction,
+  FetchTopActiveUsersAction,
+  FetchTopPopularUsersAction,
+  FetchUserByUsernameAction,
+  FetchUsersAction
+} from './user-info.actions';
 import { initUserInfoStateModel, UserInfoStateModel } from './user-info-state.model';
 import { UserInfoService } from './user-info.service';
 import { TopUsers, User } from '../../models';
@@ -26,8 +32,18 @@ export class UserInfoState {
   }
 
   @Selector()
+  public static commentsCount(state: UserInfoStateModel): number {
+    return state.commentsCount;
+  }
+
+  @Selector()
   public static users(state: UserInfoStateModel): User[] {
     return state.users;
+  }
+
+  @Selector()
+  public static user(state: UserInfoStateModel): User {
+    return state.user;
   }
 
   @Action(FetchTopActiveUsersAction)
@@ -46,5 +62,17 @@ export class UserInfoState {
   public fetchUsersAction(ctx: StateContext<UserInfoStateModel>, action: FetchUsersAction) {
     return this.userInfoService.getUsers(action.search)
       .pipe(tap((users) => ctx.patchState({users})));
+  }
+
+  @Action(FetchUserByUsernameAction)
+  public fetchUserAction(ctx: StateContext<UserInfoStateModel>, action: FetchUserByUsernameAction) {
+    return this.userInfoService.getUserByUsername(action.username)
+      .pipe(tap((user) => ctx.patchState({user})));
+  }
+
+  @Action(FetchCommentsCountAction)
+  public fetchCommentsCountAction(ctx: StateContext<UserInfoStateModel>, action: FetchCommentsCountAction) {
+    return this.userInfoService.getCommentsCount(action.userId)
+      .pipe(tap((commentsCount) => ctx.patchState({commentsCount})));
   }
 }

@@ -5,9 +5,13 @@ import { Store } from '@ngxs/store';
 
 import { ENVIRONMENT } from '@dcs-libs/shared';
 import { UserViewComponent } from './user-view.component';
+import { ActivatedRoute } from '@angular/router';
 
 class StoreStub {
   select = jest.fn();
+}
+
+class ActivatedRouteStub {
 }
 
 describe('UserViewComponent', () => {
@@ -19,7 +23,8 @@ describe('UserViewComponent', () => {
       declarations: [UserViewComponent],
       providers: [
         {provide: Store, useClass: StoreStub},
-        {provide: ENVIRONMENT, useValue: {}}
+        {provide: ENVIRONMENT, useValue: {}},
+        {provide: ActivatedRoute, useClass: ActivatedRouteStub}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
