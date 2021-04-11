@@ -1,11 +1,10 @@
 @import 'libs/shared/src/theme';
 
 .top {
-  margin: 0 map-get($map: $spacings, $key: 4) map-get($map: $spacings, $key: 4) map-get($map: $spacings, $key: 4);
+  padding: map-get($map: $spacings, $key: 4) map-get($map: $spacings, $key: 4);
 
   .top-content {
     margin: map-get($map: $spacings, $key: 2) map-get($map: $spacings, $key: 0);
-
   }
 
   .top-link {
