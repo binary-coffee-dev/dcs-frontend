@@ -30,7 +30,7 @@ export class CommentService {
 
   recentComments() {
     return this.apollo
-      .watchQuery({query: RECENT_COMMENTS_QUERY})
+      .watchQuery({query: RECENT_COMMENTS_QUERY, variables: {limit: 8}})
       .valueChanges.pipe(map((result: any) => result.data.recentComments));
   }
 }

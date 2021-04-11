@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const RECENT_COMMENTS_QUERY = gql`
-  query{
-    recentComments {
+  query ($limit: Int){
+    recentComments (limit: $limit){
       id
       body
       createdAt
