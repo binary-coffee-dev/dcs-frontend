@@ -42,7 +42,7 @@ export class UserViewResolver implements Resolve<UserView> {
     return this.store.dispatch(new FetchUserByUsernameAction(route.paramMap.get('username')))
       .pipe(
         tap(() => this.user = this.store.selectSnapshot(UserInfoState.user)),
-        flatMap(() => this.store.dispatch(new SetFiltersAction({author: this.user.id} as Where))),
+        flatMap(() => this.store.dispatch(new SetFiltersAction({author: this.user.id, enable: true} as Where))),
         flatMap(() => this.store.dispatch(new FetchPostsAction())),
         flatMap(() => this.store.dispatch(new FetchCommentsCountAction(this.user.id))),
         tap(() => this.posts = this.store.selectSnapshot(PostState.posts)),

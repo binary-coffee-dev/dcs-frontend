@@ -3,9 +3,13 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 import { TopActiveUsersComponent } from './top-active-users.component';
+import { UrlUtilsService } from '@dcs-libs/shared';
 
 class StoreStub {
   select = jest.fn();
+}
+
+class UrlUtilsServiceStub {
 }
 
 describe('TopActiveUsersComponent', () => {
@@ -17,7 +21,8 @@ describe('TopActiveUsersComponent', () => {
       declarations: [TopActiveUsersComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: Store, useClass: StoreStub }
+        { provide: Store, useClass: StoreStub },
+        { provide: UrlUtilsService, useClass: UrlUtilsServiceStub }
       ]
     })
       .compileComponents();

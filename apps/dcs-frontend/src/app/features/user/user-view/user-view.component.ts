@@ -45,8 +45,8 @@ export class UserViewComponent implements OnInit {
     this.lastPage = this.store.select(PostState.lastPage);
   }
 
-  getUserAvatar() {
-    return 'assets/images/noavatar.png';
+  getUserAvatar(user) {
+    return this.url.getUserImage(user);
   }
 
   getPostImg() {
