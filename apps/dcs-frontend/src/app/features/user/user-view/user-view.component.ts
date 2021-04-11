@@ -49,6 +49,10 @@ export class UserViewComponent implements OnInit {
     return 'assets/images/noavatar.png';
   }
 
+  getPostImg() {
+    return 'assets/images/banner-default.jpg';
+  }
+
   articlesNextPage() {
     this.store.dispatch(new NextPageAction());
   }
