@@ -35,6 +35,10 @@ const routes: Routes = [
         loadChildren: () => import('./features/podcast/podcast.module').then(m => m.PodcastModule)
       },
       {
+        path: 'users',
+        loadChildren: () => import('./features/user/user.module').then(m => m.UserModule)
+      },
+      {
         path: 'privacy-policy',
         component: PrivacyComponent
       },

@@ -5,7 +5,10 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 import { GraphQLModule } from '../graphql';
-import { FileService, PodcastService, TagService } from './services';
+import { FileService } from './states/file';
+import { TagService } from './states/tag';
+import { PodcastService } from './states/podcast';
+import { UserInfoService } from './states/user-info';
 
 @NgModule({
   imports: [
@@ -14,7 +17,7 @@ import { FileService, PodcastService, TagService } from './services';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot({key: ['auth', 'config']})
   ],
-  providers: [FileService, TagService, PodcastService]
+  providers: [FileService, TagService, PodcastService, UserInfoService]
 })
 export class ReduxModule {
 }

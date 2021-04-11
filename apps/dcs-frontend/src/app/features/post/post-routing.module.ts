@@ -4,13 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { PostComponent } from './post.component';
-import { PostGuard } from './guards';
+import { PostResolver } from './post-resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: PostComponent,
-    canActivate: [PostGuard]
+    resolve: {
+      post: PostResolver
+    }
   }
 ];
 

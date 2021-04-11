@@ -1,0 +1,37 @@
+@import 'libs/shared/src/theme';
+
+.top {
+  padding: map-get($map: $spacings, $key: 4) map-get($map: $spacings, $key: 4);
+
+  .top-content {
+    margin: map-get($map: $spacings, $key: 2) map-get($map: $spacings, $key: 0);
+
+  }
+
+  .top-link {
+    margin-left: map-get($map: $spacings, $key: 1);
+    margin-bottom: map-get($map: $spacings, $key: 1);
+    text-decoration: none;
+    font-size: 0.85rem;
+    border-radius: map-get($map: $radius, $key: 2);
+    padding: map-get($map: $spacings, $key: 1);
+    color: map_get($md-primary, 500);
+
+    &:last-of-type {
+      margin-bottom: map-get($map: $spacings, $key: 0);
+    }
+
+    &:hover {
+      background-color: map_get($md-primary, 50);
+    }
+
+    .top-user-image {
+      max-width: map_get($spacings, 6);
+      min-width: map_get($spacings, 6);
+      height: map_get($spacings, 6);
+      border-radius: 100%;
+      margin-right: map_get($spacings, 2);
+      overflow: hidden;
+    }
+  }
+}

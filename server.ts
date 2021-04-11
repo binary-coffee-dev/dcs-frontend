@@ -18,7 +18,7 @@
 import 'zone.js/dist/zone-node';
 
 import express from 'express';
-import {join} from 'path';
+import { join } from 'path';
 
 // Express server
 const app = express();

@@ -3,10 +3,9 @@
       <span class="post-info separator"
             fxLayout="row"
             fxLayoutAlign="start center">
-        <a [href]="post?.author?.page || ''"
+        <a [href]="'/users/' + post?.author?.username"
            [title]="post?.author?.email"
            fxLayout="row"
-           target="_blank"
            fxLayoutAlign="start center">
           <img *ngIf="post?.author?.avatar?.url"
                [src]="resource.addApiUrl(post?.author?.avatar?.url)"

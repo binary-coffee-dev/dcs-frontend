@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
@@ -18,6 +19,7 @@ describe('RecentPodcastsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [RecentPodcastsComponent],
+      schemas: [NO_ERRORS_SCHEMA],
       providers: [
         {provide: Store, useClass: StoreStub},
         {provide: MomentService, useClass: MomentServiceStub}

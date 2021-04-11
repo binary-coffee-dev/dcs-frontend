@@ -18,7 +18,9 @@ import {
   PostState,
   CommentState,
   CommentService,
-  MaterialModule, PodcastState, ConfigState
+  MaterialModule,
+  PodcastState,
+  ConfigState, UserInfoState
 } from '@dcs-libs/shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './features/app.component';
@@ -32,6 +34,7 @@ import { LoginButtonComponent } from './features/components/login-button/login-b
 import { createApollo } from './core/graphql';
 import { LoginRequestModalComponent } from './features/components/login-request-modal';
 import { PodcastModule } from './features/podcast';
+import { UserModule } from './features/user/user.module';
 
 @NgModule({
   declarations: [
@@ -46,19 +49,20 @@ import { PodcastModule } from './features/podcast';
     LoginRequestModalComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState], {
+    NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState, UserInfoState], {
       developmentMode: !environment.production
     }),
     ReduxModule,
     MaterialModule,
     InfoModule,
     SharedModule,
-    PodcastModule
+    PodcastModule,
+    UserModule
   ],
   providers: [
     {

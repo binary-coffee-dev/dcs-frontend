@@ -17,6 +17,7 @@ import {
   UrlUtilsService, WINDOW
 } from '@dcs-libs/shared';
 import { SelectImageModalComponent } from './select-image-modal/select-image-modal.component';
+import { UploadFileModalComponent } from '../../components/upload-file.modal';
 
 @Component({
   selector: 'app-overview',
@@ -58,8 +59,8 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   ) {
     super();
     this.timesSelections = [...Array(24).keys()].reduce((p, v) => {
-      p.push({minutes: v * 60, title: `${v}:00`});
-      p.push({minutes: v * 60 + 30, title: `${v}:30`});
+      p.push({ minutes: v * 60, title: `${v}:00` });
+      p.push({ minutes: v * 60 + 30, title: `${v}:30` });
       return p;
     }, []);
     this.window.document.addEventListener('keydown', this.shortCutHandlerMethod.bind(this));
@@ -69,9 +70,9 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
     if (!this.isNewPost()) {
       this.store.select(PostState.post).pipe(takeUntil(this._unsubscribe)).subscribe(post => {
         if (post) {
-          const newPost = {...post};
+          const newPost = { ...post };
           if (newPost.banner) {
-            newPost.banner = {...newPost.banner};
+            newPost.banner = { ...newPost.banner };
             newPost.banner.url = this.url.normalizeImageUrl(newPost.banner.url);
           }
           this.post = newPost;
@@ -79,7 +80,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
           this.articleForm.controls.description.setValue(this.post.description);
           this.articleForm.controls.title.setValue(this.post.title);
           this.articleForm.controls.enable.setValue(Boolean(this.post.enable));
-          this.articleForm.controls.tags.setValue(this.post.tags.map(tag => ({display: tag.name, value: tag.id})));
+          this.articleForm.controls.tags.setValue(this.post.tags.map(tag => ({ display: tag.name, value: tag.id })));
 
           if (this.post.publishedAt) {
             this.post.publishedAt = new Date(this.post.publishedAt);
@@ -95,7 +96,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
     this.store.select(TagState.tags)
       .pipe(
         takeUntil(this._unsubscribe),
-        map(tags => tags.map(tag => ({display: tag.name, value: tag.id})))
+        map(tags => tags.map(tag => ({ display: tag.name, value: tag.id })))
       )
       .subscribe(values => this.tags.next(values));
     this.getTags = this.getTags.bind(this);
@@ -146,7 +147,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
 
     const date = this.post.publishedAt ? this.getDatesParameters(new Date(this.post.publishedAt)) : {};
     const date2 = this.articleForm.controls.date.value ? this.getDatesParameters(new Date(this.articleForm.controls.date.value)) : {};
-    const {hours, minutes} = this.getHMFromMinutes(this.articleForm.controls.time.value);
+    const { hours, minutes } = this.getHMFromMinutes(this.articleForm.controls.time.value);
     const publishedAtChange = date.minutes !== minutes ||
       date.hours !== hours ||
       date.day !== date2.day ||
@@ -171,12 +172,12 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
       this.post.description = this.articleForm.controls.description.value;
       this.post.title = this.articleForm.controls.title.value;
       this.post.enable = !!this.articleForm.controls.enable.value;
-      this.post.tags = this.articleForm.controls.tags.value.map(tag => ({name: tag.display, id: tag.value} as Tag));
+      this.post.tags = this.articleForm.controls.tags.value.map(tag => ({ name: tag.display, id: tag.value } as Tag));
 
       let date;
       if (this.articleForm.controls.date.value && (this.articleForm.controls.time.value || this.articleForm.controls.time.value === 0)) {
         date = new Date(this.articleForm.controls.date.value);
-        const {hours, minutes} = this.getHMFromMinutes(this.articleForm.controls.time.value);
+        const { hours, minutes } = this.getHMFromMinutes(this.articleForm.controls.time.value);
         date.setHours(hours);
         date.setMinutes(minutes);
       }
@@ -207,11 +208,11 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
 
   getHMFromMinutes(time) {
     if (!time) {
-      return {hours: null, minutes: null};
+      return { hours: null, minutes: null };
     }
     const hours = Math.floor(time / 60);
     const minutes = time - (hours * 60);
-    return {hours, minutes};
+    return { hours, minutes };
   }
 
   getDatesParameters(date: Date): { day?: number, month?: number, year?: number, hours?: number, minutes?: number } {
@@ -223,7 +224,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
     const year = date.getFullYear();
     const hours = date.getHours();
     const minutes = date.getMinutes();
-    return {day, month, year, hours, minutes};
+    return { day, month, year, hours, minutes };
   }
 
   openImageSectorModal() {
@@ -240,5 +241,18 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
           this.imageChange = true;
         }
       });
+  }
+
+  openUploadFileModal() {
+    const dialog = this.dialog.open(UploadFileModalComponent, {
+      height: 'auto',
+      width: '50vh',
+    });
+    dialog.afterClosed().subscribe((image: File) => {
+      if (image) {
+        this.post.banner = image;
+        this.imageChange = true;
+      }
+    });
   }
 }

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  deploy:
+    build:
+      context: .
+    ports:
+      - '4202:80'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

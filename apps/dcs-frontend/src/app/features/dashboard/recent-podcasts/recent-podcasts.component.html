@@ -4,13 +4,14 @@
      fxHide.sm>
   <div fxLayout="column"
        class="comment-class code-comment-1">
-    <span>/**</span>
+    <span>/*</span>
     <span>* Podcast</span>
     <span>*/</span>
   </div>
   <div>
     <span class="code-1">class </span>
-    <a class="podcast-class-code" routerLink="/podcast/espacio-binario">EspacioBinario</a>
+    <a class="podcast-class-code"
+       routerLink="/podcast/espacio-binario">EspacioBinario</a>
     <span> {{ ' {' }}</span>
   </div>
   <div class="link-container"
@@ -32,6 +33,12 @@
         </div>
       </a>
     </ng-container>
+
+    <a [routerLink]="'/podcast'"
+       *ngIf="false"
+       class="more-podcast">
+      <i class="fa fa-arrow-left"></i> Mas podcasts
+    </a>
   </div>
   <div>{{ '}' }}</div>
 </div>
