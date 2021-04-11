@@ -49,7 +49,7 @@ import { UserModule } from './features/user/user.module';
     LoginRequestModalComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,

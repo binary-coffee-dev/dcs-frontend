@@ -9,7 +9,6 @@ import { FetchTopActiveUsersAction, FetchTopPopularUsersAction, FetchUsersAction
 })
 export class UsersOverviewComponent implements OnInit {
 
-
   top5Post = {} as TopUsers;
   top5Likes = {} as TopUsers;
 
