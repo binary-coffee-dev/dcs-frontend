@@ -15,9 +15,9 @@ import { RecentCommentsComponent } from './recent-comments/recent-comments.compo
 import { LimitTextPipe } from './recent-comments/limit-text.pipe';
 import { FilterComponent } from './filter/filter.component';
 import { RecentPodcastsComponent } from './recent-podcasts/recent-podcasts.component';
-import { TopActiveUsersComponent } from './top-active-users/top-active-users.component';
-import { TopPopularUsersComponent } from './top-popular-users/top-popular-users.component';
-
+import { TopActiveUsersModule } from "../components/top-active-users/top-active-users.module";
+import { TopPopularUsersModule } from "../components/top-popular-users/top-popular-users.module";
+ 
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -27,8 +27,6 @@ import { TopPopularUsersComponent } from './top-popular-users/top-popular-users.
     LimitTextPipe,
     FilterComponent,
     RecentPodcastsComponent,
-    TopActiveUsersComponent,
-    TopPopularUsersComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +34,9 @@ import { TopPopularUsersComponent } from './top-popular-users/top-popular-users.
     MaterialModule,
     ServicesModule,
     LazyLoadImageModule.forRoot({preset: scrollPreset}),
-    TagsModule
+    TagsModule,
+    TopActiveUsersModule,
+    TopPopularUsersModule
   ],
   providers: [PostsGuard]
 })

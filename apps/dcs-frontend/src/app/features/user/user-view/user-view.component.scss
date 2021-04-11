@@ -41,14 +41,12 @@
       height: 15rem;
       border-radius: 100%;
       margin-right: map_get($spacings, 2);
+      border: 1px solid map_get($md-primary, 100);
     }
   }
 
   .stadistic-container {
     margin-top: map-get($map: $spacings, $key: 4);
-    padding: map-get($map: $spacings, $key: 1);
-    background-color: map-get($map: $md-primary, $key: 50);
-    border-radius: map-get($map: $radius, $key: 2);
 
     .stadistic {
       padding: map-get($map: $spacings, $key: 1);
@@ -59,44 +57,118 @@
     }
   }
 
-  .post-content {
-    padding: map_get($spacings, 4) map_get($spacings, 4) map_get($spacings, 4) 0;
-    text-decoration: none;
-
-    @media screen and (max-width: 599px) { 
-      padding: 0 map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 2); 
+  .post-container {
+    .upper-comment {
+      margin: map-get($map: $spacings, $key: 1) map-get($map: $spacings, $key: 2);
     }
 
-    .post-image-container {
-      width: 100%;
-      height: 150px;
-      border-radius: map_get($radius, 2);
+    .post-content {
+      padding: map_get($spacings, 4) map_get($spacings, 4) map_get($spacings, 4) 0;
+      text-decoration: none;
 
-      img {
+      @media screen and (max-width: 599px) {
+        padding: 0 map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 2);
+      }
+
+      .post-image-container {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        border-radius: map_get($radius, 2) map_get($radius, 2) 0 0;
-        z-index: -1;
+        height: 150px;
+        border-radius: map_get($radius, 2);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          border-radius: map_get($radius, 2) map_get($radius, 2) 0 0;
+          z-index: -1;
+        }
+      }
+
+      .post-box {
+        border: 1px solid map_get($md-primary, 100);
+        border-radius: map_get($radius, 2);
+        cursor: pointer;
+
+        &:hover {
+          border: 1px solid map_get($md-primary, 500);
+        }
+
+        .post-title {
+          padding: map_get($spacings, 2);
+          text-transform: uppercase;
+
+          b {
+            font-size: 1.2rem;
+          }
+        }
       }
     }
 
-    .post-box {
-      border: 1px solid map_get($md-primary, 100);
-      border-radius: map_get($radius, 2);
-      cursor: pointer;
+    .pagination {
+      margin-bottom: map-get($map: $spacings, $key: 2);
 
-      &:hover {
-        border: 1px solid map_get($md-primary, 500);
-      }
+      .page-item {
+        border-top: 1px solid map_get($md-primary, 100);
+        border-bottom: 1px solid map_get($md-primary, 100);
+        background-color: map_get($md-grey, 350);
+        border-radius: map_get($radius, 0);
+        color: map_get($md-primary, 500);
+        cursor: pointer;
 
-      .post-title {
-        padding: map_get($spacings, 2);
-        text-transform: uppercase;
+        &:first-child {
+          border-top-left-radius: map_get($radius, 2);
+          border-bottom-left-radius: map_get($radius, 2);
+          border-left: 1px solid map_get($md-primary, 100);
 
-        b {
-          font-size: 1.2rem;
+          &:hover {
+            border-left: 1px solid map_get($md-primary, 500);
+
+            &.disabled {
+              border-left: 1px solid map_get($md-primary, 100);
+            }
+          }
+        }
+
+        &:last-child {
+          border-top-right-radius: map_get($radius, 2);
+          border-bottom-right-radius: map_get($radius, 2);
+          border-right: 1px solid map_get($md-primary, 100);
+
+          &:hover {
+            border-right: 1px solid map_get($md-primary, 500);
+
+            &.disabled {
+              border-right: 1px solid map_get($md-primary, 100);
+            }
+          }
+        }
+
+        &.active {
+          cursor: default;
+          background-color: map_get($md-primary, 100);
+        }
+
+        &.disabled {
+          cursor: default;
+          color: map_get($md-grey, 600);
+        }
+
+        &:hover {
+          border-top: 1px solid map_get($md-primary, 500);
+          border-bottom: 1px solid map_get($md-primary, 500);
+
+          &.active {
+            background-color: map_get($md-primary, 8);
+            border-top: 1px solid map_get($md-primary, 100);
+            border-bottom: 1px solid map_get($md-primary, 100);
+          }
+
+          &.disabled {
+            color: map_get($md-grey, 600);
+            border-top: 1px solid map_get($md-primary, 100);
+            border-bottom: 1px solid map_get($md-primary, 100);
+          }
         }
       }
     }

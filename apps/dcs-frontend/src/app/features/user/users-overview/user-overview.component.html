@@ -24,7 +24,7 @@
       <a
         *ngFor="let user of users; let i = index"
         class="top-link"
-        [routerLink]="'/user/' + user?.username"
+        [routerLink]="'/users/' + user?.username"
         fxLayout="row"
         fxLayoutAlign="center center"
       >
@@ -48,84 +48,7 @@
     fxHide.sm
     fxHide.xs
   >
-    <div class="top">
-      <div fxLayout="column"
-           class="comment-class code-comment-1">
-        <span>/*</span>
-        <span>* Usuarios con </span>
-        <span>* mas artículos</span>
-        <span>*/</span>
-      </div>
-
-      <div [fxHide.xs]="true"
-           [fxHide.sm]="true">
-        <span class="code-1">class</span>
-        <span> Top5MasActivos </span>
-        <span> {{ ' {' }}</span>
-      </div>
-
-      <div class="top-content">
-        <a
-          *ngFor="let user of top5Post.users; let i = index"
-          class="top-link"
-          [routerLink]="'/users/' + user?.username"
-          fxLayout="row"
-          fxLayoutAlign="center center"
-        >
-          <img class="top-user-image"
-               [src]="user?.avatarUrl || getUserAvatar()"
-               alt="noavatar"/>
-          <div fxLayout="column"
-               fxFlex="90"
-               fxLayoutAlign="left left">
-            <span class="post-info"> // {{ top5Post?.values[i] }} artículos</span>
-            <span class="top-user-name">"{{ user?.username }}"</span>
-          </div>
-        </a>
-      </div>
-
-      <div [fxHide.xs]="true"
-           [fxHide.sm]="true">{{ '}' }}</div>
-    </div>
-
-    <div class="top">
-      <div fxLayout="column"
-           class="comment-class code-comment-1">
-        <span>/*</span>
-        <span>* Usuarios con</span>
-        <span>* mas likes</span>
-        <span>*/</span>
-      </div>
-
-      <div [fxHide.xs]="true"
-           [fxHide.sm]="true">
-        <span class="code-1">class</span>
-        <span> Top5MasApollados </span>
-        <span> {{ ' {' }}</span>
-      </div>
-
-      <div class="top-content">
-        <a
-          *ngFor="let user of top5Likes.users; let i = index"
-          class="top-link"
-          [routerLink]="'/users/' + user?.username"
-          fxLayout="row"
-          fxLayoutAlign="center center"
-        >
-          <img class="top-user-image"
-               [src]="user?.avatarUrl || getUserAvatar()"
-               alt="noavatar"/>
-          <div fxLayout="column"
-               fxFlex="90"
-               fxLayoutAlign="left left">
-            <span class="post-info"> // {{ top5Likes?.values[i] }} likes</span>
-            <span class="top-user-name">"{{ user?.username }}"</span>
-          </div>
-        </a>
-      </div>
-
-      <div [fxHide.xs]="true"
-           [fxHide.sm]="true">{{ '}' }}</div>
-    </div>
+  <app-top-popular-users></app-top-popular-users>
+  <app-top-active-users></app-top-active-users>
   </div>
 </div>
