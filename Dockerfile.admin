@@ -3,6 +3,7 @@ FROM node:10.16.3 AS build-env
 WORKDIR /app
 
 COPY package.json ./
+COPY package-lock.json ./
 RUN npm install
 
 COPY . ./
