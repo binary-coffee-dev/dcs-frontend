@@ -19,6 +19,8 @@
 
       .markdown-container {
         margin-bottom: map_get($spacings, 6);
+
+        word-wrap: break-word;
       }
 
       .tags-content {

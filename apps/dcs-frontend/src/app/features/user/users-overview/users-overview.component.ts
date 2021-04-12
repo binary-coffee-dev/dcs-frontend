@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { FetchTopActiveUsersAction, FetchTopPopularUsersAction, FetchUsersAction, TopUsers, User, UserInfoState } from '@dcs-libs/shared';
+import {
+  FetchTopActiveUsersAction,
+  FetchTopPopularUsersAction,
+  FetchUsersAction,
+  TopUsers,
+  UrlUtilsService,
+  User,
+  UserInfoState
+} from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-user',
@@ -14,7 +22,7 @@ export class UsersOverviewComponent implements OnInit {
 
   users: User[] = [];
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private url: UrlUtilsService) {
   }
 
   ngOnInit(): void {
@@ -31,8 +39,8 @@ export class UsersOverviewComponent implements OnInit {
     this.store.dispatch(new FetchUsersAction(event.target.value));
   }
 
-  getUserAvatar() {
-    return 'assets/images/noavatar.png';
+  getUserAvatar(user) {
+    return this.url.getUserImage(user);
   }
 
 }
