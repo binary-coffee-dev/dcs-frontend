@@ -6,7 +6,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { of } from 'rxjs';
 
-import { MaterialModule } from '@dcs-libs/shared';
+import { MaterialModule, Post } from '@dcs-libs/shared';
 import { SimilarPostsListComponent } from './similar-posts-list.component';
 import { ResourceService } from '../../../core/services';
 
@@ -47,5 +47,11 @@ describe('SimilarPostsListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should get only the first 9 posts', () => {
+    component.loadPosts(new Array(20).fill(null).map(() => ({} as Post)));
+
+    expect(component.posts.length).toEqual(9);
   });
 });
