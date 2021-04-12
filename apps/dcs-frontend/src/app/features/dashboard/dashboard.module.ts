@@ -15,9 +15,9 @@ import { RecentCommentsComponent } from './recent-comments/recent-comments.compo
 import { LimitTextPipe } from './recent-comments/limit-text.pipe';
 import { FilterComponent } from './filter/filter.component';
 import { RecentPodcastsComponent } from './recent-podcasts/recent-podcasts.component';
-import { TopActiveUsersModule } from "../components/top-active-users/top-active-users.module";
-import { TopPopularUsersModule } from "../components/top-popular-users/top-popular-users.module";
- 
+import { TopActiveUsersModule } from '../components/top-active-users/top-active-users.module';
+import { TopPopularUsersModule } from '../components/top-popular-users/top-popular-users.module';
+
 @NgModule({
   declarations: [
     DashboardComponent,
