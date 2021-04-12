@@ -4,6 +4,8 @@ import { Store } from '@ngxs/store';
 import { FetchSimilarPostsAction, Post, PostState } from '@dcs-libs/shared';
 import { ResourceService } from '../../../core/services';
 
+const MAX_NUMBER_OF_POSTS = 9;
+
 @Component({
   selector: 'app-similar-posts-list',
   templateUrl: './similar-posts-list.component.html',
@@ -32,7 +34,20 @@ export class SimilarPostsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(PostState.similarPosts).subscribe(posts => this.posts = posts);
+    this.store.select(PostState.similarPosts).subscribe((posts: Post[]) => {
+      this.loadPosts(posts);
+    });
+  }
+
+  loadPosts(posts: Post[]) {
+    if (posts) {
+      this.posts = [...posts].reduce((previousValue: Post[], currentValue, currentIndex) => {
+        if (currentIndex < MAX_NUMBER_OF_POSTS) {
+          previousValue.push(currentValue);
+        }
+        return previousValue;
+      }, []);
+    }
   }
 
   getPostBanner(post: Post) {
