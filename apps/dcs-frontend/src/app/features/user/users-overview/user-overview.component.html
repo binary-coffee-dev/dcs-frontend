@@ -29,7 +29,7 @@
         fxLayoutAlign="center center"
       >
         <img class="top-user-image"
-             [src]="user?.avatarUrl || getUserAvatar()"
+             [src]="getUserAvatar(user)"
              alt="noavatar"/>
         <div fxLayout="column"
              fxFlex="90"
