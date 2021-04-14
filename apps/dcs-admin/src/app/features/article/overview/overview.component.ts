@@ -8,7 +8,7 @@ import { BehaviorSubject, Subject, timer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 import {
-  AuthState, FetchTagsAction,
+  AuthState, Environment, ENVIRONMENT, FetchTagsAction,
   File, Permissions,
   Post,
   PostCreateAction,
@@ -55,6 +55,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
     private router: Router,
     private dialog: MatDialog,
     private url: UrlUtilsService,
+    @Inject(ENVIRONMENT) private env: Environment,
     @Inject(WINDOW) private window: Window
   ) {
     super();
@@ -254,5 +255,9 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
         this.imageChange = true;
       }
     });
+  }
+
+  getPostPreviewUrl() {
+    return `${this.env.siteUrl}/post/${this.post.name}`;
   }
 }
