@@ -2,6 +2,7 @@
   <div class="header">
     Editar artículo
     <a [href]="getPostPreviewUrl()"
+       *ngIf="!isNewPost()"
        target="_blank"><i class="material-icons preview"
                           title="Vista Previa">visibility</i></a>
   </div>
