@@ -1,20 +1,37 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
-import { EditComment.ModalComponent } from './edit-comment.modal.component';
+import { Store } from '@ngxs/store';
 
-describe('EditComment.ModalComponent', () => {
-  let component: EditComment.ModalComponent;
-  let fixture: ComponentFixture<EditComment.ModalComponent>;
+import { EditCommentModalComponent } from './edit-comment.modal.component';
+
+class StoreStub {
+}
+
+class MatDialogRefStub {
+}
+
+describe('EditCommentModalComponent', () => {
+  let component: EditCommentModalComponent;
+  let fixture: ComponentFixture<EditCommentModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditComment.ModalComponent ]
+      declarations: [EditCommentModalComponent],
+      providers: [
+        {provide: MatDialogRef, useClass: MatDialogRefStub},
+        {provide: Store, useClass: StoreStub},
+        {provide: MAT_DIALOG_DATA, useValue: {comment: {body: 'tmp'}}}
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditComment.ModalComponent);
+    fixture = TestBed.createComponent(EditCommentModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

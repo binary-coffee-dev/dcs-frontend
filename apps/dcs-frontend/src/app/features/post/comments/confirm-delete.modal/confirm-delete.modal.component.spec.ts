@@ -1,20 +1,33 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfirmDelete.ModalComponent } from './confirm-delete.modal.component';
+import { ConfirmDeleteModalComponent } from './confirm-delete.modal.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Store } from '@ngxs/store';
+
+class StoreStub {
+}
+
+class MatDialogRefStub {
+}
 
 describe('ConfirmDelete.ModalComponent', () => {
-  let component: ConfirmDelete.ModalComponent;
-  let fixture: ComponentFixture<ConfirmDelete.ModalComponent>;
+  let component: ConfirmDeleteModalComponent;
+  let fixture: ComponentFixture<ConfirmDeleteModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConfirmDelete.ModalComponent ]
+      declarations: [ConfirmDeleteModalComponent],
+      providers: [
+        {provide: MatDialogRef, useClass: MatDialogRefStub},
+        {provide: Store, useClass: StoreStub},
+        {provide: MAT_DIALOG_DATA, useValue: {}}
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConfirmDelete.ModalComponent);
+    fixture = TestBed.createComponent(ConfirmDeleteModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
