@@ -96,6 +96,9 @@
         .comment-user-image {
           width: map_get($spacings, 8);
           height: map_get($spacings, 8);
+          max-width: map_get($spacings, 8);
+          min-height: map_get($spacings, 8);
+          overflow: hidden;
           border-radius: 100%;
           margin-right: map_get($spacings, 2);
         }

@@ -84,7 +84,7 @@ export class CommentState {
   @Action(RemoveCommentAction)
   removeCommentAction(ctx: StateContext<CommentStateModel>, action: RemoveCommentAction) {
     return this.commentService.removeComment(action.commentId).pipe(
-      tap(recentComments => ctx.patchState({comments: ctx.getState().comments.filter(c => c.id !== recentComments.id)}))
+      tap(recentComments => ctx.patchState({comments: ctx.getState().comments.filter(c => c.id !== recentComments.id)})),
     );
   }
 
