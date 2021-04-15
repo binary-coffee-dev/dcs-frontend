@@ -20,6 +20,7 @@ import {
 import { MomentService, ScrollService } from '../../../core/services';
 import { LoginRequestModalComponent } from '../../components/login-request-modal';
 import { ConfirmDeleteModalComponent } from './confirm-delete.modal/confirm-delete.modal.component';
+import { EditCommentModalComponent } from './edit-comment.modal/edit-comment.modal.component';
 
 @Component({
   selector: 'app-comments',
@@ -87,6 +88,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   removeComment(commentId) {
     this.dialog.open(ConfirmDeleteModalComponent, {data: {commentId}});
+  }
+
+  editComment(comment: Comment) {
+    this.dialog.open(EditCommentModalComponent, {data: {comment}});
   }
 
   createComment() {

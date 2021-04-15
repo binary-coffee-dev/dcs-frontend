@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { Store } from '@ngxs/store';
+
+import { Comment, EditCommentAction } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-edit-comment.modal',
@@ -7,9 +13,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditCommentModalComponent implements OnInit {
 
-  constructor() { }
+  commentError = '';
+  commentForm = new FormGroup({
+    body: new FormControl('', Validators.required),
+  });
+
+  constructor(
+    private dialogRef: MatDialogRef<EditCommentModalComponent>,
+    private store: Store,
+    @Inject(MAT_DIALOG_DATA) public data: { comment: Comment }
+  ) {
+  }
 
   ngOnInit(): void {
+    this.commentForm.controls.body.setValue(this.data.comment.body);
+  }
+
+  ok() {
+    this.store.dispatch(new EditCommentAction(this.data.comment.id, this.commentForm.controls.body.value)).subscribe(() => {
+      this.dialogRef.close();
+    });
+  }
+
+  cancel() {
+    this.dialogRef.close();
   }
 
 }

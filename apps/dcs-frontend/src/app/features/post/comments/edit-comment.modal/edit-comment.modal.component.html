@@ -1,1 +1,36 @@
-<p>edit-comment.modal works!</p>
+<div class="bc-card-modal"
+     fxLayout="column">
+  <span class="title">Editar comentario</span>
+  <form class="comment-new-container"
+        fxLayout="column"
+        [formGroup]="commentForm"
+        fxLayoutAlign="center end">
+
+    <span class="comment-error-message"
+          *ngIf="commentError">
+      <mat-icon mat-font-icon="fa-icon"
+                class="fa fa-warning"></mat-icon>
+      {{commentError}}
+    </span>
+
+    <mat-form-field class="comment-item comment-item-text"
+                    appearance="outline">
+      <mat-label class="code-none">
+        <span class="code-1"> var </span>
+        <span class="code-var"> Opinión </span> =
+      </mat-label>
+      <textarea matInput
+                formControlName="body"
+                type="text"
+                maxlength="250"
+                cols="30"
+                rows="4">
+      </textarea>
+    </mat-form-field>
+  </form>
+
+  <div>
+    <button (click)="ok()">editar</button>
+    <button (click)="cancel()">cancelar</button>
+  </div>
+</div>

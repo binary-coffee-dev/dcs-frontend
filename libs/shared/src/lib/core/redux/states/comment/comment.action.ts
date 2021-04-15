@@ -31,3 +31,10 @@ export class RemoveCommentAction {
   constructor(public commentId: string) {
   }
 }
+
+export class EditCommentAction {
+  static readonly type = '[Comment] Edit comment';
+
+  constructor(public commentId: string, public body: string) {
+  }
+}

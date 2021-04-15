@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
@@ -10,16 +10,13 @@ import { RemoveCommentAction } from '@dcs-libs/shared';
   templateUrl: './confirm-delete.modal.component.html',
   styleUrls: ['./confirm-delete.modal.component.scss']
 })
-export class ConfirmDeleteModalComponent implements OnInit {
+export class ConfirmDeleteModalComponent {
 
   constructor(
     private dialogRef: MatDialogRef<ConfirmDeleteModalComponent>,
     private store: Store,
     @Inject(MAT_DIALOG_DATA) public data: {commentId: string}
   ) {
-  }
-
-  ngOnInit(): void {
   }
 
   ok() {
