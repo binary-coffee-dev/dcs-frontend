@@ -19,6 +19,7 @@ import {
 } from '@dcs-libs/shared';
 import { MomentService, ScrollService } from '../../../core/services';
 import { LoginRequestModalComponent } from '../../components/login-request-modal';
+import { ConfirmDeleteModalComponent } from './confirm-delete.modal/confirm-delete.modal.component';
 
 @Component({
   selector: 'app-comments',
@@ -82,6 +83,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   postLikeClick() {
     this.dialog.open(LoginRequestModalComponent, {});
+  }
+
+  removeComment(commentId) {
+    this.dialog.open(ConfirmDeleteModalComponent, {data: {commentId}});
   }
 
   createComment() {

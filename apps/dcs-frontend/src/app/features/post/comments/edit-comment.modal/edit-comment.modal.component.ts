@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './edit-comment.modal.component.html',
   styleUrls: ['./edit-comment.modal.component.scss']
 })
-export class EditComment.ModalComponent implements OnInit {
+export class EditCommentModalComponent implements OnInit {
 
   constructor() { }
 

@@ -6,3 +6,4 @@ export * from './login-with-provider';
 export * from './comment';
 export * from './create-like-post';
 export * from './remove-like-post';
+export * from './remove-comment';

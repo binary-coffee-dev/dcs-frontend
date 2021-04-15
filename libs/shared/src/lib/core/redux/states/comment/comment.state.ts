@@ -8,7 +8,7 @@ import {
   CommentErrorAction,
   CreateCommentAction,
   FetchCommentsAction,
-  RecentCommentAction
+  RecentCommentAction, RemoveCommentAction
 } from './comment.action';
 import { RefreshPostAction } from '../post/post.action';
 import { CommentError, Comment } from '../../models';
@@ -78,6 +78,13 @@ export class CommentState {
     return this.commentService.recentComments().pipe(
       take(1),
       tap(recentComments => ctx.patchState({recentComments}))
+    );
+  }
+
+  @Action(RemoveCommentAction)
+  removeCommentAction(ctx: StateContext<CommentStateModel>, action: RemoveCommentAction) {
+    return this.commentService.removeComment(action.commentId).pipe(
+      tap(recentComments => ctx.patchState({comments: ctx.getState().comments.filter(c => c.id !== recentComments.id)}))
     );
   }
 }

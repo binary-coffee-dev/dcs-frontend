@@ -92,9 +92,12 @@
               </i>
             </a>
           </div>
-          <div fxLayout="row">
-            <a href=""><i class="material-icons">delete</i></a>
-            <a href=""><i class="material-icons">edit</i></a>
+          <div fxLayout="row"
+               class="actions">
+            <a (click)="removeComment(comment.id)"
+               title="Eliminar comentario"><i class="material-icons">delete</i></a>
+            <a href=""
+               title="Editar comentario"><i class="material-icons">edit</i></a>
           </div>
         </div>
         <div class="comment-body">

@@ -102,6 +102,15 @@
 
         .post-info-container {
           margin-bottom: map_get($spacings, 1);
+
+          .actions a {
+            color: map_get($md-primary, 500);
+            cursor: pointer;
+
+            &:hover {
+              color: map_get($md-secundary, 500);
+            }
+          }
         }
 
         .comment-body {

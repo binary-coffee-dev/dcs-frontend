@@ -6,7 +6,7 @@ import { Apollo } from 'apollo-angular';
 
 import { Comment } from '../../models';
 import { COMMENTS_QUERY, RECENT_COMMENTS_QUERY } from '../../../graphql/queries';
-import { CREATE_COMMENT_MUTATION } from '../../../graphql/mutations';
+import { CREATE_COMMENT_MUTATION, REMOVE_COMMENT_MUTATION } from '../../../graphql/mutations';
 
 @Injectable()
 export class CommentService {
@@ -32,5 +32,11 @@ export class CommentService {
     return this.apollo
       .watchQuery({query: RECENT_COMMENTS_QUERY, variables: {limit: 8}})
       .valueChanges.pipe(map((result: any) => result.data.recentComments));
+  }
+
+  removeComment(commentId: string): Observable<Comment> {
+    return this.apollo
+      .mutate({mutation: REMOVE_COMMENT_MUTATION, variables: {id: commentId}})
+      .pipe(map((result: any) => result.data.deleteComment.comment));
   }
 }
