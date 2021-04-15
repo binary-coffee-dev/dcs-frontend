@@ -15,10 +15,12 @@ import {
   FetchCommentsAction,
   Post,
   UrlUtilsService,
-  RoleEnum
+  RoleEnum, User
 } from '@dcs-libs/shared';
 import { MomentService, ScrollService } from '../../../core/services';
 import { LoginRequestModalComponent } from '../../components/login-request-modal';
+import { ConfirmDeleteModalComponent } from './confirm-delete.modal/confirm-delete.modal.component';
+import { EditCommentModalComponent } from './edit-comment.modal/edit-comment.modal.component';
 
 @Component({
   selector: 'app-comments',
@@ -36,6 +38,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
   commentError = '';
 
   isLogin = false;
+
+  currentUser: User;
 
   commentForm = new FormGroup({
     body: new FormControl('', Validators.required),
@@ -67,6 +71,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
       this.commentError = error.message;
     });
     this.store.select(AuthState.isLogin).subscribe(isLogin => this.isLogin = isLogin);
+    this.store.select(AuthState.me).subscribe(user => this.currentUser = user);
   }
 
   ngOnDestroy(): void {
@@ -82,6 +87,14 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   postLikeClick() {
     this.dialog.open(LoginRequestModalComponent, {});
+  }
+
+  removeComment(commentId) {
+    this.dialog.open(ConfirmDeleteModalComponent, {data: {commentId}});
+  }
+
+  editComment(comment: Comment) {
+    this.dialog.open(EditCommentModalComponent, {data: {comment}});
   }
 
   createComment() {
@@ -100,12 +113,27 @@ export class CommentsComponent implements OnInit, OnDestroy {
     }
   }
 
+  canComment(comment: Comment): boolean {
+    if (comment && comment.user && comment.user.id === this.currentUser.id) {
+      return true;
+    }
+    return this.isAdmin(this.currentUser) || this.isStaff(this.currentUser);
+  }
+
   getIsStaff(comment: Comment) {
-    return comment.user ? comment.user.role.name === RoleEnum.staff : false;
+    return this.isStaff(comment.user);
+  }
+
+  isStaff(user: User): boolean {
+    return user && user.role.name === RoleEnum.staff;
   }
 
   getIsAdmin(comment: Comment) {
-    return comment.user ? comment.user.role.name === RoleEnum.administrator : false;
+    return this.isAdmin(comment.user);
+  }
+
+  isAdmin(user: User): boolean {
+    return user && user.role.name === RoleEnum.administrator;
   }
 
   getRole(comment: Comment) {

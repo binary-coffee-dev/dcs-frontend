@@ -73,22 +73,32 @@
            fxFlex="90"
            fxFlex.xs="80">
         <div class="post-info-container"
-             fxLayout="column">
-          <span class="post-info">
-            // {{comment?.publishedAt && moment.timeFromDate(comment.publishedAt) || ''}}
-          </span>
-          <a [href]="'/users/' + comment.user.username"
-             class="code-2">
-            "{{getName(comment)}}"
-            <i class="fa fa-star"
-               *ngIf="getIsStaff(comment)"
-               [matTooltip]="getRole(comment)">
-            </i>
-            <i class="fa fa-check-circle"
-               *ngIf="getIsAdmin(comment)"
-               [matTooltip]="getRole(comment)">
-            </i>
-          </a>
+             fxLayout="row">
+          <div fxLayout="column"
+               fxFlex="100">
+            <span class="post-info">
+              // {{comment?.publishedAt && moment.timeFromDate(comment.publishedAt) || ''}}
+            </span>
+            <a [href]="'/users/' + comment.user.username"
+               class="code-2">
+              "{{getName(comment)}}"
+              <i class="fa fa-star"
+                 *ngIf="getIsStaff(comment)"
+                 [matTooltip]="getRole(comment)">
+              </i>
+              <i class="fa fa-check-circle"
+                 *ngIf="getIsAdmin(comment)"
+                 [matTooltip]="getRole(comment)">
+              </i>
+            </a>
+          </div>
+          <div fxLayout="row"
+               class="actions">
+            <a (click)="removeComment(comment.id)"
+               title="Eliminar comentario"><i class="material-icons">delete</i></a>
+            <a (click)="editComment(comment)"
+               title="Editar comentario"><i class="material-icons">edit</i></a>
+          </div>
         </div>
         <div class="comment-body">
           {{comment.body}}

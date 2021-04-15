@@ -96,12 +96,24 @@
         .comment-user-image {
           width: map_get($spacings, 8);
           height: map_get($spacings, 8);
+          max-width: map_get($spacings, 8);
+          min-height: map_get($spacings, 8);
+          overflow: hidden;
           border-radius: 100%;
           margin-right: map_get($spacings, 2);
         }
 
         .post-info-container {
           margin-bottom: map_get($spacings, 1);
+
+          .actions a {
+            color: map_get($md-primary, 500);
+            cursor: pointer;
+
+            &:hover {
+              color: map_get($md-secundary, 500);
+            }
+          }
         }
 
         .comment-body {
