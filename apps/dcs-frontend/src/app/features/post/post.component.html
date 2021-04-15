@@ -8,12 +8,9 @@
       <span fxFlex="100">{{ post?.title }}</span>
       <button
         mat-button
-        *ngIf="
-          ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)
-        "
+        *ngIf=" ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)"
         matTooltip="Editar artículo"
-        (click)="editPost(post)"
-      >
+        (click)="editPost(post)">
         <i class="fa fa-edit"></i>
       </button>
     </h1>
@@ -30,8 +27,7 @@
       [fxShow.xs]="true"
       [fxShow.sm]="true"
       fxLayout="row"
-      fxLayoutAlign="center"
-    >
+      fxLayoutAlign="center">
       <app-share-buttons></app-share-buttons>
     </div>
 
