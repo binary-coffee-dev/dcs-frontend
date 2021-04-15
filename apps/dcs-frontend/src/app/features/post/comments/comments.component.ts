@@ -117,7 +117,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
     if (comment && comment.user && comment.user.id === this.currentUser.id) {
       return true;
     }
-    return this.isAdmin(this.currentUser) || this.isStaff(this.currentUser);
+    return comment && comment.user && (this.isAdmin(this.currentUser) || this.isStaff(this.currentUser));
   }
 
   getIsStaff(comment: Comment) {

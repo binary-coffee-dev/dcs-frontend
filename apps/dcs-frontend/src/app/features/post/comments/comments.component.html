@@ -93,6 +93,7 @@
             </a>
           </div>
           <div fxLayout="row"
+               *ngIf="canComment(comment)"
                class="actions">
             <a (click)="removeComment(comment.id)"
                title="Eliminar comentario"><i class="material-icons">delete</i></a>
