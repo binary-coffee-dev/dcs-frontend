@@ -63,9 +63,9 @@
          class="comment-item"
          *ngFor="let comment of comments"
          [id]="comment?.id">
-      <a [href]="'/users/' + comment.user.username">
+      <a [href]="'/users/' + (comment?.user?.username || '')">
         <img class="comment-user-image"
-             [src]="getUserAvatar(comment.user)"
+             [src]="getUserAvatar(comment?.user)"
              alt="noavatar">
       </a>
 
