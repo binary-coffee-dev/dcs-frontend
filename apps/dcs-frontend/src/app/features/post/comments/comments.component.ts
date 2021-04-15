@@ -145,7 +145,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   getName(comment: Comment) {
-    return comment.name || comment.user.username;
+    return comment.name || (comment.user && comment.user.username) || 'public';
   }
 
   checkEmptySpaces(value: string): boolean {
