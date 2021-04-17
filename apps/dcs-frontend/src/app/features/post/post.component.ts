@@ -1,8 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngxs/store';
+import { isPlatformBrowser } from '@angular/common';
 
 import {
   ENVIRONMENT,
@@ -24,6 +25,7 @@ import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../
 export class PostComponent extends Permissions implements OnInit {
 
   post: Post;
+  isBrowser: boolean;
 
   constructor(
     private store: Store,
@@ -33,9 +35,11 @@ export class PostComponent extends Permissions implements OnInit {
     private scroll: ScrollService,
     @Inject(WINDOW) private window: Window,
     @Inject(ENVIRONMENT) private environment: Environment,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    @Inject(PLATFORM_ID) platformId: string
   ) {
     super();
+    this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit() {
