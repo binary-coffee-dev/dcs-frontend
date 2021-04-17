@@ -44,11 +44,15 @@
     </div>
 
     <div class="markdown-container"
+         *ngIf="!isBrowser"
          markdown
          katex
          lineNumbers>
       {{post?.body}}
-      <!--      <markdown [data]="post?.body" katex lineNumbers></markdown>-->
+    </div>
+    <div class="markdown-container"
+         *ngIf="isBrowser">
+            <markdown [data]="post?.body" katex lineNumbers></markdown>
     </div>
 
     <app-post-info [post]="post"></app-post-info>
