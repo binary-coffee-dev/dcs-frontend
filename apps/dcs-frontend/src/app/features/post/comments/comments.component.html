@@ -83,17 +83,16 @@
                class="code-2">
               "{{getName(comment)}}"
               <i class="fa fa-star"
-                 *ngIf="getIsStaff(comment)"
+                 *ngIf="getIsStaff(comment) || true"
                  [matTooltip]="getRole(comment)">
               </i>
               <i class="fa fa-check-circle"
-                 *ngIf="getIsAdmin(comment)"
+                 *ngIf="getIsAdmin(comment) || true"
                  [matTooltip]="getRole(comment)">
               </i>
             </a>
           </div>
           <div fxLayout="row"
-               *ngIf="canComment(comment)"
                class="actions">
             <a (click)="removeComment(comment.id)"
                title="Eliminar comentario"><i class="material-icons">delete</i></a>
