@@ -12,7 +12,7 @@
       <div>
         <img class="user-image"
              [src]="getUserAvatar(user)"
-             alt="noavatar"/>
+             alt="noavatar" />
         <div class="user-name-content"
              fxLayoutAlign="center"
              fxLayout="row">
@@ -37,7 +37,7 @@
        fxLayout="row wrap">
     <div class="container"
          fxLayout="column"
-         fxLayoutAlign="center center">
+         fxLayoutAlign="top center">
       <i class="code-comment-1 upper-comment">
         // Artículos publicados por {{ user?.username }}
       </i>
@@ -47,7 +47,7 @@
         <a *ngFor="let post of posts"
            [routerLink]="'/post/' + post.name"
            class="post-content"
-           fxFlex="33"
+           fxFlex="26"
            fxFlex.xs="100"
            fxFlex.sm="100">
           <div class="post-box"
@@ -55,9 +55,19 @@
 
             <div class="post-image-container">
               <img *ngIf="post?.banner?.url"
-                   [src]="url.normalizeSiteUrl(post?.banner?.url)"/>
+                   [src]="url.normalizeSiteUrl(post?.banner?.url)" />
               <img *ngIf="!post?.banner?.url"
-                   [src]="getPostImg()"/>
+                   [src]="getPostImg()" />
+
+            </div>
+
+            <div class="image-info"
+                 fxLayout="column"
+                 fxLayoutAlign="end start">
+              <div>
+                <mat-icon aria-hidden="false">comment</mat-icon>
+                <span>{{post?.comments || 0}}</span>
+              </div>
             </div>
 
             <div class="code-none"
@@ -65,7 +75,6 @@
                  fxLayout="column">
               <b class="code-2">{{ post.title }}</b>
             </div>
-
           </div>
         </a>
       </div>

@@ -59,7 +59,7 @@
 
   .post-container {
     .upper-comment {
-      margin: map-get($map: $spacings, $key: 1) map-get($map: $spacings, $key: 2);
+      margin: map-get($map: $spacings, $key: 4) map-get($map: $spacings, $key: 2) 0 map-get($map: $spacings, $key: 2);
     }
 
     .post-content {
@@ -68,21 +68,6 @@
 
       @media screen and (max-width: 599px) {
         padding: 0 map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 2);
-      }
-
-      .post-image-container {
-        width: 100%;
-        height: 150px;
-        border-radius: map_get($radius, 2);
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-          border-radius: map_get($radius, 2) map_get($radius, 2) 0 0;
-          z-index: -1;
-        }
       }
 
       .post-box {
@@ -94,12 +79,41 @@
           border: 1px solid map_get($md-primary, 500);
         }
 
+        $img-h:120px;
+
+        .post-image-container {
+          width: 100%;
+          height: $img-h;
+          border-radius: map_get($radius, 2);
+
+          img {
+            margin: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: map_get($radius, 2) map_get($radius, 2) 0 0;
+            z-index: -1;
+          }
+        }
+
+        .image-info {
+          height: 30px;
+          margin-top: -30px;
+          padding: map-get($map: $spacings, $key: 1) map-get($map: $spacings, $key: 2);
+          color: map-get($map: $md-grey, $key: 900);
+          background: transparentize($color: map-get($map: $md-grey, $key: A100), $amount: .6); 
+          opacity: 0;
+        }
+
         .post-title {
           padding: map_get($spacings, 2);
           text-transform: uppercase;
+        }
 
-          b {
-            font-size: 1.2rem;
+        &:hover {
+          .image-info {
+            opacity: 1;
           }
         }
       }

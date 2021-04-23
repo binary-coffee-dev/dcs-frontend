@@ -30,12 +30,34 @@
 .bc-button {
   border: 1px solid map_get($md-primary, 300);
   background-color: map_get($md-grey, 400);
-  border-radius: map_get($radius, 2);
+  color: map_get($md-primary, 500);
+
   box-shadow: none;
+  border-radius: map_get($radius, 2);
   cursor: pointer !important;
 
   &:hover {
     border: 1px solid map_get($md-primary, 500);
+  }
+
+  &.error {
+    border: 1px solid map_get($md-error, 200);
+    background-color: map_get($md-error, 50);
+    color: map_get($md-error, 500);
+
+    &:hover {
+      border: 1px solid map_get($md-error, 500);
+    }
+  }
+
+  &.secundary {
+    border: 1px solid map_get($md-secundary, 200);
+    background-color: map_get($md-secundary, 50);
+    color: map_get($md-secundary, 500);
+
+    &:hover {
+      border: 1px solid map_get($md-secundary, 500);
+    }
   }
 
   &:disabled {
@@ -51,8 +73,8 @@
 .bc-panel {
   border: 1px solid map_get($md-primary, 100);
   background-color: map_get($md-grey, A100);
-  border-radius: map_get($radius, 2);
   box-shadow: none;
+  border-radius: map_get($radius, 2);
 }
 
 .bc-card-modal {
@@ -60,6 +82,7 @@
   box-shadow: none;
   border: 1px solid map_get($md-primary, 900);
   background: map_get($md-primary, 50);
+  border-radius: map_get($radius, 2);
 
   .title {
     color: map_get($md-primary, 900) !important;

@@ -8,9 +8,26 @@
     .like {
       cursor: pointer;
 
-      &.active {
-        mat-icon {
-          color: map_get($md-secundary, 500);
+      img {
+        height: 25px;
+        position: absolute;
+      }
+
+      .chinchin-1 {
+        opacity: 1;
+      }
+
+      .chinchin-2 {
+        opacity: 0;
+      }
+
+      &:hover {
+        .chinchin-1 {
+          opacity: 0;
+        }
+
+        .chinchin-2 {
+          opacity: 1;
         }
       }
     }
