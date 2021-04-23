@@ -1,51 +1,53 @@
 <div class="post-info-container"
      fxLayout="row">
 
-  <span class="post-info separator"
-        fxLayout="row"
-        fxLayoutAlign="start center">
-    <a [href]="'/users/' + post?.author?.username"
-       [title]="post?.author?.email"
-       fxLayout="row"
-       fxLayoutAlign="start center">
-      <img *ngIf="post?.author?.avatar?.url"
-           [src]="resource.addApiUrl(post?.author?.avatar?.url)"
-           alt="">
-      <span>{{post?.author?.username}}</span>
-    </a>
-  </span>
+     <span class="post-info separator"
+           fxLayout="row"
+           fxLayoutAlign="start center">
+          <a [href]="'/users/' + post?.author?.username"
+             [title]="post?.author?.email"
+             fxLayout="row"
+             fxLayoutAlign="start center">
+               <img *ngIf="post?.author?.avatar?.url"
+                    [src]="resource.addApiUrl(post?.author?.avatar?.url)"
+                    alt="">
+               <span>{{post?.author?.username}}</span>
+          </a>
+     </span>
 
-  <span class="post-info separator"
-        fxLayout="row"
-        fxLayoutAlign="start center">
-    <span>{{post?.publishedAt && moment.timeFromDate(post.publishedAt) || ''}}</span>
-  </span>
+     <span class="post-info separator"
+           fxLayout="row"
+           fxLayoutAlign="start center">
+          <span>{{post?.publishedAt && moment.timeFromDate(post.publishedAt) || ''}}</span>
+     </span>
 
-  <span class="post-info separator"
-        fxLayout="row"
-        fxLayoutAlign="start center">
-    <mat-icon aria-hidden="false">comment</mat-icon>
-    <span>{{post?.comments || 0}}</span>
-  </span>
-  
-  <span class="post-info like"
-        fxLayout="row"
-        [title]="postLikeTitle()"
-        (click)="postLikeClick()"
-        fxLayoutAlign="start center">
-    <!--mat-icon aria-hidden="false">local_cafe</mat-icon-->
-    <img class="chinchin-1"
-         src="assets/images/chinchin-1.png"
-         alt=""
-         *ngIf="userLike == 0">
-    <img class="chinchin-2"
-         src="assets/images/chinchin-2.png"
-         alt=""
-         *ngIf="userLike == 0">
-    <img class="chinchin-3"
-         src="assets/images/chinchin-3.png"
-         alt=""
-         *ngIf="userLike > 0">
-    <span>{{likes}}</span>
-  </span>
+     <span class="post-info separator"
+           fxLayout="row"
+           fxLayoutAlign="start center">
+          <mat-icon aria-hidden="false">comment</mat-icon>
+          <span>{{post?.comments || 0}}</span>
+     </span>
+
+     <span class="post-info like"
+           fxLayout="row"
+           [title]="postLikeTitle()"
+           (click)="postLikeClick()"
+           fxLayoutAlign="start center">
+          <!--mat-icon aria-hidden="false">local_cafe</mat-icon-->
+          <span>{{likes}}</span>
+          <div>
+               <img class="chinchin-1"
+                    src="assets/images/chinchin-1.png"
+                    alt=""
+                    *ngIf="userLike == 0">
+               <img class="chinchin-2"
+                    src="assets/images/chinchin-2.png"
+                    alt=""
+                    *ngIf="userLike == 0">
+               <img class="chinchin-3"
+                    src="assets/images/chinchin-3.png"
+                    alt=""
+                    *ngIf="userLike > 0">
+          </div>
+     </span>
 </div>
