@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { DomSanitizer, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngxs/store';
@@ -13,7 +13,7 @@ import {
   PostState,
   AuthState,
   Permissions,
-  WINDOW
+  WINDOW, FetchAdAction, Ad, AdState
 } from '@dcs-libs/shared';
 import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
 
@@ -26,6 +26,7 @@ export class PostComponent extends Permissions implements OnInit {
 
   post: Post;
   isBrowser: boolean;
+  ads: Ad[] = [];
 
   constructor(
     private store: Store,
@@ -36,7 +37,8 @@ export class PostComponent extends Permissions implements OnInit {
     @Inject(WINDOW) private window: Window,
     @Inject(ENVIRONMENT) private environment: Environment,
     private route: ActivatedRoute,
-    @Inject(PLATFORM_ID) platformId: string
+    @Inject(PLATFORM_ID) platformId: string,
+    protected sanitizer: DomSanitizer
   ) {
     super();
     this.isBrowser = isPlatformBrowser(platformId);
@@ -45,10 +47,16 @@ export class PostComponent extends Permissions implements OnInit {
   ngOnInit() {
     this.loadArticle(this.route.snapshot.data.post);
     this.store.select(PostState.post).subscribe((post: Post) => this.loadArticle(post));
+    this.store.select(AdState.getAds).subscribe((ads: Ad[]) => {
+      this.ads = ads.map(v => ({...v, code: this.sanitizer.bypassSecurityTrustHtml(v.code)} as Ad));
+      this.ads = this.ads.filter((value, index) => index < 6);
+    });
     const fragment = this.route.snapshot.fragment;
     if (!fragment) {
       this.scroll.smoothScroll();
     }
+
+    this.store.dispatch(new FetchAdAction());
   }
 
   loadArticle(post: Post) {
