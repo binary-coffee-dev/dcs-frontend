@@ -9,6 +9,7 @@ import { FileService } from './states/file';
 import { TagService } from './states/tag';
 import { PodcastService } from './states/podcast';
 import { UserInfoService } from './states/user-info';
+import { GEOLocationService } from './states/ad';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { UserInfoService } from './states/user-info';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot({key: ['auth', 'config']})
   ],
-  providers: [FileService, TagService, PodcastService, UserInfoService]
+  providers: [FileService, TagService, PodcastService, UserInfoService, GEOLocationService]
 })
 export class ReduxModule {
 }
