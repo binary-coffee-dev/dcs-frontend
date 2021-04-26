@@ -3,7 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 
 import { Store } from '@ngxs/store';
 
-import { ChangePageSizeAction, Environment, ENVIRONMENT } from '@dcs-libs/shared';
+import { ChangePageSizeAction, Environment, ENVIRONMENT, FetchCurrentGeoLocationAction } from '@dcs-libs/shared';
 import { consoleMessage } from './console.log';
 
 declare let gtag: (property: string, value: any, configs: any) => {};
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
       }
     });
     this.store.dispatch(new ChangePageSizeAction(this.environment.postPageSize));
+    this.store.dispatch(new FetchCurrentGeoLocationAction());
   }
 
   ngOnInit(): void {

@@ -20,7 +20,7 @@ import {
   CommentService,
   MaterialModule,
   PodcastState,
-  ConfigState, UserInfoState
+  ConfigState, UserInfoState, AdState
 } from '@dcs-libs/shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './features/app.component';
@@ -54,7 +54,7 @@ import { UserModule } from './features/user/user.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState, UserInfoState], {
+    NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState, UserInfoState, AdState], {
       developmentMode: !environment.production
     }),
     ReduxModule,
