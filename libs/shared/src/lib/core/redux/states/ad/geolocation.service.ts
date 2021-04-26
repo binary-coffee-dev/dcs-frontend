@@ -43,6 +43,6 @@ export class GEOLocationService {
   getAds(country: string): Observable<Ad[]> {
     return this.apollo
       .query({query: ADS_QUERY, fetchPolicy: 'no-cache', variables: {country}})
-      .pipe(map((result: any) => result.data.ads));
+      .pipe(map((result: any) => result.data.findRandomAds));
   }
 }
