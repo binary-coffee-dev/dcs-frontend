@@ -2,6 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { GEOLocationService } from './geolocation.service';
+import { Apollo } from 'apollo-angular';
+
+class ApolloStub {
+}
 
 describe('GEOLocationService', () => {
   let service: GEOLocationService;
@@ -9,7 +13,7 @@ describe('GEOLocationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [GEOLocationService]
+      providers: [GEOLocationService, {provide: Apollo, useClass: ApolloStub}]
     });
     service = TestBed.get(GEOLocationService);
   });
