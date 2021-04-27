@@ -32,7 +32,8 @@ export class GEOLocationService {
 
   getGEOLocation(): Observable<GeoLocationResponse> {
     // Update your api key to get from https://ipgeolocation.io
-    const url = `https://api.ipstack.com/${currentIp}?access_key=7048750312a260cf663533657f795d91`;
+    // const url = `https://api.ipstack.com/${currentIp}?access_key=7048750312a260cf663533657f795d91`;
+    const url = `https://ipinfo.io/${currentIp}/json?token=0fe885274cc90f`;
 
     return this.http.get<GeoLocationResponse>(url, {headers: {no_token: 'true'}}).pipe(catchError(GEOLocationService.handleError));
   }

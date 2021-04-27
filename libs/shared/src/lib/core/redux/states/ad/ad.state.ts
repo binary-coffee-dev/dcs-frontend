@@ -37,7 +37,7 @@ export class AdState {
 
   @Action(FetchAdAction)
   public fetchAdAction(ctx: StateContext<AdStateModel>) {
-    return this.geoLocationService.getAds(ctx.getState().geoLocation.country_code)
+    return this.geoLocationService.getAds(ctx.getState().geoLocation.country)
       .pipe(tap(ads => ctx.patchState({ads})));
   }
 }
