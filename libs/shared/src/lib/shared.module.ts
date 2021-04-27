@@ -8,19 +8,22 @@ import { HasPermissionsPipe } from './core/pipes';
 import { ROLE_PERMISSION_MAP, rolePermissionMap } from './core/permissions';
 import { CookiesConsentComponent } from './features/cookies-consent';
 import { MaterialModule } from './core/material';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   imports: [CommonModule, MaterialModule, RouterModule],
   declarations: [
     LoadingComponent,
     HasPermissionsPipe,
-    CookiesConsentComponent
+    CookiesConsentComponent,
+    ConfirmationDialogComponent
   ],
   exports: [
     LoadingComponent,
     HasPermissionsPipe,
     CookiesConsentComponent
   ],
+  entryComponents: [ConfirmationDialogComponent],
   providers: [
     { provide: WINDOW, useFactory: windowFactory },
     { provide: ROLE_PERMISSION_MAP, useValue: rolePermissionMap }
