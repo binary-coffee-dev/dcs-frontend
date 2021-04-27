@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
 
 import {
-  ChangeFilesPageAction, ConfigState,
+  AuthState,
+  ChangeFilesPageAction, ChangeQueryAction, ConfigState, ConfirmationDialogComponent,
   FetchFilesAction,
   File,
   FileState,
-  NextFilesPageAction,
-  PreviousFilesPageAction, SetConfigAction,
-  UrlUtilsService
+  NextFilesPageAction, Permission, Permissions,
+  PreviousFilesPageAction, RemoveFileAction, ROLE_PERMISSION_MAP, RoleEnum, SetConfigAction,
+  UrlUtilsService, User
 } from '@dcs-libs/shared';
 import { UploadFileModalComponent } from '../../components/upload-file.modal';
 
@@ -19,7 +20,7 @@ import { UploadFileModalComponent } from '../../components/upload-file.modal';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent extends Permissions implements OnInit {
   files: File[] = [];
 
   numberOfPages = 0;
@@ -30,13 +31,15 @@ export class ListComponent implements OnInit {
   constructor(
     private store: Store,
     private dialog: MatDialog,
-    private url: UrlUtilsService
+    private url: UrlUtilsService,
+    @Inject(ROLE_PERMISSION_MAP) private rolePermissionMap: Map<RoleEnum, Permission[]>
   ) {
+    super();
   }
 
   ngOnInit() {
+    this.updateFilter();
     this.store.select(FileState.files).subscribe((files: File[]) => this.files = files);
-    this.refreshPage();
     this.store.select(FileState.pageIndicators).subscribe(indicators => {
       if (indicators) {
         this.currentPage = indicators.page;
@@ -58,9 +61,24 @@ export class ListComponent implements OnInit {
     });
   }
 
+  updateFilter() {
+    let where = {};
+
+    const permissionsByRole = this.rolePermissionMap.get(this.meUser().role.type) || [];
+    if (permissionsByRole.findIndex(v => v === this.permissions().VIEW_ANY_IMAGE) === -1) {
+      where = {user: this.meUser().id.toString()};
+    }
+
+    this.store.dispatch(new ChangeQueryAction(where));
+    this.refreshPage();
+  }
+
+  meUser(): User {
+    return this.store.selectSnapshot(AuthState.me);
+  }
+
   refreshPage() {
-    this.store.dispatch(new FetchFilesAction()).subscribe(() => {
-    });
+    this.store.dispatch(new FetchFilesAction());
   }
 
   normalizeUrl(url: string) {
@@ -82,5 +100,15 @@ export class ListComponent implements OnInit {
   toggleTableCard() {
     this.tableOrCard = !this.tableOrCard;
     this.store.dispatch(new SetConfigAction('dashboard-file-tableOrCard', this.tableOrCard));
+  }
+
+  removeImage(file: File) {
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: { title: '¿Está seguro que desea eliminar la imágen?' }
+    }).afterClosed().subscribe(result => {
+      if (result) {
+        this.store.dispatch(new RemoveFileAction(file.id));
+      }
+    });
   }
 }
