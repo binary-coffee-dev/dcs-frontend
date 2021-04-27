@@ -19,6 +19,7 @@ rolePermissionMap.set(RoleEnum.administrator, [
   Permission.REMOVE_ANY_ARTICLE,
   Permission.EDIT_TAGS_IN_ARTICLE,
   Permission.PUBLISH_ARTICLE,
+  Permission.VIEW_ANY_IMAGE
 ]);
 
 export class Permissions {

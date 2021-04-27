@@ -105,9 +105,9 @@
               <i class="material-icons">file_copy</i>
             </button>
             <button mat-button
-                    *ngIf="false"
                     type="button"
                     matTooltip="Eliminar"
+                    (click)="removeImage(file)"
                     [matTooltipPosition]="'above'">
               <i class="material-icons">close</i>
             </button>
