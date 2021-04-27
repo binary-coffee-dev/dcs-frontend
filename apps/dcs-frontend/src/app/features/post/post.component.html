@@ -2,6 +2,7 @@
      fxLayoutAlign="center start">
   <div class="post-in-container"
        fxFlex="60"
+       fxFlex.md="70"
        fxFlex.xs="100"
        fxFlex.sm="100">
     <h1 fxLayout="row">
@@ -60,10 +61,23 @@
         [postId]="post?.id"
       ></app-similar-posts-list>
     </div>
+    <div class="ads-container-bottom"
+         fxShow.xs
+         fxShow.sm
+         fxHide
+         fxLayout="row wrap">
+      <div class="ad-container"
+           *ngFor="let ad of ads"
+           [innerHTML]="ad.code">
+      </div>
+    </div>
     <app-comments *ngIf="post"
                   [post]="post"></app-comments>
   </div>
-  <div fxFlex="25"
+  <div class="siderbar"
+       fxFlex="25"
+       fxFlex.md="30"
+       fxHide.sm
        fxHide.xs
        fxHide.xs>
     <app-share-buttons class="share-buttons-side"></app-share-buttons>
@@ -71,5 +85,14 @@
       class="outside"
       [postId]="post?.id"
     ></app-similar-posts-list>
+    <div class="ads-container"
+         fxLayout="row wrap">
+      <div class="ad-container"
+           fxFlex="45"
+           fxFlex.md="100"
+           *ngFor="let ad of ads"
+           [innerHTML]="ad.code">
+      </div>
+    </div>
   </div>
 </div>

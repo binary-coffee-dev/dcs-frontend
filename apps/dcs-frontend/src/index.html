@@ -62,19 +62,29 @@
   <script async
           src="https://www.googletagmanager.com/gtag/js"></script>
   <script>
-      window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 
-      function gtag() {
-          dataLayer.push(arguments);
-      }
+    function gtag() {
+      dataLayer.push(arguments);
+    }
 
-      gtag('js', new Date());
+    gtag('js', new Date());
   </script>
 
   <!--  Google AdSense code-->
   <script data-ad-client="ca-pub-7584525284530595"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!--  ipify API-->
+  <script type="application/javascript">
+    var currentIp = null;
+    function getIP(json) {
+      currentIp = json.ip;
+    }
+  </script>
+  <script type="application/javascript"
+          src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
 </head>
 
 <body>
