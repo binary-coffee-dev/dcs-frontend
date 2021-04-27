@@ -34,10 +34,7 @@ export class GEOLocationService {
     // Update your api key to get from https://ipgeolocation.io
     const url = `https://api.ipstack.com/${currentIp}?access_key=7048750312a260cf663533657f795d91`;
 
-    const headers = new HttpHeaders();
-    headers.set('NO_TOKEN', 'true');
-
-    return this.http.get<GeoLocationResponse>(url, {headers}).pipe(catchError(GEOLocationService.handleError));
+    return this.http.get<GeoLocationResponse>(url, {headers: {no_token: 'true'}}).pipe(catchError(GEOLocationService.handleError));
   }
 
   getAds(country: string): Observable<Ad[]> {
