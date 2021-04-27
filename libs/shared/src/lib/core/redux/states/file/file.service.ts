@@ -6,8 +6,11 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { FILES_QUERY } from '../../../graphql/queries';
-import { File as FileModel } from '../../models';
+import { File, File as FileModel } from '../../models';
 import { ENVIRONMENT, Environment } from '../../../models';
+import { ResponseData } from '../pagination-base.class';
+import { RemoveFileAction } from './file.action';
+import { REMOVE_IMAGE_MUTATION } from '../../../graphql/mutations';
 
 @Injectable()
 export class FileService {
@@ -19,20 +22,24 @@ export class FileService {
   ) {
   }
 
-  fetchFiles(limit, start = 0) {
+  fetchFiles(limit, start = 0, where = {}): Observable<ResponseData> {
     return this.apollo
-      .watchQuery({query: FILES_QUERY, variables: {limit, start}, fetchPolicy: 'no-cache'})
-      .valueChanges.pipe(map((result: any) => ({
-        ...result.data.uploadsConnection,
-        aggregate: {
-          count: result.data.countUploads
-        }
+      .query({query: FILES_QUERY, variables: {limit, start, where}, fetchPolicy: 'no-cache'})
+      .pipe(map((result: any) => ({
+        ...result.data.imagesConnection,
+        values: result.data.imagesConnection.values.map(elem => elem.image.length > 0 ? elem.image[0] : null).filter(v => !!v)
       })));
   }
 
   uploadFile(file: File, name: string = null): Observable<FileModel> {
     const formData = new FormData();
+    // @ts-ignore
     formData.append('files', file, name);
     return this.http.post<FileModel>(`${this.environment.apiUrl}upload`, formData).pipe(map(response => response[0]));
+  }
+
+  removeFileAction(id: string) {
+    return this.apollo
+      .mutate({mutation: REMOVE_IMAGE_MUTATION, variables: {id}});
   }
 }

@@ -20,6 +20,20 @@ export class ChangeFilesPageAction {
   }
 }
 
+export class ChangeQueryAction {
+  static readonly type = '[File] Change query';
+
+  constructor(public where: any) {
+  }
+}
+
+export class RemoveFileAction {
+  static readonly type = '[File] Remove file action';
+
+  constructor(public id: string) {
+  }
+}
+
 export class UploadFileAction {
   static readonly type = '[File] Upload file';
 

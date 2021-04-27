@@ -1,12 +1,12 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import {
-  ChangeFilesPageAction,
+  ChangeFilesPageAction, ChangeQueryAction,
   FetchFilesAction,
   NextFilesPageAction,
-  PreviousFilesPageAction,
+  PreviousFilesPageAction, RemoveFileAction,
   UploadFileAction
 } from './file.action';
 import { File, NotificationType } from '../../models';
@@ -50,6 +50,11 @@ export class FileState extends PaginationBaseClass<FileStateModel> {
     super();
   }
 
+  @Action(ChangeQueryAction)
+  changeQueryAction(ctx: StateContext<FileStateModel>, action: ChangeQueryAction) {
+    ctx.patchState({where: action.where});
+  }
+
   @Action(FetchFilesAction)
   fetchFilesAction(ctx: StateContext<FileStateModel>, action: FetchFilesAction) {
     ctx.patchState({pageSize: action.pageSize || ctx.getState().pageSize});
@@ -71,11 +76,22 @@ export class FileState extends PaginationBaseClass<FileStateModel> {
 
   @Action(ChangeFilesPageAction)
   changeFilesPageAction(ctx: StateContext<FileStateModel>, action: ChangeFilesPageAction) {
-    return this.pageByNumber(ctx, action.page);
+    return this.pageByNumber(ctx, action.page, ctx.getState().where);
+  }
+
+  @Action(RemoveFileAction)
+  removeFileAction(ctx: StateContext<FileStateModel>, action: RemoveFileAction) {
+    return this.fileService.removeFileAction(action.id).pipe(tap(() => {
+      if (ctx.getState().elements.length === 1) {
+        ctx.patchState({page: Math.max(0, ctx.getState().page - 1)});
+      }
+      ctx.dispatch(new FetchFilesAction());
+    }));
   }
 
   @Action(UploadFileAction)
   uploadFile(ctx: StateContext<FileStateModel>, action: UploadFileAction) {
+    // @ts-ignore
     return this.fileService.uploadFile(action.file, action.name).pipe(
       tap((file: File) => {
         ctx.patchState({newFile: file});
@@ -90,6 +106,6 @@ export class FileState extends PaginationBaseClass<FileStateModel> {
   }
 
   fetchElements(pageSize, start, where): Observable<ResponseData> {
-    return this.fileService.fetchFiles(pageSize, start);
+    return this.fileService.fetchFiles(pageSize, start, where);
   }
 }
