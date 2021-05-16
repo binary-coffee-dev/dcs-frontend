@@ -8,5 +8,5 @@ export const environment = {
   siteDashboardUrl: 'http://localhost:4202/dashboard',
   googleAnalyticsId: 'UA-157555549-2',
   production: false,
-  postPageSize: 6
+  postPageSize: 12
 } as Environment;

@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-import { truncate } from 'lodash';
-
 import { Post } from '@dcs-libs/shared';
 import { MomentService, ResourceService } from '../../../core/services';
 
@@ -22,10 +20,6 @@ export class PostItemComponent {
     public moment: MomentService,
     private resource: ResourceService
   ) {
-  }
-
-  truncatePostDescription(t: string) {
-    return truncate(t, {length: 300});
   }
 
   getPostBanner(post: Post) {

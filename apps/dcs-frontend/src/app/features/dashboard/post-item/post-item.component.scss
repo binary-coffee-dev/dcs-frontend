@@ -54,9 +54,6 @@ $post_image_size: 110px;
   }
 
   .post-tag-content {
-    margin: map_get($spacings, 2) map_get($spacings, 4) 0 0;
-    max-width: $post_image_size;
-
     @media screen and (max-width: 599px) {
       max-width: none;
     }
@@ -64,7 +61,7 @@ $post_image_size: 110px;
 
 
   .post-info-vars {
-    margin-bottom: map_get($spacings, 4);
+    margin-bottom: map_get($spacings, 2);
 
     h3 {
       padding-top: 0;

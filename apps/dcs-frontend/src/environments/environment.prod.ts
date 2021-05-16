@@ -8,5 +8,5 @@ export const environment = {
   siteDashboardUrl: 'https://binary-coffee.dev/dashboard',
   googleAnalyticsId: 'UA-157555549-1',
   production: true,
-  postPageSize: 6
+  postPageSize: 12
 } as Environment;

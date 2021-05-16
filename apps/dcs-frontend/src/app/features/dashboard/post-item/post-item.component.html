@@ -7,73 +7,58 @@
   </div>
   <a [routerLink]="'post/' + post?.name"
      class="card-container"
-     fxLayout="row"
-     fxLayout.xs="column">
+     fxLayout="column">
+    <div fxLayout="row"
+         fxLayout.xs="column">
+      <div fxLayout="column"
+           fxLayoutAlign="start"
+           fxFlexOrder.xs="1">
 
-    <div fxLayout="column"
-         fxLayoutAlign="start"
-         fxFlexOrder.xs="1">
-
-      <div class="post-image-container"
-           [fxShow.xs]="false">
-        <img [lazyLoad]="getPostBanner(post)">
-      </div>
-
-      <div class="post-tag-content">
-        <app-tags [tags]="post?.tags"></app-tags>
-      </div>
-    </div>
-
-    <div class="post-body-container"
-         [fxFlex.gt-sm]="80"
-         fxLayout="column">
-      <div class="post-info-vars">
-
-        <span class="code-1">var </span>
-        <span class="code-var"> Título </span> =
-        <h3 class="code-2">
-          "<span class="post-title">{{post?.title}}</span>"
-        </h3>
-
-        <div fxLayout="column"
-             fxLayoutAlign="start start"
-             fxLayoutGap="gappx">
-          <div>
-            <span class="code-1"> var </span>
-            <span class="code-var"> Autor </span> =
-            <a class="post-author-link code-2">
-              <b>"{{post?.author?.username || 'público'}}"</b>
-            </a>
-          </div>
-          <div>
-            <span class="code-1"> var </span>
-            <span class="code-var"> Opiniones </span> =
-            <b class="code-2">{{post?.comments || 0}}</b>
-          </div>
+        <div class="post-image-container"
+             [fxShow.xs]="false">
+          <img [lazyLoad]="getPostBanner(post)">
         </div>
 
       </div>
 
-      <span class="post-info">// {{post?.publishedAt && moment.timeFromDate(post?.publishedAt) || ''}}</span>
-
-      <span [fxHide.xs]="true">
-        <span class="code-1">function</span>
-        Artículo(
-        <span class="code-var"> Título </span>,
-        <span class="code-var"> Autor </span>,
-        <span class="code-var"> Opiniones </span>
-        ){{"{"}}
-      </span>
-
-      <div class="post-body-extract code-2"
+      <div class="post-body-container"
+           [fxFlex.gt-sm]="80"
            fxLayout="column">
-        <b>/*</b>
-        <b>{{truncatePostDescription(post?.description)}}</b>
-        <b>*/</b>
+        <div class="post-info-vars">
+
+          <span class="code-1">var </span>
+          <span class="code-var"> Título </span> =
+          <h3 class="code-2">
+            "<span class="post-title">{{post?.title}}</span>"
+          </h3>
+
+          <span class="post-info">// {{post?.publishedAt && moment.timeFromDate(post?.publishedAt) || ''}}</span>
+
+          <div fxLayout="column"
+               fxLayoutAlign="start start"
+               fxLayoutGap="gappx">
+            <div>
+              <span class="code-1"> var </span>
+              <span class="code-var"> Autor </span> =
+              <a class="post-author-link code-2">
+                <b>"{{post?.author?.username || 'público'}}"</b>
+              </a>
+            </div>
+            <div>
+              <span class="code-1"> var </span>
+              <span class="code-var"> Opiniones </span> =
+              <b class="code-2">{{post?.comments || 0}}</b>
+            </div>
+          </div>
+
+        </div>
+
       </div>
+    </div>
 
-      <span [fxHide.xs]="true">{{"}"}}</span>
-
+    <div class="post-tag-content"
+         fxFlex="100">
+      <app-tags [tags]="post?.tags"></app-tags>
     </div>
   </a>
 </div>
