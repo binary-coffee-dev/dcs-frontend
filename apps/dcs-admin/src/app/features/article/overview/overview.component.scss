@@ -55,6 +55,10 @@
         }
       }
 
+      .tags {
+        margin-bottom: map-get($spacings, 3);
+      }
+
       ::ng-deep tag-input {
         margin: 0.25em 0;
 

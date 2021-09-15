@@ -190,6 +190,8 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
             )
           )
           .subscribe(() => {
+            this.formDataChange = false;
+            this.imageChange = false;
             this.router.navigate([
               `/articles/update/${this.store.selectSnapshot(PostState.newPostId)}`
             ]);
