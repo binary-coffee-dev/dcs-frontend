@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
-import { ENVIRONMENT } from '@dcs-libs/shared';
+import { ENVIRONMENT, WINDOW } from '@dcs-libs/shared';
 import { UserViewComponent } from './user-view.component';
 import { ActivatedRoute } from '@angular/router';
 
@@ -22,9 +22,11 @@ describe('UserViewComponent', () => {
     TestBed.configureTestingModule({
       declarations: [UserViewComponent],
       providers: [
-        {provide: Store, useClass: StoreStub},
-        {provide: ENVIRONMENT, useValue: {}},
-        {provide: ActivatedRoute, useClass: ActivatedRouteStub}
+        { provide: Store, useClass: StoreStub },
+        { provide: ENVIRONMENT, useValue: {} },
+        { provide: ActivatedRoute, useClass: ActivatedRouteStub },
+        { provide: ENVIRONMENT, useValue: {} },
+        { provide: WINDOW, useValue: {}}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
