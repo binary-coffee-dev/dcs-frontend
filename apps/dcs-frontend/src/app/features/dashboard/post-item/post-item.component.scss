@@ -31,6 +31,7 @@ $post_image_size: 110px;
   .line-number {
     color: map_get($md-grey, 600);
     background-color: map_get($md-primary, 100);
+    min-width: map_get($spacings, 9);
 
     span {
       padding: map_get($spacings, 4) map_get($spacings, 1) 0 map_get($spacings, 3);
