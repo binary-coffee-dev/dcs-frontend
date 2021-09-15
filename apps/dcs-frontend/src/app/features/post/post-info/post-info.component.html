@@ -32,22 +32,9 @@
            fxLayout="row"
            [title]="postLikeTitle()"
            (click)="postLikeClick()"
+           [ngClass]="{'active': userLike > 0}"
            fxLayoutAlign="start center">
-          <!--mat-icon aria-hidden="false">local_cafe</mat-icon-->
+          <mat-icon aria-hidden="false">local_cafe</mat-icon>
           <span>{{likes}}</span>
-          <div>
-               <img class="chinchin-1"
-                    src="assets/images/chinchin-1.png"
-                    alt=""
-                    *ngIf="userLike == 0">
-               <img class="chinchin-2"
-                    src="assets/images/chinchin-2.png"
-                    alt=""
-                    *ngIf="userLike == 0">
-               <img class="chinchin-3"
-                    src="assets/images/chinchin-3.png"
-                    alt=""
-                    *ngIf="userLike > 0">
-          </div>
      </span>
 </div>
