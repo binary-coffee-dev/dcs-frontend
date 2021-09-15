@@ -37,7 +37,6 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   articleForm = new FormGroup({
     body: new FormControl(''),
     enable: new FormControl(''),
-    description: new FormControl(''),
     title: new FormControl(''),
     tags: new FormControl([]),
     date: new FormControl(),
@@ -78,7 +77,6 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
           }
           this.post = newPost;
           this.articleForm.controls.body.setValue(this.post.body);
-          this.articleForm.controls.description.setValue(this.post.description);
           this.articleForm.controls.title.setValue(this.post.title);
           this.articleForm.controls.enable.setValue(Boolean(this.post.enable));
           this.articleForm.controls.tags.setValue(this.post.tags.map(tag => ({ display: tag.name, value: tag.id })));
@@ -138,7 +136,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   }
 
   onPostChange() {
-    const keyNames = ['body', 'description', 'title', 'enable'];
+    const keyNames = ['body', 'title', 'enable'];
     this.formDataChange = keyNames.reduce((prev, key) => {
       return (
         prev ||
@@ -170,7 +168,6 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   submitPost() {
     if (this.formDataChange) {
       this.post.body = this.articleForm.controls.body.value;
-      this.post.description = this.articleForm.controls.description.value;
       this.post.title = this.articleForm.controls.title.value;
       this.post.enable = !!this.articleForm.controls.enable.value;
       this.post.tags = this.articleForm.controls.tags.value.map(tag => ({ name: tag.display, id: tag.value } as Tag));

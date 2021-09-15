@@ -6,7 +6,6 @@ export const POST_BY_NAME_QUERY = gql`
       id
       name
       title
-      description
       body
       publishedAt
       views

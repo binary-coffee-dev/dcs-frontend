@@ -7,7 +7,6 @@ export const POST_QUERY = gql`
             name
             enable
             title
-            description
             body
             publishedAt
             views
