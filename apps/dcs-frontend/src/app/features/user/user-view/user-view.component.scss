@@ -54,6 +54,51 @@
       .sta-n {
         color: map-get($map: $md-primary, $key: 500);
       }
+
+      &:not(:active) {
+        &.rss {
+          :after {
+            transition: color 2s ease-out;
+          }
+        }
+      }
+
+      &:active {
+        &.rss {
+          :after {
+            color: #292929;
+          }
+        }
+      }
+
+      &.rss {
+        flex-direction: row;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+
+        :after {
+          content: "copiado";
+          position: absolute;
+          font-size: .8rem;
+          right: 5px;
+          color: #29292900
+        }
+
+        p {
+          margin: 0;
+        }
+
+        mat-icon {
+          margin-left: -4px;
+          padding-right: 4px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: map_get($md-primary, 100);
+        }
+      }
     }
   }
 
@@ -79,7 +124,7 @@
           border: 1px solid map_get($md-primary, 500);
         }
 
-        $img-h:120px;
+        $img-h: 120px;
 
         .post-image-container {
           width: 100%;
@@ -102,7 +147,7 @@
           margin-top: -30px;
           padding: map-get($map: $spacings, $key: 1) map-get($map: $spacings, $key: 2);
           color: map-get($map: $md-grey, $key: 900);
-          background: transparentize($color: map-get($map: $md-grey, $key: A100), $amount: .6); 
+          background: transparentize($color: map-get($map: $md-grey, $key: A100), $amount: .6);
           opacity: 0;
         }
 

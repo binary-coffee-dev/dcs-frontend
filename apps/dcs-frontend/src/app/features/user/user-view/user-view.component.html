@@ -1,101 +1,107 @@
-<div class="container"
-     fxLayout="row"
-     fxLayout.xs="column">
-  <div class="user-container"
-       fxLayout="column"
-       fxLayoutAlign="start center"
-       fxFlex="30"
-       fxFlex.sm="50"
-       fxFlex.xs="100">
-    <div class="user-image-container"
-         fxLayoutAlign="center center">
+<div class='container'
+     fxLayout='row'
+     fxLayout.xs='column'>
+  <div class='user-container'
+       fxLayout='column'
+       fxLayoutAlign='start center'
+       fxFlex='30'
+       fxFlex.sm='50'
+       fxFlex.xs='100'>
+    <div class='user-image-container'
+         fxLayoutAlign='center center'>
       <div>
-        <img class="user-image"
-             [src]="getUserAvatar(user)"
-             alt="noavatar" />
-        <div class="user-name-content"
-             fxLayoutAlign="center"
-             fxLayout="row">
-          <b class="user-name">{{ user?.username }}</b>
+        <img class='user-image'
+             [src]='getUserAvatar(user)'
+             alt='noavatar' />
+        <div class='user-name-content'
+             fxLayoutAlign='center'
+             fxLayout='row'>
+          <b class='user-name'>{{ user?.username }}</b>
         </div>
       </div>
     </div>
 
-    <div class="stadistic-container"
-         fxLayoutAlign="center center">
-      <div fxLayout="column">
-        <span class="stadistic">
-          <b class="sta-n">{{ count }}</b> artículos
+    <div class='stadistic-container'
+         fxLayoutAlign='center center'>
+      <div fxLayout='column'>
+        <span class='stadistic'>
+          <b class='sta-n'>{{ count }}</b> artículos
         </span>
-        <span class="stadistic"
-              *ngIf="false"><b class="sta-n">200</b> likes</span>
-        <span class="stadistic"><b class="sta-n">{{ commentsCount }}</b> comentarios</span>
+        <span class='stadistic'
+              *ngIf='false'><b class='sta-n'>200</b> likes</span>
+        <span class='stadistic'><b class='sta-n'>{{ commentsCount }}</b> comentarios</span>
+        <span class='stadistic rss'
+              (click)='copyRSSToClipboard()'
+              title='click para copiar link'>
+          <mat-icon class='sta-n' aria-hidden='false'>rss_feed</mat-icon>
+          <p>RSS</p>
+        </span>
       </div>
     </div>
   </div>
-  <div class="post-container"
-       fxLayout="row wrap">
-    <div class="container"
-         fxLayout="column"
-         fxLayoutAlign="top center">
-      <i class="code-comment-1 upper-comment">
+  <div class='post-container'
+       fxLayout='row wrap'>
+    <div class='container'
+         fxLayout='column'
+         fxLayoutAlign='top center'>
+      <i class='code-comment-1 upper-comment'>
         // Artículos publicados por {{ user?.username }}
       </i>
 
-      <div fxLayout="row wrap"
-           fxLayoutAlign="center">
-        <a *ngFor="let post of posts"
+      <div fxLayout='row wrap'
+           fxLayoutAlign='center'>
+        <a *ngFor='let post of posts'
            [routerLink]="'/post/' + post.name"
-           class="post-content"
-           fxFlex="26"
-           fxFlex.xs="100"
-           fxFlex.sm="100">
-          <div class="post-box"
-               fxLayout="column">
+           class='post-content'
+           fxFlex='26'
+           fxFlex.xs='100'
+           fxFlex.sm='100'>
+          <div class='post-box'
+               fxLayout='column'>
 
-            <div class="post-image-container">
-              <img *ngIf="post?.banner?.url"
-                   [src]="url.normalizeSiteUrl(post?.banner?.url)" />
-              <img *ngIf="!post?.banner?.url"
-                   [src]="getPostImg()" />
+            <div class='post-image-container'>
+              <img *ngIf='post?.banner?.url'
+                   [src]='url.normalizeSiteUrl(post?.banner?.url)' />
+              <img *ngIf='!post?.banner?.url'
+                   [src]='getPostImg()' />
 
             </div>
 
-            <div class="image-info"
-                 fxLayout="column"
-                 fxLayoutAlign="end start">
+            <div class='image-info'
+                 fxLayout='column'
+                 fxLayoutAlign='end start'>
               <div>
-                <mat-icon aria-hidden="false">comment</mat-icon>
+                <mat-icon aria-hidden='false'>comment</mat-icon>
                 <span>{{post?.comments || 0}}</span>
               </div>
             </div>
 
-            <div class="code-none"
-                 class="post-title"
-                 fxLayout="column">
-              <b class="code-2">{{ post.title }}</b>
+            <div class='code-none'
+                 class='post-title'
+                 fxLayout='column'>
+              <b class='code-2'>{{ post.title }}</b>
             </div>
           </div>
         </a>
       </div>
-      <div class="pagination"
-           fxLayoutAlign="center center">
-        <button *ngIf="(firstPage | async)  === false"
-                (click)="articlesPreviousPage()"
-                class="page-item"
+      <div class='pagination'
+           fxLayoutAlign='center center'>
+        <button *ngIf='(firstPage | async)  === false'
+                (click)='articlesPreviousPage()'
+                class='page-item'
                 mat-button>
-          <span class="page-link">
-            <span class="fa fa-chevron-left"></span>
-            <span class="fa fa-chevron-left"></span>
+          <span class='page-link'>
+            <span class='fa fa-chevron-left'></span>
+            <span class='fa fa-chevron-left'></span>
           </span>
         </button>
-        <button *ngIf="(lastPage | async)  === false"
-                (click)="articlesNextPage()"
-                class="page-item"
+        <button *ngIf='(lastPage | async)  === false'
+                (click)='articlesNextPage()'
+                class='page-item'
                 mat-button>
-          <span class="page-link">
-            <span class="fa fa-chevron-right"></span>
-            <span class="fa fa-chevron-right"></span>
+          <span class='page-link'>
+            <span class='fa fa-chevron-right'></span>
+            <span class='fa fa-chevron-right'></span>
           </span>
         </button>
       </div>
