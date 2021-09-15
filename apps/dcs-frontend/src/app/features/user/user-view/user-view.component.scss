@@ -132,7 +132,7 @@
           border-radius: map_get($radius, 2);
 
           img {
-            margin: none;
+            margin: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -147,8 +147,16 @@
           margin-top: -30px;
           padding: map-get($map: $spacings, $key: 1) map-get($map: $spacings, $key: 2);
           color: map-get($map: $md-grey, $key: 900);
-          background: transparentize($color: map-get($map: $md-grey, $key: A100), $amount: .6);
+          background: transparentize($color: map-get($map: $md-grey, $key: A100), $amount: .0);
           opacity: 0;
+          border-top: solid 1px map_get($md-primary, 100);
+
+          mat-icon {
+            font-size: .9rem;
+            width: auto;
+            height: auto;
+            margin-right: map_get($spacings, 2);
+          }
         }
 
         .post-title {
@@ -158,6 +166,7 @@
 
         &:hover {
           .image-info {
+            transition: opacity 500ms ease;
             opacity: 1;
           }
         }
