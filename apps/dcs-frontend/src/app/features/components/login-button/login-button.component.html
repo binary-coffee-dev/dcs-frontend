@@ -1,34 +1,39 @@
 <div>
   <button mat-button
-          *ngIf="!isLogin"
-          (click)="loginAction()"
-          class="login-button">
+          *ngIf='!isLogin'
+          (click)='loginAction()'
+          class='login-button'>
     Login
   </button>
-  <div *ngIf="isLogin"
-       class="user-data">
+  <div *ngIf='isLogin'
+       class='user-data'>
 
 
     <button mat-button
-            [matMenuTriggerFor]="beforeMenu">
-      <img [src]="getUserImage()"
-           alt="user avatar">
+            [matMenuTriggerFor]='beforeMenu'>
+      <img [src]='getUserImage()'
+           alt='user avatar'>
     </button>
-    <mat-menu #beforeMenu="matMenu"
-              xPosition="before">
+    <mat-menu #beforeMenu='matMenu'
+              xPosition='before'>
 
-      <button mat-menu-item
-              (click)="openUserProfile()">
+      <a mat-menu-item
+         [routerLink]='profileLink()'>
         Perfil
-      </button>
+      </a>
 
-      <button mat-menu-item
-              (click)="openArticles()">
+      <a mat-menu-item
+         [href]='editProfileLink()'>
+        Editar perfil
+      </a>
+
+      <a mat-menu-item
+         [href]='articlesLink()'>
         Gestionar artículos
-      </button>
+      </a>
 
       <button mat-menu-item
-              (click)="logoutAction()">
+              (click)='logoutAction()'>
         Salir
       </button>
     </mat-menu>
