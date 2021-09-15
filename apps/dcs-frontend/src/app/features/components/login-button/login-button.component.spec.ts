@@ -4,6 +4,7 @@ import { Store } from '@ngxs/store';
 
 import { ENVIRONMENT, WINDOW, MaterialModule } from '@dcs-libs/shared';
 import { LoginButtonComponent } from './login-button.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 class StoreStub {}
 
@@ -26,7 +27,7 @@ describe('LoginButtonComponent', () => {
         { provide: ENVIRONMENT, useFactory: () => env },
         { provide: Store, useClass: StoreStub }
       ],
-      imports: [MaterialModule]
+      imports: [MaterialModule, RouterTestingModule]
     }).compileComponents();
   }));
 
