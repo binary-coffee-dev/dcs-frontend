@@ -1,0 +1,16 @@
+:host {
+  .container {
+    padding: 15px;
+    margin-bottom: 20px;
+
+    ::ng-deep img {
+      min-width: 300px;
+      max-width: 300px;
+      height: auto;
+      margin-right: 100%;
+    }
+
+    ::ng-deep blockquote p {
+    }
+  }
+}

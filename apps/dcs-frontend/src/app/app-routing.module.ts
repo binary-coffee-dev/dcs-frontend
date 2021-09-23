@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MeResolver } from '@dcs-libs/shared';
 import { PrivacyComponent } from './features/info/privacy/privacy.component';
 import { CookiesComponent } from './features/info/cookies/cookies.component';
+import { AboutComponent } from './features/info/about/about.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'cookies',
         component: CookiesComponent
+      },
+      {
+        path: 'about',
+        component: AboutComponent
       }
     ]
   }
