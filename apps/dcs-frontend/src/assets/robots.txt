@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /*?filter=
 Disallow: /assets/
-Disallow: /post/*#
+sitemap: https://binary-coffee.dev/sitemap
