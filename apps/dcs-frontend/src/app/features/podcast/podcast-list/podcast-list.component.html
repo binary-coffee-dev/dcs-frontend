@@ -4,7 +4,7 @@
     fxLayout="row"
     fxLayoutAlign="start center"
   >
-    <div *ngIf="isAdmin">
+    <div *ngIf="false">
       <button class="bc-button" mat-button>
         <span class="code-var">new</span> Podcast()
       </button>
@@ -28,7 +28,7 @@
       {{ podcastName }}
     </div>
 
-    <a [routerLink]="'/podcast'" class="more-podcast">
+    <a *ngIf='false' [routerLink]="'/podcast'" class="more-podcast">
       <i class="fa fa-arrow-left"></i> Mas podcasts
     </a>
   </div>

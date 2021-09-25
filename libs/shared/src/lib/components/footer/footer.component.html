@@ -13,8 +13,8 @@
            fxLayout="column"
            fxLayoutAlign="start start"
            fxFlex.xs="100"
-           fxFlex="50"
-           fxFlex.lg="25">
+           fxFlex="33"
+           fxFlex.lg="33">
         <span class="sub-group-header"><b>{{root}} </b>binarycoffee -h</span>
         <div fxLayout="column">
           <a mat-button
@@ -31,11 +31,6 @@
              href="mailto:website@binary-coffee.dev"
              target="blank">
             <span>> Contáctenos</span>
-          </a>
-
-          <a mat-button
-             [routerLink]="'/post/bienvenidos-al-blog-binary-coffee'">
-            <span>> Conozca Binary Coffee</span>
           </a>
 
           <a mat-button
@@ -63,44 +58,45 @@
            fxLayout="column"
            fxLayoutAlign="start start"
            fxFlex.xs="100"
-           fxFlex="50"
-           fxFlex.lg="25">
-        <span class="sub-group-header"><b>{{root}} </b>podcasts -ls</span>
-        <div fxLayout="column">
-          <a mat-button
-             [routerLink]="'/podcast/espacio-binario'">
-            <span>> Espacio Binario</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="sub-group"
-           fxLayout="column"
-           fxLayoutAlign="start start"
-           fxFlex.xs="100"
-           fxFlex="50"
-           fxFlex.lg="25">
+           fxFlex="33"
+           fxFlex.lg="33">
         <span class="sub-group-header"><b>{{root}} </b>sociales -ls</span>
         <app-social-links footer="true"
                           fxLayout="column"
                           fxLayoutAlign="start start"></app-social-links>
+        <a mat-button
+           [routerLink]="'/podcast/espacio-binario'">
+          <span>> Espacio Binario</span>
+        </a>
       </div>
 
       <div class="sub-group"
            fxLayout="column"
            fxLayoutAlign="start start"
            fxFlex.xs="100"
-           fxFlex="50"
-           fxFlex.lg="25">
+           fxFlex="33"
+           fxFlex.lg="33">
         <span class="sub-group-header"><b>{{root}} </b>legal -ls</span>
         <div fxLayout="column">
           <a mat-button
+             routerLink="/about">
+            <span>> About</span>
+          </a>
+          <a mat-button
              routerLink="/privacy-policy">
-            <span>> Políticas de privacidad</span>
+            <span>> Políticas de Privacidad</span>
           </a>
           <a mat-button
              routerLink="/cookies">
-            <span>> Políticas de cookies</span>
+            <span>> Políticas de Cookies</span>
+          </a>
+          <a mat-button
+             routerLink="/code-of-conduct">
+            <span>> Código de Conducta</span>
+          </a>
+          <a mat-button
+             routerLink="/term-of-use">
+            <span>> Términos y Condiciones</span>
           </a>
         </div>
       </div>
