@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 import { ConfigState, SetConfigAction } from '../../core/redux/states/config';
-import consentVersions from '../../../../../../apps/dcs-frontend/src/assets/consent-versions.json';
+import consentVersions from '../../../assets/consent-versions.json';
 
 @Component({
   selector: 'app-cookies-consent',

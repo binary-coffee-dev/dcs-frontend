@@ -35,7 +35,12 @@
             "aot": true,
             "assets": [
               "apps/dcs-frontend/src/favicon.png",
-              "apps/dcs-frontend/src/assets"
+              "apps/dcs-frontend/src/assets",
+              {
+                "glob": "*",
+                "input": "libs/shared/src/assets",
+                "output": "assets/"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
