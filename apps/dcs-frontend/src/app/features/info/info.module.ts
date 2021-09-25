@@ -7,13 +7,17 @@ import { MaterialModule } from '@dcs-libs/shared';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { CookiesComponent } from './cookies/cookies.component';
 import { AboutComponent } from './about/about.component';
+import { CodeOfConductComponent } from './code-of-conduct/code-of-conduct.component';
+import { TermOfUseComponent } from './term-of-use/term-of-use.component';
 
 
 @NgModule({
   declarations: [
     PrivacyComponent,
     CookiesComponent,
-    AboutComponent
+    AboutComponent,
+    CodeOfConductComponent,
+    TermOfUseComponent
   ],
   imports: [
     MarkdownModule.forRoot(),

@@ -4,7 +4,7 @@ Efectivas desde 23 Septiembre, 2021
 
 En Binary Coffee una de nuestras prioridades principales es la privacidad de nuestros visitantes. El presente documento contiene todo lo que debes conocer acerca de la información que es recolectada en el sitio de cada uno de los usuarios y el cómo esta información es utilizada.
 
-Si luego de leer la presente información, tienes alguna duda sobre nuestras políticas de privacidad, no dudes en contactarnos (email)
+Si luego de leer la presente información, tienes alguna duda sobre nuestras políticas de privacidad, no dudes en contactarnos (binary-coffee.dev)
 
 Las presentes políticas de privacidad solo aplican a nuestras actividades online en el sitio y no incluyen aquello que se pueda hacer offline o la información que otras personas puedan compartir del mismo.
 
@@ -60,13 +60,13 @@ Puedes desactivar las cookies a partir de las opciones de tu navegador web. Para
 
 ### Eliminar mis datos
 
-Puedes requerir la eliminación de todos tus datos personales o que estén relacionados a tu cuenta enviándonos un email a <email>
+Puedes requerir la eliminación de todos tus datos personales o que estén relacionados a tu cuenta enviándonos un email a (binary-coffee.dev)
 
 Para proteger la información de accidentes o de usuarios maliciosos, tus datos permanecerán guardados por un periodo de 30 días. Pero luego de este periodo, tu información será irrecuperable.
 
 ### Requerir mis datos
 
-Si deseas una copia de los datos de tu usuario en el sitio, pueden enviarnos un email a <email>
+Si deseas una copia de los datos de tu usuario en el sitio, pueden enviarnos un email a (binary-coffee.dev)
 
 ## Información para niños
 
