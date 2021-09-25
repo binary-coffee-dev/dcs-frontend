@@ -32,4 +32,4 @@ Se puede deshabilitar las cookies en los navegadores desde las configuraciones d
 
 Esperamos que las presentes políticas de cookies fuesen suficientes para clarificar todas las dudas o preguntas relacionadas a este tema. Le recomendamos que aunque no entienda bien el funcionamiento de las mismas, las mantenga habilitadas en su navegador web, de esta manera va a tener una mejor experiencia de usuario en el sitio y nos ayuda al mismo tiempo con la información que recolectamos, a cada vez proveer mejores servicios a nuestros usuarios.
 
-En cualquier caso, si aún está interesado en conocer un poco más sobre este tema, no dude en escribirnos a nuestro email (binary-coffee.dev) con sus dudas al respecto.
+En cualquier caso, si aún está interesado en conocer un poco más sobre este tema, no dude en escribirnos a nuestro email website@binary-coffee.dev con sus dudas al respecto.

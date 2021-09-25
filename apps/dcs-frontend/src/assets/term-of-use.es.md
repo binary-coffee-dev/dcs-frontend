@@ -36,7 +36,7 @@ Binary Coffee no revisará cada uno de los enlaces compartidos en los materiales
 
 ## 7. Copyright
 
-Los usuarios aceptan y certifican que ellos tienen el derecho de compartir todo el contenido que ellos publican en [binary-coffee.dev](https://binary-coffee.dev) relacionada a artículos o comentarios. Con relación a citas, los usuarios no pueden publicar contenido copiado y pegado que no pertenezca a ellos. Los usuarios asumen todo el riesgo del contenido que publiquen, incluyendo cualquier reclamación de propiedad intelectual o derechos legales. Si usted cree que un usuario a plagiado algún contenido, se ha apropiado de un trabajo ajeno, robado una identidad o cualquier otra trasgresión, por favor contáctenos por medio de nuestro email (website@binary-coffee.dev) y  Binary Coffee eliminará inmediatamente dicho contenido.
+Los usuarios aceptan y certifican que ellos tienen el derecho de compartir todo el contenido que ellos publican en [binary-coffee.dev](https://binary-coffee.dev) relacionada a artículos o comentarios. Con relación a citas, los usuarios no pueden publicar contenido copiado y pegado que no pertenezca a ellos. Los usuarios asumen todo el riesgo del contenido que publiquen, incluyendo cualquier reclamación de propiedad intelectual o derechos legales. Si usted cree que un usuario a plagiado algún contenido, se ha apropiado de un trabajo ajeno, robado una identidad o cualquier otra trasgresión, por favor contáctenos por medio de nuestro email website@binary-coffee.dev y  Binary Coffee eliminará inmediatamente dicho contenido.
 
 ## 8. Modificaciones de los términos de uso
 
