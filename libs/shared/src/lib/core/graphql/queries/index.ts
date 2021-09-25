@@ -10,4 +10,3 @@ export * from './recent-comments';
 export * from './top-active-users';
 export * from './top-popular-users';
 export * from './comments-count';
-export * from './ads';

@@ -61,16 +61,6 @@
         [postId]="post?.id"
       ></app-similar-posts-list>
     </div>
-    <div class="ads-container-bottom"
-         fxShow.xs
-         fxShow.sm
-         fxHide
-         fxLayout="row wrap">
-      <div class="ad-container"
-           *ngFor="let ad of ads"
-           [innerHTML]="ad.code">
-      </div>
-    </div>
     <app-comments *ngIf="post"
                   [post]="post"></app-comments>
   </div>
@@ -85,14 +75,5 @@
       class="outside"
       [postId]="post?.id"
     ></app-similar-posts-list>
-    <div class="ads-container"
-         fxLayout="row wrap">
-      <div class="ad-container"
-           fxFlex="45"
-           fxFlex.md="100"
-           *ngFor="let ad of ads"
-           [innerHTML]="ad.code">
-      </div>
-    </div>
   </div>
 </div>
