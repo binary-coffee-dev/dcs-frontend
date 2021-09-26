@@ -29,8 +29,8 @@ Utilizamos la información que recolectamos de varias maneras, tales como:
 
 ## Que no hacemos con tus datos
 
-- No compartimos información que previamente no se le haya consultados al usuario.
-- No vendemos, rentamos o comerciamos con la información personal con propósitos comerciales.
+- No compartimos información que previamente no se le haya consultado al usuario.
+- No vendemos, rentamos o comerciamos con la información personal de los usuarios.
 - No compartimos ninguna información que previamente el usuario haya consentido que permita conocer cómo los usuarios utilizan Binary Coffee.
 
 ## Publicidad
