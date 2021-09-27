@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
-import { Subject, timer } from 'rxjs';
-import { Store } from '@ngxs/store';
+import { Observable, Subject, timer } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
 
 import {
   AuthState,
@@ -42,7 +42,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   currentUser: User;
 
   commentForm = new FormGroup({
-    body: new FormControl('', Validators.required),
+    body: new FormControl('', Validators.required)
   });
 
   constructor(
@@ -51,7 +51,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
     private url: UrlUtilsService,
     private scroll: ScrollService,
     private route: ActivatedRoute,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {
   }
 
@@ -90,11 +90,11 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   removeComment(commentId) {
-    this.dialog.open(ConfirmDeleteModalComponent, {data: {commentId}});
+    this.dialog.open(ConfirmDeleteModalComponent, { data: { commentId } });
   }
 
   editComment(comment: Comment) {
-    this.dialog.open(EditCommentModalComponent, {data: {comment}});
+    this.dialog.open(EditCommentModalComponent, { data: { comment } });
   }
 
   createComment() {
@@ -120,23 +120,29 @@ export class CommentsComponent implements OnInit, OnDestroy {
     return comment && comment.user && (this.isAdmin(this.currentUser) || this.isStaff(this.currentUser));
   }
 
-  getIsStaff(comment: Comment) {
-    return this.isStaff(comment.user);
+  canCurrentUserEditComment(comment: Comment) {
+    return comment.user.username === this.currentUser.username ||
+      this.isStaff(this.currentUser) ||
+      this.isAdmin(this.currentUser);
+  }
+
+  isCommentFromPostOwner(comment: Comment) {
+    return this.post.author.username === this.getName(comment);
+  }
+
+  isStaffOrAdmin(comment: Comment) {
+    return this.isStaff(comment.user) || this.isAdmin(comment.user);
   }
 
   isStaff(user: User): boolean {
-    return user && user.role.name === RoleEnum.staff;
-  }
-
-  getIsAdmin(comment: Comment) {
-    return this.isAdmin(comment.user);
+    return user && user.role.type === RoleEnum.staff;
   }
 
   isAdmin(user: User): boolean {
-    return user && user.role.name === RoleEnum.administrator;
+    return user && user.role.type === RoleEnum.administrator;
   }
 
-  getRole(comment: Comment) {
+  getRoleName(comment: Comment) {
     return comment.user ? comment.user.role.name : '';
   }
 

@@ -82,17 +82,18 @@
             <a [href]="'/users/' + (comment?.user?.username || '')"
                class="code-2">
               "{{getName(comment)}}"
-              <i class="fa fa-star"
-                 *ngIf="getIsStaff(comment) || true"
-                 [matTooltip]="getRole(comment)">
-              </i>
               <i class="fa fa-check-circle"
-                 *ngIf="getIsAdmin(comment) || true"
-                 [matTooltip]="getRole(comment)">
+                 *ngIf="isCommentFromPostOwner(comment)"
+                 [matTooltip]="'Autor'">
+              </i>
+              <i class="fa fa-star"
+                 *ngIf="isStaffOrAdmin(comment)"
+                 [matTooltip]="getRoleName(comment)">
               </i>
             </a>
           </div>
           <div fxLayout="row"
+               *ngIf='canCurrentUserEditComment(comment)'
                class="actions">
             <a (click)="removeComment(comment.id)"
                title="Eliminar comentario"><i class="material-icons">delete</i></a>
