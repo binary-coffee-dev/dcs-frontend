@@ -121,13 +121,13 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   canCurrentUserEditComment(comment: Comment) {
-    return comment.user.username === this.currentUser.username ||
+    return (comment.user && this.currentUser && comment.user.username === this.currentUser.username) ||
       this.isStaff(this.currentUser) ||
       this.isAdmin(this.currentUser);
   }
 
   isCommentFromPostOwner(comment: Comment) {
-    return this.post.author.username === this.getName(comment);
+    return this.post && this.post.author && this.post.author.username === this.getName(comment);
   }
 
   isStaffOrAdmin(comment: Comment) {
