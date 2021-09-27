@@ -119,6 +119,7 @@
         border: 1px solid map_get($md-primary, 100);
         border-radius: map_get($radius, 2);
         cursor: pointer;
+        min-width: 140px;
 
         &:hover {
           border: 1px solid map_get($md-primary, 500);
