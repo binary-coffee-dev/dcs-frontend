@@ -135,11 +135,11 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   isStaff(user: User): boolean {
-    return user && user.role.type === RoleEnum.staff;
+    return user && user.role && user.role.type === RoleEnum.staff;
   }
 
   isAdmin(user: User): boolean {
-    return user && user.role.type === RoleEnum.administrator;
+    return user && user.role && user.role.type === RoleEnum.administrator;
   }
 
   getRoleName(comment: Comment) {
