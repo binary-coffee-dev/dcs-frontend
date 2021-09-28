@@ -30,12 +30,17 @@ $wi: 100px;
 
         &:hover {
           border: 1px solid map-get($map: $md-primary, $key: 500);
+
+          .post-image-container img {
+            transform: scale(1.5);
+          }
         }
 
         .post-image-container {
           width: $wi;
           height: $wi;
           min-width: $wi;
+          overflow: hidden;
 
           img {
             border-radius: map-get($map: $radius, $key: 2) map-get($map: $radius, $key: 2) 0 0;
@@ -43,6 +48,7 @@ $wi: 100px;
             height: 100%;
             object-fit: cover;
             object-position: center;
+            transition: transform .2s;
           }
         }
         .post-title-container {
