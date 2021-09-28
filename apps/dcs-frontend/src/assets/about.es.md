@@ -29,3 +29,4 @@ Los creadores de la plataforma somos Ingenieros de Software y la mayoría hemos 
 > [twitter](https://twitter.com/KarelDiazA)
 
 > **Frank**: Apasionado por el conocimiento y la libertad de pensamiento.
+> [github](https://github.com/frarteaga)
