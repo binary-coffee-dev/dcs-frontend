@@ -14,6 +14,10 @@ $post_image_size: 110px;
       .card-container {
         background-color: map_get($md-primary, 50);
       }
+
+      .post-image-container img {
+        transform: scale(1.5);
+      }
     }
   }
 
@@ -31,6 +35,7 @@ $post_image_size: 110px;
   .line-number {
     color: map_get($md-grey, 600);
     background-color: map_get($md-primary, 100);
+    min-width: map_get($spacings, 9);
 
     span {
       padding: map_get($spacings, 4) map_get($spacings, 1) 0 map_get($spacings, 3);
@@ -44,19 +49,18 @@ $post_image_size: 110px;
     margin-right: map_get($spacings, 4);
     border-radius: map_get($radius, 2);
     border: 1px solid map_get($md-primary, 100);
+    overflow: hidden;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
+      transition: transform .2s;
     }
   }
 
   .post-tag-content {
-    margin: map_get($spacings, 2) map_get($spacings, 4) 0 0;
-    max-width: $post_image_size;
-
     @media screen and (max-width: 599px) {
       max-width: none;
     }
@@ -64,7 +68,7 @@ $post_image_size: 110px;
 
 
   .post-info-vars {
-    margin-bottom: map_get($spacings, 4);
+    margin-bottom: map_get($spacings, 2);
 
     h3 {
       padding-top: 0;

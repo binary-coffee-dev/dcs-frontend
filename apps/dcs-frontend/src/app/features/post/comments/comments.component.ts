@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
-import { Subject, timer } from 'rxjs';
-import { Store } from '@ngxs/store';
+import { Observable, Subject, timer } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
 
 import {
   AuthState,
@@ -15,10 +15,12 @@ import {
   FetchCommentsAction,
   Post,
   UrlUtilsService,
-  RoleEnum
+  RoleEnum, User
 } from '@dcs-libs/shared';
 import { MomentService, ScrollService } from '../../../core/services';
 import { LoginRequestModalComponent } from '../../components/login-request-modal';
+import { ConfirmDeleteModalComponent } from './confirm-delete.modal/confirm-delete.modal.component';
+import { EditCommentModalComponent } from './edit-comment.modal/edit-comment.modal.component';
 
 @Component({
   selector: 'app-comments',
@@ -37,8 +39,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   isLogin = false;
 
+  currentUser: User;
+
   commentForm = new FormGroup({
-    body: new FormControl('', Validators.required),
+    body: new FormControl('', Validators.required)
   });
 
   constructor(
@@ -47,7 +51,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
     private url: UrlUtilsService,
     private scroll: ScrollService,
     private route: ActivatedRoute,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {
   }
 
@@ -67,6 +71,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
       this.commentError = error.message;
     });
     this.store.select(AuthState.isLogin).subscribe(isLogin => this.isLogin = isLogin);
+    this.store.select(AuthState.me).subscribe(user => this.currentUser = user);
   }
 
   ngOnDestroy(): void {
@@ -82,6 +87,14 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   postLikeClick() {
     this.dialog.open(LoginRequestModalComponent, {});
+  }
+
+  removeComment(commentId) {
+    this.dialog.open(ConfirmDeleteModalComponent, { data: { commentId } });
+  }
+
+  editComment(comment: Comment) {
+    this.dialog.open(EditCommentModalComponent, { data: { comment } });
   }
 
   createComment() {
@@ -100,15 +113,36 @@ export class CommentsComponent implements OnInit, OnDestroy {
     }
   }
 
-  getIsStaff(comment: Comment) {
-    return comment.user ? comment.user.role.name === RoleEnum.staff : false;
+  canComment(comment: Comment): boolean {
+    if (comment && comment.user && comment.user.id === this.currentUser.id) {
+      return true;
+    }
+    return comment && comment.user && (this.isAdmin(this.currentUser) || this.isStaff(this.currentUser));
   }
 
-  getIsAdmin(comment: Comment) {
-    return comment.user ? comment.user.role.name === RoleEnum.administrator : false;
+  canCurrentUserEditComment(comment: Comment) {
+    return (comment.user && this.currentUser && comment.user.username === this.currentUser.username) ||
+      this.isStaff(this.currentUser) ||
+      this.isAdmin(this.currentUser);
   }
 
-  getRole(comment: Comment) {
+  isCommentFromPostOwner(comment: Comment) {
+    return this.post && this.post.author && this.post.author.username === this.getName(comment);
+  }
+
+  isStaffOrAdmin(comment: Comment) {
+    return this.isStaff(comment.user) || this.isAdmin(comment.user);
+  }
+
+  isStaff(user: User): boolean {
+    return user && user.role && user.role.type === RoleEnum.staff;
+  }
+
+  isAdmin(user: User): boolean {
+    return user && user.role && user.role.type === RoleEnum.administrator;
+  }
+
+  getRoleName(comment: Comment) {
     return comment.user ? comment.user.role.name : '';
   }
 
@@ -117,7 +151,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   getName(comment: Comment) {
-    return comment.name || comment.user.username;
+    return comment.name || (comment.user && comment.user.username) || 'public';
   }
 
   checkEmptySpaces(value: string): boolean {

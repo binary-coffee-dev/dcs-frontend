@@ -54,12 +54,57 @@
       .sta-n {
         color: map-get($map: $md-primary, $key: 500);
       }
+
+      &:not(:active) {
+        &.rss {
+          :after {
+            transition: color 2s ease-out;
+          }
+        }
+      }
+
+      &:active {
+        &.rss {
+          :after {
+            color: #292929;
+          }
+        }
+      }
+
+      &.rss {
+        flex-direction: row;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+
+        :after {
+          content: "copiado";
+          position: absolute;
+          font-size: .8rem;
+          right: 5px;
+          color: #29292900
+        }
+
+        p {
+          margin: 0;
+        }
+
+        mat-icon {
+          margin-left: -4px;
+          padding-right: 4px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: map_get($md-primary, 100);
+        }
+      }
     }
   }
 
   .post-container {
     .upper-comment {
-      margin: map-get($map: $spacings, $key: 1) map-get($map: $spacings, $key: 2);
+      margin: map-get($map: $spacings, $key: 4) map-get($map: $spacings, $key: 2) 0 map-get($map: $spacings, $key: 2);
     }
 
     .post-content {
@@ -70,36 +115,60 @@
         padding: 0 map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 2);
       }
 
-      .post-image-container {
-        width: 100%;
-        height: 150px;
-        border-radius: map_get($radius, 2);
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-          border-radius: map_get($radius, 2) map_get($radius, 2) 0 0;
-          z-index: -1;
-        }
-      }
-
       .post-box {
         border: 1px solid map_get($md-primary, 100);
         border-radius: map_get($radius, 2);
         cursor: pointer;
+        min-width: 140px;
 
         &:hover {
           border: 1px solid map_get($md-primary, 500);
         }
 
+        $img-h: 120px;
+
+        .post-image-container {
+          width: 100%;
+          height: $img-h;
+          border-radius: map_get($radius, 2);
+
+          img {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: map_get($radius, 2) map_get($radius, 2) 0 0;
+            z-index: -1;
+          }
+        }
+
+        .image-info {
+          height: 30px;
+          margin-top: -30px;
+          padding: map-get($map: $spacings, $key: 1) map-get($map: $spacings, $key: 2);
+          color: map-get($map: $md-grey, $key: 900);
+          background: transparentize($color: map-get($map: $md-grey, $key: A100), $amount: .0);
+          opacity: 0;
+          border-top: solid 1px map_get($md-primary, 100);
+
+          mat-icon {
+            font-size: .9rem;
+            width: auto;
+            height: auto;
+            margin-right: map_get($spacings, 2);
+          }
+        }
+
         .post-title {
           padding: map_get($spacings, 2);
           text-transform: uppercase;
+        }
 
-          b {
-            font-size: 1.2rem;
+        &:hover {
+          .image-info {
+            transition: opacity 500ms ease;
+            opacity: 1;
           }
         }
       }

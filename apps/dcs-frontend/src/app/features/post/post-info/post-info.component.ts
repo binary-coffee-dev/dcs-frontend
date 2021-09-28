@@ -46,9 +46,9 @@ export class PostInfoComponent implements OnInit, OnDestroy {
 
   postLikeTitle() {
     if (this.userLike > 0) {
-      return 'Dejar sin café al autor';
+      return '';
     }
-    return 'Invitarías a un café al autor';
+    return 'Chinchin con el autor';
   }
 
   postLikeClick() {

@@ -9,12 +9,9 @@
       <span fxFlex="100">{{ post?.title }}</span>
       <button
         mat-button
-        *ngIf="
-          ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)
-        "
+        *ngIf=" ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)"
         matTooltip="Editar artículo"
-        (click)="editPost(post)"
-      >
+        (click)="editPost(post)">
         <i class="fa fa-edit"></i>
       </button>
     </h1>
@@ -31,8 +28,7 @@
       [fxShow.xs]="true"
       [fxShow.sm]="true"
       fxLayout="row"
-      fxLayoutAlign="center"
-    >
+      fxLayoutAlign="center">
       <app-share-buttons></app-share-buttons>
     </div>
 
@@ -65,16 +61,6 @@
         [postId]="post?.id"
       ></app-similar-posts-list>
     </div>
-    <div class="ads-container-bottom"
-         fxShow.xs
-         fxShow.sm
-         fxHide
-         fxLayout="row wrap">
-      <div class="ad-container"
-           *ngFor="let ad of ads"
-           [innerHTML]="ad.code">
-      </div>
-    </div>
     <app-comments *ngIf="post"
                   [post]="post"></app-comments>
   </div>
@@ -89,14 +75,5 @@
       class="outside"
       [postId]="post?.id"
     ></app-similar-posts-list>
-    <div class="ads-container"
-         fxLayout="row wrap">
-      <div class="ad-container"
-           fxFlex="45"
-           fxFlex.md="100"
-           *ngFor="let ad of ads"
-           [innerHTML]="ad.code">
-      </div>
-    </div>
   </div>
 </div>

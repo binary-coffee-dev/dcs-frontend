@@ -10,5 +10,4 @@ export * from './comment.model';
 export * from './error.model';
 export * from './podcast';
 export * from './top-users.model';
-export * from './ad.model';
 export * from './geo-location-response.model';

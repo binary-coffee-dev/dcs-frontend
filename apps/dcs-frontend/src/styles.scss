@@ -54,11 +54,14 @@ markdown {
 
   h1,
   h2,
-  h3,
   h4,
   h5,
   h6 {
     font-weight: 300;
+  }
+
+  h3 {
+    font-weight: bold;
   }
 
   p {
@@ -91,7 +94,7 @@ markdown {
   }
 
   ul {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 100;
   }
 

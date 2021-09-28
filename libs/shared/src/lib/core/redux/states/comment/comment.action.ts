@@ -20,6 +20,21 @@ export class CommentErrorAction {
   constructor(public errorMessage: string) {
   }
 }
+
 export class RecentCommentAction {
   static readonly type = '[Comment] Fetch recent comment error';
+}
+
+export class RemoveCommentAction {
+  static readonly type = '[Comment] Remove comment';
+
+  constructor(public commentId: string) {
+  }
+}
+
+export class EditCommentAction {
+  static readonly type = '[Comment] Edit comment';
+
+  constructor(public commentId: string, public body: string) {
+  }
 }

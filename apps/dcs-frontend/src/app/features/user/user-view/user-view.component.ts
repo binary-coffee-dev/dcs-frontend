@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
@@ -6,7 +6,7 @@ import {
   UrlUtilsService,
   MomentService,
   Post,
-  PostState, User, NextPageAction, PreviousPageAction
+  PostState, User, NextPageAction, PreviousPageAction, WINDOW, ENVIRONMENT, Environment
 } from '@dcs-libs/shared';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -30,7 +30,9 @@ export class UserViewComponent implements OnInit {
     private store: Store,
     public moment: MomentService,
     public url: UrlUtilsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    @Inject(WINDOW) private window: Window,
+    @Inject(ENVIRONMENT) private environment: Environment,
   ) {
   }
 
@@ -59,5 +61,10 @@ export class UserViewComponent implements OnInit {
 
   articlesPreviousPage() {
     this.store.dispatch(new PreviousPageAction());
+  }
+
+  copyRSSToClipboard() {
+    const rssLink = `${this.environment.apiUrl}posts/feed/${this.user.username}/json`;
+    this.window.navigator.clipboard.writeText(rssLink);
   }
 }

@@ -13,7 +13,7 @@ import {
   PostState,
   AuthState,
   Permissions,
-  WINDOW, FetchAdAction, Ad, AdState
+  WINDOW
 } from '@dcs-libs/shared';
 import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
 
@@ -26,7 +26,6 @@ export class PostComponent extends Permissions implements OnInit {
 
   post: Post;
   isBrowser: boolean;
-  ads: Ad[] = [];
 
   constructor(
     private store: Store,
@@ -47,16 +46,10 @@ export class PostComponent extends Permissions implements OnInit {
   ngOnInit() {
     this.loadArticle(this.route.snapshot.data.post);
     this.store.select(PostState.post).subscribe((post: Post) => this.loadArticle(post));
-    this.store.select(AdState.getAds).subscribe((ads: Ad[]) => {
-      this.ads = ads.map(v => ({...v, code: this.sanitizer.bypassSecurityTrustHtml(v.code)} as Ad));
-      this.ads = this.ads.filter((value, index) => index < 6);
-    });
     const fragment = this.route.snapshot.fragment;
     if (!fragment) {
       this.scroll.smoothScroll();
     }
-
-    this.store.dispatch(new FetchAdAction());
   }
 
   loadArticle(post: Post) {
@@ -67,7 +60,6 @@ export class PostComponent extends Permissions implements OnInit {
         {key: MetaTagsService.metas, value: new URL(`post/${post.name}`, this.environment.siteUrl).toString()} as MetaTag,
         {key: MetaTagsService.titleMeta, value: `${post.title} | 🥇`} as MetaTag,
         {key: MetaTagsService.imageMeta, value: imageUrl} as MetaTag,
-        {key: MetaTagsService.descriptionMeta, value: `✅ ${post.description}`} as MetaTag,
         {key: MetaTagsService.twitterImageMeta, value: imageUrl} as MetaTag,
         {key: MetaTagsService.typeMeta, value: 'article'} as MetaTag,
         {key: MetaTagsService.twitterTitleMeta, value: post.title} as MetaTag

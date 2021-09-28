@@ -1,11 +1,11 @@
 <div class="cookies-consent"
-     *ngIf="!consent"
+     *ngIf="showConsent"
      fxLayout="row wrap">
   <b fxFlex="90"
        fxFlex.sm="100"
        fxFlex.xs="100"
        fxLayout="column">
-    <span class="first-span">En el sitio actual se están utilizando cookies para mejorar su experiencia y mostrar anuncios que le sean relevantes.</span>
+    <span class="first-span">En el sitio actual se están utilizando cookies para mejorar su experiencia.</span>
     <span>Si desea conocer un poco más sobre el tema, puede leer las <a routerLink="/privacy-policy">políticas de privacidad</a> y las <a routerLink="/cookies">políticas de cookies</a> actualizadas.</span>
   </b>
   <div fxFlex="10"

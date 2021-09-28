@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ListComponent } from './list/list.component';
 import { OverviewComponent } from './overview/overview.component';
 import { PostGuard } from '../../core/guards/post.guard';
+import { CanLeave } from './overview/can-leave';
 
 const routes: Routes = [
   {
@@ -12,11 +13,13 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: OverviewComponent
+    component: OverviewComponent,
+    canDeactivate: [CanLeave],
   },
   {
     path: 'update/:id',
     canActivate: [PostGuard],
+    canDeactivate: [CanLeave],
     component: OverviewComponent
   }
 ];
@@ -25,7 +28,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes)
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [CanLeave]
 })
 export class ArticleRoutingModule {
 }

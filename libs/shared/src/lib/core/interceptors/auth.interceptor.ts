@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Store } from '@ngxs/store';
 import { Observable, of } from 'rxjs';
-import { flatMap, map, tap } from 'rxjs/operators';
+import { flatMap, map } from 'rxjs/operators';
 
 import { AuthState } from '../redux/states';
 import { LogoutAction } from '../redux/states/auth';

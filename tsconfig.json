@@ -19,6 +19,7 @@
       "@dcs-libs/shared": ["libs/shared/src/index.ts"]
     },
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "rootDir": "."
   },
   "angularCompilerOptions": {

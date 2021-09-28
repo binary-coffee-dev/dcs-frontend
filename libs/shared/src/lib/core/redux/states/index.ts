@@ -7,6 +7,5 @@ export * from './config';
 export * from './tag';
 export * from './podcast';
 export * from './user-info';
-export * from './ad';
 
 export * from './pagination-base.class';

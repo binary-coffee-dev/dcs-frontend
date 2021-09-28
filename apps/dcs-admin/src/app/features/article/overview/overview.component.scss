@@ -12,6 +12,14 @@
       font-size: 1.5rem;
       font-weight: bold;
       color: map_get($md-primary, 800);
+
+      .preview {
+        color: map_get($md-primary, 800);
+
+        &:hover {
+          color: map_get($md-secundary, 500);
+        }
+      }
     }
 
     .article {
@@ -27,14 +35,14 @@
 
       .datetime {
         mat-form-field{
-          margin-right: map-get($map: $spacings, $key: 2) !important; 
+          margin-right: map-get($map: $spacings, $key: 2) !important;
         }
         ::ng-deep .mat-form-field-wrapper {
           .mat-form-field-flex {
             padding: 1em 0.75em 1em 0.75em;
             border: 1px solid map_get($md-primary, 100) !important;
             border-radius: map_get($radius, 2) !important;
- 
+
             .mat-form-field-infix,
             .mat-select-placeholder {
               border: none;
@@ -45,6 +53,10 @@
             display: none;
           }
         }
+      }
+
+      .tags {
+        margin-bottom: map-get($spacings, 3);
       }
 
       ::ng-deep tag-input {

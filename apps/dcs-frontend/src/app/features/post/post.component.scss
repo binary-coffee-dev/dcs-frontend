@@ -2,27 +2,12 @@
 
 :host {
   .post-container {
-    .siderbar {
-      .ads-container {
-        margin: 0 map_get($spacings, 4);
-
-        .ad-container {
-          margin: map_get($spacings, 1);
-        }
-      }
-    }
 
     .post-in-container {
       background-color: map_get($md-grey, A100);
       padding: map_get($spacings, 4);
       border-left: 1px solid map_get($md-primary, 100);
       border-right: 1px solid map_get($md-primary, 100);
-
-      .ads-container-bottom {
-        .ad-container {
-          margin: map_get($spacings, 1);
-        }
-      }
 
       h1 {
         margin: 0;

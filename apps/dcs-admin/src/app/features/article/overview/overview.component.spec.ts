@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { TagInputModule } from 'ngx-chips';
 
-import { HasPermissionsPipeStub, MaterialModule, UrlUtilsService, WINDOW } from '@dcs-libs/shared';
+import { ENVIRONMENT, HasPermissionsPipeStub, MaterialModule, UrlUtilsService, WINDOW } from '@dcs-libs/shared';
 import { OverviewComponent } from './overview.component';
 
 class StoreStub {
@@ -38,7 +38,8 @@ describe('OverviewComponent', () => {
         {provide: Store, useClass: StoreStub},
         {provide: MatDialog, useClass: MatDialogStub},
         {provide: UrlUtilsService, useClass: UrlUtilsServiceStub},
-        {provide: WINDOW, useValue: window}
+        {provide: WINDOW, useValue: window},
+        {provide: ENVIRONMENT, useValue: {}}
       ],
       imports: [RouterTestingModule, MaterialModule, BrowserAnimationsModule, TagInputModule],
       schemas: [NO_ERRORS_SCHEMA]

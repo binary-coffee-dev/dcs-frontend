@@ -5,7 +5,6 @@ export const POST_UPDATE_MUTATION = gql`
         $id: ID!
         $title: String
         $body: String
-        $description: String
         $enable: Boolean
         $banner: ID
         $tags: [ID]
@@ -16,7 +15,6 @@ export const POST_UPDATE_MUTATION = gql`
                 data: {
                     title: $title,
                     body: $body,
-                    description: $description,
                     enable: $enable,
                     banner: $banner,
                     tags: $tags,

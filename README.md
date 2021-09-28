@@ -11,23 +11,19 @@ And second you have the core frontend of the website, with everything related to
 
 ## Start application
 
-### Core frontend
-
-**Development**
+### Blog
 
 ```
+// development
 npm start
-```
 
-**Production**
-
-```
+// production
 npm run serve:ssr
 ```
 
-> NOTE: First need the build action
+> NOTE: For production the project need to be built first
 
-### Dashboard frontend
+### Dashboard
 
 ```
 npm run start:admin
@@ -35,13 +31,13 @@ npm run start:admin
 
 ## Start application with docker
 
-### Core frontend
+### Blog
 
 ```
 docker-compose up -d
 ```
 
-### Dashboard frontend
+### Dashboard
 
 ```
 docker-compose -f docker-compose.admin.yml up -d
@@ -49,31 +45,23 @@ docker-compose -f docker-compose.admin.yml up -d
 
 ## Build
 
-### Core frontend
-
-**Build in development**
+### Blog
 
 ```
+// development
 npm run build:ssr:dev
-```
 
-**Build in production**
-
-```
+// production
 npm run build:ssr
 ```
 
-### Dashboard frontend
-
-**Build in development**
+### Dashboard
 
 ```
+// development
 npm run build:admin
-```
 
-**Build in production**
-
-```
+// production
 npm run build:admin:prod
 ```
 
@@ -104,6 +92,10 @@ $ ng g @nrwl/angular:lib library-name
 ```
 $ ng g @ngxs/schematics:store --name state-name
 ```
+
+## Nginx config for local environment
+
+[guia link](./local-nginx/README.md)
 
 ## Contributing
 

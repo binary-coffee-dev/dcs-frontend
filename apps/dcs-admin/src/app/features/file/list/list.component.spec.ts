@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
 
-import { UrlUtilsService } from '@dcs-libs/shared';
+import { ROLE_PERMISSION_MAP, UrlUtilsService } from '@dcs-libs/shared';
 import { ListComponent } from './list.component';
 
 class StoreStub {
@@ -26,7 +26,8 @@ describe('ListComponent', () => {
       providers: [
         {provide: Store, useClass: StoreStub},
         {provide: MatDialog, useClass: MatDialogStub},
-        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
+        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub},
+        {provide: ROLE_PERMISSION_MAP, useValue: {}}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
