@@ -140,42 +140,42 @@ jobs:
 
 
   # DEPLOY DASHBOARD (PRODUCTION)
-  deploy-dashboard-prod:
-
-#    needs: [ test ]
-    if: github.ref == 'refs/heads/master'
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Create env variables file
-        run: echo "ENVIRONMENT=prod" > .env
-
-      - name: Copy project to the hosting
-        uses: easingthemes/ssh-deploy@v2.1.5
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          ARGS: "-rltgoDzvO"
-          SOURCE: ""
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.PROD__REMOTE_TARGET }}
-
-      - name: Deploy project with docker in hosting
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_DASHBOARD }} ./deploy.sh blog-admin-prod docker-compose.admin.yml
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          privateKey: ${{ secrets.SERVER_SSH_KEY}}
+#  deploy-dashboard-prod:
+#
+##    needs: [ test ]
+#    if: github.ref == 'refs/heads/master'
+#
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Create env variables file
+#        run: echo "ENVIRONMENT=prod" > .env
+#
+#      - name: Copy project to the hosting
+#        uses: easingthemes/ssh-deploy@v2.1.5
+#        env:
+#          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+#          ARGS: "-rltgoDzvO"
+#          SOURCE: ""
+#          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+#          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+#          TARGET: ${{ secrets.PROD__REMOTE_TARGET }}
+#
+#      - name: Deploy project with docker in hosting
+#        uses: garygrossgarten/github-action-ssh@release
+#        with:
+#          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_DASHBOARD }} ./deploy.sh blog-admin-prod docker-compose.admin.yml
+#          host: ${{ secrets.REMOTE_HOST }}
+#          username: ${{ secrets.REMOTE_USER }}
+#          privateKey: ${{ secrets.SERVER_SSH_KEY}}
 
 
   # DEPLOY BLOG (PRODUCTION)
   deploy-blog-prod:
 
-    needs: [ deploy-dashboard-prod ]
+#    needs: [ deploy-dashboard-prod ]
     if: github.ref == 'refs/heads/master'
 
     runs-on: ubuntu-latest
