@@ -85,7 +85,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -114,7 +113,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -185,10 +183,7 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": {
-                "scripts": false,
-                "styles": true
-              }
+              "optimization": true
             }
           }
         }
@@ -213,7 +208,7 @@
             "main": "apps/dcs-admin/src/main.ts",
             "polyfills": "apps/dcs-admin/src/polyfills.ts",
             "tsConfig": "apps/dcs-admin/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "apps/dcs-admin/src/favicon.png",
               "apps/dcs-admin/src/assets"
@@ -261,7 +256,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -290,7 +284,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,

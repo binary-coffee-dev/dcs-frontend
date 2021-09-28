@@ -15,15 +15,15 @@ const routes: Routes = [
     path: '',
     canActivate: [AuthGuard],
     loadChildren:
-      './features/layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+      () => import('./features/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
   },
   {
     path: 'login',
-    loadChildren: './features/auth/auth.module#AuthModule'
+    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'provider',
-    loadChildren: './features/auth/auth.module#AuthModule'
+    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
   }
 ];
 
