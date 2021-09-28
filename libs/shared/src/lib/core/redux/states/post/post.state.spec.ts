@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgxsModule, Store } from '@ngxs/store';
 
@@ -16,7 +16,7 @@ describe('PostState', () => {
   let postService: PostServiceStub;
   let postState: PostState;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [NgxsModule.forRoot([PostState])],
       providers: [

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Store } from '@ngxs/store';
@@ -18,7 +18,7 @@ describe('RecentCommentsComponent', () => {
   let component: RecentCommentsComponent;
   let fixture: ComponentFixture<RecentCommentsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [RecentCommentsComponent, LimitTextPipe],
       schemas: [NO_ERRORS_SCHEMA],

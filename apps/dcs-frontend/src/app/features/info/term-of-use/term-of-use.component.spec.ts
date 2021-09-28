@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TermOfUseComponent } from './term-of-use.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -7,7 +7,7 @@ describe('TermOfUseComponent', () => {
   let component: TermOfUseComponent;
   let fixture: ComponentFixture<TermOfUseComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ TermOfUseComponent ],
       schemas: [NO_ERRORS_SCHEMA]

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { ShareButtonsComponent } from './share-buttons.component';
@@ -7,7 +7,7 @@ describe('ShareButtonsComponent', () => {
   let component: ShareButtonsComponent;
   let fixture: ComponentFixture<ShareButtonsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ShareButtonsComponent],
       schemas: [NO_ERRORS_SCHEMA]

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Location } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -23,7 +23,7 @@ describe('NavbarComponent', () => {
   let fixture: ComponentFixture<NavbarComponent>;
   let location: LocationStub;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [NavbarComponent],

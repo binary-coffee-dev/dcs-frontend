@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgxsModule, Store } from '@ngxs/store';
 
@@ -10,7 +10,7 @@ class PodcastServiceStub {
 
 describe('Podcast store', () => {
   let store: Store;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [NgxsModule.forRoot([PodcastState])],
       providers: [{provide: PodcastService, useClass: PodcastServiceStub}]

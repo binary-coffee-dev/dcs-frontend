@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { TagsComponent } from './tags.component';
@@ -7,7 +7,7 @@ describe('TagsComponent', () => {
   let component: TagsComponent;
   let fixture: ComponentFixture<TagsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [TagsComponent], schemas: [NO_ERRORS_SCHEMA]
     })

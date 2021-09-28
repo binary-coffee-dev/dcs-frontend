@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Store } from '@ngxs/store';
@@ -28,7 +28,7 @@ describe('PostComponent', () => {
   let component: PostComponent;
   let fixture: ComponentFixture<PostComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [PostComponent, HasPermissionsPipeStub],
