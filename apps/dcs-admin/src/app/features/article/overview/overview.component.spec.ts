@@ -28,7 +28,7 @@ const window = {
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
-  let store: StoreStub;
+  let store: Store;
   let fixture: ComponentFixture<OverviewComponent>;
 
   beforeEach(waitForAsync(() => {
