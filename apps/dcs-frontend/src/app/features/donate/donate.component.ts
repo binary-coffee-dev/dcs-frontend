@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 import { BitcoinComponent } from './bitcoin/bitcoin.component';
 import { EnzonaComponent } from './enzona/enzona.component';
