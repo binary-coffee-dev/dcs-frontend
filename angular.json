@@ -32,7 +32,6 @@
             "main": "apps/dcs-frontend/src/main.ts",
             "polyfills": "apps/dcs-frontend/src/polyfills.ts",
             "tsConfig": "apps/dcs-frontend/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/dcs-frontend/src/favicon.png",
               "apps/dcs-frontend/src/assets",
@@ -70,7 +69,13 @@
               "node_modules/prismjs/components/prism-c.js",
               "node_modules/prismjs/components/prism-bash.js",
               "node_modules/prismjs/components/prism-json.js"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -83,7 +88,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -111,7 +115,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -129,7 +132,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -172,7 +176,9 @@
           "options": {
             "outputPath": "dist/server",
             "main": "apps/dcs-frontend/src/main.server.ts",
-            "tsConfig": "apps/dcs-frontend/tsconfig.server.json"
+            "tsConfig": "apps/dcs-frontend/tsconfig.server.json",
+            "sourceMap": true,
+            "optimization": false
           },
           "configurations": {
             "production": {
@@ -185,7 +191,8 @@
               "sourceMap": false,
               "optimization": true
             }
-          }
+          },
+          "defaultConfiguration": ""
         }
       }
     },
@@ -208,7 +215,6 @@
             "main": "apps/dcs-admin/src/main.ts",
             "polyfills": "apps/dcs-admin/src/polyfills.ts",
             "tsConfig": "apps/dcs-admin/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/dcs-admin/src/favicon.png",
               "apps/dcs-admin/src/assets"
@@ -241,7 +247,13 @@
               "node_modules/prismjs/components/prism-c.js",
               "node_modules/prismjs/components/prism-bash.js",
               "node_modules/prismjs/components/prism-json.js"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -254,7 +266,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -282,7 +293,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -300,7 +310,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
