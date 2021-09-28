@@ -12,7 +12,6 @@ import { EnzonaComponent } from './enzona/enzona.component';
 
 @NgModule({
   declarations: [DonateComponent, BitcoinComponent, EnzonaComponent],
-  entryComponents: [BitcoinComponent, EnzonaComponent],
   imports: [
     CommonModule,
     MaterialModule,

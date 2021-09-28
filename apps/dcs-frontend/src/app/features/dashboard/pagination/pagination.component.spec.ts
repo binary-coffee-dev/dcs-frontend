@@ -36,7 +36,7 @@ describe('PaginationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginationComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
 
     jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 

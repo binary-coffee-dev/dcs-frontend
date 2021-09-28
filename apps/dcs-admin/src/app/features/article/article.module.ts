@@ -26,7 +26,6 @@ import { UploadFileModalModule } from '../components/upload-file.modal';
     MarkdownModule.forRoot(),
     UploadFileModalModule
   ],
-  entryComponents: [SelectImageModalComponent]
 })
 export class ArticleModule {
 }

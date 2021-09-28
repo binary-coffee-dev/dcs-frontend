@@ -23,8 +23,8 @@ describe('PostsGuard', () => {
   }));
 
   beforeEach(() => {
-    guard = TestBed.get(PostsGuard);
-    store = TestBed.get(Store);
+    guard = TestBed.inject(PostsGuard);
+    store = TestBed.inject(Store);
   });
 
   it('should ', (done) => {

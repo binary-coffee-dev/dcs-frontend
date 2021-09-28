@@ -10,7 +10,7 @@ describe('ResourceService', () => {
   }));
 
   beforeEach(() => {
-    service = TestBed.get(ResourceService);
+    service = TestBed.inject(ResourceService);
   });
 
   it('should be created', () => {

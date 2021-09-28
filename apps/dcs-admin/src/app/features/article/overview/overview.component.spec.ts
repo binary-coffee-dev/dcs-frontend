@@ -51,7 +51,7 @@ describe('OverviewComponent', () => {
     fixture = TestBed.createComponent(OverviewComponent);
     component = fixture.componentInstance;
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     spyOn(store, 'select').and.returnValue(of([]));
 
     fixture.detectChanges();

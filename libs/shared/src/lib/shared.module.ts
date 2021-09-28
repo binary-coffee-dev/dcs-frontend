@@ -23,7 +23,6 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     HasPermissionsPipe,
     CookiesConsentComponent
   ],
-  entryComponents: [ConfirmationDialogComponent],
   providers: [
     { provide: WINDOW, useFactory: windowFactory },
     { provide: ROLE_PERMISSION_MAP, useValue: rolePermissionMap }

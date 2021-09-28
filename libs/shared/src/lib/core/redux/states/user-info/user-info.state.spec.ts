@@ -15,7 +15,7 @@ describe('UserInfo store', () => {
       providers: [{provide: UserInfoService, useClass: UserInfoServiceStub}],
       imports: [NgxsModule.forRoot([UserInfoState])]
     }).compileComponents();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
   }));
 
   it('should create', () => {

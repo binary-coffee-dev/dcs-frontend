@@ -19,7 +19,7 @@ describe('MetaTagsService', () => {
   }));
 
   it('should be created', () => {
-    const service: MetaTagsService = TestBed.get(MetaTagsService);
+    const service: MetaTagsService = TestBed.inject(MetaTagsService);
     expect(service).toBeTruthy();
   });
 });

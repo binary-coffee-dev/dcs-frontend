@@ -26,7 +26,7 @@ describe('ScrollTopComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ScrollTopComponent);
-    scrollService = TestBed.get(ScrollService);
+    scrollService = TestBed.inject(ScrollService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

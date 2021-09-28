@@ -35,7 +35,7 @@ describe('UserComponent', () => {
     fixture = TestBed.createComponent(UsersOverviewComponent);
     component = fixture.componentInstance;
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     spyOn(store, 'select').and.returnValue(of());
     spyOn(store, 'dispatch');
 

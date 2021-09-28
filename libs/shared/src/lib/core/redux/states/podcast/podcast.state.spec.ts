@@ -15,7 +15,7 @@ describe('Podcast store', () => {
       imports: [NgxsModule.forRoot([PodcastState])],
       providers: [{provide: PodcastService, useClass: PodcastServiceStub}]
     }).compileComponents();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
   }));
 
   it('should be created', () => {

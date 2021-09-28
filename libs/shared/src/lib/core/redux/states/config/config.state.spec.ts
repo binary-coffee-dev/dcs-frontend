@@ -9,7 +9,7 @@ describe('Config store', () => {
     TestBed.configureTestingModule({
       imports: [NgxsModule.forRoot([ConfigState])]
     }).compileComponents();
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
   }));
 
   it('should create an action and add an item', () => {

@@ -10,8 +10,7 @@ import { UploadFileModalComponent } from './upload-file.modal.component';
     CommonModule,
     MaterialModule
   ],
-  exports: [UploadFileModalComponent],
-  entryComponents: [UploadFileModalComponent]
+  exports: [UploadFileModalComponent]
 })
 export class UploadFileModalModule {
 }

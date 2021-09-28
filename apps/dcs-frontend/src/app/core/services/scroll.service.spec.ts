@@ -24,7 +24,7 @@ describe('ScrollService', () => {
   );
 
   beforeEach(() => {
-    service = TestBed.get(ScrollService);
+    service = TestBed.inject(ScrollService);
   });
 
   it('should be created', () => {

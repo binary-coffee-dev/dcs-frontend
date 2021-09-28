@@ -38,7 +38,7 @@ describe('NavbarComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavbarComponent);
-    location = TestBed.get(Location);
+    location = TestBed.inject(Location);
     component = fixture.componentInstance;
     spyOn(component, 'ngOnInit').and.callFake(jest.fn());
     spyOn(component, 'getTitle').and.returnValue(EXAMPLE_PATH);
