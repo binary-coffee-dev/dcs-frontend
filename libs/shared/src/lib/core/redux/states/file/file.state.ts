@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
+
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import {
@@ -19,6 +21,7 @@ import { CreateNotificationAction } from '../notification/notification.action';
   name: 'file',
   defaults: initFileStateModel()
 })
+@Injectable()
 export class FileState extends PaginationBaseClass<FileStateModel> {
 
   @Selector()

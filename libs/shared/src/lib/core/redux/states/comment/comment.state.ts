@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -17,6 +19,7 @@ import { CommentError, Comment } from '../../models';
   name: 'comment',
   defaults: initCommentStateModel()
 })
+@Injectable()
 export class CommentState {
 
   @Selector()

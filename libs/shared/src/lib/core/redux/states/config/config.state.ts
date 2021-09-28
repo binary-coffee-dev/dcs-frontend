@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { State, Action, Selector, StateContext, createSelector } from '@ngxs/store';
 
 import { SetConfigAction } from './config.actions';
@@ -12,6 +14,7 @@ export interface ConfigStateModel {
     configurations: {}
   } as ConfigStateModel
 })
+@Injectable()
 export class ConfigState {
 
   @Selector()

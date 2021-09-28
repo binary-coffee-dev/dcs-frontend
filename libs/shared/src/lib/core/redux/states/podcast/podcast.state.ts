@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
@@ -15,6 +17,7 @@ export interface PodcastStateModel {
     items: []
   }
 })
+@Injectable()
 export class PodcastState {
 
   @Selector()
