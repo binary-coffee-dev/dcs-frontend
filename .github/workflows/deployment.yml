@@ -8,75 +8,75 @@ on: [ push, pull_request ]
 jobs:
 
   # BUILD PROJECT AND DEPENDENCIES
-  build:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [ 12.x ]
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Cache project node-modules
-        uses: actions/cache@v2
-        with:
-          path: 'node_modules'
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      # pipeline actions
-      - run: npm ci
-      - name: Build frontend Dashboard
-        run: npm run build:admin:prod
-      - name: Build frontend Blog
-        run: npm run build:ssr
-
-
-  # RUN TESTS
-  test:
-
-    needs: [ build ]
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [ 12.x ]
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Cache project node-modules
-        uses: actions/cache@v2
-        with:
-          path: 'node_modules'
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install codecov dependency
-        run: npm install -g codecov
-
-      # pipeline actions
-      - run: npm run lint
-      - run: npm test
-      - run: codecov
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+#  build:
+#
+#    runs-on: ubuntu-latest
+#
+#    strategy:
+#      matrix:
+#        node-version: [ 12.x ]
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Cache project node-modules
+#        uses: actions/cache@v2
+#        with:
+#          path: 'node_modules'
+#          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+#
+#      - name: Use Node.js ${{ matrix.node-version }}
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: ${{ matrix.node-version }}
+#
+#      # pipeline actions
+#      - run: npm ci
+#      - name: Build frontend Dashboard
+#        run: npm run build:admin:prod
+#      - name: Build frontend Blog
+#        run: npm run build:ssr
+#
+#
+#  # RUN TESTS
+#  test:
+#
+#    needs: [ build ]
+#    runs-on: ubuntu-latest
+#
+#    strategy:
+#      matrix:
+#        node-version: [ 12.x ]
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Cache project node-modules
+#        uses: actions/cache@v2
+#        with:
+#          path: 'node_modules'
+#          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+#
+#      - name: Use Node.js ${{ matrix.node-version }}
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: ${{ matrix.node-version }}
+#
+#      - name: Install codecov dependency
+#        run: npm install -g codecov
+#
+#      # pipeline actions
+#      - run: npm run lint
+#      - run: npm test
+#      - run: codecov
+#        env:
+#          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 
   # DEPLOY DASHBOARD (DEVELOP)
   deploy-dashboard-dev:
 
-    needs: [ test ]
+#    needs: [ test ]
     if: github.ref == 'refs/heads/develop'
 
     runs-on: ubuntu-latest
@@ -109,7 +109,7 @@ jobs:
   # DEPLOY BLOG (DEVELOP)
   deploy-blog-dev:
 
-    needs: [ test ]
+#    needs: [ test ]
     if: github.ref == 'refs/heads/develop'
 
     runs-on: ubuntu-latest
@@ -142,7 +142,7 @@ jobs:
   # DEPLOY DASHBOARD (PRODUCTION)
   deploy-dashboard-prod:
 
-    needs: [ test ]
+#    needs: [ test ]
     if: github.ref == 'refs/heads/master'
 
     runs-on: ubuntu-latest
@@ -175,7 +175,7 @@ jobs:
   # DEPLOY BLOG (PRODUCTION)
   deploy-blog-prod:
 
-    needs: [ test ]
+#    needs: [ test ]
     if: github.ref == 'refs/heads/master'
 
     runs-on: ubuntu-latest
