@@ -175,7 +175,7 @@ jobs:
   # DEPLOY BLOG (PRODUCTION)
   deploy-blog-prod:
 
-#    needs: [ test ]
+    needs: [ deploy-dashboard-prod ]
     if: github.ref == 'refs/heads/master'
 
     runs-on: ubuntu-latest
