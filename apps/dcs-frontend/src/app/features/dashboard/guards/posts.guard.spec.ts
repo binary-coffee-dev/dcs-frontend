@@ -13,7 +13,7 @@ class StoreStub {
 
 describe('PostsGuard', () => {
   let guard: PostsGuard;
-  let store: StoreStub;
+  let store: Store;
 
   beforeEach(() => TestBed.configureTestingModule({
     providers: [

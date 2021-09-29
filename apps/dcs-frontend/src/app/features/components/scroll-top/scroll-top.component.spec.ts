@@ -11,7 +11,7 @@ class ScrollServiceStub {
 describe('ScrollTopComponent', () => {
   let component: ScrollTopComponent;
   let fixture: ComponentFixture<ScrollTopComponent>;
-  let scrollService: ScrollServiceStub;
+  let scrollService: ScrollService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

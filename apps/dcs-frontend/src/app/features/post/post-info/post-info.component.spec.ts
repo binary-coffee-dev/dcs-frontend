@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { PostInfoComponent } from './post-info.component';
 import { Store } from '@ngxs/store';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { MomentService, ResourceService } from '../../../core/services';
 
 class StoreStub {

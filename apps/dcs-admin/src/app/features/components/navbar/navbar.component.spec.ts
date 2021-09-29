@@ -21,7 +21,7 @@ const EXAMPLE_PATH = '/admin/dashboard';
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
-  let location: LocationStub;
+  let location: Location;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

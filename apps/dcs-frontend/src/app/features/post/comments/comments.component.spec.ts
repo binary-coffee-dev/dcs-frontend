@@ -7,7 +7,7 @@ import { UrlUtilsService } from '@dcs-libs/shared';
 import { CommentsComponent } from './comments.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ScrollService } from '../../../core/services';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 class StoreStub {
 }

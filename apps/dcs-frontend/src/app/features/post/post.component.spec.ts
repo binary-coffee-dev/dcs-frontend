@@ -7,7 +7,7 @@ import { ENVIRONMENT, HasPermissionsPipeStub, WINDOW } from '@dcs-libs/shared';
 import { PostComponent } from './post.component';
 import { MomentService, ResourceService, ScrollService } from '../../core/services';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 class StoreStub {
 }

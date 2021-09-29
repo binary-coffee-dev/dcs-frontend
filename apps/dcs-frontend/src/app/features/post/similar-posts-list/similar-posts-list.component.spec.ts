@@ -20,7 +20,7 @@ class ResourceServiceStub {
 describe('SimilarPostsListComponent', () => {
   let component: SimilarPostsListComponent;
   let fixture: ComponentFixture<SimilarPostsListComponent>;
-  let store: StoreStub;
+  let store: Store;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
