@@ -36,7 +36,7 @@ describe('UserViewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserViewComponent);
     component = fixture.componentInstance;
-    spyOn(component, 'ngOnInit').and.callFake(jest.fn());
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
     fixture.detectChanges();
   });
 

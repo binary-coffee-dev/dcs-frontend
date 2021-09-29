@@ -35,7 +35,7 @@ describe('LoginButtonComponent', () => {
     fixture = TestBed.createComponent(LoginButtonComponent);
     component = fixture.componentInstance;
 
-    spyOn(component, 'ngOnInit');
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });

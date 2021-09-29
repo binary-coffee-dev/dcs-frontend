@@ -31,7 +31,7 @@ describe('TopActiveUsersComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TopActiveUsersComponent);
     component = fixture.componentInstance;
-    spyOn(component, 'ngOnInit');
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
     fixture.detectChanges();
   });
 

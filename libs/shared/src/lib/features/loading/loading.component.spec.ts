@@ -22,7 +22,7 @@ describe('LoadingComponent', () => {
     fixture = TestBed.createComponent(LoadingComponent);
     component = fixture.componentInstance;
 
-    spyOn(component, 'ngOnInit');
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });

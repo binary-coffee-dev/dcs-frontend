@@ -36,8 +36,8 @@ describe('UserComponent', () => {
     component = fixture.componentInstance;
 
     store = TestBed.inject(Store);
-    spyOn(store, 'select').and.returnValue(of());
-    spyOn(store, 'dispatch');
+    jest.spyOn(store, 'select').mockReturnValue(of());
+    jest.spyOn(store, 'dispatch');
 
     fixture.detectChanges();
   });

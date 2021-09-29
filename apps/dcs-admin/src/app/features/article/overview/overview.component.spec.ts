@@ -52,7 +52,7 @@ describe('OverviewComponent', () => {
     component = fixture.componentInstance;
 
     store = TestBed.inject(Store);
-    spyOn(store, 'select').and.returnValue(of([]));
+    jest.spyOn(store, 'select').mockReturnValue(of([]));
 
     fixture.detectChanges();
   });

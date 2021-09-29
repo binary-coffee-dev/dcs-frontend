@@ -24,7 +24,7 @@ describe('HasPermissionsPipe', () => {
   });
 
   it('should return false if the permissions are not in the list', () => {
-    spyOn(store, 'selectSnapshot').and.returnValue('authenticated');
+    jest.spyOn(store, 'selectSnapshot').mockReturnValue('authenticated');
 
     const actual = pipe.transform([Permission.REMOVE_ANY_ARTICLE]);
 
@@ -32,7 +32,7 @@ describe('HasPermissionsPipe', () => {
   });
 
   it('should return false if the permissions are not in the list (example 2)', () => {
-    spyOn(store, 'selectSnapshot').and.returnValue('staff');
+    jest.spyOn(store, 'selectSnapshot').mockReturnValue('staff');
 
     const actual = pipe.transform([Permission.REMOVE_ANY_ARTICLE, Permission.EDIT_ANY_ARTICLE]);
 
@@ -40,7 +40,7 @@ describe('HasPermissionsPipe', () => {
   });
 
   it('should return true if the permissions are in the list', () => {
-    spyOn(store, 'selectSnapshot').and.returnValue('staff');
+    jest.spyOn(store, 'selectSnapshot').mockReturnValue('staff');
 
     const actual = pipe.transform([Permission.EDIT_ANY_ARTICLE]);
 
@@ -48,7 +48,7 @@ describe('HasPermissionsPipe', () => {
   });
 
   it('should return false if the user do not have role', () => {
-    spyOn(store, 'selectSnapshot').and.returnValue(null);
+    jest.spyOn(store, 'selectSnapshot').mockReturnValue(null);
 
     const actual = pipe.transform([Permission.EDIT_ANY_ARTICLE]);
 

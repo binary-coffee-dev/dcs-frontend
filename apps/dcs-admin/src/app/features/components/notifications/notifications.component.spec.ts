@@ -23,7 +23,7 @@ describe('NotificationsComponent', () => {
     fixture = TestBed.createComponent(NotificationsComponent);
     component = fixture.componentInstance;
 
-    spyOn(component, 'ngOnInit');
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });

@@ -32,7 +32,7 @@ describe('RecentPodcastsComponent', () => {
     fixture = TestBed.createComponent(RecentPodcastsComponent);
     component = fixture.componentInstance;
 
-    spyOn(component, 'ngOnInit');
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });

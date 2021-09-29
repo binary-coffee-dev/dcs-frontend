@@ -34,7 +34,7 @@ describe('PodcastListComponent', () => {
     fixture = TestBed.createComponent(PodcastListComponent);
     component = fixture.componentInstance;
 
-    spyOn(component, 'ngOnInit');
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });

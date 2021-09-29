@@ -40,7 +40,7 @@ describe('PostInfoComponent', () => {
     fixture = TestBed.createComponent(PostInfoComponent);
     component = fixture.componentInstance;
 
-    spyOn(component, 'ngOnInit');
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });

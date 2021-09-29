@@ -25,7 +25,7 @@ describe('CookiesConsentComponent', () => {
     fixture = TestBed.createComponent(CookiesConsentComponent);
     component = fixture.componentInstance;
 
-    spyOn(component, 'ngOnInit');
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });

@@ -37,7 +37,7 @@ describe('AdminLayoutComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AdminLayoutComponent);
     component = fixture.componentInstance;
-    spyOn(component, 'ngOnDestroy').and.callFake(jest.fn());
+    jest.spyOn(component, 'ngOnDestroy').mockImplementation(jest.fn());
     fixture.detectChanges();
   });
 

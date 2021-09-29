@@ -36,7 +36,7 @@ describe('SelectImageModalComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectImageModalComponent);
     component = fixture.componentInstance;
-    spyOn(component, 'ngOnInit').and.callFake(jest.fn());
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
     fixture.detectChanges();
   });
 
