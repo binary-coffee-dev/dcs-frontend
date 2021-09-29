@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
+import { LAZYLOAD_IMAGE_HOOKS, LazyLoadImageModule, ScrollHooks } from 'ng-lazyload-image';
 
 import { TagsModule } from '@dcs-libs/shared';
 import { DashboardComponent } from './dashboard.component';
@@ -26,19 +26,19 @@ import { TopPopularUsersModule } from '../components/top-popular-users/top-popul
     RecentCommentsComponent,
     LimitTextPipe,
     FilterComponent,
-    RecentPodcastsComponent,
+    RecentPodcastsComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     MaterialModule,
     ServicesModule,
-    LazyLoadImageModule.forRoot({preset: scrollPreset}),
+    LazyLoadImageModule,
     TagsModule,
     TopActiveUsersModule,
     TopPopularUsersModule
   ],
-  providers: [PostsGuard]
+  providers: [PostsGuard, { provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }]
 })
 export class DashboardModule {
 }
