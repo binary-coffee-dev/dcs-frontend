@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { APOLLO_OPTIONS } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular-link-http';
 
 import {
   SharedModule,
@@ -35,6 +34,7 @@ import { createApollo } from './core/graphql';
 import { LoginRequestModalComponent } from './features/components/login-request-modal';
 import { PodcastModule } from './features/podcast';
 import { UserModule } from './features/user/user.module';
+import { HttpLink } from 'apollo-angular/http';
 
 @NgModule({
   declarations: [

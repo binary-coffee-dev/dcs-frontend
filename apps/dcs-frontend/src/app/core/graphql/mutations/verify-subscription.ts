@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 
 export const VERIFY_SUBSCRIPTION_MUTATION = gql`
     mutation verify( $token: String! ) {

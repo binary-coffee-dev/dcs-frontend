@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "nx",
-    "start": "ng serve --verbose --watch --poll=2000 --port=4200 --host=0.0.0.0 --disable-host-check",
+    "start": "ng serve --watch --poll=2000 --port=4200 --host=0.0.0.0 --disable-host-check",
     "start:admin": "ng serve dcs-admin --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "build:admin": "ng build dcs-admin --configuration=dev",

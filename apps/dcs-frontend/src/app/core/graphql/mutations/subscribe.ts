@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 
 export const SUBSCRIBE_MUTATION = gql`
     mutation verify( $email: String! ) {

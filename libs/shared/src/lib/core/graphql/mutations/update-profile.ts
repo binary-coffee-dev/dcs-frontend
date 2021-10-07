@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 
 export const UPDATE_PROFILE_MUTATION = gql`
     mutation updateUser($id: ID!, $email: String, $page: String) {
