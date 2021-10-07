@@ -10,6 +10,7 @@ class StoreStub {
 describe('NotificationsComponent', () => {
   let component: NotificationsComponent;
   let fixture: ComponentFixture<NotificationsComponent>;
+  NotificationsComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

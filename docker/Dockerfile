@@ -2,10 +2,10 @@ FROM node:10.21.0-alpine3.11
 
 WORKDIR /app
 
-COPY package.json ./
+COPY ../package.json ./
 RUN npm install
 
-COPY . ./
+COPY .. ./
 
 ARG ENVIRONMENT
 RUN if [ "$ENVIRONMENT" = "dev" ] ; then npm run build:ssr:dev ; else npm run build:ssr ; fi

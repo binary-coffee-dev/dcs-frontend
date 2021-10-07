@@ -24,6 +24,7 @@ class MatDialogStub {
 describe('CommentsComponent', () => {
   let component: CommentsComponent;
   let fixture: ComponentFixture<CommentsComponent>;
+  CommentsComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

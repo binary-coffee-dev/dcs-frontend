@@ -11,6 +11,7 @@ class StoreStub {
 describe('CookiesConsentComponent', () => {
   let component: CookiesConsentComponent;
   let fixture: ComponentFixture<CookiesConsentComponent>;
+  CookiesConsentComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

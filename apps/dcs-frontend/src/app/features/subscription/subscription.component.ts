@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
+
 import {
   SubscribeAction,
   VerifySubscriptionAction
 } from './redux/subscription.action';
 import { SubscriptionState } from './redux/subscription.state';
-import { Subscription } from './redux/models';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-subscription',
@@ -31,8 +31,8 @@ export class SubscriptionComponent implements OnInit {
   });
 
   constructor(
-    private activeRouter: ActivatedRoute,
     private store: Store,
+    private activeRouter: ActivatedRoute,
     private location: Location,
     private router: Router
   ) {}

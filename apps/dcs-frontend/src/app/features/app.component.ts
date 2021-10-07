@@ -6,7 +6,7 @@ import { Store } from '@ngxs/store';
 import { ChangePageSizeAction, Environment, ENVIRONMENT } from '@dcs-libs/shared';
 import { consoleMessage } from './console.log';
 
-declare let gtag: (property: string, value: any, configs: any) => {};
+declare let gtag: (property: string, value: string, configs: Object) => {};
 
 @Component({
   selector: 'app-root',

@@ -3,8 +3,8 @@ version: '3'
 services:
   deploy:
     build:
-      context: .
-      dockerfile: ./Dockerfile.admin
+      context: ..
+      dockerfile: Dockerfile.admin
       args:
         - ENVIRONMENT=$ENVIRONMENT
     restart: always

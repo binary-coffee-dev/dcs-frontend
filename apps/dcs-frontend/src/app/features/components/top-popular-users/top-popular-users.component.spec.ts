@@ -15,6 +15,7 @@ class UrlUtilsServiceStub {
 describe('TopPopularUsersComponent', () => {
   let component: TopPopularUsersComponent;
   let fixture: ComponentFixture<TopPopularUsersComponent>;
+  TopPopularUsersComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

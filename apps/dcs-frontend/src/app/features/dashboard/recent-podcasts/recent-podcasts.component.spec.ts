@@ -15,6 +15,7 @@ class MomentServiceStub {
 describe('RecentPodcastsComponent', () => {
   let component: RecentPodcastsComponent;
   let fixture: ComponentFixture<RecentPodcastsComponent>;
+  RecentPodcastsComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

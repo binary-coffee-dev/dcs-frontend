@@ -9,7 +9,7 @@ import { WINDOW } from '@dcs-libs/shared';
 export class ScrollService {
   constructor(
     @Inject(WINDOW) private window: Window,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.smoothScroll = this.smoothScroll.bind(this);
   }

@@ -9,6 +9,7 @@ class ActionsStub {}
 describe('LoadingComponent', () => {
   let component: LoadingComponent;
   let fixture: ComponentFixture<LoadingComponent>;
+  LoadingComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

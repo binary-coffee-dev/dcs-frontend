@@ -18,6 +18,7 @@ const window = {
 describe('LoginButtonComponent', () => {
   let component: LoginButtonComponent;
   let fixture: ComponentFixture<LoginButtonComponent>;
+  LoginButtonComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

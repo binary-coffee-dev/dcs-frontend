@@ -19,6 +19,7 @@ class UrlUtilsServiceStub {
 describe('SelectImageModalComponent', () => {
   let component: SelectImageModalComponent;
   let fixture: ComponentFixture<SelectImageModalComponent>;
+  SelectImageModalComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

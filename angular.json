@@ -4,26 +4,10 @@
   "projects": {
     "dcs-frontend": {
       "projectType": "application",
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      },
       "root": "apps/dcs-frontend",
       "sourceRoot": "apps/dcs-frontend/src",
       "prefix": "app",
       "architect": {
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "browserTarget": "static-app:build:production",
-            "serverTarget": "static-app:server:production",
-            "routes": ["/post/*"]
-          },
-          "configurations": {
-            "production": {}
-          }
-        },
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -32,6 +16,7 @@
             "main": "apps/dcs-frontend/src/main.ts",
             "polyfills": "apps/dcs-frontend/src/polyfills.ts",
             "tsConfig": "apps/dcs-frontend/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "apps/dcs-frontend/src/favicon.png",
               "apps/dcs-frontend/src/assets",
@@ -156,19 +141,16 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/dcs-frontend/jest.config.js",
-            "tsConfig": "apps/dcs-frontend/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/dcs-frontend/src/test-setup.ts"
+            "passWithNoTests": true
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "apps/dcs-frontend/tsconfig.app.json",
-              "apps/dcs-frontend/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "apps/dcs-frontend/src/**/*.ts",
+              "apps/dcs-frontend/src/**/*.html"
+            ]
           }
         },
         "server": {
@@ -263,6 +245,7 @@
                   "with": "apps/dcs-admin/src/environments/environment.prod.ts"
                 }
               ],
+              "baseHref": "/dashboard/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -290,6 +273,7 @@
                   "with": "apps/dcs-admin/src/environments/environment.dev.ts"
                 }
               ],
+              "baseHref": "/dashboard/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -320,6 +304,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/dashboard/",
               "browserTarget": "dcs-admin:build:production"
             }
           }
@@ -331,22 +316,19 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "apps/dcs-admin/tsconfig.app.json",
-              "apps/dcs-admin/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/dcs-admin/**"]
+            "lintFilePatterns": [
+              "apps/dcs-admin/src/**/*.ts",
+              "apps/dcs-admin/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/dcs-admin/jest.config.js",
-            "tsConfig": "apps/dcs-admin/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/dcs-admin/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       }
@@ -358,22 +340,19 @@
       "prefix": "app",
       "architect": {
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "libs/shared/tsconfig.lib.json",
-              "libs/shared/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/**"]
+            "lintFilePatterns": [
+              "libs/shared/src/**/*.ts",
+              "libs/shared/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/jest.config.js",
-            "tsConfig": "libs/shared/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/shared/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       },
@@ -385,14 +364,33 @@
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "npm"
   },
   "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
     "@nrwl/angular:application": {
-      "unitTestRunner": "jest"
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "style": "scss"
     },
     "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "style": "scss"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
     }
   },
   "defaultProject": "dcs-frontend"

@@ -17,6 +17,7 @@ class UrlUtilsServiceStub {
 describe('RecentCommentsComponent', () => {
   let component: RecentCommentsComponent;
   let fixture: ComponentFixture<RecentCommentsComponent>;
+  RecentCommentsComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

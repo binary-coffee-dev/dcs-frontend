@@ -7,9 +7,6 @@ import moment from 'moment';
 })
 export class MomentService {
 
-  constructor() {
-  }
-
   timeFromDate(date) {
     return moment(date).fromNow();
   }

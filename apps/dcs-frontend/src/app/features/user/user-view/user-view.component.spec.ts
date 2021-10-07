@@ -17,6 +17,7 @@ class ActivatedRouteStub {
 describe('UserViewComponent', () => {
   let component: UserViewComponent;
   let fixture: ComponentFixture<UserViewComponent>;
+  UserViewComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

@@ -20,6 +20,7 @@ class UrlUtilsServiceStub {
 describe('UserProfileComponent', () => {
   let component: UserProfileComponent;
   let fixture: ComponentFixture<UserProfileComponent>;
+  UserProfileComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

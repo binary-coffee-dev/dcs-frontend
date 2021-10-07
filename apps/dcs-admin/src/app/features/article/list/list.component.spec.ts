@@ -13,6 +13,7 @@ class StoreStub {
 describe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
+  ListComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

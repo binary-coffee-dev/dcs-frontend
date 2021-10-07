@@ -21,6 +21,7 @@ class MomentServiceStub {
 describe('PostInfoComponent', () => {
   let component: PostInfoComponent;
   let fixture: ComponentFixture<PostInfoComponent>;
+  PostInfoComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

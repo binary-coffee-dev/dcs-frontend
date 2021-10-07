@@ -6,9 +6,6 @@ import { environment } from '../../../environments/environment';
 })
 export class ResourceService {
 
-  constructor() {
-  }
-
   removeExtraSlashesFromUrl(url: string) {
     return url.replace(/([^:]\/)\/+/g, '$1');
   }

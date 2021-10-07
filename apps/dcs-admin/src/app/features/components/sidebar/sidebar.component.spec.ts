@@ -15,7 +15,8 @@ class UrlUtilsServiceStub {
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
-  let fixture: ComponentFixture<SidebarComponent>;
+  let fixture: ComponentFixture<SidebarComponent>
+  SidebarComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

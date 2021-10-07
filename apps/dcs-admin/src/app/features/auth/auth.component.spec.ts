@@ -13,6 +13,7 @@ class StoreStub {
 describe('AuthComponent', () => {
   let component: AuthComponent;
   let fixture: ComponentFixture<AuthComponent>;
+  AuthComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

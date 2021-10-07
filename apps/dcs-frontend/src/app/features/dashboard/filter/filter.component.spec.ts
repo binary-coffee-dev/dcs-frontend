@@ -12,6 +12,7 @@ class StoreStub {
 describe('FilterComponent', () => {
   let component: FilterComponent;
   let fixture: ComponentFixture<FilterComponent>;
+  FilterComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

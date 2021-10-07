@@ -20,6 +20,7 @@ describe('PaginationComponent', () => {
   let component: PaginationComponent;
   let fixture: ComponentFixture<PaginationComponent>;
   let store: Store;
+  PaginationComponent.prototype.ngOnInit = () => {};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
