@@ -9,6 +9,7 @@ import { of } from 'rxjs';
 import { MaterialModule, Post } from '@dcs-libs/shared';
 import { SimilarPostsListComponent } from './similar-posts-list.component';
 import { ResourceService } from '../../../core/services';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 
 class StoreStub {
   select = jest.fn();
@@ -28,7 +29,8 @@ describe('SimilarPostsListComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: Store, useClass: StoreStub },
-        { provide: ResourceService, useClass: ResourceServiceStub }
+        { provide: ResourceService, useClass: ResourceServiceStub },
+        { provide: MATERIAL_SANITY_CHECKS, useValue: false }
       ],
       imports: [MaterialModule, RouterTestingModule]
     })

@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { MaterialModule } from '@dcs-libs/shared';
 import { PodcastListComponent } from './podcast-list.component';
 import { MomentService } from '../../../core/services';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 
 class StoreStub {
 }
@@ -23,7 +24,8 @@ describe('PodcastListComponent', () => {
       declarations: [PodcastListComponent],
       providers: [
         {provide: Store, useClass: StoreStub},
-        {provide: MomentService, useClass: MomentServiceStub}
+        {provide: MomentService, useClass: MomentServiceStub},
+        { provide: MATERIAL_SANITY_CHECKS, useValue: false }
       ],
       schemas: [NO_ERRORS_SCHEMA],
       imports: [MaterialModule]

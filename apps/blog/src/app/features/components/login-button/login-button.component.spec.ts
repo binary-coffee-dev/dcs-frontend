@@ -1,10 +1,12 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
 import { ENVIRONMENT, WINDOW, MaterialModule } from '@dcs-libs/shared';
 import { LoginButtonComponent } from './login-button.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 
 class StoreStub {}
 
@@ -26,9 +28,11 @@ describe('LoginButtonComponent', () => {
       providers: [
         { provide: WINDOW, useFactory: () => window },
         { provide: ENVIRONMENT, useFactory: () => env },
-        { provide: Store, useClass: StoreStub }
+        { provide: Store, useClass: StoreStub },
+        { provide: MATERIAL_SANITY_CHECKS, useValue: false }
       ],
-      imports: [MaterialModule, RouterTestingModule]
+      imports: [MaterialModule, RouterTestingModule],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
