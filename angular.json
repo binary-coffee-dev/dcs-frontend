@@ -2,24 +2,24 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "projects": {
-    "dcs-frontend": {
+    "blog": {
       "projectType": "application",
-      "root": "apps/dcs-frontend",
-      "sourceRoot": "apps/dcs-frontend/src",
+      "root": "apps/blog",
+      "sourceRoot": "apps/blog/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/browser",
-            "index": "apps/dcs-frontend/src/index.html",
-            "main": "apps/dcs-frontend/src/main.ts",
-            "polyfills": "apps/dcs-frontend/src/polyfills.ts",
-            "tsConfig": "apps/dcs-frontend/tsconfig.app.json",
+            "index": "apps/blog/src/index.html",
+            "main": "apps/blog/src/main.ts",
+            "polyfills": "apps/blog/src/polyfills.ts",
+            "tsConfig": "apps/blog/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "apps/dcs-frontend/src/favicon.png",
-              "apps/dcs-frontend/src/assets",
+              "apps/blog/src/favicon.png",
+              "apps/blog/src/assets",
               {
                 "glob": "*",
                 "input": "libs/shared/src/assets",
@@ -28,7 +28,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "apps/dcs-frontend/src/styles.scss",
+              "apps/blog/src/styles.scss",
               "node_modules/prismjs/themes/prism-okaidia.css",
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
               "node_modules/katex/dist/katex.min.css"
@@ -66,8 +66,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/dcs-frontend/src/environments/environment.ts",
-                  "with": "apps/dcs-frontend/src/environments/environment.prod.ts"
+                  "replace": "apps/blog/src/environments/environment.ts",
+                  "with": "apps/blog/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -93,8 +93,8 @@
             "dev": {
               "fileReplacements": [
                 {
-                  "replace": "apps/dcs-frontend/src/environments/environment.ts",
-                  "with": "apps/dcs-frontend/src/environments/environment.dev.ts"
+                  "replace": "apps/blog/src/environments/environment.ts",
+                  "with": "apps/blog/src/environments/environment.dev.ts"
                 }
               ],
               "optimization": true,
@@ -123,24 +123,24 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "dcs-frontend:build"
+            "browserTarget": "blog:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "dcs-frontend:build:production"
+              "browserTarget": "blog:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dcs-frontend:build"
+            "browserTarget": "blog:build"
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/dcs-frontend/jest.config.js",
+            "jestConfig": "apps/blog/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -148,8 +148,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/dcs-frontend/src/**/*.ts",
-              "apps/dcs-frontend/src/**/*.html"
+              "apps/blog/src/**/*.ts",
+              "apps/blog/src/**/*.html"
             ]
           }
         },
@@ -157,8 +157,8 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/server",
-            "main": "apps/dcs-frontend/src/main.server.ts",
-            "tsConfig": "apps/dcs-frontend/tsconfig.server.json",
+            "main": "apps/blog/src/main.server.ts",
+            "tsConfig": "apps/blog/tsconfig.server.json",
             "sourceMap": true,
             "optimization": false
           },
@@ -166,8 +166,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/dcs-frontend/src/environments/environment.ts",
-                  "with": "apps/dcs-frontend/src/environments/environment.prod.ts"
+                  "replace": "apps/blog/src/environments/environment.ts",
+                  "with": "apps/blog/src/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
@@ -178,31 +178,31 @@
         }
       }
     },
-    "dcs-admin": {
+    "dashboard": {
       "projectType": "application",
       "schematics": {
         "@nrwl/angular:component": {
           "style": "scss"
         }
       },
-      "root": "apps/dcs-admin",
-      "sourceRoot": "apps/dcs-admin/src",
+      "root": "apps/dashboard",
+      "sourceRoot": "apps/dashboard/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/admin",
-            "index": "apps/dcs-admin/src/index.html",
-            "main": "apps/dcs-admin/src/main.ts",
-            "polyfills": "apps/dcs-admin/src/polyfills.ts",
-            "tsConfig": "apps/dcs-admin/tsconfig.app.json",
+            "index": "apps/dashboard/src/index.html",
+            "main": "apps/dashboard/src/main.ts",
+            "polyfills": "apps/dashboard/src/polyfills.ts",
+            "tsConfig": "apps/dashboard/tsconfig.app.json",
             "assets": [
-              "apps/dcs-admin/src/favicon.png",
-              "apps/dcs-admin/src/assets"
+              "apps/dashboard/src/favicon.png",
+              "apps/dashboard/src/assets"
             ],
             "styles": [
-              "apps/dcs-admin/src/styles.scss",
+              "apps/dashboard/src/styles.scss",
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "node_modules/prismjs/themes/prism-okaidia.css",
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
@@ -241,8 +241,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/dcs-admin/src/environments/environment.ts",
-                  "with": "apps/dcs-admin/src/environments/environment.prod.ts"
+                  "replace": "apps/dashboard/src/environments/environment.ts",
+                  "with": "apps/dashboard/src/environments/environment.prod.ts"
                 }
               ],
               "baseHref": "/dashboard/",
@@ -269,8 +269,8 @@
             "dev": {
               "fileReplacements": [
                 {
-                  "replace": "apps/dcs-admin/src/environments/environment.ts",
-                  "with": "apps/dcs-admin/src/environments/environment.dev.ts"
+                  "replace": "apps/dashboard/src/environments/environment.ts",
+                  "with": "apps/dashboard/src/environments/environment.dev.ts"
                 }
               ],
               "baseHref": "/dashboard/",
@@ -300,34 +300,34 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "dcs-admin:build"
+            "browserTarget": "dashboard:build"
           },
           "configurations": {
             "production": {
               "baseHref": "/dashboard/",
-              "browserTarget": "dcs-admin:build:production"
+              "browserTarget": "dashboard:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dcs-admin:build"
+            "browserTarget": "dashboard:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/dcs-admin/src/**/*.ts",
-              "apps/dcs-admin/src/**/*.html"
+              "apps/dashboard/src/**/*.ts",
+              "apps/dashboard/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/dcs-admin/jest.config.js",
+            "jestConfig": "apps/dashboard/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -393,5 +393,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "dcs-frontend"
+  "defaultProject": "blog"
 }

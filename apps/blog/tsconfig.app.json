@@ -9,6 +9,6 @@
     "src/polyfills.ts"
   ],
   "include": [
-    "apps/dcs-frontend/src/**/*.d.ts"
+    "apps/blog/src/**/*.d.ts"
   ]
 }

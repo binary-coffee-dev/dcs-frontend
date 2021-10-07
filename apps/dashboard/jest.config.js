@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'dcs-admin',
-  coverageDirectory: '../../coverage/apps/dcs-admin',
+  name: 'dashboard',
+  coverageDirectory: '../../coverage/apps/dashboard',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {

@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'dcs-frontend',
-  coverageDirectory: '../../coverage/apps/dcs-frontend',
+  name: 'blog',
+  coverageDirectory: '../../coverage/apps/blog',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {

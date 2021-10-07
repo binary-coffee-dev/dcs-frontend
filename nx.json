@@ -1,5 +1,5 @@
 {
-  "npmScope": "dcs-frontend",
+  "npmScope": "blog",
   "affected": {
     "defaultBase": "master"
   },
@@ -28,10 +28,10 @@
     ]
   },
   "projects": {
-    "dcs-frontend": {
+    "blog": {
       "tags": []
     },
-    "dcs-admin": {
+    "dashboard": {
       "tags": []
     },
     "shared": {

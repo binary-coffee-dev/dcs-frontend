@@ -32,9 +32,9 @@ jobs:
 
       # pipeline actions
       - run: npm ci
-      - name: Build frontend Dashboard
+      - name: Build blog Dashboard
         run: npm run build:admin:prod
-      - name: Build frontend Blog
+      - name: Build blog Blog
         run: npm run build:ssr
 
 
@@ -133,7 +133,7 @@ jobs:
       - name: Deploy project with docker in hosting
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: cd ${{ secrets.DEV__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.DEV__PORT_FRONTEND_BLOG }} ./deploy.sh blog-frontend-dev docker-compose.yml
+          command: cd ${{ secrets.DEV__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.DEV__PORT_FRONTEND_BLOG }} ./deploy.sh blog-blog-dev docker-compose.yml
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.SERVER_SSH_KEY}}
@@ -199,7 +199,7 @@ jobs:
       - name: Deploy project with docker in hosting
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_BLOG }} ./deploy.sh blog-frontend-prod docker-compose.yml
+          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_BLOG }} ./deploy.sh blog-blog-prod docker-compose.yml
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.SERVER_SSH_KEY}}
