@@ -157,10 +157,11 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/server",
-            "main": "apps/blog/src/main.server.ts",
+            "main": "apps/blog/server.ts",
             "tsConfig": "apps/blog/tsconfig.server.json",
             "sourceMap": true,
-            "optimization": false
+            "optimization": false,
+            "extractLicenses": false
           },
           "configurations": {
             "production": {
@@ -171,7 +172,8 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": true
+              "optimization": true,
+              "extractLicenses": true
             }
           },
           "defaultConfiguration": ""
@@ -300,7 +302,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "dashboard:build"
+            "browserTarget": "dashboard:build",
+            "baseHref": "/dashboard/"
           },
           "configurations": {
             "production": {
