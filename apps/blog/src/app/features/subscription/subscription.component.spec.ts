@@ -12,7 +12,7 @@ class StoreStub {
 xdescribe('SubscriptionComponent', () => {
   let component: SubscriptionComponent;
   let fixture: ComponentFixture<SubscriptionComponent>;
-  SubscriptionComponent.prototype.ngOnInit = () => {};
+  SubscriptionComponent.prototype.ngOnInit = jest.fn();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

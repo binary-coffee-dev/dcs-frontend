@@ -1,14 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-bitcoin',
   templateUrl: './bitcoin.component.html',
   styleUrls: ['./bitcoin.component.scss', '../donate-panel.component.scss']
 })
-export class BitcoinComponent implements OnInit {
-  constructor() { }
-
-  ngOnInit() { }
+export class BitcoinComponent {
 
   copyText(val: string) {
     const selBox = document.createElement('textarea');

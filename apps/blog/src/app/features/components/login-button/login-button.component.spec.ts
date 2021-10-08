@@ -20,7 +20,7 @@ const window = {
 describe('LoginButtonComponent', () => {
   let component: LoginButtonComponent;
   let fixture: ComponentFixture<LoginButtonComponent>;
-  LoginButtonComponent.prototype.ngOnInit = () => {};
+  LoginButtonComponent.prototype.ngOnInit = jest.fn();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

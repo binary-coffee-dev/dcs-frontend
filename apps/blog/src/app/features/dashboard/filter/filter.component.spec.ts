@@ -12,7 +12,7 @@ class StoreStub {
 describe('FilterComponent', () => {
   let component: FilterComponent;
   let fixture: ComponentFixture<FilterComponent>;
-  FilterComponent.prototype.ngOnInit = () => {};
+  FilterComponent.prototype.ngOnInit = jest.fn();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

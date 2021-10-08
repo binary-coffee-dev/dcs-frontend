@@ -27,7 +27,7 @@ class MatDialogStub {
 describe('PostComponent', () => {
   let component: PostComponent;
   let fixture: ComponentFixture<PostComponent>;
-  PostComponent.prototype.ngOnInit = () => {};
+  PostComponent.prototype.ngOnInit = jest.fn();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

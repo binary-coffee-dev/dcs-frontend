@@ -15,7 +15,7 @@ class UrlUtilsServiceStub {
 describe('TopPopularUsersComponent', () => {
   let component: TopPopularUsersComponent;
   let fixture: ComponentFixture<TopPopularUsersComponent>;
-  TopPopularUsersComponent.prototype.ngOnInit = () => {};
+  TopPopularUsersComponent.prototype.ngOnInit = jest.fn();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

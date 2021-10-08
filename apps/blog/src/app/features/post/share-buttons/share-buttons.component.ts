@@ -13,15 +13,10 @@ export class ShareButtonsComponent implements OnInit {
   urlLinkedIn: string;
   info: string;
 
-  constructor() {
-  }
-
   ngOnInit() {
     this.url = document.location.href;
     this.urlFacebook = `https://www.facebook.com/sharer/sharer.php?u=${this.url}`;
     this.urlTwitter = `https://twitter.com/intent/tweet/?hashtags=BinaryCoffee&url=${this.url}`;
     this.urlLinkedIn = `https://www.linkedin.com/shareArticle?mini=true&url=${this.url}`;
   }
-
-
 }

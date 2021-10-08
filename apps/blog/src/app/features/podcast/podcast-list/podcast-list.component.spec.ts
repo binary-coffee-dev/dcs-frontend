@@ -17,7 +17,7 @@ class MomentServiceStub {
 describe('PodcastListComponent', () => {
   let component: PodcastListComponent;
   let fixture: ComponentFixture<PodcastListComponent>;
-  PodcastListComponent.prototype.ngOnInit = () => {};
+  PodcastListComponent.prototype.ngOnInit = jest.fn();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

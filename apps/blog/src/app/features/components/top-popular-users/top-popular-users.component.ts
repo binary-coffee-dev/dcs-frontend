@@ -10,6 +10,7 @@ import { FetchTopPopularUsersAction, TopUsers, UrlUtilsService, UserInfoState } 
 })
 export class TopPopularUsersComponent implements OnInit {
   top5Likes = {} as TopUsers;
+
   constructor(private store: Store, private url: UrlUtilsService) { }
 
   ngOnInit(): void {
@@ -20,5 +21,4 @@ export class TopPopularUsersComponent implements OnInit {
   getUserAvatar(user) {
     return this.url.getUserImage(user);
   }
-
 }

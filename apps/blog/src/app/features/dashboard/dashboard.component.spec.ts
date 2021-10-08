@@ -11,7 +11,7 @@ class StoreStub {
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
-  DashboardComponent.prototype.ngOnInit = () => {};
+  DashboardComponent.prototype.ngOnInit = jest.fn();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

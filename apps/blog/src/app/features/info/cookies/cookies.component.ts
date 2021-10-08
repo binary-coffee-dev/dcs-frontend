@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { cookiesInfo } from './cookies.info';
 
@@ -7,13 +7,7 @@ import { cookiesInfo } from './cookies.info';
   templateUrl: './cookies.component.html',
   styleUrls: ['./cookies.component.scss']
 })
-export class CookiesComponent implements OnInit {
+export class CookiesComponent {
 
   info = cookiesInfo;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

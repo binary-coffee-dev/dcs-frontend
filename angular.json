@@ -6,7 +6,7 @@
       "projectType": "application",
       "root": "apps/blog",
       "sourceRoot": "apps/blog/src",
-      "prefix": "app",
+      "prefix": "",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -189,7 +189,7 @@
       },
       "root": "apps/dashboard",
       "sourceRoot": "apps/dashboard/src",
-      "prefix": "app",
+      "prefix": "",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -340,7 +340,7 @@
       "projectType": "library",
       "root": "libs/shared",
       "sourceRoot": "libs/shared/src",
-      "prefix": "app",
+      "prefix": "",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",

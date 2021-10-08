@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -35,10 +35,7 @@ export class UserViewResolver implements Resolve<UserView> {
   constructor(private store: Store) {
   }
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<UserView> | Promise<UserView> | UserView {
+  resolve(route: ActivatedRouteSnapshot): Observable<UserView> | Promise<UserView> | UserView {
     return this.store.dispatch(new FetchUserByUsernameAction(route.paramMap.get('username')))
       .pipe(
         tap(() => this.user = this.store.selectSnapshot(UserInfoState.user)),

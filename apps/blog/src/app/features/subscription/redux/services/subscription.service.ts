@@ -17,11 +17,11 @@ export class SubscriptionService {
 
   verifySubscription(token: string): Observable<Subscription> {
     return this.apollo.mutate({mutation: VERIFY_SUBSCRIPTION_MUTATION, variables: {token}})
-      .pipe(map((response: any) => response.data.verify));
+      .pipe(map((response: {data: {verify: Subscription}}) => response.data.verify));
   }
 
-  subscribe(email: string) {
+  subscribe(email: string): Observable<Subscription> {
     return this.apollo.mutate({mutation: SUBSCRIBE_MUTATION, variables: {email}})
-      .pipe(map((response: any) => response.data.subscribe));
+      .pipe(map((response: {data: {subscribe: Subscription}}) => response.data.subscribe));
   }
 }

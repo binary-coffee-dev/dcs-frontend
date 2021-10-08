@@ -20,7 +20,7 @@ describe('PaginationComponent', () => {
   let component: PaginationComponent;
   let fixture: ComponentFixture<PaginationComponent>;
   let store: Store;
-  PaginationComponent.prototype.ngOnInit = () => {};
+  PaginationComponent.prototype.ngOnInit = jest.fn();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

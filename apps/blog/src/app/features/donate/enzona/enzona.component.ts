@@ -1,14 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-enzona',
   templateUrl: './enzona.component.html',
   styleUrls: ['./enzona.component.scss', '../donate-panel.component.scss']
 })
-export class EnzonaComponent implements OnInit {
-  constructor() { }
-
-  ngOnInit() { }
+export class EnzonaComponent {
 
   copyText(val: string) {
     const selBox = document.createElement('textarea');

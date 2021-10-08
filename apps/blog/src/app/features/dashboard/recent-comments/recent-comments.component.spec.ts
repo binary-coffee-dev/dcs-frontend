@@ -17,7 +17,7 @@ class UrlUtilsServiceStub {
 describe('RecentCommentsComponent', () => {
   let component: RecentCommentsComponent;
   let fixture: ComponentFixture<RecentCommentsComponent>;
-  RecentCommentsComponent.prototype.ngOnInit = () => {};
+  RecentCommentsComponent.prototype.ngOnInit = jest.fn();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
