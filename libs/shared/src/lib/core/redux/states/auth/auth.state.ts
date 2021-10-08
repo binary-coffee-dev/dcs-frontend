@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { catchError, map, take, tap } from 'rxjs/operators';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { of } from 'rxjs';
@@ -21,6 +23,7 @@ import { RoleEnum } from '../../../permissions';
   name: 'auth',
   defaults: initAuthStateModel()
 })
+@Injectable()
 export class AuthState {
 
   @Selector()

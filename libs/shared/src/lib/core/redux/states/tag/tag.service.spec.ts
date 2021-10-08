@@ -17,7 +17,7 @@ describe('TagService', () => {
   }));
 
   beforeEach(() => {
-    service = TestBed.get(TagService);
+    service = TestBed.inject(TagService);
   });
 
   it('should be created', () => {

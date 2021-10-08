@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 
 export const EDIT_COMMENT_MUTATION = gql`
   mutation ($id: ID!, $body: String){

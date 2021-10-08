@@ -18,7 +18,7 @@ describe('PodcastService', () => {
   });
 
   beforeEach(() => {
-    service = TestBed.get(PodcastService);
+    service = TestBed.inject(PodcastService);
   });
 
   it('should be created', () => {

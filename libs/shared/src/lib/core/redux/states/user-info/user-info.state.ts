@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
@@ -16,6 +18,7 @@ import { TopUsers, User } from '../../models';
   name: 'userInfo',
   defaults: initUserInfoStateModel()
 })
+@Injectable()
 export class UserInfoState {
 
   constructor(private userInfoService: UserInfoService) {

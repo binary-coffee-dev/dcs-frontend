@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  deploy:
+    build:
+      context: ..
+      dockerfile: Dockerfile.admin
+      args:
+        - ENVIRONMENT=$ENVIRONMENT
+    restart: always
+    ports:
+      - '127.0.0.1:${PORT_FRONTEND}:80'

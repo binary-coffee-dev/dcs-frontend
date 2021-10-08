@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 
 export const POST_BY_NAME_QUERY = gql`
   query fetchPost($name: String!) {

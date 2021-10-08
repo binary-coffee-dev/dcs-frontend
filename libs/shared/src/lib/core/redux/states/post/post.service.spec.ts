@@ -14,7 +14,7 @@ describe('PostService', () => {
   }));
 
   it('should be created', () => {
-    const service: PostService = TestBed.get(PostService);
+    const service: PostService = TestBed.inject(PostService);
     expect(service).toBeTruthy();
   });
 });

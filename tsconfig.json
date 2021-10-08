@@ -1,29 +1,26 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "./dist/out-tsc",
+    "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "module": "esnext",
     "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom", "esnext.asynciterable"],
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
     "paths": {
       "~environments/*": ["environments/*"],
       "~graphql/*": ["app/core/graphql/*"],
       "@dcs-libs/shared": ["libs/shared/src/index.ts"]
     },
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "rootDir": "."
+    "resolveJsonModule": true
   },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  }
+  "exclude": ["node_modules", "tmp"]
 }

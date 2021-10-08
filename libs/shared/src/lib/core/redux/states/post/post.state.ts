@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, take, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
@@ -23,6 +25,7 @@ import { CreateNotificationAction } from '../notification/notification.action';
   name: 'post',
   defaults: initPostStateModel()
 })
+@Injectable()
 export class PostState extends PaginationBaseClass<PostStateModel> {
 
   @Selector()

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { Actions } from '@ngxs/store';
 
@@ -9,8 +9,9 @@ class ActionsStub {}
 describe('LoadingComponent', () => {
   let component: LoadingComponent;
   let fixture: ComponentFixture<LoadingComponent>;
+  LoadingComponent.prototype.ngOnInit = () => {};
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LoadingComponent],
       providers: [{ provide: Actions, useClass: ActionsStub }]
@@ -22,7 +23,7 @@ describe('LoadingComponent', () => {
     fixture = TestBed.createComponent(LoadingComponent);
     component = fixture.componentInstance;
 
-    spyOn(component, 'ngOnInit');
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });

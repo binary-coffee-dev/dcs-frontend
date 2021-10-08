@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgxsModule, Store } from '@ngxs/store';
 
@@ -13,19 +13,19 @@ class PostServiceStub {
 
 describe('PostState', () => {
   let store: Store;
-  let postService: PostServiceStub;
+  let postService: PostService;
   let postState: PostState;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [NgxsModule.forRoot([PostState])],
       providers: [
         {provide: PostService, useClass: PostServiceStub}
       ]
     }).compileComponents();
-    store = TestBed.get(Store);
-    postService = TestBed.get(PostService);
-    postState = TestBed.get(PostState);
+    store = TestBed.inject(Store);
+    postService = TestBed.inject(PostService);
+    postState = TestBed.inject(PostState);
   }));
 
   it('should create', () => {
