@@ -30,7 +30,7 @@ describe('PostsGuard', () => {
   it('should ', (done) => {
     jest.spyOn(store, 'dispatch').mockReturnValue(of({}));
 
-    (guard.canActivate({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot) as Observable<boolean>).subscribe((result) => {
+    (guard.canActivate() as Observable<boolean>).subscribe((result) => {
       expect(result).toBeTruthy();
       expect(store.dispatch).toHaveBeenNthCalledWith(1, new SetFiltersAction({enable: true} as Where));
       expect(store.dispatch).toHaveBeenNthCalledWith(2, new FetchPostsAction());
