@@ -85,7 +85,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create env variables file
-        run: echo "ENVIRONMENT=dev" > .env
+        run: echo "ENVIRONMENT=dev" > docker/.env
 
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@v2.1.5
@@ -118,7 +118,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create env variables file
-        run: echo "ENVIRONMENT=dev" > .env
+        run: echo "ENVIRONMENT=dev" > docker/.env
 
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@v2.1.5
