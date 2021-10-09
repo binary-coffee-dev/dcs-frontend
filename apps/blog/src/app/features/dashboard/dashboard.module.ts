@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LAZYLOAD_IMAGE_HOOKS, LazyLoadImageModule, ScrollHooks } from 'ng-lazyload-image';
-
 import { TagsModule } from '@dcs-libs/shared';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -33,12 +31,11 @@ import { TopPopularUsersModule } from '../components/top-popular-users/top-popul
     DashboardRoutingModule,
     MaterialModule,
     ServicesModule,
-    LazyLoadImageModule,
     TagsModule,
     TopActiveUsersModule,
     TopPopularUsersModule
   ],
-  providers: [PostsGuard, { provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }]
+  providers: [PostsGuard]
 })
 export class DashboardModule {
 }

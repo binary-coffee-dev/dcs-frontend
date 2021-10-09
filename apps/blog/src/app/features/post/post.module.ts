@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MarkdownModule } from 'ngx-markdown';
-import { LAZYLOAD_IMAGE_HOOKS, LazyLoadImageModule, ScrollHooks } from 'ng-lazyload-image';
 
 import { MaterialModule, SharedModule, TagsModule } from '@dcs-libs/shared';
 import { PostComponent } from './post.component';
@@ -31,11 +30,9 @@ import { EditCommentModalComponent } from './comments/edit-comment.modal/edit-co
     MaterialModule,
     MarkdownModule.forRoot(),
     ServicesModule,
-    LazyLoadImageModule,
     TagsModule,
     SharedModule
-  ],
-  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }]
+  ]
 })
 export class PostModule {
 }
