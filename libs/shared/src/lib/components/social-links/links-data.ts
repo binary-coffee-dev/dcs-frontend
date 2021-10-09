@@ -8,7 +8,7 @@ export const links = [
   {
     enabled: true,
     title: 'GitHub Community',
-    href: 'https://github.com/dcs-community/',
+    href: 'https://github.com/binary-coffee-dev',
     icon: 'fa fa-github'
   },
   {
