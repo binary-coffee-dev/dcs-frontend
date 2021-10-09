@@ -2,108 +2,35 @@
 
 |branch|`master`|`develop`|
 |---|---|---|
-|build|[![Build Status](https://travis-ci.com/dcs-community/dcs-frontend.svg?branch=master)](https://travis-ci.com/dcs-community/dcs-frontend)|[![Build Status](https://travis-ci.com/dcs-community/dcs-frontend.svg?branch=master)](https://travis-ci.com/dcs-community/dcs-frontend)|
-|coverage|[![master](https://codecov.io/gh/dcs-community/dcs-frontend/branch/master/graph/badge.svg)](https://codecov.io/gh/dcs-community/dcs-frontend)|[![develop](https://codecov.io/gh/dcs-community/dcs-frontend/branch/develop/graph/badge.svg)](https://codecov.io/gh/dcs-community/dcs-frontend)|
+|build|![Build Status](https://github.com/binary-coffee-dev/dcs-frontend/actions/workflows/deployment.yml/badge.svg?branch=master)|![Build Status](https://github.com/binary-coffee-dev/dcs-frontend/actions/workflows/deployment.yml/badge.svg?branch=develop)|
+|coverage|[![codecov](https://codecov.io/gh/binary-coffee-dev/dcs-frontend/branch/master/graph/badge.svg?token=IXyUgJL6DY)](https://codecov.io/gh/binary-coffee-dev/dcs-frontend)|[![codecov](https://codecov.io/gh/binary-coffee-dev/dcs-frontend/branch/develop/graph/badge.svg?token=IXyUgJL6DY)](https://codecov.io/gh/binary-coffee-dev/dcs-frontend)|
 
 In this repository you can find the two application that define the whole frontend in Binary Coffee website.
 First you have the user dashboard with all the behaviors relates to administrate the user information and his own articles.
 And second you have the core frontend of the website, with everything related to the published articles.
 
-## Start application
+## Documentation
 
-### Blog
+All the development related topics can be found in the documentation of the project:
 
-```
-// development
-npm start
-
-// production
-npm run serve:ssr
-```
-
-> NOTE: For production the project need to be built first
-
-### Dashboard
-
-```
-npm run start:admin
-```
-
-## Start application with docker
-
-### Blog
-
-```
-docker-compose up -d
-```
-
-### Dashboard
-
-```
-docker-compose -f docker-compose.admin.yml up -d
-```
-
-## Build
-
-### Blog
-
-```
-// development
-npm run build:ssr:dev
-
-// production
-npm run build:ssr
-```
-
-### Dashboard
-
-```
-// development
-npm run build:admin
-
-// production
-npm run build:admin:prod
-```
-
-## Running unit tests
-
-```
-npm test
-```
-
-## Code generation
-
-**Generate component**
-
-```
-$ ng g c component-name
-```
-
-NOTE: be sure to be in the folder where you want to create the new component
-
-**Generate library**
-
-```
-$ ng g @nrwl/angular:lib library-name
-```
-
-**Generate ngxs state**
-
-```
-$ ng g @ngxs/schematics:store --name state-name
-```
-
-## Nginx config for local environment
-
-[guia link](./local-nginx/README.md)
+[DOCUMENTATION](./doc/doc.md)
 
 ## Contributing
 
 Any contribution is welcome, but please first read the CONTRIBUTING guide: [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-And remember that you can invite us to a coffee:
+You can also support the community donating money for our infrastructure and other related expenses:
 
-[![](https://cdn.buymeacoffee.com/buttons/arial-green.png)](https://www.buymeacoffee.com/binarycoffee)
+|Donation method|Badge|
+|-------------|----|
+|Github sponsor|![GitHub Sponsors](https://img.shields.io/github/sponsors/binary-coffee-dev?style=for-the-badge&color=success)|
+|Paypal|![paypal](https://img.shields.io/badge/paypal-donate-success?style=for-the-badge&logo=paypal&link=https%3A%2F%2Fwww.paypal.com%2Fdonate%3Fhosted_button_id%3D66HG7ANLYHYZ4)|
+|Patreon|![patreon](https://img.shields.io/badge/patreon-join-success?style=for-the-badge&logo=patreon&link=https%3A%2F%2Fwww.patreon.com%2FbePatron%3Fu%3D62897845)|
+|Bitcoin|[![Donate with Bitcoin](https://en.cryptobadges.io/badge/big/bc1q3vszxqvms8snh72qdp8a20v79n4c838zw0n9jg)](https://en.cryptobadges.io/donate/bc1q3vszxqvms8snh72qdp8a20v79n4c838zw0n9jg)|
+|Etherium|[![Donate with Ethereum](https://en.cryptobadges.io/badge/big/0x2f2EB4006Bb9b5fd20369691103B97fA13980a58)](https://en.cryptobadges.io/donate/0x2f2EB4006Bb9b5fd20369691103B97fA13980a58)|
+|Invite us to a coffee|[![](https://cdn.buymeacoffee.com/buttons/arial-green.png)](https://www.buymeacoffee.com/binarycoffee)|
+
+Thank you for the help!!!
 
 ## License
 
