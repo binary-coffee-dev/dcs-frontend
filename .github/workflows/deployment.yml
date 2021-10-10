@@ -156,7 +156,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Update app version in package.json
-        run: node /docker/update-version.js
+        run: node ./docker/update-version.js
 
       - name: Commit and push changes
         run: ./docker/commit-version.sh
