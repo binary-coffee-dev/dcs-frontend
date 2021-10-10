@@ -41,15 +41,14 @@
     </div>
 
     <div class="markdown-container"
-         *ngIf="!isBrowser"
-         markdown
-         katex
-         lineNumbers>
-      {{post?.body}}
+         *ngIf="isBrowser">
+      <markdown [data]="post?.body" katex lineNumbers></markdown>
     </div>
     <div class="markdown-container"
-         *ngIf="isBrowser">
-            <markdown [data]="post?.body" katex lineNumbers></markdown>
+         *ngIf="!isBrowser">
+      <markdown [src]='articleBody()'
+                katex
+                lineNumbers></markdown>
     </div>
 
     <app-post-info [post]="post"></app-post-info>
@@ -68,7 +67,6 @@
        fxFlex="25"
        fxFlex.md="30"
        fxHide.sm
-       fxHide.xs
        fxHide.xs>
     <app-share-buttons class="share-buttons-side"></app-share-buttons>
     <app-similar-posts-list

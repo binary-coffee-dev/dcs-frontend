@@ -70,6 +70,10 @@ export class PostComponent extends Permissions implements OnInit {
     }
   }
 
+  articleBody(): string {
+    return `${this.environment.apiUrl}post-body-by-name/${(this.post?.name || '')}/download.md`
+  }
+
   isMyPost(post) {
     const user = this.store.selectSnapshot(AuthState.me);
     return !!user && !!post.author && post.author.id === user.id;
