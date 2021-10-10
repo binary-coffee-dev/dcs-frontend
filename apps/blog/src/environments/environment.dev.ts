@@ -7,6 +7,6 @@ export const environment = {
   siteUrl: 'https://dev.binary-coffee.dev',
   siteDashboardUrl: 'https://dev.binary-coffee.dev/dashboard',
   googleAnalyticsId: 'UA-157555549-2',
-  production: false,
+  production: true,
   postPageSize: 12
 } as Environment;
