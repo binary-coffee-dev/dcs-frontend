@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 
-import { BitcoinComponent } from './bitcoin/bitcoin.component';
-import { EnzonaComponent } from './enzona/enzona.component';
 import { ScrollService } from '../../core/services';
 
 @Component({
@@ -12,19 +9,10 @@ import { ScrollService } from '../../core/services';
 })
 export class DonateComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private scroll: ScrollService) {
+  constructor(private scroll: ScrollService) {
   }
 
   ngOnInit() {
     this.scroll.smoothScroll();
   }
-
-  openBitcoinDialog() {
-    this.dialog.open(BitcoinComponent);
-  }
-
-  openEnzonaDialog() {
-    this.dialog.open(EnzonaComponent);
-  }
-
 }

@@ -6,12 +6,10 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { MaterialModule } from '@dcs-libs/shared';
 import { DonateComponent } from './donate.component';
 import { DonateRoutingModule } from './donate-routing.module';
-import { BitcoinComponent } from './bitcoin/bitcoin.component';
-import { EnzonaComponent } from './enzona/enzona.component';
 
 
 @NgModule({
-  declarations: [DonateComponent, BitcoinComponent, EnzonaComponent],
+  declarations: [DonateComponent],
   imports: [
     CommonModule,
     MaterialModule,

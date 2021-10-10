@@ -23,9 +23,9 @@ You can also support the community donating money for our infrastructure and oth
 
 |Donation method|Badge|
 |-------------|----|
-|Github sponsor|![GitHub Sponsors](https://img.shields.io/github/sponsors/binary-coffee-dev?style=for-the-badge&color=success)|
-|Paypal|![paypal](https://img.shields.io/badge/paypal-donate-success?style=for-the-badge&logo=paypal&link=https%3A%2F%2Fwww.paypal.com%2Fdonate%3Fhosted_button_id%3D66HG7ANLYHYZ4)|
-|Patreon|![patreon](https://img.shields.io/badge/patreon-join-success?style=for-the-badge&logo=patreon&link=https%3A%2F%2Fwww.patreon.com%2FbePatron%3Fu%3D62897845)|
+|Github sponsor|[![GitHub Sponsors](https://img.shields.io/github/sponsors/binary-coffee-dev?style=for-the-badge&color=success&logo=githubsponsors)](https://github.com/sponsors/binary-coffee-dev/sponsorships?preview=false&frequency=recurring&amount=5)|
+|Paypal|[![paypal](https://img.shields.io/badge/paypal-donate-success?style=for-the-badge&logo=paypal)](https://www.paypal.com/donate?hosted_button_id=66HG7ANLYHYZ4)|
+|Patreon|[![patreon](https://img.shields.io/badge/patreon-join-success?style=for-the-badge&logo=patreon)](https://www.patreon.com/join/7569568/checkout?ru=undefined)|
 |Bitcoin|[![Donate with Bitcoin](https://en.cryptobadges.io/badge/big/bc1q3vszxqvms8snh72qdp8a20v79n4c838zw0n9jg)](https://en.cryptobadges.io/donate/bc1q3vszxqvms8snh72qdp8a20v79n4c838zw0n9jg)|
 |Etherium|[![Donate with Ethereum](https://en.cryptobadges.io/badge/big/0x2f2EB4006Bb9b5fd20369691103B97fA13980a58)](https://en.cryptobadges.io/donate/0x2f2EB4006Bb9b5fd20369691103B97fA13980a58)|
 |Invite us to a coffee|[![](https://cdn.buymeacoffee.com/buttons/arial-green.png)](https://www.buymeacoffee.com/binarycoffee)|
