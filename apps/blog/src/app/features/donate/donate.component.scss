@@ -1,0 +1,123 @@
+@import "libs/shared/src/theme";
+
+:host {
+
+  .container {
+    min-height: calc(100vh - 300px);
+
+    .description {
+      text-align: justify;
+      padding: map_get($spacings, 4);
+    }
+
+    .container-in {
+      padding: map_get($spacings, 4);
+      width: 100%;
+
+      form {
+        display: none;
+      }
+
+      .code-comment-1 {
+        font-size: .8rem;
+      }
+
+      a {
+        margin: map_get($spacings, 1) map_get($spacings, 4) 0 map_get($spacings, 4);
+
+        .fa {
+          font-size: 1.5rem;
+        }
+      }
+
+      .bc-button {
+        overflow: hidden;
+      }
+
+      .paypal {
+        $color: #2b5eaa;
+        color: $color;
+
+        &:hover {
+          border: 1px solid $color;
+        }
+      }
+
+      .bitcoin {
+        $color: #ffa600;
+        color: $color;
+
+        &:hover {
+          border: 1px solid $color;
+        }
+      }
+
+      .ethereum {
+        $color: #646DAE;
+        &:hover {
+          border: 1px solid $color;
+        }
+      }
+
+      .patreon {
+        $color: #EA414E;
+        &:hover {
+          border: 1px solid $color;
+        }
+      }
+
+      .github-sponsor {
+        $color: #DE79B5;
+        &:hover {
+          border: 1px solid $color;
+        }
+      }
+
+      .buy-me-a-coffee {
+        $color: #F9DD01;
+        &:hover {
+          border: 1px solid $color;
+        }
+      }
+
+      .visa {
+        $color: #f3c018;
+        color: $color;
+
+
+        &:hover {
+          border: 1px solid $color;
+        }
+      }
+
+      .mastercard {
+        $color: #ff5100;
+        color: $color;
+
+        &:hover {
+          border: 1px solid $color;
+        }
+      }
+
+      .enzona {
+        $color: #2b5eaa;
+        color: $color;
+
+        &:hover {
+          border: 1px solid $color;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .container {
+      border-top: 1px solid map_get($md-primary, 100);
+
+      .container-in {
+        min-height: 0;
+        border: none;
+      }
+    }
+  }
+}

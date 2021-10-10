@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 
 export const RECENT_COMMENTS_QUERY = gql`
   query ($limit: Int){

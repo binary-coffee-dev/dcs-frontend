@@ -9,7 +9,7 @@ describe('UrlUtilsService', () => {
   }));
 
   it('should be created', () => {
-    const service: UrlUtilsService = TestBed.get(UrlUtilsService);
+    const service: UrlUtilsService = TestBed.inject(UrlUtilsService);
     expect(service).toBeTruthy();
   });
 });

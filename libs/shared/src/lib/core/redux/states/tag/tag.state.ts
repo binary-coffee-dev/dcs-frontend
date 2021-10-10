@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
@@ -11,6 +13,7 @@ import { Tag } from '../../models';
   name: 'tag',
   defaults: initTagStateModel()
 })
+@Injectable()
 export class TagState extends PaginationBaseClass<TagStateModel> {
 
   @Selector()

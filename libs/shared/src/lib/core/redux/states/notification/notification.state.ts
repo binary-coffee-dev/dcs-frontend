@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 
 import { CloseNotificationAction, CreateNotificationAction } from './notification.action';
@@ -8,6 +10,7 @@ import { Notification } from '../../models';
   name: 'notification',
   defaults: initNotificationStateModel()
 })
+@Injectable()
 export class NotificationState {
 
   @Selector()

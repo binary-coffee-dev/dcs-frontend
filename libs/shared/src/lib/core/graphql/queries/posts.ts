@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-angular';
 
 export const POSTS_QUERY = gql`
     query pageQuery($limit: Int!, $start: Int!, $where: JSON!, $sort: String!) {

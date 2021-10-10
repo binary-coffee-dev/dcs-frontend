@@ -15,7 +15,7 @@ describe('UserInfoService', () => {
   });
 
   beforeEach(() => {
-    service = TestBed.get(UserInfoService);
+    service = TestBed.inject(UserInfoService);
   });
 
   it('should be created', () => {

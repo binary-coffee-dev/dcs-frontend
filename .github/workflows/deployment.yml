@@ -10,11 +10,13 @@ jobs:
   # BUILD PROJECT AND DEPENDENCIES
   build:
 
+#    if: "!contains(github.event.head_commit.message, 'ci skip')"
+
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [ 12.x ]
+        node-version: [ 14.x ]
 
     steps:
       - uses: actions/checkout@v2
@@ -32,9 +34,9 @@ jobs:
 
       # pipeline actions
       - run: npm ci
-      - name: Build frontend Dashboard
+      - name: Build blog Dashboard
         run: npm run build:admin:prod
-      - name: Build frontend Blog
+      - name: Build blog Blog
         run: npm run build:ssr
 
 
@@ -46,7 +48,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 12.x ]
+        node-version: [ 14.x ]
 
     steps:
       - uses: actions/checkout@v2
@@ -84,9 +86,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Create env variables file
-        run: echo "ENVIRONMENT=dev" > .env
-
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
@@ -100,7 +99,7 @@ jobs:
       - name: Deploy project with docker in hosting
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: cd ${{ secrets.DEV__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.DEV__PORT_FRONTEND_DASHBOARD }} ./deploy.sh blog-admin-dev docker-compose.admin.yml
+          command: cd ${{ secrets.DEV__REMOTE_TARGET }} && ENVIRONMENT=dev PORT_FRONTEND=${{ secrets.DEV__PORT_FRONTEND_DASHBOARD }} ./docker/deploy.sh blog-admin-dev docker/docker-compose.admin.yml
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.SERVER_SSH_KEY}}
@@ -109,16 +108,13 @@ jobs:
   # DEPLOY BLOG (DEVELOP)
   deploy-blog-dev:
 
-    needs: [ test ]
+    needs: [ deploy-dashboard-dev ]
     if: github.ref == 'refs/heads/develop'
 
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Create env variables file
-        run: echo "ENVIRONMENT=dev" > .env
 
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@v2.1.5
@@ -133,25 +129,49 @@ jobs:
       - name: Deploy project with docker in hosting
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: cd ${{ secrets.DEV__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.DEV__PORT_FRONTEND_BLOG }} ./deploy.sh blog-frontend-dev docker-compose.yml
+          command: cd ${{ secrets.DEV__REMOTE_TARGET }} && ENVIRONMENT=dev PORT_FRONTEND=${{ secrets.DEV__PORT_FRONTEND_BLOG }} ./docker/deploy.sh blog-frontend-dev docker/docker-compose.yml
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.SERVER_SSH_KEY}}
 
 
-  # DEPLOY DASHBOARD (PRODUCTION)
-  deploy-dashboard-prod:
+  # UPDATE APPLICATION VERSION
+  update-version:
 
     needs: [ test ]
     if: github.ref == 'refs/heads/master'
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+
     steps:
       - uses: actions/checkout@v2
 
-      - name: Create env variables file
-        run: echo "ENVIRONMENT=prod" > .env
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Update app version in package.json
+        run: node ./docker/update-version.js
+
+      - name: Commit and push changes
+        run: ./docker/commit-version.sh
+
+
+  # DEPLOY DASHBOARD (PRODUCTION)
+  deploy-dashboard-prod:
+
+    needs: [ update-version ]
+    if: github.ref == 'refs/heads/master'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
 
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@v2.1.5
@@ -166,7 +186,7 @@ jobs:
       - name: Deploy project with docker in hosting
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_DASHBOARD }} ./deploy.sh blog-admin-prod docker-compose.admin.yml
+          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_DASHBOARD }} ./docker/deploy.sh blog-admin-prod docker/docker-compose.admin.yml
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.SERVER_SSH_KEY}}
@@ -175,16 +195,13 @@ jobs:
   # DEPLOY BLOG (PRODUCTION)
   deploy-blog-prod:
 
-    needs: [ test ]
+    needs: [ deploy-dashboard-prod ]
     if: github.ref == 'refs/heads/master'
 
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Create env variables file
-        run: echo "ENVIRONMENT=prod" > .env
 
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@v2.1.5
@@ -199,7 +216,7 @@ jobs:
       - name: Deploy project with docker in hosting
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_BLOG }} ./deploy.sh blog-frontend-prod docker-compose.yml
+          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_BLOG }} ./docker/deploy.sh blog-frontend-prod docker/docker-compose.yml
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.SERVER_SSH_KEY}}
