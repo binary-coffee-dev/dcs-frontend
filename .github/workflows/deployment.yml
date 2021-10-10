@@ -10,6 +10,8 @@ jobs:
   # BUILD PROJECT AND DEPENDENCIES
   build:
 
+#    if: "!contains(github.event.head_commit.message, 'ci skip')"
+
     runs-on: ubuntu-latest
 
     strategy:
@@ -133,10 +135,37 @@ jobs:
           privateKey: ${{ secrets.SERVER_SSH_KEY}}
 
 
+  # UPDATE APPLICATION VERSION
+  update-version:
+
+    needs: [ test ]
+#    if: github.ref == 'refs/heads/master'
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Update app version in package.json
+        run: ./docker/update-version.js
+
+      - name: Commit and push changes
+        run: ./docker/commit-version.sh
+
+
   # DEPLOY DASHBOARD (PRODUCTION)
   deploy-dashboard-prod:
 
-    needs: [ test ]
+    needs: [ update-version ]
     if: github.ref == 'refs/heads/master'
 
     runs-on: ubuntu-latest
