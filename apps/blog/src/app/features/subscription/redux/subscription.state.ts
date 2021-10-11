@@ -5,11 +5,13 @@ import { SubscribeAction, VerifySubscriptionAction } from './subscription.action
 import { initSubscriptionStateModel, SubscriptionStateModel } from './subscription-state.model';
 import { SubscriptionService } from './services/subscription.service';
 import { Subscription } from './models';
+import { Injectable } from '@angular/core';
 
 @State<SubscriptionStateModel>({
   name: 'subscription',
   defaults: initSubscriptionStateModel()
 })
+@Injectable()
 export class SubscriptionState {
 
   @Selector()
