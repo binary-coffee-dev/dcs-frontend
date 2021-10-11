@@ -1,0 +1,47 @@
+<div class="bc-card-modal"
+     fxLayout="column">
+  <span class="title">Para suscribirse a nuestra newsletter</span>
+  <div fxLayout="row"
+       fxLayoutAlign="end">
+    <form [formGroup]="subscribeForm"
+          (ngSubmit)="ok()">
+      <div fxLayout="column"
+           fxLayoutAlign="center"
+           fxLayoutGap="gappx">
+        <div class="card"
+             fxLayout="column"
+             fxLayoutAlign="center center"
+             fxLayoutGap="gappx"
+             fxFlex="100">
+          <mat-form-field appearance="outline">
+            <mat-label class="code-none">
+              <span class="code-1">var </span>
+              <span class="code-var"> Correo </span> =
+            </mat-label>
+            <input matInput
+                   type="email"
+                   placeholder="Email"
+                   formControlName="email">
+          </mat-form-field>
+          <div class='button-container'
+               fxLayout="row"
+               fxLayoutAlign='space-between'>
+            <button mat-button
+                    class="bc-button"
+                    type="submit">
+              <span class="code-1">new</span>
+              Subscriptor(
+              <span class="code-var"> Correo </span>
+              )
+            </button>
+            <button mat-button
+                    (click)='cancel()'
+                    class="bc-button secundary">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
