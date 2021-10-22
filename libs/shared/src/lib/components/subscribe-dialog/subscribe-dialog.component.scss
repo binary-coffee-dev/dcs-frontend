@@ -1,3 +1,5 @@
+@import "libs/shared/src/theme";
+
 :host {
   form {
     width: 100%;
@@ -10,7 +12,11 @@
       width: 100%;
 
       .bc-button {
-        //border: solid 1px transparent;
+        border: solid 1px transparent;
+
+        &:hover {
+          border: 1px solid map_get($md-primary, 500);
+        }
       }
     }
   }

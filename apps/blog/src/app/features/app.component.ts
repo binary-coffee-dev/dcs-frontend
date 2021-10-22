@@ -5,9 +5,12 @@ import { Store } from '@ngxs/store';
 
 import { ChangePageSizeAction, Environment, ENVIRONMENT } from '@dcs-libs/shared';
 import { consoleMessage } from './console.log';
+import { timer } from 'rxjs';
 import { MetaTagsService } from '../core/services';
 
 declare let gtag: (property: string, value: string, configs: Object) => {};
+
+const TIME_TO_OPEN_SUBSCRIPTION_DIALOG_IN_MIL = 30000;
 
 @Component({
   selector: 'app-root',
@@ -40,5 +43,17 @@ export class AppComponent implements OnInit {
       title: `RSS Feed for binary-coffee.dev`,
       href: `${this.environment.apiUrl}posts/feed/rss2`
     }, 'rss-id');
+  }
+
+  showSubscriptionDialog() {
+    if (this.canOpenSubscription()) {
+      timer(TIME_TO_OPEN_SUBSCRIPTION_DIALOG_IN_MIL).subscribe(() => {
+
+      });
+    }
+  }
+
+  canOpenSubscription(): boolean {
+    return true;
   }
 }
