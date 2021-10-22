@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { UrlUtilsService } from '../../core/services';
-import { RemoveFileAction } from '../../core/redux';
 import { SubscribeDialogComponent } from '../subscribe-dialog';
 
 @Component({
@@ -39,7 +38,6 @@ export class FooterComponent implements OnInit {
 
     openSubscriptionDialog() {
       this.dialog.open(SubscribeDialogComponent, {
-        data: { title: '¿Está seguro que desea eliminar la imágen?' },
         disableClose: true
       });
     }
