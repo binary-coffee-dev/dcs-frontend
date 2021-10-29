@@ -4,8 +4,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
 
-import { SubscribeAction } from '../../../../../../apps/blog/src/app/features/subscription/redux/subscription.action';
-import { SubscriptionState } from '../../../../../../apps/blog/src/app/features/subscription/redux/subscription.state';
+import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
+
 
 @Component({
   selector: 'app-subscribe-dialog',

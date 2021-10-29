@@ -16,3 +16,5 @@ export * from './lib/core/permissions';
 export * from './lib/core/resolvers';
 export * from './lib/core/services';
 export * from './lib/core/pipes';
+
+export * from './lib/components/subscribe-dialog';

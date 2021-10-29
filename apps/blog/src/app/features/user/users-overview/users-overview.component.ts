@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Store } from '@ngxs/store';
+
 import {
   FetchTopActiveUsersAction,
   FetchTopPopularUsersAction,

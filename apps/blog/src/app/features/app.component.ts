@@ -12,10 +12,9 @@ import {
   ConfigState,
   Environment,
   ENVIRONMENT,
-  SetConfigAction
+  SetConfigAction, SubscribeDialogComponent
 } from '@dcs-libs/shared';
 import { consoleMessage } from './console.log';
-import { SubscribeDialogComponent } from '../../../../../libs/shared/src/lib/components/subscribe-dialog';
 
 declare let gtag: (property: string, value: string, configs: Object) => {};
 
@@ -85,7 +84,8 @@ export class AppComponent implements OnInit {
     try {
       const date = new Date(lastOpenDate);
       return date.getDate() === (new Date()).getDate();
-    } catch (ignore) {
+    } catch (er) {
+      console.error(er);
     }
     return false;
   }
