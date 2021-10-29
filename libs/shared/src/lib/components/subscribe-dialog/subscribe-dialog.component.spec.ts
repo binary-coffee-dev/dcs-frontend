@@ -2,8 +2,12 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { SubscribeDialogComponent } from './subscribe-dialog.component';
+import { Store } from '@ngxs/store';
 
 class MatDialogRefStub {
+}
+
+class StoreStub {
 }
 
 describe('SubscribeDialogComponent', () => {
@@ -14,6 +18,7 @@ describe('SubscribeDialogComponent', () => {
     TestBed.configureTestingModule({
       declarations: [SubscribeDialogComponent],
       providers: [
+        {provide: Store, useClass: StoreStub},
         {provide: MatDialogRef, useClass: MatDialogRefStub},
         {provide: MAT_DIALOG_DATA, useValue: {}}
       ]
