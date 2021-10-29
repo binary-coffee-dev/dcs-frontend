@@ -6,9 +6,13 @@ import { Store } from '@ngxs/store';
 
 import { ENVIRONMENT } from '@dcs-libs/shared';
 import { AppComponent } from './app.component';
+import { MetaTagsService } from '../core/services';
 
 class StoreStub {
   dispatch = jest.fn();
+}
+
+class MetaTagsServiceStub {
 }
 
 describe('AppComponent', () => {
@@ -21,7 +25,8 @@ describe('AppComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         {provide: Store, useClass: StoreStub},
-        {provide: ENVIRONMENT, useValue: {}}
+        {provide: ENVIRONMENT, useValue: {}},
+        {provide: MetaTagsService, useClass: MetaTagsServiceStub}
       ]
     }).compileComponents();
   }));

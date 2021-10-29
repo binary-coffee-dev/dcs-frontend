@@ -5,6 +5,7 @@ import { Store } from '@ngxs/store';
 
 import { ChangePageSizeAction, Environment, ENVIRONMENT } from '@dcs-libs/shared';
 import { consoleMessage } from './console.log';
+import { MetaTagsService } from '../core/services';
 
 declare let gtag: (property: string, value: string, configs: Object) => {};
 
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
   constructor(
     public router: Router,
     private store: Store,
+    private metaTags: MetaTagsService,
     @Inject(ENVIRONMENT) private environment: Environment
   ) {
     this.router.events.subscribe(event => {
@@ -32,5 +34,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(consoleMessage);
+    this.metaTags.addLinkTag({
+      rel: 'alternate',
+      type: 'application/rss+xml',
+      title: `RSS Feed for binary-coffee.dev`,
+      href: `${this.environment.apiUrl}posts/feed/rss2`
+    }, 'rss-id');
   }
 }
