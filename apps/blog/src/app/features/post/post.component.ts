@@ -65,6 +65,12 @@ export class PostComponent extends Permissions implements OnInit {
         {key: MetaTagsService.twitterTitleMeta, value: post.title} as MetaTag
       ]);
       this.title.setTitle(`🥇 | ${post.title}`);
+      this.metaTags.addLinkTag({
+        rel: 'alternate',
+        type: 'application/rss+xml',
+        title: `RSS Feed for ${post.author.username} in binary-coffee.dev`,
+        href: `${this.environment.apiUrl}posts/feed/${this.post.author.username}/rss2`
+      }, 'rss-id');
 
       this.store.dispatch(new FetchCommentsAction(post.id));
     }
