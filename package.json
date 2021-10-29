@@ -1,6 +1,6 @@
 {
   "name": "binary-coffee-dev",
-  "version": "2021.9.10",
+  "version": "2021.9.29",
   "scripts": {
     "ng": "nx",
     "start": "ng serve --watch --poll=2000 --port=4200 --host=0.0.0.0 --disable-host-check",
