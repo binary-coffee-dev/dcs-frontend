@@ -7,12 +7,16 @@ import { Store } from '@ngxs/store';
 import { ENVIRONMENT } from '@dcs-libs/shared';
 import { AppComponent } from './app.component';
 import { MetaTagsService } from '../core/services';
+import { MatDialog } from '@angular/material/dialog';
 
 class StoreStub {
   dispatch = jest.fn();
 }
 
 class MetaTagsServiceStub {
+}
+
+class MatDialogStub {
 }
 
 describe('AppComponent', () => {
@@ -24,6 +28,7 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
+        {provide: MatDialog, useClass: MatDialogStub},
         {provide: Store, useClass: StoreStub},
         {provide: ENVIRONMENT, useValue: {}},
         {provide: MetaTagsService, useClass: MetaTagsServiceStub}

@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { UrlUtilsService } from '../../core/services';
+import { SubscribeDialogComponent } from '../subscribe-dialog';
 
 @Component({
     selector: 'app-footer',
@@ -17,7 +19,8 @@ export class FooterComponent implements OnInit {
     @Input()
     socialLinks = true;
 
-    constructor(private url: UrlUtilsService) {
+    constructor(private url: UrlUtilsService,
+                private dialog: MatDialog) {
     }
 
     ngOnInit() {
@@ -31,5 +34,11 @@ export class FooterComponent implements OnInit {
 
     getRSSUrl() {
         return this.url.normalizeSiteUrl('posts/feed/rss2');
+    }
+
+    openSubscriptionDialog() {
+      this.dialog.open(SubscribeDialogComponent, {
+        disableClose: true
+      });
     }
 }

@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-
-import { MetaTagsService } from './meta-tags.service';
 import { Meta, Title } from '@angular/platform-browser';
-import { WINDOW } from '@dcs-libs/shared';
 import { RendererFactory2 } from '@angular/core';
+
+import { WINDOW } from '@dcs-libs/shared';
+import { MetaTagsService } from './meta-tags.service';
 
 class TitleStub {
 }

@@ -1,11 +1,15 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { UrlUtilsService } from '@dcs-libs/shared';
 import { FooterComponent } from './footer.component';
 
 class UrlUtilsServiceStub {
   normalizeSiteUrl = jest.fn();
+}
+
+class MatDialogStub {
 }
 
 describe('FooterComponent', () => {
@@ -15,7 +19,10 @@ describe('FooterComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [FooterComponent],
-      providers: [{provide: UrlUtilsService, useClass: UrlUtilsServiceStub}],
+      providers: [
+        {provide: MatDialog, useClass: MatDialogStub},
+        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
+      ],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();

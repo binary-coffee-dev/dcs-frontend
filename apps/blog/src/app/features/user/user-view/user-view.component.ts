@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 import {
   UrlUtilsService,
@@ -8,8 +10,6 @@ import {
   Post,
   PostState, User, NextPageAction, PreviousPageAction, WINDOW, ENVIRONMENT, Environment
 } from '@dcs-libs/shared';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-view',

@@ -5,11 +5,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
 
-import {
-  SubscribeAction,
-  VerifySubscriptionAction
-} from './redux/subscription.action';
-import { SubscriptionState } from './redux/subscription.state';
+import { SubscribeAction, SubscriptionState, VerifySubscriptionAction } from '@dcs-libs/shared';
+
 
 @Component({
   selector: 'app-subscription',
