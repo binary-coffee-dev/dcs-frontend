@@ -45,8 +45,10 @@ export class AuthComponent implements OnInit {
       const password = this.loginForm.controls.password.value;
       this.store.dispatch(new LoginAction(identifier, password)).subscribe(() => {
         const redir = this.route.snapshot.queryParamMap.get('redir');
+        const tokenOn = this.route.snapshot.queryParamMap.get('tokenOn');
         if (redir) {
-          this.window.location.href = redir;
+          // toDo 21.11.21, guille, validate query params
+          this.window.location.href = redir + (tokenOn ? '?token=' + this.store.selectSnapshot(AuthState.token) : '');
         } else {
           this.redirectToDashboard();
         }
@@ -59,9 +61,11 @@ export class AuthComponent implements OnInit {
   loginWithProvider(provider: Provider) {
     const siteDashboardUrl = this.env.siteDashboardUrl + (this.env.siteDashboardUrl.endsWith('/') ? '' : '/');
     const redir = this.route.snapshot.queryParamMap.get('redir');
+    const tokenOn = this.route.snapshot.queryParamMap.get('tokenOn');
     const redirectUri =
-      new URL(`./provider/${provider.name}` + (redir ? `?redir=${encodeURIComponent(redir)}` : ''), siteDashboardUrl).href;
-    const queryParams = {
+      new URL(`./provider/${provider.name}` + (redir ? `?${tokenOn ? 'tokenOn=true&' : ''}redir=${encodeURIComponent(redir)}` : ''),
+        siteDashboardUrl).href;
+    let queryParams = {
       client_id: this.env.githubClientId,
       scope: provider.scope,
       redirect_uri: redirectUri
