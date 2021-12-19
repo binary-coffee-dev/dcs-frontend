@@ -7,6 +7,10 @@ import moment from 'moment';
 })
 export class MomentService {
 
+  constructor() {
+    moment.locale('es');
+  }
+
   timeFromDate(date) {
     return moment(date).fromNow();
   }

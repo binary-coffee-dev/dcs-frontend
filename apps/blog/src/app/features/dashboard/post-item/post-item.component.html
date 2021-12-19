@@ -1,64 +1,50 @@
-<div class="container"
-     fxLayout="row">
-  <div class="line-number"
-       fxLayout="row"
-       fxLayoutAlign="end start">
-    <span>{{number}}</span>
-  </div>
+<div class='container'
+     fxLayout='row'>
   <a [routerLink]="'post/' + post?.name"
-     class="card-container"
-     fxLayout="column">
-    <div fxLayout="row"
-         fxLayout.xs="column">
-      <div fxLayout="column"
-           fxLayoutAlign="start"
-           fxFlexOrder.xs="1">
+     class='card-container'
+     fxLayout='column'>
 
-        <div class="post-image-container"
-             [fxShow.xs]="false">
-          <img [src]="getPostBanner(post)">
-        </div>
+    <img *ngIf='post?.banner?.url'
+         [src]='getPostBanner(post)'
+         [alt]='post?.title'>
 
+    <div class='card-container-inner'>
+      <div *ngIf='post?.author'
+           class='author-container'
+           fxLayoutAlign='start center'
+           fxLayout='row'>
+
+        <img *ngIf='post?.author?.avatarUrl'
+             [src]='getUserAvatarUrl(post?.author)'
+             [alt]='post?.author?.username'>
+        {{post?.author?.username || 'público'}}
       </div>
 
-      <div class="post-body-container"
-           [fxFlex.gt-sm]="80"
-           fxLayout="column">
-        <div class="post-info-vars">
+      <span class='post-date'>// {{post?.publishedAt ? moment.timeFromDate(post?.publishedAt) : ''}}</span>
 
-          <span class="code-1">var </span>
-          <span class="code-var"> Título </span> =
-          <h3 class="code-2">
-            "<span class="post-title">{{post?.title}}</span>"
-          </h3>
+      <h1>
+        <span>var</span> Título = <b>{{post?.title}}</b>
+      </h1>
 
-          <span class="post-info">// {{post?.publishedAt && moment.timeFromDate(post?.publishedAt) || ''}}</span>
-
-          <div fxLayout="column"
-               fxLayoutAlign="start start"
-               fxLayoutGap="gappx">
-            <div>
-              <span class="code-1"> var </span>
-              <span class="code-var"> Autor </span> =
-              <a class="post-author-link code-2">
-                <b>"{{post?.author?.username || 'público'}}"</b>
-              </a>
-            </div>
-            <div>
-              <span class="code-1"> var </span>
-              <span class="code-var"> Opiniones </span> =
-              <b class="code-2">{{post?.comments || 0}}</b>
-            </div>
-          </div>
-
-        </div>
-
+      <div>
+        <app-tags [tags]='post?.tags'></app-tags>
       </div>
-    </div>
 
-    <div class="post-tag-content"
-         fxFlex="100">
-      <app-tags [tags]="post?.tags"></app-tags>
+      <div fxLayout='row'
+           class='icons-container'>
+        <div>
+          <i class='material-icons post-icons'>mode_comment</i>
+          {{post?.comments}}
+        </div>
+        <div>
+          <i class='fa fa-coffee post-icons'></i>
+          0
+        </div>
+        <div>
+          <i class='fa fa-eye post-icons'></i>
+          {{post?.views}}
+        </div>
+      </div>
     </div>
   </a>
 </div>
