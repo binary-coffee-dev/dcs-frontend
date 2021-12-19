@@ -14,8 +14,7 @@
            fxLayoutAlign='start center'
            fxLayout='row'>
 
-        <img *ngIf='post?.author?.avatarUrl'
-             [src]='getUserAvatarUrl(post?.author)'
+        <img [src]='url.getUserImage(post?.author)'
              [alt]='post?.author?.username'>
         {{post?.author?.username || 'público'}}
       </div>

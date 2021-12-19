@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Post, User } from '@dcs-libs/shared';
+import { Post, UrlUtilsService, User } from '@dcs-libs/shared';
 import { MomentService, ResourceService } from '../../../core/services';
 
 @Component({
@@ -15,6 +15,7 @@ export class PostItemComponent {
 
   constructor(
     public moment: MomentService,
+    public url: UrlUtilsService,
     private resource: ResourceService
   ) {
   }
@@ -24,9 +25,5 @@ export class PostItemComponent {
       return this.resource.addApiUrl(post.banner.url);
     }
     return '/assets/images/banner-default.jpg';
-  }
-
-  getUserAvatarUrl(user: User) {
-    return this.resource.addApiUrl(user.avatarUrl);
   }
 }
