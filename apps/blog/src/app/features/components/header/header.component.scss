@@ -1,63 +1,44 @@
 @import "libs/shared/src/theme";
 
+$toolbar-height: 100px;
+
 :host {
 
   mat-toolbar {
     position: sticky;
     top: 0;
     z-index: 99;
-    background-color: map_get($md-primary, 50);
-    padding: initial map-get($map: $spacings, $key: 4);
-    height: 64px;
-    max-height: 64px;
-    min-height: 64px;
+    background-color: map_get($md-grey, 100);
+    padding: initial map_get($spacings, 10);
 
-    .bc {
-      color: map_get($md-primary, 800);
-      text-transform: uppercase;
-      font-weight: 100;
-      font-size: 1.5rem;
-      cursor: pointer;
+    height: $toolbar-height;
+    max-height: $toolbar-height;
+    min-height: $toolbar-height;
+
+    color: map_get($md-grey, 900);
+
+    img {
+      width: 40px;
+      margin-right: map_get($spacings, 4);
     }
 
-    .go-link{
-      color: map-get($map: $md-grey, $key: 900);
-      padding: map-get($map: $spacings, $key: 1); 
-      margin-right: map-get($map: $spacings, $key: 1);
-      border-radius: map-get($map: $radius, $key: 2);
-      width: 1.5em;
-      text-align: center;
-
-      &:hover{
-        background-color: map-get($map: $md-primary, $key: 100); 
-      }
+    .fill-space {
+      width: 100%;
     }
 
-    .go-root {
-      color: map_get($md-primary, 800);
-      text-decoration: none;
-      cursor: pointer;
-      animation: rotate-color 2s infinite forwards;
-      animation-play-state: paused;
+    mat-button-toggle {
+      height: 35px;
+      width: 45px;
+      margin-left: map_get($spacings, 4);
+      font-size: 1rem;
+      background-color: map_get($md-grey, 400);
+      color: map-get($md-primary, 500);
 
-      .logo {
-        height: 2rem;
-        margin: 0 0 map_get($spacings, 1) 0;
-      }
-
-      &:hover {
-        animation-play-state: running;
-      }
-
-      @keyframes rotate-color {
-        to {
-          filter: hue-rotate(1turn);
-        }
+      ::ng-deep span {
+        line-height: 35px;
+        padding: 0;
+        font-weight: bold !important;
       }
     }
-  }
-
-  .links-xs {
-    padding: map_get($spacings, 2);
   }
 }

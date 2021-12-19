@@ -1,36 +1,14 @@
-<mat-toolbar fxLayout="row" fxLayoutAlign="center center">
-  <div fxLayoutAlign="start center" fxFlex="33" fxFlex.xs="50">
-    <app-login-button></app-login-button>
-  </div>
+<mat-toolbar fxLayout='row'
+             fxLayoutAlign='center center'>
 
-  <div
-    class="bc"
-    fxLayout="column"
-    fxLayoutAlign="center center"
-    fxFlex="33"
-    (click)="openRoot()"
-    [fxHide.xs]="true"
-  >
-    Binary Coffee
-  </div>
+  <img src='/assets/images/128x128/binarycoffee_2.0.0.png'
+       alt='binarycoffee-logo'>
+  Binary Coffee
 
-  <div fxLayout="row" fxLayoutAlign="end center" fxFlex="33" fxFlex.xs="50">
+  <div class='fill-space'></div>
 
-    <a class="go-link" routerLink="/users" matTooltip="Usuarios">
-      <i class="fa fa-users"></i>
-    </a>
-
-    <a
-      class="go-root"
-      (click)="openRoot()"
-      matTooltip="Ir a Binary Coffee"
-      fxLayoutAlign="center center"
-    >
-      <img
-        class="logo"
-        src="assets/images/64x64/binarycoffee_2.0.1-i.png"
-        alt="Binary Coffee"
-      />
-    </a>
-  </div>
+  <app-login-button></app-login-button>
+  <mat-button-toggle>
+    <mat-icon aria-hidden='false'>menu</mat-icon>
+  </mat-button-toggle>
 </mat-toolbar>
