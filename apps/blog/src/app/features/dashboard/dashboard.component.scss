@@ -2,27 +2,27 @@
 
 :host {
   .container {
-    min-height: calc(100vh - 248px);
-    margin-top: -1px; 
 
-    .posts-container {
-    
-      .post-element-content {
-        margin-top: -9px;
+    .data-container {
+      width: 100vw;
+      padding: initial map_get($spacings, 10);
+
+      .left-bar {
+        min-height: 300px;
+        background-color: #8e01b1;
       }
-    }
 
-    .rows {
-      color: map_get($md-grey, 500);
-      padding: map_get($spacings, 1);
+      .posts-container {
 
-      .row {
-        margin-bottom: map_get($spacings, 1);
+        .post-element-content {
+          margin-top: 10px;
+        }
       }
-    }
 
-    .recent-comments {
-      margin-top: map-get($map: $spacings, $key: 4);
+      .right-bar {
+        min-height: 300px;
+        background-color: #1da1f2;
+      }
     }
   }
 }

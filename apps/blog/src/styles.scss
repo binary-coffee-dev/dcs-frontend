@@ -1,7 +1,35 @@
 @import "libs/shared/src/theme";
 
+@font-face {
+  font-family: "Oxygen";
+  src: url(./assets/Fira_Code/FiraCode-Bold.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oxygen";
+  src: url(assets/Fira_Code/FiraCode-Light.ttf) format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oxygen";
+  src: url(assets/Fira_Code/FiraCode-Regular.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oxygen";
+  src: url(assets/Fira_Code/FiraCode-SemiBold.ttf) format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
 * {
-  font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
+  font-family: 'Oxygen', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
 }
 
 .post-info {
