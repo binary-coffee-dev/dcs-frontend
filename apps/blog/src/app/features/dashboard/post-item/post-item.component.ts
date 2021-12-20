@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Post, UrlUtilsService, User } from '@dcs-libs/shared';
+import { Post, UrlUtilsService } from '@dcs-libs/shared';
 import { MomentService, ResourceService } from '../../../core/services';
 
 @Component({

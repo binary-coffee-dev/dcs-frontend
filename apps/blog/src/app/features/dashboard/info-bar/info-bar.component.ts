@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Comment, CommentState, FetchPodcastAction, Podcast, PodcastState, UrlUtilsService } from '@dcs-libs/shared';
+import { Comment, CommentState, Podcast, PodcastState, UrlUtilsService } from '@dcs-libs/shared';
 import { Store } from '@ngxs/store';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
