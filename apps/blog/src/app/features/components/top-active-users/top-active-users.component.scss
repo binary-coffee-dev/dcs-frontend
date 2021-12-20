@@ -22,16 +22,38 @@
           height: 40px;
           border-radius: 50%;
           margin-right: map-get($spacings, 2);
+          border: solid 2px transparent;
         }
 
-        .top-user-name {
-          color: map-get($md-grey, 800);
+        .user-info {
+          .top-user-name {
+            color: map-get($md-grey, 800);
+          }
+
+          .post-info {
+            color: map-get($md-grey, 600);
+          }
         }
 
-        .post-info {
-          color: map-get($md-grey, 600);
+        &:hover {
+          .user-info {
+            animation: anim-active-user .3s normal;
+          }
+
+          img {
+            border: solid 2px map-get($md-primary, 500);
+          }
         }
       }
+    }
+  }
+
+  @keyframes anim-active-user {
+    from {
+      min-height: 0;
+    }
+    to {
+      min-height: 40px;
     }
   }
 }
