@@ -35,11 +35,13 @@ import { LoginRequestModalComponent } from './features/components/login-request-
 import { PodcastModule } from './features/podcast';
 import { UserModule } from './features/user/user.module';
 import { HttpLink } from 'apollo-angular/http';
+import { FilterComponent } from './features/components/filter/filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    FilterComponent,
     FooterComponent,
     SocialLinksComponent,
     NewLabelComponent,
