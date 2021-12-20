@@ -19,9 +19,14 @@ $toolbar-height: 100px;
 
     box-shadow: map_get($box-shadow, 2);
 
-    img {
-      width: 40px;
-      margin-right: map_get($spacings, 4);
+    a {
+      text-decoration: none;
+      color: map_get($md-grey, 900);
+
+      img {
+        width: 40px;
+        margin-right: map_get($spacings, 4);
+      }
     }
 
     .fill-space {

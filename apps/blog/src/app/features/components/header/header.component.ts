@@ -41,8 +41,4 @@ export class HeaderComponent implements OnInit {
         this.showSearch = !!isHome;
       });
   }
-
-  openRoot() {
-    this.window.location.href = this.env.siteUrl;
-  }
 }
