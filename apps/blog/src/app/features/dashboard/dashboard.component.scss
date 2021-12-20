@@ -2,24 +2,29 @@
 
 :host {
   .container {
+    overflow: hidden;
 
-    .data-container {
+    .align-container {
       width: 100vw;
-      padding: initial map_get($spacings, 10);
+      overflow: hidden;
 
-      .left-bar {
-        min-height: 300px;
-      }
+      .data-container {
+        overflow: hidden;
 
-      .posts-container {
-
-        .post-element-content {
-          margin-top: 10px;
+        .left-bar {
+          min-height: 300px;
         }
-      }
 
-      .right-bar {
-        min-height: 300px;
+        .posts-container {
+
+          .post-element-content {
+            margin-top: 10px;
+          }
+        }
+
+        .right-bar {
+          min-height: 300px;
+        }
       }
     }
   }

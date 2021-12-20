@@ -4,33 +4,50 @@
 
   <app-slider></app-slider>
 
-  <div class='data-container'
+  <div class='align-container'
+       fxLayoutAlign='center start'
        fxLayout='row'>
 
-    <div class='left-bar'
-         fxFlex='20'>
+    <div class='data-container'
+         fxLayoutAlign='center start'
+         fxFlex.xl='50'
+         fxFlex.lg='70'
+         fxFlex='80'
+         fxFlex.md='95'
+         fxFlex.sm='100'
+         fxFlex.xs='100'
+         fxLayout='row'>
 
-      <app-top-popular-users></app-top-popular-users>
+      <div class='left-bar'
+           fxHide.sm
+           fxHide.xs>
 
-      <app-top-active-users></app-top-active-users>
-    </div>
+        <app-top-popular-users></app-top-popular-users>
 
-    <div class='posts-container'
-         fxFlex='45'>
-
-      <div class='post-element-content'>
-        <app-post-item
-          class='post-element'
-          *ngFor='let post of posts'
-          [post]='post'>
-        </app-post-item>
+        <app-top-active-users></app-top-active-users>
       </div>
-      <app-pagination></app-pagination>
-    </div>
 
-    <div class='right-bar'
-         fxFlex='35'>
-      <app-info-bar></app-info-bar>
+      <div class='posts-container'
+           fxFlex.sm='56'
+           fxFlex.xs='100'
+           fxFlex='45'>
+
+        <div class='post-element-content'>
+          <app-post-item
+            class='post-element'
+            *ngFor='let post of posts'
+            [post]='post'>
+          </app-post-item>
+        </div>
+        <app-pagination></app-pagination>
+      </div>
+
+      <div class='right-bar'
+           fxHide.xs
+           fxFlex.sm='40'
+           fxFlex='35'>
+        <app-info-bar></app-info-bar>
+      </div>
     </div>
   </div>
 
