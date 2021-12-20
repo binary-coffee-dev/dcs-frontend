@@ -5,6 +5,7 @@
      fxLayout='column'>
 
     <img *ngIf='post?.banner?.url'
+         class='post-image'
          [src]='getPostBanner(post)'
          [alt]='post?.title'>
 

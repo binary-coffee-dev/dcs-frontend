@@ -19,6 +19,14 @@ $post_image_size: 110px;
       overflow: hidden;
       text-decoration: none;
 
+      .post-image {
+        max-height: 200px;
+        min-height: 200px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
       .card-container-inner {
         padding: map-get($spacings, 3);
 
