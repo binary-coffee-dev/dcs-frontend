@@ -7,6 +7,9 @@ import { PostsGuard } from './guards';
 const routes: Routes = [
   {
     path: '',
+    data: {
+      isHome: true
+    },
     component: DashboardComponent,
     canActivate: [PostsGuard]
   }
