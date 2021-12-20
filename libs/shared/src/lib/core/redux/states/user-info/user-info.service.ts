@@ -15,21 +15,18 @@ export class UserInfoService {
   }
 
   topActiveUsers(): Observable<TopUsers> {
-    return this.apollo.watchQuery({query: TOP_ACTIVE_USERS_QUERY, fetchPolicy: 'no-cache'})
-      .valueChanges
+    return this.apollo.query({query: TOP_ACTIVE_USERS_QUERY, fetchPolicy: 'no-cache'})
       .pipe(map((result: any) => result.data.topActiveUsers));
   }
 
   topPopularUsers(): Observable<TopUsers> {
-    return this.apollo.watchQuery({query: TOP_POPULAR_USERS_QUERY, fetchPolicy: 'no-cache'})
-      .valueChanges
+    return this.apollo.query({query: TOP_POPULAR_USERS_QUERY, fetchPolicy: 'no-cache'})
       .pipe(map((result: any) => result.data.topPopularUsers));
   }
 
   getUsers(search: string): Observable<User[]> {
     const where = search === '' ? {} : {username: search};
-    return this.apollo.watchQuery({query: GET_USERS, variables: {where}, fetchPolicy: 'no-cache'})
-      .valueChanges
+    return this.apollo.query({query: GET_USERS, variables: {where}, fetchPolicy: 'no-cache'})
       .pipe(map((result: any) => result.data.users));
   }
 

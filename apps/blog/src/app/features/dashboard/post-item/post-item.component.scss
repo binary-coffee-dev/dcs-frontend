@@ -3,116 +3,91 @@
 $post_image_size: 110px;
 
 :host {
+
   .container {
-
-    &:hover {
-      .line-number {
-        background-color: map_get($md-primary, 200);
-        color: map_get($md-grey, A100);
-      }
-
-      .card-container {
-        background-color: map_get($md-primary, 50);
-      }
-
-      .post-image-container img {
-        transform: scale(1.5);
-      }
-    }
-  }
-
-  .card-container {
-    border-right: 1px solid map_get($md-primary, 100);
-    border-bottom: 1px solid map_get($md-primary, 100);
-    background-color: map_get($md-grey, A100);
     width: 100%;
-    padding: map_get($spacings, 4);
-    cursor: pointer;
-    text-decoration: none;
-    color: map_get($md-grey, 800);
-  }
+    //margin-bottom: map-get($spacings, 5);
+    padding: map-get($spacings, 2);
 
-  .line-number {
-    color: map_get($md-grey, 600);
-    background-color: map_get($md-primary, 100);
-    min-width: map_get($spacings, 9);
-
-    span {
-      padding: map_get($spacings, 4) map_get($spacings, 1) 0 map_get($spacings, 3);
-    }
-  }
-
-  .post-image-container {
-    width: $post_image_size;
-    height: $post_image_size;
-    min-width: $post_image_size;
-    margin-right: map_get($spacings, 4);
-    border-radius: map_get($radius, 2);
-    border: 1px solid map_get($md-primary, 100);
-    overflow: hidden;
-
-    img {
+    a {
+      position: relative;
+      border: solid 0.1px #0000;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: transform .2s;
-    }
-  }
-
-  .post-tag-content {
-    @media screen and (max-width: 599px) {
-      max-width: none;
-    }
-  }
-
-
-  .post-info-vars {
-    margin-bottom: map_get($spacings, 2);
-
-    h3 {
-      padding-top: 0;
-      margin-top: 0;
-    }
-
-    .post-title {
-      text-transform: uppercase;
-    }
-
-    .post-author-link {
+      background-color: map-get($md-grey, 400);
+      border-radius: map-get($radius, 3);
+      box-shadow: map_get($box-shadow-up, 2);
+      overflow: hidden;
       text-decoration: none;
 
-      mat-icon {
-        margin-left: map_get($spacings, 1);
+      .post-image {
+        max-height: 200px;
+        min-height: 200px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .card-container-inner {
+        padding: map-get($spacings, 3);
+
+        .post-date {
+          font-size: 10px;
+          color: map-get($md-grey, 800);
+        }
+
+        h1 {
+          font-size: 15px;
+          font-weight: 100;
+          color: map-get($md-grey, 800);
+
+          span {
+            color: map-get($md-primary, 500);
+          }
+        }
+
+        .icons-container {
+          margin-top: map-get($spacings, 3);
+          color: map-get($md-grey, 800);
+          font-size: 12px;
+
+          div {
+            margin-right: map-get($spacings, 3);
+          }
+
+          .post-icons {
+            font-size: 12px;
+          }
+        }
+
+        .author-container {
+          font-size: 10px;
+          color: map-get($md-grey, 800);
+
+          img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: map-get($spacings, 2);
+          }
+
+          &:hover {
+            animation: anim-author-link 0.3s infinite alternate;
+          }
+        }
       }
 
       &:hover {
-        mat-icon {
-          animation: anim-author-link 0.3s infinite alternate;
+        &:before {
+          position: absolute;
+          left: 0;
+          content: "";
+          width: 6px;
+          height: 100%;
+          background-color: map-get($md-primary, 500);
+          z-index: 50;
+          animation: anim-active-line .3s normal;
         }
       }
-    }
-  }
-
-  .post-info-container {
-    margin: 0;
-    font-family: get($font-family);
-  }
-
-  .post-body-extract {
-    width: 100%;
-    font-family: get($font-family);
-    letter-spacing: 0.45px;
-    font-size: 0.95rem;
-    font-stretch: expanded;
-    padding: 0 map_get($spacings, 5);
-    color: map_get($md-grey, 900);
-    text-align: justify;
-  }
-
-  @media screen and (max-width: 599px) {
-    .post-body-extract {
-      padding: 0;
     }
   }
 
@@ -123,6 +98,15 @@ $post_image_size: 110px;
 
     100% {
       transform: translateX(5px);
+    }
+  }
+
+  @keyframes anim-active-line {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 6px;
     }
   }
 }

@@ -1,52 +1,39 @@
 @import "libs/shared/src/theme";
 
-* {
-  font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
+$fa-font-path: "../../../node_modules/font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome';
+
+// loading oxygen font
+@font-face {
+  font-family: "Oxygen";
+  src: url(./assets/Fira_Code/FiraCode-Bold.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
 }
 
-.post-info {
-  color: map_get($md-grey, 600);
-  font-size: 0.8125rem;
-  position: relative;
-  margin-right: 15px;
+@font-face {
+  font-family: "Oxygen";
+  src: url(assets/Fira_Code/FiraCode-Light.ttf) format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
 
-  span {
-    margin-right: 5px;
-  }
+@font-face {
+  font-family: "Oxygen";
+  src: url(assets/Fira_Code/FiraCode-Regular.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
-  mat-icon {
-    font-size: 1.1rem;
-    height: auto;
-    color: map_get($md-primary, 500);
-  }
+@font-face {
+  font-family: "Oxygen";
+  src: url(assets/Fira_Code/FiraCode-SemiBold.ttf) format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
 
-  a {
-    text-decoration: none;
-    color: map_get($md-grey, 600);
-    font-weight: 600;
-
-    img {
-      width: 30px;
-      height: 30px;
-      margin-right: 5px;
-      border-radius: 100%;
-    }
-  }
-
-  &.separator {
-    &:after {
-      content: "";
-      display: inline-block;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: #8f8f8f;
-      position: absolute;
-      right: -9px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
+* {
+  font-family: 'Oxygen', 'Droid Sans Mono', monospace;
 }
 
 markdown {
@@ -87,7 +74,7 @@ markdown {
     }
   }
 
-  p code, li code{
+  p code, li code {
     background: #00000014;
     color: #706060;
     padding: 0 1px;

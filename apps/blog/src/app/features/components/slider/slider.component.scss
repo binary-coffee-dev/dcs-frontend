@@ -1,0 +1,7 @@
+@import "libs/shared/src/theme";
+
+:host {
+  height: 300px;
+  background-color: map-get($md-primary, 500);
+  width: 100vw;
+}

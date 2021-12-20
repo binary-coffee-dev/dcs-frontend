@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Post } from '@dcs-libs/shared';
+import { Post, UrlUtilsService } from '@dcs-libs/shared';
 import { MomentService, ResourceService } from '../../../core/services';
 
 @Component({
@@ -13,11 +13,9 @@ export class PostItemComponent {
   @Input()
   post: Post;
 
-  @Input()
-  number: number;
-
   constructor(
     public moment: MomentService,
+    public url: UrlUtilsService,
     private resource: ResourceService
   ) {
   }

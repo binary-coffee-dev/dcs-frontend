@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
       title: `RSS Feed for binary-coffee.dev`,
       href: `${this.environment.apiUrl}posts/feed/rss2`
     }, 'rss-id');
-    this.showSubscriptionDialog();
+    // this.showSubscriptionDialog();
   }
 
   showSubscriptionDialog() {

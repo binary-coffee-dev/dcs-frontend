@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { State, Action, Selector, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { FetchPodcastAction } from './podcast.actions';
 import { Podcast } from '../../models';
@@ -30,6 +31,12 @@ export class PodcastState {
 
   @Action(FetchPodcastAction)
   public fetchPodcast(ctx: StateContext<PodcastStateModel>) {
-    return this.podcastService.fetchPodcasts().pipe(tap((items: Podcast[]) => ctx.patchState({items})));
+    return this.podcastService.fetchPodcasts().pipe(
+      tap((items: Podcast[]) => ctx.patchState({items})),
+      catchError((err) => {
+        console.error(err);
+        return of(true);
+      })
+    );
   }
 }
