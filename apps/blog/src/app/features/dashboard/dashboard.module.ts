@@ -16,6 +16,7 @@ import { RecentPodcastsComponent } from './recent-podcasts/recent-podcasts.compo
 import { TopActiveUsersModule } from '../components/top-active-users/top-active-users.module';
 import { TopPopularUsersModule } from '../components/top-popular-users/top-popular-users.module';
 import { SliderComponent } from '../components/slider/slider.component';
+import { InfoBarComponent } from './info-bar/info-bar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SliderComponent } from '../components/slider/slider.component';
     LimitTextPipe,
     FilterComponent,
     RecentPodcastsComponent,
-    SliderComponent
+    SliderComponent,
+    InfoBarComponent
   ],
   imports: [
     CommonModule,

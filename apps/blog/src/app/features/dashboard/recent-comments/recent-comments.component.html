@@ -1,35 +1,44 @@
-<div *ngIf="comments?.length > 0" class="container code-none">
-  <div [fxHide.xs]="true" [fxHide.sm]="true">
-    <span class="code-1">class</span>
+<div *ngIf='comments?.length > 0'
+     class='container code-none'>
+  <div [fxHide.xs]='true'
+       [fxHide.sm]='true'>
+    <span class='code-1'>class</span>
     <span> OpinionesRecientes</span>
     <span> {{ ' {' }}</span>
   </div>
-  <div class="link-container" fxLayout="column">
-    <ng-container *ngFor="let comment of comments">
-      <a 
-        class="recent-comment"
-        *ngIf="comment?.body"
-        [title]="comment?.user?.username"
+  <div class='link-container'
+       fxLayout='column'>
+    <ng-container *ngFor='let comment of comments'>
+      <a
+        class='recent-comment'
+        *ngIf='comment?.body'
+        [title]='comment?.user?.username'
         [routerLink]="'/post/' + comment?.post?.name"
-        [fragment]="comment?.id"
-        fxLayout="row"
-        fxLayoutAlign="center center"
+        [fragment]='comment?.id'
+        fxLayout='row'
+        fxLayoutAlign='center center'
       >
-        <img
-          class="comment-user-image"
-          [src]="getUserAvatar(comment?.user)"
-          alt="noavatar">
-        <div fxLayout="column" fxFlex="90" fxLayoutAlign="left left">
-          <span class="post-info"> // {{ comment?.user?.username }} </span>
+        <div class='comment-user-avatar'>
+          <img
+            class='comment-user-image'
+            [src]='getUserAvatar(comment?.user)'
+            alt='noavatar'>
+        </div>
+        <div fxLayout='column'
+             fxFlex='90'
+             fxLayoutAlign='left left'>
+          <span class='post-info'> // {{ comment?.user?.username }} </span>
 
-          <span class="comment-content">
-            <mat-icon mat-font-icon="fa-icon" class="fa fa-comment"> </mat-icon>
+          <span class='comment-content'>
+            <mat-icon mat-font-icon='fa-icon'
+                      class='fa fa-comment'> </mat-icon>
             "{{ comment?.body | limitText: 40
-            }}<span *ngIf="comment?.body.length > 40">...</span>"
+            }}<span *ngIf='comment?.body.length > 40'>...</span>"
           </span>
         </div>
       </a>
     </ng-container>
   </div>
-  <div [fxHide.xs]="true" [fxHide.sm]="true">{{ '}' }}</div>
+  <div [fxHide.xs]='true'
+       [fxHide.sm]='true'>{{ '}' }}</div>
 </div>

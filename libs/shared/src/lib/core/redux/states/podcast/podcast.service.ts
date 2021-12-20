@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { Podcast } from '../../models';
 import { Environment, ENVIRONMENT } from '../../../models';
@@ -15,6 +15,15 @@ export class PodcastService {
   }
 
   fetchPodcasts(): Observable<Podcast[]> {
-    return this.http.get<Podcast[]>(this.environment.podcastApiUrl);
+    const v = {
+      url: 'http://localhost',
+      date: '2021-06-26T20:00:00.000Z',
+      banner: '',
+      duration: 200,
+      id: 'asdfasdf',
+      name: 'Episodio 0: ¿Quiénes somos?'
+    } as Podcast;
+    return of([v, v, v, v]);
+    // return this.http.get<Podcast[]>(this.environment.podcastApiUrl);
   }
 }
