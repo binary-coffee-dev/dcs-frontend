@@ -15,15 +15,15 @@ export class PodcastService {
   }
 
   fetchPodcasts(): Observable<Podcast[]> {
-    const v = {
-      url: 'http://localhost',
-      date: '2021-06-26T20:00:00.000Z',
-      banner: '',
-      duration: 200,
-      id: 'asdfasdf',
-      name: 'Episodio 0: ¿Quiénes somos?'
-    } as Podcast;
-    return of([v, v, v, v]);
-    // return this.http.get<Podcast[]>(this.environment.podcastApiUrl);
+    // const v = {
+    //   url: 'http://localhost',
+    //   date: '2021-06-26T20:00:00.000Z',
+    //   banner: '',
+    //   duration: 200,
+    //   id: 'asdfasdf',
+    //   name: 'Episodio 0: ¿Quiénes somos?'
+    // } as Podcast;
+    // return of([v, v, v, v]);
+    return this.http.get<Podcast[]>(this.environment.podcastApiUrl);
   }
 }

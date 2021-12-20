@@ -27,7 +27,6 @@ export class InfoBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new FetchPodcastAction());
     this.store.select(PodcastState.podcastList)
       .pipe(takeUntil(this._unsubscribe))
       .subscribe(list => {

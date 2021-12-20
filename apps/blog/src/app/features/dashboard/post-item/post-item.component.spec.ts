@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
+import { UrlUtilsService } from '@dcs-libs/shared';
 import { PostItemComponent } from './post-item.component';
 import { MomentService, ResourceService } from '../../../core/services';
 
@@ -8,6 +9,9 @@ class MomentServiceStub {
 }
 
 class ResourceServiceStub {
+}
+
+class UrlUtilsServiceStub {
 }
 
 describe('PostItemComponent', () => {
@@ -19,7 +23,8 @@ describe('PostItemComponent', () => {
       declarations: [PostItemComponent],
       providers: [
         {provide: MomentService, useClass: MomentServiceStub},
-        {provide: ResourceService, useClass: ResourceServiceStub}
+        {provide: ResourceService, useClass: ResourceServiceStub},
+        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
