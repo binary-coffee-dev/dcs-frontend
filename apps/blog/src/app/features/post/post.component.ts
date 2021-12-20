@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,29 +13,36 @@ import {
   PostState,
   AuthState,
   Permissions,
-  WINDOW
+  WINDOW, UrlUtilsService, MomentService
 } from '@dcs-libs/shared';
 import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent extends Permissions implements OnInit {
+export class PostComponent extends Permissions implements OnInit, OnDestroy {
 
   post: Post;
   isBrowser: boolean;
+  likes = 0;
+
+  _unsubscribe = new Subject();
 
   constructor(
     private store: Store,
     public resource: ResourceService,
     private metaTags: MetaTagsService,
+    public moment: MomentService,
     private title: Title,
     private scroll: ScrollService,
     @Inject(WINDOW) private window: Window,
     @Inject(ENVIRONMENT) private environment: Environment,
     private route: ActivatedRoute,
+    public url: UrlUtilsService,
     @Inject(PLATFORM_ID) platformId: string,
     protected sanitizer: DomSanitizer
   ) {
@@ -50,6 +57,13 @@ export class PostComponent extends Permissions implements OnInit {
     if (!fragment) {
       this.scroll.smoothScroll();
     }
+    this.store.select(PostState.likes)
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe(likes => this.likes = likes);
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe.next();
   }
 
   loadArticle(post: Post) {
@@ -57,12 +71,15 @@ export class PostComponent extends Permissions implements OnInit {
       this.post = post;
       const imageUrl = post.banner ? new URL(post.banner.url, this.environment.apiUrl).toString() : '';
       this.metaTags.updateMetas([
-        {key: MetaTagsService.metas, value: new URL(`post/${post.name}`, this.environment.siteUrl).toString()} as MetaTag,
-        {key: MetaTagsService.titleMeta, value: `${post.title} | 🥇`} as MetaTag,
-        {key: MetaTagsService.imageMeta, value: imageUrl} as MetaTag,
-        {key: MetaTagsService.twitterImageMeta, value: imageUrl} as MetaTag,
-        {key: MetaTagsService.typeMeta, value: 'article'} as MetaTag,
-        {key: MetaTagsService.twitterTitleMeta, value: post.title} as MetaTag
+        {
+          key: MetaTagsService.metas,
+          value: new URL(`post/${post.name}`, this.environment.siteUrl).toString()
+        } as MetaTag,
+        { key: MetaTagsService.titleMeta, value: `${post.title} | 🥇` } as MetaTag,
+        { key: MetaTagsService.imageMeta, value: imageUrl } as MetaTag,
+        { key: MetaTagsService.twitterImageMeta, value: imageUrl } as MetaTag,
+        { key: MetaTagsService.typeMeta, value: 'article' } as MetaTag,
+        { key: MetaTagsService.twitterTitleMeta, value: post.title } as MetaTag
       ]);
       this.title.setTitle(`🥇 | ${post.title}`);
       this.metaTags.addLinkTag({
@@ -77,7 +94,7 @@ export class PostComponent extends Permissions implements OnInit {
   }
 
   articleBody(): string {
-    return `${this.environment.apiUrl}post-body-by-name/${(this.post?.name || '')}/download.md`
+    return `${this.environment.apiUrl}post-body-by-name/${(this.post?.name || '')}/download.md`;
   }
 
   isMyPost(post) {

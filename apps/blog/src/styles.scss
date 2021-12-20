@@ -52,7 +52,7 @@ markdown {
   }
 
   p {
-    font-size: 1.1rem;
+    font-size: 15px;
     font-weight: 100;
   }
 
@@ -61,7 +61,7 @@ markdown {
   }
 
   pre {
-    font-size: 1.3rem;
+    font-size: 18px;
     font-weight: 100;
     background-color: map_get($md-grey, A100) !important;
     box-shadow: map_get($box-shadow, 0);
@@ -91,7 +91,7 @@ markdown {
   }
 
   strong {
-    font-weight: 500;
+    font-weight: bold;
   }
 
   blockquote {
@@ -104,7 +104,7 @@ markdown {
       top: 0;
       bottom: 0;
       width: 6px;
-      background-color: map_get($md-grey, 500);
+      background-color: map_get($md-primary, 500);
     }
   }
 

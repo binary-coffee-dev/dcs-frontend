@@ -2,81 +2,78 @@
 
 :host {
   .post-container {
+    width: 100vw;
 
-    .post-in-container {
-      background-color: map_get($md-grey, A100);
-      padding: map_get($spacings, 4);
-      border-left: 1px solid map_get($md-primary, 100);
-      border-right: 1px solid map_get($md-primary, 100);
+    .align-container {
+      margin-bottom: map-get($spacings, 5);
 
-      h1 {
-        margin: 0;
-        padding: 0;
-        font-family: get($font-family);
-        font-weight: 200;
-        text-transform: uppercase;
-        color: map_get($md-primary, 900);
-      }
+      .post-in-container {
+        padding: 24px;
+        border: solid 1px #0001;
+        border-radius: map-get($radius, 2);
+        box-shadow: map_get($box-shadow-up, 1);
 
-      .markdown-container {
-        margin-bottom: map_get($spacings, 6);
-
-        word-wrap: break-word;
-      }
-
-      .tags-content {
-        margin-bottom: map-get($map: $spacings, $key: 4);
-      }
-
-      .image-container {
-        margin-bottom: map_get($spacings, 4);
-        width: 100%;
-        border-radius: map_get($radius, 2);
-
-        img {
+        .image-container {
           width: 100%;
-          max-height: 50vh;
-          object-fit: cover;
-          object-position: center;
-          border-radius: map_get($radius, 2);
-          border: 1px solid map_get($md-primary, 100);
+
+          img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            object-position: center;
+          }
         }
-      }
 
-      .share-button-xs {
-        margin-bottom: map_get($spacings, 4);
-      }
+        h1 {
+          font-size: 20px;
+          text-transform: uppercase;
+        }
 
-      .app-similar-post-list-inside-container {
-        margin-bottom: map-get($map: $spacings, $key: 6);
+        .tags-content {
+          app-tags {
+            ::ng-deep.content {
+              justify-content: flex-end;
+            }
+          }
+        }
 
-        app-similar-posts-list {
-          &.inside {
-            ::ng-deep.container {
-              border: none;
-              padding: 10px 0 0 0;
+        .user-avatar {
+          text-decoration: none;
+          color: map-get($md-grey, 800);
 
-              .link-container {
-                a {
-                  max-width: 100%;
-                  font-size: 1rem;
-                }
-              }
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: map-get($spacings, 2);
+          }
+        }
+
+        .post-info {
+          font-size: 12px;
+          color: map-get($md-grey, 600);
+
+          mat-button-toggle {
+            min-width: 200px;
+            background-color: map-get($md-primary, 500);
+          }
+
+          span {
+            white-space: nowrap;
+          }
+
+          .icon {
+            display: flex;
+            padding-left: map-get($spacings, 2);
+            align-items: center;
+
+            i {
+              font-size: 20px;
+              padding-right: map-get($spacings, 1);
             }
           }
         }
       }
-    }
-  }
-
-  @media screen and (max-width: 599px) {
-    .post-in-container {
-      border: none;
-      border-top: 1px solid map_get($md-primary, 100);
-    }
-
-    app-share-buttons {
-      margin-top: map_get($spacings, 4);
     }
   }
 }
