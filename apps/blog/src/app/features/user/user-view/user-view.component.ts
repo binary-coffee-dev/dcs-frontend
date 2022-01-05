@@ -11,6 +11,13 @@ import {
   PostState, User, NextPageAction, PreviousPageAction, WINDOW, ENVIRONMENT, Environment
 } from '@dcs-libs/shared';
 
+interface UserData {
+  icon: string;
+  link: string;
+  text: string;
+  action: Function;
+}
+
 @Component({
   selector: 'app-user-view',
   templateUrl: './user-view.component.html',
@@ -22,6 +29,8 @@ export class UserViewComponent implements OnInit {
   posts: Post[] = [];
   count = 0;
   commentsCount = 0;
+
+  userData: UserData[] = [];
 
   firstPage: Observable<boolean>;
   lastPage: Observable<boolean>;
@@ -45,6 +54,24 @@ export class UserViewComponent implements OnInit {
     this.store.select(PostState.posts).subscribe((posts) => this.posts = posts || this.posts);
     this.firstPage = this.store.select(PostState.firstPage);
     this.lastPage = this.store.select(PostState.lastPage);
+
+    this.createUserData();
+  }
+
+  createUserData() {
+    this.userData.push({
+      icon: 'email',
+      text: 'private'
+    } as UserData);
+    this.userData.push({
+      icon: 'language',
+      link: this.user?.page || this.window.location.href
+    } as UserData);
+    this.userData.push({
+      icon: 'rss_feed',
+      action: this.copyRSSToClipboard.bind(this),
+      text: 'RSS'
+    } as UserData);
   }
 
   getUserAvatar(user) {
@@ -64,7 +91,10 @@ export class UserViewComponent implements OnInit {
   }
 
   copyRSSToClipboard() {
-    const rssLink = `${this.environment.apiUrl}posts/feed/${this.user.username}/json`;
-    this.window.navigator.clipboard.writeText(rssLink);
+    this.window.navigator.clipboard.writeText(this.getUserRSSLink());
+  }
+
+  getUserRSSLink() {
+    return `${this.environment.apiUrl}posts/feed/${this.user.username}/json`;
   }
 }

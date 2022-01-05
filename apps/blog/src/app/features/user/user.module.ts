@@ -7,6 +7,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserViewComponent } from './user-view/user-view.component';
 import { TopActiveUsersModule } from '../components/top-active-users/top-active-users.module';
 import { TopPopularUsersModule } from '../components/top-popular-users/top-popular-users.module';
+import { PostItemModule } from '../components/post-item/post-item.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TopPopularUsersModule } from '../components/top-popular-users/top-popul
     MaterialModule,
     UserRoutingModule,
     TopActiveUsersModule,
-    TopPopularUsersModule
+    TopPopularUsersModule,
+    PostItemModule
   ]
 })
 export class UserModule {
