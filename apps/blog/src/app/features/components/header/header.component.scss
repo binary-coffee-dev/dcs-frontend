@@ -5,11 +5,11 @@ $toolbar-height: 100px;
 :host {
 
   mat-toolbar {
+    padding: 0;
     position: sticky;
     top: 0;
     z-index: 99;
     background-color: map_get($md-grey, 100);
-    padding: initial map_get($spacings, 10);
 
     height: $toolbar-height;
     max-height: $toolbar-height;
@@ -17,9 +17,16 @@ $toolbar-height: 100px;
 
     color: map_get($md-grey, 900);
 
-    img {
-      width: 40px;
-      margin-right: map_get($spacings, 4);
+    box-shadow: map_get($box-shadow, 2);
+
+    a {
+      text-decoration: none;
+      color: map_get($md-grey, 900);
+
+      img {
+        width: 40px;
+        margin-right: map_get($spacings, 4);
+      }
     }
 
     .fill-space {
@@ -28,7 +35,7 @@ $toolbar-height: 100px;
 
     mat-button-toggle {
       height: 35px;
-      width: 45px;
+      min-width: 40px;
       margin-left: map_get($spacings, 4);
       font-size: 1rem;
       background-color: map_get($md-grey, 400);

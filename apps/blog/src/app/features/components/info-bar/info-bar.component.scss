@@ -1,4 +1,4 @@
-@import 'libs/shared/src/theme';
+@import '../../../../../../../libs/shared/src/theme';
 
 :host {
   .container {
@@ -42,6 +42,10 @@
         &:hover {
           text-decoration: underline;
         }
+      }
+
+      .var {
+        color: map-get($md-primary, 500);
       }
 
       .comment-user {

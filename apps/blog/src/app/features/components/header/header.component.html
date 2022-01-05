@@ -1,14 +1,30 @@
 <mat-toolbar fxLayout='row'
              fxLayoutAlign='center center'>
 
-  <img src='/assets/images/128x128/binarycoffee_2.0.0.png'
-       alt='binarycoffee-logo'>
-  Binary Coffee
+  <div fxFlex.xl='50'
+       fxFlex.lg='70'
+       fxFlex='80'
+       fxFlex.md='95'
+       fxFlex.sm='100'
+       fxFlex.xs='100'
+       fxLayout='row'
+       fxLayoutAlign='start center'>
+    <a href=''
+       fxLayout='row'
+       routerLink='/'
+       fxLayoutAlign='start center'>
+      <img src='/assets/images/128x128/binarycoffee_2.0.0.png'
+           alt='binarycoffee-logo'>
+      Binary Coffee
+    </a>
 
-  <div class='fill-space'></div>
+    <div class='fill-space'></div>
+    <app-filter *ngIf='showSearch'></app-filter>
+    <div class='fill-space'></div>
 
-  <app-login-button></app-login-button>
-  <mat-button-toggle>
-    <mat-icon aria-hidden='false'>menu</mat-icon>
-  </mat-button-toggle>
+    <app-login-button></app-login-button>
+    <mat-button-toggle>
+      <mat-icon aria-hidden='false'>menu</mat-icon>
+    </mat-button-toggle>
+  </div>
 </mat-toolbar>

@@ -1,9 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Comment, CommentState, Podcast, PodcastState, UrlUtilsService } from '@dcs-libs/shared';
 import { Store } from '@ngxs/store';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { MomentService } from '../../../core/services';
+
+interface ShareLink {
+  name: string;
+  url: string;
+}
 
 @Component({
   selector: 'app-info-bar',
@@ -12,10 +17,15 @@ import { MomentService } from '../../../core/services';
 })
 export class InfoBarComponent implements OnInit, OnDestroy {
 
+  @Input() showPodcast = true;
+  @Input() showRecentComments = true;
+  @Input() showSocialMedias = false;
+
   _unsubscribe = new Subject();
 
   podcasts: Podcast[] = [];
   comments: Comment[] = [];
+  shareLinks: ShareLink[] = [];
 
   lineNumbers: number[] = [];
 
@@ -39,10 +49,33 @@ export class InfoBarComponent implements OnInit, OnDestroy {
         this.comments = comments || [];
         this.calculateNumberOfLines();
       });
+    this.createShareLinks();
+  }
+
+  createShareLinks() {
+    const currentUrl = document.location.href;
+    this.shareLinks = [
+      { name: 'Facebook', url: `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}` } as ShareLink,
+      {
+        name: 'Twitter',
+        url: `https://twitter.com/intent/tweet/?hashtags=BinaryCoffee&url=${currentUrl}`
+      } as ShareLink,
+      { name: 'Linkedin', url: `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}` } as ShareLink
+    ];
+    this.calculateNumberOfLines();
   }
 
   calculateNumberOfLines() {
-    const numberOfLines = this.podcasts.length * 4 + 5 + this.comments.length * 4 + 4;
+    let numberOfLines = 0;
+    if (this.showPodcast) {
+      numberOfLines += this.podcasts.length * 4 + 5;
+    }
+    if (this.showSocialMedias) {
+      numberOfLines += this.shareLinks.length * 3 + 5;
+    }
+    if (this.showRecentComments) {
+      numberOfLines += this.comments.length * 4 + 4;
+    }
     this.lineNumbers = [];
     for (let i = 1; i <= numberOfLines; i++) {
       this.lineNumbers.push(i);

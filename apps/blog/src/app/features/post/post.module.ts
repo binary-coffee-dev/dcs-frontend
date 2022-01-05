@@ -13,6 +13,7 @@ import { SimilarPostsListComponent } from './similar-posts-list/similar-posts-li
 import { PostInfoComponent } from './post-info/post-info.component';
 import { ConfirmDeleteModalComponent } from './comments/confirm-delete.modal/confirm-delete.modal.component';
 import { EditCommentModalComponent } from './comments/edit-comment.modal/edit-comment.modal.component';
+import { SharedComponentsModule } from '../components/shared-components.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { EditCommentModalComponent } from './comments/edit-comment.modal/edit-co
   imports: [
     CommonModule,
     PostRoutingModule,
+    SharedComponentsModule,
     MaterialModule,
     MarkdownModule.forRoot(),
     ServicesModule,

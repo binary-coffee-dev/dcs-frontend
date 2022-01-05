@@ -1,0 +1,15 @@
+<div class="container">
+  <form [formGroup]="filterForm"
+        (submit)="changeFilter()">
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <span>Buscar</span>
+      </mat-label>
+      <mat-icon matSuffix>search</mat-icon>
+      <input matInput
+             (keyup)="filterChange()"
+             formControlName="filter"
+             placeholder="Buscar">
+    </mat-form-field>
+  </form>
+</div>

@@ -3,9 +3,9 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 
-import { FetchPostAction, Post, PostState } from '@dcs-libs/shared';
-import { map } from 'rxjs/operators';
+import { FetchPostAction, Post, PostState, RecentCommentAction } from '@dcs-libs/shared';
 
 @Injectable({ providedIn: 'root' })
 export class PostResolver implements Resolve<Post> {
@@ -14,8 +14,9 @@ export class PostResolver implements Resolve<Post> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<Post> | Promise<Post> | Post {
     return this.store.dispatch(new FetchPostAction(route.paramMap.get('id')))
-      .pipe(map(() => {
-        return this.store.selectSnapshot(PostState.post);
-      }));
+      .pipe(
+        mergeMap(() => this.store.dispatch(new RecentCommentAction())),
+        map(() => this.store.selectSnapshot(PostState.post))
+      );
   }
 }

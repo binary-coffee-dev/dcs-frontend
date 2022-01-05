@@ -11,10 +11,13 @@ import { TermOfUseComponent } from './features/info/term-of-use/term-of-use.comp
 const routes: Routes = [
   {
     path: '',
-    resolve: {me: MeResolver},
+    resolve: { me: MeResolver },
     children: [
       {
         path: '',
+        data: {
+          isHome: true
+        },
         loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {

@@ -1,0 +1,38 @@
+@import 'libs/shared/src/theme';
+
+:host {
+  .container {
+    color: map_get($md-grey, 500);
+    padding: 0;
+    background-color: map_get($md-grey, A100);
+    border-radius: map_get($radius, 3);
+
+    form {
+      .mat-form-field {
+        width: 150px;
+        height: 30px;
+        font-size: 10px;
+
+        ::ng-deep.mat-form-field-wrapper {
+          padding-bottom: 0;
+          background-color: map_get($md-grey, A100);
+          border-radius: map_get($radius, 2);
+
+          .mat-form-field-infix {
+            padding: 0.7em 0;
+          }
+        }
+
+        mat-icon {
+          color: map-get($md-primary, 500);
+        }
+
+        input {
+          color: map_get($md-grey, 850);
+          background-color: map_get($md-grey, A100);
+          border-radius: map_get($radius, 2);
+        }
+      }
+    }
+  }
+}
