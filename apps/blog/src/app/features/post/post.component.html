@@ -16,92 +16,92 @@
          fxFlex.sm='100'
          fxFlex.xs='100'>
 
-      <div class='image-container'>
-        <img
-          *ngIf='post?.banner && post?.banner?.url'
-          [src]='resource.addApiUrl(post?.banner?.url)'
-          alt=''
-        />
-      </div>
-
-      <div class='tags-content'>
-        <app-tags [tags]='post?.tags'></app-tags>
-      </div>
-
-      <a [href]="'/users/' + post?.author?.username"
-         fxLayout='row'
-         fxLayoutAlign='start center'
-         class='user-avatar'>
-        <img [src]='url.getUserImage(post?.author)'
-             [alt]='post?.author?.username'>
-        <span>"{{post?.author?.username}}"</span>
-      </a>
-
-      <div fxLayout='row'
-           fxLayoutAlign='start end'
-           class='post-info'>
-        <span>// {{moment.timeFromDate(post?.publishedAt)}}</span>
-        <div fxFlex='100'></div>
-        <div class='icon'>
-          <i class='material-icons post-icons'>mode_comment</i>
-          {{post?.comments}}
+      <div class='post-info-container'>
+        <div class='image-container'>
+          <img
+            *ngIf='post?.banner && post?.banner?.url'
+            [src]='resource.addApiUrl(post?.banner?.url)'
+            alt=''
+          />
         </div>
-        <div class='icon'>
-          <i class='fa fa-coffee post-icons'></i>
-          {{likes}}
+
+        <div class='tags-content'>
+          <app-tags [tags]='post?.tags'></app-tags>
         </div>
-        <div class='icon'>
-          <i class='fa fa-eye post-icons'></i>
-          {{post?.views}}
+
+        <a [href]="'/users/' + post?.author?.username"
+           fxLayout='row'
+           fxLayoutAlign='start center'
+           class='user-avatar'>
+          <img [src]='url.getUserImage(post?.author)'
+               [alt]='post?.author?.username'>
+          <span>"{{post?.author?.username}}"</span>
+        </a>
+
+        <div fxLayout='row'
+             fxLayoutAlign='start end'
+             class='post-info'>
+          <span>// {{moment.timeFromDate(post?.publishedAt)}}</span>
+          <div fxFlex='100'></div>
+          <div class='icon'>
+            <i class='material-icons post-icons'>mode_comment</i>
+            {{post?.comments}}
+          </div>
+          <div class='icon'>
+            <i class='fa fa-coffee post-icons'></i>
+            {{likes}}
+          </div>
+          <div class='icon'>
+            <i class='fa fa-eye post-icons'></i>
+            {{post?.views}}
+          </div>
+          <div fxFlex='100'></div>
+          <mat-button-toggle class='like-button'>
+            <i class='fa fa-coffee post-icons'></i>
+            Brindar con {{post?.author?.username}}
+          </mat-button-toggle>
         </div>
-        <div fxFlex='100'></div>
-        <mat-button-toggle>
-          <i class='fa fa-coffee post-icons'></i>
-          Brindar con {{post?.author?.username}}
-        </mat-button-toggle>
+
+        <h1 fxLayout='row'>
+          <span fxFlex='100'>{{ post?.title }}</span>
+          <button
+            mat-button
+            *ngIf=' ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)'
+            matTooltip='Editar artículo'
+            (click)='editPost(post)'>
+            <i class='fa fa-edit'></i>
+          </button>
+        </h1>
+
+        <div
+          class='share-button-xs'
+          [fxHide]='true'
+          [fxShow.xs]='true'
+          [fxShow.sm]='true'
+          fxLayout='row'
+          fxLayoutAlign='center'>
+          <app-share-buttons></app-share-buttons>
+        </div>
+
+        <div class='markdown-container'
+             *ngIf='isBrowser'>
+          <markdown [data]='post?.body'
+                    katex
+                    lineNumbers></markdown>
+        </div>
+        <div class='markdown-container'
+             *ngIf='!isBrowser'>
+          <markdown [src]='articleBody()'
+                    katex
+                    lineNumbers></markdown>
+        </div>
       </div>
 
-      <h1 fxLayout='row'>
-        <span fxFlex='100'>{{ post?.title }}</span>
-        <button
-          mat-button
-          *ngIf=' ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)'
-          matTooltip='Editar artículo'
-          (click)='editPost(post)'>
-          <i class='fa fa-edit'></i>
-        </button>
-      </h1>
+      <mat-button-toggle class='like-button'>
+        <i class='fa fa-coffee post-icons'></i>
+        Brindar con {{post?.author?.username}}
+      </mat-button-toggle>
 
-      <div
-        class='share-button-xs'
-        [fxHide]='true'
-        [fxShow.xs]='true'
-        [fxShow.sm]='true'
-        fxLayout='row'
-        fxLayoutAlign='center'>
-        <app-share-buttons></app-share-buttons>
-      </div>
-
-      <div class='markdown-container'
-           *ngIf='isBrowser'>
-        <markdown [data]='post?.body'
-                  katex
-                  lineNumbers></markdown>
-      </div>
-      <div class='markdown-container'
-           *ngIf='!isBrowser'>
-        <markdown [src]='articleBody()'
-                  katex
-                  lineNumbers></markdown>
-      </div>
-
-      <div class='app-similar-post-list-inside-container'>
-        <app-similar-posts-list
-          [inside]='true'
-          class='inside'
-          [postId]='post?.id'
-        ></app-similar-posts-list>
-      </div>
       <app-comments *ngIf='post'
                     [post]='post'></app-comments>
     </div>
@@ -112,10 +112,13 @@
          fxHide.xs>
       <app-info-bar [showPodcast]='false'
                     [showSocialMedias]='true'></app-info-bar>
-      <!--      <app-similar-posts-list-->
-      <!--        class='outside'-->
-      <!--        [postId]='post?.id'-->
-      <!--      ></app-similar-posts-list>-->
+      <div class='similar-post-content'>
+        <app-post-item
+          class='post-element'
+          *ngFor='let post of similarPosts'
+          [post]='post'>
+        </app-post-item>
+      </div>
     </div>
   </div>
 </div>
