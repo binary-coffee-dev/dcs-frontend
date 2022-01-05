@@ -81,8 +81,15 @@ markdown {
   }
 
   ul {
-    font-size: 1.1rem;
+    font-size: 15px;
     font-weight: 100;
+
+    li {
+      &::marker {
+        color: map-get($md-primary, 500);
+        content: '○ ';
+      }
+    }
   }
 
   a {
@@ -96,11 +103,16 @@ markdown {
 
   blockquote {
     position: relative;
+    margin: 0;
+    padding: map-get($spacings, 1) map-get($spacings, 2) map-get($spacings, 1) map-get($spacings, 6);
+    background-color: map-get($md-grey, 49);
+    border-radius: map-get($radius, 3);
+    overflow: hidden;
 
     &:before {
       content: '';
       position: absolute;
-      left: -40px;
+      left: 0;
       top: 0;
       bottom: 0;
       width: 6px;

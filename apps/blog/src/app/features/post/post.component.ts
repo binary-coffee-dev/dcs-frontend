@@ -1,9 +1,11 @@
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 import { Store } from '@ngxs/store';
-import { isPlatformBrowser } from '@angular/common';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 import {
   ENVIRONMENT,
@@ -16,8 +18,8 @@ import {
   WINDOW, UrlUtilsService, MomentService
 } from '@dcs-libs/shared';
 import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+
+const MAX_NUMBER_OF_POSTS = 6;
 
 @Component({
   selector: 'app-post',
@@ -27,6 +29,7 @@ import { Subject } from 'rxjs';
 export class PostComponent extends Permissions implements OnInit, OnDestroy {
 
   post: Post;
+  similarPosts: Post[];
   isBrowser: boolean;
   likes = 0;
 
@@ -60,10 +63,24 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
     this.store.select(PostState.likes)
       .pipe(takeUntil(this._unsubscribe))
       .subscribe(likes => this.likes = likes);
+    this.store.select(PostState.similarPosts).subscribe((posts: Post[]) => {
+      this.loadPosts(posts);
+    });
   }
 
   ngOnDestroy(): void {
     this._unsubscribe.next();
+  }
+
+  loadPosts(posts: Post[]) {
+    if (posts) {
+      this.similarPosts = [...posts].reduce((previousValue: Post[], currentValue, currentIndex) => {
+        if (currentIndex < MAX_NUMBER_OF_POSTS) {
+          previousValue.push(currentValue);
+        }
+        return previousValue;
+      }, []);
+    }
   }
 
   loadArticle(post: Post) {
