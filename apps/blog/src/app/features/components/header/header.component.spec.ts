@@ -4,6 +4,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ENVIRONMENT, WINDOW } from '@dcs-libs/shared';
 
 import { HeaderComponent } from './header.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const env = {
   siteUrl: 'http://binary-coffee.dev'
@@ -18,6 +19,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       providers: [
         { provide: WINDOW, useFactory: () => window },
         { provide: ENVIRONMENT, useFactory: () => env }
