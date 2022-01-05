@@ -5,7 +5,6 @@ import { TagsModule } from '@dcs-libs/shared';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { MaterialModule } from '../../core/material';
-import { PostItemComponent } from './post-item/post-item.component';
 import { PostsGuard } from './guards';
 import { ServicesModule } from '../../core/services';
 import { PaginationComponent } from './pagination';
@@ -13,11 +12,11 @@ import { TopActiveUsersModule } from '../components/top-active-users/top-active-
 import { TopPopularUsersModule } from '../components/top-popular-users/top-popular-users.module';
 import { SliderComponent } from '../components/slider/slider.component';
 import { SharedComponentsModule } from '../components/shared-components.module';
+import { PostItemModule } from '../components/post-item/post-item.module';
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    PostItemComponent,
     PaginationComponent,
     SliderComponent,
   ],
@@ -29,7 +28,8 @@ import { SharedComponentsModule } from '../components/shared-components.module';
     TagsModule,
     TopActiveUsersModule,
     TopPopularUsersModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    PostItemModule
   ],
   providers: [PostsGuard]
 })

@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ENVIRONMENT, WINDOW } from '@dcs-libs/shared';
 
 import { HeaderComponent } from './header.component';
-import { RouterTestingModule } from '@angular/router/testing';
 
 const env = {
   siteUrl: 'http://binary-coffee.dev'

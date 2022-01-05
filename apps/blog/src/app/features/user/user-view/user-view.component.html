@@ -1,110 +1,91 @@
 <div class='container'
-     fxLayout='row'
-     fxLayout.xs='column'>
-  <div class='user-container'
-       fxLayout='column'
-       fxLayoutAlign='start center'
-       fxFlex='30'
-       fxFlex.sm='50'
-       fxFlex.xs='100'>
-    <div class='user-image-container'
-         fxLayoutAlign='center center'>
-      <div>
+     fxLayoutAlign='center start'
+     fxLayout='row'>
+
+  <div class='align-container'
+       fxLayoutAlign='center start'
+       fxFlex.xl='50'
+       fxFlex.lg='70'
+       fxFlex='80'
+       fxFlex.md='95'
+       fxFlex.sm='100'
+       fxFlex.xs='100'
+       fxLayout='row'>
+
+    <div class='post-container'
+         fxFlex='100'
+         fxLayout='column'>
+      <app-post-item
+        class='post-element'
+        *ngFor='let post of posts'
+        [post]='post'>
+      </app-post-item>
+    </div>
+
+    <div class='user-container'
+         fxLayout='column'
+         fxLayoutAlign='start center'
+         fxFlex='30'
+         fxFlex.sm='50'
+         fxFlex.xs='100'>
+
+      <div class='avatar-container'
+           fxLayout='row'
+           fxLayoutAlign='start start'>
         <img class='user-image'
              [src]='getUserAvatar(user)'
              alt='noavatar' />
-        <div class='user-name-content'
-             fxLayoutAlign='center'
-             fxLayout='row'>
-          <b class='user-name'>{{ user?.username }}</b>
-        </div>
       </div>
-    </div>
 
-    <div class='stadistic-container'
-         fxLayoutAlign='center center'>
-      <div fxLayout='column'>
-        <span class='stadistic'>
-          <b class='sta-n'>{{ count }}</b> artículos
-        </span>
-        <span class='stadistic'
-              *ngIf='false'><b class='sta-n'>200</b> likes</span>
-        <span class='stadistic'><b class='sta-n'>{{ commentsCount }}</b> comentarios</span>
-        <span class='stadistic rss'
-              (click)='copyRSSToClipboard()'
-              title='click para copiar link'>
-          <mat-icon class='sta-n' aria-hidden='false'>rss_feed</mat-icon>
-          <p>RSS</p>
-        </span>
+      <div class='profile-name'
+           fxLayout='row'
+           fxLayoutAlign='start start'>
+        <span class='name'>{{ user?.username }}</span>
       </div>
-    </div>
-  </div>
-  <div class='post-container'
-       fxLayout='row wrap'>
-    <div class='container'
-         fxLayout='column'
-         fxLayoutAlign='top center'>
-      <i class='code-comment-1 upper-comment'>
-        // Artículos publicados por {{ user?.username }}
-      </i>
 
-      <div fxLayout='row wrap'
-           fxLayoutAlign='center'>
-        <a *ngFor='let post of posts'
-           [routerLink]="'/post/' + post.name"
-           class='post-content'
-           fxFlex='26'
-           fxFlex.xs='100'
-           fxFlex.sm='100'>
-          <div class='post-box'
-               fxLayout='column'>
+      <div class='profile-stacks'
+           fxLayout='row'
+           fxLayoutAlign='start center'>
+        <span fxLayoutAlign='center center'><i class='material-icons'>mode_comment</i>{{commentsCount}}
+          comentarios</span>
+        <span fxLayoutAlign='center center'><i class='material-icons'>format_quote</i>{{count}} articulos</span>
+      </div>
 
-            <div class='post-image-container'>
-              <img *ngIf='post?.banner?.url'
-                   [src]='url.normalizeSiteUrl(post?.banner?.url)' />
-              <img *ngIf='!post?.banner?.url'
-                   [src]='getPostImg()' />
+      <div class='profile-description'>
+        Repudiandae blanditiis qui dolores eos fugiat facere nulla et quia sed culpa velit commodi est quibusdam quia
+        placeat magni molestiae nulla pariatur voluptates voluptatem non cum natus praesentium accusamus dolore eligendi
+        quo qui ad ea quisquam aut vero et quisquam amet voluptas tempore mollitia eveniet quidem atque id est et
+        pariatur aut qui ut velit dolores harum qui qui eligendi.
+      </div>
 
-            </div>
-
-            <div class='image-info'
-                 fxLayout='column'
-                 fxLayoutAlign='end start'>
-              <div>
-                <mat-icon aria-hidden='false'>comment</mat-icon>
-                <span>{{post?.comments || 0}}</span>
-              </div>
-            </div>
-
-            <div class='code-none'
-                 class='post-title'
-                 fxLayout='column'>
-              <b class='code-2'>{{ post.title }}</b>
-            </div>
+      <div class='profile-data'
+           fxLayout='column'>
+        <ng-container *ngFor='let data of userData'>
+          <div class='profile-data-item'
+               fxLayout='row'
+               fxLayoutAlign='start center'
+               *ngIf='!data.action && !data.link'>
+            <i class='material-icons'>{{data.icon}}</i>
+            {{data.text}}
           </div>
-        </a>
-      </div>
-      <div class='pagination'
-           fxLayoutAlign='center center'>
-        <button *ngIf='(firstPage | async)  === false'
-                (click)='articlesPreviousPage()'
-                class='page-item'
-                mat-button>
-          <span class='page-link'>
-            <span class='fa fa-chevron-left'></span>
-            <span class='fa fa-chevron-left'></span>
-          </span>
-        </button>
-        <button *ngIf='(lastPage | async)  === false'
-                (click)='articlesNextPage()'
-                class='page-item'
-                mat-button>
-          <span class='page-link'>
-            <span class='fa fa-chevron-right'></span>
-            <span class='fa fa-chevron-right'></span>
-          </span>
-        </button>
+          <button class='profile-data-item'
+                  fxLayout='row'
+                  fxLayoutAlign='start center'
+                  *ngIf='data.action'>
+            <i class='material-icons'>{{data.icon}}</i>
+            {{data.text}}
+          </button>
+          <a class='profile-data-item'
+             fxLayout='row'
+             fxLayoutAlign='start center'
+             *ngIf='data.link'
+             [routerLink]='data?.link'>
+            <i class='material-icons'>{{data.icon}}</i>
+            {{data.text || data.link}}
+          </a>
+        </ng-container>
       </div>
     </div>
+
   </div>
 </div>

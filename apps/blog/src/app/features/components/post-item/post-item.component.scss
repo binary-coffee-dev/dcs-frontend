@@ -1,11 +1,11 @@
-@import "libs/shared/src/theme";
+@import "../../../../../../../libs/shared/src/theme";
 
 $post_image_size: 110px;
 
 :host {
 
   .container {
-    width: 100%;
+    //width: 100%;
     //margin-bottom: map-get($spacings, 5);
     padding: map-get($spacings, 2);
 
