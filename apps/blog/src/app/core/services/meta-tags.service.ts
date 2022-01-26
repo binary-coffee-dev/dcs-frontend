@@ -76,7 +76,7 @@ export class MetaTagsService {
       renderer.appendChild(head, link);
 
     } catch (er) {
-      console.error(er);
+      // console.error(er);
     }
   }
 }

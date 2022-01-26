@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -15,6 +15,7 @@ import {
   SetConfigAction, SubscribeDialogComponent
 } from '@dcs-libs/shared';
 import { consoleMessage } from './console.log';
+import { isPlatformBrowser } from '@angular/common';
 
 declare let gtag: (property: string, value: string, configs: Object) => {};
 
@@ -35,10 +36,11 @@ export class AppComponent implements OnInit {
     private store: Store,
     private metaTags: MetaTagsService,
     private dialog: MatDialog,
-    @Inject(ENVIRONMENT) private environment: Environment
+    @Inject(ENVIRONMENT) private environment: Environment,
+    @Inject(PLATFORM_ID) platformId: string
   ) {
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
+      if (isPlatformBrowser(platformId) && event instanceof NavigationEnd) {
         gtag('config', this.environment.googleAnalyticsId, {
           page_path: event.urlAfterRedirects
         });
