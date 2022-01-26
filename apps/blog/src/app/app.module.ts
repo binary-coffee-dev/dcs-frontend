@@ -36,6 +36,7 @@ import { PodcastModule } from './features/podcast';
 import { UserModule } from './features/user/user.module';
 import { HttpLink } from 'apollo-angular/http';
 import { FilterComponent } from './features/components/filter/filter.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { FilterComponent } from './features/components/filter/filter.component';
     InfoModule,
     SharedModule,
     PodcastModule,
-    UserModule
+    UserModule,
+    FlexLayoutModule.withConfig({ssrObserveBreakpoints: ['xs', 'lt-md']})
   ],
   providers: [
     {

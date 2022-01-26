@@ -1,9 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Comment, CommentState, Podcast, PodcastState, UrlUtilsService } from '@dcs-libs/shared';
+import { Component, Inject, Input, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+
 import { Store } from '@ngxs/store';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+
+import { Comment, CommentState, Podcast, PodcastState, UrlUtilsService, WINDOW } from '@dcs-libs/shared';
 import { MomentService } from '../../../core/services';
+import { isPlatformBrowser } from '@angular/common';
 
 interface ShareLink {
   name: string;
@@ -22,6 +25,7 @@ export class InfoBarComponent implements OnInit, OnDestroy {
   @Input() showSocialMedias = false;
 
   _unsubscribe = new Subject();
+  isBrowser = true;
 
   podcasts: Podcast[] = [];
   comments: Comment[] = [];
@@ -32,8 +36,11 @@ export class InfoBarComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store,
     public moment: MomentService,
-    public url: UrlUtilsService
+    public url: UrlUtilsService,
+    @Inject(WINDOW) private window: Window,
+    @Inject(PLATFORM_ID) platformId: string
   ) {
+    this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit(): void {
@@ -53,16 +60,18 @@ export class InfoBarComponent implements OnInit, OnDestroy {
   }
 
   createShareLinks() {
-    const currentUrl = document.location.href;
-    this.shareLinks = [
-      { name: 'Facebook', url: `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}` } as ShareLink,
-      {
-        name: 'Twitter',
-        url: `https://twitter.com/intent/tweet/?hashtags=BinaryCoffee&url=${currentUrl}`
-      } as ShareLink,
-      { name: 'Linkedin', url: `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}` } as ShareLink
-    ];
-    this.calculateNumberOfLines();
+    if (this.isBrowser) {
+      const currentUrl = this.window.document.location.href;
+      this.shareLinks = [
+        { name: 'Facebook', url: `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}` } as ShareLink,
+        {
+          name: 'Twitter',
+          url: `https://twitter.com/intent/tweet/?hashtags=BinaryCoffee&url=${currentUrl}`
+        } as ShareLink,
+        { name: 'Linkedin', url: `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}` } as ShareLink
+      ];
+      this.calculateNumberOfLines();
+    }
   }
 
   calculateNumberOfLines() {

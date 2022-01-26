@@ -1,54 +1,68 @@
-<div fxLayout="row"
-     fxFlex="100">
-  <div
-    class="filter-container"
-    fxLayout="column"
-    fxFlex="50"
-    fxFlex.md="100"
-    fxFlex.sm="100"
-    fxFlex.xs="100">
-    <mat-form-field appearance="outline">
-      <mat-label class="code-none">
-        <span class="code-1"> function </span>
-        <span> BuscarUsuario() </span>
-      </mat-label>
-      <input
-        matInput
-        (keyup)="filterUser($event)"
-        placeholder="Buscar"
-      />
-    </mat-form-field>
+<div class='container'
+     fxLayout='column'
+     fxLayoutAlign='start center'>
 
-    <div class="user-container"
-         fxLayout="column">
-      <a
-        *ngFor="let user of users; let i = index"
-        class="top-link"
-        [routerLink]="'/users/' + user?.username"
-        fxLayout="row"
-        fxLayoutAlign="center center"
-      >
-        <img class="top-user-image"
-             [src]="getUserAvatar(user)"
-             alt="noavatar"/>
-        <div fxLayout="column"
-             fxFlex="90"
-             fxLayoutAlign="left left">
-          <span class="top-user-name">"{{ user?.username }}"</span>
+  <div class='align-container'
+       fxLayoutAlign='center start'
+       fxLayout='row'>
+
+    <div class='data-container'
+         fxLayoutAlign='center start'
+         fxFlex.xl='50'
+         fxFlex.lg='70'
+         fxFlex='80'
+         fxFlex.md='95'
+         fxFlex.sm='100'
+         fxFlex.xs='100'
+         fxLayout='row'>
+
+      <div fxFlex='100'
+           fxLayout='column'>
+        <div fxLayout='row'
+             fxLayoutAlign='start center'>
+          <mat-form-field appearance='outline'>
+            <mat-label class='code-none'>
+              Buscar miembros
+            </mat-label>
+            <input
+              matInput
+              (keyup)='filterUser($event)'
+              placeholder='username'
+            />
+          </mat-form-field>
         </div>
-      </a>
-    </div>
-  </div>
 
-  <div
-    class="top-container"
-    fxLayout="row wrap"
-    fxLayoutAlign="center center"
-    fxFlex="50"
-    fxHide.sm
-    fxHide.xs
-  >
-  <app-top-popular-users></app-top-popular-users>
-  <app-top-active-users></app-top-active-users>
+        <div fxLayout='row wrap'
+             fxLayoutAlign='start start'>
+          <ng-container *ngFor='let user of users; let i = index'>
+            <a class='user-card'
+               [routerLink]="'/users/' + user?.username"
+               fxLayout='column'
+               fxLayoutAlign='center center'>
+              <img class='top-user-image'
+                   [src]='getUserAvatar(user)'
+                   alt='noavatar' />
+              <div fxLayout='column'
+                   fxFlex='90'
+                   fxLayoutAlign='left left'>
+                <span class='top-user-name'>"{{ user?.username }}"</span>
+
+                <div fxLayout='column'
+                     fxLayoutAlign='start start'>
+                  <span class='info-item'
+                        fxLayoutAlign='center center'><i class='material-icons'>mode_comment</i>&#160;{{23}}
+                    comentarios</span>
+                  <span class='info-item'
+                        fxLayoutAlign='center center'><i class='material-icons'>format_quote</i>&#160;{{43}}
+                    artículos</span>
+                </div>
+              </div>
+            </a>
+          </ng-container>
+        </div>
+
+      </div>
+
+    </div>
   </div>
 </div>
