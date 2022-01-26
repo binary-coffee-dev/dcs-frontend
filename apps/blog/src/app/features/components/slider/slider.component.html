@@ -1,6 +1,7 @@
 <div class='container'
      fxLayout='column'
      fxLayoutAlign='center center'>
+
   <div class='content'>
 
     <ng-container *ngIf='activeInfo && activeInfo.type === "welcome"'>
@@ -45,6 +46,7 @@
     </ng-container>
 
   </div>
+
   <div class='content-pagination'>
     <ng-container *ngFor='let inf of info; let i = index'>
       <button class='carousel-button'
@@ -52,4 +54,7 @@
               [ngClass]='{"active": activePage === i}'></button>
     </ng-container>
   </div>
+
+  <div class='background'></div>
+  <div class='background2'></div>
 </div>

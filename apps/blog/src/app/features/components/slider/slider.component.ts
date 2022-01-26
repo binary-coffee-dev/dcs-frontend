@@ -11,7 +11,7 @@ export interface InformationBanner {
   value?: Comment;
 }
 
-const TIME_TO_CHANGE_PAGE = 3000;
+const TIME_TO_CHANGE_PAGE = 6000;
 
 @Component({
   selector: 'app-slider',
@@ -52,7 +52,24 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.activePage = 0;
     this.updateInfo();
 
-    // this.nextPageTimer();
+    this.nextPageTimer();
+    // this.setWavePath();
+  }
+
+  /**
+   * This code is used to paint the initial wave form in the banner
+   */
+  setWavePath() {
+    let wave = '100% 0%, 0% 0%';
+    for (let i = 0; i <= 100; i++) {
+      const y = this.map(Math.cos(Math.PI * 1.5 * i / 100 - 1), -1, 1, 5, 99);
+      wave += `,${i}% ${Math.round((100 - y) *100) / 100}%`;
+    }
+    document.documentElement.style.setProperty('--path', wave);
+  }
+
+  map(value: number, in_min: number, in_max: number, out_min: number, out_max: number): number {
+    return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   }
 
   updateComment(comment: Comment) {
@@ -72,7 +89,7 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.stopTimer.next();
     this.activePage = page;
     this.updateInfo();
-    // this.nextPageTimer();
+    this.nextPageTimer();
   }
 
   nextPageTimer() {
