@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA, PLATFORM_ID } from '@angular/core';
 
 import { Store } from '@ngxs/store';
+import { of } from 'rxjs';
 
-import { UrlUtilsService } from '@dcs-libs/shared';
+import { UrlUtilsService, WINDOW } from '@dcs-libs/shared';
 import { InfoBarComponent } from './info-bar.component';
 import { MomentService } from '../../../core/services';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { of } from 'rxjs';
 
 class StoreStub {
   select = () => of([]);
@@ -28,7 +28,9 @@ describe('InfoBarComponent', () => {
       providers: [
         { provide: Store, useClass: StoreStub },
         { provide: MomentService, useClass: MomentServiceStub },
-        { provide: UrlUtilsService, useClass: UrlUtilsServiceStub }
+        { provide: UrlUtilsService, useClass: UrlUtilsServiceStub },
+        { provide: WINDOW, useValue: {} },
+        { provide: PLATFORM_ID, useValue: {} }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
