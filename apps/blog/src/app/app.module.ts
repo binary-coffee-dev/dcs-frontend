@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
 
 import {
   SharedModule,
@@ -33,10 +35,8 @@ import { LoginButtonComponent } from './features/components/login-button/login-b
 import { createApollo } from './core/graphql';
 import { LoginRequestModalComponent } from './features/components/login-request-modal';
 import { PodcastModule } from './features/podcast';
-import { UserModule } from './features/user/user.module';
-import { HttpLink } from 'apollo-angular/http';
+import { UserModule } from './features/user';
 import { FilterComponent } from './features/components/filter/filter.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
