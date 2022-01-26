@@ -1,6 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { Store } from '@ngxs/store';
+import { of } from 'rxjs';
+
 import { SliderComponent } from './slider.component';
+import { ENVIRONMENT, UrlUtilsService } from '@dcs-libs/shared';
+
+class StoreStub {
+  select = () => of([]);
+}
+
+class UrlUtilsServiceStub {
+}
 
 describe('SliderComponent', () => {
   let component: SliderComponent;
@@ -8,9 +19,14 @@ describe('SliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SliderComponent ]
+      declarations: [SliderComponent],
+      providers: [
+        { provide: Store, useClass: StoreStub },
+        { provide: UrlUtilsService, useClass: UrlUtilsServiceStub },
+        { provide: ENVIRONMENT, useValue: {} }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

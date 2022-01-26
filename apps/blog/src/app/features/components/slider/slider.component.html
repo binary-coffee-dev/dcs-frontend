@@ -1,3 +1,63 @@
-<div>
+<div class='container'
+     fxLayout='column'
+     fxLayoutAlign='center center'>
 
+  <div class='content'>
+
+    <ng-container *ngIf='activeInfo && activeInfo.type === "welcome"'>
+      <div class='info-item'
+           fxLayout='column'
+           fxLayoutAlign='center center'>
+        <h1>Bienvenido a Binary Coffee</h1>
+        <h4>un espacio donde puedes compartir tus ideas</h4>
+        <a [href]="getCreateArticleUrl()" class='button'>Publicar tu primer artículo</a>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf='activeInfo && activeInfo.type === "comment"'>
+      <div class='info-item'
+           fxLayoutAlign='center start'
+           fxLayout='column'>
+        <div class='message-text-container'
+             fxLayout='row'
+             fxLayoutAlign='start center'>
+          <div class='message-text'>
+            {{getLimitedMessage(activeInfo?.value?.body)}}
+          </div>
+        </div>
+        <div *ngIf='activeInfo?.value?.user'
+             fxLayout='row'
+             fxLayoutAlign='start center'
+             class='comment-user'>
+          <div class='comment-user-image'>
+            <img
+              [src]='url.getUserImage(activeInfo?.value?.user)'
+              [alt]='activeInfo?.value?.user?.username || "noavatar"'>
+          </div>
+          &#160;{{ activeInfo?.value?.user?.username }}
+        </div>
+        <div class='buttons-container'
+             fxLayout='row'
+             fxLayoutAlign='start center'>
+          <a class='button'
+             [routerLink]="'/users/' + activeInfo?.value?.user?.username">Ver perfil</a>
+          <a class='button space-left white'
+             [routerLink]="'/post/' + activeInfo?.value?.post?.name"
+             [fragment]='activeInfo?.value?.id'>Leer ></a>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+  <div class='content-pagination'>
+    <ng-container *ngFor='let inf of info; let i = index'>
+      <button class='carousel-button'
+              (click)='openInfo(i)'
+              [ngClass]='{"active": activePage === i}'></button>
+    </ng-container>
+  </div>
+
+  <div class='background'></div>
+  <div class='background2'></div>
 </div>
