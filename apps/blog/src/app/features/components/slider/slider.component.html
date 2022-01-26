@@ -10,7 +10,7 @@
            fxLayoutAlign='center center'>
         <h1>Bienvenido a Binary Coffee</h1>
         <h4>un espacio donde puedes compartir tus ideas</h4>
-        <button class='button'>Publicar tu primer artículo</button>
+        <a [href]="getCreateArticleUrl()" class='button'>Publicar tu primer artículo</a>
       </div>
     </ng-container>
 
@@ -39,8 +39,11 @@
         <div class='buttons-container'
              fxLayout='row'
              fxLayoutAlign='start center'>
-          <a class='button'>Ver perfil</a>
-          <a class='button space-left white'>Leer ></a>
+          <a class='button'
+             [routerLink]="'/users/' + activeInfo?.value?.user?.username">Ver perfil</a>
+          <a class='button space-left white'
+             [routerLink]="'/post/' + activeInfo?.value?.post?.name"
+             [fragment]='activeInfo?.value?.id'>Leer ></a>
         </div>
       </div>
     </ng-container>

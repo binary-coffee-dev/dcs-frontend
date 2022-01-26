@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 
 import { Subject, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
-import { Comment, CommentState, UrlUtilsService } from '@dcs-libs/shared';
+import { Comment, CommentState, Environment, ENVIRONMENT, UrlUtilsService } from '@dcs-libs/shared';
 
 export interface InformationBanner {
   type: 'comment' | 'welcome';
@@ -30,7 +30,8 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
-    public url: UrlUtilsService
+    public url: UrlUtilsService,
+    @Inject(ENVIRONMENT) private environment: Environment
   ) {
   }
 
@@ -39,13 +40,15 @@ export class SliderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.info.push({type: 'welcome'} as InformationBanner);
+    this.info.push({ type: 'welcome' } as InformationBanner);
 
     this.store.select(CommentState.recentComments)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(comments => {
         if (comments && comments.length > 0) {
-          this.updateComment(comments[1]);
+          this.info = this.info.filter(v => v.type !== 'comment');
+          this.addComment(comments[0]);
+          this.addComment(comments[1]);
         }
       });
 
@@ -63,7 +66,7 @@ export class SliderComponent implements OnInit, OnDestroy {
     let wave = '100% 0%, 0% 0%';
     for (let i = 0; i <= 100; i++) {
       const y = this.map(Math.cos(Math.PI * 1.5 * i / 100 - 1), -1, 1, 5, 99);
-      wave += `,${i}% ${Math.round((100 - y) *100) / 100}%`;
+      wave += `,${i}% ${Math.round((100 - y) * 100) / 100}%`;
     }
     document.documentElement.style.setProperty('--path', wave);
   }
@@ -72,17 +75,8 @@ export class SliderComponent implements OnInit, OnDestroy {
     return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   }
 
-  updateComment(comment: Comment) {
-    if (!this.info.some(v => v.type === 'comment')) {
-      this.info.push({ type: 'comment', value: comment } as InformationBanner);
-    } else {
-      this.info = this.info.map(inf => {
-        if (inf.type === 'comment') {
-          return { ...inf, value: comment } as InformationBanner;
-        }
-        return inf;
-      });
-    }
+  addComment(comment: Comment) {
+    this.info.push({ type: 'comment', value: comment } as InformationBanner);
   }
 
   openInfo(page) {
@@ -109,5 +103,9 @@ export class SliderComponent implements OnInit, OnDestroy {
   getLimitedMessage(message: string) {
     message = message || '';
     return message.substring(0, Math.min(70, message.length)) + '...';
+  }
+
+  getCreateArticleUrl(): string {
+    return `${this.environment.siteDashboardUrl}/articles/create`;
   }
 }

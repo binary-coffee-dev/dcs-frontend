@@ -12,6 +12,7 @@
     border: none;
     padding: map-get($spacings, 2);
     box-shadow: map_get($box-shadow-up, 2);
+    text-decoration: none;
 
     &.space-left {
       margin-left: map-get($spacings, 2);
@@ -20,6 +21,11 @@
     &.white {
       background-color: map-get($md-grey, 49);
       color: map-get($md-primary, 500);
+    }
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
 
@@ -134,7 +140,13 @@
           display: block;
         }
 
+        &.active:hover {
+          cursor: initial;
+        }
+
         &:hover, &.active {
+          cursor: pointer;
+
           &:after {
             height: 4px;
             margin-top: 0;
