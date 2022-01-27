@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     private metaTags: MetaTagsService,
     private dialog: MatDialog,
     @Inject(ENVIRONMENT) private environment: Environment,
-    @Inject(PLATFORM_ID) platformId: string
+    @Inject(PLATFORM_ID) private platformId: string
   ) {
     this.router.events.subscribe(event => {
       if (isPlatformBrowser(platformId) && event instanceof NavigationEnd) {
@@ -50,14 +50,18 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(consoleMessage);
-    this.metaTags.addLinkTag({
-      rel: 'alternate',
-      type: 'application/rss+xml',
-      title: `RSS Feed for binary-coffee.dev`,
-      href: `${this.environment.apiUrl}posts/feed/rss2`
-    }, 'rss-id');
-    // this.showSubscriptionDialog();
+    if (isPlatformBrowser(this.platformId)) {
+      console.log(consoleMessage);
+      this.metaTags.addLinkTag({
+        rel: 'alternate',
+        type: 'application/rss+xml',
+        title: `RSS Feed for binary-coffee.dev`,
+        href: `${this.environment.apiUrl}posts/feed/rss2`
+      }, 'rss-id');
+
+      // toDo 27.01.22, guille, show subscription in new version
+      // this.showSubscriptionDialog();
+    }
   }
 
   showSubscriptionDialog() {
