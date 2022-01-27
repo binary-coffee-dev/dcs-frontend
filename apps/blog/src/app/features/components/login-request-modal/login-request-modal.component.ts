@@ -12,6 +12,7 @@ export class LoginRequestModalComponent {
   }
 
   ok() {
+    // toDo 28.01.22, guille,
   }
 
   cancel() {

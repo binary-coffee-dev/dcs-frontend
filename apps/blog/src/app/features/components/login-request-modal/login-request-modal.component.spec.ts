@@ -2,6 +2,10 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { LoginRequestModalComponent } from './login-request-modal.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+
+class MatDialogRefStub {
+}
 
 describe('LoginRequestModalComponent', () => {
   let component: LoginRequestModalComponent;
@@ -10,6 +14,7 @@ describe('LoginRequestModalComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LoginRequestModalComponent],
+      providers: [{ provide: MatDialogRef, useClass: MatDialogRefStub }],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
