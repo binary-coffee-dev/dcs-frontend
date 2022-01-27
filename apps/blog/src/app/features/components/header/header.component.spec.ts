@@ -2,8 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { ENVIRONMENT, WINDOW } from '@dcs-libs/shared';
-
+import { ENVIRONMENT, MaterialModule, WINDOW } from '@dcs-libs/shared';
 import { HeaderComponent } from './header.component';
 
 const env = {
@@ -19,7 +18,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, MaterialModule],
       providers: [
         { provide: WINDOW, useFactory: () => window },
         { provide: ENVIRONMENT, useFactory: () => env }
