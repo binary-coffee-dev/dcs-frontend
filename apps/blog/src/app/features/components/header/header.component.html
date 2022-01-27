@@ -23,8 +23,23 @@
     <div class='fill-space'></div>
 
     <app-login-button></app-login-button>
-    <mat-button-toggle>
+    <mat-button-toggle [matMenuTriggerFor]='beforeMenu'>
       <mat-icon aria-hidden='false'>menu</mat-icon>
     </mat-button-toggle>
+    <mat-menu #beforeMenu='matMenu'
+              xPosition='before'>
+
+      <a mat-menu-item>
+        Perfil
+      </a>
+
+      <a mat-menu-item>
+        Editar perfil
+      </a>
+
+      <a mat-menu-item>
+        Gestionar artículos
+      </a>
+    </mat-menu>
   </div>
 </mat-toolbar>
