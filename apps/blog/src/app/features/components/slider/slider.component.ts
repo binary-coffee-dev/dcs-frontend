@@ -1,10 +1,11 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 
 import { Subject, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
 import { Comment, CommentState, Environment, ENVIRONMENT, UrlUtilsService } from '@dcs-libs/shared';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface InformationBanner {
   type: 'comment' | 'welcome';
@@ -31,7 +32,8 @@ export class SliderComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store,
     public url: UrlUtilsService,
-    @Inject(ENVIRONMENT) private environment: Environment
+    @Inject(ENVIRONMENT) private environment: Environment,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
   }
 
@@ -55,8 +57,10 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.activePage = 0;
     this.updateInfo();
 
-    this.nextPageTimer();
-    // this.setWavePath();
+    if (isPlatformBrowser(this.platformId)) {
+      this.nextPageTimer();
+      // this.setWavePath();
+    }
   }
 
   /**
