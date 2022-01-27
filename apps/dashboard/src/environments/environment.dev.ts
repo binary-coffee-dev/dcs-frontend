@@ -9,5 +9,12 @@ export const environment = {
   production: false,
   local: false,
   githubClientId: '3fdd7684a78a0896c870',
-  isDashboard: true
+  isDashboard: true,
+  socials: {
+    facebook: 'https://facebook.com/Binary-Coffee-111577483710684/',
+    github: 'https://github.com/binary-coffee-dev',
+    telegram: 'https://t.me/binarycoffeedev',
+    twitter: 'https://twitter.com/CoffeeBinary/'
+  },
+  contactMail: 'mailto:website@binary-coffee.dev'
 } as Environment;

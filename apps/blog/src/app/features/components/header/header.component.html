@@ -27,19 +27,113 @@
       <mat-icon aria-hidden='false'>menu</mat-icon>
     </mat-button-toggle>
     <mat-menu #beforeMenu='matMenu'
+              class='app-important-menu'
               xPosition='before'>
 
-      <a mat-menu-item>
-        Perfil
+      <a mat-menu-item
+         routerLink='/users'
+         class='item1'>
+        <i class='fa fa-users'></i>
+        Miembros
       </a>
 
-      <a mat-menu-item>
-        Editar perfil
+      <div class='item1 down-icon'>
+        <i class='fa fa-folder'></i>
+        bc@dev: legal -ls
+      </div>
+
+      <a mat-menu-item
+         routerLink='/about'
+         class='item2 right-icon'>
+        About
       </a>
 
-      <a mat-menu-item>
-        Gestionar artículos
+      <a mat-menu-item
+         routerLink='/privacy-policy'
+         class='item2 right-icon'>
+        Políticas de Privacidad
       </a>
+
+      <a mat-menu-item
+         routerLink='/cookies'
+         class='item2 right-icon'>
+        Políticas de Cookies
+      </a>
+
+      <a mat-menu-item
+         routerLink='/code-of-conduct'
+         class='item2 right-icon'>
+        Código de Conducta
+      </a>
+
+      <a mat-menu-item
+         routerLink='/term-of-use'
+         class='item2 right-icon'>
+        Términos y Condiciones
+      </a>
+
+      <div class='item1 down-icon'>
+        <i class='fa fa-folder'></i>
+        bc@dev: binarycoffee -h
+      </div>
+
+      <a mat-menu-item
+         routerLink='/donate'
+         class='item2 right-icon'>
+        Donar
+      </a>
+
+      <a mat-menu-item
+         target='_blank'
+         [href]='env?.contactMail'
+         class='item2 right-icon'>
+        Contáctenos
+      </a>
+
+      <a mat-menu-item
+         target='_blank'
+         [href]='env.apiUrl + "sitemap"'
+         class='item2 right-icon'>
+        Mapa
+      </a>
+
+      <a mat-menu-item
+         target='_blank'
+         [href]='env.apiUrl + "posts/feed/rss2"'
+         class='item2 right-icon'>
+        RSS
+      </a>
+
+      <a mat-menu-item
+         routerLink='/podcast/espacio-binario'
+         class='item1'>
+        <i class='fa fa-play-circle'></i>
+        Espacio Binario
+      </a>
+      <div class='share-buttons'
+           fxLayout='row'
+           fxLayoutAlign='space-between center'>
+        <a [href]='env?.socials?.twitter'
+           fxLayout='row'
+           fxLayoutAlign='center center'>
+          <i class='fa fa-twitter'></i>
+        </a>
+        <a [href]='env?.socials?.github'
+           fxLayout='row'
+           fxLayoutAlign='center center'>
+          <i class='fa fa-github'></i>
+        </a>
+        <a [href]='env?.socials?.telegram'
+           fxLayout='row'
+           fxLayoutAlign='center center'>
+          <i class='fa fa-telegram'></i>
+        </a>
+        <a [href]='env?.socials?.facebook'
+           fxLayout='row'
+           fxLayoutAlign='center center'>
+          <i class='fa fa-facebook'></i>
+        </a>
+      </div>
     </mat-menu>
   </div>
 </mat-toolbar>
