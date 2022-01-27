@@ -63,6 +63,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
       p.push({ minutes: v * 60 + 30, title: `${v}:30` });
       return p;
     }, []);
+
     this.window.document.addEventListener('keydown', this.shortCutHandlerMethod.bind(this));
   }
 

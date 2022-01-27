@@ -39,29 +39,30 @@ export class AppComponent implements OnInit {
     @Inject(ENVIRONMENT) private environment: Environment,
     @Inject(PLATFORM_ID) private platformId: string
   ) {
-    this.router.events.subscribe(event => {
-      if (isPlatformBrowser(platformId) && event instanceof NavigationEnd) {
-        gtag('config', this.environment.googleAnalyticsId, {
-          page_path: event.urlAfterRedirects
-        });
-      }
-    });
-    this.store.dispatch(new ChangePageSizeAction(this.environment.postPageSize));
   }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+      this.router.events.subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          gtag('config', this.environment.googleAnalyticsId, {
+            page_path: event.urlAfterRedirects
+          });
+        }
+      });
+      this.store.dispatch(new ChangePageSizeAction(this.environment.postPageSize));
+
       console.log(consoleMessage);
-      this.metaTags.addLinkTag({
-        rel: 'alternate',
-        type: 'application/rss+xml',
-        title: `RSS Feed for binary-coffee.dev`,
-        href: `${this.environment.apiUrl}posts/feed/rss2`
-      }, 'rss-id');
 
       // toDo 27.01.22, guille, show subscription in new version
       // this.showSubscriptionDialog();
     }
+    this.metaTags.addLinkTag({
+      rel: 'alternate',
+      type: 'application/rss+xml',
+      title: `RSS Feed for binary-coffee.dev`,
+      href: `${this.environment.apiUrl}posts/feed/rss2`
+    }, 'rss-id');
   }
 
   showSubscriptionDialog() {

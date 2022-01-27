@@ -11,9 +11,8 @@
     "test": "ng test --code-coverage",
     "lint": "ng lint",
     "serve:ssr": "node dist/server/main",
-    "build:ssr": "ng build --configuration production && npm run compile:server",
-    "build:ssr:dev": "ng build --configuration=dev && npm run compile:server",
-    "compile:server": "ng run blog:server:production"
+    "build:ssr": "ng run blog:build:production && ng run blog:server:production",
+    "build:ssr:dev": "ng run blog:build:dev && ng run blog:server:dev"
   },
   "private": true,
   "dependencies": {

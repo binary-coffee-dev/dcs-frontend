@@ -30,7 +30,7 @@ export class UsersOverviewComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(UserInfoState.topPopularUsers).subscribe(topPopular => this.top5Likes = topPopular);
     this.store.select(UserInfoState.topActiveUsers).subscribe(topActive => this.top5Post = topActive);
-    this.store.select(UserInfoState.users).subscribe(users => this.users = users);
+    this.store.select(UserInfoState.users).subscribe(users => this.users = users || []);
 
     this.store.dispatch(new FetchTopActiveUsersAction());
     this.store.dispatch(new FetchTopPopularUsersAction());

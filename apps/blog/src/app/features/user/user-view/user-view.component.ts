@@ -65,7 +65,7 @@ export class UserViewComponent implements OnInit {
     } as UserData);
     this.userData.push({
       icon: 'language',
-      link: this.user?.page || this.window.location.href
+      link: this.user?.page
     } as UserData);
     this.userData.push({
       icon: 'rss_feed',

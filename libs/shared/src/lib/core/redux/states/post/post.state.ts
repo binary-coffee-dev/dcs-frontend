@@ -131,8 +131,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   @Action(FetchPostAction)
   fetchPostByNameAction(ctx: StateContext<PostStateModel>, action: FetchPostAction) {
     return this.postService.fetchPostByName(action.postName).pipe(
-      tap(({post, userLike, likes}) => ctx.patchState({post, likes, userLike})),
-      take(1)
+      tap(({post, userLike, likes}) => ctx.patchState({post, likes, userLike}))
     );
   }
 
