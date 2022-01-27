@@ -94,7 +94,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   editComment(comment: Comment) {
-    this.dialog.open(EditCommentModalComponent, { data: { comment } });
+    this.dialog.open(EditCommentModalComponent, { width: '500px', height: '600px', data: { comment } });
   }
 
   createComment() {
@@ -121,7 +121,6 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   canCurrentUserEditComment(comment: Comment) {
-    return true;
     return (comment.user && this.currentUser && comment.user.username === this.currentUser.username) ||
       this.isStaff(this.currentUser) ||
       this.isAdmin(this.currentUser);

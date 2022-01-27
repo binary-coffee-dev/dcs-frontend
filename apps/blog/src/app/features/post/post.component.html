@@ -61,7 +61,8 @@
             {{post?.views}}
           </div>
           <div fxFlex='100'></div>
-          <mat-button-toggle class='like-button'>
+          <mat-button-toggle class='like-button'
+                             (click)='postLikeClick()'>
             <i class='fa fa-coffee post-icons'></i>
             Brindar con {{post?.author?.username}}
           </mat-button-toggle>
@@ -102,7 +103,8 @@
         </div>
       </div>
 
-      <mat-button-toggle class='like-button last-like-button'>
+      <mat-button-toggle class='like-button last-like-button'
+                         (click)='postLikeClick()'>
         <i class='fa fa-coffee post-icons'></i>
         Brindar con {{post?.author?.username}}
       </mat-button-toggle>
