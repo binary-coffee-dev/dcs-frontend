@@ -29,14 +29,19 @@
           <app-tags [tags]='post?.tags'></app-tags>
         </div>
 
-        <a [href]="'/users/' + post?.author?.username"
-           fxLayout='row'
-           fxLayoutAlign='start center'
-           class='user-avatar'>
-          <img [src]='url.getUserImage(post?.author)'
-               [alt]='post?.author?.username'>
-          <span>"{{post?.author?.username}}"</span>
-        </a>
+        <div fxLayout='row'
+             fxLayoutAlign='start center'
+             class='user-avatar-container'>
+          <a [href]="'/users/' + post?.author?.username"
+             fxLayout='row'
+             fxLayoutAlign='start center'
+             matTooltip='Ver perfil'
+             class='user-avatar'>
+            <img [src]='url.getUserImage(post?.author)'
+                 [alt]='post?.author?.username'>
+            <span>"{{post?.author?.username}}"</span>
+          </a>
+        </div>
 
         <div fxLayout='row'
              fxLayoutAlign='start end'
@@ -56,7 +61,8 @@
             {{post?.views}}
           </div>
           <div fxFlex='100'></div>
-          <mat-button-toggle class='like-button'>
+          <mat-button-toggle class='like-button'
+                             (click)='postLikeClick()'>
             <i class='fa fa-coffee post-icons'></i>
             Brindar con {{post?.author?.username}}
           </mat-button-toggle>
@@ -97,7 +103,8 @@
         </div>
       </div>
 
-      <mat-button-toggle class='like-button'>
+      <mat-button-toggle class='like-button last-like-button'
+                         (click)='postLikeClick()'>
         <i class='fa fa-coffee post-icons'></i>
         Brindar con {{post?.author?.username}}
       </mat-button-toggle>

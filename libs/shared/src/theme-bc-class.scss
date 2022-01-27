@@ -77,15 +77,56 @@
 //  border-radius: map_get($radius, 2);
 //}
 //
-//.bc-card-modal {
-//  padding: map_get($spacings, 4) !important;
-//  box-shadow: none;
-//  border: 1px solid map_get($md-primary, 900);
-//  background: map_get($md-primary, 50);
-//  border-radius: map_get($radius, 2);
-//
-//  .title {
-//    color: map_get($md-primary, 900) !important;
-//    padding-bottom: map_get($spacings, 4);
-//  }
-//}
+
+.button-ok {
+  background-color: map-get($md-primary, 500);
+  box-shadow: map_get($box-shadow-up, 5);
+
+  &:hover {
+    background-color: map-get($md-primary, 910);
+  }
+}
+
+.button-cancel {
+  background-color: map-get($md-grey, 400);
+  color: map-get($md-grey, 700);
+  box-shadow: map_get($box-shadow-up, 5);
+
+  &:hover {
+    background-color: map-get($md-grey, 500);
+  }
+}
+
+.card-modal {
+  padding: map_get($spacings, 4) !important;
+  background-color: map-get($md-grey, 49);
+  border-radius: map_get($radius, 2);
+  box-shadow: map_get($box-shadow-up, 3);
+  color: map-get($md-grey, 700);
+
+  .head {
+    margin-bottom: map-get($spacings, 4);
+
+    .close-button {
+      &:hover {
+        color: map-get($md-primary, 500);
+      }
+    }
+
+    .title {
+      white-space: nowrap;
+    }
+  }
+
+  .body {
+    height: 100%;
+
+    .buttons-container {
+      width: 100%;
+
+      .button-ok {
+        margin-right: map-get($spacings, 2);
+      }
+    }
+  }
+}

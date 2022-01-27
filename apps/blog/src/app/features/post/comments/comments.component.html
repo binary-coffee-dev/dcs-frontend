@@ -1,110 +1,88 @@
-<div class="comments-container">
-  <div class="comments-header"><span>Opiniones</span></div>
-  <div class="comments-header-separator"></div>
+<div class='comments-container'
+     fxLayout='column'
+     fxLayoutAlign='start center'>
 
-  <form class="comment-new-container"
-        fxLayout="column"
-        [formGroup]="commentForm"
-        fxLayoutAlign="center end">
+  <form class='comment-new-container'
+        fxLayout='column'
+        [formGroup]='commentForm'
+        fxLayoutAlign='center start'>
+    <div class='comments-header'><span>// Comparte tus opiniones</span></div>
 
-    <span class="comment-error-message"
-          *ngIf="commentError">
-      <mat-icon mat-font-icon="fa-icon"
-                class="fa fa-warning"></mat-icon>
+    <span class='comment-error-message'
+          *ngIf='commentError'>
+      <mat-icon mat-font-icon='fa-icon'
+                class='fa fa-warning'></mat-icon>
       {{commentError}}
     </span>
 
-    <mat-form-field class="comment-item comment-item-text"
-                    appearance="outline">
-      <mat-label class="code-none">
-        <span class="code-1"> var </span>
-        <span class="code-var"> Opinión </span> =
+    <mat-form-field class='comment-item comment-item-text'
+                    appearance='outline'>
+      <mat-label class='code-none'>
+        <span class='code-1'> var </span>
+        <span class='code-var'> Opinión =</span>
       </mat-label>
       <textarea matInput
-                (keyup)="commentChangeEvent()"
-                formControlName="body"
-                type="text"
-                maxlength="250"
-                cols="30"
-                rows="4">
+                (keyup)='commentChangeEvent()'
+                formControlName='body'
+                type='text'
+                maxlength='250'
+                cols='30'
+                rows='4'>
       </textarea>
     </mat-form-field>
 
-    <div class="comment-credentials"
-         fxFlex="100"
-         fxLayout="row"
-         fxLayout.sm="column"
-         fxLayout.xs="column"
-         fxLayoutAlign="start start">
-
-      <div fxLayout="column"
-           class="items-credentials-container"
-           fxLayoutAlign="end end"
-           fxFlex="100">
-
-        <button mat-button
-                matTooltip="Opinar sobre el tema"
-                class="bc-button"
-                [disabled]="!commentForm.valid"
-                (click)="createComment()">
-          enviar (
-          <span fxHide.xs
-                fxHide.sm>
-            <span class="code-var"> Opinión </span>
-          </span>)
-        </button>
-
-      </div>
+    <div class='button-container'
+         fxLayout='row'
+         fxLayoutAlign='end center'>
+      <mat-button-toggle (click)='createComment()'>Enviar</mat-button-toggle>
     </div>
   </form>
 
-  <div class="comments-list">
-    <div fxLayout="row"
-         class="comment-item"
-         *ngFor="let comment of comments"
-         [id]="comment?.id">
-      <a [href]="'/users/' + (comment?.user?.username || '')">
-        <img class="comment-user-image"
-             [src]="getUserAvatar(comment?.user)"
-             alt="noavatar">
-      </a>
-
-      <div fxLayout="column"
-           fxFlex="90"
-           fxFlex.xs="80">
-        <div class="post-info-container"
-             fxLayout="row">
-          <div fxLayout="column"
-               fxFlex="100">
-            <span class="post-info">
-              // {{comment?.publishedAt && moment.timeFromDate(comment.publishedAt) || ''}}
-            </span>
-            <a [href]="'/users/' + (comment?.user?.username || '')"
-               class="code-2">
-              "{{getName(comment)}}"
-              <i class="fa fa-check-circle"
-                 *ngIf="isCommentFromPostOwner(comment)"
-                 [matTooltip]="'Autor'">
-              </i>
-              <i class="fa fa-star"
-                 *ngIf="isStaffOrAdmin(comment)"
-                 [matTooltip]="getRoleName(comment)">
-              </i>
-            </a>
-          </div>
-          <div fxLayout="row"
+  <div class='comments-list'
+       *ngIf='comments && comments.length > 0'>
+    <ng-container *ngFor='let comment of comments'>
+      <div class='comment-container'
+           fxLayout='column'>
+        <div class='user-data'
+             fxLayout='row'>
+          <a [href]="'/users/' + (comment?.user?.username || '')"
+             fxLayout='row'
+             fxLayoutAlign='start center'>
+            <img class='comment-user-image'
+                 [src]='getUserAvatar(comment?.user)'
+                 alt='noavatar'>
+            <span class='comment-username'
+                  matTooltip='Ver perfil'>"{{getName(comment)}}"</span>
+            <i class='fa fa-check-circle'
+               *ngIf='isCommentFromPostOwner(comment)'
+               [matTooltip]="'Autor'">
+            </i>
+            <i class='fa fa-star'
+               *ngIf='isStaffOrAdmin(comment)'
+               [matTooltip]='getRoleName(comment)'>
+            </i>
+          </a>
+        </div>
+        <div class='date'
+             fxLayout='row'>
+          <span>// {{comment?.publishedAt && moment.timeFromDate(comment.publishedAt) || ''}}</span>
+          <div fxFlex='100'></div>
+          <div fxLayout='row'
+               class='action-icons'>
+            <i class='fa fa-trash'
                *ngIf='canCurrentUserEditComment(comment)'
-               class="actions">
-            <a (click)="removeComment(comment.id)"
-               title="Eliminar comentario"><i class="material-icons">delete</i></a>
-            <a (click)="editComment(comment)"
-               title="Editar comentario"><i class="material-icons">edit</i></a>
+               (click)='removeComment(comment.id)'
+               matTooltip='Eliminar'>
+            </i>
+            <i class='fa fa-pencil'
+               *ngIf='canCurrentUserEditComment(comment)'
+               (click)='editComment(comment)'
+               matTooltip='Editar'>
+            </i>
           </div>
         </div>
-        <div class="comment-body">
-          {{comment.body}}
-        </div>
+        <div class='comment-content'>{{comment?.body}}</div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </div>

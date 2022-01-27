@@ -1,2 +1,11 @@
+@import "libs/shared/src/theme";
+
 :host {
+  .card-modal {
+    .body {
+      span {
+        margin-bottom: map-get($spacings, 3);
+      }
+    }
+  }
 }

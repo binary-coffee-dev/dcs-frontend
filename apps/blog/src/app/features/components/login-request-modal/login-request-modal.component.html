@@ -1,6 +1,32 @@
-<div class="bc-card-modal"
-     fxLayout="column"
-     fxLayoutAlign="center end">
-  <span class="title">Necesita estar autenticado</span>
-  <app-login-button></app-login-button>
+<div class='card-modal'
+     fxLayout='column'>
+  <div class='head'
+       fxLayout='row'>
+    <div fxFlex='100'></div>
+    <i class='fa fa-close close-button'
+       (click)='cancel()'
+       matTooltip='close'></i>
+  </div>
+  <div class='body'
+       fxLayout='column'
+       fxLayoutAlign='start center'>
+    <span>Necesita estar autenticado</span>
+    <div class='buttons-container'
+         fxLayout='row'
+         fxLayoutAlign='end'>
+      <mat-button-toggle class='button-ok'
+                         (click)='ok()'>Autenticarse
+      </mat-button-toggle>
+      <mat-button-toggle class='button-cancel'
+                         (click)='cancel()'>Cancelar
+      </mat-button-toggle>
+    </div>
+  </div>
 </div>
+
+<!--<div class="bc-card-modal"-->
+<!--     fxLayout="column"-->
+<!--     fxLayoutAlign="center end">-->
+<!--  <span class="title">Necesita estar autenticado</span>-->
+<!--  <app-login-button></app-login-button>-->
+<!--</div>-->

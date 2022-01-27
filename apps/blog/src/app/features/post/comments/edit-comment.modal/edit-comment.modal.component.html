@@ -1,36 +1,53 @@
-<div class="bc-card-modal"
-     fxLayout="column">
-  <span class="title">Editar comentario</span>
-  <form class="comment-new-container"
-        fxLayout="column"
-        [formGroup]="commentForm"
-        fxLayoutAlign="center end">
+<div class='card-modal'
+     fxLayout='column'>
+  <div class='head'
+       fxLayout='row'>
+    <span class='title'>Editar comentario</span>
+    <div fxFlex='100'></div>
+    <i class='fa fa-close close-button'
+       (click)='cancel()'
+       matTooltip='close'></i>
+  </div>
+  <div class='body'
+       fxLayout='column'>
 
-    <span class="comment-error-message"
-          *ngIf="commentError">
-      <mat-icon mat-font-icon="fa-icon"
-                class="fa fa-warning"></mat-icon>
-      {{commentError}}
-    </span>
+    <form class='comment-new-container'
+          fxFlex='100'
+          fxLayout='column'
+          [formGroup]='commentForm'
+          fxLayoutAlign='center end'>
 
-    <mat-form-field class="comment-item comment-item-text"
-                    appearance="outline">
-      <mat-label class="code-none">
-        <span class="code-1"> var </span>
-        <span class="code-var"> Opinión </span> =
-      </mat-label>
-      <textarea matInput
-                formControlName="body"
-                type="text"
-                maxlength="250"
-                cols="30"
-                rows="4">
+      <span class='comment-error-message'
+            *ngIf='commentError'>
+        <mat-icon mat-font-icon='fa-icon'
+                  class='fa fa-warning'></mat-icon>
+        {{commentError}}
+      </span>
+
+      <mat-form-field class='comment-item comment-item-text'
+                      appearance='outline'>
+        <mat-label class='code-none'>
+          <span class='code-1'> var </span>
+          <span class='code-var'> Opinión </span> =
+        </mat-label>
+        <textarea matInput
+                  formControlName='body'
+                  type='text'
+                  maxlength='250'
+                  cols='30'
+                  rows='4'>
       </textarea>
-    </mat-form-field>
-  </form>
+      </mat-form-field>
+    </form>
 
-  <div>
-    <button (click)="ok()">editar</button>
-    <button (click)="cancel()">cancelar</button>
+    <div class='buttons-container'
+         fxLayoutAlign='end'>
+      <mat-button-toggle class='button-ok'
+                         (click)='ok()'>editar
+      </mat-button-toggle>
+      <mat-button-toggle class='button-cancel'
+                         (click)='cancel()'>cancelar
+      </mat-button-toggle>
+    </div>
   </div>
 </div>
