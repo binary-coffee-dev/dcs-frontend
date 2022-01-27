@@ -15,9 +15,11 @@ import {
   PostState,
   AuthState,
   Permissions,
-  WINDOW, UrlUtilsService, MomentService
+  WINDOW, UrlUtilsService, MomentService, CreateLikeArticle, RemoveLikeArticle
 } from '@dcs-libs/shared';
 import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
+import { LoginRequestModalComponent } from '../components/login-request-modal';
+import { MatDialog } from '@angular/material/dialog';
 
 const MAX_NUMBER_OF_POSTS = 6;
 
@@ -32,6 +34,7 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
   similarPosts: Post[];
   isBrowser: boolean;
   likes = 0;
+  userLike = 0;
 
   _unsubscribe = new Subject();
 
@@ -47,7 +50,8 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public url: UrlUtilsService,
     @Inject(PLATFORM_ID) platformId: string,
-    protected sanitizer: DomSanitizer
+    protected sanitizer: DomSanitizer,
+    private dialog: MatDialog,
   ) {
     super();
     this.isBrowser = isPlatformBrowser(platformId);
@@ -63,6 +67,9 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
     this.store.select(PostState.likes)
       .pipe(takeUntil(this._unsubscribe))
       .subscribe(likes => this.likes = likes);
+    this.store.select(PostState.userLike)
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe(userLike => this.userLike = userLike);
     this.store.select(PostState.similarPosts).subscribe((posts: Post[]) => {
       this.loadPosts(posts);
     });
@@ -121,5 +128,17 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
 
   editPost(post) {
     this.window.location.href = `${this.environment.siteDashboardUrl}/articles/update/${post.id}`;
+  }
+
+  postLikeClick() {
+    const user = this.store.selectSnapshot(AuthState.me);
+    if (!user || !user.id) {
+      this.dialog.open(LoginRequestModalComponent, {});
+    }
+    if (this.userLike === 0 && user && user.id) {
+      this.store.dispatch(new CreateLikeArticle(user.id, this.post.id));
+    } else if (user && user.id) {
+      this.store.dispatch(new RemoveLikeArticle(this.post.id));
+    }
   }
 }

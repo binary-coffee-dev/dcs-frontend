@@ -1,13 +1,19 @@
 @import 'libs/shared/src/theme';
 
 :host {
+  overflow: hidden;
+
   .post-container {
-    width: 100vw;
+    overflow: hidden;
     margin-top: map-get($spacings, 5);
 
     .like-button {
       min-width: 200px;
       background-color: map-get($md-primary, 500);
+    }
+
+    .last-like-button {
+      margin-left: map-get($spacings, 2);
     }
 
     .align-container {
@@ -56,16 +62,28 @@
             }
           }
 
-          .user-avatar {
-            text-decoration: none;
-            color: map-get($md-grey, 800);
-            margin-bottom: map-get($spacings, 3);
+          .user-avatar-container {
+            margin-bottom: map-get($spacings, 1);
 
-            img {
-              width: 30px;
-              height: 30px;
-              border-radius: 50%;
-              margin-right: map-get($spacings, 2);
+            .user-avatar {
+              text-decoration: none;
+              color: map-get($md-grey, 800);
+
+              img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                margin-right: map-get($spacings, 2);
+                border: solid 2px transparent;
+              }
+
+              &:hover {
+                text-decoration: underline;
+
+                img {
+                  border: solid 2px map-get($md-primary, 500);
+                }
+              }
             }
           }
 
