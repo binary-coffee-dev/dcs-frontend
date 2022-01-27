@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     @Inject(WINDOW) private window: Window,
-    @Inject(ENVIRONMENT) private env: Environment) {
+    @Inject(ENVIRONMENT) public env: Environment) {
   }
 
   ngOnInit(): void {

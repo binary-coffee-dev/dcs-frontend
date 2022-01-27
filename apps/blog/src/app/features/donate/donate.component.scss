@@ -3,121 +3,79 @@
 :host {
 
   .container {
-    min-height: calc(100vh - 300px);
+    overflow: hidden;
 
-    .description {
-      text-align: justify;
-      padding: map_get($spacings, 4);
-    }
+    .align-container {
+      width: 100vw;
+      overflow: hidden;
 
-    .container-in {
-      padding: map_get($spacings, 4);
-      width: 100%;
-
-      form {
-        display: none;
-      }
-
-      .code-comment-1 {
-        font-size: .8rem;
-      }
-
-      a {
-        margin: map_get($spacings, 1) map_get($spacings, 4) 0 map_get($spacings, 4);
-
-        .fa {
-          font-size: 1.5rem;
-        }
-      }
-
-      .bc-button {
+      .data-container {
         overflow: hidden;
-      }
+        box-shadow: map_get($box-shadow, 3);
+        padding: map-get($spacings, 2) map-get($spacings, 10);
+        margin: map-get($spacings, 4) 0;
 
-      .paypal {
-        $color: #2b5eaa;
-        color: $color;
-
-        &:hover {
-          border: 1px solid $color;
+        p {
+          font-size: 14px;
         }
-      }
 
-      .bitcoin {
-        $color: #ffa600;
-        color: $color;
+        .links-container {
+          width: 100%;
+          margin-top: map-get($spacings, 3);
 
-        &:hover {
-          border: 1px solid $color;
-        }
-      }
+          .bc-button {
+            width: 100%;
+            max-width: 600px;
+            border: solid 2px map-get($md-grey, 500);
+            border-radius: map_get($radius, 3);
+            margin: map-get($spacings, 2);
+            overflow: hidden;
+            font-size: 20px;
+            text-transform: uppercase;
 
-      .ethereum {
-        $color: #646DAE;
-        &:hover {
-          border: 1px solid $color;
-        }
-      }
+            .fa {
+              font-size: 30px;
+              width: 30px;
+            }
 
-      .patreon {
-        $color: #EA414E;
-        &:hover {
-          border: 1px solid $color;
-        }
-      }
+            &.github-sponsor:hover {
+              border: solid 2px map-get($md-grey, 800);
+            }
 
-      .github-sponsor {
-        $color: #DE79B5;
-        &:hover {
-          border: 1px solid $color;
-        }
-      }
+            &.paypal:hover {
+              border: solid 2px #27346a;
+              color: #27346a;
+            }
 
-      .buy-me-a-coffee {
-        $color: #F9DD01;
-        &:hover {
-          border: 1px solid $color;
-        }
-      }
+            &.patreon:hover {
+              border: solid 2px #ff424d;
+              color: #ff424d;
 
-      .visa {
-        $color: #f3c018;
-        color: $color;
+              svg {
+                fill: #ff424d;
+              }
+            }
 
+            &.buy-me-a-coffee:hover {
+              border: solid 2px #ffdc00;
+              color: #ffdc00;
 
-        &:hover {
-          border: 1px solid $color;
-        }
-      }
+              svg {
+                fill: #ffdc00;
+              }
+            }
 
-      .mastercard {
-        $color: #ff5100;
-        color: $color;
+            &.bitcoin:hover {
+              border: solid 2px #EF9303;
+            }
 
-        &:hover {
-          border: 1px solid $color;
-        }
-      }
-
-      .enzona {
-        $color: #2b5eaa;
-        color: $color;
-
-        &:hover {
-          border: 1px solid $color;
+            &.ethereum:hover {
+              border: solid 2px #656EAF;
+            }
+          }
         }
       }
     }
   }
 
-  @media screen and (max-width: 599px) {
-    .container {
-      border-top: 1px solid map_get($md-primary, 100);
-
-      .container-in {
-        min-height: 0;
-        border: none;
-      }
-    }
-  }
 }

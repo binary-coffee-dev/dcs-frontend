@@ -1,6 +1,13 @@
+@import 'libs/shared/src/theme';
+
 :host {
   .container {
     padding: 15px;
     margin-bottom: 20px;
+
+    markdown {
+      box-shadow: map_get($box-shadow, 3);
+      padding: map-get($spacings, 2) map-get($spacings, 3);
+    }
   }
 }

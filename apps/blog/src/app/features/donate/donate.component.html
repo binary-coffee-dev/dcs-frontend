@@ -1,106 +1,86 @@
 <div class='container'
-     fxLayout='row'
-     fxLayout.xs='column'
-     fxLayout.sm='column'
-     fxLayout.md='column'
-     fxLayout='row'
-     fxLayoutAlign='center center'>
-  <div class='description code-comment-1'
-       fxLayout='column'
-       fxLayoutAlign='start start'
-       fxLayoutGap='gappx'
-       fxFlex='25'
-       fxFlex.xs='100'>
-    <p>
-      /* <br>
-      Apoye a la plataforma BinayCoffee con su grano de arena.
-      Cualquier ayuda será agredecida.<br>
-      */
-    </p>
-  </div>
+     fxLayout='column'
+     fxLayoutAlign='start center'>
 
+  <div class='align-container'
+       fxLayoutAlign='center start'
+       fxLayout='row'>
 
-  <div class='container-in code-none'
-       fxLayout='column'
-       fxFlex.xs='100'
-       fxFlex.sm='100'
-       fxFlex='30'>
+    <div class='data-container'
+         fxLayoutAlign='center start'
+         fxFlex.xl='50'
+         fxFlex.lg='70'
+         fxFlex='80'
+         fxFlex.md='95'
+         fxFlex.sm='100'
+         fxFlex.xs='100'
+         fxLayout='column'>
 
-    <span class='code-comment-1'>
-      // Para realizar una donación puede utilizar diferentes métodos de
-      pago.
-    </span>
+      <h2>Donar</h2>
 
-    <div>
-      <span class='code-1'>class</span>
-      <span> Donar{{"{"}}</span>
+      <p>
+        <br>Apoye a la plataforma BinayCoffee con su grano de arena. Cualquier ayuda será agredecida.<br>
+        <br>Su donación se empleará, principalmente, para mejorar las condiciones del equipo de desarrollo. <br>
+      </p>
+
+      <div class='links-container'
+           fxLayout='column'
+           fxLayoutAlign='center center'>
+        <a mat-button
+           target='_blank'
+           href='https://github.com/sponsors/binary-coffee-dev/sponsorships?preview=false&frequency=recurring&amount=5'
+           class='github-sponsor bc-button'>
+          <i class='fa fa-github'></i>
+          github sponsors
+        </a>
+
+        <a mat-button
+           target='_blank'
+           href='https://www.paypal.com/donate?hosted_button_id=66HG7ANLYHYZ4'
+           class='paypal bc-button'>
+          <i class='fa fa-paypal'></i>
+          paypal
+        </a>
+
+        <a mat-button
+           target='_blank'
+           href='https://www.patreon.com/join/7569568/checkout?ru=undefined'
+           class='patreon bc-button'>
+          <svg class='fa'
+               viewBox='0 0 40 40'>
+            <path d='M23.75,9a8.25,8.25,0,1,1-8.26,8.26A8.26,8.26,0,0,1,23.75,9M9,31h4V9H9Z' />
+          </svg>
+          patreon
+        </a>
+
+        <a mat-button
+           target='_blank'
+           href='https://www.buymeacoffee.com/binarycoffee'
+           class='buy-me-a-coffee bc-button'>
+          <svg class='fa'
+               viewBox='0 0 24 24'>
+            <path d='M20,5.322V2.8h-1.889L16.913,0H6.975L5.777,2.799H4v2.523h0.684L5.379,9.8H4.29l1.438,8.23l0.924-0.01L7.58,24h8.782l0.061-0.4l0.867-5.58l0.875,0.01l1.438-8.231h-1.04l0.694-4.477H20z M7.495,0.805H16.4l0.759,1.78H6.733L7.495,0.805z M18.66,10.6l-1.158,6.62l-5.563-0.06l-5.55,0.06L5.233,10.6H18.66z M19.207,4.522H4.787v-0.92h14.42V4.522z' />
+          </svg>
+          buy me a coffee
+        </a>
+
+        <a mat-button
+           target='_blank'
+           href='https://en.cryptobadges.io/donate/bc1q3vszxqvms8snh72qdp8a20v79n4c838zw0n9jg'
+           class='bitcoin bc-button'>
+          <img src='https://en.cryptobadges.io/badge/big/bc1q3vszxqvms8snh72qdp8a20v79n4c838zw0n9jg'
+               alt=''>
+        </a>
+
+        <a mat-button
+           target='_blank'
+           href='https://en.cryptobadges.io/donate/0x2f2EB4006Bb9b5fd20369691103B97fA13980a58'
+           class='ethereum bc-button'>
+          <img src='https://en.cryptobadges.io/badge/big/0x2f2EB4006Bb9b5fd20369691103B97fA13980a58'
+               alt=''>
+        </a>
+      </div>
+
     </div>
-
-    <a mat-button
-       target='_blank'
-       href='https://github.com/sponsors/binary-coffee-dev/sponsorships?preview=false&frequency=recurring&amount=5'
-       class='github-sponsor bc-button'>
-      <img
-        src='https://img.shields.io/github/sponsors/binary-coffee-dev?style=for-the-badge&color=success&label=github%20sponsor&logo=githubsponsors&labelColor=rgba(0%2C0%2C0%2C0.17)'
-        alt=''>
-    </a>
-
-    <a mat-button
-       target='_blank'
-       href='https://www.paypal.com/donate?hosted_button_id=66HG7ANLYHYZ4'
-       class='paypal bc-button'>
-      <img
-        src='https://img.shields.io/badge/paypal-donate-success?style=for-the-badge&logo=paypal&link=https%3A%2F%2Fwww.paypal.com%2Fdonate%3Fhosted_button_id%3D66HG7ANLYHYZ4&labelColor=rgba(0%2C0%2C0%2C0.17)'
-        alt=''>
-    </a>
-
-    <a mat-button
-       target='_blank'
-       href='https://www.patreon.com/join/7569568/checkout?ru=undefined'
-       class='patreon bc-button'>
-      <img
-        src='https://img.shields.io/badge/patreon-join-success?style=for-the-badge&logo=patreon&link=https%3A%2F%2Fwww.patreon.com%2FbePatron%3Fu%3D62897845&labelColor=rgba(0%2C0%2C0%2C0.17)'
-        alt=''>
-    </a>
-
-    <a mat-button
-       target='_blank'
-       href='https://www.buymeacoffee.com/binarycoffee'
-       class='buy-me-a-coffee bc-button'>
-      <img
-        src='https://img.shields.io/badge/-donate-success?style=for-the-badge&logo=buymeacoffee&label=Buy%20me%20a%20coffee&labelColor=rgba(0%2C0%2C0%2C0.17)'
-        alt=''>
-    </a>
-
-    <a mat-button
-       target='_blank'
-       href='https://en.cryptobadges.io/donate/bc1q3vszxqvms8snh72qdp8a20v79n4c838zw0n9jg'
-       class='bitcoin bc-button'>
-      <img src='https://en.cryptobadges.io/badge/big/bc1q3vszxqvms8snh72qdp8a20v79n4c838zw0n9jg'
-           alt=''>
-    </a>
-
-    <a mat-button
-       target='_blank'
-       href='https://en.cryptobadges.io/donate/0x2f2EB4006Bb9b5fd20369691103B97fA13980a58'
-       class='ethereum bc-button'>
-      <img src='https://en.cryptobadges.io/badge/big/0x2f2EB4006Bb9b5fd20369691103B97fA13980a58'
-           alt=''>
-    </a>
-
-    <div>{{"}"}}</div>
-  </div>
-
-  <div class='description code-comment-1'
-       fxLayout='column'
-       fxLayoutAlign='start start'
-       fxLayoutGap='gappx'
-       fxFlex='25'
-       fxFlex.xs='100'>
-    <p>
-      /* <br>
-      Su donación se empleará, principalmente, para mejorar las condiciones del equipo de desarrollo. <br>
-      */
-    </p>
   </div>
 </div>

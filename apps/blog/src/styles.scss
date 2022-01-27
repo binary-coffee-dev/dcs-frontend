@@ -103,7 +103,7 @@ markdown {
 
   blockquote {
     position: relative;
-    margin: 0;
+    margin: map-get($spacings, 1) 0;
     padding: map-get($spacings, 1) map-get($spacings, 2) map-get($spacings, 1) map-get($spacings, 6);
     background-color: map-get($md-grey, 49);
     border-radius: map-get($radius, 3);
