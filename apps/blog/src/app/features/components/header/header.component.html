@@ -1,7 +1,9 @@
 <mat-toolbar fxLayout='row'
              fxLayoutAlign='center center'>
 
-  <div fxFlex.xl='50'
+  <div ngClass.sm='space-in-xs-sm'
+       ngClass.xs='space-in-xs-sm'
+       fxFlex.xl='50'
        fxFlex.lg='70'
        fxFlex='80'
        fxFlex.md='95'
@@ -15,11 +17,14 @@
        fxLayoutAlign='start center'>
       <img src='/assets/images/128x128/binarycoffee_2.0.0.png'
            alt='binarycoffee-logo'>
-      Binary Coffee
+      <span fxHide.sm
+            fxHide.xs>Binary Coffee</span>
     </a>
 
     <div class='fill-space'></div>
-    <app-filter *ngIf='showSearch'></app-filter>
+    <app-filter *ngIf='showSearch'
+                fxHide.sm
+                fxHide.xs></app-filter>
     <div class='fill-space'></div>
 
     <app-login-button></app-login-button>

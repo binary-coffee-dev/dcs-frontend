@@ -61,10 +61,14 @@
 
       h1 {
         margin-bottom: map-get($spacings, 1);
+        text-align: center;
+        padding: 0 map-get($spacings, 2);
       }
 
       h4 {
         margin-top: 0;
+        text-align: center;
+        padding: 0 map-get($spacings, 2);
       }
 
       .info-item {
@@ -87,6 +91,7 @@
             width: 300px;
             line-height: 30px;
             color: map-get($md-grey, 49);
+            word-break: break-word;
           }
         }
 

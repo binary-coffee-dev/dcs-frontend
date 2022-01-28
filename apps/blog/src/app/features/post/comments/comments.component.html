@@ -45,7 +45,7 @@
            fxLayout='column'>
         <div class='user-data'
              fxLayout='row'>
-          <a [href]="'/users/' + (comment?.user?.username || '')"
+          <a [routerLink]="'/users/' + (comment?.user?.username || '')"
              fxLayout='row'
              fxLayoutAlign='start center'>
             <img class='comment-user-image'

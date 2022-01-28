@@ -10,15 +10,17 @@
          [alt]='post?.title'>
 
     <div class='card-container-inner'>
-      <div *ngIf='post?.author'
-           class='author-container'
-           fxLayoutAlign='start center'
-           fxLayout='row'>
+      <a *ngIf='post?.author && post?.author?.username'
+         [routerLink]="'/users/' + (post?.author?.username || '')"
+         class='author-container'
+         (click)='stopPropagation($event)'
+         fxLayoutAlign='start center'
+         fxLayout='row'>
 
         <img [src]='url.getUserImage(post?.author)'
              [alt]='post?.author?.username'>
         {{post?.author?.username || 'público'}}
-      </div>
+      </a>
 
       <span class='post-date'>// {{post?.publishedAt ? moment.timeFromDate(post?.publishedAt) : ''}}</span>
 

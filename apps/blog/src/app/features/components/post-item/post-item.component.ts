@@ -26,4 +26,8 @@ export class PostItemComponent {
     }
     return '/assets/images/banner-default.jpg';
   }
+
+  public stopPropagation(event) {
+    event.stopPropagation();
+  }
 }

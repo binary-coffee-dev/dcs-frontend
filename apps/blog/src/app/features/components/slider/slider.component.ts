@@ -1,11 +1,11 @@
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { Subject, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
 import { Comment, CommentState, Environment, ENVIRONMENT, UrlUtilsService } from '@dcs-libs/shared';
-import { isPlatformBrowser } from '@angular/common';
 
 export interface InformationBanner {
   type: 'comment' | 'welcome';
