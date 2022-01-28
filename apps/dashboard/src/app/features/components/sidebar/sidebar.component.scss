@@ -3,76 +3,133 @@
 :host {
   .side-nav {
 
+    .image-container {
+      width: 100%;
+      background-color: map-get($md-primary, 500);
+      padding: map-get($spacings, 5);
+      color: map-get($md-grey, 49);
+      margin-top: map-get($spacings, 4);
 
-    .access {
-      background-color: map_get($md-primary, 50);
-      min-height: 100vh;
+      .profile-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: map-get($spacings, 4);
+      }
+    }
 
-      button {
-        padding: map_get($spacings, 2);
-        border-radius: 0;
-        color: map_get($md-primary, 400);
-        font-size: 2rem;
+    .items-list {
+      width: 200px;
+      margin-top: map-get($spacings, 4);
+      margin-right: map-get($spacings, 2);
 
+      .title {
+        padding: map-get($spacings, 1);
+      }
 
-        .avatar {
-          display: inline-block;
-          border-radius: 50%;
-          max-width: 2rem;
-          max-height: 2rem;
-          overflow: hidden;
+      .item {
+        text-decoration: none;
+        text-align: start;
+        background-color: transparent;
+        font-size: 12px;
+        border: none;
+        color: map-get($md-grey, 700);
+        padding: map-get($spacings, 2);
+        width: calc(100% - 24px);
+        margin: 0;
 
-          img {
-            width: 100%;
-            height: auto;
-          }
+        i {
+          margin-right: map-get($spacings, 2);
         }
 
-        &::before {
-          content: "";
-          position: absolute;
-          left: 0;
-          width: 4px;
-          background-color: transparent;
-          height: 100%;
-          transform: translateY(- map_get($spacings, 2));
-        }
-
-        &.active,
         &:hover {
-          color: map_get($md-primary, 900);
+          cursor: pointer;
+          background-color: map-get($md-grey, 50);
         }
 
         &.active {
-          &::before {
-            background-color: map_get($md-primary, 900);
-          }
+          cursor: initial;
+          background-color: map-get($md-primary, 100);
         }
+      }
+
+      .separator {
+        height: 1px;
+        width: 100%;
+        margin: map-get($spacings, 2) 0;
+        background-color: map-get($md-grey, 500);
       }
     }
 
-    .content {
-      width: 100%;
-      left: -100px !important;
-
-      .nav {
-        a {
-          color: map_get($md-grey, 800);
-          border-radius: 0;
-
-          &:hover {
-            background-color: map_get($md-primary, 50);
-
-            &.active {
-              background-color: map_get($md-primary, 100);
-            }
-          }
-
-          &.active {
-            background-color: map_get($md-primary, 100);
-          }
-        }
-      }
-    }
+    //.access {
+    //  background-color: map_get($md-primary, 50);
+    //  min-height: 100vh;
+    //
+    //  button {
+    //    padding: map_get($spacings, 2);
+    //    border-radius: 0;
+    //    color: map_get($md-primary, 400);
+    //    font-size: 2rem;
+    //
+    //
+    //    .avatar {
+    //      display: inline-block;
+    //      border-radius: 50%;
+    //      max-width: 2rem;
+    //      max-height: 2rem;
+    //      overflow: hidden;
+    //
+    //      img {
+    //        width: 100%;
+    //        height: auto;
+    //      }
+    //    }
+    //
+    //    &::before {
+    //      content: "";
+    //      position: absolute;
+    //      left: 0;
+    //      width: 4px;
+    //      background-color: transparent;
+    //      height: 100%;
+    //      transform: translateY(- map_get($spacings, 2));
+    //    }
+    //
+    //    &.active,
+    //    &:hover {
+    //      color: map_get($md-primary, 900);
+    //    }
+    //
+    //    &.active {
+    //      &::before {
+    //        background-color: map_get($md-primary, 900);
+    //      }
+    //    }
+    //  }
+    //}
+    //
+    //.content {
+    //  width: 100%;
+    //  left: -100px !important;
+    //
+    //  .nav {
+    //    a {
+    //      color: map_get($md-grey, 800);
+    //      border-radius: 0;
+    //
+    //      &:hover {
+    //        background-color: map_get($md-primary, 50);
+    //
+    //        &.active {
+    //          background-color: map_get($md-primary, 100);
+    //        }
+    //      }
+    //
+    //      &.active {
+    //        background-color: map_get($md-primary, 100);
+    //      }
+    //    }
+    //  }
+    //}
   }
 }

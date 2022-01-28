@@ -1,17 +1,17 @@
 <app-notifications></app-notifications>
+<mat-toolbar>
+  <app-navbar (openSidenav)='showSidenav = true'></app-navbar>
+</mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav [mode]="mobileQuery?.matches ? 'over' : 'side'"
-               (closed)="showSidenav = false"
-               [opened]="mobileQuery?.matches && showSidenav || !mobileQuery?.matches">
-    <app-sidebar (routeChange)="showSidenav = false"></app-sidebar>
+               (closed)='showSidenav = false'
+               [opened]='mobileQuery?.matches && showSidenav || !mobileQuery?.matches'>
+    <app-sidebar (routeChange)='showSidenav = false'></app-sidebar>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar>
-      <app-navbar (openSidenav)="showSidenav = true"></app-navbar>
-    </mat-toolbar>
-    <div class="router">
+    <div class='router'>
       <router-outlet></router-outlet>
     </div>
-    <app-footer [full]="false"></app-footer>
+    <app-footer [full]='false'></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

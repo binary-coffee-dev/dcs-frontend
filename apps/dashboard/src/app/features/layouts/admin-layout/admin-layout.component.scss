@@ -1,32 +1,37 @@
 @import "libs/shared/src/theme";
 
+$toolbar-height: 100px;
+
 :host {
+  mat-toolbar {
+    padding: 0;
+    //position: sticky;
+    //top: 0;
+    z-index: 99999;
+    background-color: map_get($md-grey, 100);
+
+    height: $toolbar-height;
+    max-height: $toolbar-height;
+    min-height: $toolbar-height;
+
+    color: map_get($md-grey, 900);
+
+    box-shadow: map_get($box-shadow, 2);
+  }
+
   mat-sidenav-container {
     background-color: transparent;
     position: absolute;
-    top: 0;
+    top: $toolbar-height;
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: -1;
 
     mat-sidenav {
       background-color: map_get($md-grey, 200);
       border-right: 1px solid map_get($md-primary, 100);
       width: 260px;
     }
-
-    mat-toolbar {
-
-      position: sticky;
-      top: 0;
-      z-index: 500;
-      padding: map_get($spacings, 4);
-      min-height: 64px;
-      background-color: map_get($md-primary, 50);
-    }
-  }
-
-  .router {
-    min-height: 100vh;
   }
 }
