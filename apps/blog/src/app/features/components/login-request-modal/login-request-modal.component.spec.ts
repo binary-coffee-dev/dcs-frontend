@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
-import { LoginRequestModalComponent } from './login-request-modal.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+
+import { LoginRequestModalComponent } from './login-request-modal.component';
+
 
 class MatDialogRefStub {
 }

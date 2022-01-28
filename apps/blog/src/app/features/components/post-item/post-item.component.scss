@@ -9,7 +9,7 @@ $post_image_size: 110px;
     //margin-bottom: map-get($spacings, 5);
     padding: map-get($spacings, 2);
 
-    a {
+    .card-container {
       position: relative;
       border: solid 0.1px #0000;
       width: 100%;

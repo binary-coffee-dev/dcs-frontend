@@ -2,6 +2,58 @@
 
 $toolbar-height: 100px;
 
+:host {
+
+  mat-toolbar {
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    background-color: map_get($md-grey, 100);
+
+    height: $toolbar-height;
+    max-height: $toolbar-height;
+    min-height: $toolbar-height;
+
+    color: map_get($md-grey, 900);
+
+    box-shadow: map_get($box-shadow, 2);
+
+    .space-in-xs-sm {
+      padding: 0 map-get($spacings, 2);
+    }
+
+    a {
+      text-decoration: none;
+      color: map_get($md-grey, 900);
+
+      img {
+        width: 40px;
+        margin-right: map_get($spacings, 4);
+      }
+    }
+
+    .fill-space {
+      width: 100%;
+    }
+
+    mat-button-toggle {
+      height: 35px;
+      min-width: 40px;
+      margin-left: map_get($spacings, 4);
+      font-size: 1rem;
+      background-color: map_get($md-grey, 400);
+      color: map-get($md-primary, 500);
+
+      ::ng-deep span {
+        line-height: 35px;
+        padding: 0;
+        font-weight: bold !important;
+      }
+    }
+  }
+}
+
 ::ng-deep.app-important-menu {
   background-color: map-get($md-grey, 400);
 
@@ -76,52 +128,4 @@ $toolbar-height: 100px;
     }
   }
 
-}
-
-:host {
-
-  mat-toolbar {
-    padding: 0;
-    position: sticky;
-    top: 0;
-    z-index: 99;
-    background-color: map_get($md-grey, 100);
-
-    height: $toolbar-height;
-    max-height: $toolbar-height;
-    min-height: $toolbar-height;
-
-    color: map_get($md-grey, 900);
-
-    box-shadow: map_get($box-shadow, 2);
-
-    a {
-      text-decoration: none;
-      color: map_get($md-grey, 900);
-
-      img {
-        width: 40px;
-        margin-right: map_get($spacings, 4);
-      }
-    }
-
-    .fill-space {
-      width: 100%;
-    }
-
-    mat-button-toggle {
-      height: 35px;
-      min-width: 40px;
-      margin-left: map_get($spacings, 4);
-      font-size: 1rem;
-      background-color: map_get($md-grey, 400);
-      color: map-get($md-primary, 500);
-
-      ::ng-deep span {
-        line-height: 35px;
-        padding: 0;
-        font-weight: bold !important;
-      }
-    }
-  }
 }

@@ -117,6 +117,7 @@
         border-radius: map_get($radius, 3);
         color: map-get($md-grey, 700);
         position: relative;
+        word-break: break-all;
 
         &:before {
           content: '';
