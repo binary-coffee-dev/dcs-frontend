@@ -15,24 +15,38 @@
            alt='user avatar'>
     </button>
     <mat-menu #beforeMenu='matMenu'
+              class='app-important-menu'
               xPosition='before'>
 
-      <a mat-menu-item
-         [routerLink]='profileLink()'>
+      <div class='item1 down-icon'>
+        <!--        <i class='fa fa-folder'></i>-->
         Perfil
-      </a>
+      </div>
 
       <a mat-menu-item
+         class='item1'
+         [routerLink]='profileLink()'>
+        <i class='fa fa-user'></i>
+        Ver Perfil
+      </a>
+      <a mat-menu-item
+         class='item1'
          [href]='editProfileLink()'>
+        <i class='fa fa-edit'></i>
         Editar perfil
       </a>
 
       <a mat-menu-item
+         class='item1'
          [href]='articlesLink()'>
+        <i class='fa fa-quote-right'></i>
         Gestionar artículos
       </a>
 
+      <div class='separator'></div>
+
       <button mat-menu-item
+              class='item1'
               (click)='logoutAction()'>
         Salir
       </button>

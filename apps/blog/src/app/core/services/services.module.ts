@@ -5,7 +5,6 @@ import { MomentService } from './moment.service';
 import { ResourceService } from './resource.service';
 import { MetaTagsService } from './meta-tags.service';
 import { ScrollService } from './scroll.service';
-import { LoginService } from './login.service';
 
 @NgModule({
   imports: [CommonModule],
@@ -13,8 +12,7 @@ import { LoginService } from './login.service';
     MomentService,
     ResourceService,
     MetaTagsService,
-    ScrollService,
-    LoginService
+    ScrollService
   ]
 })
 export class ServicesModule {

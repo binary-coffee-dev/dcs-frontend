@@ -1,7 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { Environment, ENVIRONMENT, WINDOW } from '@dcs-libs/shared';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LoginService {
 
   constructor(
@@ -11,9 +13,12 @@ export class LoginService {
   }
 
   loginAction() {
-    const redir = encodeURIComponent(this.window.location.href);
+    this.loginWithRedir(this.window.location.href);
+  }
+
+  loginWithRedir(redir: string) {
     const urlBase = this.env.siteDashboardUrl + (this.env.siteDashboardUrl.endsWith('/') ? '' : '/');
     const loginUrl = new URL('./login', urlBase);
-    this.window.location.href = `${loginUrl}?redir=${redir}`;
+    this.window.location.href = `${loginUrl}?redir=${encodeURIComponent(redir)}`;
   }
 }

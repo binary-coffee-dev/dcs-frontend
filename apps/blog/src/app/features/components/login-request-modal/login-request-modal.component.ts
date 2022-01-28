@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
+import { LoginService } from '../../../core/services';
+
 @Component({
   selector: 'app-login-request-modal',
   templateUrl: './login-request-modal.component.html',
@@ -8,11 +10,13 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class LoginRequestModalComponent {
 
-  constructor(private dialogRef: MatDialogRef<LoginRequestModalComponent>) {
+  constructor(
+    private loginService: LoginService,
+    private dialogRef: MatDialogRef<LoginRequestModalComponent>) {
   }
 
   ok() {
-    // toDo 28.01.22, guille,
+    this.loginService.loginAction();
   }
 
   cancel() {

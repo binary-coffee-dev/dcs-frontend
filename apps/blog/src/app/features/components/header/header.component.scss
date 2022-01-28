@@ -63,6 +63,13 @@ $toolbar-height: 100px;
     }
   }
 
+  .separator {
+    height: 1px;
+    width: calc(100% - 36px);
+    background-color: map-get($md-grey, 500);
+    margin: map-get($spacings, 1) map-get($spacings, 3);
+  }
+
   .item1 {
     padding-left: map-get($spacings, 6);
     padding-right: map-get($spacings, 3);
