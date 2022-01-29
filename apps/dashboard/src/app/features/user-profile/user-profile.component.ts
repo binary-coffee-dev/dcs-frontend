@@ -20,12 +20,29 @@ import { UploadFileModalComponent } from '../components/upload-file.modal';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  profileDataChange = false;
-
   me: User;
 
-  profileForm = new FormGroup({
+  personalForm = new FormGroup({
+    username: new FormControl(''),
+    name: new FormControl(''),
+    email: new FormControl(''),
+    description: new FormControl('')
+  });
+
+  professionalForm = new FormGroup({
+    school: new FormControl(''),
+    study: new FormControl(''),
     page: new FormControl('')
+  });
+
+  socialsForm = new FormGroup({
+    facebook: new FormControl(''),
+    twitter: new FormControl(''),
+    linkedin: new FormControl('')
+  });
+
+  privacyForm = new FormGroup({
+    showEmail: new FormControl('')
   });
 
   constructor(
@@ -38,7 +55,9 @@ export class UserProfileComponent implements OnInit {
     this.store.select(AuthState.me).subscribe((me: User) => {
       if (me) {
         this.me = me;
-        this.profileForm.controls.page.setValue(me.page);
+        this.personalForm.controls.username.setValue(me.username);
+        this.professionalForm.controls.page.setValue(me.page);
+        console.log(me.username);
       }
     });
   }
@@ -48,18 +67,18 @@ export class UserProfileComponent implements OnInit {
   }
 
   saveUserData() {
-    if (this.profileForm.valid) {
-      this.store.dispatch(
-        new UpdateMeAction(
-          this.me.id,
-          this.profileForm.controls.page.value
-        )
-      );
-    }
+    // if (this.profileForm.valid) {
+    //   this.store.dispatch(
+    //     new UpdateMeAction(
+    //       this.me.id,
+    //       this.profileForm.controls.page.value
+    //     )
+    //   );
+    // }
   }
 
   onUserDataChange() {
-    this.profileDataChange = this.me.page !== this.profileForm.controls.page.value;
+    // this.profileDataChange = this.me.page !== this.profileForm.controls.page.value;
   }
 
   openUploadFileModal() {
