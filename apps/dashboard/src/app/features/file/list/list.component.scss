@@ -4,6 +4,15 @@
   .content {
     padding: map_get($spacings, 4);
 
+    .container-align {
+      overflow: hidden;
+      box-shadow: map_get($box-shadow-up, 2);
+      box-sizing: border-box;
+      border-radius: map_get($radius, 3);
+      border: solid map-get($md-grey, 400) 1px;
+      padding: map-get($spacings, 5);
+    }
+
     .action-container {
       margin-bottom: map-get($spacings, 3);
 

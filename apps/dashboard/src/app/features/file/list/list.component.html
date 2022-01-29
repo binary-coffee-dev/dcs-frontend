@@ -1,226 +1,75 @@
-<div class='content'>
+<div class='content'
+     fxLayout='row'
+     fxLayoutAlign='center'>
 
-  <div class='action-container'
-       fxLayout='row'
-       fxLayoutAlign='end center'>
-    <mat-button-toggle (click)='openUploadFileModal()'>
-      <span class='code-1'> new </span>
-      <span class='code-none'> Archivo() </span>
-    </mat-button-toggle>
-  </div>
+  <div class='container-align'
+       fxFlex.xs='100'
+       fxFlex.sm='100'
+       fxFlex.md='100'
+       fxFlex='80'
+       fxFlex.lg='80'
+       fxFlex.xl='50'
+       fxLayout='column'>
 
-  <div class='table-container'>
-    <table>
-      <thead class=' text-info'>
-      <tr>
-        <th>Imagen</th>
-        <th>Enlace</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor='let file of files; let i = index'
-          [ngClass]='{"cell-even": i % 2 === 0, "cell-odd": i % 2 === 1}'>
-        <td>
-          <img class='file-image'
-               [src]='normalizeUrl(file?.url)'
-               [alt]='file.name'>
-        </td>
-        <td>
-          {{file?.url || ''}}
-        </td>
-        <td class='td-actions text-right'>
-          <button mat-button
-                  type='button'
-                  matTooltip='Copiar Url'
-                  [matTooltipPosition]="'above'"
-                  ngxClipboard
-                  [cbContent]='normalizeUrl(file?.url)'>
-            <i class='fa fa-copy'></i>
-          </button>
-          <button mat-button
-                  type='button'
-                  matTooltip='Eliminar'
-                  (click)='removeImage(file)'
-                  [matTooltipPosition]="'above'">
-            <i class='fa fa-trash'></i>
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class='pagination-container'>
-    <app-pagination (nextPageEvent)='nextPageEvent()'
-                    (previousPageEvent)='previousPageEvent()'
-                    (pageEvent)='selectPageEvent($event)'
-                    [numberOfPages]='numberOfPages'
-                    [currentPage]='currentPage'>
-    </app-pagination>
-  </div>
-  <!--<div fxLayout="row"
-       fxLayout.xs="column"
-       fxLayout.sm="column"
-       fxLayoutAlign="start start"
-       class="header">
-
-    <div class="item-action-container"
-         fxFlex="100"
-         fxLayout="row">
-
-      <button mat-button
-              class="bc-button"
-              (click)="openUploadFileModal()">
-        <span class="code-1"> new </span>
-        <span class="code-none"> Archivo() </span>
-      </button>
-
-      <button (click)="toggleTableCard()"
-              class="toogle-table-card bc-button"
-              mat-button>
-        <span class="fa"
-              [ngClass]="{'fa-table': !tableOrCard, 'fa-list': tableOrCard}"></span>
-      </button>
-
+    <div class='action-container'
+         fxLayout='row'
+         fxLayoutAlign='end center'>
+      <mat-button-toggle (click)='openUploadFileModal()'>
+        <span class='code-1'> new </span>
+        <span class='code-none'> Archivo() </span>
+      </mat-button-toggle>
     </div>
 
-    <div fxHide
-         fxShow.xs
-         fxShow.sm
-         fxFlex.md
-         class="separator"></div>
-
-    <div fxLayoutAlign="center center"
-         class="pagination-content">
-      <app-pagination (nextPageEvent)="nextPageEvent()"
-                      (previousPageEvent)="previousPageEvent()"
-                      (pageEvent)="selectPageEvent($event)"
-                      [numberOfPages]="numberOfPages"
-                      [currentPage]="currentPage">
-      </app-pagination>
-    </div>
-  </div>
-
-  <div *ngIf="tableOrCard"
-       class="file-content-card">
-
-    <div class="file-card"
-         fxLayoutAlign="center center"
-         *ngFor="let file of files">
-
-
-      <div class="file-image-card"
-           matTooltip="Copiar Url"
-           [matTooltipPosition]="'above'"
-           fxLayoutAlign="center center">
-
-        <a fxLayoutAlign="center center"
-           ngxClipboard
-           [cbContent]="normalizeUrl(file?.url)">
-
-          <i fxLayoutAlign="center center"
-             class="icon-hover material-icons">file_copy</i>
-
-          <img class="img"
-               [src]="normalizeUrl(file?.url)"
-               [alt]="file.name" />
-        </a>
-      </div>
-
-      <button mat-button
-              *ngIf="false"
-              type="button"
-              matTooltip="Remove"
-              [matTooltipPosition]="'above'"
-              class="bc-button">
-        <i class="material-icons">close</i>
-      </button>
-
-    </div>
-  </div>
-
-  <div *ngIf="!tableOrCard"
-       class="file-content">
-    <table class="table">
-      <thead class=" text-info">
-        <th>Imagen</th>
-        <th></th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let file of files">
+    <div class='table-container'>
+      <table>
+        <thead class=' text-info'>
+        <tr>
+          <th>Imagen</th>
+          <th>Enlace</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor='let file of files; let i = index'
+            [ngClass]='{"cell-even": i % 2 === 0, "cell-odd": i % 2 === 1}'>
           <td>
-            <img class="file-image"
-                 [src]="normalizeUrl(file?.url)"
-                 [alt]="file.name">
+            <img class='file-image'
+                 [src]='normalizeUrl(file?.url)'
+                 [alt]='file.name'>
           </td>
-          <td class="td-actions text-right">
+          <td>
+            {{file?.url || ''}}
+          </td>
+          <td class='td-actions text-right'>
             <button mat-button
-                    type="button"
-                    matTooltip="Copiar Url"
+                    type='button'
+                    matTooltip='Copiar Url'
                     [matTooltipPosition]="'above'"
                     ngxClipboard
-                    [cbContent]="normalizeUrl(file?.url)">
-              <i class="material-icons">file_copy</i>
+                    [cbContent]='normalizeUrl(file?.url)'>
+              <i class='fa fa-copy'></i>
             </button>
             <button mat-button
-                    type="button"
-                    matTooltip="Eliminar"
-                    (click)="removeImage(file)"
+                    type='button'
+                    matTooltip='Eliminar'
+                    (click)='removeImage(file)'
                     [matTooltipPosition]="'above'">
-              <i class="material-icons">close</i>
+              <i class='fa fa-trash'></i>
             </button>
           </td>
         </tr>
-      </tbody>
-    </table>
-  </div>
-
-
-  <div fxLayout="row"
-       fxLayout.xs="column"
-       fxLayout.sm="column"
-       fxLayoutAlign="start start"
-       class="header">
-
-    <div class="item-action-container"
-         fxFlex="100"
-         fxLayout="row">
-
-      <button mat-button
-              class="bc-button"
-              (click)="openUploadFileModal()">
-        <span class="code-1"> new </span>
-        <span class="code-none"> Archivo() </span>
-      </button>
-
-      <button (click)="toggleTableCard()"
-              class="toogle-table-card bc-button"
-              mat-button>
-        <span class="fa"
-              [ngClass]="{'fa-table': !tableOrCard, 'fa-list': tableOrCard}"></span>
-      </button>
-
+        </tbody>
+      </table>
     </div>
 
-    <div fxHide
-         fxShow.xs
-         fxShow.sm
-         fxFlex.md
-         fxFlexOrder.xs="-1"
-         fxFlexOrder.sm="-1"
-         class="separator"></div>
-
-    <div fxLayoutAlign="center center"
-         class="pagination-content"
-         fxFlexOrder.xs="-2"
-         fxFlexOrder.sm="-2">
-      <app-pagination (nextPageEvent)="nextPageEvent()"
-                      (previousPageEvent)="previousPageEvent()"
-                      (pageEvent)="selectPageEvent($event)"
-                      [numberOfPages]="numberOfPages"
-                      [currentPage]="currentPage">
+    <div class='pagination-container'>
+      <app-pagination (nextPageEvent)='nextPageEvent()'
+                      (previousPageEvent)='previousPageEvent()'
+                      (pageEvent)='selectPageEvent($event)'
+                      [numberOfPages]='numberOfPages'
+                      [currentPage]='currentPage'>
       </app-pagination>
     </div>
-  </div>-->
+
+  </div>
 </div>

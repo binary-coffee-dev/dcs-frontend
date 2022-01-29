@@ -80,20 +80,41 @@
 
 .button-ok {
   background-color: map-get($md-primary, 500);
-  box-shadow: map_get($box-shadow-up, 5);
+  box-shadow: map_get($box-shadow-up, 4);
+  border: none;
+  color: map-get($md-grey, 49);
 
   &:hover {
     background-color: map-get($md-primary, 910);
+  }
+
+  &.mat-button-toggle-disabled, &:disabled {
+    background-color: map-get($md-grey, 600);
+    color: map-get($md-grey, 500);
+
+    &:hover {
+      background-color: map-get($md-grey, 600);
+      color: map-get($md-grey, 500);
+    }
   }
 }
 
 .button-cancel {
   background-color: map-get($md-grey, 400);
   color: map-get($md-grey, 700);
-  box-shadow: map_get($box-shadow-up, 5);
+  box-shadow: map_get($box-shadow-up, 4);
+  border: none;
 
   &:hover {
     background-color: map-get($md-grey, 500);
+  }
+
+  &.mat-button-toggle-disabled {
+    background-color: map-get($md-grey, 600);
+
+    &:hover {
+      background-color: map-get($md-grey, 600);
+    }
   }
 }
 
@@ -130,3 +151,16 @@
     }
   }
 }
+
+
+// global styles
+
+::ng-deep.code-none {
+  .code-1 {
+    color: map-get($md-primary, 500);
+  }
+
+  .code-var {
+  }
+}
+

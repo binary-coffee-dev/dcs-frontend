@@ -1,190 +1,173 @@
-<div class='content'>
-  <div class='header'>
-    Editar artículo
-    <a [href]='getPostPreviewUrl()'
-       *ngIf='!isNewPost()'
-       target='_blank'><i class='material-icons preview'
-                          title='Vista Previa'>visibility</i></a>
-  </div>
-  <form
-    [formGroup]='articleForm'
-    (change)='onPostChange()'
-    (submit)='submitPost()'
-  >
-    <div class='article'
-         fxLayout='row wrap'
-         fxLayoutAlign='space-between'>
-      <div fxFlex='100'
-           fxLayout='row wrap'
-           fxLayoutAlign='space-between'>
-        <div fxFlex='48.5'
-             fxFlex.xs='100'
-             fxFlex.sm='100'
-             class='enable'>
-          <mat-checkbox formControlName='enable'
-                        (change)='onPostChange()'>
-            Activo
-          </mat-checkbox>
-        </div>
+<div class='content'
+     fxLayout='row'
+     fxLayoutAlign='center center'>
 
-        <div fxFlex='48.5'
-             fxFlex.xs='100'
-             fxFlex.sm='100'
-             class='datetime'>
-
-          <mat-form-field
-            *ngIf='[permissions().PUBLISH_ARTICLE] | hasPermissions'>
-            <mat-label>Fecha</mat-label>
-            <input
-              matInput
-              readonly
-              (dateChange)='onPostChange()'
-              [matDatepicker]='dp'
-              formControlName='date'
-            />
-            <mat-datepicker-toggle matSuffix
-                                   [for]='dp'></mat-datepicker-toggle>
-            <mat-datepicker
-              #dp
-              startView='month'
-              panelClass='example-month-picker'
-            >
-            </mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field
-            *ngIf='[permissions().PUBLISH_ARTICLE] | hasPermissions'
-          >
-            <mat-label>Hora</mat-label>
-            <mat-select
-              formControlName='time'
-              (selectionChange)='onPostChange()'
-            >
-              <mat-option
-                *ngFor='let time of timesSelections'
-                [value]='time.minutes'
-              >
-                {{ time.title }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-
-      <div fxFlex='48.5'
-           fxFlex.xs='100'
-           fxFlex.sm='100'
-           fxLayout='column'>
-
-        <mat-form-field appearance='outline'
-                        fxFlex='100'>
-          <mat-label class='code-none'>
-            <span class='code-1'> var </span>
-            <span class='code-var'> Título </span> =
-          </mat-label>
-          <input
-            matInput
-            (keyup)='textChange()'
-            formControlName='title'
-            placeholder='Título'
-          />
-        </mat-form-field>
-
-        <div class='tags'>
-          <tag-input
-            [onlyFromAutocomplete]='true'
-            (onAdd)='onPostChange()'
-            (onRemove)='onPostChange()'
-            *ngIf='[permissions().EDIT_TAGS_IN_ARTICLE] | hasPermissions'
-            formControlName='tags'
-          >
-            <tag-input-dropdown
-              [showDropdownIfEmpty]='true'
-              [autocompleteObservable]='getTags'
-            >
-            </tag-input-dropdown>
-          </tag-input>
-        </div>
-
-      </div>
-
-      <div
-        class='banner-image-content'
-        fxFlex='48.5'
+  <form class='article-container'
         fxFlex.xs='100'
         fxFlex.sm='100'
-      >
-        <img
-          class='banner-image'
-          *ngIf='post?.banner?.url'
-          [src]='normalizeUrl(post?.banner?.url)'
-          alt='Banner Articulo'
-        />
-        <div *ngIf='!post?.banner?.url'
-             class='no-banner'>
-          <span>No banner</span>
+        fxFlex.md='100'
+        fxFlex='80'
+        fxFlex.lg='80'
+        fxFlex.xl='50'
+        [formGroup]='articleForm'
+        (change)='onPostChange()'
+        (submit)='submitPost()'>
+
+    <div fxLayout='row'
+         class='section header-items'>
+      <mat-checkbox formControlName='enable'
+                    (change)='onPostChange()'>
+        Activo
+      </mat-checkbox>
+      <div fxFlex='100'></div>
+      <a [href]='getPostPreviewUrl()'
+         matTooltip='Vista Previa en blog'
+         *ngIf='true || !isNewPost()'
+         target='_blank'>
+        <i class='fa fa-eye'></i>
+        Vista previa
+      </a>
+    </div>
+
+    <div class='banner-image-content section'>
+      <img
+        class='banner-image'
+        *ngIf='post?.banner?.url'
+        [src]='normalizeUrl(post?.banner?.url)'
+        alt='Banner Articulo'
+      />
+      <div *ngIf='!post?.banner?.url'
+           fxLayout='row'
+           fxLayoutAlign='center center'
+           class='no-banner'>
+        <span>No banner</span>
+      </div>
+      <div class='banner-actions'
+           fxLayout='row wrap'
+           fxLayoutAlign='start end'>
+        <span class='banner-action-title'>Seleccionar imágen:</span>
+
+        <div fxLayout='row'>
+          <mat-button-toggle (click)='openImageSectorModal()'
+                             matTooltip='Utilice una imágen existente'
+                             class='button-ok'>
+            <i class='fa fa-folder-open-o'></i>
+          </mat-button-toggle>
+
+          <mat-button-toggle class='button-ok'
+                             matTooltip='Nueva imágen'
+                             (click)='openUploadFileModal()'>
+            <i class='fa fa-image'></i>
+          </mat-button-toggle>
+
+          <mat-button-toggle class='button-ok'
+                             *ngIf='post?.banner?.url'
+                             matTooltip='No seleccionar banner'
+                             (click)='removeCurrentBanner()'>
+            <i class='fa fa-trash'></i>
+          </mat-button-toggle>
         </div>
-        <div class='floating-button-banner'
-             fxLayout='row'>
-          <button
-            mat-raised-button
-            type='button'
-            (click)='openImageSectorModal()'
-            matTooltip='Utilice una imagen existente'
-            [matTooltipPosition]="'above'"
-            class='bc-button button-image'
-          >
-            <i class='material-icons'>edit</i>
-          </button>
-
-          <button mat-button
-                  class='bc-button button-image'
-                  (click)='openUploadFileModal()'>
-            <span class='code-1'> new </span>
-            <span class='code-none'> Archivo() </span>
-          </button>
-        </div>
-      </div>
-
-      <div class='code-comment-1 comment'
-           fxFlex='100'>
-        /* Escriba su artículo utilizando markdown */
-      </div>
-
-      <div class='body-content'
-           fxFlex='50'
-           fxFlex.xs='100'
-           fxFlex.sm='100'>
-        <textarea
-          class='body'
-          (keyup)='textChange()'
-          matInput
-          formControlName='body'
-          placeholder='Artículo'
-        ></textarea>
-      </div>
-      <div class='markdown-content'
-           fxFlex='50'
-           fxFlex.xs='100'
-           fxFlex.sm='100'>
-        <markdown
-          class='markdown'
-          [data]='articleForm?.controls?.body?.value'
-          katex
-          lineNumbers
-        ></markdown>
-      </div>
-
-      <div class='submit'>
-        <button
-          mat-button
-          [disabled]='!formDataChange && !imageChange'
-          type='submit'
-          class='bc-button'
-        >
-          Guardar()
-        </button>
       </div>
     </div>
+
+    <div class='section'>
+      <mat-form-field appearance='outline'
+                      fxFlex='100'>
+        <mat-label class='code-none'>
+          <span class='code-1'> var </span>
+          <span class='code-var'> Título </span> =
+        </mat-label>
+        <input
+          matInput
+          (keyup)='textChange()'
+          formControlName='title'
+          placeholder='Título'
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxLayout='row wrap'>
+      <mat-form-field
+        *ngIf='[permissions().PUBLISH_ARTICLE] | hasPermissions'>
+        <mat-label>Fecha</mat-label>
+        <input
+          matInput
+          readonly
+          (dateChange)='onPostChange()'
+          [matDatepicker]='dp'
+          formControlName='date' />
+        <mat-datepicker-toggle matSuffix
+                               [for]='dp'></mat-datepicker-toggle>
+        <mat-datepicker #dp
+                        startView='month'
+                        panelClass='example-month-picker'>
+        </mat-datepicker>
+      </mat-form-field>
+      <mat-form-field
+        *ngIf='[permissions().PUBLISH_ARTICLE] | hasPermissions'>
+        <mat-label>Hora</mat-label>
+        <mat-select
+          formControlName='time'
+          (selectionChange)='onPostChange()'>
+          <mat-option
+            *ngFor='let time of timesSelections'
+            [value]='time.minutes'>
+            {{ time.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class='section'>
+      <tag-input
+        [onlyFromAutocomplete]='true'
+        (onAdd)='onPostChange()'
+        (onRemove)='onPostChange()'
+        *ngIf='[permissions().EDIT_TAGS_IN_ARTICLE] | hasPermissions'
+        formControlName='tags'>
+        <tag-input-dropdown
+          [showDropdownIfEmpty]='true'
+          [autocompleteObservable]='getTags'>
+        </tag-input-dropdown>
+      </tag-input>
+    </div>
+
+    <div class='section article-text'>
+      <div class='actions'
+           fxLayout='row'>
+        <div fxFlex='100'></div>
+        <button (click)='changeArticleStatus()'>
+          <i class='fa'
+             [ngClass]='articleTextStatus === "edit" ? "fa-eye" : "fa-pencil"'></i>
+          {{articleTextStatus === "edit" ? "Previsualizar" : "Editar"}}
+        </button>
+      </div>
+      <div class='article-content'>
+        <textarea class='body'
+                  *ngIf='articleTextStatus === "edit"'
+                  (keyup)='textChange()'
+                  matInput
+                  formControlName='body'
+                  placeholder='Artículo'
+        ></textarea>
+        <markdown *ngIf='articleTextStatus === "preview"'
+                  class='markdown'
+                  [data]='articleForm?.controls?.body?.value'
+                  katex
+                  lineNumbers
+        ></markdown>
+      </div>
+    </div>
+
+    <div fxLayout='row'
+         fxLayoutAlign='end'>
+      <button mat-button
+              class='button-ok'
+              [disabled]='!formDataChange && !imageChange'
+              matTooltip='Ctrl + S'>Guardar
+      </button>
+    </div>
+
   </form>
+
 </div>

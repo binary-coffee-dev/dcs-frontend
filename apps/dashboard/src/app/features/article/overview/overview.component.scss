@@ -1,218 +1,129 @@
 @import 'libs/shared/src/theme';
 
 :host {
-  mat-form-field {
-    margin: 0;
-  }
 
   .content {
     margin: map_get($spacings, 4);
 
-    .header {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: map_get($md-primary, 800);
+    .article-container {
+      overflow: hidden;
+      box-shadow: map_get($box-shadow-up, 2);
+      box-sizing: border-box;
+      border-radius: map_get($radius, 3);
+      border: solid map-get($md-grey, 400) 1px;
+      padding: map-get($spacings, 5);
 
-      .preview {
-        color: map_get($md-primary, 800);
+      .section {
+        margin: map-get($spacings, 2) 0;
 
-        &:hover {
-          color: map_get($md-secundary, 500);
-        }
-      }
-    }
+        a {
+          color: map-get($md-grey, 700);
+          text-decoration: none;
 
-    .article {
-      margin-top: map_get($spacings, 4);
-
-      .enable {
-        margin-bottom: map_get($spacings, 4);
-      }
-
-      .description {
-        min-height: 150px;
-      }
-
-      .datetime {
-        mat-form-field{
-          margin-right: map-get($map: $spacings, $key: 2) !important;
-        }
-        ::ng-deep .mat-form-field-wrapper {
-          .mat-form-field-flex {
-            padding: 1em 0.75em 1em 0.75em;
-            border: 1px solid map_get($md-primary, 100) !important;
-            border-radius: map_get($radius, 2) !important;
-
-            .mat-form-field-infix,
-            .mat-select-placeholder {
-              border: none;
-              padding: 0.1em 0;
-            }
-          }
-          .mat-form-field-underline {
-            display: none;
+          &:hover {
+            color: map-get($md-primary, 500);
+            text-decoration: underline;
           }
         }
       }
 
-      .tags {
-        margin-bottom: map-get($spacings, 3);
+      .header-items {
+        white-space: nowrap;
+        margin-bottom: map-get($spacings, 5);
       }
 
-      ::ng-deep tag-input {
-        margin: 0.25em 0;
+      .article-text {
+        margin-top: map-get($spacings, 4);
+        margin-bottom: map-get($spacings, 4);
+        box-sizing: border-box;
+        background-color: map-get($md-grey, 49);
+        width: 100%;
+        border-radius: map-get($radius, 2);
+        overflow: hidden;
 
-        .progress-bar {
-          display: none;
+        .actions {
+          background-color: map-get($md-grey, 50);
+
+          button {
+            white-space: nowrap;
+            padding: map-get($spacings, 2);
+            border: none;
+            background-color: transparent;
+
+            &:hover {
+              color: map-get($md-primary, 500);
+            }
+          }
         }
 
-        .ng2-tag-input {
-          padding: 0 0.75em 0 0.75em;
-          border: 1px solid map_get($md-primary, 100) !important;
-          border-radius: map_get($radius, 2) 0 0 map_get($radius, 2) !important;
+        .article-content {
+          min-height: 400px;
+          padding: map-get($spacings, 2);
 
-          .ng2-tags-container {
-            padding-top: 0.5em;
-
-            tag {
-              background-color: map-get($map: $md-secundary, $key: 50);
-              border-radius: 1rem map-get($map: $radius, $key: 2)
-                map-get($map: $radius, $key: 2) 1rem;
-              color: map-get($map: $md-secundary, $key: 500);
-              border: 1px solid map-get($map: $md-secundary, $key: 100);
-              padding: 0.25rem 0.25rem 0.25rem 0.75rem;
-              margin: map-get($map: $spacings, $key: 1)
-                map-get($map: $spacings, $key: 1) 0 0;
-              font-weight: lighter;
-              font-size: 0.6rem;
-              display: inline-block;
-              height: auto;
-              line-height: normal;
-
-              &::after {
-                content: '';
-                display: block;
-                position: absolute;
-                height: 0.25rem;
-                width: 0.25rem;
-                border-radius: 50%;
-                border: 1px solid map-get($map: $md-secundary, $key: 200);
-                transform: translate3d(-0.5rem, -0.55rem, 0);
-                background-color: map-get($map: $md-grey, $key: A100);
-              }
-
-              .tag__text {
-                margin-top: 3px;
-              }
-
-              delete-icon {
-                position: relative;
-                span {
-                  position: absolute;
-                  top: -40%;
-                  left: 4px;
-                }
-              }
-            }
-
-            tag-input-form {
-              width: 100%;
-
-              input {
-                font-family: inherit;
-                height: auto;
-                padding: 1em 0 1em 0;
-                width: 100%;
-              }
-            }
+          textarea {
+            font-size: 14px;
+            min-height: 400px;
           }
         }
       }
 
       .banner-image-content {
-        min-height: 200px;
-        max-height: 200px;
-        position: relative;
-        background: map_get($md-primary, 100);
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        overflow: hidden;
-        border-radius: map_get($radius, 2);
-
-        img {
-          height: 100%;
-          width: auto;
-          border-radius: map_get($radius, 2);
+        .banner-image, .no-banner {
+          max-width: 300px;
+          width: 100%;
+          height: 150px;
+          border: dashed 2px map-get($md-grey, 500);
+          color: map-get($md-grey, 500);
+          object-fit: cover;
+          object-position: center;
+          overflow: hidden;
+          border-radius: map-get($radius, 2);
+          margin-bottom: map-get($spacings, 2);
         }
 
-        .no-banner {
-          align-items: center;
-          display: flex;
-          align-content: center;
-          height: 100%;
+        .banner-actions {
+          margin-bottom: map-get($spacings, 5);
 
-          span {
-            width: 100%;
+          .banner-action-title {
+            white-space: nowrap;
+          }
+
+          mat-button-toggle {
+            margin: 0 map-get($spacings, 2);
+            font-size: 12px;
+            min-width: 45px;
+
+            ::ng-deep.mat-button-toggle-label-content {
+              padding: 0 16px;
+            }
+          }
+        }
+      }
+
+      mat-form-field {
+        font-size: 14px;
+
+        ::ng-deep {
+          .mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end {
+            border-color: transparent;
+            background-color: map-get($md-grey, 49);
+          }
+
+          textarea {
+            min-height: 100px;
+          }
+
+          .mat-form-field-prefix {
+            font-size: 20px;
+            margin-right: map-get($spacings, 2);
+            color: map-get($md-primary, 500);
+            width: 20px;
             text-align: center;
+            align-self: center;
           }
         }
-
-        .floating-button-banner {
-          position: absolute;
-          right: map-get($map: $spacings, $key: 0);
-          bottom: map-get($map: $spacings, $key: 1);
-
-          &:first-child {
-            margin-right: map-get($map: $spacings, $key: 2);
-          }
-        }
-        .button-image{
-          margin-right: map-get($map: $spacings, $key: 1);
-        }
-      }
-
-      .comment {
-        margin: map_get($spacings, 4) 0;
-      }
-
-      .body-content {
-        border: 1px solid map_get($md-primary, 100);
-        border-radius: map_get($radius, 2) 0 0 map_get($radius, 2);
-        padding: 0 map_get($spacings, 3) map_get($spacings, 3)
-          map_get($spacings, 3);
-
-        .body {
-          min-height: 60vh;
-          padding: map-get($map: $spacings, $key: 3)
-            map-get($map: $spacings, $key: 3) 0 0;
-          height: 100%;
-          border: none;
-          resize: none;
-        }
-
-        @media only screen and (max-width: 1024px) {
-          border-radius: map_get($radius, 2) map_get($radius, 2) 0 0;
-        }
-      }
-
-      .markdown-content {
-        word-wrap: break-word;
-        border: 1px solid map_get($md-primary, 100);
-        border-radius: 0 map_get($radius, 2) map_get($radius, 2) 0;
-        padding: 0 map_get($spacings, 3) map_get($spacings, 3)
-          map_get($spacings, 3);
-
-        @media only screen and (max-width: 1024px) {
-          border-radius: 0 0 map_get($radius, 2) map_get($radius, 2);
-        }
-      }
-
-      .submit {
-        position: fixed;
-        bottom: map_get($spacings, 5);
-        right: map_get($spacings, 5);
       }
     }
+
   }
 }
