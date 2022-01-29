@@ -1,6 +1,65 @@
-<div class="content">
+<div class='content'>
 
-  <div fxLayout="row"
+  <div class='action-container'
+       fxLayout='row'
+       fxLayoutAlign='end center'>
+    <mat-button-toggle (click)='openUploadFileModal()'>
+      <span class='code-1'> new </span>
+      <span class='code-none'> Archivo() </span>
+    </mat-button-toggle>
+  </div>
+
+  <div class='table-container'>
+    <table>
+      <thead class=' text-info'>
+      <tr>
+        <th>Imagen</th>
+        <th>Enlace</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor='let file of files; let i = index'
+          [ngClass]='{"cell-even": i % 2 === 0, "cell-odd": i % 2 === 1}'>
+        <td>
+          <img class='file-image'
+               [src]='normalizeUrl(file?.url)'
+               [alt]='file.name'>
+        </td>
+        <td>
+          {{file?.url || ''}}
+        </td>
+        <td class='td-actions text-right'>
+          <button mat-button
+                  type='button'
+                  matTooltip='Copiar Url'
+                  [matTooltipPosition]="'above'"
+                  ngxClipboard
+                  [cbContent]='normalizeUrl(file?.url)'>
+            <i class='fa fa-copy'></i>
+          </button>
+          <button mat-button
+                  type='button'
+                  matTooltip='Eliminar'
+                  (click)='removeImage(file)'
+                  [matTooltipPosition]="'above'">
+            <i class='fa fa-trash'></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class='pagination-container'>
+    <app-pagination (nextPageEvent)='nextPageEvent()'
+                    (previousPageEvent)='previousPageEvent()'
+                    (pageEvent)='selectPageEvent($event)'
+                    [numberOfPages]='numberOfPages'
+                    [currentPage]='currentPage'>
+    </app-pagination>
+  </div>
+  <!--<div fxLayout="row"
        fxLayout.xs="column"
        fxLayout.sm="column"
        fxLayoutAlign="start start"
@@ -163,5 +222,5 @@
                       [currentPage]="currentPage">
       </app-pagination>
     </div>
-  </div>
+  </div>-->
 </div>
