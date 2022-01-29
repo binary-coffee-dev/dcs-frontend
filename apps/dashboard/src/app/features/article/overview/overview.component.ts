@@ -48,6 +48,8 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   _unsubscribe = new Subject();
   _stopTimer = new Subject();
 
+  articleTextStatus: 'edit' | 'preview' = 'edit';
+
   constructor(
     private store: Store,
     private activatedRoute: ActivatedRoute,
@@ -257,7 +259,16 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
     });
   }
 
+  removeCurrentBanner() {
+    this.post.banner = null;
+    this.imageChange = true;
+  }
+
   getPostPreviewUrl() {
     return `${this.env.siteUrl}/post/${this.post.name}`;
+  }
+
+  changeArticleStatus() {
+    this.articleTextStatus = this.articleTextStatus === 'edit' ? 'preview' : 'edit';
   }
 }

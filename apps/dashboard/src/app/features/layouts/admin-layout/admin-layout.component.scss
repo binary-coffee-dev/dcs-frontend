@@ -5,8 +5,6 @@ $toolbar-height: 100px;
 :host {
   mat-toolbar {
     padding: 0;
-    //position: sticky;
-    //top: 0;
     z-index: 99999;
     background-color: map_get($md-grey, 100);
 

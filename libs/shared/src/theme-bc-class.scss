@@ -88,11 +88,13 @@
     background-color: map-get($md-primary, 910);
   }
 
-  &.mat-button-toggle-disabled {
+  &.mat-button-toggle-disabled, &:disabled {
     background-color: map-get($md-grey, 600);
+    color: map-get($md-grey, 500);
 
     &:hover {
       background-color: map-get($md-grey, 600);
+      color: map-get($md-grey, 500);
     }
   }
 }
