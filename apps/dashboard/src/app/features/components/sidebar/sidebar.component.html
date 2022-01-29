@@ -1,54 +1,30 @@
-<div class="side-nav"
-     fxLayout="row">
+<div class='side-nav'
+     fxLayout='column'
+     fxLayoutAlign='start end'>
 
-  <div class="access"
-       fxLayout="column">
-    <button mat-button
-            [ngClass]="{'active': menuAccessItem.active}"
-            *ngFor="let menuAccessItem of menuAccess"
-            [matTooltip]="menuAccessItem.title"
-            (click)="setAccess(menuAccessItem)">
-      <span *ngIf="menuAccessItem.icon"
-            [class]="menuAccessItem.icon"></span>
+  <div class='image-container'
+       fxLayout='column'
+       fxLayoutAlign='center center'>
+    <img class='profile-image'
+         [src]='getUserImage()'
+         [alt]='me?.username || "user-profile"'>
+    <span>"{{me?.username || ''}}"</span>
+  </div>
 
-      <i class="avatar"
-         *ngIf="menuAccessItem.img && !menuAccessItem.icon">
-        <img [src]="menuAccessItem.img">
-      </i>
+  <div class='items-list'
+       fxLayout='column'
+       fxLayoutAlign='center start'>
 
+    <ng-container *ngFor='let it of menuAccess'>
+      <a class='item'
+         [ngClass]='{active: it.path === currentRoute}'
+         [routerLink]='it.path'><i [ngClass]='it.icon'></i>{{it.text}}</a>
+    </ng-container>
+
+    <div class='separator'></div>
+    <button class='item'
+            (click)='logout()'>Salir
     </button>
   </div>
 
-  <div class="content"
-       fxLayout="column">
-    <div class="nav">
-      <div *ngFor="let menuAccessItem of menuAccess">
-        <div *ngIf="menuAccessItem.active">
-          <div *ngFor="let menuItem of menuAccessItem.route">
-
-            <a *ngIf="menuItem.path"
-               fxLayout="row"
-               fxLayoutAlign="start"
-               mat-button
-               [ngClass]="{'active': getLocation() === menuItem.path, 'disable': getLocation() !== menuItem.path}"
-               [matTooltip]="menuItem.title"
-               (click)="routeChange.emit()"
-               [routerLink]="[menuItem.path]">
-              <span>{{menuItem.text}}</span>
-            </a>
-
-            <a *ngIf="!menuItem.path"
-               fxLayout="row"
-               fxLayoutAlign="start"
-               mat-button
-               [matTooltip]="menuItem.title"
-               (click)="logout()">
-              <span>{{menuItem.text}}</span>
-            </a>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

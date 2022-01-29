@@ -1,15 +1,3 @@
-export declare interface Access {
-  id: number;
-  active: boolean;
-  visible: boolean;
-  icon: string;
-  img: string;
-  class: string;
-  text: string;
-  title: string;
-  route: RouteInfo[];
-}
-
 export declare interface RouteInfo {
   accessId: number;
   visible: boolean;
@@ -17,7 +5,7 @@ export declare interface RouteInfo {
   icon: string;
   class: string;
   text: string;
-  title: string;
+  title?: string;
 }
 
 // with this enum you can change the order
@@ -25,31 +13,6 @@ export enum AccessIds {
   USER,
   BOARD
 }
-
-export let ACCESS: Access[] = [
-  {
-    id: AccessIds.USER,
-    active: false,
-    visible: true,
-    text: 'Usuario',
-    title: 'Usuario',
-    class: '',
-    icon: '',
-    img: '',
-    route: []
-  },
-  {
-    id: AccessIds.BOARD,
-    active: true,
-    visible: true,
-    text: 'Tablero',
-    title: 'Tablero',
-    class: '',
-    icon: 'fa fa-dashboard',
-    img: '',
-    route: []
-  }
-];
 
 // the accessId is a reference to a Access.id
 export let ROUTES: RouteInfo[] = [
@@ -66,36 +29,32 @@ export let ROUTES: RouteInfo[] = [
     accessId: AccessIds.USER,
     visible: true,
     path: '/user-profile',
-    text: 'Perfil',
-    title: 'Administar mi perfil',
+    text: 'Editar Perfil',
     class: '',
-    icon: ''
+    icon: 'fa fa-user'
   },
   {
-    accessId: AccessIds.USER,
+    accessId: AccessIds.BOARD,
     visible: true,
-    path: '',
-    text: 'Salir',
-    title: 'Salir del Binary Board',
+    path: '/articles/create',
+    text: 'Publicar Artículo',
     class: '',
-    icon: ''
+    icon: 'fa fa-file'
   },
   {
     accessId: AccessIds.BOARD,
     visible: true,
     path: '/articles',
-    text: 'Artículos',
-    title: 'Gestionar mis artículos',
+    text: 'Gestionar Artículos',
     class: '',
-    icon: ''
+    icon: 'fa fa-quote-right'
   },
   {
     accessId: AccessIds.BOARD,
     visible: true,
     path: '/files',
-    text: 'Archivos',
-    title: 'Gestionar mis archivos',
+    text: 'Gestionar Archivos',
     class: '',
-    icon: ''
+    icon: 'fa fa-image'
   }
 ];
