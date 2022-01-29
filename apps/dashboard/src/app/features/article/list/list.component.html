@@ -1,8 +1,67 @@
-<div class="container"
-     fxLayout="column">
+<div class='container'
+     fxLayout='column'>
 
+  <div>
+    <app-filter></app-filter>
+  </div>
+  <div class='table-container'>
 
-  <div fxLayout="row"
+    <table>
+      <thead>
+      <tr>
+        <th class='start-align title-cell'>Titulo</th>
+        <th>Publicado</th>
+        <th>Autor</th>
+        <th>Activo</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor='let post of posts; let i = index'
+          [ngClass]='{"cell-even": i % 2 === 0, "cell-odd": i % 2 === 1}'>
+        <td class='title-cell'>{{post.title}}</td>
+        <td>
+          {{moment.timeFromDate(post.publishedAt) || ''}}
+        </td>
+        <td>
+          {{post?.author?.username}}
+        </td>
+        <td class='center-align'>
+          <mat-checkbox [(ngModel)]='post.enable'
+                        [disabled]='true'
+                        color='primary'>
+          </mat-checkbox>
+        </td>
+        <td class='actions'>
+          <button mat-button
+                  *ngIf='([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)'
+                  matTooltip='Editar articulo'
+                  [routerLink]="'/articles/update/' + post.id"
+                  [matTooltipPosition]="'above'">
+            <i class='fa fa-pencil'></i>
+          </button>
+          <button mat-button
+                  matTooltip='Ver articulo'
+                  [matTooltipPosition]="'above'"
+                  (click)='openArticle(post)'>
+            <i class='fa fa-external-link'></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class='pagination-container'>
+    <app-pagination (nextPageEvent)="nextPageEvent()"
+                    (previousPageEvent)="previousPageEvent()"
+                    (pageEvent)="selectPageEvent($event)"
+                    [numberOfPages]="numberOfPages"
+                    [currentPage]="currentPage">
+    </app-pagination>
+  </div>
+
+  <!--<div fxLayout="row"
        fxLayout.xs="column"
        fxLayout.sm="column"
        fxLayoutAlign="start start"
@@ -208,5 +267,5 @@
                       [currentPage]="currentPage">
       </app-pagination>
     </div>
-  </div>
+  </div>-->
 </div>

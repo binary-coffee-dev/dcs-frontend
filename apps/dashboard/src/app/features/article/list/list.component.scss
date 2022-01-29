@@ -2,101 +2,74 @@
 
 :host {
   .container {
-    padding: map_get($spacings, 4) 0 map_get($spacings, 4) map_get($spacings, 4);
+    padding: map_get($spacings, 4);
+    width: 100%;
 
-    .separator {
-      padding-top: map_get($spacings, 4);
-    }
-
-    .header {
-      padding-right: map_get($spacings, 4);
-
-      .toogle-table-card {
-        margin-left: map_get($spacings, 4);
-        color: map_get($md-primary, 500);
-      }
-    }
-
-    .table-content {
+    .table-container {
+      border-radius: map_get($radius, 3);
+      overflow: hidden;
       overflow-x: auto;
-      width: calc(100% - 24px);
-      margin: map_get($spacings, 4) 0;
-      border: 1px solid map_get($md-primary, 100);
-      border-radius: map_get($radius, 2);
 
       table {
+        border-collapse: collapse;
         width: 100%;
 
         thead {
-          text-align: left;
+          background-color: map-get($md-grey, 50);
+          font-size: 14px;
         }
 
         tbody {
-          tr {
-            td {
-              border-top: 1px solid rgba(0, 0, 0, .06);
+          font-size: 12px;
+        }
 
-              button {
-                color: map_get($md-primary, 800);
-              }
-            }
+        .title-cell {
+          max-width: 450px;
+          white-space: normal !important;
+          min-width: 200px;
+        }
 
-            .activo {
-              text-align: center;
+        tr {
+
+          th {
+            padding: map-get($spacings, 2);
+            white-space: nowrap;
+          }
+
+          td {
+            padding: map-get($spacings, 1) map-get($spacings, 2);
+            white-space: nowrap;
+
+            &.actions {
+              color: map-get($md-primary, 500);
             }
           }
+
+          &.cell-even {
+            background-color: map-get($md-grey, 48);
+          }
+
+          &.cell-odd {
+            background-color: map-get($md-grey, 49);
+          }
+        }
+
+        tbody > tr:hover {
+          background-color: map-get($md-primary, 100) !important;
+        }
+
+        .start-align {
+          text-align: start;
+        }
+
+        .center-align {
+          text-align: center;
         }
       }
     }
 
-    .post-content {
-      padding: map_get($spacings, 4) map_get($spacings, 4) map_get($spacings, 4) 0;
-      $post_image_size: 200px;
-
-      .post-image-container {
-        width: 100%;
-        height: $post_image_size;
-        margin: 0 map_get($spacings, 4) map_get($spacings, 4) 0;
-        border-radius: map_get($radius, 2);
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-          border-radius: map_get($radius, 2);
-          border: 1px solid map_get($md-primary, 100);
-        }
-      }
-
-      .post-box {
-        padding: map_get($spacings, 4);
-        border: 1px solid map_get($md-primary, 100);
-        border-radius: map_get($radius, 2);
-
-        .post-title {
-          margin-bottom: map_get($spacings, 4);
-
-          b {
-            font-size: 1.2rem;
-          }
-        }
-
-        .post-option {
-          border: 1px solid map_get($md-primary, 100);
-          background-color: map_get($md-grey, 350);
-          border-radius: map_get($radius, 2);
-          margin-top: map_get($spacings, 4);
-
-          &:hover {
-            border: 1px solid map_get($md-primary, 500);
-          }
-
-          &:first-child {
-            margin-right: map_get($spacings, 4);
-          }
-        }
-      }
+    .pagination-container {
+      margin-top: map-get($spacings, 3);
     }
   }
 }

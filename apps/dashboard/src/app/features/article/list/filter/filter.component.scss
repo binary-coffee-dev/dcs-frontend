@@ -6,6 +6,18 @@
   form {
     margin-top: map_get($spacings, 4);
 
+    ::ng-deep.code-none {
+      font-size: 14px;
+
+      .code-1 {
+        color: map-get($md-primary, 500);
+      }
+    }
+
+    ::ng-deep.mat-select-min-line {
+      font-size: 14px;
+    }
+
     .selector {
       ::ng-deep.mat-form-field-flex {
         border-radius: 4px;
