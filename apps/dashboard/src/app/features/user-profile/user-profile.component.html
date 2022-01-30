@@ -29,7 +29,8 @@
              formControlName='username'
              type='text'>
     </mat-form-field>
-    <mat-form-field appearance='outline' class='hide-component'>
+    <mat-form-field appearance='outline'
+                    class='hide-component'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Name </span> =
@@ -41,7 +42,8 @@
              placeholder='Name'
              type='text'>
     </mat-form-field>
-    <mat-form-field appearance='outline' class='hide-component'>
+    <mat-form-field appearance='outline'
+                    class='hide-component'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Email </span> =
@@ -53,7 +55,8 @@
              placeholder='Email'
              type='text'>
     </mat-form-field>
-    <mat-form-field appearance='outline' class='hide-component'>
+    <mat-form-field appearance='outline'
+                    class='hide-component'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Descripción </span> =
@@ -65,7 +68,8 @@
                 placeholder='Descripción'></textarea>
     </mat-form-field>
 
-    <div fxLayout='row'
+    <div *ngIf='false'
+         fxLayout='row'
          fxLayoutAlign='end'>
       <mat-button-toggle class='button-ok'>Guardar</mat-button-toggle>
     </div>
@@ -76,7 +80,8 @@
 
     <h1>Profesional</h1>
 
-    <mat-form-field appearance='outline' class='hide-component'>
+    <mat-form-field appearance='outline'
+                    class='hide-component'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> School </span> =
@@ -88,7 +93,8 @@
              placeholder='School'
              type='text'>
     </mat-form-field>
-    <mat-form-field appearance='outline' class='hide-component'>
+    <mat-form-field appearance='outline'
+                    class='hide-component'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Estudios </span> =
@@ -108,14 +114,18 @@
       <i matPrefix
          class='fa fa-at'></i>
       <input matInput
+             (keyup)='onUserDataChange()'
              formControlName='page'
              placeholder='Sitio Web'
              type='text'>
     </mat-form-field>
 
-    <div fxLayout='row'
+    <div (click)='saveProfessionalData()'
+         fxLayout='row'
          fxLayoutAlign='end'>
-      <mat-button-toggle class='button-ok'>Guardar</mat-button-toggle>
+      <mat-button-toggle [disabled]='!professionalDataChange'
+                         class='button-ok'>Guardar
+      </mat-button-toggle>
     </div>
   </form>
 

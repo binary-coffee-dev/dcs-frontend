@@ -129,6 +129,10 @@
             min-height: 100px;
           }
 
+          input:read-only {
+            color: map-get($md-grey, 500);
+          }
+
           .mat-form-field-prefix {
             font-size: 20px;
             margin-right: map-get($spacings, 2);
