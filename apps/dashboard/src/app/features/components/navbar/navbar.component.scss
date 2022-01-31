@@ -1,9 +1,21 @@
 @import "libs/shared/src/theme";
 
 :host {
+  width: 100%;
+  box-sizing: border-box;
 
   .container {
-    margin-left: map-get($spacings, 3);
+    margin: 0 map-get($spacings, 3);
+
+    .menu-button {
+      position: relative;
+      font-size: 30px;
+      color: map-get($md-grey, 700);
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
 
     a {
       text-decoration: none;
