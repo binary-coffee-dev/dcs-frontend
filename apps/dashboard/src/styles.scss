@@ -36,6 +36,10 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
   font-family: 'Oxygen', 'Droid Sans Mono', monospace;
 }
 
+body {
+  overflow: hidden;
+}
+
 markdown {
   img {
     width: 60%;

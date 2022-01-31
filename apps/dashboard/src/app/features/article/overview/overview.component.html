@@ -86,10 +86,11 @@
       </mat-form-field>
     </div>
 
-    <div fxLayout='row wrap'>
-      <mat-form-field
-        *ngIf='[permissions().PUBLISH_ARTICLE] | hasPermissions'>
-        <mat-label>Fecha</mat-label>
+    <div class='section time-section'
+         fxLayout='row wrap'>
+      <mat-form-field appearance='none'
+                      *ngIf='[permissions().PUBLISH_ARTICLE] | hasPermissions'>
+        <mat-label class='code-none'>Fecha</mat-label>
         <input
           matInput
           readonly
@@ -103,8 +104,8 @@
                         panelClass='example-month-picker'>
         </mat-datepicker>
       </mat-form-field>
-      <mat-form-field
-        *ngIf='[permissions().PUBLISH_ARTICLE] | hasPermissions'>
+      <mat-form-field appearance='none'
+                      *ngIf='[permissions().PUBLISH_ARTICLE] | hasPermissions'>
         <mat-label>Hora</mat-label>
         <mat-select
           formControlName='time'
@@ -118,7 +119,7 @@
       </mat-form-field>
     </div>
 
-    <div class='section'>
+    <div class='section tags-section'>
       <tag-input
         [onlyFromAutocomplete]='true'
         (onAdd)='onPostChange()'
