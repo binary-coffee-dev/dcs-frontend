@@ -22,7 +22,7 @@
       <div fxFlex='100'></div>
       <a [href]='getPostPreviewUrl()'
          matTooltip='Vista Previa en blog'
-         *ngIf='true || !isNewPost()'
+         *ngIf='!isNewPost()'
          target='_blank'>
         <i class='fa fa-eye'></i>
         Vista previa
