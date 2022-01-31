@@ -40,6 +40,10 @@ body {
   overflow: hidden;
 }
 
+.no-margin {
+  margin: map-get($spacings, 3) map-get($spacings, 1) !important;
+}
+
 markdown {
   img {
     width: 60%;
