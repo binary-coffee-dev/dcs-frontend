@@ -1,51 +1,70 @@
 @import 'libs/shared/src/theme';
 
 :host {
-  display: block;
-  position: relative;
 
-  .card {
-    padding: map_get($spacings, 4) !important;
-    box-shadow: none;
-    border: 1px solid map_get($md-primary, 900);
-
-    .title {
-      color: map_get($md-primary, 900) !important;
-      padding-bottom: map_get($spacings, 4);
-    }
-
-    .data {
-      margin: 0 0 map_get($spacings, 4) 0;
-    }
-
+  .body {
     .input-file {
       display: none;
     }
 
-    .pre-image-container {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      margin-bottom: map_get($spacings, 4);
+    mat-form-field {
+      width: 100%;
+      font-size: 12px;
 
-      .upload-image {
-        height: 130px;
-        width: auto;
-        cursor: pointer;
+      ::ng-deep {
+        .mat-form-field-flex {
+          border-color: transparent;
+          background-color: map-get($md-grey, 50);
+          border-radius: map-get($radius, 2);
+        }
+
+        input {
+          padding: map-get($spacings, 1);
+        }
       }
+    }
+
+    .data {
+      width: 100%;
+      font-size: 12px;
+    }
+
+    .pre-image-container {
+      margin-bottom: map-get($spacings, 3);
+      width: 100%;
+      overflow: hidden;
 
       .upload-pre-image {
-        width: 100%;
-        height: 130px;
+        height: 200px;
+        border: dashed 2px map-get($md-grey, 500);
+        border-radius: map-get($radius, 2);
         position: relative;
-        cursor: pointer;
 
         i {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          font-size: 6em;
-          transform: translate(-50%, -50%);
+          font-size: 50px;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          position: relative;
+        }
+
+        &:hover {
+          cursor: pointer;
+          border-color: map-get($md-primary, 500);
+
+          &:after {
+            position: absolute;
+            content: '';
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(233, 235, 242, 0.34);
+          }
         }
       }
     }
