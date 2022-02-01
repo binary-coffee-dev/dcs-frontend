@@ -23,8 +23,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private location: Location,
     @Inject(ENVIRONMENT) private env: Environment,
-    private store: Store,
-    public url: UrlUtilsService
+    private store: Store
   ) {
   }
 
