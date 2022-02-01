@@ -3,6 +3,7 @@
      class='content'>
 
   <form class='form-container'
+        ngClass.xs='no-margin'
         [formGroup]='personalForm'>
 
     <h1>Personal</h1>
@@ -29,7 +30,8 @@
              formControlName='username'
              type='text'>
     </mat-form-field>
-    <mat-form-field appearance='outline' class='hide-component'>
+    <mat-form-field appearance='outline'
+                    class='hide-component'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Name </span> =
@@ -41,7 +43,8 @@
              placeholder='Name'
              type='text'>
     </mat-form-field>
-    <mat-form-field appearance='outline' class='hide-component'>
+    <mat-form-field appearance='outline'
+                    class='hide-component'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Email </span> =
@@ -53,7 +56,8 @@
              placeholder='Email'
              type='text'>
     </mat-form-field>
-    <mat-form-field appearance='outline' class='hide-component'>
+    <mat-form-field appearance='outline'
+                    class='hide-component'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Descripción </span> =
@@ -65,18 +69,21 @@
                 placeholder='Descripción'></textarea>
     </mat-form-field>
 
-    <div fxLayout='row'
+    <div *ngIf='false'
+         fxLayout='row'
          fxLayoutAlign='end'>
       <mat-button-toggle class='button-ok'>Guardar</mat-button-toggle>
     </div>
   </form>
 
   <form class='form-container'
+        ngClass.xs='no-margin'
         [formGroup]='professionalForm'>
 
     <h1>Profesional</h1>
 
-    <mat-form-field appearance='outline' class='hide-component'>
+    <mat-form-field appearance='outline'
+                    class='hide-component'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> School </span> =
@@ -88,7 +95,8 @@
              placeholder='School'
              type='text'>
     </mat-form-field>
-    <mat-form-field appearance='outline' class='hide-component'>
+    <mat-form-field appearance='outline'
+                    class='hide-component'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Estudios </span> =
@@ -108,18 +116,23 @@
       <i matPrefix
          class='fa fa-at'></i>
       <input matInput
+             (keyup)='onUserDataChange()'
              formControlName='page'
              placeholder='Sitio Web'
              type='text'>
     </mat-form-field>
 
-    <div fxLayout='row'
+    <div (click)='saveProfessionalData()'
+         fxLayout='row'
          fxLayoutAlign='end'>
-      <mat-button-toggle class='button-ok'>Guardar</mat-button-toggle>
+      <mat-button-toggle [disabled]='!professionalDataChange'
+                         class='button-ok'>Guardar
+      </mat-button-toggle>
     </div>
   </form>
 
   <form class='form-container disable-component'
+        ngClass.xs='no-margin'
         [formGroup]='socialsForm'>
 
     <h1>Redes sociales</h1>
@@ -169,6 +182,7 @@
 
   <form class='form-container disable-component'
         fxLayout='column'
+        ngClass.xs='no-margin'
         [formGroup]='privacyForm'>
 
     <h1>Privacidad</h1>
@@ -191,74 +205,5 @@
       <mat-button-toggle class='button-ok'>Guardar</mat-button-toggle>
     </div>
   </form>
-
-  <!--<div class="avatar-content"
-       fxFlex="40"
-       fxFlex.sm="100"
-       fxFlex.xs="100"
-       fxLayout="column"
-       fxLayoutAlign="center center">
-
-    <div class="avatar">
-
-      <a (click)="openUploadFileModal()">
-        <i class="icon-hover fa fa-camera"
-           fxLayoutAlign="center center"></i>
-        <img class="img"
-             [src]="getUserImage()" />
-      </a>
-    </div>
-
-    <div class="user-name-content"
-         fxLayout="row">
-      <b class="user-name">{{me?.username}}</b>
-    </div>
-  </div>
-
-  <div class="user-data"
-       fxFlex="50"
-       fxFlex.sm="100"
-       fxFlex.xs="100"
-       fxLayout="column"
-       fxLayoutAlign="center center">
-
-    <div fxLayout="column"
-         class="header-data-content"
-         fxLayoutAlign="start">
-      <span class="header-data">Datos del perfil</span>
-      <i class="header-data code-comment-1">// complete su perfil</i>
-    </div>
-
-    <div fxLayout="row">
-      <form [formGroup]="profileForm"
-            fxFlex="100"
-            (change)="onUserDataChange()"
-            (ngSubmit)="saveUserData()">
-
-        <mat-form-field appearance="outline">
-          <mat-label class="code-none">
-            <span class="code-1"> var </span>
-            <span class="code-var"> Sitio web </span> =
-          </mat-label>
-          <input matInput
-                 formControlName="page"
-                 placeholder="Sitio web"
-                 type="text">
-        </mat-form-field>
-
-        <button mat-raised-button
-                type="submit"
-                [disabled]="!profileDataChange"
-                matTooltip="Actualizar el perfil con nuevas características"
-                class="bc-button submit">
-          <span> Actualizar( </span>
-          <span class="code-var"
-                *ngIf="me?.page !== profileForm?.controls?.page?.value"> Sitio web </span>
-          <span> ) </span>
-        </button>
-      </form>
-
-    </div>
-  </div>-->
 
 </div>

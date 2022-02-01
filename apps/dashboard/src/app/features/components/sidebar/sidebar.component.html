@@ -17,6 +17,7 @@
 
     <ng-container *ngFor='let it of menuAccess'>
       <a class='item'
+         (click)='this.routeChange.emit()'
          [ngClass]='{active: it.path === currentRoute}'
          [routerLink]='it.path'><i [ngClass]='it.icon'></i>{{it.text}}</a>
     </ng-container>

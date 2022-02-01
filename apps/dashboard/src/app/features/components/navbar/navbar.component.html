@@ -1,10 +1,22 @@
-<div class="container"
-     fxLayout="row"
-     fxLayoutAlign="start center">
-
-  <a href=''
+<div class='container'
      fxLayout='row'
-     routerLink='/'
+     fxLayoutAlign='start center'>
+
+  <!--<img fxShow.xs
+       fxHide
+       class='img-menu'
+       (click)='openSidenav.emit()'
+       [src]='this.url.getUserImage(this.me)'
+       [alt]='this.me?.username'>-->
+  <i class='menu-button fa fa-bars'
+     (click)='openSidenav.emit()'></i>
+
+  <div fxShow.xs
+       fxHide
+       fxFlex='100'></div>
+
+  <a [href]='getBlogUrl()'
+     fxLayout='row'
      fxLayoutAlign='start center'>
     <img src='/assets/images/128x128/binarycoffee_2.0.0.png'
          alt='binarycoffee-logo'>

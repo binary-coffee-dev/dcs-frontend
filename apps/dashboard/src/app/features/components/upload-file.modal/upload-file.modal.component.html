@@ -1,58 +1,66 @@
-<mat-card class="card">
-  <div class="title">
-    Agregar archivo
+<div class='card-modal'
+     fxLayout='column'>
+  <div class='head'
+       fxLayout='row'>
+    <span class='title'>Subir archivo</span>
+    <div fxFlex='100'></div>
+    <i class='fa fa-close close-button'
+       (click)='cancel()'
+       matTooltip='close'></i>
   </div>
-  <mat-card-content>
-    <form [formGroup]="uploadFileForm"
-          fxLayout="column">
-      <mat-form-field class="field"
-                      appearance="outline">
-        <mat-label class="code-none">
-          <span class="code-1"> var </span>
-          <span class="code-var"> Nombre </span> =
-        </mat-label>
-        <input matInput
-               formControlName="name"
-               placeholder="Nombre">
-      </mat-form-field>
-      <input type="file"
-             class="input-file"
-             #uploader
-             (change)="onFilesChange($event)"
-             formControlName="file">
-      <label class="pre-image-container bc-button"
-             mat-button>
-        <div class="upload-pre-image"
-             *ngIf="!image"
-             (click)="openFile(uploader)">
-          <i class="fa fa-file-image-o"></i>
-        </div>
-        <img class="upload-image"
-             *ngIf="!!image"
-             [src]="image"
-             (click)="openFile(uploader)"
-             alt="upload">
-      </label>
-      <p *ngIf="type"
-         class="data">
-        <span class="code-1"> var </span>
-        <span class="code-var"> Tipo </span> = {{type}}
-      </p>
-      <p *ngIf="size"
-         class="data">
-        <span class="code-1"> var </span>
-        <span class="code-var"> Tamaño </span> = {{getSize()}}
-      </p>
-      <button mat-button
-              class="bc-button"
-              fxFlex="50"
-              (click)="upload()"
-              [disabled]="!file || uploadingImage"
-              type="submit">
-        <span class="code-1"> new </span>
-        <span class="code-none"> Archivo() </span>
-      </button>
-      <div class="clearfix"></div>
-    </form>
-  </mat-card-content>
-</mat-card>
+  <form [formGroup]='uploadFileForm'
+        class='body'
+        fxLayout='column'
+        fxLayoutAlign='start center'>
+
+    <mat-form-field appearance='none'>
+      <mat-label>Nombre de la imagen</mat-label>
+      <input matInput
+             formControlName='name'
+             type='text'>
+    </mat-form-field>
+
+    <input type='file'
+           class='input-file'
+           #uploader
+           (change)='onFilesChange($event)'
+           formControlName='file'>
+    <div class='pre-image-container'
+         fxLayout='row'>
+      <div class='upload-pre-image'
+           fxLayout='row'
+           fxLayoutAlign='center center'
+           fxFlex='100'
+           (click)='openFile(uploader)'>
+        <i class='fa fa-file-image-o'
+           *ngIf='!image'></i>
+        <img class='upload-image'
+             *ngIf='!!image'
+             [src]='image'
+             (click)='openFile(uploader)'
+             alt='upload'>
+      </div>
+    </div>
+    <p *ngIf='type'
+       class='data'>
+      <span class='code-1'> var </span>
+      <span class='code-var'> Tipo </span> = {{type}}
+    </p>
+    <p *ngIf='size'
+       class='data'>
+      <span class='code-1'> var </span>
+      <span class='code-var'> Tamaño </span> = {{getSize()}}
+    </p>
+    <div class='buttons-container'
+         fxLayout='row'
+         fxLayoutAlign='end'>
+      <mat-button-toggle class='button-ok'
+                         (click)='upload()'
+                         [disabled]='!file || uploadingImage'>Guardar
+      </mat-button-toggle>
+      <mat-button-toggle class='button-cancel'
+                         (click)='cancel()'>Cancelar
+      </mat-button-toggle>
+    </div>
+  </form>
+</div>

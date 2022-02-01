@@ -2,7 +2,9 @@
 
 :host {
   .content {
-    padding: map_get($spacings, 4);
+    margin: map_get($spacings, 4);
+    box-sizing: border-box;
+    max-width: 100%;
 
     .container-align {
       overflow: hidden;

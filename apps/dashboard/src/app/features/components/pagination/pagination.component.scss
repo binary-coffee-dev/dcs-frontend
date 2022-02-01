@@ -12,6 +12,7 @@
       padding: 0 map-get($spacings, 2);
       margin: 0 map-get($spacings, 1);
       color: map-get($md-grey, 700);
+      white-space: nowrap;
 
       &.move-pages {
         background-color: transparent;

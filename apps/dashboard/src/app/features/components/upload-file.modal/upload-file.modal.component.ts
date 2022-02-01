@@ -55,11 +55,15 @@ export class UploadFileModalComponent implements OnInit {
   }
 
   upload() {
-    if (!this.uploadingImage) {
+    if (!this.uploadingImage && this.file) {
       this.uploadingImage = true;
       this.store.dispatch(new UploadFileAction(this.file, this.uploadFileForm.controls.name.value)).subscribe(() => {
         this.dialogRef.close(this.store.selectSnapshot(FileState.newFile));
       });
     }
+  }
+
+  cancel() {
+    this.dialogRef.close();
   }
 }

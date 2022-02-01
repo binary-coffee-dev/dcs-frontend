@@ -100,6 +100,48 @@
         }
       }
 
+      .time-section {
+        mat-form-field {
+          margin-right: map-get($spacings, 3);
+
+          ::ng-deep {
+            .mat-form-field-flex {
+              border-color: transparent;
+              background-color: map-get($md-grey, 49);
+              border-radius: map-get($radius, 2);
+
+              .mat-form-field-infix {
+                margin-left: map-get($spacings, 1);
+              }
+            }
+          }
+        }
+      }
+
+      .tags-section {
+        // todo
+        tag-input {
+          border: transparent;
+          background-color: map-get($md-grey, 49);
+          border-radius: map-get($radius, 2);
+          padding-left: 6px;
+
+          ::ng-deep {
+            .ng2-tag-input {
+              border: none;
+
+              &:active {
+                border: none;
+              }
+            }
+
+            input {
+              background-color: map-get($md-grey, 49);
+            }
+          }
+        }
+      }
+
       mat-form-field {
         font-size: 14px;
 

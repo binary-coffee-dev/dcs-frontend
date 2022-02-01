@@ -16,7 +16,7 @@ const PATH_NAME_POSITION = 2;
 })
 export class SidebarComponent implements OnInit {
   @Output()
-  routeChange = new EventEmitter<any>();
+  routeChange = new EventEmitter<void>();
 
   me: User;
 

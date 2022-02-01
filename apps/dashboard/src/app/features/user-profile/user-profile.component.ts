@@ -21,6 +21,7 @@ import { UploadFileModalComponent } from '../components/upload-file.modal';
 })
 export class UserProfileComponent implements OnInit {
   me: User;
+  professionalDataChange = false;
 
   personalForm = new FormGroup({
     username: new FormControl(''),
@@ -49,7 +50,8 @@ export class UserProfileComponent implements OnInit {
     private store: Store,
     private dialog: MatDialog,
     private url: UrlUtilsService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.store.select(AuthState.me).subscribe((me: User) => {
@@ -57,7 +59,8 @@ export class UserProfileComponent implements OnInit {
         this.me = me;
         this.personalForm.controls.username.setValue(me.username);
         this.professionalForm.controls.page.setValue(me.page);
-        console.log(me.username);
+
+        this.professionalDataChange = false;
       }
     });
   }
@@ -66,19 +69,17 @@ export class UserProfileComponent implements OnInit {
     return this.url.getUserImage(this.me);
   }
 
-  saveUserData() {
-    // if (this.profileForm.valid) {
-    //   this.store.dispatch(
-    //     new UpdateMeAction(
-    //       this.me.id,
-    //       this.profileForm.controls.page.value
-    //     )
-    //   );
-    // }
+  saveProfessionalData() {
+    this.store.dispatch(
+      new UpdateMeAction(
+        this.me.id,
+        this.professionalForm.controls.page.value
+      )
+    );
   }
 
   onUserDataChange() {
-    // this.profileDataChange = this.me.page !== this.profileForm.controls.page.value;
+    this.professionalDataChange = this.me.page !== this.professionalForm.controls.page.value;
   }
 
   openUploadFileModal() {
