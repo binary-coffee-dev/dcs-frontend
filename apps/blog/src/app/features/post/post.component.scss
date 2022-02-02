@@ -8,6 +8,7 @@
     margin-top: map-get($spacings, 5);
 
     .like-button {
+      font-size: 12px;
       min-width: 200px;
       background-color: map-get($md-primary, 500);
     }
@@ -32,7 +33,7 @@
 
       .post-in-container {
         .post-info-container {
-          padding: 24px;
+          padding: map-get($spacings, 4);
           border: solid 1px #0001;
           border-radius: map-get($radius, 2);
           box-shadow: map_get($box-shadow-up, 1);
@@ -107,6 +108,10 @@
               }
             }
           }
+        }
+
+        .button-padding {
+          padding: 0 map-get($spacings, 4);
         }
 
         app-comments {
