@@ -59,6 +59,7 @@ export class UserViewComponent implements OnInit {
   }
 
   createUserData() {
+    console.log(this.user);
     this.userData.push({
       icon: 'email',
       text: 'private'
@@ -91,6 +92,7 @@ export class UserViewComponent implements OnInit {
   }
 
   copyRSSToClipboard() {
+    console.log(this.getUserRSSLink());
     this.window.navigator.clipboard.writeText(this.getUserRSSLink());
   }
 

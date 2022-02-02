@@ -52,7 +52,8 @@ export class ListComponent extends Permissions implements OnInit {
   openUploadFileModal() {
     const dialog = this.dialog.open(UploadFileModalComponent, {
       height: 'auto',
-      width: '50vh',
+      width: '100%',
+      maxWidth: '425px'
     });
     dialog.afterClosed().subscribe(result => {
       if (result) {

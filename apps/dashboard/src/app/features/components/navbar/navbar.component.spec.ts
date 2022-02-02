@@ -4,11 +4,13 @@ import { Location } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { Store } from '@ngxs/store';
+import { of } from 'rxjs';
 
 import { ENVIRONMENT } from '@dcs-libs/shared';
 import { NavbarComponent } from './navbar.component';
 
 class StoreStub {
+  select = () => of({})
 }
 
 class LocationStub {
@@ -28,9 +30,9 @@ describe('NavbarComponent', () => {
       imports: [RouterTestingModule],
       declarations: [NavbarComponent],
       providers: [
-        {provide: Location, useClass: LocationStub},
-        {provide: Store, useClass: StoreStub},
-        {provide: ENVIRONMENT, useValue: {}}
+        { provide: Location, useClass: LocationStub },
+        { provide: Store, useClass: StoreStub },
+        { provide: ENVIRONMENT, useValue: {} }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();

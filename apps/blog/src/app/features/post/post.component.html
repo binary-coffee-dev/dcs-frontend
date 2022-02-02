@@ -60,6 +60,19 @@
             <i class='fa fa-eye post-icons'></i>
             {{post?.views}}
           </div>
+          <div fxFlex='100'
+               fxHide.xs></div>
+          <mat-button-toggle fxHide.xs
+                             class='like-button'
+                             (click)='postLikeClick()'>
+            <i class='fa fa-coffee post-icons'></i>
+            Brindar con {{post?.author?.username}}
+          </mat-button-toggle>
+        </div>
+
+        <div fxShow.xs
+             fxHide
+             fxLayout='row'>
           <div fxFlex='100'></div>
           <mat-button-toggle class='like-button'
                              (click)='postLikeClick()'>
@@ -103,11 +116,15 @@
         </div>
       </div>
 
-      <mat-button-toggle class='like-button last-like-button'
-                         (click)='postLikeClick()'>
-        <i class='fa fa-coffee post-icons'></i>
-        Brindar con {{post?.author?.username}}
-      </mat-button-toggle>
+      <div fxLayout='row'
+           class='button-padding'>
+        <div fxFlex='100'></div>
+        <mat-button-toggle class='like-button last-like-button'
+                           (click)='postLikeClick()'>
+          <i class='fa fa-coffee post-icons'></i>
+          Brindar con {{post?.author?.username}}
+        </mat-button-toggle>
+      </div>
 
       <app-comments *ngIf='post'
                     [post]='post'></app-comments>

@@ -66,4 +66,8 @@ export class SelectImageModalComponent implements OnInit {
   selectPageEvent(page) {
     this.store.dispatch(new ChangeFilesPageAction(page));
   }
+
+  cancel() {
+    this.dialogRef.close();
+  }
 }

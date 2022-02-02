@@ -233,7 +233,8 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   openImageSectorModal() {
     const dialog = this.dialog.open(SelectImageModalComponent, {
       height: 'auto',
-      width: '50vw'
+      width: '100%',
+      maxWidth: '700px'
     });
 
     dialog.afterClosed()
@@ -249,7 +250,8 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   openUploadFileModal() {
     const dialog = this.dialog.open(UploadFileModalComponent, {
       height: 'auto',
-      width: '50vh',
+      width: '100%',
+      maxWidth: '425px'
     });
     dialog.afterClosed().subscribe((image: File) => {
       if (image) {

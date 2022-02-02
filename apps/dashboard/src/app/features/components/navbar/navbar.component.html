@@ -2,13 +2,9 @@
      fxLayout='row'
      fxLayoutAlign='start center'>
 
-  <!--<img fxShow.xs
-       fxHide
-       class='img-menu'
-       (click)='openSidenav.emit()'
-       [src]='this.url.getUserImage(this.me)'
-       [alt]='this.me?.username'>-->
   <i class='menu-button fa fa-bars'
+     fxShow.xs
+     fxHide
      (click)='openSidenav.emit()'></i>
 
   <div fxShow.xs

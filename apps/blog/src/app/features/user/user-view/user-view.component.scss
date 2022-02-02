@@ -6,11 +6,12 @@
 
     .align-container {
       overflow: hidden;
+      position: relative;
 
       .post-container {
         min-height: 300px;
         overflow: hidden;
-        //max-height: 300px;
+        box-sizing: border-box;
       }
 
       .user-container {
@@ -18,6 +19,12 @@
         margin: 0 map-get($spacings, 1) map-get($spacings, 1) map-get($spacings, 4);
         box-shadow: map-get($box-shadow, 2);
         padding: map-get($spacings, 5);
+        box-sizing: border-box;
+
+        &.not-margin {
+          margin: 0 map-get($spacings, 2) map-get($spacings, 4) map-get($spacings, 2);
+          width: calc(100% - #{map-get($spacings, 4)});
+        }
 
         .avatar-container {
           width: 100%;
@@ -69,6 +76,7 @@
           a, button {
             &:hover {
               background-color: map-get($md-grey, 50);
+              border-radius: map-get($radius, 2);
             }
           }
 
@@ -85,6 +93,26 @@
             .material-icons {
               color: map-get($md-primary, 500);
               margin-right: map-get($spacings, 1);
+            }
+
+            &:not(:active).rss:after {
+              transition: color 2s ease-out;
+            }
+
+            &:active.rss:after {
+              color: #292929;
+            }
+
+            &.rss {
+              position: relative;
+
+              &:after {
+                content: "copiado";
+                position: absolute;
+                font-size: .8rem;
+                right: 5px;
+                color: #29292900
+              }
             }
           }
         }
