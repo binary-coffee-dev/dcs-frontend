@@ -9,9 +9,25 @@
       position: relative;
 
       .post-container {
+        width: 100%;
         min-height: 300px;
         overflow: hidden;
         box-sizing: border-box;
+
+        .no-article {
+          margin: 0 map-get($spacings, 2);
+
+          .fa {
+            font-size: 40px;
+            color: map-get($md-primary, 500);
+          }
+
+          h1 {
+            color: map-get($md-grey, 700);
+            font-weight: normal;
+            text-align: center;
+          }
+        }
       }
 
       .user-container {

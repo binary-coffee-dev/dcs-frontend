@@ -7,6 +7,8 @@
        fxLayout='row'>
 
     <div class='data-container'
+         ngClass.xs='margin-xs'
+         ngClass.sm='margin-xs'
          fxLayoutAlign='center start'
          fxFlex.xl='50'
          fxFlex.lg='70'
@@ -50,10 +52,10 @@
                 <div fxLayout='column'
                      fxLayoutAlign='start start'>
                   <span class='info-item'
-                        fxLayoutAlign='center center'><i class='material-icons'>mode_comment</i>&#160;{{23}}
+                        fxLayoutAlign='center center'><i class='material-icons'>mode_comment</i>&#160;{{user?.comments}}
                     comentarios</span>
                   <span class='info-item'
-                        fxLayoutAlign='center center'><i class='material-icons'>format_quote</i>&#160;{{43}}
+                        fxLayoutAlign='center center'><i class='material-icons'>format_quote</i>&#160;{{user?.posts}}
                     artículos</span>
                 </div>
               </div>

@@ -13,6 +13,11 @@
     color: map-get($md-grey, 800);
   }
 
+  .margin-xs {
+    margin: map-get($spacings, 3);
+    box-sizing: border-box;
+  }
+
   .container {
     overflow: hidden;
 
@@ -20,6 +25,12 @@
       width: 100vw;
       overflow: hidden;
       margin-top: map-get($spacings, 3);
+
+      .mat-form-field {
+        font-size: 12px;
+        width: 100%;
+        max-width: 300px;
+      }
 
       .user-card {
         width: 180px;

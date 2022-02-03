@@ -12,6 +12,7 @@ import {
 } from '@dcs-libs/shared';
 
 interface UserData {
+  type: 'link' | 'button' | 'data';
   icon: string;
   link: string;
   text: string;
@@ -59,20 +60,23 @@ export class UserViewComponent implements OnInit {
   }
 
   createUserData() {
-    console.log(this.user);
     this.userData.push({
+      type: 'data',
       icon: 'email',
       text: 'private'
     } as UserData);
     this.userData.push({
+      type: 'link',
       icon: 'language',
       link: this.user?.page
     } as UserData);
     this.userData.push({
+      type: 'button',
       icon: 'rss_feed',
       action: this.copyRSSToClipboard.bind(this),
       text: 'RSS'
     } as UserData);
+    console.log(this.userData);
   }
 
   getUserAvatar(user) {
@@ -92,7 +96,6 @@ export class UserViewComponent implements OnInit {
   }
 
   copyRSSToClipboard() {
-    console.log(this.getUserRSSLink());
     this.window.navigator.clipboard.writeText(this.getUserRSSLink());
   }
 
