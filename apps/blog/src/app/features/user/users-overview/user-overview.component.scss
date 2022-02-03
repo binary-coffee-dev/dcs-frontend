@@ -32,41 +32,43 @@
         max-width: 300px;
       }
 
-      .user-card {
-        width: 180px;
-        padding: map-get($spacings, 3);
-        margin: map-get($spacings, 2);
-        background-color: map-get($md-grey, 350);
-        border-radius: map-get($radius, 2);
-        box-shadow: map_get($box-shadow, 3);
-        text-decoration: none;
-        border: solid .5px transparent;
+      .user-card-container {
+        padding: map-get($spacings, 2);
 
-        &:hover {
-          box-shadow: none;
-          border: solid .5px map-get($md-grey, 500);
-        }
+        .user-card {
+          padding: map-get($spacings, 3);
+          background-color: map-get($md-grey, 350);
+          border-radius: map-get($radius, 2);
+          box-shadow: map_get($box-shadow, 3);
+          text-decoration: none;
+          border: solid .5px transparent;
 
-        .top-user-image {
-          width: map-get($spacings, 10);
-          height: map-get($spacings, 10);
-          border-radius: 50%;
-          margin-bottom: map-get($spacings, 3);
-        }
+          &:hover {
+            box-shadow: none;
+            border: solid .5px map-get($md-grey, 500);
+          }
 
-        .top-user-name {
-          font-size: 15px;
-          color: map-get($md-grey, 800);
-        }
+          .top-user-image {
+            width: map-get($spacings, 10);
+            height: map-get($spacings, 10);
+            border-radius: 50%;
+            margin-bottom: map-get($spacings, 3);
+          }
 
-        .info-item {
-          font-size: 10px;
-          color: map-get($md-grey, 800);
-          margin-top: map-get($spacings, 2);
-
-          .material-icons {
-            color: map-get($md-primary, 500);
+          .top-user-name {
             font-size: 15px;
+            color: map-get($md-grey, 800);
+          }
+
+          .info-item {
+            font-size: 10px;
+            color: map-get($md-grey, 800);
+            margin-top: map-get($spacings, 2);
+
+            .material-icons {
+              color: map-get($md-primary, 500);
+              font-size: 15px;
+            }
           }
         }
       }
