@@ -75,7 +75,7 @@
           <div class='profile-data-item'
                fxLayout='row'
                fxLayoutAlign='start center'
-               *ngIf='!data.action && !data.link'>
+               *ngIf='data.type === "data"'>
             <i class='material-icons'>{{data.icon}}</i>
             {{data.text}}
           </div>
@@ -83,7 +83,7 @@
                   fxLayout='row'
                   [ngClass]='{rss: data.text === "RSS"}'
                   fxLayoutAlign='start center'
-                  *ngIf='data.action'
+                  *ngIf='data.type === "button"'
                   (click)='data.action()'>
             <i class='material-icons'>{{data.icon}}</i>
             {{data.text}}
@@ -92,10 +92,10 @@
              fxLayout='row'
              fxLayoutAlign='start center'
              target='_blank'
-             *ngIf='data.link'
+             *ngIf='data.type === "link" && data.link'
              [href]='data?.link'>
             <i class='material-icons'>{{data.icon}}</i>
-            {{data.text || data.link}}
+            {{data.text === '' ? data.link : data.text}}
           </a>
         </ng-container>
       </div>
