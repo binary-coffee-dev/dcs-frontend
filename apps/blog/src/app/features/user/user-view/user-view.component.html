@@ -24,6 +24,14 @@
         *ngFor='let post of posts'
         [post]='post'>
       </app-post-item>
+      <div class='no-article'
+           *ngIf='!posts?.length'
+           fxFlex='100'
+           fxLayout='column'
+           fxLayoutAlign='center center'>
+        <i class='fa fa-file-text'></i>
+        <h1>No tiene artículos publicados</h1>
+      </div>
     </div>
 
     <div class='user-container'
@@ -104,6 +112,14 @@
         *ngFor='let post of posts'
         [post]='post'>
       </app-post-item>
+      <div class='no-article'
+           *ngIf='!posts?.length'
+           fxFlex='100'
+           fxLayout='column'
+           fxLayoutAlign='center center'>
+        <i class='fa fa-file-text'></i>
+        <h1>No tiene artículos publicados</h1>
+      </div>
     </div>
 
   </div>

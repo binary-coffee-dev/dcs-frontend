@@ -45,13 +45,13 @@
           <td class='actions'>
             <button mat-button
                     *ngIf='([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)'
-                    matTooltip='Editar articulo'
+                    matTooltip='Editar artículo'
                     [routerLink]="'/articles/update/' + post.id"
                     [matTooltipPosition]="'above'">
               <i class='fa fa-pencil'></i>
             </button>
             <button mat-button
-                    matTooltip='Ver articulo'
+                    matTooltip='Ver artículo'
                     [matTooltipPosition]="'above'"
                     (click)='openArticle(post)'>
               <i class='fa fa-external-link'></i>
