@@ -6,7 +6,6 @@ export const GET_USERS = gql`
       id
       username
       avatarUrl
-      name
       page
       email
     }
