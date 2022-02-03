@@ -95,7 +95,7 @@
              *ngIf='data.type === "link" && data.link'
              [href]='data?.link'>
             <i class='material-icons'>{{data.icon}}</i>
-            {{data.text === '' ? data.link : data.text}}
+            {{data.text || data.link}}
           </a>
         </ng-container>
       </div>
