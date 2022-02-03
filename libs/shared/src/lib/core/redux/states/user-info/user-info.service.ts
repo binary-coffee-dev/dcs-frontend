@@ -27,15 +27,15 @@ export class UserInfoService {
   getUsers(search: string): Observable<User[]> {
     const where = search === '' ? {} : {username: search};
     return this.apollo.query({query: GET_USERS, variables: {where}, fetchPolicy: 'no-cache'})
-      .pipe(map((result: any) => result.data.users));
+      .pipe(map((result: any) => result.data.users2));
   }
 
   getUserByUsername(username: string): Observable<User> {
     return this.apollo.query({query: GET_USERS, variables: {where: {username}}, fetchPolicy: 'no-cache'})
       .pipe(
         map((result: any) => {
-        if (result.data.users && result.data.users.length > 0) {
-          return result.data.users[0];
+        if (result.data.users2 && result.data.users2.length > 0) {
+          return result.data.users2[0];
         }
         return {};
       }));

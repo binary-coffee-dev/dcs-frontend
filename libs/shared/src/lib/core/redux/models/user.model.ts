@@ -9,6 +9,8 @@ export interface User {
   page: string;
   role: Role;
   avatarUrl: string;
+  comments: number;
+  posts: number;
 }
 
 export interface Role {
