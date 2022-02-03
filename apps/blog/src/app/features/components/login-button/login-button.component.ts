@@ -49,6 +49,10 @@ export class LoginButtonComponent implements OnInit {
     return `${this.env.siteDashboardUrl}/articles`;
   }
 
+  newArticleLink() {
+    return `${this.env.siteDashboardUrl}/articles/create`;
+  }
+
   logoutAction() {
     this.store.dispatch(new LogoutAction());
   }
