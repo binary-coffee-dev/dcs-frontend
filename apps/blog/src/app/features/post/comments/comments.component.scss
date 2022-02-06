@@ -1,124 +1,135 @@
 @import "libs/shared/src/theme";
 
 :host {
-  .separator {
-    margin-left: map_get($spacings, 4);
-  }
-
-  textarea {
-    resize: vertical;
-  }
+  width: 100%;
 
   .comments-container {
-    margin-top: map_get($spacings, 2);
-
-
-    .comments-header {
-      margin-bottom: map_get($spacings, 1);
-
-      span {
-        font-weight: 400;
-      }
-    }
-
-    .comments-header-separator {
-      border-top: 2px solid map_get($md-primary, 900);
-      height: map_get($spacings, 2);
-      border-radius: map_get($radius, 2);
-    }
+    width: 100%;
 
     .comment-new-container {
-      margin-bottom: map_get($spacings, 10);
+      width: 100%;
+      box-shadow: map_get($box-shadow, 1);
+      border: solid 1px #0001;
+      padding: map-get($spacings, 4);
+      margin-bottom: map-get($spacings, 6);
 
-      .comment-error-message {
-        width: calc(100% - 24px);
+      .comments-header {
+        margin-bottom: map-get($spacings, 4);
+        color: map-get($md-grey, 7);
         font-weight: 100;
-        margin-bottom: map_get($spacings, 1);
-        color: map_get($md-error, 500);
-        background-color: map_get($md-error, 100);
-        border-radius: map_get($radius, 2);
-        padding: map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 1) map_get($spacings, 2);
-        position: relative;
       }
 
-      .comment-item {
-        width: 100%;
-      }
-
-      .comment-credentials {
+      mat-form-field {
         width: 100%;
 
-        .items-credentials-container {
-          width: 100%;
+        ::ng-deep.code-none {
+
+          .code-1 {
+            color: map-get($md-primary, 500);
+            font-size: 14px;
+          }
+
+          .code-var {
+            color: map-get($md-grey, 600);
+            font-size: 14px;
+          }
         }
+      }
 
-        .captcha-container {
-          margin-right: map_get($spacings, 4);
+      .button-container {
+        width: 100%;
 
-          .fa-refresh {
-            position: absolute;
-            opacity: .2;
-            transition: all .2s ease-in-out;
-          }
-
-          .captcha {
-            margin-top: map_get($spacings, 1);
-            margin-bottom: map_get($spacings, 4);
-            cursor: pointer;
-            border: 1px solid map_get($md-primary, 100);
-            background-color: map_get($md-primary, 50);
-            color: map_get($md-secundary, 100);
-            border-radius: map_get($radius, 2);
-
-            &:hover {
-              .fa-refresh {
-                opacity: 1;
-              }
-            }
-          }
-
-          .comment-item-captcha {
-            width: 100%;
-          }
+        mat-button-toggle {
+          background-color: map-get($md-primary, 500);
         }
       }
     }
+  }
 
-    .comments-list {
-      .comment-item {
-        margin-bottom: 30px;
+  .comments-list {
+    box-shadow: map_get($box-shadow, 1);
+    border: solid 1px #0001;
+    padding: map-get($spacings, 4);
+    width: calc(100% - 48px);
 
-        h3 {
-          margin: 0;
-          padding: 0;
-        }
+    .comment-container {
+      margin: map-get($spacings, 4) 0 map-get($spacings, 6) 0;
 
-        .comment-user-image {
-          width: map_get($spacings, 8);
-          height: map_get($spacings, 8);
-          max-width: map_get($spacings, 8);
-          min-height: map_get($spacings, 8);
-          overflow: hidden;
-          border-radius: 100%;
-          margin-right: map_get($spacings, 2);
-        }
+      .user-data {
+        //margin-left: map-get($spacings, 4);
 
-        .post-info-container {
-          margin-bottom: map_get($spacings, 1);
+        a {
+          text-decoration: none;
+          color: map-get($md-grey, 700);
 
-          .actions a {
-            color: map_get($md-primary, 500);
-            cursor: pointer;
+          .comment-user-image {
+            width: 30px;
+            border-radius: 50%;
+            border: solid 2px transparent;
+            margin-right: map-get($spacings, 2);
+          }
 
-            &:hover {
-              color: map_get($md-secundary, 500);
+          .comment-username {
+            margin-right: map-get($spacings, 2);
+          }
+
+          .fa {
+            margin-right: map-get($spacings, 1);
+          }
+
+          &:hover {
+            text-decoration: underline;
+
+            .comment-user-image {
+              border: solid 2px map-get($md-primary, 500);
             }
           }
         }
+      }
 
-        .comment-body {
-          word-wrap: break-word;
-          text-align: justify;
+      .date {
+        width: calc(100% - map-get($spacings, 2));
+        font-size: 10px;
+        height: 10px;
+        color: map-get($md-grey, 600);
+        margin: map-get($spacings, 1) 0 map-get($spacings, 1) map-get($spacings, 2);
+        white-space: nowrap;
+        position: relative;
+
+        .action-icons {
+          font-size: 25px;
+          margin-top: -15px;
+
+          .fa {
+            margin-left: map-get($spacings, 2);
+
+            &:hover {
+              color: map-get($md-grey, 800);
+            }
+          }
+        }
+      }
+
+      .comment-content {
+        background-color: map-get($md-grey, 49);
+        padding: map-get($spacings, 3);
+        font-size: 15px;
+        border-radius: map_get($radius, 3);
+        color: map-get($md-grey, 700);
+        position: relative;
+        word-break: break-all;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: -10px;
+          //background-color: map-get($md-grey, 49);
+          width: 0;
+          height: 0;
+          border-top: 15px transparent solid;
+          border-right: 15px transparent solid;
+          border-left: 15px map-get($md-grey, 49) solid;
         }
       }
     }

@@ -8,7 +8,8 @@ import { HasPermissionsPipe } from './core/pipes';
 import { ROLE_PERMISSION_MAP, rolePermissionMap } from './core/permissions';
 import { CookiesConsentComponent } from './features/cookies-consent';
 import { MaterialModule } from './core/material';
-import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog';
+import { SubscribeDialogComponent } from './components/subscribe-dialog';
 
 @NgModule({
   imports: [CommonModule, MaterialModule, RouterModule],
@@ -16,7 +17,8 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     LoadingComponent,
     HasPermissionsPipe,
     CookiesConsentComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    SubscribeDialogComponent
   ],
   exports: [
     LoadingComponent,

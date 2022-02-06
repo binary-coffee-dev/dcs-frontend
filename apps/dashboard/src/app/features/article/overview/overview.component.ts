@@ -48,6 +48,8 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   _unsubscribe = new Subject();
   _stopTimer = new Subject();
 
+  articleTextStatus: 'edit' | 'preview' = 'edit';
+
   constructor(
     private store: Store,
     private activatedRoute: ActivatedRoute,
@@ -63,6 +65,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
       p.push({ minutes: v * 60 + 30, title: `${v}:30` });
       return p;
     }, []);
+
     this.window.document.addEventListener('keydown', this.shortCutHandlerMethod.bind(this));
   }
 
@@ -230,7 +233,8 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   openImageSectorModal() {
     const dialog = this.dialog.open(SelectImageModalComponent, {
       height: 'auto',
-      width: '50vw'
+      width: '100%',
+      maxWidth: '700px'
     });
 
     dialog.afterClosed()
@@ -246,7 +250,8 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   openUploadFileModal() {
     const dialog = this.dialog.open(UploadFileModalComponent, {
       height: 'auto',
-      width: '50vh',
+      width: '100%',
+      maxWidth: '425px'
     });
     dialog.afterClosed().subscribe((image: File) => {
       if (image) {
@@ -256,7 +261,16 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
     });
   }
 
+  removeCurrentBanner() {
+    this.post.banner = null;
+    this.imageChange = true;
+  }
+
   getPostPreviewUrl() {
     return `${this.env.siteUrl}/post/${this.post.name}`;
+  }
+
+  changeArticleStatus() {
+    this.articleTextStatus = this.articleTextStatus === 'edit' ? 'preview' : 'edit';
   }
 }

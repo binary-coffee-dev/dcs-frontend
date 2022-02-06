@@ -20,25 +20,47 @@ import { UploadFileModalComponent } from '../components/upload-file.modal';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  profileDataChange = false;
-
   me: User;
+  professionalDataChange = false;
 
-  profileForm = new FormGroup({
+  personalForm = new FormGroup({
+    username: new FormControl(''),
+    name: new FormControl(''),
+    email: new FormControl(''),
+    description: new FormControl('')
+  });
+
+  professionalForm = new FormGroup({
+    school: new FormControl(''),
+    study: new FormControl(''),
     page: new FormControl('')
+  });
+
+  socialsForm = new FormGroup({
+    facebook: new FormControl(''),
+    twitter: new FormControl(''),
+    linkedin: new FormControl('')
+  });
+
+  privacyForm = new FormGroup({
+    showEmail: new FormControl('')
   });
 
   constructor(
     private store: Store,
     private dialog: MatDialog,
     private url: UrlUtilsService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.store.select(AuthState.me).subscribe((me: User) => {
       if (me) {
         this.me = me;
-        this.profileForm.controls.page.setValue(me.page);
+        this.personalForm.controls.username.setValue(me.username);
+        this.professionalForm.controls.page.setValue(me.page);
+
+        this.professionalDataChange = false;
       }
     });
   }
@@ -47,19 +69,17 @@ export class UserProfileComponent implements OnInit {
     return this.url.getUserImage(this.me);
   }
 
-  saveUserData() {
-    if (this.profileForm.valid) {
-      this.store.dispatch(
-        new UpdateMeAction(
-          this.me.id,
-          this.profileForm.controls.page.value
-        )
-      );
-    }
+  saveProfessionalData() {
+    this.store.dispatch(
+      new UpdateMeAction(
+        this.me.id,
+        this.professionalForm.controls.page.value
+      )
+    );
   }
 
   onUserDataChange() {
-    this.profileDataChange = this.me.page !== this.profileForm.controls.page.value;
+    this.professionalDataChange = this.me.page !== this.professionalForm.controls.page.value;
   }
 
   openUploadFileModal() {

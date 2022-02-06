@@ -3,132 +3,56 @@
 :host {
 
   .container {
-    min-height: 80vh;
+    width: 100vw;
+    height: 100vh;
 
-    .bc {
-      color: map_get($md-primary, 800);
-      text-transform: uppercase;
+    .dialog-container {
+      box-shadow: map_get($box-shadow, 3);
+      border: solid 1px map-get($md-grey, 400);
+      padding: map-get($spacings, 7);
+      border-radius: map_get($radius, 4);
+    }
+
+    .logo {
+      width: 70px;
+      margin-bottom: map-get($spacings, 6);
+    }
+
+    h2 {
       font-weight: 100;
-      font-size: 2.5rem;
-      margin-bottom: 4rem;
-      text-decoration: none;
-      cursor: pointer;
-      &:hover {
-        .img {
-          animation-play-state: running;
-        }
-      }
-
-      .img {
-        animation: rotate-color 2s infinite forwards;
-        animation-play-state: paused;
-
-        @keyframes rotate-color {
-          to {
-            filter: hue-rotate(1turn);
-          }
-        }
-
-        @media screen and (max-width: 598px) {
-          margin-bottom: map-get($map: $spacings, $key: 1);
-        }
-
-      }
-
-      @media screen and (max-width: 598px) {
-        font-size: 1.6rem;
-      }
     }
 
-    p {
-      max-width: 350px;
-      text-align: justify;
-
-      @media screen and (max-width: 598px) {
-        max-width: 200px;
-      }
-    }
-
-    .separator {
-      $color-sep: map_get($md-primary, 900);
-      height: 100%;
-      width: 15rem;
-      color: $color-sep;
-      text-transform: uppercase;
-
-      &::before,
-      &::after {
-        content: "";
-        margin: map_get($spacings, 2);
-        display: block;
-        width: 1px;
-        height: 6rem;
-        background-color: $color-sep;
-      }
-
-      @media screen and (max-width: 959px) {
-        width: 100%;
-        height: 6rem;
-
-        &::before,
-        &::after {
-          height: 1px;
-          width: 5rem;
-        }
-      }
-
+    h4 {
+      font-weight: 100;
+      font-size: 12px;
+      margin-top: 0;
+      margin-bottom: map-get($spacings, 8);
     }
 
     .provider-item {
-      background-color: map_get($md-grey, 350);
-      border: 1px solid map_get($md-primary, 100);
-      box-shadow: none;
-      min-width: 100%;
-    }
+      border: solid 2px map-get($md-grey, 700);
+      border-radius: map_get($radius, 3);
+      width: 100%;
+      padding: map-get($spacings, 1) map-get($spacings, 3);
+      font-size: 12px;
+      background-color: map-get($md-grey, 50);
 
-    .provider-container {
-
-      .provider-item {
-        background-color: map_get($md-grey, 350);
-        border: 1px solid map_get($md-primary, 100);
-        box-shadow: none;
-        min-width: 100%;
-        font-size: 1.2rem;
-
-        i {
-          font-weight: 10;
-        }
-
-        .provider-name {
-          text-transform: capitalize;
-          font-weight: bold;
-          font-size: 1.5rem;
-        }
-
-        mat-icon {
-          font-size: 3rem;
-          padding: map_get($spacings, 1);
-        }
-
-        &:hover {
-          border: 1px solid map_get($md-primary, 500);
-        }
-
-        @media screen and (max-width: 959px) {
-          font-size: 1rem;
-        }
+      .fa {
+        font-size: 25px;
+        margin-right: map-get($spacings, 2);
       }
 
-      @media screen and (max-width: 959px) {
-        min-width: calc(100% - 24px);
+      &:hover {
+        background-color: map-get($md-grey, 700);
+        color: map-get($md-grey, 50);
+        cursor: pointer;
       }
     }
-  }
 
-  app-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    .note {
+      font-size: 10px;
+      margin-top: map-get($spacings, 6);
+    }
   }
 
   .error {
@@ -145,6 +69,5 @@
       margin-bottom: map-get($spacings, 4);
     }
   }
-
 
 }

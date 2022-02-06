@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 import { AuthState, ENVIRONMENT, Environment, LogoutAction, UrlUtilsService, User, WINDOW } from '@dcs-libs/shared';
+import { LoginService } from '../../../core/services';
 
 @Component({
   selector: 'app-login-button',
@@ -18,7 +19,8 @@ export class LoginButtonComponent implements OnInit {
     @Inject(WINDOW) private window: Window,
     @Inject(ENVIRONMENT) private env: Environment,
     private store: Store,
-    private url: UrlUtilsService
+    private url: UrlUtilsService,
+    private loginService: LoginService
   ) {
   }
 
@@ -32,10 +34,7 @@ export class LoginButtonComponent implements OnInit {
   }
 
   loginAction() {
-    const redir = encodeURIComponent(this.window.location.href);
-    const urlBase = this.env.siteDashboardUrl + (this.env.siteDashboardUrl.endsWith('/') ? '' : '/');
-    const loginUrl = new URL('./login', urlBase);
-    this.window.location.href = `${loginUrl}?redir=${redir}`;
+    this.loginService.loginAction();
   }
 
   profileLink() {
@@ -48,6 +47,10 @@ export class LoginButtonComponent implements OnInit {
 
   articlesLink() {
     return `${this.env.siteDashboardUrl}/articles`;
+  }
+
+  newArticleLink() {
+    return `${this.env.siteDashboardUrl}/articles/create`;
   }
 
   logoutAction() {

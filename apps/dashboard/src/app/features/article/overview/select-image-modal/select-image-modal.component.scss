@@ -1,32 +1,66 @@
 @import 'libs/shared/src/theme';
 
 :host {
-  mat-card {
-    height: calc(80vh - 100px);
 
-    mat-card-content {
-      margin-top: 15px;
+  .table-container {
+    overflow-x: auto;
 
-      .item {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        margin: map-get($map: $spacings, $key: 2);
+    table {
+      border-collapse: collapse;
+      width: 100%;
 
-        .image-tile {
-          height: 130px;
-          width: 130px;
-          object-fit: cover;
-          object-position: center;
-          cursor: pointer;
-          border-radius: map-get($map: $radius, $key: 2);
-          border: 2px solid transparent;
+      thead {
+        background-color: map-get($md-grey, 50);
+        font-size: 14px;
+      }
 
-          &:hover {
-            border: 2px solid map_get($md-primary, 500);
+      tr {
+        font-size: 12px;
+
+        th {
+          padding: map-get($spacings, 2);
+          white-space: nowrap;
+        }
+
+        td {
+          padding: map-get($spacings, 1) map-get($spacings, 4);
+          white-space: nowrap;
+
+          .file-image {
+            border-radius: map-get($radius, 2);
+            height: 70px;
+            width: 70px;
+            object-fit: cover;
+            object-position: center;
+            border: 1px solid map_get($md-primary, 100);
           }
         }
+
+        &.cell-even {
+          background-color: map-get($md-grey, 48);
+        }
+
+        &.cell-odd {
+          background-color: map-get($md-grey, 49);
+        }
+
+        button {
+          color: map-get($md-primary, 500);
+        }
+      }
+
+      tbody > tr:hover {
+        background-color: map-get($md-primary, 100);
+        cursor: pointer;
       }
     }
+  }
+
+  app-pagination {
+    margin-top: map-get($spacings, 2);
+  }
+
+  .buttons-container {
+    margin-top: map-get($spacings, 3);
   }
 }

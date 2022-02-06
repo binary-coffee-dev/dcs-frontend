@@ -10,6 +10,8 @@ export const SIMILAR_POSTS_QUERY = gql`
         }
         publishedAt
         id
+        views
+        comments
       }
     }
 `;

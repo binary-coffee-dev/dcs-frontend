@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 
-import { FetchTopActiveUsersAction, TopUsers, UrlUtilsService, UserInfoState } from '@dcs-libs/shared';
+import { TopUsers, UrlUtilsService, UserInfoState } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-top-active-users',
@@ -10,11 +10,12 @@ import { FetchTopActiveUsersAction, TopUsers, UrlUtilsService, UserInfoState } f
 })
 export class TopActiveUsersComponent implements OnInit {
   top5Post = {} as TopUsers;
-  constructor(private store: Store, private url: UrlUtilsService) { }
+
+  constructor(private store: Store, private url: UrlUtilsService) {
+  }
 
   ngOnInit(): void {
     this.store.select(UserInfoState.topActiveUsers).subscribe(topActive => this.top5Post = topActive);
-    this.store.dispatch(new FetchTopActiveUsersAction());
   }
 
   getUserAvatar(user) {

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+import { WINDOW } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-share-buttons',
@@ -13,10 +16,16 @@ export class ShareButtonsComponent implements OnInit {
   urlLinkedIn: string;
   info: string;
 
+  constructor(@Inject(WINDOW) private window: Window,
+              @Inject(PLATFORM_ID) private platformId: Object) {
+  }
+
   ngOnInit() {
-    this.url = document.location.href;
-    this.urlFacebook = `https://www.facebook.com/sharer/sharer.php?u=${this.url}`;
-    this.urlTwitter = `https://twitter.com/intent/tweet/?hashtags=BinaryCoffee&url=${this.url}`;
-    this.urlLinkedIn = `https://www.linkedin.com/shareArticle?mini=true&url=${this.url}`;
+    if (isPlatformBrowser(this.platformId)) {
+      this.url = document.location.href;
+      this.urlFacebook = `https://www.facebook.com/sharer/sharer.php?u=${this.url}`;
+      this.urlTwitter = `https://twitter.com/intent/tweet/?hashtags=BinaryCoffee&url=${this.url}`;
+      this.urlLinkedIn = `https://www.linkedin.com/shareArticle?mini=true&url=${this.url}`;
+    }
   }
 }

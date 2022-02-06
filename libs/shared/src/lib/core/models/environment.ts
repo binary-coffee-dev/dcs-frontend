@@ -12,6 +12,13 @@ export interface Environment {
   googleAnalyticsId?: string;
   postPageSize?: number;
   isDashboard?: boolean;
+  socials: {
+    telegram: string;
+    github: string;
+    facebook: string;
+    twitter: string;
+  },
+  contactMail: string;
 }
 
 export const ENVIRONMENT = new InjectionToken<Environment>('ENVIRONMENT');

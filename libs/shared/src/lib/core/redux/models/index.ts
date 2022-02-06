@@ -11,3 +11,4 @@ export * from './error.model';
 export * from './podcast';
 export * from './top-users.model';
 export * from './geo-location-response.model';
+export * from './subscription.model';

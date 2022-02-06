@@ -1,0 +1,112 @@
+@import "../../../../../../../libs/shared/src/theme";
+
+$post_image_size: 110px;
+
+:host {
+
+  .container {
+    //width: 100%;
+    //margin-bottom: map-get($spacings, 5);
+    padding: map-get($spacings, 2);
+
+    .card-container {
+      position: relative;
+      border: solid 0.1px #0000;
+      width: 100%;
+      background-color: map-get($md-grey, 400);
+      border-radius: map-get($radius, 3);
+      box-shadow: map_get($box-shadow-up, 2);
+      overflow: hidden;
+      text-decoration: none;
+
+      .post-image {
+        max-height: 200px;
+        min-height: 200px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .card-container-inner {
+        padding: map-get($spacings, 3);
+
+        .post-date {
+          font-size: 10px;
+          color: map-get($md-grey, 800);
+        }
+
+        h1 {
+          font-size: 15px;
+          font-weight: 100;
+          color: map-get($md-grey, 800);
+
+          span {
+            color: map-get($md-primary, 500);
+          }
+        }
+
+        .icons-container {
+          margin-top: map-get($spacings, 3);
+          color: map-get($md-grey, 800);
+          font-size: 12px;
+
+          div {
+            margin-right: map-get($spacings, 3);
+          }
+
+          .post-icons {
+            font-size: 12px;
+          }
+        }
+
+        .author-container {
+          font-size: 10px;
+          color: map-get($md-grey, 800);
+
+          img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: map-get($spacings, 2);
+          }
+
+          &:hover {
+            animation: anim-author-link 0.3s infinite alternate;
+          }
+        }
+      }
+
+      &:hover {
+        &:before {
+          position: absolute;
+          left: 0;
+          content: "";
+          width: 6px;
+          height: 100%;
+          background-color: map-get($md-primary, 500);
+          z-index: 50;
+          animation: anim-active-line .3s normal;
+        }
+      }
+    }
+  }
+
+  @keyframes anim-author-link {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(5px);
+    }
+  }
+
+  @keyframes anim-active-line {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 6px;
+    }
+  }
+}

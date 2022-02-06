@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { NgxsModule } from '@ngxs/store';
 
+import { SubscriptionService, SubscriptionState } from '@dcs-libs/shared';
 import { SubscriptionComponent } from './subscription.component';
 import { SubscriptionRoutingModule } from './subscription-routing.module';
-import { SubscriptionState } from './redux/subscription.state';
-import { SubscriptionService } from './redux/services/subscription.service';
 import { MaterialModule } from '../../core/material';
 
 @NgModule({

@@ -5,44 +5,31 @@
   .pagination {
 
     .page-item {
-      border-top: 1px solid map_get($md-primary, 100);
-      border-bottom: 1px solid map_get($md-primary, 100);
-      background-color: map_get($md-grey, 350);
-      border-radius: map_get($radius, 0);
-      color: map_get($md-primary, 500);
-      cursor: pointer;
+      border-radius: map_get($radius, 2);
+      border: none;
+      height: 30px;
+      font-weight: 600;
+      padding: 0 map-get($spacings, 2);
+      margin: 0 map-get($spacings, 1);
+      color: map-get($md-grey, 700);
+      white-space: nowrap;
 
-      &:first-child {
-        border-top-left-radius: map_get($radius, 2);
-        border-bottom-left-radius: map_get($radius, 2);
-        border-left: 1px solid map_get($md-primary, 100);
-
-        &:hover {
-          border-left: 1px solid map_get($md-primary, 500);
-
-          &.disabled {
-            border-left: 1px solid map_get($md-primary, 100);
-          }
-        }
-      }
-
-      &:last-child {
-        border-top-right-radius: map_get($radius, 2);
-        border-bottom-right-radius: map_get($radius, 2);
-        border-right: 1px solid map_get($md-primary, 100);
+      &.move-pages {
+        background-color: transparent;
+        color: map-get($md-grey, 700);
 
         &:hover {
-          border-right: 1px solid map_get($md-primary, 500);
-
           &.disabled {
-            border-right: 1px solid map_get($md-primary, 100);
+            background-color: transparent;
+            color: map-get($md-grey, 600);
           }
         }
       }
 
       &.active {
         cursor: default;
-        background-color: map_get($md-primary, 100);
+        background-color: map_get($md-primary, 500);
+        color: map-get($md-grey, 49);
       }
 
       &.disabled {
@@ -51,19 +38,13 @@
       }
 
       &:hover {
-        border-top: 1px solid map_get($md-primary, 500);
-        border-bottom: 1px solid map_get($md-primary, 500);
+        background-color: map-get($md-primary, 100);
 
         &.active {
-          background-color: map_get($md-primary, 8);
-          border-top: 1px solid map_get($md-primary, 100);
-          border-bottom: 1px solid map_get($md-primary, 100);
+          background-color: map-get($md-primary, 500);
         }
 
         &.disabled {
-          color: map_get($md-grey, 600);
-          border-top: 1px solid map_get($md-primary, 100);
-          border-bottom: 1px solid map_get($md-primary, 100);
         }
       }
     }

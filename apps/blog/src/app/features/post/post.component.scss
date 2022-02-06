@@ -1,82 +1,125 @@
 @import 'libs/shared/src/theme';
 
 :host {
+  overflow: hidden;
+
   .post-container {
+    overflow: hidden;
+    margin-top: map-get($spacings, 5);
 
-    .post-in-container {
-      background-color: map_get($md-grey, A100);
-      padding: map_get($spacings, 4);
-      border-left: 1px solid map_get($md-primary, 100);
-      border-right: 1px solid map_get($md-primary, 100);
+    .like-button {
+      font-size: 12px;
+      min-width: 200px;
+      background-color: map-get($md-primary, 500);
+    }
 
-      h1 {
-        margin: 0;
-        padding: 0;
-        font-family: get($font-family);
-        font-weight: 200;
-        text-transform: uppercase;
-        color: map_get($md-primary, 900);
-      }
+    .last-like-button {
+      margin-left: map-get($spacings, 2);
+    }
 
-      .markdown-container {
-        margin-bottom: map_get($spacings, 6);
+    .align-container {
+      margin-bottom: map-get($spacings, 5);
 
-        word-wrap: break-word;
-      }
+      .siderbar {
+        .similar-post-content {
+          margin-top: map-get($spacings, 4);
+          margin-left: map-get($spacings, 4);
 
-      .tags-content {
-        margin-bottom: map-get($map: $spacings, $key: 4);
-      }
-
-      .image-container {
-        margin-bottom: map_get($spacings, 4);
-        width: 100%;
-        border-radius: map_get($radius, 2);
-
-        img {
-          width: 100%;
-          max-height: 50vh;
-          object-fit: cover;
-          object-position: center;
-          border-radius: map_get($radius, 2);
-          border: 1px solid map_get($md-primary, 100);
+          ::ng-deep.container {
+            padding-right: 0;
+          }
         }
       }
 
-      .share-button-xs {
-        margin-bottom: map_get($spacings, 4);
-      }
+      .post-in-container {
+        .post-info-container {
+          padding: map-get($spacings, 4);
+          border: solid 1px #0001;
+          border-radius: map-get($radius, 2);
+          box-shadow: map_get($box-shadow-up, 1);
+          margin-bottom: map-get($spacings, 10);
 
-      .app-similar-post-list-inside-container {
-        margin-bottom: map-get($map: $spacings, $key: 6);
+          .image-container {
+            width: 100%;
 
-        app-similar-posts-list {
-          &.inside {
-            ::ng-deep.container {
-              border: none;
-              padding: 10px 0 0 0;
+            img {
+              width: 100%;
+              max-height: 300px;
+              object-fit: cover;
+              object-position: center;
+            }
+          }
 
-              .link-container {
-                a {
-                  max-width: 100%;
-                  font-size: 1rem;
+          h1 {
+            font-size: 20px;
+            text-transform: uppercase;
+          }
+
+          .tags-content {
+            app-tags {
+              ::ng-deep.content {
+                justify-content: flex-end;
+              }
+            }
+          }
+
+          .user-avatar-container {
+            margin-bottom: map-get($spacings, 1);
+
+            .user-avatar {
+              text-decoration: none;
+              color: map-get($md-grey, 800);
+
+              img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                margin-right: map-get($spacings, 2);
+                border: solid 2px transparent;
+              }
+
+              &:hover {
+                text-decoration: underline;
+
+                img {
+                  border: solid 2px map-get($md-primary, 500);
                 }
               }
             }
           }
+
+          .post-info {
+            font-size: 12px;
+            color: map-get($md-grey, 600);
+            margin-bottom: map-get($spacings, 4);
+
+            span {
+              white-space: nowrap;
+            }
+
+            .icon {
+              display: flex;
+              padding-left: map-get($spacings, 2);
+              align-items: center;
+
+              i {
+                font-size: 20px;
+                padding-right: map-get($spacings, 1);
+              }
+            }
+          }
+        }
+
+        .button-padding {
+          padding: 0 map-get($spacings, 4);
+        }
+
+        app-comments {
+          ::ng-deep.comments-container {
+            margin-top: map-get($spacings, 10) !important;
+          }
         }
       }
-    }
-  }
-
-  @media screen and (max-width: 599px) {
-    .post-in-container {
-      border: none;
-      border-top: 1px solid map_get($md-primary, 100);
-    }
-
-    app-share-buttons {
-      margin-top: map_get($spacings, 4);
     }
   }
 }

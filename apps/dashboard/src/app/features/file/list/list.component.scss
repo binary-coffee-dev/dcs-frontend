@@ -2,117 +2,86 @@
 
 :host {
   .content {
-    padding: map_get($spacings, 4);
+    margin: map_get($spacings, 4);
+    box-sizing: border-box;
+    max-width: 100%;
 
-    .separator {
-      padding-top: map_get($spacings, 4);
+    .container-align {
+      overflow: hidden;
+      box-shadow: map_get($box-shadow-up, 2);
+      box-sizing: border-box;
+      border-radius: map_get($radius, 3);
+      border: solid map-get($md-grey, 400) 1px;
+      padding: map-get($spacings, 5);
     }
 
-    .toogle-table-card {
-      margin-left: map_get($spacings, 4);
-      color: map_get($md-primary, 500);
+    .action-container {
+      margin-bottom: map-get($spacings, 3);
+
+      mat-button-toggle {
+        background-color: map-get($md-primary, 500);
+        color: map-get($md-grey, 50);
+        font-size: 14px;
+      }
     }
 
-    .file-content {
-      border: 1px solid map_get($md-primary, 100);
+    .table-container {
       border-radius: map-get($radius, 2);
-      margin: map_get($spacings, 4) 0;
+      overflow: hidden;
+      overflow-x: auto;
 
-      .table {
+      table {
+        border-collapse: collapse;
         width: 100%;
 
-        button {
-          color: map_get($md-primary, 800);
+        thead {
+          background-color: map-get($md-grey, 50);
+          font-size: 14px;
         }
-      }
 
-      .file-image {
-        border-radius: map-get($radius, 2);
-        max-height: 200px;
-        max-width: 200px;
-        border: 1px solid map_get($md-primary, 100);
+        tr {
+          font-size: 12px;
+
+          th {
+            padding: map-get($spacings, 2);
+            white-space: nowrap;
+          }
+
+          td {
+            padding: map-get($spacings, 1) map-get($spacings, 4);
+            white-space: nowrap;
+
+            .file-image {
+              border-radius: map-get($radius, 2);
+              height: 70px;
+              width: 70px;
+              object-fit: cover;
+              object-position: center;
+              border: 1px solid map_get($md-primary, 100);
+            }
+          }
+
+          &.cell-even {
+            background-color: map-get($md-grey, 48);
+          }
+
+          &.cell-odd {
+            background-color: map-get($md-grey, 49);
+          }
+
+          button {
+            color: map-get($md-primary, 500);
+          }
+        }
+
+        tbody > tr:hover {
+          background-color: map-get($md-primary, 100);
+        }
       }
     }
 
-    .file-content-card {
-      margin: map_get($spacings, 3) 0;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(4, fit-content);
-      grid-gap: map_get($spacings, 4);
-
-      @media screen and (max-width: 1160px) {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(8, fit-content);
-      }
-
-      @media screen and (max-width: 599px) {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-
-
-      .file-card {
-        .file-image-card {
-          --size: 200px;
-
-          @media screen and (min-width: 2000px) {
-            --size: 400px;
-          }
-
-          @media screen and (max-width: 720px) {
-            --size: 150px;
-          }
-
-          @media screen and (max-width: 599px) {
-            --size: calc(100vw - 24px * 2);
-          }
-
-          border-radius: map-get($radius, 2);
-          border: 1px solid map_get($md-primary, 100);
-          overflow: hidden;
-          padding: 0;
-          width: var(--size);
-          height: var(--size);
-          background-color: map_get($md-primary, 50);
-
-          a {
-            cursor: pointer;
-
-            .icon-hover {
-              opacity: 0;
-              position: absolute;
-              height: var(--size);
-              width: var(--size);
-              border-radius: map-get($radius, 2);
-              background-color: rgba(#000, .3);
-              color: rgba(#fff, .5);
-              font-size: calc(var(--size) / 3);
-              transition: opacity map_get($time, 2);
-              z-index: 100;
-            }
-
-            img {
-              max-width: var(--size);
-              max-height: var(--size);
-              transition: opacity map_get($time, 2);
-              border: 1px solid map_get($md-primary, 100);
-            }
-
-            &:hover {
-              img {
-                filter: saturate(0);
-              }
-
-              .icon-hover {
-                opacity: 1;
-              }
-            }
-
-          }
-        }
-      }
+    .pagination-container {
+      margin-top: map-get($spacings, 3);
     }
   }
 }

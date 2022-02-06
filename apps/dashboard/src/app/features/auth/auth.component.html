@@ -1,130 +1,39 @@
-<div fxLayout="row"
-     fxLayoutAlign="center center"
-     class="error"
-     *ngIf="authError">
+<div fxLayout='row'
+     fxLayoutAlign='center center'
+     class='error'
+     *ngIf='authError'>
   <span>{{authError.title}}</span>
 </div>
 
-<div class="container"
-     fxLayoutAlign="center center">
+<div class='container'
+     fxLayout='column'
+     fxLayoutAlign='center center'>
+  <div class='dialog-container'
+       fxLayout='column'
+       fxLayoutAlign='start center'>
 
-  <div>
-    <form [formGroup]="loginForm"
-          (ngSubmit)="login()">
+    <img class='logo'
+         src='/assets/images/128x128/binarycoffee_2.0.1.png'
+         alt='binarycoffee-logo'>
 
-      <div fxLayout="row"
-           fxLayout.xs="column"
-           fxLayout.sm="column"
-           fxLayoutAlign="center center">
+    <h2>Bienvenido a Binary Coffee</h2>
 
-        <div fxLayout="column"
-             *ngIf="isLocalEnvironment()">
-          <mat-form-field appearance="outline">
-            <mat-label class="code-none">
-              <span class="code-1"> var </span>
-              <span class="code-var"> Usuario </span> =
-            </mat-label>
-            <input matInput
-                   formControlName="identifier"
-                   placeholder="Usuario"
-                   type="text">
-          </mat-form-field>
+    <div fxLayout='column'
+         fxLayoutAlign='start start'>
+      <h4>Puedes acceder con tu cuenta en Github</h4>
 
-          <mat-form-field appearance="outline">
-            <mat-label class="code-none">
-              <span class="code-1"> var </span>
-              <span class="code-var"> Contraseña </span> =
-            </mat-label>
-            <input matInput
-                   formControlName="password"
-                   placeholder="Contraseña"
-                   type="password">
-          </mat-form-field>
+      <ng-container *ngFor='let provider of providers'>
+        <a class='provider-item'
+           fxLayout='row'
+           fxLayoutAlign='start center'
+           (click)='loginWithProvider(provider)'
+           [matTooltip]="'Entar con mi cuenta de ' + provider.name">
+          <i [className]='provider.icon'></i>
+          <span class='provider-name'>Continuar con {{provider.name}}</span>
+        </a>
+      </ng-container>
+    </div>
 
-          <button class="provider-item"
-                  mat-raised-button
-                  type="submit">
-            <span class="code-none"> Entrar( </span>
-            <span class="code-var"
-                  fxHide.xs
-                  fxHide.sm> Usuario </span>
-            <span class="code-none"
-                  fxHide.xs
-                  fxHide.sm> , </span>
-            <span class="code-var"
-                  fxHide.xs
-                  fxHide.sm> Contraseña </span>
-            <span class="code-none"> ) </span>
-
-          </button>
-        </div>
-
-        <div class="separator"
-             *ngIf="isLocalEnvironment()"
-             fxLayout="column"
-             fxLayout.xs="row"
-             fxLayout.sm="row"
-             fxLayoutAlign="center center"> or
-        </div>
-
-        <div class="provider-container"
-             fxLayout="column"
-             fxLayoutAlign="center center">
-
-          <p *ngIf="!isLocalEnvironment()"
-             class="code-comment-1">
-            // Bienvenido a
-          </p>
-
-          <a class="bc"
-             *ngIf="!isLocalEnvironment()"
-             fxLayout="row"
-             fxLayoutAlign="center end"
-             matTooltip="Ir a Binary Coffee"
-             (click)="redirectToSiteMainView()">
-
-            <div fxLayout="column"
-                 fxLayoutAlign="center center">
-              Binary
-              <span fxHide
-                    fxShow.xs>Coffee</span>
-            </div>
-
-            <img class="img"
-                 src="assets/images/64x64/binarycoffee_2.0.1.png"
-                 alt="Binary Coffee"
-                 fxFlexOrder.xs="-1">
-            <span fxHide.xs>Coffee</span>
-          </a>
-
-          <p class="code-comment-1">
-            // Puede entrar con
-          </p>
-
-          <a class="provider-item"
-             mat-button
-             *ngFor="let provider of providers"
-             (click)="loginWithProvider(provider)"
-             [matTooltip]="'Entar con mi cuenta de ' + provider.name">
-            <mat-icon mat-font-icon="fa-icon"
-                      [class]="provider.icon">
-            </mat-icon>
-            <span class="provider-name">
-              {{provider.name}}
-            </span>
-          </a>
-
-          <p class="code-comment-1">
-            /* Cuando entre, se utilizarán los <span class="code-1">datos
-              públicos</span> de su cuenta de Github */
-          </p>
-
-        </div>
-      </div>
-    </form>
+    <span class='note'>Solo utilizamos sus datos públicos</span>
   </div>
 </div>
-
-<app-footer [full]="false"
-            [socialLinks]="false">
-</app-footer>
