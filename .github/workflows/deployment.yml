@@ -176,20 +176,20 @@ jobs:
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.PROD__SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: ""
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_HOST: ${{ secrets.PROD__REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.PROD__REMOTE_USER }}
           TARGET: ${{ secrets.PROD__REMOTE_TARGET }}
 
       - name: Deploy project with docker in hosting
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_DASHBOARD }} ./docker/deploy.sh blog-admin-prod docker/docker-compose.admin.yml
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          privateKey: ${{ secrets.SERVER_SSH_KEY}}
+          host: ${{ secrets.PROD__REMOTE_HOST }}
+          username: ${{ secrets.PROD__REMOTE_USER }}
+          privateKey: ${{ secrets.PROD__SERVER_SSH_KEY}}
 
 
   # DEPLOY BLOG (PRODUCTION)
@@ -206,17 +206,17 @@ jobs:
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.PROD__SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: ""
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_HOST: ${{ secrets.PROD__REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.PROD__REMOTE_USER }}
           TARGET: ${{ secrets.PROD__REMOTE_TARGET }}
 
       - name: Deploy project with docker in hosting
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_BLOG }} ./docker/deploy.sh blog-frontend-prod docker/docker-compose.yml
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          privateKey: ${{ secrets.SERVER_SSH_KEY}}
+          host: ${{ secrets.PROD__REMOTE_HOST }}
+          username: ${{ secrets.PROD__REMOTE_USER }}
+          privateKey: ${{ secrets.PROD__SERVER_SSH_KEY}}
