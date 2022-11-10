@@ -2,7 +2,7 @@
 export const cookiesInfo = `
 <h1>Cookie Policy for Binary Coffee</h1>
 
-<p>This is the Cookie Policy for Binary Coffee, accessible from https://binary-coffee.dev</p>
+<p>This is the Cookie Policy for Binary Coffee, accessible from https://binarycoffee.dev</p>
 
 <p><strong>What Are Cookies</strong></p>
 
