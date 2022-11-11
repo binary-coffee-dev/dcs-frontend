@@ -8,7 +8,7 @@ export const environment = {
   siteDashboardUrl: 'https://binarycoffee.dev/dashboard',
   production: true,
   local: false,
-  githubClientId: '266886104e2ecf88e43b',
+  githubClientId: 'c37fad75ee13b3261065',
   isDashboard: true,
   socials: {
     facebook: 'https://facebook.com/Binary-Coffee-111577483710684/',
