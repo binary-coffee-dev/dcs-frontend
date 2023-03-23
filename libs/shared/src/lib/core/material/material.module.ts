@@ -22,7 +22,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
   imports: [
     CommonModule,
     MatToolbarModule,
-    FlexLayoutModule,
+    FlexLayoutModule.withConfig({ssrObserveBreakpoints: ['xs', 'lt-md']}),
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
