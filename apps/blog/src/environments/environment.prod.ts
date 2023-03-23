@@ -1,11 +1,11 @@
 import { Environment } from '@dcs-libs/shared';
 
 export const environment = {
-  apiUrl: 'https://api.binary-coffee.dev/',
-  graphqlUrl: 'https://api.binary-coffee.dev/graphql',
-  podcastApiUrl: 'https://api.binary-coffee.dev/podcasts/',
-  siteUrl: 'https://binary-coffee.dev',
-  siteDashboardUrl: 'https://binary-coffee.dev/dashboard',
+  apiUrl: 'https://api.binarycoffee.dev/',
+  graphqlUrl: 'https://api.binarycoffee.dev/graphql',
+  podcastApiUrl: 'https://api.binarycoffee.dev/podcasts/',
+  siteUrl: 'https://binarycoffee.dev',
+  siteDashboardUrl: 'https://binarycoffee.dev/dashboard',
   googleAnalyticsId: 'UA-157555549-1',
   production: true,
   postPageSize: 12,

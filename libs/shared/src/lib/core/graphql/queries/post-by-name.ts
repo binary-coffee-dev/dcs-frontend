@@ -1,8 +1,8 @@
 import { gql } from 'apollo-angular';
 
 export const POST_BY_NAME_QUERY = gql`
-  query fetchPost($name: String!) {
-    postByName(name: $name) {
+  query fetchPost($name: String!, $noUpdate: Boolean) {
+    postByName(name: $name, noUpdate: $noUpdate) {
       id
       name
       title
