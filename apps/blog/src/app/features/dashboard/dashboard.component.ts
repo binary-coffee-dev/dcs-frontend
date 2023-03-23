@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
 import { Post, PostState } from '@dcs-libs/shared';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,8 +16,10 @@ export class DashboardComponent implements OnInit {
   numbers: number[] = [];
   currentPage = 0;
   pageSize = 0;
+  isBrowser = false;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, @Inject(PLATFORM_ID) platformId: string) {
+    this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit() {

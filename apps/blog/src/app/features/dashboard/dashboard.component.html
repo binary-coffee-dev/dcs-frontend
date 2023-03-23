@@ -4,7 +4,8 @@
 
   <app-slider></app-slider>
 
-  <div class='align-container'
+  <div *ngIf='isBrowser'
+       class='align-container'
        fxLayoutAlign='center start'
        fxLayout='row'>
 
