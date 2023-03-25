@@ -5,34 +5,34 @@ import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { FetchPodcastAction } from './podcast.actions';
-import { Podcast } from '../../models';
+import { EpisodeModel, PodcastModel } from '../../models';
 import { PodcastService } from './podcast.service';
 
 export interface PodcastStateModel {
-  items: Podcast[];
+  episodes: EpisodeModel[];
 }
 
 @State<PodcastStateModel>({
   name: 'podcast',
   defaults: {
-    items: []
+    episodes: []
   }
 })
 @Injectable()
 export class PodcastState {
 
   @Selector()
-  public static podcastList(state: PodcastStateModel): Podcast[] {
-    return state.items;
+  public static episodesList(state: PodcastStateModel): EpisodeModel[] {
+    return state.episodes;
   }
 
   constructor(private podcastService: PodcastService) {
   }
 
   @Action(FetchPodcastAction)
-  public fetchPodcast(ctx: StateContext<PodcastStateModel>) {
-    return this.podcastService.fetchPodcasts().pipe(
-      tap((items: Podcast[]) => ctx.patchState({items})),
+  public fetchPodcast(ctx: StateContext<PodcastStateModel>, action: FetchPodcastAction) {
+    return this.podcastService.fetchPodcasts(action.identifier).pipe(
+      tap((podcast: PodcastModel) => ctx.patchState({ episodes: podcast.episodes.reverse().slice(0, Math.min(4, podcast.episodes.length)) })),
       catchError((err) => {
         console.error(err);
         return of(true);

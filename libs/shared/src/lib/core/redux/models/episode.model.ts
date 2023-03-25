@@ -1,6 +1,6 @@
-export interface Podcast {
+export interface EpisodeModel {
   id: string;
-  name: string;
+  title: string;
   banner: string;
   url: string;
   duration: number;

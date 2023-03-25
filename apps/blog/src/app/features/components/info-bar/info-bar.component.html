@@ -13,14 +13,14 @@
     <!--podcast list-->
     <ng-container *ngIf='showPodcast'>
       <span><span class='class'>class</span> Podcast_Espacio_Binario &#123;</span>
-      <ng-container *ngFor='let podcast of podcasts'>
+      <ng-container *ngFor='let podcast of episodes'>
         <span>&#160;</span>
         <a class='link t1'
            [href]='podcast?.url'
            target='blank'
            fxLayout='column'>
           <span class='comment'>// {{ moment.timeFromDate(toDate(podcast?.date)) }}</span>
-          <span>{{ podcast?.name }}</span>
+          <span>{{ podcast?.title }}</span>
           <span class='comment'>// {{ moment.secondsToDuration(podcast.duration) }}</span>
         </a>
       </ng-container>

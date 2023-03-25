@@ -8,7 +8,7 @@ import { PodcastState } from './podcast.state';
 class PodcastServiceStub {
 }
 
-describe('Podcast store', () => {
+describe('PodcastModel store', () => {
   let store: Store;
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

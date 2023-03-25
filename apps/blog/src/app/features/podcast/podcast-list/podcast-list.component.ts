@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
-import { FetchPodcastAction, Podcast, PodcastState } from '@dcs-libs/shared';
+import { EpisodeModel, FetchPodcastAction, PodcastModel, PodcastState } from '@dcs-libs/shared';
 import { MomentService } from '../../../core/services';
 
 @Component({
@@ -18,7 +18,7 @@ export class PodcastListComponent implements OnInit, OnDestroy {
 
   podcastName: 'Espacio Binario';
   isAdmin: true;
-  podcasts: Podcast[] = [];
+  episodes: EpisodeModel[] = [];
 
   constructor(
     private store: Store,
@@ -27,10 +27,10 @@ export class PodcastListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new FetchPodcastAction());
-    this.store.select(PodcastState.podcastList)
+    this.store.dispatch(new FetchPodcastAction('espacio-binario'));
+    this.store.select(PodcastState.episodesList)
       .pipe(takeUntil(this._unsubscribe))
-      .subscribe(list => this.podcasts = list || []);
+      .subscribe(list => this.episodes = list || []);
   }
 
   ngOnDestroy(): void {

@@ -7,7 +7,6 @@ import { Apollo } from 'apollo-angular';
 import { Comment } from '../../models';
 import { COMMENTS_QUERY, RECENT_COMMENTS_QUERY } from '../../../graphql/queries';
 import { CREATE_COMMENT_MUTATION, EDIT_COMMENT_MUTATION, REMOVE_COMMENT_MUTATION } from '../../../graphql/mutations';
-import { EditCommentAction } from './comment.action';
 
 @Injectable()
 export class CommentService {
