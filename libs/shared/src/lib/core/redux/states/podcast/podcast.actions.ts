@@ -1,3 +1,6 @@
 export class FetchPodcastAction {
-  public static readonly type = '[Podcast] Add item';
+  public static readonly type = '[PodcastModel] Add item';
+
+  constructor(public identifier: string) {
+  }
 }

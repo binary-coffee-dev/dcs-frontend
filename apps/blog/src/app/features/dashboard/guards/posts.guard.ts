@@ -31,7 +31,7 @@ export class PostsGuard implements CanActivate {
         mergeMap(() => this.store.dispatch(new RecentCommentAction())),
         mergeMap(() => this.store.dispatch(new FetchTopActiveUsersAction())),
         mergeMap(() => this.store.dispatch(new FetchTopPopularUsersAction())),
-        mergeMap(() => this.store.dispatch(new FetchPodcastAction())),
+        mergeMap(() => this.store.dispatch(new FetchPodcastAction("espacio-binario"))),
         map(() => true)
       );
     }

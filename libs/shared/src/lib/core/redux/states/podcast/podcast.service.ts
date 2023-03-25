@@ -1,29 +1,24 @@
-import { Inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Apollo } from 'apollo-angular';
 
-import { Podcast } from '../../models';
-import { Environment, ENVIRONMENT } from '../../../models';
+import { PodcastModel } from '../../models';
+import { PODCAST_BY_IDENTIFIER_QUERY } from '../../../graphql/queries/podcast-by-identifier';
 
 @Injectable()
 export class PodcastService {
   constructor(
-    private http: HttpClient,
-    @Inject(ENVIRONMENT) private environment: Environment
+    private apollo: Apollo
   ) {
   }
 
-  fetchPodcasts(): Observable<Podcast[]> {
-    // const v = {
-    //   url: 'http://localhost',
-    //   date: '2021-06-26T20:00:00.000Z',
-    //   banner: '',
-    //   duration: 200,
-    //   id: 'asdfasdf',
-    //   name: 'Episodio 0: ¿Quiénes somos?'
-    // } as Podcast;
-    // return of([v, v, v, v]);
-    return this.http.get<Podcast[]>(this.environment.podcastApiUrl);
+  fetchPodcasts(identifier): Observable<PodcastModel> {
+    return this.apollo
+      .query({ query: PODCAST_BY_IDENTIFIER_QUERY, variables: { identifier }, fetchPolicy: 'no-cache' })
+      .pipe(map((result: any) => {
+        return result.data.podcastByIdentifier;
+      }));
   }
 }

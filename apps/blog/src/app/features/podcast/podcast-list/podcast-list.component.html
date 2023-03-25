@@ -6,7 +6,7 @@
   >
     <div *ngIf="false">
       <button class="bc-button" mat-button>
-        <span class="code-var">new</span> Podcast()
+        <span class="code-var">new</span> PodcastModel()
       </button>
     </div>
 
@@ -38,7 +38,7 @@
     fxLayout="row wrap"
     fxLayoutAlign="center center"
   >
-    <ng-container *ngFor="let podcast of podcasts">
+    <ng-container *ngFor="let podcast of episodes">
       <div fxLayout="column" fxLayoutAlign="start end">
         <a
           *ngIf="isAdmin"
@@ -70,7 +70,7 @@
             <img [src]="podcast.banner" />
           </div>
           <div class="podcast-title-container" fxLayout="column">
-            <span class="podcast-title">{{ podcast.name }}</span>
+            <span class="podcast-title">{{ podcast.title }}</span>
             <span class="code-comment-1"
               >// {{ moment.secondsToDuration(podcast.duration) }}</span
             >

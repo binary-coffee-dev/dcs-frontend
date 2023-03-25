@@ -4,7 +4,15 @@ import { Store } from '@ngxs/store';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { Comment, CommentState, Podcast, PodcastState, UrlUtilsService, WINDOW } from '@dcs-libs/shared';
+import {
+  Comment,
+  CommentState,
+  EpisodeModel,
+  PodcastModel,
+  PodcastState,
+  UrlUtilsService,
+  WINDOW
+} from '@dcs-libs/shared';
 import { MomentService } from '../../../core/services';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -27,7 +35,7 @@ export class InfoBarComponent implements OnInit, OnDestroy {
   _unsubscribe = new Subject();
   isBrowser = true;
 
-  podcasts: Podcast[] = [];
+  episodes: EpisodeModel[] = [];
   comments: Comment[] = [];
   shareLinks: ShareLink[] = [];
 
@@ -44,10 +52,10 @@ export class InfoBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.select(PodcastState.podcastList)
+    this.store.select(PodcastState.episodesList)
       .pipe(takeUntil(this._unsubscribe))
       .subscribe(list => {
-        this.podcasts = list || [];
+        this.episodes = list || [];
         this.calculateNumberOfLines();
       });
     this.store.select(CommentState.recentComments)
@@ -77,7 +85,7 @@ export class InfoBarComponent implements OnInit, OnDestroy {
   calculateNumberOfLines() {
     let numberOfLines = 0;
     if (this.showPodcast) {
-      numberOfLines += this.podcasts.length * 4 + 5;
+      numberOfLines += this.episodes.length * 4 + 5;
     }
     if (this.showSocialMedias) {
       numberOfLines += this.shareLinks.length * 3 + 5;
