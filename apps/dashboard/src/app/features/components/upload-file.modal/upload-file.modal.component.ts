@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
@@ -14,9 +14,9 @@ import { FileState, UploadFileAction } from '@dcs-libs/shared';
 })
 export class UploadFileModalComponent implements OnInit {
 
-  uploadFileForm = new FormGroup({
-    name: new FormControl(''),
-    file: new FormControl(''),
+  uploadFileForm = new UntypedFormGroup({
+    name: new UntypedFormControl(''),
+    file: new UntypedFormControl(''),
   });
 
   file = null;

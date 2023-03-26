@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
 
@@ -23,27 +23,27 @@ export class UserProfileComponent implements OnInit {
   me: User;
   professionalDataChange = false;
 
-  personalForm = new FormGroup({
-    username: new FormControl(''),
-    name: new FormControl(''),
-    email: new FormControl(''),
-    description: new FormControl('')
+  personalForm = new UntypedFormGroup({
+    username: new UntypedFormControl(''),
+    name: new UntypedFormControl(''),
+    email: new UntypedFormControl(''),
+    description: new UntypedFormControl('')
   });
 
-  professionalForm = new FormGroup({
-    school: new FormControl(''),
-    study: new FormControl(''),
-    page: new FormControl('')
+  professionalForm = new UntypedFormGroup({
+    school: new UntypedFormControl(''),
+    study: new UntypedFormControl(''),
+    page: new UntypedFormControl('')
   });
 
-  socialsForm = new FormGroup({
-    facebook: new FormControl(''),
-    twitter: new FormControl(''),
-    linkedin: new FormControl('')
+  socialsForm = new UntypedFormGroup({
+    facebook: new UntypedFormControl(''),
+    twitter: new UntypedFormControl(''),
+    linkedin: new UntypedFormControl('')
   });
 
-  privacyForm = new FormGroup({
-    showEmail: new FormControl('')
+  privacyForm = new UntypedFormGroup({
+    showEmail: new UntypedFormControl('')
   });
 
   constructor(

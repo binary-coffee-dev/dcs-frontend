@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -41,8 +41,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   currentUser: User;
 
-  commentForm = new FormGroup({
-    body: new FormControl('', Validators.required)
+  commentForm = new UntypedFormGroup({
+    body: new UntypedFormControl('', Validators.required)
   });
 
   constructor(

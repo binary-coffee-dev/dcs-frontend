@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -34,13 +34,13 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
 
   timesSelections = [];
 
-  articleForm = new FormGroup({
-    body: new FormControl(''),
-    enable: new FormControl(''),
-    title: new FormControl(''),
-    tags: new FormControl([]),
-    date: new FormControl(),
-    time: new FormControl()
+  articleForm = new UntypedFormGroup({
+    body: new UntypedFormControl(''),
+    enable: new UntypedFormControl(''),
+    title: new UntypedFormControl(''),
+    tags: new UntypedFormControl([]),
+    date: new UntypedFormControl(),
+    time: new UntypedFormControl()
   });
 
   tags = new BehaviorSubject([]);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
 
@@ -23,8 +23,8 @@ export class SubscriptionComponent implements OnInit {
   subscriptionError = '';
   subscriptionSent = false;
 
-  subscribeForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email])
+  subscribeForm = new UntypedFormGroup({
+    email: new UntypedFormControl('', [Validators.required, Validators.email])
   });
 
   constructor(

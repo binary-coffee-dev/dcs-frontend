@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subject, timer } from 'rxjs';
@@ -17,8 +17,8 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   filter = '';
 
-  filterForm = new FormGroup({
-    filter: new FormControl('')
+  filterForm = new UntypedFormGroup({
+    filter: new UntypedFormControl('')
   });
 
   resetTime = new Subject();

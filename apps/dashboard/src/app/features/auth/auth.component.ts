@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
 
@@ -17,9 +17,9 @@ export class AuthComponent implements OnInit {
 
   providers = PROVIDERS;
 
-  loginForm = new FormGroup({
-    identifier: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+  loginForm = new UntypedFormGroup({
+    identifier: new UntypedFormControl('', Validators.required),
+    password: new UntypedFormControl('', Validators.required),
   });
 
   constructor(
