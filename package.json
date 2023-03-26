@@ -29,7 +29,7 @@
     "@angular/platform-server": "~13.3.12",
     "@angular/router": "~13.3.12",
     "@apollo/client": "^3.4.16",
-    "@nguniversal/express-engine": "^12.1.1",
+    "@nguniversal/express-engine": "^13.1.1",
     "@ngxs/devtools-plugin": "^3.7.2",
     "@ngxs/schematics": "0.0.1-alpha.5",
     "@ngxs/storage-plugin": "^3.7.2",
