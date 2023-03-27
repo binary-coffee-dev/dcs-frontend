@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';

@@ -19,7 +19,7 @@ import {
 } from '@dcs-libs/shared';
 import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
 import { LoginRequestModalComponent } from '../components/login-request-modal';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 const MAX_NUMBER_OF_POSTS = 6;
 
