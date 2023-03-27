@@ -9,4 +9,4 @@ if (environment.production) {
 export { AppServerModule } from './app/app.server.module';
 export { ngExpressEngine } from '@nguniversal/express-engine';
 
-export { renderModule } from '@angular/platform-server';
+

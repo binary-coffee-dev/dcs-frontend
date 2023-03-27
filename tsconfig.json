@@ -8,19 +8,29 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2020",
+    "target": "ES2022",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "~environments/*": ["environments/*"],
-      "~graphql/*": ["app/core/graphql/*"],
-      "@dcs-libs/shared": ["libs/shared/src/index.ts"]
+      "~environments/*": [
+        "environments/*"
+      ],
+      "~graphql/*": [
+        "app/core/graphql/*"
+      ],
+      "@dcs-libs/shared": [
+        "libs/shared/src/index.ts"
+      ]
     },
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "useDefineForClassFields": false
   },
   "exclude": ["node_modules", "tmp"]
 }
