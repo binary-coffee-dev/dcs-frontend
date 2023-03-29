@@ -7,9 +7,9 @@ export interface Post {
   name: string;
   title: string;
   body: string;
-  publishedAt: Date;
+  publishedAt?: Date;
   banner: File;
-  author: User;
+  author?: User;
   enable: boolean;
   views: string;
   comments: number;

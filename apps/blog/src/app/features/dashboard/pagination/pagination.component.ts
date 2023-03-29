@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { NextPageAction, PostState, PreviousPageAction } from '@dcs-libs/shared';
 import { ScrollService } from '../../../core/services';
@@ -13,8 +13,8 @@ import { ScrollService } from '../../../core/services';
 })
 export class PaginationComponent implements OnInit {
 
-  firstPage: Observable<boolean>;
-  lastPage: Observable<boolean>;
+  firstPage: Observable<boolean> = of(false);
+  lastPage: Observable<boolean> = of(false);
 
   constructor(private store: Store, private scroll: ScrollService) {
   }

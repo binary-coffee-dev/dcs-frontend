@@ -45,12 +45,12 @@ export class AppComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
-          gtag('config', this.environment.googleAnalyticsId, {
+          gtag('config', this.environment?.googleAnalyticsId || '', {
             page_path: event.urlAfterRedirects
           });
         }
       });
-      this.store.dispatch(new ChangePageSizeAction(this.environment.postPageSize));
+      this.store.dispatch(new ChangePageSizeAction(this.environment?.postPageSize));
 
       console.log(consoleMessage);
 

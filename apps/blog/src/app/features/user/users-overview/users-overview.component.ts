@@ -28,11 +28,11 @@ export class UsersOverviewComponent implements OnInit {
     this.store.select(UserInfoState.users).subscribe(users => this.users = users || []);
   }
 
-  filterUser(event) {
+  filterUser(event: any) {
     this.store.dispatch(new FetchUsersAction(event.target.value));
   }
 
-  getUserAvatar(user) {
+  getUserAvatar(user: User) {
     return this.url.getUserImage(user);
   }
 

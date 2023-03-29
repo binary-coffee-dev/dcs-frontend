@@ -11,7 +11,7 @@ export class PostAction {
 export class FetchPostAction {
   static readonly type = '[Post] Fetch post by name';
 
-  constructor(public postName: string) {
+  constructor(public postName: string | null) {
   }
 }
 
@@ -55,7 +55,7 @@ export class SelectPageAction {
 export class ChangePageSizeAction {
   static readonly type = '[Post] Change page size';
 
-  constructor(public pageSize: number) {
+  constructor(public pageSize: number | undefined) {
   }
 }
 

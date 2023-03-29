@@ -22,7 +22,7 @@ export class PostService {
   constructor(private apollo: Apollo, @Inject(ENVIRONMENT) private env: Environment) {
   }
 
-  fetchPosts(limit, start = 0, where = {}): Observable<PostConnection> {
+  fetchPosts(limit: number, start = 0, where = {}): Observable<PostConnection> {
     const sort = !!this.env.isDashboard ? 'createdAt:desc' : 'publishedAt:desc';
     return this.apollo
       .query({ query: POSTS_QUERY, variables: { limit, start, where, sort }, fetchPolicy: 'no-cache' })
@@ -40,7 +40,7 @@ export class PostService {
       .valueChanges.pipe(map((result: any) => result.data.post));
   }
 
-  fetchPostByName(name: string, noUpdate = false): Observable<any> {
+  fetchPostByName(name: string | null, noUpdate = false): Observable<any> {
     return this.apollo
       .query({ query: POST_BY_NAME_QUERY, variables: { name,  noUpdate}, fetchPolicy: 'no-cache' })
       .pipe(map((result: any) => ({
@@ -72,13 +72,13 @@ export class PostService {
       .pipe(map((result: any) => result.data.similarPosts));
   }
 
-  likeArticle(userId, postId) {
+  likeArticle(userId: string, postId: string) {
     return this.apollo
       .mutate({ mutation: LIKE_CREATE_MUTATION, variables: { user: userId, post: postId, type: 'like' } })
       .pipe(map((result: any) => result.data.createOpinion.opinion));
   }
 
-  removeLikeArticle(postId) {
+  removeLikeArticle(postId: string) {
     return this.apollo
       .mutate({ mutation: LIKE_REMOVE_MUTATION, variables: { id: postId } })
       .pipe(map((result: any) => result.data.deleteOpinion.opinion));

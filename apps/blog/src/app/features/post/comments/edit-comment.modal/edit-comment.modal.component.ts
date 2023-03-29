@@ -26,11 +26,11 @@ export class EditCommentModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.commentForm.controls.body.setValue(this.data.comment.body);
+    this.commentForm.controls['body'].setValue(this.data.comment.body);
   }
 
   ok() {
-    this.store.dispatch(new EditCommentAction(this.data.comment.id, this.commentForm.controls.body.value)).subscribe(() => {
+    this.store.dispatch(new EditCommentAction(this.data.comment.id, this.commentForm.controls['body'].value)).subscribe(() => {
       this.dialogRef.close();
     });
   }

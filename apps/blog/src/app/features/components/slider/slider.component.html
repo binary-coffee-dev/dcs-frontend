@@ -42,7 +42,7 @@
           <a class='button'
              [routerLink]="'/users/' + activeInfo?.value?.user?.username">Ver perfil</a>
           <a class='button space-left white'
-             [routerLink]="'/post/' + activeInfo?.value?.post?.name"
+             [routerLink]="'/post/' + getPostName()"
              [fragment]='activeInfo?.value?.id'>Leer ></a>
         </div>
       </div>

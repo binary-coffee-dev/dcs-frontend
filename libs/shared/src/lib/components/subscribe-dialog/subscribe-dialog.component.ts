@@ -27,7 +27,7 @@ export class SubscribeDialogComponent implements OnInit {
 
   ok() {
     this.store
-      .dispatch(new SubscribeAction(this.subscribeForm.controls.email.value))
+      .dispatch(new SubscribeAction(this.subscribeForm.controls['email'].value))
       .subscribe(() => {
         const subscription = this.store.selectSnapshot(
           SubscriptionState.subscription

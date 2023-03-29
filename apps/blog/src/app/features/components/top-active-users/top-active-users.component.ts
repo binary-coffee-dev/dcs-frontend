@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 
-import { TopUsers, UrlUtilsService, UserInfoState } from '@dcs-libs/shared';
+import { TopUsers, UrlUtilsService, User, UserInfoState } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-top-active-users',
@@ -18,7 +18,14 @@ export class TopActiveUsersComponent implements OnInit {
     this.store.select(UserInfoState.topActiveUsers).subscribe(topActive => this.top5Post = topActive);
   }
 
-  getUserAvatar(user) {
+  getUserAvatar(user: User) {
     return this.url.getUserImage(user);
+  }
+
+  getTopLikeByIndex(i: number): string | number {
+    if (this.top5Post && this.top5Post.values) {
+      return this.top5Post.values[i];
+    }
+    return '';
   }
 }

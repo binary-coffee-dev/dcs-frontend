@@ -14,7 +14,7 @@ export class CommentService {
   constructor(private apollo: Apollo) {
   }
 
-  fetchComments(postId): Observable<Comment[]> {
+  fetchComments(postId: string): Observable<Comment[]> {
     return this.apollo
       .watchQuery({query: COMMENTS_QUERY, variables: {postId}, fetchPolicy: 'no-cache'})
       .valueChanges.pipe(map((result: any) => {

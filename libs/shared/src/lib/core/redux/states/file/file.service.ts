@@ -22,20 +22,20 @@ export class FileService {
   ) {
   }
 
-  fetchFiles(limit, start = 0, where = {}): Observable<ResponseData> {
+  fetchFiles(limit: number, start = 0, where = {}): Observable<ResponseData> {
     return this.apollo
       .query({query: FILES_QUERY, variables: {limit, start, where}, fetchPolicy: 'no-cache'})
       .pipe(map((result: any) => ({
         ...result.data.imagesConnection,
-        values: result.data.imagesConnection.values.map(elem => elem.image.length > 0 ? elem.image[0] : null).filter(v => !!v)
+        values: result.data.imagesConnection.values.map((elem: any) => elem.image.length > 0 ? elem.image[0] : null).filter((v: any) => !!v)
       })));
   }
 
-  uploadFile(file: File, name: string = null): Observable<FileModel> {
+  uploadFile(file: File, name: string | null = null): Observable<FileModel> {
     const formData = new FormData();
     // @ts-ignore
     formData.append('files', file, name);
-    return this.http.post<FileModel>(`${this.environment.apiUrl}upload`, formData).pipe(map(response => response[0]));
+    return this.http.post<any>(`${this.environment.apiUrl}upload`, formData).pipe(map(response => response[0]));
   }
 
   removeFileAction(id: string) {

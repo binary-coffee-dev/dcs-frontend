@@ -14,7 +14,7 @@ export class PodcastService {
   ) {
   }
 
-  fetchPodcasts(identifier): Observable<PodcastModel> {
+  fetchPodcasts(identifier: string): Observable<PodcastModel> {
     return this.apollo
       .query({ query: PODCAST_BY_IDENTIFIER_QUERY, variables: { identifier }, fetchPolicy: 'no-cache' })
       .pipe(map((result: any) => {

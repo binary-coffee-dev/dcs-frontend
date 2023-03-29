@@ -16,7 +16,7 @@ import { MomentService, ResourceService } from '../../../core/services';
 })
 export class PostInfoComponent implements OnInit, OnDestroy {
 
-  @Input() post: Post;
+  @Input() post: Post = {} as unknown as Post;
 
   likes = 0;
   userLike = 0;
@@ -41,7 +41,7 @@ export class PostInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._unsubscribe.next();
+    this._unsubscribe.next(true);
   }
 
   postLikeTitle() {

@@ -20,13 +20,13 @@
         <div class='image-container'>
           <img
             *ngIf='post?.banner && post?.banner?.url'
-            [src]='resource.addApiUrl(post?.banner?.url)'
+            [src]='resource.addApiUrl(post.banner.url)'
             alt=''
           />
         </div>
 
         <div class='tags-content'>
-          <app-tags [tags]='post?.tags'></app-tags>
+          <app-tags [tags]='post.tags'></app-tags>
         </div>
 
         <div fxLayout='row'

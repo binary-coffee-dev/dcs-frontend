@@ -39,7 +39,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   isLogin = false;
 
-  currentUser: User;
+  currentUser: User | undefined = {} as unknown as User;
 
   commentForm = new UntypedFormGroup({
     body: new UntypedFormControl('', Validators.required)
@@ -75,13 +75,13 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.next();
+    this.unsubscribe.next(true);
   }
 
   commentChangeEvent() {
     if (!this.isLogin) {
       this.postLikeClick();
-      this.commentForm.controls.body.setValue('');
+      this.commentForm.controls['body'].setValue('');
     }
   }
 
@@ -89,7 +89,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
     this.dialog.open(LoginRequestModalComponent, {});
   }
 
-  removeComment(commentId) {
+  removeComment(commentId: string) {
     this.dialog.open(ConfirmDeleteModalComponent, { data: { commentId } });
   }
 
@@ -103,9 +103,9 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   createComment() {
-    if (this.commentForm.valid && this.checkEmptySpaces(this.commentForm.controls.body.value)) {
+    if (this.commentForm.valid && this.checkEmptySpaces(this.commentForm.controls['body'].value)) {
       const comment = {
-        body: this.commentForm.controls.body.value,
+        body: this.commentForm.controls['body'].value,
         post: this.post.id
       } as Comment;
       this.store.dispatch(new CreateCommentAction(comment)).subscribe(() => {
@@ -119,10 +119,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   canComment(comment: Comment): boolean {
-    if (comment && comment.user && comment.user.id === this.currentUser.id) {
+    if (comment && comment.user && comment.user.id === this.currentUser?.id) {
       return true;
     }
-    return comment && comment.user && (this.isAdmin(this.currentUser) || this.isStaff(this.currentUser));
+    return Boolean(comment && comment.user && (this.isAdmin(this.currentUser) || this.isStaff(this.currentUser)));
   }
 
   canCurrentUserEditComment(comment: Comment) {
@@ -139,19 +139,19 @@ export class CommentsComponent implements OnInit, OnDestroy {
     return this.isStaff(comment.user) || this.isAdmin(comment.user);
   }
 
-  isStaff(user: User): boolean {
-    return user && user.role && user.role.type === RoleEnum.staff;
+  isStaff(user: User | undefined): boolean {
+    return Boolean(user && user.role && user.role.type === RoleEnum.staff);
   }
 
-  isAdmin(user: User): boolean {
-    return user && user.role && user.role.type === RoleEnum.administrator;
+  isAdmin(user: User | undefined): boolean {
+    return Boolean(user && user.role && user.role.type === RoleEnum.administrator);
   }
 
   getRoleName(comment: Comment) {
     return comment.user ? comment.user.role.name : '';
   }
 
-  getUserAvatar(user) {
+  getUserAvatar(user: User | undefined) {
     return this.url.getUserImage(user);
   }
 

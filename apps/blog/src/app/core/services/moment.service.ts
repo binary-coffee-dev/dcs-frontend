@@ -11,7 +11,7 @@ export class MomentService {
     moment.locale('es');
   }
 
-  timeFromDate(date) {
+  timeFromDate(date: any) {
     return moment(date).fromNow();
   }
 

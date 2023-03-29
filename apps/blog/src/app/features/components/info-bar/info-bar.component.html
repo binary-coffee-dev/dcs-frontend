@@ -54,7 +54,7 @@
       <span><span class='class'>class</span> Opiniones_Recientes &#123;</span>
       <ng-container *ngFor='let comment of comments'>
         <span>&#160;</span>
-        <a [routerLink]="'/post/' + comment?.post?.name"
+        <a [routerLink]="'/post/' + getPostName(comment?.post)"
            [fragment]='comment?.id'
            [title]='comment?.user?.username'
            class='link t1'

@@ -19,7 +19,7 @@ export class CookiesConsentComponent implements OnInit {
 
   constructor(private store: Store) {
     this.currentConsentVersion = Object.keys(consentVersions).sort()
-      .reduce(((p, k, i) => `${p}${k}:${consentVersions[k]}/`), '');
+      .reduce(((p, k, i) => `${p}${k}:${(consentVersions as any)[k]}/`), '');
   }
 
   ngOnInit(): void {

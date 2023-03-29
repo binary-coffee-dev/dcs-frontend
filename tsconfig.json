@@ -10,10 +10,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -26,11 +23,16 @@
       ],
       "@dcs-libs/shared": [
         "libs/shared/src/index.ts"
+      ],
+      "rxjs": [
+        "node_modules/rxjs"
+      ],
+      "rxjs/*": [
+        "node_modules/rxjs/*"
       ]
     },
-    "esModuleInterop": true,
     "resolveJsonModule": true,
-    "useDefineForClassFields": false
+    "allowSyntheticDefaultImports": true
   },
   "exclude": ["node_modules", "tmp"]
 }

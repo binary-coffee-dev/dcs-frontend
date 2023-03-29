@@ -30,7 +30,7 @@ export class UserInfoService {
       .pipe(map((result: any) => result.data.users2));
   }
 
-  getUserByUsername(username: string): Observable<User> {
+  getUserByUsername(username: string | null): Observable<User> {
     return this.apollo.query({query: GET_USERS, variables: {where: {username}}, fetchPolicy: 'no-cache'})
       .pipe(
         map((result: any) => {

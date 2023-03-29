@@ -34,7 +34,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   }
 
   @Selector()
-  static count(state: PostStateModel): number {
+  static count(state: PostStateModel): number | undefined {
     return state.count;
   }
 
@@ -74,12 +74,12 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   }
 
   @Selector()
-  static newPostId(state: PostStateModel): string {
+  static newPostId(state: PostStateModel): string | undefined {
     return state.newPostId;
   }
 
   @Selector()
-  static where(state: PostStateModel): Where {
+  static where(state: PostStateModel): Where | undefined {
     return state.where;
   }
 
@@ -102,7 +102,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
 
   @Action(NextPageAction)
   nextPageAction(ctx: StateContext<PostStateModel>) {
-    return this.nextPage(ctx).pipe(take(1));
+    return this.nextPage(ctx);
   }
 
   @Action(SetFiltersAction)
@@ -112,19 +112,18 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
 
   @Action(PreviousPageAction)
   previousPageAction(ctx: StateContext<PostStateModel>) {
-    return this.previousPage(ctx).pipe(take(1));
+    return this.previousPage(ctx);
   }
 
   @Action(SelectPageAction)
   selectPageAction(ctx: StateContext<PostStateModel>, action: SelectPageAction) {
-    return this.pageByNumber(ctx, action.page, ctx.getState().where).pipe(take(1));
+    return this.pageByNumber(ctx, action.page, ctx.getState().where);
   }
 
   @Action(PostAction)
   fetchPostAction(ctx: StateContext<PostStateModel>, action: PostAction) {
     return this.postService.fetchPost(action.postId).pipe(
-      tap(post => ctx.patchState({post})),
-      take(1)
+      tap(post => ctx.patchState({post}))
     );
   }
 
@@ -138,8 +137,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   @Action(RefreshPostAction)
   refreshPostAction(ctx: StateContext<PostStateModel>) {
     return this.postService.fetchPostByName(ctx.getState().post.name, true).pipe(
-      tap(({post, userLike, likes}) => ctx.patchState({post, likes, userLike})),
-      take(1)
+      tap(({post, userLike, likes}) => ctx.patchState({post, likes, userLike}))
     );
   }
 
@@ -189,7 +187,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
     );
   }
 
-  fetchElements(pageSize, start, where = {}): Observable<ResponseData> {
+  override fetchElements(pageSize: number, start: number, where = {}): Observable<ResponseData> {
     return this.postService.fetchPosts(pageSize, start, where);
   }
 

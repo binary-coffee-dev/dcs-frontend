@@ -17,7 +17,7 @@ export class LoginService {
   }
 
   loginWithRedir(redir: string) {
-    const urlBase = this.env.siteDashboardUrl + (this.env.siteDashboardUrl.endsWith('/') ? '' : '/');
+    const urlBase = this.env.siteDashboardUrl + ((this.env?.siteDashboardUrl || '').endsWith('/') ? '' : '/');
     const loginUrl = new URL('./login', urlBase);
     this.window.location.href = `${loginUrl}?redir=${encodeURIComponent(redir)}`;
   }

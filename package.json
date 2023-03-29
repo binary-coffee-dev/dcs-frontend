@@ -5,7 +5,6 @@
     "ng": "nx",
     "start": "ng serve --watch --poll=2000 --port=4200 --host=0.0.0.0 --disable-host-check",
     "start:admin": "ng serve dashboard --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
-    "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "build:admin": "ng build dashboard --configuration=dev",
     "build:admin:prod": "ng build dashboard --configuration production",
     "test": "ng test --code-coverage",

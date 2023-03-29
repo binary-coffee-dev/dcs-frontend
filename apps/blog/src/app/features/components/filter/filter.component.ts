@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Subject, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -37,18 +37,18 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   extractParams() {
     this.filter = this.route.snapshot.queryParamMap.get('filter') || '';
-    this.filterForm.controls.filter.setValue(this.filter);
+    this.filterForm.controls['filter'].setValue(this.filter);
 
     this.dispatchNewFilter({title: this.filter});
   }
 
   ngOnDestroy(): void {
-    this.resetTime.next();
-    this._unsubscribe.next();
+    this.resetTime.next(true);
+    this._unsubscribe.next(true);
   }
 
   filterChange() {
-    this.resetTime.next();
+    this.resetTime.next(true);
     timer(1000).pipe(takeUntil(this.resetTime)).subscribe(() => {
       this.changeFilter();
     });
@@ -56,13 +56,13 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   changeFilter() {
     if (this.checkIfFilterChange()) {
-      this.filter = this.filterForm.controls.filter.value;
+      this.filter = this.filterForm.controls['filter'].value;
 
       this.dispatchNewFilter({title: this.filter});
     }
   }
 
-  dispatchNewFilter(newFilters) {
+  dispatchNewFilter(newFilters: any) {
     const filter = {
       ...(this.store.selectSnapshot(PostState.where) || {}),
       ...newFilters
@@ -76,7 +76,7 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   updateRoute() {
-    const queryParams = {};
+    const queryParams = {} as Params;
     if (this.filter !== '') {
       queryParams['filter'] = this.filter;
     }
@@ -88,6 +88,6 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   checkIfFilterChange(): boolean {
-    return this.filter !== this.filterForm.controls.filter.value;
+    return this.filter !== this.filterForm.controls['filter'].value;
   }
 }
