@@ -32,25 +32,25 @@
         <div fxLayout='row'
              fxLayoutAlign='start center'
              class='user-avatar-container'>
-          <a [href]="'/users/' + post?.author?.username"
+          <a [href]="'/users/' + post.author?.username"
              fxLayout='row'
              fxLayoutAlign='start center'
              matTooltip='Ver perfil'
              class='user-avatar'>
-            <img [src]='url.getUserImage(post?.author)'
-                 [alt]='post?.author?.username'>
-            <span>"{{post?.author?.username}}"</span>
+            <img [src]='url.getUserImage(post.author)'
+                 [alt]='post.author?.username'>
+            <span>"{{post.author?.username}}"</span>
           </a>
         </div>
 
         <div fxLayout='row'
              fxLayoutAlign='start end'
              class='post-info'>
-          <span>// {{moment.timeFromDate(post?.publishedAt)}}</span>
+          <span>// {{moment.timeFromDate(post.publishedAt)}}</span>
           <div fxFlex='100'></div>
           <div class='icon'>
             <i class='material-icons post-icons'>mode_comment</i>
-            {{post?.comments}}
+            {{post.comments}}
           </div>
           <div class='icon'>
             <i class='fa fa-coffee post-icons'></i>
@@ -58,7 +58,7 @@
           </div>
           <div class='icon'>
             <i class='fa fa-eye post-icons'></i>
-            {{post?.views}}
+            {{post.views}}
           </div>
           <div fxFlex='100'
                fxHide.xs></div>
@@ -66,7 +66,7 @@
                              class='like-button'
                              (click)='postLikeClick()'>
             <i class='fa fa-coffee post-icons'></i>
-            Brindar con {{post?.author?.username}}
+            Brindar con {{post.author?.username}}
           </mat-button-toggle>
         </div>
 
@@ -77,12 +77,12 @@
           <mat-button-toggle class='like-button'
                              (click)='postLikeClick()'>
             <i class='fa fa-coffee post-icons'></i>
-            Brindar con {{post?.author?.username}}
+            Brindar con {{post.author?.username}}
           </mat-button-toggle>
         </div>
 
         <h1 fxLayout='row'>
-          <span fxFlex='100'>{{ post?.title }}</span>
+          <span fxFlex='100'>{{ post.title }}</span>
           <button
             mat-button
             *ngIf=' ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)'
@@ -104,7 +104,7 @@
 
         <div class='markdown-container'
              *ngIf='isBrowser'>
-          <markdown [data]='post?.body'
+          <markdown [data]='post.body'
                     katex
                     lineNumbers></markdown>
         </div>
@@ -122,7 +122,7 @@
         <mat-button-toggle class='like-button last-like-button'
                            (click)='postLikeClick()'>
           <i class='fa fa-coffee post-icons'></i>
-          Brindar con {{post?.author?.username}}
+          Brindar con {{post.author?.username}}
         </mat-button-toggle>
       </div>
 
