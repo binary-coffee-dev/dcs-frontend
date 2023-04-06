@@ -5,7 +5,7 @@ export interface Environment {
   graphqlUrl: string;
   podcastApiUrl: string;
   siteUrl: string;
-  siteDashboardUrl?: string;
+  siteDashboardUrl: string;
   production: boolean;
   local?: boolean;
   githubClientId?: string;

@@ -21,9 +21,9 @@ export class UploadFileModalComponent implements OnInit {
 
   file = null;
 
-  size: number = null;
-  type: string = null;
-  image: string | ArrayBuffer = null;
+  size: number = 0;
+  type: string = '';
+  image: string | ArrayBuffer | null = null;
 
   uploadingImage = false;
 
@@ -33,20 +33,22 @@ export class UploadFileModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  openFile(inputFile) {
+  openFile(inputFile: any) {
     inputFile.click();
   }
 
-  onFilesChange(event) {
+  onFilesChange(event: any) {
     if (event.target.files && event.target.files.length > 0 && event.target.files[0]) {
       this.file = event.target.files[0];
-      this.uploadFileForm.controls.name.setValue(this.file.name);
-      this.size = this.file.size;
-      this.type = this.file.type;
+      if (this.file) {
+        this.uploadFileForm.controls['name'].setValue(this.file['name']);
+        this.size = this.file['size'];
+        this.type = this.file['type'];
 
-      const reader = new FileReader();
-      reader.onload = () => this.image = reader.result;
-      reader.readAsDataURL(this.file);
+        const reader = new FileReader();
+        reader.onload = () => this.image = reader.result;
+        reader.readAsDataURL(this.file);
+      }
     }
   }
 
@@ -57,7 +59,7 @@ export class UploadFileModalComponent implements OnInit {
   upload() {
     if (!this.uploadingImage && this.file) {
       this.uploadingImage = true;
-      this.store.dispatch(new UploadFileAction(this.file, this.uploadFileForm.controls.name.value)).subscribe(() => {
+      this.store.dispatch(new UploadFileAction(this.file, this.uploadFileForm.controls['name'].value)).subscribe(() => {
         this.dialogRef.close(this.store.selectSnapshot(FileState.newFile));
       });
     }

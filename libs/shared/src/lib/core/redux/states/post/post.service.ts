@@ -42,7 +42,7 @@ export class PostService {
 
   fetchPostByName(name: string | null, noUpdate = false): Observable<any> {
     return this.apollo
-      .query({ query: POST_BY_NAME_QUERY, variables: { name,  noUpdate}, fetchPolicy: 'no-cache' })
+      .query({ query: POST_BY_NAME_QUERY, variables: { name, noUpdate }, fetchPolicy: 'no-cache' })
       .pipe(map((result: any) => ({
         post: result.data.postByName,
         likes: result.data.likes,
@@ -59,11 +59,11 @@ export class PostService {
       .pipe(map((result: any) => result.data.updatePost.post));
   }
 
-  createPost(post: Post, me: User) {
+  createPost(post: Post, me: User | undefined) {
     const banner = post.banner && post.banner.id;
     const tags = post.tags.map(tag => tag.id);
     return this.apollo
-      .mutate({ mutation: POST_CREATE_MUTATION, variables: { ...post, author: me.id, banner, tags } })
+      .mutate({ mutation: POST_CREATE_MUTATION, variables: { ...post, author: me?.id, banner, tags } })
       .pipe(map((result: any) => result.data.createPost.post));
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
 
@@ -20,7 +20,7 @@ import { UploadFileModalComponent } from '../components/upload-file.modal';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  me: User;
+  me: User = {} as unknown as User;
   professionalDataChange = false;
 
   personalForm = new UntypedFormGroup({
@@ -54,11 +54,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(AuthState.me).subscribe((me: User) => {
+    this.store.select(AuthState.me).subscribe((me) => {
       if (me) {
         this.me = me;
-        this.personalForm.controls.username.setValue(me.username);
-        this.professionalForm.controls.page.setValue(me.page);
+        this.personalForm.controls['username'].setValue(me.username);
+        this.professionalForm.controls['page'].setValue(me.page);
 
         this.professionalDataChange = false;
       }
@@ -73,13 +73,13 @@ export class UserProfileComponent implements OnInit {
     this.store.dispatch(
       new UpdateMeAction(
         this.me.id,
-        this.professionalForm.controls.page.value
+        this.professionalForm.controls['page'].value
       )
     );
   }
 
   onUserDataChange() {
-    this.professionalDataChange = this.me.page !== this.professionalForm.controls.page.value;
+    this.professionalDataChange = this.me.page !== this.professionalForm.controls['page'].value;
   }
 
   openUploadFileModal() {

@@ -65,16 +65,19 @@ export class ListComponent extends Permissions implements OnInit {
   updateFilter() {
     let where = {};
 
-    const permissionsByRole = this.rolePermissionMap.get(this.meUser().role.type) || [];
-    if (permissionsByRole.findIndex(v => v === this.permissions().VIEW_ANY_IMAGE) === -1) {
-      where = {user: this.meUser().id.toString()};
+    const me = this.meUser();
+    if (me) {
+      const permissionsByRole = this.rolePermissionMap.get(me.role.type) || [];
+      if (permissionsByRole.findIndex(v => v === this.permissions().VIEW_ANY_IMAGE) === -1) {
+        where = { user: me.id.toString() };
+      }
     }
 
     this.store.dispatch(new ChangeQueryAction(where));
     this.refreshPage();
   }
 
-  meUser(): User {
+  meUser(): User | undefined {
     return this.store.selectSnapshot(AuthState.me);
   }
 
@@ -94,7 +97,7 @@ export class ListComponent extends Permissions implements OnInit {
     this.store.dispatch(new PreviousFilesPageAction());
   }
 
-  selectPageEvent(page) {
+  selectPageEvent(page: number) {
     this.store.dispatch(new ChangeFilesPageAction(page));
   }
 

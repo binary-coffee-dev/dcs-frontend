@@ -3,9 +3,9 @@
   <app-navbar (openSidenav)='showSidenav = true'></app-navbar>
 </mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav [mode]="mobileQuery?.matches ? 'over' : 'side'"
+  <mat-sidenav [mode]="mobileQuery.matches ? 'over' : 'side'"
                (closed)='showSidenav = false'
-               [opened]='mobileQuery?.matches && showSidenav || !mobileQuery?.matches'>
+               [opened]='mobileQuery.matches && showSidenav || !mobileQuery.matches'>
     <app-sidebar (routeChange)='showSidenav = false'></app-sidebar>
   </mat-sidenav>
   <mat-sidenav-content>

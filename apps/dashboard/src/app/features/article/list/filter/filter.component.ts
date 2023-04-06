@@ -32,11 +32,11 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._unsubscribe.next();
+    this._unsubscribe.next(true);
   }
 
   filterChange() {
-    this.resetTimer.next();
+    this.resetTimer.next(true);
     timer(1000).pipe(takeUntil(this._unsubscribe), takeUntil(this.resetTimer)).subscribe(() => {
       this.changeFilter();
     });
@@ -44,10 +44,10 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   changeFilter() {
     if (this.checkFilterChange()) {
-      this.currentFilter = this.filterForm.controls.filter.value;
-      this.usersFilter = this.filterForm.controls.users.value;
+      this.currentFilter = this.filterForm.controls['filter'].value;
+      this.usersFilter = this.filterForm.controls['users'].value;
 
-      const author = this.usersFilter === 'me' ? this.store.selectSnapshot(AuthState.me).id : undefined;
+      const author = this.usersFilter === 'me' ? this.store.selectSnapshot(AuthState.me)?.id : undefined;
       const filterStr = this.currentFilter || '';
       const filter = {
         author,
@@ -60,7 +60,7 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   checkFilterChange(): boolean {
-    return this.currentFilter !== this.filterForm.controls.filter.value ||
-      this.usersFilter !== this.filterForm.controls.users.value;
+    return this.currentFilter !== this.filterForm.controls['filter'].value ||
+      this.usersFilter !== this.filterForm.controls['users'].value;
   }
 }

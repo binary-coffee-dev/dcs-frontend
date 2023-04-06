@@ -8,7 +8,7 @@ export class LoginAction {
 export class LoginWithProviderAction {
   static readonly type = '[Auth] Login with provider action';
 
-  constructor(public provider: string, public code: string) {
+  constructor(public provider: string | null, public code: string | null) {
   }
 }
 

@@ -13,7 +13,7 @@ import { PROVIDERS } from './providers';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  authError: AuthError = null;
+  authError: AuthError | undefined = undefined;
 
   providers = PROVIDERS;
 
@@ -40,9 +40,9 @@ export class AuthComponent implements OnInit {
   }
 
   login() {
-    if (this.loginForm.valid && this.checkEmptySpaces(this.loginForm.controls.identifier.value)) {
-      const identifier = this.loginForm.controls.identifier.value;
-      const password = this.loginForm.controls.password.value;
+    if (this.loginForm.valid && this.checkEmptySpaces(this.loginForm.controls['identifier'].value)) {
+      const identifier = this.loginForm.controls['identifier'].value;
+      const password = this.loginForm.controls['password'].value;
       this.store.dispatch(new LoginAction(identifier, password)).subscribe(() => {
         const redir = this.route.snapshot.queryParamMap.get('redir');
         const tokenOn = this.route.snapshot.queryParamMap.get('tokenOn');
@@ -73,7 +73,7 @@ export class AuthComponent implements OnInit {
     this.window.location.href = `${provider.url}?${this.queryParamsToString(queryParams)}`;
   }
 
-  queryParamsToString(object) {
+  queryParamsToString(object: any) {
     return Object.keys(object).reduce((p, k) => {
       if (p !== '') {
         p += '&';

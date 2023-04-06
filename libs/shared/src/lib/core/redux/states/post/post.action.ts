@@ -29,7 +29,7 @@ export class PostUpdateAction {
 export class PostCreateAction {
   static readonly type = '[Post] Post create';
 
-  constructor(public post: Post, public me: User) {
+  constructor(public post: Post, public me: User | undefined) {
   }
 }
 

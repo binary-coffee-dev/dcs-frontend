@@ -3,7 +3,7 @@
   "version": "2023.2.23",
   "scripts": {
     "ng": "nx",
-    "start": "ng serve --watch --poll=2000 --port=4200 --host=0.0.0.0 --disable-host-check",
+    "start": "nx run blog:serve --watch --poll=2000 --port=4200 --host=0.0.0.0 --disable-host-check",
     "start:admin": "ng serve dashboard --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
     "build:admin": "ng build dashboard --configuration=dev",
     "build:admin:prod": "ng build dashboard --configuration production",

@@ -8,7 +8,7 @@ export interface Post {
   title: string;
   body: string;
   publishedAt?: Date;
-  banner: File;
+  banner?: File;
   author?: User;
   enable: boolean;
   views: string;

@@ -18,9 +18,9 @@ export class SidebarComponent implements OnInit {
   @Output()
   routeChange = new EventEmitter<void>();
 
-  me: User;
+  me: User = {} as unknown as User;
 
-  menuAccess: RouteInfo[];
+  menuAccess: RouteInfo[] = [];
   currentRoute = '';
 
   constructor(
@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
     this.menuAccess = ROUTES
       .filter(v => v.visible);
 
-    this.store.select(AuthState.me).subscribe((me: User) => {
+    this.store.select(AuthState.me).subscribe((me) => {
       if (me) {
         this.me = me;
       }
