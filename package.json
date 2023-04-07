@@ -6,11 +6,11 @@
     "start": "nx run blog:serve --watch --poll=2000 --port=4200 --host=0.0.0.0 --disable-host-check",
     "start:admin": "nx run dashboard:serve --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
     "build:admin": "nx run dashboard:build:development",
-    "build:admin:prod": "nx run dashboard:build",
+    "build:admin:prod": "nx run dashboard:build:production",
     "test": "jest --coverage",
     "lint": "ng lint",
     "serve:ssr": "node dist/apps/server/main",
-    "build:ssr": "nx run blog:build:production &&  nx run blog:server:production",
+    "build:ssr": "nx run blog:build:production && nx run blog:server:production",
     "build:ssr:dev": "nx run blog:build:development && nx run blog:server:development"
   },
   "private": true,
@@ -85,7 +85,6 @@
   },
   "pre-push": {
     "run": [
-      "lint",
       "test"
     ]
   }

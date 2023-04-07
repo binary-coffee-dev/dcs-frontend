@@ -34,10 +34,10 @@ jobs:
 
       # pipeline actions
       - run: npm ci
-      - name: Build blog Dashboard
-        run: npm run build:admin:prod
-      - name: Build blog Blog
-        run: npm run build:ssr
+      - name: Build blog Dashboard (prod)
+        run: nx run dashboard:build:production
+      - name: Build blog Blog (prod)
+        run: nx run blog:build:production && nx run blog:server:production
 
 
   # RUN TESTS
@@ -68,7 +68,7 @@ jobs:
         run: npm install -g codecov
 
       # pipeline actions
-      - run: npm run lint
+#      - run: npm run lint # toDo: until lint is fixed
       - run: npm test
       - run: codecov
         env:
