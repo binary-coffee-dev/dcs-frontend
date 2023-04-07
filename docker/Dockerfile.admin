@@ -9,7 +9,7 @@ RUN npm install -g nx
 COPY . ./
 
 ARG ENVIRONMENT
-RUN if [ "$ENVIRONMENT" = "dev" ] ; then nx run dashboard:build:development ; else nx run dashboard:build ; fi
+RUN if [ "$ENVIRONMENT" = "dev" ] ; then nx run dashboard:build:development ; else nx run dashboard:build:production ; fi
 
 FROM nginx:1.13.9-alpine
 

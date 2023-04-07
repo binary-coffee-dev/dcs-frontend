@@ -95,8 +95,17 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "default": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
-      }
+      },
+      "defaultConfiguration": "default"
     },
     "server": {
       "executor": "@angular-devkit/build-angular:server",
@@ -144,15 +153,12 @@
         },
         "development": {
           "browserTarget": "blog:build:development"
+        },
+        "default": {
+          "browserTarget": "blog:build"
         }
       },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "browserTarget": "blog:build"
-      }
+      "defaultConfiguration": "default"
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",

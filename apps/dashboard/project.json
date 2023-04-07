@@ -27,6 +27,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/dashboard/",
           "fileReplacements": [
             {
               "replace": "apps/dashboard/src/environments/environment.ts",
@@ -48,6 +49,7 @@
           "outputHashing": "all"
         },
         "development": {
+          "baseHref": "/dashboard/",
           "fileReplacements": [
             {
               "replace": "apps/dashboard/src/environments/environment.ts",
@@ -60,9 +62,18 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "default": {
+          "baseHref": "/dashboard/",
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "default"
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -72,15 +83,12 @@
         },
         "development": {
           "browserTarget": "dashboard:build:development"
+        },
+        "default": {
+          "browserTarget": "dashboard:build"
         }
       },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "browserTarget": "dashboard:build"
-      }
+      "defaultConfiguration": "default"
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
