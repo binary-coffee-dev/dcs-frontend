@@ -32,6 +32,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Installing NX
+        run: npm install -g nx
+
       # pipeline actions
       - run: npm ci
       - name: Build blog Dashboard (prod)
