@@ -4,14 +4,14 @@
   "scripts": {
     "ng": "nx",
     "start": "nx run blog:serve --watch --poll=2000 --port=4200 --host=0.0.0.0 --disable-host-check",
-    "start:admin": "ng serve dashboard --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
-    "build:admin": "ng build dashboard --configuration=dev",
-    "build:admin:prod": "ng build dashboard --configuration production",
+    "start:admin": "nx run dashboard:serve --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
+    "build:admin": "nx run dashboard:build:development",
+    "build:admin:prod": "nx run dashboard:build",
     "test": "jest --coverage",
     "lint": "ng lint",
-    "serve:ssr": "node dist/server/main",
-    "build:ssr": "ng run blog:build:production && ng run blog:server:production",
-    "build:ssr:dev": "ng run blog:build:dev && ng run blog:server:dev"
+    "serve:ssr": "node dist/apps/server/main",
+    "build:ssr": "nx run blog:build:production &&  nx run blog:server:production",
+    "build:ssr:dev": "nx run blog:build:development && nx run blog:server:development"
   },
   "private": true,
   "dependencies": {

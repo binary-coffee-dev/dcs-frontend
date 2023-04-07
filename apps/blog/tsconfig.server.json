@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "module": "CommonJS",
-    "types": ["node"]
+    "types": ["node"],
+    "esModuleInterop": true
   },
   "files": [
     "src/main.server.ts",

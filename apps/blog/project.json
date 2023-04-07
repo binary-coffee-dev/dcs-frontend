@@ -7,12 +7,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/blog",
         "index": "apps/blog/src/index.html",
         "main": "apps/blog/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/blog/tsconfig.app.json",
         "allowedCommonJsDependencies": [
           "moment"
@@ -20,23 +24,54 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/blog/src/favicon.png",
-          "apps/blog/src/assets"
+          "apps/blog/src/assets",
+          {
+            "glob": "*",
+            "input": "libs/shared/src/assets",
+            "output": "assets/"
+          }
         ],
-        "styles": ["apps/blog/src/styles.scss"],
-        "scripts": []
+        "styles": [
+          "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+          "apps/blog/src/styles.scss",
+          "node_modules/prismjs/themes/prism-okaidia.css",
+          "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
+          "node_modules/katex/dist/katex.min.css"
+        ],
+        "scripts": [
+          "node_modules/prismjs/prism.js",
+          "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
+          "node_modules/katex/dist/katex.min.js",
+          "node_modules/prismjs/components/prism-css.min.js",
+          "node_modules/prismjs/components/prism-csharp.min.js",
+          "node_modules/prismjs/components/prism-java.js",
+          "node_modules/prismjs/components/prism-javascript.js",
+          "node_modules/prismjs/components/prism-go.js",
+          "node_modules/prismjs/components/prism-php.js",
+          "node_modules/prismjs/components/prism-typescript.js",
+          "node_modules/prismjs/components/prism-yaml.js",
+          "node_modules/prismjs/components/prism-sass.js",
+          "node_modules/prismjs/components/prism-ruby.js",
+          "node_modules/prismjs/components/prism-python.js",
+          "node_modules/prismjs/components/prism-pascal.js",
+          "node_modules/prismjs/components/prism-kotlin.js",
+          "node_modules/prismjs/components/prism-c.js",
+          "node_modules/prismjs/components/prism-bash.js",
+          "node_modules/prismjs/components/prism-json.js"
+        ]
       },
       "configurations": {
         "production": {
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "1mb",
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumWarning": "4kb",
+              "maximumError": "6kb"
             }
           ],
           "outputHashing": "all"
@@ -51,6 +86,45 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "server": {
+      "executor": "@angular-devkit/build-angular:server",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/server",
+        "main": "apps/blog/server.ts",
+        "tsConfig": "apps/blog/tsconfig.server.json",
+        "sourceMap": true,
+        "optimization": false,
+        "extractLicenses": false
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/blog/src/environments/environment.ts",
+              "with": "apps/blog/src/environments/environment.prod.ts"
+            }
+          ],
+          "sourceMap": false,
+          "optimization": true,
+          "extractLicenses": true
+        },
+        "development": {
+          "fileReplacements": [
+            {
+              "replace": "apps/blog/src/environments/environment.ts",
+              "with": "apps/blog/src/environments/environment.dev.ts"
+            }
+          ],
+          "sourceMap": false,
+          "optimization": false,
+          "extractLicenses": true
+        }
+      },
+      "defaultConfiguration": ""
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -72,7 +146,9 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
         "lintFilePatterns": [
           "apps/blog/**/*.ts",
@@ -82,7 +158,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/blog/jest.config.js",
         "passWithNoTests": true
