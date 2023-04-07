@@ -16,8 +16,8 @@ export class CommentService {
 
   fetchComments(postId: string): Observable<Comment[]> {
     return this.apollo
-      .watchQuery({query: COMMENTS_QUERY, variables: {postId}, fetchPolicy: 'no-cache'})
-      .valueChanges.pipe(map((result: any) => {
+      .query({query: COMMENTS_QUERY, variables: {postId}, fetchPolicy: 'no-cache'})
+      .pipe(map((result: any) => {
         return result.data.commentsConnection.values;
       }));
   }
@@ -30,8 +30,8 @@ export class CommentService {
 
   recentComments() {
     return this.apollo
-      .watchQuery({query: RECENT_COMMENTS_QUERY, variables: {limit: 8}})
-      .valueChanges.pipe(map((result: any) => result.data.recentComments));
+      .query({query: RECENT_COMMENTS_QUERY, variables: {limit: 8}})
+      .pipe(map((result: any) => result.data.recentComments));
   }
 
   removeComment(commentId: string): Observable<Comment> {

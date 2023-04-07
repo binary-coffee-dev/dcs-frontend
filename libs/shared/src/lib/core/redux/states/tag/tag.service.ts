@@ -14,7 +14,7 @@ export class TagService {
 
   fetchTags(): Observable<Tag[]> {
     return this.apollo
-      .watchQuery({query: TAGS_QUERY})
-      .valueChanges.pipe(map((result: any) => result.data.tags));
+      .query({query: TAGS_QUERY})
+      .pipe(map((result: any) => result.data.tags));
   }
 }

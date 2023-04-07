@@ -36,8 +36,8 @@ export class PostService {
 
   fetchPost(id: string): Observable<Post> {
     return this.apollo
-      .watchQuery({ query: POST_QUERY, variables: { id }, fetchPolicy: 'no-cache' })
-      .valueChanges.pipe(map((result: any) => result.data.post));
+      .query({ query: POST_QUERY, variables: { id }, fetchPolicy: 'no-cache' })
+      .pipe(map((result: any) => result.data.post));
   }
 
   fetchPostByName(name: string | null, noUpdate = false): Observable<any> {
