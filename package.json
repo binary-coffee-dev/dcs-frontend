@@ -7,7 +7,7 @@
     "start:admin": "ng serve dashboard --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
     "build:admin": "ng build dashboard --configuration=dev",
     "build:admin:prod": "ng build dashboard --configuration production",
-    "test": "ng test --code-coverage",
+    "test": "jest --coverage",
     "lint": "ng lint",
     "serve:ssr": "node dist/server/main",
     "build:ssr": "ng run blog:build:production && ng run blog:server:production",

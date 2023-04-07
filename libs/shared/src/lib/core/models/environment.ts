@@ -12,7 +12,7 @@ export interface Environment {
   googleAnalyticsId?: string;
   postPageSize?: number;
   isDashboard?: boolean;
-  socials: {
+  socials?: {
     telegram: string;
     github: string;
     facebook: string;

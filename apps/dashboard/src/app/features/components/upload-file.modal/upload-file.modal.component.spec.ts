@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { MatDialogRef } from '@angular/material/dialog';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MatLegacyDialog, MatLegacyDialogRef } from '@angular/material/legacy-dialog';
 
 import { Store } from '@ngxs/store';
 
@@ -22,7 +22,7 @@ describe('UploadFile.ModalComponent', () => {
       declarations: [UploadFileModalComponent],
       providers: [
         {provide: Store, useClass: StoreStub},
-        {provide: MatDialogRef, useClass: MatDialogRefStub}
+        {provide: MatLegacyDialogRef, useClass: MatDialogRefStub},
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

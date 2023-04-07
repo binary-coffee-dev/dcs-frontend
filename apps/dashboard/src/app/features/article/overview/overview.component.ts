@@ -107,7 +107,9 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   ngOnDestroy(): void {
     this._unsubscribe.next(true);
     this._stopTimer.next(true);
-    this.window.document.removeEventListener('keydown', this.shortCutHandlerMethod.bind(this));
+    if (this.window?.document?.removeEventListener) {
+      this.window.document.removeEventListener('keydown', this.shortCutHandlerMethod.bind(this));
+    }
   }
 
   shortCutHandlerMethod(event: any) {

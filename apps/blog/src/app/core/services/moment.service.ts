@@ -8,7 +8,9 @@ import moment from 'moment';
 export class MomentService {
 
   constructor() {
-    moment.locale('es');
+    if (moment) {
+      moment.locale('es');
+    }
   }
 
   timeFromDate(date: any) {
