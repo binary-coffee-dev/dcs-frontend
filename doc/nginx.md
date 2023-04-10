@@ -2,12 +2,14 @@
 
 [<< go back to documentation](./doc.md)
 
-This configuration is highly recommended if you are up to start to develop something in the application. With the nginx setup, you can use all the functionalities without problems in your local environment.
+This configuration is highly recommended if you want to start the application.
+With the nginx setup, you can use all the functionalities without any problems in your local environment (including login with github).
 
 ## Start nginx with docker
 
 ```
+# cd ./local-nginx
 docker-compose up
 ```
 
-> NOTE: run this code from **local-nginx** folder at the root of the project
+> NOTE: run this code from **local-nginx** folder
