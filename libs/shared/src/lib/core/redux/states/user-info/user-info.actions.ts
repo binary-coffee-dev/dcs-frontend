@@ -16,7 +16,7 @@ export class FetchUsersAction {
 export class FetchUserByUsernameAction {
   public static readonly type = '[UserInfo] Fetch user by username';
 
-  constructor(public username: string) {
+  constructor(public username: string | null) {
   }
 }
 

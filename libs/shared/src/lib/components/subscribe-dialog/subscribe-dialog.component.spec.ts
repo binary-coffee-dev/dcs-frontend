@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_LEGACY_DIALOG_DATA, MatLegacyDialogRef } from '@angular/material/legacy-dialog';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+import { Store } from '@ngxs/store';
 
 import { SubscribeDialogComponent } from './subscribe-dialog.component';
-import { Store } from '@ngxs/store';
 
 class MatDialogRefStub {
 }
@@ -19,9 +21,10 @@ describe('SubscribeDialogComponent', () => {
       declarations: [SubscribeDialogComponent],
       providers: [
         {provide: Store, useClass: StoreStub},
-        {provide: MatDialogRef, useClass: MatDialogRefStub},
-        {provide: MAT_DIALOG_DATA, useValue: {}}
-      ]
+        {provide: MatLegacyDialogRef, useClass: MatDialogRefStub},
+        {provide: MAT_LEGACY_DIALOG_DATA, useValue: {}}
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 

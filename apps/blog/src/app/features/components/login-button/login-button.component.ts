@@ -13,7 +13,7 @@ import { LoginService } from '../../../core/services';
 export class LoginButtonComponent implements OnInit {
 
   isLogin = false;
-  me: User;
+  me?: User;
 
   constructor(
     @Inject(WINDOW) private window: Window,
@@ -38,7 +38,7 @@ export class LoginButtonComponent implements OnInit {
   }
 
   profileLink() {
-    return `/users/${this.me.username}`;
+    return `/users/${this.me?.username || ''}`;
   }
 
   editProfileLink() {

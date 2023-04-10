@@ -20,7 +20,7 @@ export class ScrollService {
     }
   }
 
-  scrollToFragment(fragment) {
+  scrollToFragment(fragment: any) {
     const value = this.window.document.getElementById(fragment);
     if (value) {
       value.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});

@@ -5,13 +5,15 @@ export interface PostStateModel extends StateBase {
   elements: Post[];
   post: Post;
   similarPosts: Post[];
-  newPostId: string;
+  newPostId?: string;
   likes: number;
   userLike: number;
 }
 
 export const initPostStateModel = () => {
   return {
+    count: 0,
+    post: {} as unknown as Post,
     elements: [],
     page: 0,
     pageSize: 10,

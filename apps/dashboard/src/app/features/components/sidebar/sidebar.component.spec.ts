@@ -20,7 +20,7 @@ describe('SidebarComponent', () => {
   let fixture: ComponentFixture<SidebarComponent>;
   SidebarComponent.prototype.ngOnInit = () => {
   };
-  let location;
+  let location: any;
 
   beforeEach(waitForAsync(async () => {
     await TestBed.configureTestingModule({

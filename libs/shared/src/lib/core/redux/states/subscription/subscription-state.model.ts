@@ -1,11 +1,11 @@
 import { Subscription } from '../../models';
 
 export interface SubscriptionStateModel {
-  subscription: Subscription;
+  subscription?: Subscription;
 }
 
 export const initSubscriptionStateModel = () => {
   return {
-    subscription: {},
+    subscription: {} as unknown as Subscription,
   } as SubscriptionStateModel;
 };

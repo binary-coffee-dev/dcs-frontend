@@ -3,12 +3,13 @@ import { StateBase } from '../pagination-base.class';
 
 export interface TagStateModel extends StateBase {
   elements: Tag[];
-  post: Tag;
-  newPostId: string;
+  post?: Tag;
+  newPostId?: string;
 }
 
 export const initTagStateModel = () => {
   return {
+    count: 0,
     elements: [],
     page: 0,
     pageSize: 10,

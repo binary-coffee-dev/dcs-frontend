@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 import { UrlUtilsService } from '../../core/services';
 import { SubscribeDialogComponent } from '../subscribe-dialog';
@@ -10,8 +10,8 @@ import { SubscribeDialogComponent } from '../subscribe-dialog';
     styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-    year: number;
-    root: string;
+    year: number = 0;
+    root: string = '';
 
     @Input()
     full = true;

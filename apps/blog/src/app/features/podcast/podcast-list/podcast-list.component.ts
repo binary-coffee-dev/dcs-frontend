@@ -16,8 +16,8 @@ export class PodcastListComponent implements OnInit, OnDestroy {
 
   _unsubscribe = new Subject();
 
-  podcastName: 'Espacio Binario';
-  isAdmin: true;
+  podcastName = 'Espacio Binario';
+  isAdmin = true;
   episodes: EpisodeModel[] = [];
 
   constructor(
@@ -34,7 +34,7 @@ export class PodcastListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._unsubscribe.next();
+    this._unsubscribe.next(true);
   }
 
 }

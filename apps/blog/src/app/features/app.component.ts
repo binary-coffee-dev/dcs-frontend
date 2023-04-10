@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 import { Store } from '@ngxs/store';
 import { timer } from 'rxjs';
@@ -45,12 +45,12 @@ export class AppComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
-          gtag('config', this.environment.googleAnalyticsId, {
+          gtag('config', this.environment?.googleAnalyticsId || '', {
             page_path: event.urlAfterRedirects
           });
         }
       });
-      this.store.dispatch(new ChangePageSizeAction(this.environment.postPageSize));
+      this.store.dispatch(new ChangePageSizeAction(this.environment?.postPageSize));
 
       console.log(consoleMessage);
 

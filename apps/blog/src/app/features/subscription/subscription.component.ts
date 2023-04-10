@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
 
@@ -23,8 +23,8 @@ export class SubscriptionComponent implements OnInit {
   subscriptionError = '';
   subscriptionSent = false;
 
-  subscribeForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email])
+  subscribeForm = new UntypedFormGroup({
+    email: new UntypedFormControl('', [Validators.required, Validators.email])
   });
 
   constructor(
@@ -35,7 +35,7 @@ export class SubscriptionComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.token = this.activeRouter.snapshot.params.token;
+    this.token = this.activeRouter.snapshot.params['token'];
     if (this.token) {
       this.store
         .dispatch(new VerifySubscriptionAction(this.token))
@@ -43,7 +43,7 @@ export class SubscriptionComponent implements OnInit {
           const subscription = this.store.selectSnapshot(
             SubscriptionState.subscription
           );
-          if (subscription.verified) {
+          if (subscription?.verified) {
             this.message =
               'Se ha suscrito correctamente al sitio Binary Coffee.';
           }
@@ -54,7 +54,7 @@ export class SubscriptionComponent implements OnInit {
   subscribe() {
     if (this.subscribeForm.valid) {
       this.store
-        .dispatch(new SubscribeAction(this.subscribeForm.controls.email.value))
+        .dispatch(new SubscribeAction(this.subscribeForm.controls['email'].value))
         .subscribe(() => {
           const subscription = this.store.selectSnapshot(
             SubscriptionState.subscription

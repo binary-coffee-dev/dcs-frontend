@@ -45,7 +45,7 @@ export class FileState extends PaginationBaseClass<FileStateModel> {
   }
 
   @Selector()
-  static newFile(state: FileStateModel): File {
+  static newFile(state: FileStateModel): File | undefined {
     return state.newFile;
   }
 
@@ -101,14 +101,14 @@ export class FileState extends PaginationBaseClass<FileStateModel> {
         ctx.dispatch(new CreateNotificationAction(`Archivo ${file.name} creado correctamente.`, NotificationType.info));
       }),
       catchError(error => {
-        ctx.patchState({newFile: null});
+        ctx.patchState({newFile: undefined});
         ctx.dispatch(new CreateNotificationAction(`Errores al subir el archivo: ${action.name}`, NotificationType.info));
         return error;
       })
     );
   }
 
-  fetchElements(pageSize, start, where): Observable<ResponseData> {
+  override fetchElements(pageSize: number, start: number, where: any): Observable<ResponseData> {
     return this.fileService.fetchFiles(pageSize, start, where);
   }
 }

@@ -14,8 +14,8 @@ const PATH_NAME_POSITION = 2;
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  private listTitles: any[];
-  me: User;
+  private listTitles: any[] = [];
+  me: User | undefined = {} as unknown as User;
 
   @Output()
   openSidenav = new EventEmitter<void>();

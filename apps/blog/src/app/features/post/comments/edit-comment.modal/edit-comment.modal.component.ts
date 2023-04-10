@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
 
@@ -14,8 +14,8 @@ import { Comment, EditCommentAction } from '@dcs-libs/shared';
 export class EditCommentModalComponent implements OnInit {
 
   commentError = '';
-  commentForm = new FormGroup({
-    body: new FormControl('', Validators.required),
+  commentForm = new UntypedFormGroup({
+    body: new UntypedFormControl('', Validators.required),
   });
 
   constructor(
@@ -26,11 +26,11 @@ export class EditCommentModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.commentForm.controls.body.setValue(this.data.comment.body);
+    this.commentForm.controls['body'].setValue(this.data.comment.body);
   }
 
   ok() {
-    this.store.dispatch(new EditCommentAction(this.data.comment.id, this.commentForm.controls.body.value)).subscribe(() => {
+    this.store.dispatch(new EditCommentAction(this.data.comment.id, this.commentForm.controls['body'].value)).subscribe(() => {
       this.dialogRef.close();
     });
   }

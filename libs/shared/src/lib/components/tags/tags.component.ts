@@ -10,7 +10,7 @@ import { Tag } from '@dcs-libs/shared';
 export class TagsComponent {
 
   @Input()
-  tags: Tag[];
+  tags?: Tag[] = [];
 
   constructor() { }
 }

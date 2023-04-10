@@ -8,10 +8,12 @@ import moment from 'moment';
 export class MomentService {
 
   constructor() {
-    moment.locale('es');
+    if (moment) {
+      moment.locale('es');
+    }
   }
 
-  timeFromDate(date) {
+  timeFromDate(date: any) {
     return moment(date).fromNow();
   }
 

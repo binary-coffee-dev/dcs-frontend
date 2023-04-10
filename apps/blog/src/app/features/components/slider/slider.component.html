@@ -22,28 +22,28 @@
              fxLayout='row'
              fxLayoutAlign='start center'>
           <div class='message-text'>
-            {{getLimitedMessage(activeInfo?.value?.body)}}
+            {{getLimitedMessage(activeInfo.value?.body)}}
           </div>
         </div>
-        <div *ngIf='activeInfo?.value?.user'
+        <div *ngIf='activeInfo.value?.user'
              fxLayout='row'
              fxLayoutAlign='start center'
              class='comment-user'>
           <div class='comment-user-image'>
             <img
-              [src]='url.getUserImage(activeInfo?.value?.user)'
-              [alt]='activeInfo?.value?.user?.username || "noavatar"'>
+              [src]='url.getUserImage(activeInfo.value?.user)'
+              [alt]='activeInfo.value?.user?.username || "noavatar"'>
           </div>
-          &#160;{{ activeInfo?.value?.user?.username }}
+          &#160;{{ activeInfo.value?.user?.username }}
         </div>
         <div class='buttons-container'
              fxLayout='row'
              fxLayoutAlign='start center'>
           <a class='button'
-             [routerLink]="'/users/' + activeInfo?.value?.user?.username">Ver perfil</a>
+             [routerLink]="'/users/' + activeInfo.value?.user?.username">Ver perfil</a>
           <a class='button space-left white'
-             [routerLink]="'/post/' + activeInfo?.value?.post?.name"
-             [fragment]='activeInfo?.value?.id'>Leer ></a>
+             [routerLink]="'/post/' + getPostName()"
+             [fragment]='activeInfo.value?.id'>Leer ></a>
         </div>
       </div>
     </ng-container>

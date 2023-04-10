@@ -1,9 +1,8 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "../../dist/out-tsc",
-    "emitDecoratorMetadata": true,
     "types": [
       "jest",
       "node"
@@ -13,6 +12,7 @@
     "src/test-setup.ts"
   ],
   "include": [
+    "jest.config.js",
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
   ]

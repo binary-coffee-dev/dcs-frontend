@@ -22,6 +22,8 @@ export class AdminLayoutComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
+    if (this.mobileQuery?.removeEventListener) {
+      this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
+    }
   }
 }

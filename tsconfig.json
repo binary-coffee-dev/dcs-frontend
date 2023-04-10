@@ -15,12 +15,24 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "~environments/*": ["environments/*"],
-      "~graphql/*": ["app/core/graphql/*"],
-      "@dcs-libs/shared": ["libs/shared/src/index.ts"]
+      "~environments/*": [
+        "environments/*"
+      ],
+      "~graphql/*": [
+        "app/core/graphql/*"
+      ],
+      "@dcs-libs/shared": [
+        "libs/shared/src/index.ts"
+      ],
+      "rxjs": [
+        "node_modules/rxjs"
+      ],
+      "rxjs/*": [
+        "node_modules/rxjs/*"
+      ]
     },
-    "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   },
   "exclude": ["node_modules", "tmp"]
 }

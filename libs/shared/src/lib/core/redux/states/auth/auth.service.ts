@@ -28,7 +28,7 @@ export class AuthService {
       .pipe(map((result: any) => result.data.login));
   }
 
-  loginWithProvider(provider: string, code: string): Observable<string> {
+  loginWithProvider(provider: string | null, code: string | null): Observable<string> {
     return this.apollo
       .mutate({mutation: LOGIN_WITH_PROVIDER_MUTATION, variables: {provider, code}})
       .pipe(map((result: any) => result.data.loginWithProvider));
@@ -36,8 +36,8 @@ export class AuthService {
 
   me(): Observable<User> {
     return this.apollo
-      .watchQuery({query: ME_QUERY, fetchPolicy: 'no-cache'})
-      .valueChanges.pipe(map((result: any) => result.data.myData));
+      .query({query: ME_QUERY, fetchPolicy: 'no-cache'})
+      .pipe(map((result: any) => result.data.myData));
   }
 
   updateMeAction(variables: {id: string, page: string}): Observable<User> {

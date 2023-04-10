@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 
 import { Store } from '@ngxs/store';
 
@@ -51,7 +51,7 @@ export class SelectImageModalComponent implements OnInit {
     this.dialogRef.close(image);
   }
 
-  normalizeUrl(url) {
+  normalizeUrl(url: string) {
     return this.url.normalizeImageUrl(url);
   }
 
@@ -63,7 +63,7 @@ export class SelectImageModalComponent implements OnInit {
     this.store.dispatch(new PreviousFilesPageAction());
   }
 
-  selectPageEvent(page) {
+  selectPageEvent(page: number) {
     this.store.dispatch(new ChangeFilesPageAction(page));
   }
 
