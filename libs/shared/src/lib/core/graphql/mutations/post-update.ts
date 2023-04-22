@@ -18,7 +18,7 @@ export const POST_UPDATE_MUTATION = gql`
                     enable: $enable,
                     banner: $banner,
                     tags: $tags,
-                    publishedAt: $publishedAt
+                    published_at: $publishedAt
                 },
                 where: {
                     id: $id

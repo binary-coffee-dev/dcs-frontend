@@ -5,7 +5,7 @@ export const RECENT_COMMENTS_QUERY = gql`
     recentComments (limit: $limit){
       id
       body
-      publishedAt
+      published_at
       post {
         name
       }

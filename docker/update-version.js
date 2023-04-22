@@ -6,8 +6,6 @@ const date = new Date();
 
 packageJson.version = `${date.getFullYear()}.${date.getMonth()}.${date.getDate()}`;
 
-console.log('current version:', packageJson.version);
-
 const fs = require('fs');
 
 fs.writeFileSync(

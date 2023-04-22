@@ -23,7 +23,7 @@ export class PostService {
   }
 
   fetchPosts(limit: number, start = 0, where = {}): Observable<PostConnection> {
-    const sort = !!this.env.isDashboard ? 'createdAt:desc' : 'publishedAt:desc';
+    const sort = !!this.env.isDashboard ? 'created_at:DESC' : 'published_at:DESC';
     return this.apollo
       .query({ query: POSTS_QUERY, variables: { limit, start, where, sort }, fetchPolicy: 'no-cache' })
       .pipe(map((result: any) => ({
@@ -36,7 +36,7 @@ export class PostService {
 
   fetchPost(id: string): Observable<Post> {
     return this.apollo
-      .query({ query: POST_QUERY, variables: { id }, fetchPolicy: 'no-cache' })
+      .query({ query: POST_QUERY, variables: { id: +id }, fetchPolicy: 'no-cache' })
       .pipe(map((result: any) => result.data.post));
   }
 

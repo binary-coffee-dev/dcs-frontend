@@ -76,7 +76,6 @@ export class UserViewComponent implements OnInit {
       action: this.copyRSSToClipboard.bind(this),
       text: 'RSS'
     } as UserData);
-    console.log(this.userData);
   }
 
   getUserAvatar(user: User) {

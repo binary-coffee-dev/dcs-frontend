@@ -8,8 +8,8 @@ export const SUBSCRIBE_MUTATION = gql`
             verified
             token
             id
-            createdAt
-            updatedAt
+            created_at
+            updated_at
         }
     }
 `;

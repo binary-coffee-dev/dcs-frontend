@@ -6,7 +6,7 @@ export const EDIT_COMMENT_MUTATION = gql`
       comment {
         id
         body
-        publishedAt
+        published_at
         user {
           id
           username

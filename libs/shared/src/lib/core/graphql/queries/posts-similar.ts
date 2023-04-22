@@ -8,7 +8,7 @@ export const SIMILAR_POSTS_QUERY = gql`
         banner {
           url
         }
-        publishedAt
+        published_at
         id
         views
         comments

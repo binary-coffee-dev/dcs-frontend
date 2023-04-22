@@ -10,7 +10,7 @@ export const POSTS_QUERY = gql`
                 enable
                 body
                 comments
-                publishedAt
+                published_at
                 views
                 banner {
                     name
