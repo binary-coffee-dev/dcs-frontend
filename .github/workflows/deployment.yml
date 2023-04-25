@@ -72,7 +72,7 @@ jobs:
 
       # pipeline actions
 #      - run: npm run lint # toDo: until lint is fixed
-      - run: nx test
+      - run: npm test
       - run: codecov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
