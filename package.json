@@ -7,7 +7,7 @@
     "start:admin": "nx run dashboard:serve --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
     "build:admin": "nx run dashboard:build:development",
     "build:admin:prod": "nx run dashboard:build:production",
-    "test": "nx test",
+    "test": "jest",
     "lint": "nx lint",
     "serve:ssr": "node dist/apps/server/main",
     "build:ssr": "nx run blog:build:production && nx run blog:server:production",
