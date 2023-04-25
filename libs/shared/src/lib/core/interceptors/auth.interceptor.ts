@@ -49,7 +49,6 @@ export class AuthInterceptor implements HttpInterceptor {
     for (let keys of this.keysReplacement) {
       if (res[keys[0]] !== undefined) {
         res[keys[1]] = res[keys[0]];
-        delete res[keys[0]];
       }
     }
     Object.keys(res)

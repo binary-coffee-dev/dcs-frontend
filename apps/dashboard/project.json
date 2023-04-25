@@ -35,9 +35,11 @@
           "node_modules/katex/dist/katex.min.css"
         ],
         "scripts": [
+          "node_modules/marked/marked.min.js",
           "node_modules/prismjs/prism.js",
           "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
           "node_modules/katex/dist/katex.min.js",
+          "node_modules/katex/dist/contrib/auto-render.min.js",
           "node_modules/prismjs/components/prism-css.min.js",
           "node_modules/prismjs/components/prism-csharp.min.js",
           "node_modules/prismjs/components/prism-java.js",

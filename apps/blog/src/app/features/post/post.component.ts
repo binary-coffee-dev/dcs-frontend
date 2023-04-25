@@ -20,6 +20,7 @@ import {
 import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
 import { LoginRequestModalComponent } from '../components/login-request-modal';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import {KatexOptions} from "ngx-markdown";
 
 const MAX_NUMBER_OF_POSTS = 6;
 
@@ -35,6 +36,9 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
   isBrowser: boolean;
   likes = 0;
   userLike = 0;
+  katexOptions: KatexOptions = {
+    delimiters: [{left: "$$", right: "$$", display: true}]
+  };
 
   _unsubscribe = new Subject();
 
