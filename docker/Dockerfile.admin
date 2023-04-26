@@ -6,7 +6,9 @@ COPY package.json package-lock.json ./
 RUN npm install
 RUN npm install -g nx
 
-COPY . ./
+COPY apps ./apps
+COPY libs ./libs
+COPY tsconfig.json nx.json ./
 
 ARG ENVIRONMENT
 RUN if [ "$ENVIRONMENT" = "dev" ] ; then nx run dashboard:build:development ; else nx run dashboard:build:production ; fi
