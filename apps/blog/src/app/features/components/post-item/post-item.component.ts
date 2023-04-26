@@ -11,7 +11,7 @@ import { MomentService, ResourceService } from '../../../core/services';
 export class PostItemComponent {
 
   @Input()
-  post: Post;
+  post: Post = {} as unknown as Post;
 
   constructor(
     public moment: MomentService,
@@ -27,7 +27,7 @@ export class PostItemComponent {
     return '/assets/images/banner-default.jpg';
   }
 
-  public stopPropagation(event) {
+  public stopPropagation(event: any) {
     event.stopPropagation();
   }
 }

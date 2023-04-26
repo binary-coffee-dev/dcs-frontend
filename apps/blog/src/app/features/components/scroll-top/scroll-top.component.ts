@@ -7,7 +7,7 @@ import { ScrollService } from '../../../core/services';
   styleUrls: ['./scroll-top.component.scss']
 })
 export class ScrollTopComponent {
-  windowScrolled: boolean;
+  windowScrolled: boolean = false;
 
   constructor(private scroll: ScrollService) {}
 

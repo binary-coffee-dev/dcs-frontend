@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
 
@@ -14,8 +14,8 @@ import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
 })
 export class SubscribeDialogComponent implements OnInit {
 
-  subscribeForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email])
+  subscribeForm = new UntypedFormGroup({
+    email: new UntypedFormControl('', [Validators.required, Validators.email])
   });
 
   constructor(private dialogRef: MatDialogRef<SubscribeDialogComponent>,
@@ -27,7 +27,7 @@ export class SubscribeDialogComponent implements OnInit {
 
   ok() {
     this.store
-      .dispatch(new SubscribeAction(this.subscribeForm.controls.email.value))
+      .dispatch(new SubscribeAction(this.subscribeForm.controls['email'].value))
       .subscribe(() => {
         const subscription = this.store.selectSnapshot(
           SubscriptionState.subscription

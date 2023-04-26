@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MatLegacyDialog } from '@angular/material/legacy-dialog';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { Store } from '@ngxs/store';
 
 import { UrlUtilsService } from '@dcs-libs/shared';
 import { CommentsComponent } from './comments.component';
-import { RouterTestingModule } from '@angular/router/testing';
 import { ScrollService } from '../../../core/services';
-import { MatDialog } from '@angular/material/dialog';
 
 class StoreStub {
 }
@@ -35,7 +35,7 @@ describe('CommentsComponent', () => {
         {provide: Store, useClass: StoreStub},
         {provide: UrlUtilsService, useClass: UrlUtilsServiceStub},
         {provide: ScrollService, useClass: ScrollServiceStub},
-        {provide: MatDialog, useClass: MatDialogStub}
+        {provide: MatLegacyDialog, useClass: MatDialogStub},
       ]
     })
       .compileComponents();

@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MatLegacyDialog } from '@angular/material/legacy-dialog';
+
+import { Store } from '@ngxs/store';
 
 import { PostInfoComponent } from './post-info.component';
-import { Store } from '@ngxs/store';
-import { MatDialog } from '@angular/material/dialog';
 import { MomentService, ResourceService } from '../../../core/services';
 
 class StoreStub {
@@ -28,7 +29,7 @@ describe('PostInfoComponent', () => {
       declarations: [PostInfoComponent],
       providers: [
         {provide: Store, useClass: StoreStub},
-        {provide: MatDialog, useClass: MatDialogStub},
+        {provide: MatLegacyDialog, useClass: MatDialogStub},
         {provide: ResourceService, useClass: ResourceServiceStub},
         {provide: MomentService, useClass: MomentServiceStub},
       ],

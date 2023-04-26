@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatDialog } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatLegacyDialog } from '@angular/material/legacy-dialog';
 
 import { of } from 'rxjs';
 import { Store } from '@ngxs/store';
@@ -36,7 +36,7 @@ describe('OverviewComponent', () => {
       declarations: [OverviewComponent, HasPermissionsPipeStub],
       providers: [
         {provide: Store, useClass: StoreStub},
-        {provide: MatDialog, useClass: MatDialogStub},
+        {provide: MatLegacyDialog, useClass: MatDialogStub},
         {provide: UrlUtilsService, useClass: UrlUtilsServiceStub},
         {provide: WINDOW, useValue: window},
         {provide: ENVIRONMENT, useValue: {}}

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialogRef } from '@angular/material/legacy-dialog';
 
 import { Store } from '@ngxs/store';
 
@@ -26,7 +26,7 @@ describe('SelectImageModalComponent', () => {
       declarations: [SelectImageModalComponent],
       providers: [
         {provide: Store, useClass: StoreStub},
-        {provide: MatDialogRef, useClass: MatDialogRefStub},
+        {provide: MatLegacyDialogRef, useClass: MatDialogRefStub},
         {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
       ],
       schemas: [NO_ERRORS_SCHEMA]

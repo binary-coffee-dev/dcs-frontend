@@ -10,6 +10,6 @@ export const initCommentStateModel = () => {
   return {
     comments: [],
     recentComments: [],
-    error: {message: ''}
+    error: {message: ''} as unknown as CommentError
   } as CommentStateModel;
 };

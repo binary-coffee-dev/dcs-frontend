@@ -46,7 +46,7 @@
             (click)='selectImage(file)'>
           <td>
             <img class='file-image'
-                 [src]='normalizeUrl(file?.url)'
+                 [src]='normalizeUrl(file?.url || "")'
                  [alt]='file.name'>
           </td>
           <td>

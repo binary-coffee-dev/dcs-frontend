@@ -3,7 +3,7 @@ import { gql } from 'apollo-angular';
 export const COMMENTS_QUERY = gql`
   query ($postId: ID){
     commentsConnection(
-      sort: "publishedAt:desc"
+      sort: "published_at:DESC"
       limit: 100
       start: 0
       where: {post: $postId}
@@ -11,7 +11,7 @@ export const COMMENTS_QUERY = gql`
       values {
         id
         body
-        publishedAt
+        published_at
         name
         user {
           id

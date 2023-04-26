@@ -21,7 +21,7 @@ import {
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent extends Permissions implements OnInit {
-  posts: Post[];
+  posts: Post[] = [];
 
   currentPage = 0;
   numberOfPages = 0;
@@ -39,7 +39,7 @@ export class ListComponent extends Permissions implements OnInit {
 
   ngOnInit() {
     const me = this.meUser();
-    this.store.dispatch(new SetFiltersAction({author: me.id} as Where)).subscribe(() => {
+    this.store.dispatch(new SetFiltersAction({author: me?.id} as Where)).subscribe(() => {
       this.store.dispatch(new FetchPostsAction());
     });
     this.store.select(PostState.posts).subscribe(posts => {
@@ -54,12 +54,12 @@ export class ListComponent extends Permissions implements OnInit {
     this.store.select(ConfigState.getConfigItem('dashboard-post-tableOrCard')).subscribe(value => this.tableOrCard = !!value);
   }
 
-  isMyPost(post) {
+  isMyPost(post: any) {
     const user = this.meUser();
     return !!user && !!post.author && post.author.id === user.id;
   }
 
-  meUser(): User {
+  meUser(): User | undefined {
     return this.store.selectSnapshot(AuthState.me);
   }
 
@@ -71,7 +71,7 @@ export class ListComponent extends Permissions implements OnInit {
     this.store.dispatch(new PreviousPageAction());
   }
 
-  selectPageEvent(page) {
+  selectPageEvent(page: number) {
     this.store.dispatch(new SelectPageAction(page));
   }
 

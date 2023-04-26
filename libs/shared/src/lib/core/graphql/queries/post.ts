@@ -1,30 +1,30 @@
 import { gql } from 'apollo-angular';
 
 export const POST_QUERY = gql`
-    query fetchPost($id: ID!) {
-        post(id: $id){
+    query fetchPost($id: ID!){
+        post(id: $id, publicationState: PREVIEW) {
             id
             name
             enable
             title
             body
-            publishedAt
+            published_at
             views
             tags {
                 id
                 name
             }
             comments
-            banner { id url }
+            banner {
+                id
+                url
+            }
             author {
                 id
                 username
                 email
                 avatarUrl
                 page
-            }
-            tags{
-                name
             }
         }
     }

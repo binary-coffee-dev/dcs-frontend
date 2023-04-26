@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
+import { ApolloTestingModule } from 'apollo-angular/testing';
+
 import { ENVIRONMENT } from '@dcs-libs/shared';
 import { PodcastService } from './podcast.service';
 
@@ -9,7 +11,7 @@ describe('PodcastService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, ApolloTestingModule],
       providers: [
         PodcastService,
         {provide: ENVIRONMENT, useValue: {}}

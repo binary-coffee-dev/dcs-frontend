@@ -18,7 +18,7 @@ export class PaginationComponent {
   @Input()
   showPages = 2;
 
-  pages = [];
+  pages: number[] = [];
 
   get numberOfPages(): number {
     return this._numberOfPages;

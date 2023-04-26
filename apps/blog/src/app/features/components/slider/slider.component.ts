@@ -26,7 +26,7 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   info: InformationBanner[] = [];
 
-  activeInfo: InformationBanner;
+  activeInfo: InformationBanner = {} as unknown as InformationBanner;
   activePage = 0;
 
   constructor(
@@ -83,7 +83,7 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.info.push({ type: 'comment', value: comment } as InformationBanner);
   }
 
-  openInfo(page) {
+  openInfo(page: number) {
     this.stopTimer.next();
     this.activePage = page;
     this.updateInfo();
@@ -104,12 +104,19 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.activeInfo = this.info[this.activePage];
   }
 
-  getLimitedMessage(message: string) {
+  getLimitedMessage(message: string | undefined) {
     message = message || '';
     return message.substring(0, Math.min(70, message.length)) + '...';
   }
 
   getCreateArticleUrl(): string {
     return `${this.environment.siteDashboardUrl}/articles/create`;
+  }
+
+  getPostName() {
+    if (typeof this.activeInfo?.value?.post === 'string' ) {
+      return '';
+    }
+    return this.activeInfo?.value?.post?.name;
   }
 }

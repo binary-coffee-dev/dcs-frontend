@@ -19,7 +19,8 @@ import {
 } from '@dcs-libs/shared';
 import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
 import { LoginRequestModalComponent } from '../components/login-request-modal';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import {KatexOptions} from "ngx-markdown";
 
 const MAX_NUMBER_OF_POSTS = 6;
 
@@ -30,11 +31,14 @@ const MAX_NUMBER_OF_POSTS = 6;
 })
 export class PostComponent extends Permissions implements OnInit, OnDestroy {
 
-  post: Post;
-  similarPosts: Post[];
+  post: Post = {} as unknown as Post;
+  similarPosts: Post[] = [];
   isBrowser: boolean;
   likes = 0;
   userLike = 0;
+  katexOptions: KatexOptions = {
+    delimiters: [{left: "$$", right: "$$", display: true}]
+  };
 
   _unsubscribe = new Subject();
 
@@ -58,7 +62,7 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loadArticle(this.route.snapshot.data.post);
+    this.loadArticle(this.route.snapshot.data['post']);
     this.store.select(PostState.post).subscribe((post: Post) => this.loadArticle(post));
     const fragment = this.route.snapshot.fragment;
     if (!fragment) {
@@ -76,7 +80,7 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._unsubscribe.next();
+    this._unsubscribe.next(true);
   }
 
   loadPosts(posts: Post[]) {
@@ -93,7 +97,7 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
   loadArticle(post: Post) {
     if (post) {
       this.post = post;
-      const imageUrl = post.banner ? new URL(post.banner.url, this.environment.apiUrl).toString() : '';
+      const imageUrl = post.banner ? new URL(post?.banner?.url || '', this.environment.apiUrl).toString() : '';
       this.metaTags.updateMetas([
         {
           key: MetaTagsService.metas,
@@ -109,8 +113,8 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
       this.metaTags.addLinkTag({
         rel: 'alternate',
         type: 'application/rss+xml',
-        title: `RSS Feed for ${post.author.username} in binary-coffee.dev`,
-        href: `${this.environment.apiUrl}posts/feed/${this.post.author.username}/rss2`
+        title: `RSS Feed for ${post.author?.username} in binary-coffee.dev`,
+        href: `${this.environment.apiUrl}posts/feed/${this.post.author?.username}/rss2`
       }, 'rss-id');
 
       this.store.dispatch(new FetchCommentsAction(post.id));
@@ -121,12 +125,12 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
     return `${this.environment.apiUrl}post-body-by-name/${(this.post?.name || '')}/download.md`;
   }
 
-  isMyPost(post) {
+  isMyPost(post: Post) {
     const user = this.store.selectSnapshot(AuthState.me);
     return !!user && !!post.author && post.author.id === user.id;
   }
 
-  editPost(post) {
+  editPost(post: Post) {
     this.window.location.href = `${this.environment.siteDashboardUrl}/articles/update/${post.id}`;
   }
 

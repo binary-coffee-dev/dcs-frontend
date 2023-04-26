@@ -29,7 +29,7 @@ export class NotificationsComponent implements OnInit {
       });
   }
 
-  startNotification(id) {
+  startNotification(id: number) {
     this.notificationsMap.add(id);
     setTimeout((idInternal: number, notificationsMap: Set<number>, closeNotification: (id: number) => void) => {
       closeNotification(idInternal);

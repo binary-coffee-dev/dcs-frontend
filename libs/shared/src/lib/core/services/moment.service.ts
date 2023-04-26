@@ -10,7 +10,7 @@ export class MomentService {
   constructor() {
   }
 
-  timeFromDate(date) {
+  timeFromDate(date: any) {
     if (!date) {
       return 'Sin publicar';
     }

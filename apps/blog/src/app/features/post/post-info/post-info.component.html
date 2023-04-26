@@ -4,28 +4,28 @@
      <span class="post-info separator"
            fxLayout="row"
            fxLayoutAlign="start center">
-          <a [href]="'/users/' + post?.author?.username"
-             [title]="post?.author?.email"
+          <a [href]="'/users/' + post.author?.username"
+             [title]="post.author?.email"
              fxLayout="row"
              fxLayoutAlign="start center">
-               <img *ngIf="post?.author?.avatar?.url"
-                    [src]="resource.addApiUrl(post?.author?.avatar?.url)"
+               <img *ngIf="post.author?.avatar?.url"
+                    [src]="resource.addApiUrl(post.author?.avatar?.url)"
                     alt="">
-               <span>{{post?.author?.username}}</span>
+               <span>{{post.author?.username}}</span>
           </a>
      </span>
 
      <span class="post-info separator"
            fxLayout="row"
            fxLayoutAlign="start center">
-          <span>{{post?.publishedAt && moment.timeFromDate(post.publishedAt) || ''}}</span>
+          <span>{{post.publishedAt && moment.timeFromDate(post.publishedAt) || ''}}</span>
      </span>
 
      <span class="post-info separator"
            fxLayout="row"
            fxLayoutAlign="start center">
           <mat-icon aria-hidden="false">comment</mat-icon>
-          <span>{{post?.comments || 0}}</span>
+          <span>{{post.comments || 0}}</span>
      </span>
 
      <span class="post-info like"

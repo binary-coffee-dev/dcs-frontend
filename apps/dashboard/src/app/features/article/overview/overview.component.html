@@ -89,7 +89,7 @@
 
     <div class='section time-section'
          fxLayout='row wrap'>
-      <mat-form-field appearance='none'
+      <mat-form-field appearance='outline'
                       *ngIf='[permissions().PUBLISH_ARTICLE] | hasPermissions'>
         <mat-label class='code-none'>Fecha</mat-label>
         <input
@@ -105,7 +105,7 @@
                         panelClass='example-month-picker'>
         </mat-datepicker>
       </mat-form-field>
-      <mat-form-field appearance='none'
+      <mat-form-field appearance='outline'
                       *ngIf='[permissions().PUBLISH_ARTICLE] | hasPermissions'>
         <mat-label>Hora</mat-label>
         <mat-select
@@ -154,8 +154,10 @@
         ></textarea>
         <markdown *ngIf='articleTextStatus === "preview"'
                   class='markdown'
-                  [data]='articleForm?.controls?.body?.value'
+                  [data]='articleForm.controls["body"].value'
                   katex
+                  [katexOptions]=""
+                  [disableSanitizer]="true"
                   lineNumbers
         ></markdown>
       </div>

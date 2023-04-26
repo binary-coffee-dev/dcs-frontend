@@ -7,7 +7,7 @@ export const POST_BY_NAME_QUERY = gql`
       name
       title
       body
-      publishedAt
+      published_at
       views
       tags {
         id

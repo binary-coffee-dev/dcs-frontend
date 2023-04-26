@@ -2,24 +2,24 @@
 
 [<< go back to documentation](./doc.md)
 
-Here you can find the steps you need to follow to build the project and let it ready for deployment, or just to test it in you local environment.
+Here you can find the steps you need to follow to build the project and let it ready for deployment, or just to test it if it works in you local environment.
 
 ## Blog
 
 ```
 // development
-npm run build:ssr:dev
+nx run blog:build:development && nx run blog:server:development
 
 // production
-npm run build:ssr
+nx run blog:build:production && nx run blog:server:production
 ```
 
 ## Dashboard
 
 ```
 // development
-npm run build:admin
+nx run dashboard:build:development
 
 // production
-npm run build:admin:prod
+nx run dashboard:build:production
 ```

@@ -1,5 +1,5 @@
 <div class='top'
-     *ngIf='top5Post?.users?.length > 0'>
+     *ngIf='(top5Post?.users?.length || 0) > 0'>
 
   <span> Más Activos </span>
 
@@ -19,7 +19,7 @@
            fxLayoutAlign='center start'>
         <span class='top-user-name'>"{{ user?.username }}"</span>
         <div fxFlex='100'></div>
-        <span class='post-info'> // {{ top5Post?.values[i] }} artículos</span>
+        <span class='post-info'> // {{ getTopLikeByIndex(i) }} artículos</span>
       </div>
     </a>
   </div>

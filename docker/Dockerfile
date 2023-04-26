@@ -1,14 +1,14 @@
-FROM node:14.21.1-alpine3.16
+FROM node:16.20.0-alpine3.16
 
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
+COPY package.json package-lock.json ./
 RUN npm install
+RUN npm install -g nx
 
 COPY . ./
 
 ARG ENVIRONMENT
-RUN if [ "$ENVIRONMENT" = "dev" ] ; then npm run build:ssr:dev ; else npm run build:ssr ; fi
+RUN if [ "$ENVIRONMENT" = "dev" ] ; then nx run blog:build:development && nx run blog:server:development ; else nx run blog:build:production &&  nx run blog:server:production ; fi
 
 CMD ["npm", "run", "serve:ssr"]

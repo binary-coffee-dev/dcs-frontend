@@ -9,7 +9,7 @@ import {
   CommentState,
   EpisodeModel,
   PodcastModel,
-  PodcastState,
+  PodcastState, Post,
   UrlUtilsService,
   WINDOW
 } from '@dcs-libs/shared';
@@ -100,10 +100,17 @@ export class InfoBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._unsubscribe.next();
+    this._unsubscribe.next(true);
   }
 
-  toDate(date: string): Date {
+  toDate(date: string | undefined): Date | null {
     return date && new Date(date) || null;
+  }
+
+  getPostName(post: Post | string | undefined) {
+    if (!post || typeof post === 'string') {
+      return '';
+    }
+    return post.name;
   }
 }

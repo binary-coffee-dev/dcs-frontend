@@ -28,7 +28,7 @@ export interface ResponseData {
 }
 
 export class PaginationBaseClass<T extends StateBase> {
-  changePageSize(ctx: StateContext<T>, pageSize: number) {
+  changePageSize(ctx: StateContext<T>, pageSize: number | undefined) {
     ctx.patchState({pageSize} as unknown as Partial<T>);
   }
 
@@ -53,6 +53,7 @@ export class PaginationBaseClass<T extends StateBase> {
         ctx.patchState({page} as unknown as Partial<T>);
       }));
     }
+    return of(false);
   }
 
   fetchPage(pageSize: number, start: number, where = {}, ctx: StateContext<T>, page?: number) {
@@ -76,11 +77,11 @@ export class PaginationBaseClass<T extends StateBase> {
     );
   }
 
-  fetchElements(pageSize, start, where = {}): Observable<ResponseData> {
+  fetchElements(pageSize: number, start: number, where = {}): Observable<ResponseData> {
     return of({} as ResponseData);
   }
 
-  refreshPaginationVisibility(ctx: StateContext<T>, page, count, pageSize) {
+  refreshPaginationVisibility(ctx: StateContext<T>, page: number, count: number, pageSize: number) {
     ctx.patchState({
       firstPage: page === 0,
       lastPage: page === this.lastPage(count, pageSize)

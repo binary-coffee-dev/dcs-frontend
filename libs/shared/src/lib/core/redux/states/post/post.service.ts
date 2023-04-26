@@ -22,8 +22,8 @@ export class PostService {
   constructor(private apollo: Apollo, @Inject(ENVIRONMENT) private env: Environment) {
   }
 
-  fetchPosts(limit, start = 0, where = {}): Observable<PostConnection> {
-    const sort = !!this.env.isDashboard ? 'createdAt:desc' : 'publishedAt:desc';
+  fetchPosts(limit: number, start = 0, where = {}): Observable<PostConnection> {
+    const sort = !!this.env.isDashboard ? 'created_at:DESC' : 'published_at:DESC';
     return this.apollo
       .query({ query: POSTS_QUERY, variables: { limit, start, where, sort }, fetchPolicy: 'no-cache' })
       .pipe(map((result: any) => ({
@@ -36,13 +36,13 @@ export class PostService {
 
   fetchPost(id: string): Observable<Post> {
     return this.apollo
-      .watchQuery({ query: POST_QUERY, variables: { id }, fetchPolicy: 'no-cache' })
-      .valueChanges.pipe(map((result: any) => result.data.post));
+      .query({ query: POST_QUERY, variables: { id: +id }, fetchPolicy: 'no-cache' })
+      .pipe(map((result: any) => result.data.post));
   }
 
-  fetchPostByName(name: string, noUpdate = false): Observable<any> {
+  fetchPostByName(name: string | null, noUpdate = false): Observable<any> {
     return this.apollo
-      .query({ query: POST_BY_NAME_QUERY, variables: { name,  noUpdate}, fetchPolicy: 'no-cache' })
+      .query({ query: POST_BY_NAME_QUERY, variables: { name, noUpdate }, fetchPolicy: 'no-cache' })
       .pipe(map((result: any) => ({
         post: result.data.postByName,
         likes: result.data.likes,
@@ -59,11 +59,11 @@ export class PostService {
       .pipe(map((result: any) => result.data.updatePost.post));
   }
 
-  createPost(post: Post, me: User) {
+  createPost(post: Post, me: User | undefined) {
     const banner = post.banner && post.banner.id;
     const tags = post.tags.map(tag => tag.id);
     return this.apollo
-      .mutate({ mutation: POST_CREATE_MUTATION, variables: { ...post, author: me.id, banner, tags } })
+      .mutate({ mutation: POST_CREATE_MUTATION, variables: { ...post, author: me?.id, banner, tags } })
       .pipe(map((result: any) => result.data.createPost.post));
   }
 
@@ -72,13 +72,13 @@ export class PostService {
       .pipe(map((result: any) => result.data.similarPosts));
   }
 
-  likeArticle(userId, postId) {
+  likeArticle(userId: string, postId: string) {
     return this.apollo
       .mutate({ mutation: LIKE_CREATE_MUTATION, variables: { user: userId, post: postId, type: 'like' } })
       .pipe(map((result: any) => result.data.createOpinion.opinion));
   }
 
-  removeLikeArticle(postId) {
+  removeLikeArticle(postId: string) {
     return this.apollo
       .mutate({ mutation: LIKE_REMOVE_MUTATION, variables: { id: postId } })
       .pipe(map((result: any) => result.data.deleteOpinion.opinion));

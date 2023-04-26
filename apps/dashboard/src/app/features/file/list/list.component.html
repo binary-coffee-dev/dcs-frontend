@@ -36,7 +36,7 @@
             [ngClass]='{"cell-even": i % 2 === 0, "cell-odd": i % 2 === 1}'>
           <td>
             <img class='file-image'
-                 [src]='normalizeUrl(file?.url)'
+                 [src]='normalizeUrl(file?.url || "")'
                  [alt]='file.name'>
           </td>
           <td>
@@ -48,7 +48,7 @@
                     matTooltip='Copiar Url'
                     [matTooltipPosition]="'above'"
                     ngxClipboard
-                    [cbContent]='normalizeUrl(file?.url)'>
+                    [cbContent]='normalizeUrl(file?.url || "")'>
               <i class='fa fa-copy'></i>
             </button>
             <button mat-button

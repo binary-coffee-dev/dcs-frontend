@@ -26,10 +26,10 @@ export interface UserView {
 @Injectable()
 export class UserViewResolver implements Resolve<UserView> {
 
-  user: User;
-  posts: Post[];
-  count: number;
-  commentsCount: number;
+  user: User = {} as unknown as User;
+  posts: Post[] = [];
+  count: number = 0;
+  commentsCount: number = 0;
 
   constructor(private store: Store) {
   }

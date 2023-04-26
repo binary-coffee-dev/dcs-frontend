@@ -9,7 +9,7 @@ export const CREATE_COMMENT_MUTATION = gql`
             comment {
                 id
                 body
-                publishedAt
+                published_at
                 name
                 user {
                     username

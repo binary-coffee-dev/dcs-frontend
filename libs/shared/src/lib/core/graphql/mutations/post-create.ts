@@ -19,7 +19,7 @@ export const POST_CREATE_MUTATION = gql`
                     banner: $banner,
                     author: $author,
                     tags: $tags,
-                    publishedAt: $publishedAt
+                    published_at: $publishedAt
                 }
             }
         ){

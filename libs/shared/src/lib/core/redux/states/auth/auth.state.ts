@@ -32,7 +32,7 @@ export class AuthState {
   }
 
   @Selector()
-  static me(state: AuthStateModel): User {
+  static me(state: AuthStateModel): User | undefined {
     return state.me;
   }
 
@@ -42,12 +42,12 @@ export class AuthState {
   }
 
   @Selector()
-  static role(state: AuthStateModel): RoleEnum {
+  static role(state: AuthStateModel): RoleEnum | undefined {
     return state.me && state.me.role && state.me.role.type;
   }
 
   @Selector()
-  static authError(state: AuthStateModel): AuthError {
+  static authError(state: AuthStateModel): AuthError | undefined {
     return state.error;
   }
 
@@ -57,7 +57,7 @@ export class AuthState {
   @Action(LoginAction)
   loginAction(ctx: StateContext<AuthStateModel>, action: LoginAction) {
     return this.authService.login(action.identifier, action.password).pipe(
-      tap((authData: LoginResponseModel) => ctx.patchState({token: authData.jwt, error: null})),
+      tap((authData: LoginResponseModel) => ctx.patchState({token: authData.jwt, error: undefined})),
       catchError(() => {
         ctx.patchState({
           error: {id: new Date().getTime(), title: 'Invalid credentials'} as AuthError
@@ -71,7 +71,7 @@ export class AuthState {
   loginWithProviderAction(ctx: StateContext<AuthStateModel>, action: LoginWithProviderAction) {
     return this.authService.loginWithProvider(action.provider, action.code).pipe(
       map((jwt: string) => {
-        ctx.patchState({token: jwt, error: null});
+        ctx.patchState({token: jwt, error: undefined});
         return (jwt || '') !== '';
       }),
       catchError(() => {
@@ -85,7 +85,7 @@ export class AuthState {
 
   @Action(LogoutAction)
   logoutAction(ctx: StateContext<AuthStateModel>) {
-    ctx.patchState({token: '', me: {} as User, error: null});
+    ctx.patchState({token: '', me: {} as User, error: undefined});
   }
 
   @Action(AuthErrorAction)
@@ -101,6 +101,7 @@ export class AuthState {
         take(1)
       );
     }
+    return of(false);
   }
 
   @Action(UpdateMeAction)

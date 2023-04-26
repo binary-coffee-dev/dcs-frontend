@@ -10,7 +10,8 @@ export class ResourceService {
     return url.replace(/([^:]\/)\/+/g, '$1');
   }
 
-  addApiUrl(url: string) {
+  addApiUrl(url: string | undefined) {
+    // url = url || '';
     return this.removeExtraSlashesFromUrl(`${environment.apiUrl}${url}`);
   }
 }

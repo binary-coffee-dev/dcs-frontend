@@ -7,7 +7,7 @@ Here you can find everything you need to know about the tests in the application
 ## Running unit tests
 
 ```
-npm test
+jest --coverage
 ```
 
 ## Current test setup

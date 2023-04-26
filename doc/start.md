@@ -18,10 +18,10 @@ After the dependencies where correctly installed, you can continue with the step
 
 ```
 // development
-npm start
+nx run blog:serve --watch --poll=2000 --port=4200 --host=0.0.0.0 --disable-host-check
 
 // production
-npm run serve:ssr
+node dist/apps/server/main
 ```
 
 > NOTE: For production the project need to be built first
@@ -29,7 +29,7 @@ npm run serve:ssr
 **Dashboard**
 
 ```
-npm run start:admin
+nx run dashboard:serve --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check
 ```
 
 # Start project with docker
@@ -37,11 +37,19 @@ npm run start:admin
 **Blog**
 
 ```
-docker-compose up -d
+# prod
+PORT_FRONTEND=4200 ./docker/deploy.sh blog-frontend-prod docker/docker-compose.yml
+
+# dev
+ENVIRONMENT=dev PORT_FRONTEND=4200 ./docker/deploy.sh blog-frontend-dev docker/docker-compose.yml
 ```
 
 **Dashboard**
 
 ```
-docker-compose -f docker-compose.admin.yml up -d
+# prod
+PORT_FRONTEND=4201 ./docker/deploy.sh blog-admin-prod docker/docker-compose.admin.yml
+
+#dev
+ENVIRONMENT=dev PORT_FRONTEND=4201 ./docker/deploy.sh blog-admin-dev docker/docker-compose.admin.yml
 ```

@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import {
   UrlUtilsService,
@@ -14,7 +14,7 @@ import {
 interface UserData {
   type: 'link' | 'button' | 'data';
   icon: string;
-  link: string;
+  link?: string;
   text: string;
   action: Function;
 }
@@ -33,8 +33,8 @@ export class UserViewComponent implements OnInit {
 
   userData: UserData[] = [];
 
-  firstPage: Observable<boolean>;
-  lastPage: Observable<boolean>;
+  firstPage: Observable<boolean> = of(true);
+  lastPage: Observable<boolean> = of(true);
 
   constructor(
     private store: Store,
@@ -47,10 +47,10 @@ export class UserViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.route.snapshot.data.userInfo.user;
-    this.posts = this.route.snapshot.data.userInfo.posts;
-    this.count = this.route.snapshot.data.userInfo.count;
-    this.commentsCount = this.route.snapshot.data.userInfo.commentsCount;
+    this.user = this.route.snapshot.data['userInfo'].user;
+    this.posts = this.route.snapshot.data['userInfo'].posts;
+    this.count = this.route.snapshot.data['userInfo'].count;
+    this.commentsCount = this.route.snapshot.data['userInfo'].commentsCount;
 
     this.store.select(PostState.posts).subscribe((posts) => this.posts = posts || this.posts);
     this.firstPage = this.store.select(PostState.firstPage);
@@ -76,10 +76,9 @@ export class UserViewComponent implements OnInit {
       action: this.copyRSSToClipboard.bind(this),
       text: 'RSS'
     } as UserData);
-    console.log(this.userData);
   }
 
-  getUserAvatar(user) {
+  getUserAvatar(user: User) {
     return this.url.getUserImage(user);
   }
 

@@ -5,14 +5,14 @@ export interface Environment {
   graphqlUrl: string;
   podcastApiUrl: string;
   siteUrl: string;
-  siteDashboardUrl?: string;
+  siteDashboardUrl: string;
   production: boolean;
   local?: boolean;
   githubClientId?: string;
   googleAnalyticsId?: string;
   postPageSize?: number;
   isDashboard?: boolean;
-  socials: {
+  socials?: {
     telegram: string;
     github: string;
     facebook: string;
