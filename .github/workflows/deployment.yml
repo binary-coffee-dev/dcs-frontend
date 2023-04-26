@@ -189,7 +189,7 @@ jobs:
       - name: Deploy project with docker in hosting
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_DASHBOARD }} ./docker/deploy.sh blog-admin-prod docker/docker-compose.admin.yml
+          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_DASHBOARD }} ./docker/deploy.sh dashboard-prod docker/docker-compose.admin.yml
           host: ${{ secrets.PROD__REMOTE_HOST }}
           username: ${{ secrets.PROD__REMOTE_USER }}
           privateKey: ${{ secrets.PROD__SERVER_SSH_KEY}}
@@ -219,7 +219,7 @@ jobs:
       - name: Deploy project with docker in hosting
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_BLOG }} ./docker/deploy.sh blog-frontend-prod docker/docker-compose.yml
+          command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_BLOG }} ./docker/deploy.sh frontend-prod docker/docker-compose.yml
           host: ${{ secrets.PROD__REMOTE_HOST }}
           username: ${{ secrets.PROD__REMOTE_USER }}
           privateKey: ${{ secrets.PROD__SERVER_SSH_KEY}}
