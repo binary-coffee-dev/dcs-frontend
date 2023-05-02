@@ -1,36 +1,54 @@
 import { gql } from 'apollo-angular';
 
 export const POSTS_QUERY = gql`
-    query pageQuery($limit: Int!, $start: Int!, $where: JSON!, $sort: String!) {
-        postsConnection(sort: $sort, limit: $limit, start: $start, where: $where){
-            values {
+    query ($limit: Int!, $start: Int!, $filters: PostFiltersInput!, $sort: [String]){
+        posts(filters: $filters, pagination: {limit: $limit, start: $start}, sort: $sort, publicationState: LIVE) {
+            data {
                 id
-                name
-                title
-                enable
-                body
-                comments
-                published_at
-                views
-                banner {
+                attributes {
+                    title
                     name
-                    url
-                }
-                author {
-                    id
-                    username
-                    email
-                    page
-                    avatarUrl
-                }
-                tags{
-                    name
+                    body
+                    comments
+                    likes
+                    views
+                    createdAt
+                    updatedAt
+                    publishedAt
+                    enable
+                    banner {
+                        data {
+                            id
+                            attributes {
+                                url
+                            }
+                        }
+                    }
+                    author {
+                        data {
+                            id
+                            attributes {
+                                username
+                                email
+                                page
+                            }
+                        }
+                    }
+                    tags {
+                        data {
+                            id
+                            attributes {
+                                name
+                            }
+                        }
+                    }
                 }
             }
-            aggregate {
-                count
+            meta {
+                pagination {
+                    total
+                }
             }
         }
-        countPosts(where: $where)
     }
 `;

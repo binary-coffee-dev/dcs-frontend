@@ -23,7 +23,8 @@ export class PostService {
   }
 
   fetchPosts(limit: number, start = 0, where = {}): Observable<PostConnection> {
-    const sort = !!this.env.isDashboard ? 'created_at:DESC' : 'published_at:DESC';
+    const sort = [!!this.env.isDashboard ? 'created_at:desc' : 'published_at:desc'];
+    console.log(where);
     return this.apollo
       .query({ query: POSTS_QUERY, variables: { limit, start, where, sort }, fetchPolicy: 'no-cache' })
       .pipe(map((result: any) => ({
