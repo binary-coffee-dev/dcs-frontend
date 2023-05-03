@@ -5,8 +5,10 @@ export const TOP_POPULAR_USERS_QUERY = gql`
     topPopularUsers {
       users {
         id
-        username
-        avatarUrl
+        attributes {
+          username
+          avatarUrl
+        }
       }
       values
     }

@@ -5,8 +5,10 @@ export const TOP_ACTIVE_USERS_QUERY = gql`
     topActiveUsers {
       users {
         id
-        username
-        avatarUrl
+        attributes {
+          username
+          avatarUrl
+        }
       }
       values
     }

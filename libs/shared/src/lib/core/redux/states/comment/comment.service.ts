@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { Comment } from '../../models';
@@ -31,7 +31,10 @@ export class CommentService {
   recentComments() {
     return this.apollo
       .query({query: RECENT_COMMENTS_QUERY, variables: {limit: 8}})
-      .pipe(map((result: any) => result.data.recentComments));
+      .pipe(map((result: any) => {
+        console.log(result);
+        return result.data.recentComments
+      }));
   }
 
   removeComment(commentId: string): Observable<Comment> {

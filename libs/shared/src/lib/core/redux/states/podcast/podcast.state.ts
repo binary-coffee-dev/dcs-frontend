@@ -32,7 +32,9 @@ export class PodcastState {
   @Action(FetchPodcastAction)
   public fetchPodcast(ctx: StateContext<PodcastStateModel>, action: FetchPodcastAction) {
     return this.podcastService.fetchPodcasts(action.identifier).pipe(
-      tap((podcast: PodcastModel) => ctx.patchState({ episodes: podcast.episodes.reverse().slice(0, Math.min(4, podcast.episodes.length)) })),
+      tap((podcast: PodcastModel) => {
+        ctx.patchState({ episodes: podcast.episodes.reverse().slice(0, Math.min(4, podcast.episodes.length)) })
+      }),
       catchError((err) => {
         console.error(err);
         return of(true);
