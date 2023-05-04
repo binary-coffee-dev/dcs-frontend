@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Router } from '@angular/router';
 
-import {Store} from '@ngxs/store';
-import {mergeMap, Observable, of} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Store } from '@ngxs/store';
+import { mergeMap, Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import {AuthState} from '../redux/states';
-import {LogoutAction} from '../redux/states/auth';
+import { AuthState } from '../redux/states';
+import { LogoutAction } from '../redux/states/auth';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
   keysReplacement = [
     ['published_at', 'publishedAt'],
     ['created_at', 'createdAt'],
-    ['updated_at', 'updatedAt'],
+    ['updated_at', 'updatedAt'],9
   ];
 
   constructor(private store: Store, private router: Router) {
@@ -25,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
     let authReq = req;
     const token = this.store.selectSnapshot(AuthState.token);
     if (token !== '' && !req.headers.has('no_token')) {
-      authReq = req.clone({headers: req.headers.set('Authorization', `Bearer ${token}`)});
+      authReq = req.clone({ headers: req.headers.set('Authorization', `Bearer ${token}`) });
     }
     return next.handle(authReq).pipe(mergeMap((res: any) => {
       if (res.body && res.body.errors &&
@@ -37,7 +37,8 @@ export class AuthInterceptor implements HttpInterceptor {
         }));
       }
       this.replaceDatesKeysInResponse(res.body);
-      this.formatResponseObjects(res.body);
+      res.body = this.formatResponseObjects(res.body);
+      console.log(res.body);
       return of(res);
     }));
   }
@@ -60,34 +61,29 @@ export class AuthInterceptor implements HttpInterceptor {
   formatResponseObjects(obj: any, parent: any = null, key: any | string = null) {
     if (!obj || typeof obj === 'boolean' || typeof obj === 'number' ||
       typeof obj === 'string' || typeof obj === 'undefined' || typeof obj === 'function') {
-      return;
+      return obj;
     }
     if (obj.data && Array.isArray(obj.data)) {
-      obj.data.filter((d: any) => Boolean(d.id || d.attributes))
-        .forEach((d: any) => {
-          this.updateResponseData(d, d.id, d.attributes);
-          delete d.attributes;
-        });
+      const newList = obj.data.map((d: any) => ({ ...d.attributes, id: d.id }));
       if (parent && key) {
         if (obj.meta) {
           parent[`meta_${key}`] = obj.meta;
         }
-        parent[key] = obj.data;
-        delete parent[key].data;
       }
+      obj = newList;
     } else if (obj.data && (obj.data.id || obj.data.attributes)) {
-      this.updateResponseData(obj, obj.data.id, obj.data.attributes);
-      delete obj.data;
+      if (obj.data.id) {
+        obj = { ...obj, id: obj.data.id };
+      }
+      if (obj.data.attributes) {
+        obj = { ...obj, ...obj.data.attributes };
+      }
+      obj.data = null;
+      // delete obj.data;
     }
-    Object.keys(obj).forEach(k => this.formatResponseObjects(obj[k], obj, k));
-  }
-
-  updateResponseData(obj: any, id: any, attributes: any) {
-    if (id) {
-      obj.id = id;
+    for (const k of Object.keys(obj)) {
+      obj[k] = this.formatResponseObjects(obj[k], obj, k);
     }
-    if (attributes) {
-      Object.keys(attributes).forEach(k => obj[k] = attributes[k]);
-    }
+    return obj;
   }
 }
