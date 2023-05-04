@@ -17,7 +17,6 @@ export const COMMENTS_QUERY = gql`
         attributes {
           body
           name
-          publishedAt
           user {
             data {
               id

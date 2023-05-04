@@ -17,9 +17,7 @@ export class CommentService {
   fetchComments(postId: string): Observable<Comment[]> {
     return this.apollo
       .query({query: COMMENTS_QUERY, variables: {postId}, fetchPolicy: 'no-cache'})
-      .pipe(map((result: any) => {
-        return result.data.commentsConnection.values;
-      }));
+      .pipe(map((result: any) => result.data.comments));
   }
 
   createComment(comment: Comment) {
@@ -31,10 +29,7 @@ export class CommentService {
   recentComments() {
     return this.apollo
       .query({query: RECENT_COMMENTS_QUERY, variables: {limit: 8}})
-      .pipe(map((result: any) => {
-        console.log(result);
-        return result.data.recentComments
-      }));
+      .pipe(map((result: any) => result.data.recentComments));
   }
 
   removeComment(commentId: string): Observable<Comment> {

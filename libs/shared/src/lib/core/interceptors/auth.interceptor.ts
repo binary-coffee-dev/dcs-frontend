@@ -36,27 +36,26 @@ export class AuthInterceptor implements HttpInterceptor {
           return res;
         }));
       }
-      this.replaceDatesKeysInResponse(res.body);
+      // this.replaceDatesKeysInResponse(res.body);
       res.body = this.formatResponseObjects(res.body);
-      console.log(res.body);
       return of(res);
     }));
   }
 
-  replaceDatesKeysInResponse(res: any) {
-    if (!res || typeof res === 'boolean' || typeof res === 'number' ||
-      typeof res === 'string' || typeof res === 'undefined' || typeof res === 'function') {
-      return;
-    }
-    for (let keys of this.keysReplacement) {
-      if (res[keys[0]] !== undefined) {
-        res[keys[1]] = res[keys[0]];
-        delete res[keys[0]];
-      }
-    }
-    Object.keys(res)
-      .forEach(sub => this.replaceDatesKeysInResponse(res[sub]));
-  }
+  // replaceDatesKeysInResponse(res: any) {
+  //   if (!res || typeof res === 'boolean' || typeof res === 'number' ||
+  //     typeof res === 'string' || typeof res === 'undefined' || typeof res === 'function') {
+  //     return;
+  //   }
+  //   for (let keys of this.keysReplacement) {
+  //     if (res[keys[0]] !== undefined) {
+  //       res[keys[1]] = res[keys[0]];
+  //       delete res[keys[0]];
+  //     }
+  //   }
+  //   Object.keys(res)
+  //     .forEach(sub => this.replaceDatesKeysInResponse(res[sub]));
+  // }
 
   formatResponseObjects(obj: any, parent: any = null, key: any | string = null) {
     if (!obj || typeof obj === 'boolean' || typeof obj === 'number' ||
@@ -79,7 +78,6 @@ export class AuthInterceptor implements HttpInterceptor {
         obj = { ...obj, ...obj.data.attributes };
       }
       obj.data = null;
-      // delete obj.data;
     }
     for (const k of Object.keys(obj)) {
       obj[k] = this.formatResponseObjects(obj[k], obj, k);
