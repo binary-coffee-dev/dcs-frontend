@@ -37,7 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }));
       }
       // this.replaceDatesKeysInResponse(res.body);
-      res.body = this.formatResponseObjects(res.body);
+      // res.body = this.formatResponseObjects(res.body);
       return of(res);
     }));
   }
@@ -57,31 +57,5 @@ export class AuthInterceptor implements HttpInterceptor {
   //     .forEach(sub => this.replaceDatesKeysInResponse(res[sub]));
   // }
 
-  formatResponseObjects(obj: any, parent: any = null, key: any | string = null) {
-    if (!obj || typeof obj === 'boolean' || typeof obj === 'number' ||
-      typeof obj === 'string' || typeof obj === 'undefined' || typeof obj === 'function') {
-      return obj;
-    }
-    if (obj.data && Array.isArray(obj.data)) {
-      const newList = obj.data.map((d: any) => ({ ...d.attributes, id: d.id }));
-      if (parent && key) {
-        if (obj.meta) {
-          parent[`meta_${key}`] = obj.meta;
-        }
-      }
-      obj = newList;
-    } else if (obj.data && (obj.data.id || obj.data.attributes)) {
-      if (obj.data.id) {
-        obj = { ...obj, id: obj.data.id };
-      }
-      if (obj.data.attributes) {
-        obj = { ...obj, ...obj.data.attributes };
-      }
-      obj.data = null;
-    }
-    for (const k of Object.keys(obj)) {
-      obj[k] = this.formatResponseObjects(obj[k], obj, k);
-    }
-    return obj;
-  }
+
 }

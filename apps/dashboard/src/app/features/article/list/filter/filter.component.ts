@@ -47,11 +47,11 @@ export class FilterComponent implements OnInit, OnDestroy {
       this.currentFilter = this.filterForm.controls['filter'].value;
       this.usersFilter = this.filterForm.controls['users'].value;
 
-      const author = this.usersFilter === 'me' ? this.store.selectSnapshot(AuthState.me)?.id : undefined;
+      const author = this.usersFilter === 'me' ? {id: {eq: this.store.selectSnapshot(AuthState.me)?.id}} : undefined;
       const filterStr = this.currentFilter || '';
       const filter = {
         author,
-        title: filterStr
+        title: {contains: filterStr}
       } as Where;
       this.store.dispatch(new SetFiltersAction(filter))
         .pipe(takeUntil(this._unsubscribe))

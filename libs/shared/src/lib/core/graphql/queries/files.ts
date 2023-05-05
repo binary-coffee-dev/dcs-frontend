@@ -1,21 +1,26 @@
-import { gql } from 'apollo-angular';
+import {gql} from 'apollo-angular';
 
 export const FILES_QUERY = gql`
-    query ($limit: Int!, $start: Int!, $where: JSON) {
-      imagesConnection(sort: "created_at:DESC",limit: $limit, start: $start, where: $where){
-        values {
-          id
+  query ($limit: Int!, $start: Int!, $filters: ImageFiltersInput) {
+    images(sort: ["createdAt:desc"], pagination: {limit: $limit, start: $start}, filters: $filters){
+      data {
+        id
+        attributes {
           image {
-            id
-            name
-            url
-            mime
+            data {
+              attributes {
+                url
+                name
+              }
+            }
           }
         }
-        aggregate {
-          count
-          totalCount
+      }
+      meta {
+        pagination {
+          total
         }
       }
     }
+  }
 `;

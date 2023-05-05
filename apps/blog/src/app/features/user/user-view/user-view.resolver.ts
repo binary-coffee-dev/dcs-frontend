@@ -39,7 +39,7 @@ export class UserViewResolver implements Resolve<UserView> {
       .pipe(
         tap(() => this.user = this.store.selectSnapshot(UserInfoState.user)),
         mergeMap(() => this.store.dispatch(new SetFiltersAction({
-          author: {id: this.user.id},
+          author: {id: {eq: this.user.id}},
           enable: {eq: true}
         } as Where))),
         mergeMap(() => this.store.dispatch(new FetchPostsAction())),

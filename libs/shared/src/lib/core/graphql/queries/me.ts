@@ -2,13 +2,21 @@ import { gql } from 'apollo-angular';
 
 export const ME_QUERY = gql`
     query{
-        myData{
+        myData {
             id
             username
             email
-            page
             avatarUrl
-            role { name type }
+            confirmed
+            blocked
+            role {
+                name
+                type
+            }
+            page
+            avatar {
+                url
+            }
         }
     }
 `;

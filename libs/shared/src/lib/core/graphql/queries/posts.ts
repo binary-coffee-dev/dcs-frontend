@@ -31,6 +31,7 @@ export const POSTS_QUERY = gql`
                 username
                 email
                 page
+                avatarUrl
               }
             }
           }
