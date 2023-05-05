@@ -72,6 +72,7 @@ export class CommentState {
   fetchCommentsAction(ctx: StateContext<CommentStateModel>, action: FetchCommentsAction) {
     return this.commentService.fetchComments(action.postId).pipe(
       take(1),
+      tap(a => console.log(a)),
       tap(comments => ctx.patchState({comments}))
     );
   }
