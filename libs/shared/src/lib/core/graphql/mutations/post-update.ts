@@ -9,23 +9,16 @@ export const POST_UPDATE_MUTATION = gql`
         $banner: ID
         $tags: [ID]
         $publishedAt: DateTime
-    ){
-        updatePost(
-            input: {
-                data: {
-                    title: $title,
-                    body: $body,
-                    enable: $enable,
-                    banner: $banner,
-                    tags: $tags,
-                    published_at: $publishedAt
-                },
-                where: {
-                    id: $id
-                }
-            }
-        ){
-            post {
+    ) {
+        updatePost(id: $id, data: {
+            publishedAt: $publishedAt
+            title: $title
+            body: $body
+            enable: $enable
+            banner: $banner
+            tags: $tags
+        }) {
+            data {
                 id
             }
         }

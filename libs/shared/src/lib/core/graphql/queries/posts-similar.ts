@@ -1,17 +1,35 @@
 import { gql } from 'apollo-angular';
 
 export const SIMILAR_POSTS_QUERY = gql`
-    query similarPosts($id: ID!, $limit: Int){
-      similarPosts(id: $id, limit: $limit){
-        title
-        name
-        banner {
-          url
+    query ($id: ID!, $limit: Int) {
+        similarPosts(id: $id, limit: $limit) {
+            title
+            body
+            banner {
+                data{
+                    attributes {
+                        url
+                    }
+                }
+            }
+            tags {
+                data {
+                    id
+                    attributes {
+                        name
+                    }
+                }
+            }
+            enable
+            name
+            views
+            readingTime
+            comments
+            likes
+            createdAt
+            updatedAt
+            publishedAt
         }
-        published_at
-        id
-        views
-        comments
-      }
     }
+
 `;

@@ -39,7 +39,7 @@ export class FilterComponent implements OnInit, OnDestroy {
     this.filter = this.route.snapshot.queryParamMap.get('filter') || '';
     this.filterForm.controls['filter'].setValue(this.filter);
 
-    this.dispatchNewFilter({title: this.filter});
+    this.dispatchNewFilter({title: {contains: this.filter}});
   }
 
   ngOnDestroy(): void {
@@ -58,7 +58,7 @@ export class FilterComponent implements OnInit, OnDestroy {
     if (this.checkIfFilterChange()) {
       this.filter = this.filterForm.controls['filter'].value;
 
-      this.dispatchNewFilter({title: this.filter});
+      this.dispatchNewFilter({title: {contains: this.filter}});
     }
   }
 

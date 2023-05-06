@@ -99,6 +99,6 @@ export class UserViewComponent implements OnInit {
   }
 
   getUserRSSLink() {
-    return `${this.environment.apiUrl}posts/feed/${this.user.username}/json`;
+    return `${this.environment.apiUrl}/api/posts/feed/${this.user.username}/json`;
   }
 }

@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
   keysReplacement = [
     ['published_at', 'publishedAt'],
     ['created_at', 'createdAt'],
-    ['updated_at', 'updatedAt'],
+    ['updated_at', 'updatedAt'],9
   ];
 
   constructor(private store: Store, private router: Router) {
@@ -25,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
     let authReq = req;
     const token = this.store.selectSnapshot(AuthState.token);
     if (token !== '' && !req.headers.has('no_token')) {
-      authReq = req.clone({headers: req.headers.set('Authorization', `Bearer ${token}`)});
+      authReq = req.clone({ headers: req.headers.set('Authorization', `Bearer ${token}`) });
     }
     return next.handle(authReq).pipe(mergeMap((res: any) => {
       if (res.body && res.body.errors &&
@@ -36,22 +36,26 @@ export class AuthInterceptor implements HttpInterceptor {
           return res;
         }));
       }
-      this.replaceDatesKeysInResponse(res.body);
+      // this.replaceDatesKeysInResponse(res.body);
+      // res.body = this.formatResponseObjects(res.body);
       return of(res);
     }));
   }
 
-  replaceDatesKeysInResponse(res: any) {
-    if (!res || typeof res === 'boolean' || typeof res === 'number' ||
-      typeof res === 'string' || typeof res === 'undefined' || typeof res === 'function'){
-      return;
-    }
-    for (let keys of this.keysReplacement) {
-      if (res[keys[0]] !== undefined) {
-        res[keys[1]] = res[keys[0]];
-      }
-    }
-    Object.keys(res)
-      .forEach(sub => this.replaceDatesKeysInResponse(res[sub]));
-  }
+  // replaceDatesKeysInResponse(res: any) {
+  //   if (!res || typeof res === 'boolean' || typeof res === 'number' ||
+  //     typeof res === 'string' || typeof res === 'undefined' || typeof res === 'function') {
+  //     return;
+  //   }
+  //   for (let keys of this.keysReplacement) {
+  //     if (res[keys[0]] !== undefined) {
+  //       res[keys[1]] = res[keys[0]];
+  //       delete res[keys[0]];
+  //     }
+  //   }
+  //   Object.keys(res)
+  //     .forEach(sub => this.replaceDatesKeysInResponse(res[sub]));
+  // }
+
+
 }

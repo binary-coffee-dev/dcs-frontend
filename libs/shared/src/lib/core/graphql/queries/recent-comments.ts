@@ -2,17 +2,31 @@ import { gql } from 'apollo-angular';
 
 export const RECENT_COMMENTS_QUERY = gql`
   query ($limit: Int){
-    recentComments (limit: $limit){
-      id
+    recentComments (limit: $limit) {
       body
-      published_at
-      post {
-        name
-      }
+      email
+      name
       user {
-        username
-        avatarUrl
+        data {
+          id
+          attributes {
+            username
+            avatarUrl
+          }
+        }
       }
+      post {
+        data {
+          id
+          attributes {
+            title
+            name
+            body
+          }
+        }
+      }
+      createdAt
+      updatedAt
     }
   }
 `;
