@@ -9,7 +9,7 @@ import { SubscriptionComponent } from './subscription.component';
 class StoreStub {
 }
 
-xdescribe('SubscriptionComponent', () => {
+describe('SubscriptionComponent', () => {
   let component: SubscriptionComponent;
   let fixture: ComponentFixture<SubscriptionComponent>;
   SubscriptionComponent.prototype.ngOnInit = jest.fn();
@@ -18,8 +18,8 @@ xdescribe('SubscriptionComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [SubscriptionComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [{ provide: Store, userClass: StoreStub }]
+      providers: [{ provide: Store, useClass: StoreStub }],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
