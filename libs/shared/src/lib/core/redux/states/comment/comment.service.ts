@@ -24,7 +24,7 @@ export class CommentService {
   createComment(comment: Comment) {
     return this.apollo
       .mutate({ mutation: CREATE_COMMENT_MUTATION, variables: { ...comment } })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.comment));
+      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.createComment));
   }
 
   recentComments() {
@@ -36,12 +36,12 @@ export class CommentService {
   removeComment(commentId: string): Observable<Comment> {
     return this.apollo
       .mutate({ mutation: REMOVE_COMMENT_MUTATION, variables: { id: commentId } })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.deleteComment.comment));
+      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.deleteComment));
   }
 
   editComment(commentId: string, body: string): Observable<Comment> {
     return this.apollo
       .mutate({ mutation: EDIT_COMMENT_MUTATION, variables: { id: commentId, body } })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.updateComment.comment));
+      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.updateComment));
   }
 }
