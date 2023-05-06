@@ -51,7 +51,8 @@ export class FilterComponent implements OnInit, OnDestroy {
       const filterStr = this.currentFilter || '';
       const filter = {
         author,
-        title: {contains: filterStr}
+        title: {contains: filterStr},
+        state: 'PREVIEW'
       } as Where;
       this.store.dispatch(new SetFiltersAction(filter))
         .pipe(takeUntil(this._unsubscribe))

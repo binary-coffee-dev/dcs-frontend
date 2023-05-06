@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { Post, PostConnection, User } from '../../models';
@@ -14,6 +14,7 @@ import {
 } from '../../../graphql/mutations';
 import { Environment, ENVIRONMENT } from '../../../models';
 import {UpdateResponseService} from "../../../services/update-response.service";
+import { Where } from '../pagination-base.class';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,14 @@ export class PostService {
     private responseService: UpdateResponseService) {
   }
 
-  fetchPosts(limit: number, start = 0, where = {}, state = 'LIVE'): Observable<PostConnection> {
+  fetchPosts(limit: number, start = 0, where: any = {}): Observable<PostConnection> {
     const sort = [!!this.env.isDashboard ? 'createdAt:desc' : 'publishedAt:desc'];
+    let state: any = 'LIVE';
+    where = {...where};
+    if (where.state) {
+      state = where.state;
+      delete where.state;
+    }
     return this.apollo
       .query({
         query: POSTS_QUERY,
@@ -64,7 +71,7 @@ export class PostService {
     const tags = post.tags.map(tag => tag.id);
     return this.apollo
       .mutate({ mutation: POST_UPDATE_MUTATION, variables: { ...post, banner, author, tags } })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.updatePost.post));
+      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.updatePost));
   }
 
   createPost(post: Post, me: User | undefined) {
@@ -72,7 +79,7 @@ export class PostService {
     const tags = post.tags.map(tag => tag.id);
     return this.apollo
       .mutate({ mutation: POST_CREATE_MUTATION, variables: { ...post, author: me?.id, banner, tags } })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.createPost.post));
+      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.createPost));
   }
 
   fetchSimilarPostsAction(id: string, limit = 10): Observable<Post[]> {

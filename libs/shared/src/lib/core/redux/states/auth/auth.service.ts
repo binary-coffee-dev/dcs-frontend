@@ -46,12 +46,12 @@ export class AuthService {
   updateMeAction(variables: {id: string, page: string}): Observable<User> {
     return this.apollo
       .mutate({mutation: UPDATE_PROFILE_MUTATION, variables})
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.updateUser.user));
+      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.updateUsersPermissionsUser));
   }
 
   updateMyAvatarAction(id: string, avatar: string): Observable<User> {
     return this.apollo
       .mutate({mutation: UPDATE_PROFILE_IMAGE_MUTATION, variables: {id, avatar}})
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.updateUser.user));
+      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.updateUsersPermissionsUser));
   }
 }

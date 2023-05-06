@@ -8,6 +8,7 @@ export const FILES_QUERY = gql`
         attributes {
           image {
             data {
+              id
               attributes {
                 url
                 name
