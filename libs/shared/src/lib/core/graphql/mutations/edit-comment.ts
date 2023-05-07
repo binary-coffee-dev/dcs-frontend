@@ -7,9 +7,22 @@ export const EDIT_COMMENT_MUTATION = gql`
         id
         attributes {
           body
+          name
           user {
             data {
               id
+              attributes {
+                username
+                avatarUrl
+                role {
+                  data {
+                    attributes {
+                      name
+                      type
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -17,3 +30,4 @@ export const EDIT_COMMENT_MUTATION = gql`
     }
   }
 `;
+
