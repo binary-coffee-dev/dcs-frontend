@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { Post, PostConnection, User } from '../../models';
@@ -55,13 +55,13 @@ export class PostService {
       .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.post));
   }
 
-  fetchPostByName(name: string | null, noUpdate = false): Observable<any> {
+  fetchPostByName(name: string | null, noUpdate = false, userId: string): Observable<any> {
     return this.apollo
-      .query({ query: POST_BY_NAME_QUERY, variables: { name, noUpdate }, fetchPolicy: 'no-cache' })
+      .query({ query: POST_BY_NAME_QUERY, variables: { name, noUpdate, userId }, fetchPolicy: 'no-cache' })
       .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => ({
         post: result.data.postByName,
-        likes: result.data.likes,
-        userLike: result.data.userLike
+        likes: result.data.likes.meta.pagination.total,
+        userLike: result.data.userLike.meta.pagination.total
       })));
   }
 

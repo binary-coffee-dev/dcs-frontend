@@ -8,6 +8,7 @@ export interface PostStateModel extends StateBase {
   newPostId?: string;
   likes: number;
   userLike: number;
+  userId: string;
 }
 
 export const initPostStateModel = () => {
@@ -21,6 +22,7 @@ export const initPostStateModel = () => {
     lastPage: false,
     similarPosts: [],
     likes: 0,
-    userLike: 0
+    userLike: 0,
+    userId: ''
   } as PostStateModel;
 };
