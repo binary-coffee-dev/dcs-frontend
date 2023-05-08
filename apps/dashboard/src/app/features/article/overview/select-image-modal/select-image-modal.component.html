@@ -1,27 +1,3 @@
-<!--<mat-card>
-  <mat-card-header>
-    <h4 class='card-title'>Select image</h4>
-  </mat-card-header>
-  <mat-card-content fxLayout='column'>
-    <div fxFlex='100'
-         fxLayout='row wrap'
-         fxLayoutAlign='center center'>
-      <div class='item'
-           *ngFor='let file of files'>
-        <img class='image-tile'
-             (click)='selectImage(file)'
-             [src]='normalizeUrl(file.url)'
-             alt=''>
-      </div>
-    </div>
-    <app-pagination (nextPageEvent)='nextPageEvent()'
-                    (previousPageEvent)='previousPageEvent()'
-                    (pageEvent)='selectPageEvent($event)'
-                    [numberOfPages]='numberOfPages'
-                    [currentPage]='currentPage'></app-pagination>
-  </mat-card-content>
-</mat-card>-->
-
 <div class='card-modal'
      fxLayout='column'>
   <div class='head'

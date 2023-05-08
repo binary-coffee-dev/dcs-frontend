@@ -74,7 +74,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
       this.store.select(PostState.post).pipe(takeUntil(this._unsubscribe)).subscribe(post => {
         if (post) {
           const newPost = { ...post };
-          if (newPost.banner) {
+          if (newPost.banner?.url) {
             newPost.banner = { ...newPost.banner };
             newPost.banner.url = this.url.normalizeImageUrl(newPost.banner.url);
           }
