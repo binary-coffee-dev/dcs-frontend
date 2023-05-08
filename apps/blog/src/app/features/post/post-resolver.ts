@@ -5,7 +5,14 @@ import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 
-import { FetchPostAction, FetchSimilarPostsAction, Post, PostState, RecentCommentAction } from '@dcs-libs/shared';
+import {
+  AuthState,
+  FetchPostAction,
+  FetchSimilarPostsAction,
+  Post,
+  PostState,
+  RecentCommentAction
+} from '@dcs-libs/shared';
 
 @Injectable({ providedIn: 'root' })
 export class PostResolver implements Resolve<Post> {
@@ -13,7 +20,8 @@ export class PostResolver implements Resolve<Post> {
   }
 
   resolve(route: ActivatedRouteSnapshot): Observable<Post> | Promise<Post> | Post {
-    return this.store.dispatch(new FetchPostAction(route.paramMap.get('id')))
+    const user = this.store.selectSnapshot(AuthState.me) || {id: ''};
+    return this.store.dispatch(new FetchPostAction(route.paramMap.get('id'), user.id))
       .pipe(
         mergeMap(() => this.store.dispatch(new RecentCommentAction())),
         mergeMap( () => {

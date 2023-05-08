@@ -91,6 +91,7 @@
           ],
           "buildOptimizer": false,
           "optimization": false,
+          "outputHashing": "all",
           "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,

@@ -13,5 +13,6 @@ export interface Post {
   enable: boolean;
   views: string;
   comments: number;
+  likes: number;
   tags: Tag[];
 }

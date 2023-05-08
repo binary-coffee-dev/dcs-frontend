@@ -1,32 +1,62 @@
 import { gql } from 'apollo-angular';
 
 export const POST_BY_NAME_QUERY = gql`
-  query fetchPost($name: String!, $noUpdate: Boolean) {
-    postByName(name: $name, noUpdate: $noUpdate) {
-      id
-      name
-      title
-      body
-      published_at
-      views
-      tags {
-        id
-        name
-      }
-      comments
-      banner { url }
-      author {
-        id
-        username
-        email
-        avatarUrl
-        page
-      }
-      tags{
-        name
-      }
+    query ($name: String!, $noUpdate: Boolean, $userId: ID!) {
+        postByName(name: $name, noUpdate: $noUpdate) {
+            data {
+                id
+                attributes {
+                    title
+                    body
+                    author {
+                        data {
+                            id
+                            attributes {
+                                username
+                                avatarUrl
+                            }
+                        }
+                    }
+                    banner {
+                        data {
+                            attributes {
+                                url
+                            }
+                        }
+                    }
+                    tags {
+                        data {
+                            id
+                            attributes {
+                                name
+                            }
+                        }
+                    }
+                    enable
+                    name
+                    views
+                    readingTime
+                    comments
+                    likes
+                    createdAt
+                    updatedAt
+                    publishedAt
+                }
+            }
+        }
+        likes:opinions(filters: {post: {name: {eq: $name}}, type: {eq: "like"}}) {
+            meta {
+                pagination {
+                    total
+                }
+            }
+        }
+        userLike:opinions(filters: {post: {name: {eq: $name}}, type: {eq: "like"}, user: {id: {eq: $userId}}}) {
+            meta {
+                pagination {
+                    total
+                }
+            }
+        }
     }
-    likes:countOpinions(where: {post: $name, type: "like"})
-    userLike:countOpinions(where: {post: $name, type: "like", user: "current"})
-  }
 `;

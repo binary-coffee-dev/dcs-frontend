@@ -1,21 +1,24 @@
 import { gql } from 'apollo-angular';
 
 export const UPDATE_PROFILE_MUTATION = gql`
-    mutation updateUser($id: ID!, $email: String, $page: String) {
-        updateUser(input: { where: {id: $id},data: { email: $email, page: $page } }) {
-            user {
+    mutation ($id: ID!, $email: String, $page: String) {
+        updateUsersPermissionsUser(id: $id, data: { email: $email, page: $page }) {
+            data {
                 id
-                username
-                email
-                confirmed
-                blocked
-                role {
-                    name
-                }
-                page
-                avatarUrl
-                avatar {
-                    url
+                attributes {
+                    username
+                    email
+                    confirmed
+                    blocked
+                    page
+                    avatarUrl
+                    avatar {
+                        data {
+                            attributes {
+                                url
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -23,21 +26,24 @@ export const UPDATE_PROFILE_MUTATION = gql`
 `;
 
 export const UPDATE_PROFILE_IMAGE_MUTATION = gql`
-    mutation updateUser($id: ID!, $avatar: ID) {
-        updateUser(input: { where: {id: $id},data: { avatar: $avatar } }) {
-            user {
+    mutation ($id: ID!, $avatar: ID) {
+        updateUsersPermissionsUser(id: $id, data: { avatar: $avatar }) {
+            data {
                 id
-                username
-                email
-                confirmed
-                blocked
-                role {
-                    name
-                }
-                page
-                avatarUrl
-                avatar {
-                    url
+                attributes {
+                    username
+                    email
+                    confirmed
+                    blocked
+                    page
+                    avatarUrl
+                    avatar {
+                        data {
+                            attributes {
+                                url
+                            }
+                        }
+                    }
                 }
             }
         }

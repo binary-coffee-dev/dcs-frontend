@@ -2,26 +2,39 @@ import { gql } from 'apollo-angular';
 
 export const COMMENTS_QUERY = gql`
   query ($postId: ID){
-    commentsConnection(
-      sort: "published_at:DESC"
-      limit: 100
-      start: 0
-      where: {post: $postId}
-    ){
-      values {
-        id
-        body
-        published_at
-        name
-        user {
-          id
-          username
-          avatarUrl
-          role { name type }
+    comments(
+      sort: "createdAt:desc"
+      pagination: { limit: 100, start: 0 }
+      filters: { post: { id: {eq: $postId} } }
+    ) {
+      meta {
+        pagination {
+          total
         }
       }
-      aggregate {
-        count
+      data {
+        id
+        attributes {
+          body
+          name
+          user {
+            data {
+              id
+              attributes {
+                username
+                avatarUrl
+                role {
+                  data {
+                    attributes {
+                      name
+                      type
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -39,7 +39,7 @@ export class ListComponent extends Permissions implements OnInit {
 
   ngOnInit() {
     const me = this.meUser();
-    this.store.dispatch(new SetFiltersAction({author: me?.id} as Where)).subscribe(() => {
+    this.store.dispatch(new SetFiltersAction({author: {id: {eq: me?.id}}, state: 'PREVIEW'} as Where)).subscribe(() => {
       this.store.dispatch(new FetchPostsAction());
     });
     this.store.select(PostState.posts).subscribe(posts => {

@@ -11,7 +11,7 @@ export class PostAction {
 export class FetchPostAction {
   static readonly type = '[Post] Fetch post by name';
 
-  constructor(public postName: string | null) {
+  constructor(public postName: string | null, public userId: string) {
   }
 }
 

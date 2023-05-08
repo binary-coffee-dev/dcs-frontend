@@ -1,36 +1,55 @@
 import { gql } from 'apollo-angular';
 
 export const POSTS_QUERY = gql`
-    query pageQuery($limit: Int!, $start: Int!, $where: JSON!, $sort: String!) {
-        postsConnection(sort: $sort, limit: $limit, start: $start, where: $where){
-            values {
-                id
+  query ($limit: Int!, $start: Int!, $filters: PostFiltersInput!, $sort: [String], $state: PublicationState!){
+    posts(filters: $filters, pagination: {limit: $limit, start: $start}, sort: $sort, publicationState: $state) {
+      data {
+        id
+        attributes {
+          title
+          name
+          body
+          comments
+          likes
+          views
+          createdAt
+          updatedAt
+          publishedAt
+          enable
+          banner {
+            data {
+              id
+              attributes {
+                url
+              }
+            }
+          }
+          author {
+            data {
+              id
+              attributes {
+                username
+                email
+                page
+                avatarUrl
+              }
+            }
+          }
+          tags {
+            data {
+              id
+              attributes {
                 name
-                title
-                enable
-                body
-                comments
-                published_at
-                views
-                banner {
-                    name
-                    url
-                }
-                author {
-                    id
-                    username
-                    email
-                    page
-                    avatarUrl
-                }
-                tags{
-                    name
-                }
+              }
             }
-            aggregate {
-                count
-            }
+          }
         }
-        countPosts(where: $where)
+      }
+      meta {
+        pagination {
+          total
+        }
+      }
     }
+  }
 `;

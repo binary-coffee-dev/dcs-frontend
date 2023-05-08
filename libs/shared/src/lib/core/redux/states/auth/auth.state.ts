@@ -107,14 +107,14 @@ export class AuthState {
   @Action(UpdateMeAction)
   updateMeAction(ctx: StateContext<AuthStateModel>, action: UpdateMeAction) {
     return this.authService.updateMeAction({id: action.id, page: action.page}).pipe(
-      tap((me: User) => ctx.patchState({me}))
+      tap(() => ctx.dispatch(new MeAction()))
     );
   }
 
   @Action(UpdateMyAvatarAction)
   updateMyAvatarAction(ctx: StateContext<AuthStateModel>, action: UpdateMyAvatarAction) {
     return this.authService.updateMyAvatarAction(action.id, action.avatar).pipe(
-      tap((me: User) => ctx.patchState({me}))
+      tap(() => ctx.dispatch(new MeAction()))
     );
   }
 }

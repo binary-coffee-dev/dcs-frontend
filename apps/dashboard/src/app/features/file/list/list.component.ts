@@ -69,7 +69,7 @@ export class ListComponent extends Permissions implements OnInit {
     if (me) {
       const permissionsByRole = this.rolePermissionMap.get(me.role.type) || [];
       if (permissionsByRole.findIndex(v => v === this.permissions().VIEW_ANY_IMAGE) === -1) {
-        where = { user: me.id.toString() };
+        where = {user: {id: {eq: me.id.toString()}}};
       }
     }
 
