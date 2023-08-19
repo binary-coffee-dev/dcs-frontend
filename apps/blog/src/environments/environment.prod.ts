@@ -5,7 +5,7 @@ export const environment = {
   graphqlUrl: 'https://api.binarycoffee.dev/graphql',
   siteUrl: 'https://binarycoffee.dev',
   siteDashboardUrl: 'https://binarycoffee.dev/dashboard',
-  googleAnalyticsId: 'UA-157555549-1',
+  googleAnalyticsId: 'G-BDLW87KL1C',
   production: true,
   postPageSize: 12,
   socials: {
