@@ -9,7 +9,7 @@ With the nginx setup, you can use all the functionalities without any problems i
 
 ```
 # cd ./local-nginx
-docker-compose up
+docker-compose up -d
 ```
 
 > NOTE: run this code from **local-nginx** folder
