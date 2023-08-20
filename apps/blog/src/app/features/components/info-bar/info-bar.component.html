@@ -1,67 +1,70 @@
-<div fxLayout='row'
+<div fxLayout='column'
      class='container'>
-  <div fxLayout='column'>
+  <app-subscribe></app-subscribe>
+  <div fxLayout='row'
+       class='container-info'>
+    <div fxLayout='column'>
     <span class='line-number'
           *ngFor='let line of lineNumbers'>{{ line }}</span>
-  </div>
-  <div class='reference-line'></div>
-  <div fxLayout='column'
-       fxFlex='100'
-       style='overflow: hidden'
-       class='code-container'>
+    </div>
+    <div class='reference-line'></div>
+    <div fxLayout='column'
+         fxFlex='100'
+         style='overflow: hidden'
+         class='code-container'>
 
-    <!--podcast list-->
-    <ng-container *ngIf='showPodcast'>
-      <span><span class='class'>class</span> Podcast_Espacio_Binario &#123;</span>
-      <ng-container *ngFor='let podcast of episodes'>
+      <!--podcast list-->
+      <ng-container *ngIf='showPodcast'>
+        <span><span class='class'>class</span> Podcast_Espacio_Binario &#123;</span>
+        <ng-container *ngFor='let podcast of episodes'>
+          <span>&#160;</span>
+          <a class='link t1'
+             [href]='podcast?.url'
+             target='blank'
+             fxLayout='column'>
+            <span class='comment'>// {{ moment.timeFromDate(toDate(podcast?.date)) }}</span>
+            <span>{{ podcast?.title }}</span>
+            <span class='comment'>// {{ moment.secondsToDuration(podcast.duration) }}</span>
+          </a>
+        </ng-container>
         <span>&#160;</span>
-        <a class='link t1'
-           [href]='podcast?.url'
-           target='blank'
-           fxLayout='column'>
-          <span class='comment'>// {{ moment.timeFromDate(toDate(podcast?.date)) }}</span>
-          <span>{{ podcast?.title }}</span>
-          <span class='comment'>// {{ moment.secondsToDuration(podcast.duration) }}</span>
-        </a>
+        <span>&#125;</span>
+        <span>&#160;</span>
+        <span>&#160;</span>
       </ng-container>
-      <span>&#160;</span>
-      <span>&#125;</span>
-      <span>&#160;</span>
-      <span>&#160;</span>
-    </ng-container>
 
-    <!--share in social medias-->
-    <ng-container *ngIf='showSocialMedias'>
-      <span><span class='class'>class</span> Compartir_Artículo &#123;</span>
-      <ng-container *ngFor='let link of shareLinks'>
+      <!--share in social medias-->
+      <ng-container *ngIf='showSocialMedias'>
+        <span><span class='class'>class</span> Compartir_Artículo &#123;</span>
+        <ng-container *ngFor='let link of shareLinks'>
+          <span>&#160;</span>
+          <a class='link t1'
+             [href]='link?.url'
+             target='blank'
+             fxLayout='column'>
+            <span class='comment'>// compartir</span>
+            <span><span class='var'>var</span> {{ link?.name }}&#59;</span>
+          </a>
+        </ng-container>
         <span>&#160;</span>
-        <a class='link t1'
-           [href]='link?.url'
-           target='blank'
-           fxLayout='column'>
-          <span class='comment'>// compartir</span>
-          <span><span class='var'>var</span> {{ link?.name }}&#59;</span>
-        </a>
+        <span>&#125;</span>
+        <span>&#160;</span>
+        <span>&#160;</span>
       </ng-container>
-      <span>&#160;</span>
-      <span>&#125;</span>
-      <span>&#160;</span>
-      <span>&#160;</span>
-    </ng-container>
 
-    <!--recent comments-->
-    <ng-container *ngIf='showRecentComments'>
-      <span><span class='class'>class</span> Opiniones_Recientes &#123;</span>
-      <ng-container *ngFor='let comment of comments'>
-        <span>&#160;</span>
-        <a [routerLink]="'/post/' + getPostName(comment?.post)"
-           [fragment]='comment?.id'
-           [title]='comment?.user?.username'
-           class='link t1'
-           fxLayout='column'>
-          <span class='comment'>// {{ moment.timeFromDate(comment?.publishedAt) }}</span>
-          <span class='comment-user'
-                fxLayout='row'>
+      <!--recent comments-->
+      <ng-container *ngIf='showRecentComments'>
+        <span><span class='class'>class</span> Opiniones_Recientes &#123;</span>
+        <ng-container *ngFor='let comment of comments'>
+          <span>&#160;</span>
+          <a [routerLink]="'/post/' + getPostName(comment?.post)"
+             [fragment]='comment?.id'
+             [title]='comment?.user?.username'
+             class='link t1'
+             fxLayout='column'>
+            <span class='comment'>// {{ moment.timeFromDate(comment?.publishedAt) }}</span>
+            <span class='comment-user'
+                  fxLayout='row'>
           <div class='comment-user-image'>
             <img
               [src]='url.getUserImage(comment?.user)'
@@ -69,11 +72,12 @@
           </div>
           &#160;&#160;"{{ comment?.user?.username }}"
         </span>
-          <span class='comment-body'>{{ comment?.body }}</span>
-        </a>
+            <span class='comment-body'>{{ comment?.body }}</span>
+          </a>
+        </ng-container>
+        <span>&#160;</span>
+        <span>&#125;</span>
       </ng-container>
-      <span>&#160;</span>
-      <span>&#125;</span>
-    </ng-container>
+    </div>
   </div>
 </div>
