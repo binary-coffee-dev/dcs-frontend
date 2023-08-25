@@ -11,7 +11,7 @@ import { SubscribeAction, SubscriptionState } from "@dcs-libs/shared";
   templateUrl: './subscribe.component.html',
   styleUrls: ['./subscribe.component.scss']
 })
-export class SubscribeComponent implements OnInit, OnDestroy {
+export class SubscribeComponent implements OnDestroy {
 
   _unsubscribe = new Subject();
 
@@ -24,10 +24,6 @@ export class SubscribeComponent implements OnInit, OnDestroy {
   });
 
   constructor(private store: Store) {
-  }
-
-  ngOnInit(): void {
-    console.log();
   }
 
   ngOnDestroy(): void {
@@ -45,7 +41,6 @@ export class SubscribeComponent implements OnInit, OnDestroy {
           if (subscription && !subscription.verified) {
             this.message =
               'La suscripción ha sido correctamente enviada, revise su email para verificarlo.';
-            this.subscriptionSent = true;
           } else if (subscription && subscription.verified) {
             this.subscriptionError =
               'El email ya se encuentra suscrito al sitio';

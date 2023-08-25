@@ -1,7 +1,6 @@
 <div class="container">
   <span>Subscribirse</span>
   <form [formGroup]="subscribeForm"
-        *ngIf="!subscriptionSent"
         (ngSubmit)="subscribe()">
     <div fxLayout="column"
          fxLayoutAlign="center">

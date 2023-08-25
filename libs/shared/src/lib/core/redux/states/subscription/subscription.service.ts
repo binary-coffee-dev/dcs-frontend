@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { Subscription } from '../../models';
-import { SUBSCRIBE_MUTATION, VERIFY_SUBSCRIPTION_MUTATION } from '../../../graphql/mutations';
+import { SUBSCRIBE_MUTATION, UNSUBSCRIBE_MUTATION, VERIFY_SUBSCRIPTION_MUTATION } from '../../../graphql/mutations';
 import {UpdateResponseService} from "../../../services/update-response.service";
 
 @Injectable({
@@ -23,6 +23,17 @@ export class SubscriptionService {
 
   subscribe(email: string): Observable<Subscription | undefined> {
     return this.apollo.mutate<{ subscribe: Subscription }>({ mutation: SUBSCRIBE_MUTATION, variables: { email }})
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((response) => response.data?.subscribe));
+      .pipe(
+        map(res => this.responseService.formatResponseObjects(res)),
+        map((response) => response.data?.subscribe)
+      );
+  }
+
+  unsubscribe(unsubscribeToken: string): Observable<Subscription | undefined> {
+    return this.apollo.mutate<{ subscribe: Subscription }>({ mutation: UNSUBSCRIBE_MUTATION, variables: { unsubscribeToken }})
+      .pipe(
+        map(res => this.responseService.formatResponseObjects(res)),
+        map((response) => response.data?.unsubscribe)
+      );
   }
 }

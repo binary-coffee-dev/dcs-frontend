@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
-import { SubscribeAction, VerifySubscriptionAction } from './subscription.action';
+import { SubscribeAction, UnsubscribeAction, VerifySubscriptionAction } from './subscription.action';
 import { initSubscriptionStateModel, SubscriptionStateModel } from './subscription-state.model';
 import { SubscriptionService } from './subscription.service';
 import { Subscription } from '../../models';
+import { of } from "rxjs";
 
 @State<SubscriptionStateModel>({
   name: 'subscription',
@@ -30,8 +31,20 @@ export class SubscriptionState {
   }
 
   @Action(SubscribeAction)
-  subscribeAction(ctx: StateContext<SubscriptionStateModel>, action: SubscribeAction) {
+  subscribeAction({patchState}: StateContext<SubscriptionStateModel>, action: SubscribeAction) {
     return this.subscriptionService.subscribe(action.email)
+      .pipe(
+        tap((subscription) => patchState({subscription})),
+        catchError(() => {
+          patchState({subscription: undefined});
+          return of({});
+        })
+      );
+  }
+
+  @Action(UnsubscribeAction)
+  unsubscribeAction(ctx: StateContext<SubscriptionStateModel>, action: UnsubscribeAction) {
+    return this.subscriptionService.unsubscribe(action.unsubscribeToken)
       .pipe(tap((subscription) => ctx.patchState({subscription})));
   }
 }

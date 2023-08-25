@@ -4,14 +4,13 @@
   .container {
     margin-left: map_get($spacings, 3);
     margin-top: map_get($spacings, 4);
-    //background-color: map_get($md-grey, A100);
 
     form {
-      border-radius: map_get($radius, 3);
-      //padding-left: map_get($spacings, 3);
-      //padding-right: map_get($spacings, 3);
       margin-top: map_get($spacings, 1);
       background-color: map_get($md-grey, 400);
+      padding: 0 map-get($spacings, 2);
+      border-radius: map-get($radius, 2);
+      box-shadow: map_get($box-shadow-up, 2);
 
       .error,.message {
         font-size: 10px;
@@ -39,7 +38,7 @@
         flex: 1 1 100%;
         max-height: 100%;
         width: calc(100% - map_get($spacings, 2) * 2);
-        margin: map_get($spacings, 2);
+        margin: map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 3);
 
         mat-form-field {
 
