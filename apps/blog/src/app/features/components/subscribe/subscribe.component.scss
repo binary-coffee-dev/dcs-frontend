@@ -12,7 +12,7 @@
       border-radius: map-get($radius, 2);
       box-shadow: map_get($box-shadow-up, 2);
 
-      .error,.message {
+      .error, .message {
         font-size: 10px;
         color: map_get($md-error, 500);
         margin-left: map_get($spacings, 2);
@@ -64,15 +64,42 @@
         }
 
         button {
-          font-size: 10px;
+          font-size: 20px;
           height: 30px;
           color: map_get($md-grey, 48);
           background-color: map_get($md-primary, 500);
           margin-top: map_get($spacings, 1);
           margin-left: map_get($spacings, 1);
           min-width: auto;
-          font-weight: bold;
+          font-weight: 500;
+          line-height: normal;
+          position: relative;
         }
+
+        .loading {
+          position: relative;
+          width: 14px;
+          height: 14px;
+          animation: loading-animation 2s linear infinite;
+
+          div {
+            transform: translateY(-6px) translateX(0.2px);
+          }
+        }
+
+        @keyframes loading-animation {
+          from {
+            -webkit-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+          }
+          to {
+            -webkit-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+          }
+        }
+
       }
     }
   }

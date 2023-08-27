@@ -10,12 +10,17 @@
         <mat-form-field appearance="outline">
           <mat-label>Correo</mat-label>
           <input matInput
+                 [attr.disabled]="true"
                  type="email"
                  placeholder="correo"
                  formControlName="email">
         </mat-form-field>
         <div fxLayout="column">
-          <button mat-button type="submit">></button>
+          <button mat-button type="submit" [disabled]="loading">
+            <div [ngClass]="{loading}">
+              <div>{{ loading ? '↺' : '>' }}</div>
+            </div>
+          </button>
         </div>
       </div>
       <b class="message"
