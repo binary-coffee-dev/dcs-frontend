@@ -63,14 +63,17 @@ export class SubscribeComponent implements OnInit, OnDestroy {
             this.message =
               'La suscripción ha sido correctamente enviada, revise su email para verificarlo.';
           } else if (subscription && subscription.verified) {
+            this.message = '';
             this.subscriptionError =
               'El email ya se encuentra suscrito al sitio';
           } else {
+            this.message = '';
             this.subscriptionError =
               'Error: Ha ocurrido un problema con su suscripción. Por favor, contáctenos en website@binarycoffee.dev';
           }
         });
     } else if (!this.loading) {
+      this.message = '';
       this.subscriptionError = 'Error: Email incorrecto';
     }
   }
