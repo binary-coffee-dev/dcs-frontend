@@ -5,7 +5,13 @@ import { map, tap } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { Post, PostConnection, User } from '../../models';
-import { POST_BY_NAME_QUERY, POST_QUERY, POSTS_QUERY, SIMILAR_POSTS_QUERY } from '../../../graphql/queries';
+import {
+  POST_BY_NAME_QUERY,
+  POST_QUERY,
+  POSTS_QUERY,
+  SIMILAR_POSTS_QUERY,
+  USER_LIKE_QUERY
+} from '../../../graphql/queries';
 import {
   LIKE_CREATE_MUTATION,
   LIKE_REMOVE_MUTATION,
@@ -55,12 +61,19 @@ export class PostService {
       .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.post));
   }
 
-  fetchPostByName(name: string | null, noUpdate = false, userId: string): Observable<any> {
+  fetchPostByName(name: string | null, noUpdate = false): Observable<any> {
     return this.apollo
-      .query({ query: POST_BY_NAME_QUERY, variables: { name, noUpdate, userId }, fetchPolicy: 'no-cache' })
+      .query({ query: POST_BY_NAME_QUERY, variables: { name, noUpdate }, fetchPolicy: 'no-cache' })
       .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => ({
         post: result.data.postByName,
-        likes: result.data.likes.meta.pagination.total,
+        likes: result.data.likes.meta.pagination.total
+      })));
+  }
+
+  fetchPostUserLikeAction(name: string | null, userId: string): Observable<any> {
+    return this.apollo
+      .query({ query: USER_LIKE_QUERY, variables: { name, userId }, fetchPolicy: 'no-cache' })
+      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => ({
         userLike: result.data.userLike.meta.pagination.total
       })));
   }

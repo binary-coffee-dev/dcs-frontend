@@ -1,7 +1,7 @@
 import { gql } from 'apollo-angular';
 
 export const POST_BY_NAME_QUERY = gql`
-    query ($name: String!, $noUpdate: Boolean, $userId: ID!) {
+    query ($name: String!, $noUpdate: Boolean) {
         postByName(name: $name, noUpdate: $noUpdate) {
             data {
                 id
@@ -45,13 +45,6 @@ export const POST_BY_NAME_QUERY = gql`
             }
         }
         likes:opinions(filters: {post: {name: {eq: $name}}, type: {eq: "like"}}) {
-            meta {
-                pagination {
-                    total
-                }
-            }
-        }
-        userLike:opinions(filters: {post: {name: {eq: $name}}, type: {eq: "like"}, user: {id: {eq: $userId}}}) {
             meta {
                 pagination {
                     total

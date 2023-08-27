@@ -7,7 +7,7 @@ import { map, mergeMap } from 'rxjs/operators';
 
 import {
   AuthState,
-  FetchPostAction,
+  FetchPostAction, FetchPostUserLikeAction,
   FetchSimilarPostsAction,
   Post,
   PostState,
@@ -23,6 +23,7 @@ export class PostResolver implements Resolve<Post> {
     const user = this.store.selectSnapshot(AuthState.me) || {id: ''};
     return this.store.dispatch(new FetchPostAction(route.paramMap.get('id'), user.id))
       .pipe(
+        mergeMap(() => this.store.dispatch(new FetchPostUserLikeAction(route.paramMap.get('id'), user.id))),
         mergeMap(() => this.store.dispatch(new RecentCommentAction())),
         mergeMap( () => {
           return this.store.dispatch(new FetchSimilarPostsAction(this.store.selectSnapshot(PostState.post).id));
