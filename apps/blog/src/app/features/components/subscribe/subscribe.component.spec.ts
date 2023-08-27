@@ -12,6 +12,7 @@ class StoreStub {
 describe('SubscribeComponent', () => {
   let component: SubscribeComponent;
   let fixture: ComponentFixture<SubscribeComponent>;
+  SubscribeComponent.prototype.ngOnInit = jest.fn();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -25,6 +26,8 @@ describe('SubscribeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SubscribeComponent);
     component = fixture.componentInstance;
+
+    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });
