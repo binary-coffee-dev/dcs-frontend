@@ -15,6 +15,13 @@ export class FetchPostAction {
   }
 }
 
+export class FetchPostUserLikeAction {
+  static readonly type = '[Post] Fetch post user like';
+
+  constructor(public postName: string | null, public userId: string) {
+  }
+}
+
 export class RefreshPostAction {
   static readonly type = '[Post] Refresh current post';
 }
