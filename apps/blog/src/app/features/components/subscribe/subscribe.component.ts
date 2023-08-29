@@ -71,6 +71,9 @@ export class SubscribeComponent implements OnInit, OnDestroy {
             this.subscriptionError =
               'Error: Ha ocurrido un problema con su suscripción. Por favor, contáctenos en website@binarycoffee.dev';
           }
+          this.subscribeForm = new FormGroup({
+            email: new FormControl('', [Validators.required, Validators.email])
+          });
         });
     } else if (!this.loading) {
       this.message = '';
