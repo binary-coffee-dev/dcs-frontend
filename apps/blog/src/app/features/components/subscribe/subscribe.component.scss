@@ -1,0 +1,106 @@
+@import 'libs/shared/src/theme';
+
+:host {
+  .container {
+    margin-left: map_get($spacings, 3);
+    margin-top: map_get($spacings, 4);
+
+    form {
+      margin-top: map_get($spacings, 1);
+      background-color: map_get($md-grey, 400);
+      padding: 0 map-get($spacings, 2);
+      border-radius: map-get($radius, 2);
+      box-shadow: map_get($box-shadow-up, 2);
+
+      .error, .message {
+        font-size: 10px;
+        color: map_get($md-error, 500);
+        margin-left: map_get($spacings, 2);
+        margin-top: map_get($spacings, 2);
+        margin-right: map_get($spacings, 2);
+        width: calc(100% - map_get($spacings, 2) * 2);
+      }
+
+      .message {
+        font-size: 10px;
+        color: map_get($md-grey, 900);
+        margin-left: map_get($spacings, 2);
+        margin-right: map_get($spacings, 2);
+        margin-bottom: map_get($spacings, 2);
+        width: calc(100% - map_get($spacings, 2) * 2);
+      }
+
+      .card {
+        flex-direction: row;
+        display: flex;
+        place-content: center;
+        align-items: center;
+        flex: 1 1 100%;
+        max-height: 100%;
+        width: calc(100% - map_get($spacings, 2) * 2);
+        margin: map_get($spacings, 2) map_get($spacings, 2) map_get($spacings, 3);
+
+        mat-form-field {
+
+          max-width: 100%;
+          height: 30px;
+          font-size: 10px;
+          width: 100%;
+
+          ::ng-deep.mat-form-field-wrapper {
+            padding-bottom: 0;
+            background-color: map_get($md-grey, A100);
+            border-radius: map_get($radius, 2);
+
+            .mat-form-field-infix {
+              padding: 0.7em 0;
+            }
+          }
+
+          input {
+            color: map_get($md-grey, 850);
+            border-radius: map_get($radius, 2);
+          }
+        }
+
+        button {
+          font-size: 20px;
+          height: 30px;
+          color: map_get($md-grey, 48);
+          background-color: map_get($md-primary, 500);
+          margin-top: map_get($spacings, 1);
+          margin-left: map_get($spacings, 1);
+          min-width: auto;
+          font-weight: 500;
+          line-height: normal;
+          position: relative;
+        }
+
+        .loading {
+          position: relative;
+          width: 14px;
+          height: 14px;
+          animation: loading-animation 2s linear infinite;
+
+          div {
+            transform: translateY(-6px) translateX(0.2px);
+          }
+        }
+
+        @keyframes loading-animation {
+          from {
+            -webkit-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+          }
+          to {
+            -webkit-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+          }
+        }
+
+      }
+    }
+  }
+}

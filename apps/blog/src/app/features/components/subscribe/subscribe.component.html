@@ -1,0 +1,30 @@
+<div class="container">
+  <span>Subscribirse</span>
+  <form [formGroup]="subscribeForm"
+        (ngSubmit)="subscribe()">
+    <div fxLayout="column"
+         fxLayoutAlign="center">
+      <span class="error"
+            *ngIf="subscriptionError !== '' && !subscriptionSent">{{subscriptionError}}</span>
+      <div class="card">
+        <mat-form-field appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input matInput
+                 [attr.disabled]="true"
+                 type="email"
+                 placeholder="correo"
+                 formControlName="email">
+        </mat-form-field>
+        <div fxLayout="column">
+          <button mat-button type="submit" [disabled]="loading">
+            <div [ngClass]="{loading}">
+              <div>{{ loading ? '↺' : '>' }}</div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <b class="message"
+         *ngIf="message">{{message}}</b>
+    </div>
+  </form>
+</div>

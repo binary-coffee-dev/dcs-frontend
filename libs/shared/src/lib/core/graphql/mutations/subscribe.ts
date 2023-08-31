@@ -1,15 +1,9 @@
 import { gql } from 'apollo-angular';
 
 export const SUBSCRIBE_MUTATION = gql`
-    mutation verify( $email: String! ) {
-        subscribe(email: $email){
-            email
-            enable
+    mutation ($email: String!){
+        subscribe(email: $email) {
             verified
-            token
-            id
-            created_at
-            updated_at
         }
     }
 `;

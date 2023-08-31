@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { of } from "rxjs";
 
-import { SubscribeAction, VerifySubscriptionAction } from './subscription.action';
+import { SubscribeAction, UnsubscribeAction, VerifySubscriptionAction } from './subscription.action';
 import { initSubscriptionStateModel, SubscriptionStateModel } from './subscription-state.model';
 import { SubscriptionService } from './subscription.service';
 import { Subscription } from '../../models';
@@ -20,6 +21,11 @@ export class SubscriptionState {
     return state.subscription;
   }
 
+  @Selector()
+  static loading(state: SubscriptionStateModel): boolean {
+    return state.loading;
+  }
+
   constructor(private subscriptionService: SubscriptionService) {
   }
 
@@ -30,8 +36,21 @@ export class SubscriptionState {
   }
 
   @Action(SubscribeAction)
-  subscribeAction(ctx: StateContext<SubscriptionStateModel>, action: SubscribeAction) {
+  subscribeAction({patchState}: StateContext<SubscriptionStateModel>, action: SubscribeAction) {
+    patchState({loading: true});
     return this.subscriptionService.subscribe(action.email)
+      .pipe(
+        tap((subscription) => patchState({subscription, loading: false})),
+        catchError(() => {
+          patchState({subscription: undefined, loading: false});
+          return of({});
+        })
+      );
+  }
+
+  @Action(UnsubscribeAction)
+  unsubscribeAction(ctx: StateContext<SubscriptionStateModel>, action: UnsubscribeAction) {
+    return this.subscriptionService.unsubscribe(action.unsubscribeToken)
       .pipe(tap((subscription) => ctx.patchState({subscription})));
   }
 }

@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngxs/store';
 
-import { SubscribeAction, SubscriptionState, VerifySubscriptionAction } from '@dcs-libs/shared';
+import { SubscriptionState, UnsubscribeAction, VerifySubscriptionAction } from '@dcs-libs/shared';
 
 
 @Component({
@@ -14,73 +12,46 @@ import { SubscribeAction, SubscriptionState, VerifySubscriptionAction } from '@d
   styleUrls: ['./subscription.component.scss']
 })
 export class SubscriptionComponent implements OnInit {
-  SUBSCRIBE_PATH = '/subscribe';
-
-  token = '';
-
   message = '';
-
-  subscriptionError = '';
-  subscriptionSent = false;
-
-  subscribeForm = new UntypedFormGroup({
-    email: new UntypedFormControl('', [Validators.required, Validators.email])
-  });
 
   constructor(
     private store: Store,
-    private activeRouter: ActivatedRoute,
-    private location: Location,
-    private router: Router
-  ) {}
+    private activeRouter: ActivatedRoute
+  ) {
+  }
 
   ngOnInit() {
-    this.token = this.activeRouter.snapshot.params['token'];
-    if (this.token) {
-      this.store
-        .dispatch(new VerifySubscriptionAction(this.token))
-        .subscribe(() => {
-          const subscription = this.store.selectSnapshot(
-            SubscriptionState.subscription
-          );
-          if (subscription?.verified) {
-            this.message =
-              'Se ha suscrito correctamente al sitio Binary Coffee.';
-          }
-        });
+    this.verifyingEmail(this.activeRouter.snapshot.params['token']);
+    this.unsubscribingEmail(this.activeRouter.snapshot.params['unsubscribe_token']);
+  }
+
+  verifyingEmail(token: string) {
+    if (token) {
+      this.executeAction(
+        new VerifySubscriptionAction(token),
+        true,
+        'Se ha suscrito correctamente al sitio Binary Coffee 😊.');
     }
   }
 
-  subscribe() {
-    if (this.subscribeForm.valid) {
-      this.store
-        .dispatch(new SubscribeAction(this.subscribeForm.controls['email'].value))
-        .subscribe(() => {
-          const subscription = this.store.selectSnapshot(
-            SubscriptionState.subscription
-          );
-          if (subscription && !subscription.verified) {
-            this.message =
-              'La suscripción ha sido correctamente enviada, revise su email para verificarlo.';
-            this.subscriptionSent = true;
-          } else if (subscription && subscription.verified) {
-            this.subscriptionError =
-              'El email ya se encuentra suscrito al sitio';
-          } else {
-            this.subscriptionError =
-              'Error: Ha ocurrido algún problema con su suscripción. Por favor, contáctenos en website@binary-coffee.dev';
-          }
-        });
-    } else {
-      this.subscriptionError = 'Error: Email incorrecto';
+  unsubscribingEmail(unsubscribeToken: string) {
+    if (unsubscribeToken) {
+      this.executeAction(
+        new UnsubscribeAction(unsubscribeToken),
+        false,
+        'Se ha unsubscrito del sitio Binary Coffee 😥.');
     }
   }
 
-  backClicked() {
-    if (this.location.path() === this.SUBSCRIBE_PATH) {
-      this.location.back();
-    } else {
-      this.router.navigateByUrl('/');
-    }
+  executeAction(action: object, expectedVerifiedValue: boolean, message: string) {
+    this.store
+      .dispatch(action)
+      .subscribe(() => {
+        const subscription = this.store.selectSnapshot(SubscriptionState.subscription);
+        console.log(subscription)
+        if (subscription?.verified === expectedVerifiedValue) {
+          this.message = message;
+        }
+      });
   }
 }

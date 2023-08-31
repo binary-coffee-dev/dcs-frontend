@@ -8,7 +8,15 @@ assignees: ''
 ---
 
 **Description**
-A clear and concise description of the feature
+
+<description>
+
+**Requierements**
+
+- [ ] some
+- [ ] some
 
 **Ideas**
-If there are some ideas of how to develop or what to use for complete the task, share it in this area
+
+<ideas>
+

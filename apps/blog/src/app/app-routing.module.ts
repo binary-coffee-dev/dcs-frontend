@@ -29,7 +29,7 @@ const routes: Routes = [
         loadChildren: () => import('./features/subscription/subscription.module').then(m => m.SubscriptionModule)
       },
       {
-        path: 'subscribe',
+        path: 'unsubscribe/:unsubscribe_token',
         loadChildren: () => import('./features/subscription/subscription.module').then(m => m.SubscriptionModule)
       },
       {

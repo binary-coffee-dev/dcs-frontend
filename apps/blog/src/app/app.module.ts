@@ -21,7 +21,7 @@ import {
   CommentService,
   MaterialModule,
   PodcastState,
-  ConfigState, UserInfoState
+  ConfigState, UserInfoState, SubscriptionState
 } from '@dcs-libs/shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './features/app.component';
@@ -57,7 +57,7 @@ import { FilterComponent } from './features/components/filter/filter.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState, UserInfoState], {
+    NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState, UserInfoState, SubscriptionState], {
       developmentMode: !environment.production
     }),
     ReduxModule,

@@ -11,3 +11,10 @@ export class SubscribeAction {
   constructor(public email: string) {
   }
 }
+
+export class UnsubscribeAction {
+  static readonly type = '[Subscription] UnsubscribeAction';
+
+  constructor(public unsubscribeToken: string) {
+  }
+}
