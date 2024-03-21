@@ -96,9 +96,11 @@
           matInput
           readonly
           (dateChange)='onPostChange()'
+          [disabled]="isPublished()"
           [matDatepicker]='dp'
-          formControlName='date' />
+          formControlName='date'/>
         <mat-datepicker-toggle matSuffix
+                               [disabled]="isPublished()"
                                [for]='dp'></mat-datepicker-toggle>
         <mat-datepicker #dp
                         startView='month'
@@ -110,8 +112,10 @@
         <mat-label>Hora</mat-label>
         <mat-select
           formControlName='time'
+          [disabled]="true"
           (selectionChange)='onPostChange()'>
           <mat-option
+            [disabled]="true"
             *ngFor='let time of timesSelections'
             [value]='time.minutes'>
             {{ time.title }}
@@ -141,7 +145,7 @@
         <button (click)='changeArticleStatus()'>
           <i class='fa'
              [ngClass]='articleTextStatus === "edit" ? "fa-eye" : "fa-pencil"'></i>
-          {{articleTextStatus === "edit" ? "Previsualizar" : "Editar"}}
+          {{ articleTextStatus === "edit" ? "Previsualizar" : "Editar" }}
         </button>
       </div>
       <div class='article-content'>
