@@ -5,12 +5,16 @@ import { InjectionToken } from '@angular/core';
 export const rolePermissionMap = new Map<RoleEnum, Permission[]>();
 
 // Authenticated role permissions list
-rolePermissionMap.set(RoleEnum.authenticated, []);
+rolePermissionMap.set(RoleEnum.authenticated, [
+  Permission.EDIT_TAGS_IN_ARTICLE,
+  Permission.PUBLISH_ARTICLE
+]);
 
 // Staff role permissions list
 rolePermissionMap.set(RoleEnum.staff, [
   Permission.EDIT_ANY_ARTICLE,
-  Permission.EDIT_TAGS_IN_ARTICLE
+  Permission.EDIT_TAGS_IN_ARTICLE,
+  Permission.PUBLISH_ARTICLE
 ]);
 
 // Admin role permissions list
