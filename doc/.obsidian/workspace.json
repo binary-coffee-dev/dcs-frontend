@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LOCAL_NGINX_DOC.md",
+                "file": "ISSUE_TEMPLATE/new_feature.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "LOCAL_NGINX_DOC.md",
+                "file": "ISSUE_TEMPLATE/new_feature.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "LOCAL_NGINX_DOC.md",
+                "file": "ISSUE_TEMPLATE/new_feature.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "LOCAL_NGINX_DOC.md"
+                "file": "ISSUE_TEMPLATE/new_feature.md"
               }
             }
           }
@@ -148,10 +148,14 @@
   },
   "active": "3fdac66a86deecf6",
   "lastOpenFiles": [
+    "ISSUE_TEMPLATE/feature_request.md",
+    "ISSUE_TEMPLATE/new_feature.md",
+    "ISSUE_TEMPLATE/bug_report.md",
+    "LOCAL_NGINX_DOC.md",
+    "ISSUE_TEMPLATE",
     "README.md",
     "BUILD_APP.md",
     "CODE_GENERATION.md",
-    "LOCAL_NGINX_DOC.md",
     "TEST_APP.md",
     "START_APP.md"
   ]
