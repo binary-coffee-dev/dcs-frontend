@@ -1,6 +1,6 @@
 # Tests
 
-[<< go back to documentation](./doc.md)
+[<< go back to documentation](README.md)
 
 Here you can find everything you need to know about the tests in the application.
 

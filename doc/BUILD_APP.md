@@ -1,6 +1,6 @@
 # Build
 
-[<< go back to documentation](./doc.md)
+[<< go back to documentation](README.md)
 
 Here you can find the steps you need to follow to build the project and let it ready for deployment, or just to test it if it works in you local environment.
 

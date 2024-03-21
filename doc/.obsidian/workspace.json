@@ -1,0 +1,158 @@
+{
+  "main": {
+    "id": "dff8c94838ef70cb",
+    "type": "split",
+    "children": [
+      {
+        "id": "7b4ebb8913651956",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3fdac66a86deecf6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "LOCAL_NGINX_DOC.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ae01ef17b49a61ca",
+    "type": "split",
+    "children": [
+      {
+        "id": "3e0f57cc70ca76b6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7c3f72a89842c464",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "5ab4b1e1b4fa5828",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0b65c1efc6496a74",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e8a190e1b8440c84",
+    "type": "split",
+    "children": [
+      {
+        "id": "7e7f5ba4789fc529",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bbd2a3c9c011848d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "LOCAL_NGINX_DOC.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "032d2ba245ae378c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "LOCAL_NGINX_DOC.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "6253935fd4b272bf",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "d3da11f9a45db667",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "LOCAL_NGINX_DOC.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "3fdac66a86deecf6",
+  "lastOpenFiles": [
+    "README.md",
+    "BUILD_APP.md",
+    "CODE_GENERATION.md",
+    "LOCAL_NGINX_DOC.md",
+    "TEST_APP.md",
+    "START_APP.md"
+  ]
+}
