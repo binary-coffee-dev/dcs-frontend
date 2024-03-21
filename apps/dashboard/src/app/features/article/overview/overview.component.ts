@@ -18,6 +18,12 @@ import {
 } from '@dcs-libs/shared';
 import { SelectImageModalComponent } from './select-image-modal/select-image-modal.component';
 import { UploadFileModalComponent } from '../../components/upload-file.modal';
+import { Time } from "@angular/common";
+
+interface TimeType {
+  title: string;
+  minutes: number;
+}
 
 @Component({
   selector: 'app-overview',
@@ -32,7 +38,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   formDataChange = false;
   imageChange = false;
 
-  timesSelections: any[] = [];
+  timesSelections: TimeType[] = [];
 
   articleForm = new UntypedFormGroup({
     body: new UntypedFormControl(''),
@@ -60,11 +66,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
     @Inject(WINDOW) private window: Window
   ) {
     super();
-    this.timesSelections = [...Array(24).keys()].reduce((p: any[], v) => {
-      p.push({minutes: v * 60, title: `${v}:00`});
-      p.push({minutes: v * 60 + 30, title: `${v}:30`});
-      return p;
-    }, []);
+    this.populateAvailableTimes();
 
     this.window.document.addEventListener('keydown', this.shortCutHandlerMethod.bind(this));
   }
@@ -91,8 +93,11 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
             this.post.publishedAt = new Date(this.post.publishedAt);
             this.articleForm.controls['date'].setValue(this.post.publishedAt);
 
-            const time = this.post.publishedAt.getHours() * 60 + this.post.publishedAt.getMinutes();
-            this.articleForm.controls['time'].setValue(time);
+            const minutes = this.post.publishedAt.getHours() * 60 + this.post.publishedAt.getMinutes();
+            const title = `${this.post.publishedAt.getHours()}:${this.post.publishedAt.getMinutes()}`;
+            this.populateAvailableTimes({title, minutes} as TimeType)
+
+            this.articleForm.controls['time'].setValue(minutes);
           }
         }
       });
@@ -105,6 +110,20 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
       )
       .subscribe(values => this.tags.next(values));
     this.getTags = this.getTags.bind(this);
+  }
+
+  populateAvailableTimes(extraTime: TimeType | null = null): void {
+    this.timesSelections = [...Array(24).keys()].reduce((p: TimeType[], v: number) => {
+      p.push({minutes: v * 60, title: `${v}:00`} as TimeType);
+      p.push({minutes: v * 60 + 30, title: `${v}:30`} as TimeType);
+      return p;
+    }, []);
+
+    if (extraTime) {
+      this.timesSelections.push(extraTime);
+    }
+
+    this.timesSelections = this.timesSelections.sort((a: TimeType, b: TimeType): number => a.minutes - b.minutes);
   }
 
   ngOnDestroy(): void {
