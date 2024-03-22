@@ -112,10 +112,10 @@
         <mat-label>Hora</mat-label>
         <mat-select
           formControlName='time'
-          [disabled]="true"
+          [disabled]="isPublished()"
           (selectionChange)='onPostChange()'>
           <mat-option
-            [disabled]="true"
+            [disabled]="isPublished()"
             *ngFor='let time of timesSelections'
             [value]='time.minutes'>
             {{ time.title }}
