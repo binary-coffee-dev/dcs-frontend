@@ -4,10 +4,8 @@
   "neverConnectToCloud": true,
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [],
-        "accessToken": "MzdhNzBlZmUtOTY5Ni00ZDAyLTg5YTQtMTE4MTRmNWU0Y2ZifHJlYWQtd3JpdGU="
+        "cacheableOperations": []
       }
     }
   },
