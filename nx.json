@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "npmScope": "blog",
+  "neverConnectToCloud": true,
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
