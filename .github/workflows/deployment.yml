@@ -33,7 +33,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Installing NX
-        run: npm install -g nx
+        run: npm install -g nx@15.9.2
 
       # pipeline actions
       - run: npm ci
