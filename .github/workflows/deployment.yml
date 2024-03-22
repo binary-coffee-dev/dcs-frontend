@@ -33,14 +33,16 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Installing NX
-        run: npm install -g nx
+        run: npm install -g nx@15.9.2
 
       # pipeline actions
       - run: npm ci
       - name: Build blog Dashboard (prod)
-        run: nx run dashboard:build:production
+        run: npm run build:admin:prod
+#        run: nx run dashboard:build:production
       - name: Build blog Blog (prod)
-        run: nx run blog:build:production && nx run blog:server:production
+        run: npm run build:ssr
+#        run: nx run blog:build:production && nx run blog:server:production
 
 
   # RUN TESTS

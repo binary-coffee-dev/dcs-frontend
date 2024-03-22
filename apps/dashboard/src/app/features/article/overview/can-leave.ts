@@ -1,7 +1,9 @@
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { OverviewComponent } from './overview.component';
-import { Observable } from 'rxjs';
 import { Injectable } from "@angular/core";
+
+import { Observable } from 'rxjs';
+
+import { OverviewComponent } from './overview.component';
 
 @Injectable()
 export class CanLeave implements CanDeactivate<OverviewComponent> {

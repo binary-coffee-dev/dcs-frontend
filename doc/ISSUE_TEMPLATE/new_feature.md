@@ -1,10 +1,9 @@
 ---
 name: Feature name
 about: Create a new feature to develop
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: 
+assignees: ""
 ---
 
 **Description**
