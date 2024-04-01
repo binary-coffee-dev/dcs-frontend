@@ -1,39 +1,33 @@
-<div fxLayout='row'
-     fxLayoutAlign='center center'
-     class='error'
+<div class='error flex flex-row items-center justify-center'
      *ngIf='authError'>
-  <span>{{authError.title}}</span>
+  <span>{{ authError.title }}</span>
 </div>
 
-<div class='container'
-     fxLayout='column'
-     fxLayoutAlign='center center'>
-  <div class='dialog-container'
-       fxLayout='column'
-       fxLayoutAlign='start center'>
+<div class='flex flex-col items-center justify-center w-full h-screen overflow-hidden'>
+  <div class='flex flex-col items-center justify-center shadow-lg p-6 rounded'
+       style="border: solid 1px #0001;">
 
-    <img class='logo'
+    <img class='h-16 mb-9'
          src='/assets/images/128x128/binarycoffee_2.0.1.png'
          alt='binarycoffee-logo'>
 
-    <h2>Bienvenido a Binary Coffee</h2>
+    <h2 class="text-2xl py-4 font-thin">Bienvenido a Binary Coffee</h2>
 
-    <div fxLayout='column'
-         fxLayoutAlign='start start'>
-      <h4>Puedes acceder con tu cuenta en Github</h4>
+    <div class="flex flex-col">
+      <span class="font-thin mt-0 mb-12 text-xs">
+        Puedes acceder con tu cuenta en Github
+      </span>
 
       <ng-container *ngFor='let provider of providers'>
-        <a class='provider-item'
-           fxLayout='row'
-           fxLayoutAlign='start center'
+        <a class='provider-item flex flex-row items-center rounded py-1.5 px-5 text-xs'
            (click)='loginWithProvider(provider)'
            [matTooltip]="'Entar con mi cuenta de ' + provider.name">
-          <i [className]='provider.icon'></i>
-          <span class='provider-name'>Continuar con {{provider.name}}</span>
+          <i [className]='provider.icon + " text-2xl"'></i>
+          <span class='provider-name ml-3'>Continuar con {{ provider.name }}</span>
         </a>
       </ng-container>
     </div>
 
-    <span class='note'>Solo utilizamos sus datos públicos</span>
+    <span class='text-[10px] mt-9'>Solo utilizamos sus datos públicos</span>
   </div>
 </div>
