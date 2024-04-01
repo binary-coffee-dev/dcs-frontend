@@ -1,25 +1,19 @@
-<div class='top'
+<div class='mt-6 mr-4 mb-7'
      *ngIf='(top5Post?.users?.length || 0) > 0'>
 
   <span> Más Activos </span>
 
-  <div class='top-content'>
-    <a
+  <div class='top-content rounded flex flex-col mt-2 mb-2 pt-4 pr-4 pb-0 pl-4 shadow-lg'>
+    <a class="flex flex-row pb-3 items-center"
       *ngFor='let user of top5Post.users; let i = index'
-      class='top-link'
-      [routerLink]="'/users/' + user?.username"
-      fxLayout='row'
-      fxLayoutAlign='center center'
-    >
-      <img class='top-user-image'
+      [routerLink]="'/users/' + user?.username">
+      <img class='w-[40px] min-w-[40px] max-h-[40px] overflow-hidden rounded-full mr-3'
+           (error)="onUserImgError(i)"
            [src]='getUserAvatar(user)'
            alt='noavatar' />
-      <div fxLayout='column'
-           class='user-info'
-           fxLayoutAlign='center start'>
-        <span class='top-user-name'>"{{ user?.username }}"</span>
-        <div fxFlex='100'></div>
-        <span class='post-info'> // {{ getTopLikeByIndex(i) }} artículos</span>
+      <div class='flex flex-col text-xs hover:underline overflow-hidden'>
+        <span class='top-user-name whitespace-nowrap'>"{{ user?.username }}"</span>
+        <span class='post-info whitespace-nowrap'> // {{ getTopLikeByIndex(i) }} artículos</span>
       </div>
     </a>
   </div>

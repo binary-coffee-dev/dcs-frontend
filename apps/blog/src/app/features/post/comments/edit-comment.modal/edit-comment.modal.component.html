@@ -1,27 +1,20 @@
-<div class='card-modal'
-     fxLayout='column'>
-  <div class='head'
-       fxLayout='row'>
-    <span class='title'>Editar comentario</span>
-    <div fxFlex='100'></div>
+<div class='edit-comment-modal-content flex flex-col h-full max-h-full p-6'>
+  <div class='flex flex-row'>
+    <span class='mb-3 whitespace-nowrap'>Editar comentario</span>
+    <div class="w-full"></div>
     <i class='fa fa-close close-button'
        (click)='cancel()'
        matTooltip='close'></i>
   </div>
-  <div class='body'
-       fxLayout='column'>
+  <div class='body flex flex-col'>
 
-    <form class='comment-new-container'
-          fxFlex='100'
-          fxLayout='column'
-          [formGroup]='commentForm'
-          fxLayoutAlign='center end'>
+    <form class='flex flex-col h-full mb-5'
+          [formGroup]='commentForm'>
 
       <span class='comment-error-message'
             *ngIf='commentError'>
-        <mat-icon mat-font-icon='fa-icon'
-                  class='fa fa-warning'></mat-icon>
-        {{commentError}}
+        <mat-icon class='fa fa-warning'></mat-icon>
+        {{ commentError }}
       </span>
 
       <mat-form-field class='comment-item comment-item-text'
@@ -40,9 +33,8 @@
       </mat-form-field>
     </form>
 
-    <div class='buttons-container'
-         fxLayoutAlign='end'>
-      <mat-button-toggle class='button-ok'
+    <div class='buttons-container'>
+      <mat-button-toggle class='button-ok mr-3'
                          (click)='ok()'>editar
       </mat-button-toggle>
       <mat-button-toggle class='button-cancel'

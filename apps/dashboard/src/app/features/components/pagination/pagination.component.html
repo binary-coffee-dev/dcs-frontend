@@ -1,7 +1,6 @@
-<div class="pagination"
-     fxLayout="row"
-     fxLayoutAlign="center center">
-  <button class="page-item move-pages"
+<div class="pagination flex flex-row justify-center">
+  <button class="page-item move-pages rounded border-none h-7 font-semibold
+                 px-3 mx-1.5 whitespace-nowrap bg-transparent"
           *ngIf="numberOfPages > 0"
           (click)="goToFirstPage()"
           [ngClass]="{'disabled': currentPage === 0}">
@@ -10,7 +9,8 @@
       <i class="fa fa-chevron-left"></i>
     </span>
   </button>
-  <button class="page-item move-pages"
+  <button class="page-item move-pages rounded border-none h-7 font-semibold
+                 px-3 mx-1.5 whitespace-nowrap bg-transparent"
           *ngIf="numberOfPages > 0"
           (click)="previousPageEvent.next(true)"
           [ngClass]="{'disabled': currentPage === 0}">
@@ -18,13 +18,15 @@
       <i class="fa fa-chevron-left"></i>
     </span>
   </button>
-  <button class="page-item"
+  <button class="page-item rounded border-none h-7 font-semibold
+                 px-3 mx-1.5 whitespace-nowrap bg-transparent"
           [ngClass]="{'active': currentPage === page}"
           (click)="pageEvent.next(page)"
           *ngFor="let page of pages">
-    {{page + 1}}
+    {{ page + 1 }}
   </button>
-  <button class="page-item move-pages"
+  <button class="page-item move-pages rounded border-none h-7 font-semibold
+                 px-3 mx-1.5 whitespace-nowrap bg-transparent"
           *ngIf="numberOfPages > 0"
           (click)="nextPageEvent.next(true)"
           [ngClass]="{'disabled': currentPage === numberOfPages - 1}">
@@ -32,7 +34,8 @@
       <i class="fa fa-chevron-right"></i>
     </span>
   </button>
-  <button class="page-item move-pages"
+  <button class="page-item move-pages rounded border-none h-7 font-semibold
+                 px-3 mx-1.5 whitespace-nowrap bg-transparent"
           *ngIf="numberOfPages > 0"
           (click)="goToLastPage()"
           [ngClass]="{'disabled': currentPage === numberOfPages - 1}">

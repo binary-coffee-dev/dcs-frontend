@@ -1,22 +1,10 @@
 @import "libs/shared/src/theme";
 
+// toDo: take social colors to the theme file
+
 :host {
   .container {
-    margin-top: map_get($spacings, 4);
     color: map_get($md-grey, 500);
-    padding: map_get($spacings, 4);
-
-    a {
-      margin: map_get($spacings, 1) map_get($spacings, 4) 0 map_get($spacings, 4);
-    }
-
-    p {
-      margin-left: map_get($spacings, 4);
-
-      b {
-        margin-left: map_get($spacings, 2);
-      }
-    }
 
     .twitter {
       $color: #1da1f2;
@@ -52,24 +40,4 @@
     }
 
   }
-
-  @media screen and (min-width: 599px) {
-    .fa {
-      margin: 0 map_get($spacings, 1);
-      padding: 0;
-    }
-  }
-
-  @media screen and (max-width: 959px) {
-    .container {
-      margin: 0;
-      padding: 0;
-      border: none;
-
-      a {
-        margin: 0 map_get($spacings, 1);
-      }
-    }
-  }
-
 }

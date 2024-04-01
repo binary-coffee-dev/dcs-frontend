@@ -1,18 +1,10 @@
-<div class="bc-card-modal"
-     fxLayout="column">
+<div class="bc-card-modal">
   <span class="title">Para suscribirse a nuestra newsletter</span>
-  <div fxLayout="row"
-       fxLayoutAlign="end">
+  <div >
     <form [formGroup]="subscribeForm"
           (ngSubmit)="ok()">
-      <div fxLayout="column"
-           fxLayoutAlign="center"
-           fxLayoutGap="gappx">
-        <div class="card"
-             fxLayout="column"
-             fxLayoutAlign="center center"
-             fxLayoutGap="gappx"
-             fxFlex="100">
+      <div >
+        <div class="card">
           <mat-form-field appearance="outline">
             <mat-label class="code-none">
               <span class="code-1">var </span>
@@ -23,9 +15,7 @@
                    placeholder="Email"
                    formControlName="email">
           </mat-form-field>
-          <div class='button-container'
-               fxLayout="row"
-               fxLayoutAlign='space-between'>
+          <div class='button-container'>
             <button mat-button
                     class="bc-button"
                     type="submit">

@@ -1,36 +1,28 @@
-<mat-toolbar fxLayout='row'
-             fxLayoutAlign='center center'>
+<mat-toolbar class="flex-row sticky w-full h-24 top-0 p-0 z-50 justify-center shadow-lg">
 
-  <div ngClass.sm='space-in-xs-sm'
-       ngClass.xs='space-in-xs-sm'
-       fxFlex.xl='50'
-       fxFlex.lg='70'
-       fxFlex='80'
-       fxFlex.md='95'
-       fxFlex.sm='100'
-       fxFlex.xs='100'
-       fxLayout='row'
-       fxLayoutAlign='start center'>
-    <a href=''
-       fxLayout='row'
-       routerLink='/'
-       fxLayoutAlign='start center'>
-      <img src='/assets/images/128x128/binarycoffee_2.0.0.png'
-           alt='binarycoffee-logo'>
-      <span fxHide.sm
-            fxHide.xs>Binary Coffee</span>
+  <div class="flex flex-row items-center max-w-[1080px]
+              w-full lg:w-11/12 xl:w-9/12 2xl:w-8/12">
+    <a class="flex flex-row no-underline items-center"
+       href=''
+       routerLink='/'>
+      <div class="w-[40px] my-6 ml-3 mr-6">
+        <img src='/assets/images/128x128/binarycoffee_2.0.0.png'
+             alt='binarycoffee-logo'>
+      </div>
+      <span class="hidden md:block">Binary Coffee</span>
     </a>
 
-    <div class='fill-space'></div>
-    <app-filter *ngIf='showSearch'
-                fxHide.sm
-                fxHide.xs></app-filter>
-    <div class='fill-space'></div>
+    <div class='w-full'></div>
+    <app-filter class="hidden md:block" *ngIf='showSearch'></app-filter>
+    <div class='w-full'></div>
 
     <app-login-button></app-login-button>
-    <mat-button-toggle [matMenuTriggerFor]='beforeMenu'>
-      <mat-icon aria-hidden='false'>menu</mat-icon>
-    </mat-button-toggle>
+
+    <div class="h-9 max-h-9 pr-3">
+      <mat-button-toggle class="min-w-10 h-9 ml-6 text-base" [matMenuTriggerFor]='beforeMenu'>
+        <mat-icon aria-hidden='false'>menu</mat-icon>
+      </mat-button-toggle>
+    </div>
     <mat-menu #beforeMenu='matMenu'
               class='app-important-menu'
               xPosition='before'>
@@ -115,31 +107,25 @@
         <i class='fa fa-play-circle'></i>
         Espacio Binario
       </a>
-      <div class='share-buttons'
-           fxLayout='row'
-           fxLayoutAlign='space-between center'>
-        <a [href]='env.socials?.twitter'
-           target='_blank'
-           fxLayout='row'
-           fxLayoutAlign='center center'>
+      <div class='share-buttons px-6 py-0 mx-0 my-6 flex flex-row place-content-between'>
+        <a class="flex flex-row justify-center"
+           [href]='env.socials?.twitter'
+           target='_blank'>
           <i class='fa fa-twitter'></i>
         </a>
-        <a [href]='env.socials?.github'
-           target='_blank'
-           fxLayout='row'
-           fxLayoutAlign='center center'>
+        <a class="flex flex-row justify-center"
+           [href]='env.socials?.github'
+           target='_blank'>
           <i class='fa fa-github'></i>
         </a>
-        <a [href]='env.socials?.telegram'
-           target='_blank'
-           fxLayout='row'
-           fxLayoutAlign='center center'>
+        <a class="flex flex-row justify-center"
+           [href]='env.socials?.telegram'
+           target='_blank'>
           <i class='fa fa-telegram'></i>
         </a>
-        <a [href]='env.socials?.facebook'
-           target='_blank'
-           fxLayout='row'
-           fxLayoutAlign='center center'>
+        <a class="flex flex-row justify-center"
+           [href]='env.socials?.facebook'
+           target='_blank'>
           <i class='fa fa-facebook'></i>
         </a>
       </div>

@@ -1,47 +1,36 @@
-<div class='container'
-     fxLayout='column'
-     fxLayoutAlign='center center'>
+<div class='container flex flex-col w-screen min-w-full h-72 relative'>
 
-  <div class='content'>
+  <div class='content flex flex-col justify-center h-full text-center z-20'>
 
     <ng-container *ngIf='activeInfo && activeInfo.type === "welcome"'>
-      <div class='info-item'
-           fxLayout='column'
-           fxLayoutAlign='center center'>
-        <h1>Bienvenido a Binary Coffee</h1>
-        <h4>un espacio donde puedes compartir tus ideas</h4>
-        <a [href]="getCreateArticleUrl()" class='button'>Publicar tu primer artículo</a>
+      <div class='info-item place-content-center self-center'>
+        <h1 class="font-bold text-3xl mb-1">Bienvenido a Binary Coffee</h1>
+        <h4 class="font-bold text-sm mb-6">un espacio donde puedes compartir tus ideas</h4>
+        <a class='button text-xs p-3 rounded border-0 shadow-md'
+           [href]="getCreateArticleUrl()">Publicar tu primer artículo</a>
       </div>
     </ng-container>
 
     <ng-container *ngIf='activeInfo && activeInfo.type === "comment"'>
-      <div class='info-item'
-           fxLayoutAlign='center start'
-           fxLayout='column'>
-        <div class='message-text-container'
-             fxLayout='row'
-             fxLayoutAlign='start center'>
-          <div class='message-text'>
-            {{getLimitedMessage(activeInfo.value?.body)}}
+      <div class='info-item flex flex-col self-center'>
+        <div class='message-text-container flex flex-row items-center mb-3'>
+          <div class='message-text w-80 break-words leading-7 text-left'>
+            {{ getLimitedMessage(activeInfo.value?.body) }}
           </div>
         </div>
-        <div *ngIf='activeInfo.value?.user'
-             fxLayout='row'
-             fxLayoutAlign='start center'
-             class='comment-user'>
-          <div class='comment-user-image'>
-            <img
-              [src]='url.getUserImage(activeInfo.value?.user)'
-              [alt]='activeInfo.value?.user?.username || "noavatar"'>
+        <div class='flex flex-row text-xs mb-3 ml-5 items-center'
+             *ngIf='activeInfo.value?.user'>
+          <div>
+            <img class="w-8 h-8 rounded-full"
+                 [src]='url.getUserImage(activeInfo.value?.user)'
+                 [alt]='activeInfo.value?.user?.username || "noavatar"'>
           </div>
           &#160;{{ activeInfo.value?.user?.username }}
         </div>
-        <div class='buttons-container'
-             fxLayout='row'
-             fxLayoutAlign='start center'>
-          <a class='button'
+        <div class='buttons-container'>
+          <a class='button text-xs p-2 rounded border-0 shadow-md'
              [routerLink]="'/users/' + activeInfo.value?.user?.username">Ver perfil</a>
-          <a class='button space-left white'
+          <a class='button space-left white text-xs p-2 rounded border-0 shadow-md'
              [routerLink]="'/post/' + getPostName()"
              [fragment]='activeInfo.value?.id'>Leer ></a>
         </div>
@@ -50,14 +39,14 @@
 
   </div>
 
-  <div class='content-pagination'>
+  <div class='content-pagination m-5 flex flex-row place-content-center'>
     <ng-container *ngFor='let inf of info; let i = index'>
-      <button class='carousel-button'
+      <button class='carousel-button relative h-5 w-16 border-0 px-3 py-0'
               (click)='openInfo(i)'
               [ngClass]='{"active": activePage === i}'></button>
     </ng-container>
   </div>
 
-  <div class='background'></div>
-  <div class='background2'></div>
+  <div class='background absolute inset-0 -z-1'></div>
+  <div class='background2 absolute inset-0 -z-10'></div>
 </div>

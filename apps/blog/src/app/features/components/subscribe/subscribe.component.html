@@ -1,30 +1,36 @@
-<div class="container">
+<div class="container pl-6">
   <span>Subscribirse</span>
-  <form [formGroup]="subscribeForm"
+  <form class="mt-2 px-6 py-0 rounded shadow-lg"
+        [formGroup]="subscribeForm"
         (ngSubmit)="subscribe()">
-    <div fxLayout="column"
-         fxLayoutAlign="center">
-      <span class="error"
-            *ngIf="subscriptionError !== '' && !subscriptionSent">{{subscriptionError}}</span>
-      <div class="card">
-        <mat-form-field appearance="outline">
+    <div class="flex flex-col">
+      <span class="error mf-4 mt-4 mr-4 text-xs"
+            *ngIf="subscriptionError !== '' && !subscriptionSent">{{ subscriptionError }}</span>
+      <div class="card flex flex-row mb-6 mt-4 overflow-hidden">
+        <mat-form-field class="relative w-9/12 h-8 text-[10px]"
+                        appearance="outline">
           <mat-label>Correo</mat-label>
-          <input matInput
+          <input class="rounded"
+                 matInput
                  [attr.disabled]="true"
                  type="email"
                  placeholder="correo"
                  formControlName="email">
         </mat-form-field>
-        <div fxLayout="column">
-          <button mat-button type="submit" [disabled]="loading">
-            <div [ngClass]="{loading}">
-              <div>{{ loading ? '↺' : '>' }}</div>
+        <div class="w-3/12 pl-2 min-w-10">
+          <button class="h-8 relative text-xl font-medium w-full"
+                  style="min-width: 0 !important;"
+                  mat-button
+                  type="submit"
+                  [disabled]="loading">
+            <div class="relative w-4 h-4"
+                 [ngClass]="{loading}">
+              <div style="transform: translateY(-6px) translateX(0.2px);">{{ loading ? '↺' : '>' }}</div>
             </div>
           </button>
         </div>
       </div>
-      <b class="message"
-         *ngIf="message">{{message}}</b>
+      <b class="message mf-4 mb-4 mr-4 text-xs" *ngIf="message">{{ message }}</b>
     </div>
   </form>
 </div>

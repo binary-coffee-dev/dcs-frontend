@@ -9,7 +9,6 @@ import { MomentService, ResourceService } from '../../../core/services';
   styleUrls: ['./post-item.component.scss']
 })
 export class PostItemComponent {
-
   @Input()
   post: Post = {} as unknown as Post;
 
@@ -24,10 +23,20 @@ export class PostItemComponent {
     if (post && post.banner && post.banner.url) {
       return this.resource.addApiUrl(post.banner.url);
     }
-    return '/assets/images/banner-default.jpg';
+    return "";
   }
 
   public stopPropagation(event: any) {
     event.stopPropagation();
+  }
+
+  onBannerImgError() {
+    this.post = {...this.post, banner: undefined};
+  }
+
+  onAuthorImgError(): void {
+    if (this.post.author && this.post.author.avatarUrl) {
+      delete this.post.author.avatarUrl;
+    }
   }
 }

@@ -13,7 +13,7 @@ export class MomentService {
     }
   }
 
-  timeFromDate(date: any) {
+  timeFromDate(date: string | Date | undefined): string {
     return moment(date).fromNow();
   }
 

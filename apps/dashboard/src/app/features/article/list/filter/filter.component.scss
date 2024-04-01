@@ -1,10 +1,8 @@
 @import 'libs/shared/src/theme';
 
 :host {
-  margin-right: map_get($spacings, 4);
 
   form {
-    margin-top: map_get($spacings, 4);
 
     ::ng-deep.code-none {
       font-size: 14px;

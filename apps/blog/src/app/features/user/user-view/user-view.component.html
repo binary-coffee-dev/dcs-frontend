@@ -1,124 +1,85 @@
-<div class='container'
-     fxLayoutAlign='center start'
-     fxLayout='row'>
+<div class='flex flex-row w-full justify-center mt-8'>
 
-  <div class='align-container'
-       fxLayoutAlign='center start'
-       fxFlex.xl='50'
-       fxFlex.lg='70'
-       fxFlex='80'
-       fxFlex.md='95'
-       fxFlex.sm='100'
-       fxFlex.xs='100'
-       fxLayout.xs='column'
-       fxLayout.sm='column'
-       fxLayout='row'>
+  <div class='align-container-user-view flex flex-col sm:flex-row max-w-[1080px] overflow-hidden relative
+              w-full lg:w-11/12 xl:w-9/12 2xl:w-8/12'>
 
-    <div class='post-container'
-         fxHide.xs
-         fxHide.sm
-         fxFlex='70'
-         fxLayout='column'>
+    <div class='hidden sm:flex sm:flex-col w-full overflow-hidden box-border'>
       <app-post-item
         class='post-element'
         *ngFor='let post of posts'
         [post]='post'>
       </app-post-item>
-      <div class='no-article'
-           *ngIf='!posts?.length'
-           fxFlex='100'
-           fxLayout='column'
-           fxLayoutAlign='center center'>
-        <i class='fa fa-file-text'></i>
-        <h1>No tiene artículos publicados</h1>
+      <div class='no-article flex flex-col mx-3 mb-0 mt-4 justify-center items-center'
+           *ngIf='!posts?.length'>
+        <i class='fa fa-file-text text-4xl'></i>
+        <h1 class="font-normal text-center text-3xl mt-3">No tiene artículos publicados</h1>
       </div>
     </div>
 
-    <div class='user-container'
-         ngClass.xs='not-margin'
-         ngClass.sm='not-margin'
-         fxLayout='column'
-         fxLayoutAlign='start center'
-         fxFlex='30'
-         fxFlex.sm='100'
-         fxFlex.xs='100'>
+    <div class=''>
+      <div class="user-container flex flex-col shadow-lg box-border m-4 p-6 rounded overflow-hidden">
+        <div class='flex flex-row w-full mb-6'>
+          <img class='user-image w-28 h-28 rounded-full'
+               [src]='getUserAvatar(user)'
+               alt='noavatar'/>
+        </div>
 
-      <div class='avatar-container'
-           fxLayout='row'
-           fxLayoutAlign='start start'>
-        <img class='user-image'
-             [src]='getUserAvatar(user)'
-             alt='noavatar' />
-      </div>
+        <div class='flex flex-row w-full mb-3'>
+          <span class='text-xl font-bold'>{{ user.username }}</span>
+        </div>
 
-      <div class='profile-name'
-           fxLayout='row'
-           fxLayoutAlign='start start'>
-        <span class='name'>{{ user.username }}</span>
-      </div>
+        <div class='profile-stacks flex flex-row w-full mb-3'>
+        <span class="flex flex-row items-center whitespace-nowrap text-xs mr-5">
+          <i class='material-icons mr-1.5'>mode_comment</i>{{ commentsCount }}
+          comentarios
+        </span>
+          <span class="flex flex-row items-center whitespace-nowrap text-xs mr-5">
+          <i class='material-icons mr-1.5'>format_quote</i>{{ count }}
+            artículos
+        </span>
+        </div>
 
-      <div class='profile-stacks'
-           fxLayout='row'
-           fxLayoutAlign='start center'>
-        <span fxLayoutAlign='center center'><i class='material-icons'>mode_comment</i>{{commentsCount}}
-          comentarios</span>
-        <span fxLayoutAlign='center center'><i class='material-icons'>format_quote</i>{{count}} artículos</span>
-      </div>
+        <div class='w-full mb-5 text-sm'>
+          Hello world!!!
+        </div>
 
-      <div class='profile-description'>
-        Hello world!!!
-      </div>
-
-      <div class='profile-data'
-           fxLayout='column'>
-        <ng-container *ngFor='let data of userData'>
-          <div class='profile-data-item'
-               fxLayout='row'
-               fxLayoutAlign='start center'
-               *ngIf='data.type === "data"'>
-            <i class='material-icons'>{{data.icon}}</i>
-            {{data.text}}
-          </div>
-          <button class='profile-data-item'
-                  fxLayout='row'
-                  [ngClass]='{rss: data.text === "RSS"}'
-                  fxLayoutAlign='start center'
-                  *ngIf='data.type === "button"'
-                  (click)='data.action()'>
-            <i class='material-icons'>{{data.icon}}</i>
-            {{data.text}}
-          </button>
-          <a class='profile-data-item'
-             fxLayout='row'
-             fxLayoutAlign='start center'
-             target='_blank'
-             *ngIf='data.type === "link" && data.link'
-             [href]='data?.link'>
-            <i class='material-icons'>{{data.icon}}</i>
-            {{data.text || data.link}}
-          </a>
-        </ng-container>
+        <div class='profile-data flex flex-col w-full'>
+          <ng-container *ngFor='let data of userData'>
+            <div class='profile-data-item flex flex-row border-0 text-xs bg-none p-0
+                      no-underline mb-3 overflow-hidden items-center whitespace-nowrap'
+                 *ngIf='data.type === "data"'>
+              <i class='material-icons mr-1.5'>{{ data.icon }}</i>
+              {{ data.text }}
+            </div>
+            <button class='profile-data-item flex flex-row hover:rounded text-xs mb-3 items-center whitespace-nowrap'
+                    [ngClass]='{rss: data.text === "RSS"}'
+                    *ngIf='data.type === "button"'
+                    (click)='data.action()'>
+              <i class='material-icons mr-1.5'>{{ data.icon }}</i>
+              {{ data.text }}
+            </button>
+            <a class='profile-data-item flex flex-row hover:rounded text-xs mb-3 items-center whitespace-nowrap'
+               target='_blank'
+               *ngIf='data.type === "link" && data.link'
+               [href]='data?.link'>
+              <i class='material-icons mr-1.5'>{{ data.icon }}</i>
+              {{ data.text || data.link }}
+            </a>
+          </ng-container>
+        </div>
       </div>
     </div>
 
-    <div class='post-container'
-         fxShow.xs
-         fxShow.sm
-         fxHide
-         fxFlex='100'
-         fxLayout='column'>
+    <div class='flex flex-col sm:hidden'>
       <app-post-item
         class='post-element'
         *ngFor='let post of posts'
         [post]='post'>
       </app-post-item>
-      <div class='no-article'
-           *ngIf='!posts?.length'
-           fxFlex='100'
-           fxLayout='column'
-           fxLayoutAlign='center center'>
-        <i class='fa fa-file-text'></i>
-        <h1>No tiene artículos publicados</h1>
+      <div class='no-article flex flex-col mx-3 mb-0 mt-4 justify-center items-center'
+           *ngIf='!posts?.length'>
+        <i class='fa fa-file-text text-4xl'></i>
+        <h1 class="font-normal text-center text-3xl mt-3">No tiene artículos publicados</h1>
       </div>
     </div>
 

@@ -2,170 +2,111 @@
 
 :host {
 
-  .content {
-    margin: map_get($spacings, 4);
+  .section {
 
-    .article-container {
-      overflow: hidden;
-      box-shadow: map_get($box-shadow-up, 2);
-      box-sizing: border-box;
-      border-radius: map_get($radius, 3);
-      border: solid map-get($md-grey, 400) 1px;
-      padding: map-get($spacings, 5);
+    a {
+      color: map-get($md-grey, 700);
 
-      .section {
-        margin: map-get($spacings, 2) 0;
+      &:hover {
+        color: map-get($md-primary, 500);
+      }
+    }
+  }
 
-        a {
-          color: map-get($md-grey, 700);
-          text-decoration: none;
+  .article-text {
+    background-color: map-get($md-grey, 49);
 
-          &:hover {
-            color: map-get($md-primary, 500);
-            text-decoration: underline;
-          }
+    .actions {
+      background-color: map-get($md-grey, 50);
+
+      button {
+        &:hover {
+          color: map-get($md-primary, 500);
         }
       }
+    }
+  }
 
-      .header-items {
-        white-space: nowrap;
-        margin-bottom: map-get($spacings, 5);
-      }
+  .banner-image-content {
+    .banner-image, .no-banner {
+      max-width: 300px;
+      border: dashed 2px map-get($md-grey, 500);
+      color: map-get($md-grey, 500);
+    }
 
-      .article-text {
-        margin-top: map-get($spacings, 4);
-        margin-bottom: map-get($spacings, 4);
-        box-sizing: border-box;
-        background-color: map-get($md-grey, 49);
-        width: 100%;
-        border-radius: map-get($radius, 2);
-        overflow: hidden;
-
-        .actions {
-          background-color: map-get($md-grey, 50);
-
-          button {
-            white-space: nowrap;
-            padding: map-get($spacings, 2);
-            border: none;
-            background-color: transparent;
-
-            &:hover {
-              color: map-get($md-primary, 500);
-            }
-          }
-        }
-
-        .article-content {
-          min-height: 400px;
-          padding: map-get($spacings, 2);
-
-          textarea {
-            font-size: 14px;
-            min-height: 400px;
-          }
+    .banner-actions {
+      mat-button-toggle {
+        ::ng-deep.mat-button-toggle-label-content {
+          padding: 0 16px;
         }
       }
+    }
+  }
 
-      .banner-image-content {
-        .banner-image, .no-banner {
-          max-width: 300px;
-          width: 100%;
-          height: 150px;
-          border: dashed 2px map-get($md-grey, 500);
-          color: map-get($md-grey, 500);
-          object-fit: cover;
-          object-position: center;
-          overflow: hidden;
-          border-radius: map-get($radius, 2);
-          margin-bottom: map-get($spacings, 2);
-        }
+  .time-section {
+    mat-form-field {
+      margin-right: map-get($spacings, 3);
 
-        .banner-actions {
-          margin-bottom: map-get($spacings, 5);
-
-          .banner-action-title {
-            white-space: nowrap;
-          }
-
-          mat-button-toggle {
-            margin: 0 map-get($spacings, 2);
-            font-size: 12px;
-            min-width: 45px;
-
-            ::ng-deep.mat-button-toggle-label-content {
-              padding: 0 16px;
-            }
-          }
-        }
-      }
-
-      .time-section {
-        mat-form-field {
-          margin-right: map-get($spacings, 3);
-
-          ::ng-deep {
-            .mat-form-field-flex {
-              border-color: transparent;
-              background-color: map-get($md-grey, 49);
-              border-radius: map-get($radius, 2);
-
-              .mat-form-field-infix {
-                margin-left: map-get($spacings, 1);
-              }
-            }
-          }
-        }
-      }
-
-      .tags-section {
-        // todo
-        tag-input {
-          border: transparent;
+      ::ng-deep {
+        .mat-form-field-flex {
+          border-color: transparent;
           background-color: map-get($md-grey, 49);
           border-radius: map-get($radius, 2);
-          padding-left: 6px;
 
-          ::ng-deep {
-            .ng2-tag-input {
-              border: none;
-
-              &:active {
-                border: none;
-              }
-            }
-
-            input {
-              background-color: map-get($md-grey, 49);
-            }
-          }
-        }
-      }
-
-      mat-form-field {
-        font-size: 14px;
-
-        ::ng-deep {
-          .mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end {
-            border-color: transparent;
-            background-color: map-get($md-grey, 49);
-          }
-
-          textarea {
-            min-height: 100px;
-          }
-
-          .mat-form-field-prefix {
-            font-size: 20px;
-            margin-right: map-get($spacings, 2);
-            color: map-get($md-primary, 500);
-            width: 20px;
-            text-align: center;
-            align-self: center;
+          .mat-form-field-infix {
+            margin-left: map-get($spacings, 1);
           }
         }
       }
     }
-
   }
+
+  .tags-section {
+    // todo
+    tag-input {
+      border: transparent;
+      background-color: map-get($md-grey, 49);
+      border-radius: map-get($radius, 2);
+      padding-left: 6px;
+
+      ::ng-deep {
+        .ng2-tag-input {
+          border: none;
+
+          &:active {
+            border: none;
+          }
+        }
+
+        input {
+          background-color: map-get($md-grey, 49);
+        }
+      }
+    }
+  }
+
+  mat-form-field {
+    font-size: 14px;
+
+    ::ng-deep {
+      .mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end {
+        border-color: transparent;
+        background-color: map-get($md-grey, 49);
+      }
+
+      textarea {
+        min-height: 100px;
+      }
+
+      .mat-form-field-prefix {
+        font-size: 20px;
+        margin-right: map-get($spacings, 2);
+        color: map-get($md-primary, 500);
+        width: 20px;
+        text-align: center;
+        align-self: center;
+      }
+    }
+  }
+
 }

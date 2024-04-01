@@ -1,78 +1,31 @@
 @import '../../../../../../../libs/shared/src/theme';
 
 :host {
-  .container {
-    .container-info {
-      margin-top: map-get($spacings, 4);
-      margin-left: map-get($spacings, 3);
-
-      font-size: 12px;
-      line-height: 20px;
-
-      .line-number {
-        color: map-get($md-grey, 500);
-      }
-
-      .reference-line {
-        min-width: 2px;
-        max-width: 2px;
-        flex: 1 1 100%;
-        box-sizing: border-box;
-        margin: 0 map-get($spacings, 2);
-        background-color: map-get($md-grey, 400);
-      }
-
-      .code-container {
-        width: 100%;
-
-        .comment {
-          color: map-get($md-grey, 600);
-        }
-
-        .class {
-          color: #cfc41f;
-        }
-
-        .link {
-          background-color: map-get($md-grey, 400);
-          border-radius: map-get($radius, 2);
-          text-decoration: none;
-          color: map-get($md-grey, 800);
-          padding: 0 map-get($spacings, 1);
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-
-        .var {
-          color: map-get($md-primary, 500);
-        }
-
-        .comment-user {
-          .comment-user-image {
-            width: 12px;
-            height: 12px;
-            overflow: visible;
-
-            img {
-              width: 20px;
-              height: 20px;
-              border-radius: 50%;
-            }
-          }
-        }
-
-        .comment-body {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-      }
-    }
+  .line-number {
+    color: map-get($md-grey, 500);
   }
 
-  .t1 {
-    margin-left: 20px;
+  .reference-line {
+    min-width: 2px;
+    max-width: 2px;
+    flex: 1 1 100%;
+    background-color: map-get($md-grey, 400);
+  }
+
+  .comment {
+    color: map-get($md-grey, 600);
+  }
+
+  .class {
+    color: #cfc41f;
+  }
+
+  .link {
+    background-color: map-get($md-grey, 400);
+    color: map-get($md-grey, 800);
+  }
+
+  .var {
+    color: map-get($md-primary, 500);
   }
 }

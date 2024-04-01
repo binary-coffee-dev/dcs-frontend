@@ -1,4 +1,5 @@
 import { Component, Inject, Input, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { Store } from '@ngxs/store';
 import { takeUntil } from 'rxjs/operators';
@@ -8,13 +9,12 @@ import {
   Comment,
   CommentState,
   EpisodeModel,
-  PodcastModel,
-  PodcastState, Post,
+  PodcastState,
+  Post,
   UrlUtilsService,
   WINDOW
 } from '@dcs-libs/shared';
 import { MomentService } from '../../../core/services';
-import { isPlatformBrowser } from '@angular/common';
 
 interface ShareLink {
   name: string;
@@ -103,8 +103,8 @@ export class InfoBarComponent implements OnInit, OnDestroy {
     this._unsubscribe.next(true);
   }
 
-  toDate(date: string | undefined): Date | null {
-    return date && new Date(date) || null;
+  toDate(date: string | undefined): Date | undefined {
+    return date && new Date(date) || undefined;
   }
 
   getPostName(post: Post | string | undefined) {

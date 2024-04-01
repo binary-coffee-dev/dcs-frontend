@@ -21,7 +21,7 @@ export class SubscribeComponent implements OnInit, OnDestroy {
   subscriptionError = '';
   subscriptionSent = false;
 
-  loading = true;
+  loading = false;
 
   subscribeForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email])
@@ -43,6 +43,7 @@ export class SubscribeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribe))
       .subscribe((loading) => {
         this.loading = loading;
+        // this.loading = true;
         this.subscribeForm = new FormGroup({
           email: new FormControl({value: this.subscribeForm.controls['email'].value, disabled: loading})
         });

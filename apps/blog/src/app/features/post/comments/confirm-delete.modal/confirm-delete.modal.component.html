@@ -1,19 +1,13 @@
-<div class='card-modal'
-     fxLayout='column'>
-  <div class='head'
-       fxLayout='row'>
-    <div fxFlex='100'></div>
+<div class='card-modal flex flex-col'>
+  <div class='head flex flex-row'>
+    <div class="w-full"></div>
     <i class='fa fa-close close-button'
        (click)='cancel()'
        matTooltip='close'></i>
   </div>
-  <div class='body'
-       fxLayout='column'
-       fxLayoutAlign='start center'>
-    <span>¿Está seguro que desea eliminar el comentario?</span>
-    <div class='buttons-container'
-         fxLayout='row'
-         fxLayoutAlign='end'>
+  <div class='body flex flex-col'>
+    <span class="mb-5">¿Está seguro que desea eliminar el comentario?</span>
+    <div class='buttons-container flex flex-row'>
       <mat-button-toggle class='button-ok'
                          (click)='ok()'>Eliminar
       </mat-button-toggle>

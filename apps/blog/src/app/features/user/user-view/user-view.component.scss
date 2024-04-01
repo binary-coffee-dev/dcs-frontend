@@ -1,134 +1,69 @@
 @import 'libs/shared/src/theme';
 
 :host {
-  .container {
-    margin: map-get($spacings, 5) 0 0 0;
 
-    .align-container {
-      overflow: hidden;
-      position: relative;
+  .align-container-user-view {
 
-      .post-container {
-        width: 100%;
-        min-height: 300px;
-        overflow: hidden;
-        box-sizing: border-box;
+    .no-article {
 
-        .no-article {
-          margin: 0 map-get($spacings, 2);
+      .fa {
+        color: map-get($md-primary, 500);
+      }
 
-          .fa {
-            font-size: 40px;
+      h1 {
+        color: map-get($md-grey, 700);
+      }
+    }
+
+    .user-container {
+      border: solid 1px #0001;
+
+      .user-image {
+        border: solid 3px map-get($md-grey, 500);
+      }
+
+      .profile-stacks {
+        span {
+          color: map-get($md-grey, 700);
+
+          .material-icons {
             color: map-get($md-primary, 500);
-          }
-
-          h1 {
-            color: map-get($md-grey, 700);
-            font-weight: normal;
-            text-align: center;
           }
         }
       }
 
-      .user-container {
-        min-height: 300px;
-        margin: 0 map-get($spacings, 1) map-get($spacings, 1) map-get($spacings, 4);
-        box-shadow: map-get($box-shadow, 2);
-        padding: map-get($spacings, 5);
-        box-sizing: border-box;
+      .profile-data {
 
-        &.not-margin {
-          margin: 0 map-get($spacings, 2) map-get($spacings, 4) map-get($spacings, 2);
-          width: calc(100% - #{map-get($spacings, 4)});
-        }
-
-        .avatar-container {
-          width: 100%;
-          margin-bottom: map-get($spacings, 4);
-
-          .user-image {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            border: solid 3px map-get($md-grey, 500);
+        a, button {
+          &:hover {
+            background-color: map-get($md-grey, 50);
           }
         }
 
-        .profile-name {
-          width: 100%;
-          margin-bottom: map-get($spacings, 2);
+        .profile-data-item {
+          color: map-get($md-grey, 700);
 
-          .name {
-            font-size: 21px;
-            font-weight: bold;
-          }
-        }
-
-        .profile-stacks {
-          width: 100%;
-          margin-bottom: map-get($spacings, 2);
-
-          span {
-            font-size: 10px;
-            color: map-get($md-grey, 700);
-            margin-right: map-get($spacings, 3);
-
-            .material-icons {
-              color: map-get($md-primary, 500);
-              margin-right: map-get($spacings, 1);
-            }
-          }
-        }
-
-        .profile-description {
-          width: 100%;
-          margin-bottom: map-get($spacings, 3);
-          font-size: 14px;
-        }
-
-        .profile-data {
-          width: 100%;
-
-          a, button {
-            &:hover {
-              background-color: map-get($md-grey, 50);
-              border-radius: map-get($radius, 2);
-            }
+          .material-icons {
+            color: map-get($md-primary, 500);
           }
 
-          .profile-data-item {
-            border: none;
-            font-size: 10px;
-            background: none;
-            padding: 0;
-            text-decoration: none;
-            margin-bottom: map-get($spacings, 2);
-            color: map-get($md-grey, 700);
-            overflow: hidden;
+          &:not(:active).rss:after {
+            transition: color 2s ease-out;
+          }
 
-            .material-icons {
-              color: map-get($md-primary, 500);
-              margin-right: map-get($spacings, 1);
-            }
+          &:active.rss:after {
+            color: #292929;
+          }
 
-            &:not(:active).rss:after {
-              transition: color 2s ease-out;
-            }
+          &.rss {
+            position: relative;
 
-            &:active.rss:after {
-              color: #292929;
-            }
-
-            &.rss {
-              position: relative;
-
-              &:after {
-                content: "copiado";
-                position: absolute;
-                font-size: .8rem;
-                right: 5px;
-                color: #29292900
-              }
+            &:after {
+              content: "copiado";
+              position: absolute;
+              font-size: .8rem;
+              right: 5px;
+              color: #29292900
             }
           }
         }

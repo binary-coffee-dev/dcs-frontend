@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+
 import { ScrollService } from '../../../core/services';
 
 @Component({
@@ -7,7 +8,7 @@ import { ScrollService } from '../../../core/services';
   styleUrls: ['./scroll-top.component.scss']
 })
 export class ScrollTopComponent {
-  windowScrolled: boolean = false;
+  windowScrolled = false;
 
   constructor(private scroll: ScrollService) {}
 

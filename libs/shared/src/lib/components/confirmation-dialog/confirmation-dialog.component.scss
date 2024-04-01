@@ -1,13 +1,4 @@
 @import 'libs/shared/src/theme';
 
 :host {
-  .card-modal {
-    .title {
-      margin-bottom: map-get($spacings, 2);
-    }
-
-    .button-ok {
-      margin-right: map-get($spacings, 2);
-    }
-  }
 }

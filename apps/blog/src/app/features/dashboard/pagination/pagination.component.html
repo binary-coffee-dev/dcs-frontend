@@ -1,12 +1,15 @@
-<div class="pagination-container" fxLayout="row" fxLayoutAlign="center center"
-  *ngIf="((firstPage | async)  === false) || ((lastPage | async) === false)">
-  <button mat-button class="pagination-button pb-left" (click)="previousPage()" *ngIf="(firstPage | async)  === false"
-    fxFlex="100">
+<div class="pagination-container flex flex-row w-full pt-4 px-3 border-b-0 sticky bottom-0"
+     *ngIf="((firstPage | async)  === false) || ((lastPage | async) === false)">
+  <button class="pagination-button w-full pb-left rounded-none text-base font-bold cursor-pointer"
+          mat-button
+          (click)="previousPage()" *ngIf="(firstPage | async)  === false">
     <mat-icon aria-hidden="false">navigate_before</mat-icon>
     <mat-icon aria-hidden="false">navigate_before</mat-icon>
   </button>
-  <button mat-button class="pagination-button pb-right" (click)="nextPage()" *ngIf="(lastPage | async) === false"
-    fxFlex="100">
+  <button class="pagination-button w-full pb-right"
+          mat-button
+          (click)="nextPage()"
+          *ngIf="(lastPage | async) === false">
     <mat-icon aria-hidden="false">navigate_next</mat-icon>
     <mat-icon aria-hidden="false">navigate_next</mat-icon>
   </button>

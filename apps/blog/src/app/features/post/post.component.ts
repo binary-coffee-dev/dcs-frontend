@@ -2,10 +2,12 @@ import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 import { Store } from '@ngxs/store';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import {KatexOptions} from "ngx-markdown";
 
 import {
   ENVIRONMENT,
@@ -19,8 +21,6 @@ import {
 } from '@dcs-libs/shared';
 import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
 import { LoginRequestModalComponent } from '../components/login-request-modal';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import {KatexOptions} from "ngx-markdown";
 
 const MAX_NUMBER_OF_POSTS = 6;
 

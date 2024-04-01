@@ -10,6 +10,8 @@ import { CookiesConsentComponent } from './features/cookies-consent';
 import { MaterialModule } from './core/material';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog';
 import { SubscribeDialogComponent } from './components/subscribe-dialog';
+import { FooterComponent } from './components/footer/footer.component';
+import { SocialLinksComponent } from './components/social-links/social-links.component';
 
 @NgModule({
   imports: [CommonModule, MaterialModule, RouterModule],
@@ -18,16 +20,20 @@ import { SubscribeDialogComponent } from './components/subscribe-dialog';
     HasPermissionsPipe,
     CookiesConsentComponent,
     ConfirmationDialogComponent,
-    SubscribeDialogComponent
+    SubscribeDialogComponent,
+    SocialLinksComponent,
+    FooterComponent,
   ],
   exports: [
     LoadingComponent,
     HasPermissionsPipe,
-    CookiesConsentComponent
+    CookiesConsentComponent,
+    SocialLinksComponent,
+    FooterComponent,
   ],
   providers: [
-    { provide: WINDOW, useFactory: windowFactory },
-    { provide: ROLE_PERMISSION_MAP, useValue: rolePermissionMap }
+    {provide: WINDOW, useFactory: windowFactory},
+    {provide: ROLE_PERMISSION_MAP, useValue: rolePermissionMap}
   ]
 })
 export class SharedModule {

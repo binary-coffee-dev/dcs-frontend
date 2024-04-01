@@ -3,10 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 import {
-  FetchTopActiveUsersAction,
-  FetchTopPopularUsersAction,
   FetchUsersAction,
-  TopUsers,
   UrlUtilsService,
   User,
   UserInfoState
@@ -25,14 +22,19 @@ export class UsersOverviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(UserInfoState.users).subscribe(users => this.users = users || []);
+    this.store.select(UserInfoState.users)
+      .subscribe(users => this.users = users ? users.map(u => ({...u})) : []);
   }
 
-  filterUser(event: any) {
+  handlerAvatarImgError(index: number): void {
+    this.users[index].avatarUrl = undefined;
+  }
+
+  filterUser(event: any): void {
     this.store.dispatch(new FetchUsersAction(event.target.value));
   }
 
-  getUserAvatar(user: User) {
+  getUserAvatar(user: User): string {
     return this.url.getUserImage(user);
   }
 
