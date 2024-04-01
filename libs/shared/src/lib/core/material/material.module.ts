@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/legacy-tooltip';
 import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
@@ -17,12 +15,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
   imports: [
     CommonModule,
     MatToolbarModule,
-    FlexLayoutModule.withConfig({ssrObserveBreakpoints: ['xs', 'lt-md']}),
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
@@ -43,7 +41,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
   ],
   exports: [
     MatToolbarModule,
-    FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,

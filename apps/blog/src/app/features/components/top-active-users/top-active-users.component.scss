@@ -1,59 +1,83 @@
 @import 'libs/shared/src/theme';
 
 :host {
-  .top {
-    margin-top: map-get($spacings, 3);
-    margin-right: map-get($spacings, 3);
+  .top-content {
+    background-color: map-get($md-grey, 400);
 
-    .top-content {
-      margin: map-get($spacings, 1) 0 map-get($spacings, 2) 0;
-      background-color: map-get($md-grey, 400);
-      padding: map-get($spacings, 2) map-get($spacings, 2) 0;
-      border-radius: map-get($radius, 2);
-      box-shadow: map_get($box-shadow-up, 2);
+    a {
+      img {
+        border: solid 2px transparent;
+      }
 
-      a {
-        font-size: 10px;
-        text-decoration: none;
-        padding-bottom: map-get($spacings, 2);
-
+      &:hover {
         img {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          margin-right: map-get($spacings, 2);
-          border: solid 2px transparent;
-        }
-
-        .user-info {
-          .top-user-name {
-            color: map-get($md-grey, 800);
-          }
-
-          .post-info {
-            color: map-get($md-grey, 600);
-          }
-        }
-
-        &:hover {
-          .user-info {
-            animation: anim-active-user .3s normal;
-          }
-
-          img {
-            border: solid 2px map-get($md-primary, 500);
-          }
+          border: solid 2px map-get($md-primary, 500);
         }
       }
     }
   }
 
-  @keyframes anim-active-user {
-    from {
-      min-height: 0;
-    }
-    to {
-      min-height: 40px;
-    }
+  .top-user-name {
+    color: map-get($md-grey, 800);
   }
+
+  .post-info {
+    color: map-get($md-grey, 600);
+  }
+
+  //.top {
+  //  margin-top: map-get($spacings, 3);
+  //  margin-right: map-get($spacings, 3);
+  //
+  //  .top-content {
+  //    margin: map-get($spacings, 1) 0 map-get($spacings, 2) 0;
+  //    background-color: map-get($md-grey, 400);
+  //    padding: map-get($spacings, 2) map-get($spacings, 2) 0;
+  //    border-radius: map-get($radius, 2);
+  //    box-shadow: map_get($box-shadow-up, 2);
+  //
+  //    a {
+  //      font-size: 10px;
+  //      text-decoration: none;
+  //      padding-bottom: map-get($spacings, 2);
+  //
+  //      img {
+  //        width: 40px;
+  //        height: 40px;
+  //        border-radius: 50%;
+  //        margin-right: map-get($spacings, 2);
+  //        border: solid 2px transparent;
+  //      }
+  //
+  //      .user-info {
+  //        .top-user-name {
+  //          color: map-get($md-grey, 800);
+  //        }
+  //
+  //        .post-info {
+  //          color: map-get($md-grey, 600);
+  //        }
+  //      }
+  //
+  //      &:hover {
+  //        .user-info {
+  //          animation: anim-active-user .3s normal;
+  //        }
+  //
+  //        img {
+  //          border: solid 2px map-get($md-primary, 500);
+  //        }
+  //      }
+  //    }
+  //  }
+  //}
+  //
+  //@keyframes anim-active-user {
+  //  from {
+  //    min-height: 0;
+  //  }
+  //  to {
+  //    min-height: 40px;
+  //  }
+  //}
 }

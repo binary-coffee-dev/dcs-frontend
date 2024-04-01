@@ -1,46 +1,39 @@
 <div>
   <footer *ngIf="(!full && socialLinks) || full">
 
-    <div *ngIf="!full"
-         fxLayoutAlign="center center">
+    <div *ngIf="!full">
       <app-social-links></app-social-links>
     </div>
 
     <div *ngIf="full"
-         class="groups"
-         fxLayout="row wrap">
-      <div class="sub-group"
-           fxLayout="column"
-           fxLayoutAlign="start start"
-           fxFlex.xs="100"
-           fxFlex="33"
-           fxFlex.lg="33">
-        <span class="sub-group-header"><b>{{root}} </b>binarycoffee -h</span>
-        <div fxLayout="column">
-          <a mat-button
+         class="groups">
+      <div class="sub-group">
+        <span class="sub-group-header"><b>{{ root }} </b>binarycoffee -h</span>
+        <div>
+          <a matButton
              [routerLink]="'/donate'">
             <span>> Donar</span>
           </a>
 
-          <a mat-button
+          <a matButton
              (click)='openSubscriptionDialog()'>
             <span>> Subscribirse</span>
           </a>
 
-          <a mat-button
+          <a matButton
              href="mailto:website@binary-coffee.dev"
              target="blank">
             <span>> Contáctenos</span>
           </a>
 
-          <a mat-button
+          <a matButton
              [href]="getSitemapUrl()"
              target="_blank"
              title="Vea la estructura general del sitio web">
             <span>> Mapa</span>
           </a>
 
-          <a mat-button
+          <a matButton
              [href]="getRSSUrl()"
              target="_blank"
              title="Sígannos por medio de nuestro RSS">
@@ -49,47 +42,35 @@
         </div>
       </div>
 
-      <div class="sub-group"
-           fxLayout="column"
-           fxLayoutAlign="start start"
-           fxFlex.xs="100"
-           fxFlex="33"
-           fxFlex.lg="33">
-        <span class="sub-group-header"><b>{{root}} </b>sociales -ls</span>
-        <app-social-links [footer]="true"
-                          fxLayout="column"
-                          fxLayoutAlign="start start"></app-social-links>
-        <a mat-button
+      <div class="sub-group">
+        <span class="sub-group-header"><b>{{ root }} </b>sociales -ls</span>
+        <app-social-links [footer]="true"></app-social-links>
+        <a matButton
            [routerLink]="'/podcast/espacio-binario'">
           <span>> Espacio Binario</span>
         </a>
       </div>
 
-      <div class="sub-group"
-           fxLayout="column"
-           fxLayoutAlign="start start"
-           fxFlex.xs="100"
-           fxFlex="33"
-           fxFlex.lg="33">
-        <span class="sub-group-header"><b>{{root}} </b>legal -ls</span>
-        <div fxLayout="column">
-          <a mat-button
+      <div class="sub-group">
+        <span class="sub-group-header"><b>{{ root }} </b>legal -ls</span>
+        <div>
+          <a matButton
              routerLink="/about">
             <span>> About</span>
           </a>
-          <a mat-button
+          <a matButton
              routerLink="/privacy-policy">
             <span>> Políticas de Privacidad</span>
           </a>
-          <a mat-button
+          <a matButton
              routerLink="/cookies">
             <span>> Políticas de Cookies</span>
           </a>
-          <a mat-button
+          <a matButton
              routerLink="/code-of-conduct">
             <span>> Código de Conducta</span>
           </a>
-          <a mat-button
+          <a matButton
              routerLink="/term-of-use">
             <span>> Términos y Condiciones</span>
           </a>
@@ -100,25 +81,17 @@
   </footer>
 </div>
 
-<div class="copyright"
-     fxLayout.lg="row"
-     fxLayout="column"
-     fxLayoutAlign="center center">
+<div class="copyright">
 
-  <div fxFlex.lg="50"
-       fxFlex="100"
-       fxLayoutAlign="start center"
-       fxLayout.xs="column">
-    <span>Copyright ©{{year}}</span>
+  <div>
+    <span>Copyright ©{{ year }}</span>
     <span>
-      <span fxHide.xs>|</span>
+      <span>|</span>
       <span>Todos los derechos reservados</span>
     </span>
   </div>
 
-  <span fxFlex.lg="50"
-        fxFlex="50"
-        fxLayoutAlign="end center">
+  <span>
     Hecho con
     <span class="fa fa-heart anim-pulse"></span>
     por DC's Community

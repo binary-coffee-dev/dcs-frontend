@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
@@ -11,8 +10,6 @@ import { HttpLink } from 'apollo-angular/http';
 
 import {
   SharedModule,
-  FooterComponent,
-  SocialLinksComponent,
   ENVIRONMENT,
   ReduxModule,
   AuthState,
@@ -43,8 +40,6 @@ import { FilterComponent } from './features/components/filter/filter.component';
     AppComponent,
     HeaderComponent,
     FilterComponent,
-    FooterComponent,
-    SocialLinksComponent,
     NewLabelComponent,
     ScrollTopComponent,
     CliComponent,
@@ -66,7 +61,6 @@ import { FilterComponent } from './features/components/filter/filter.component';
     SharedModule,
     PodcastModule,
     UserModule,
-    FlexLayoutModule.withConfig({ssrObserveBreakpoints: ['xs', 'lt-md']})
   ],
   providers: [
     {

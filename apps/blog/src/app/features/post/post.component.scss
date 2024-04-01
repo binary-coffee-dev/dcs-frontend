@@ -3,121 +3,82 @@
 :host {
   overflow: hidden;
 
-  .post-container {
-    overflow: hidden;
-    margin-top: map-get($spacings, 5);
+  .like-button {
+    background-color: map-get($md-primary, 500);
+  }
 
-    .like-button {
-      font-size: 12px;
-      min-width: 200px;
-      background-color: map-get($md-primary, 500);
+  .last-like-button {
+    margin-left: map-get($spacings, 2);
+  }
+
+  .align-container {
+    margin-bottom: map-get($spacings, 5);
+
+    .similar-post-content {
+      margin-top: map-get($spacings, 4);
+      margin-left: map-get($spacings, 4);
+
+      ::ng-deep.container {
+        padding-right: 0;
+      }
     }
 
-    .last-like-button {
-      margin-left: map-get($spacings, 2);
-    }
+    .post-in-container {
+      .post-info-content {
+        border: solid 1px #0001;
+        border-radius: map-get($radius, 2);
+        //box-shadow: map_get($box-shadow-up, 1);
+        margin-bottom: map-get($spacings, 10);
 
-    .align-container {
-      margin-bottom: map-get($spacings, 5);
+        .tags-content {
+          app-tags {
+            ::ng-deep.content {
+              justify-content: flex-end;
+            }
+          }
+        }
 
-      .siderbar {
-        .similar-post-content {
-          margin-top: map-get($spacings, 4);
-          margin-left: map-get($spacings, 4);
+          .user-avatar {
+            color: map-get($md-grey, 800);
 
-          ::ng-deep.container {
-            padding-right: 0;
+            img {
+              border: solid 2px transparent;
+            }
+
+            &:hover {
+              text-decoration: underline;
+
+              img {
+                border: solid 2px map-get($md-primary, 500);
+              }
+            }
+          }
+
+        .post-info {
+          font-size: 12px;
+          color: map-get($md-grey, 600);
+          margin-bottom: map-get($spacings, 4);
+
+          span {
+            white-space: nowrap;
+          }
+
+          .icon {
+            display: flex;
+            padding-left: map-get($spacings, 2);
+            align-items: center;
+
+            i {
+              font-size: 20px;
+              padding-right: map-get($spacings, 1);
+            }
           }
         }
       }
 
-      .post-in-container {
-        .post-info-container {
-          padding: map-get($spacings, 4);
-          border: solid 1px #0001;
-          border-radius: map-get($radius, 2);
-          box-shadow: map_get($box-shadow-up, 1);
-          margin-bottom: map-get($spacings, 10);
-
-          .image-container {
-            width: 100%;
-
-            img {
-              width: 100%;
-              max-height: 300px;
-              object-fit: cover;
-              object-position: center;
-            }
-          }
-
-          h1 {
-            font-size: 20px;
-            text-transform: uppercase;
-          }
-
-          .tags-content {
-            app-tags {
-              ::ng-deep.content {
-                justify-content: flex-end;
-              }
-            }
-          }
-
-          .user-avatar-container {
-            margin-bottom: map-get($spacings, 1);
-
-            .user-avatar {
-              text-decoration: none;
-              color: map-get($md-grey, 800);
-
-              img {
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                margin-right: map-get($spacings, 2);
-                border: solid 2px transparent;
-              }
-
-              &:hover {
-                text-decoration: underline;
-
-                img {
-                  border: solid 2px map-get($md-primary, 500);
-                }
-              }
-            }
-          }
-
-          .post-info {
-            font-size: 12px;
-            color: map-get($md-grey, 600);
-            margin-bottom: map-get($spacings, 4);
-
-            span {
-              white-space: nowrap;
-            }
-
-            .icon {
-              display: flex;
-              padding-left: map-get($spacings, 2);
-              align-items: center;
-
-              i {
-                font-size: 20px;
-                padding-right: map-get($spacings, 1);
-              }
-            }
-          }
-        }
-
-        .button-padding {
-          padding: 0 map-get($spacings, 4);
-        }
-
-        app-comments {
-          ::ng-deep.comments-container {
-            margin-top: map-get($spacings, 10) !important;
-          }
+      app-comments {
+        ::ng-deep.comments-container {
+          margin-top: map-get($spacings, 10) !important;
         }
       }
     }

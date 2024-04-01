@@ -4,28 +4,12 @@
   width: 100%;
   box-sizing: border-box;
 
-  .container {
-    margin: 0 map-get($spacings, 3);
+  .menu-dashboard-button {
+    color: map-get($md-grey, 700);
+  }
 
-    .menu-button {
-      position: relative;
-      font-size: 30px;
-      color: map-get($md-grey, 700);
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-
-    a {
-      text-decoration: none;
-      color: map_get($md-grey, 900);
-
-      img {
-        width: 40px;
-        margin-right: map_get($spacings, 4);
-      }
-    }
+  a {
+    color: map_get($md-grey, 900);
   }
 
 }

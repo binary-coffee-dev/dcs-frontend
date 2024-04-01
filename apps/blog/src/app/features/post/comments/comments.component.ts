@@ -55,7 +55,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.store.select(CommentState.comments).subscribe(comments => {
       if (comments) {
         this.comments = comments;
@@ -78,31 +78,31 @@ export class CommentsComponent implements OnInit, OnDestroy {
     this.unsubscribe.next(true);
   }
 
-  commentChangeEvent() {
+  commentChangeEvent(): void {
     if (!this.isLogin) {
       this.postLikeClick();
       this.commentForm.controls['body'].setValue('');
     }
   }
 
-  postLikeClick() {
+  postLikeClick(): void {
     this.dialog.open(LoginRequestModalComponent, {});
   }
 
-  removeComment(commentId: string) {
-    this.dialog.open(ConfirmDeleteModalComponent, { data: { commentId } });
+  removeComment(commentId: string): void {
+    this.dialog.open(ConfirmDeleteModalComponent, {data: {commentId}});
   }
 
-  editComment(comment: Comment) {
+  editComment(comment: Comment): void {
     this.dialog.open(EditCommentModalComponent, {
       width: '500px',
       height: '600px',
       maxHeight: '600px',
-      data: { comment }
+      data: {comment}
     });
   }
 
-  createComment() {
+  createComment(): void {
     if (this.commentForm.valid && this.checkEmptySpaces(this.commentForm.controls['body'].value)) {
       const comment = {
         body: this.commentForm.controls['body'].value,
@@ -125,17 +125,17 @@ export class CommentsComponent implements OnInit, OnDestroy {
     return Boolean(comment && comment.user && (this.isAdmin(this.currentUser) || this.isStaff(this.currentUser)));
   }
 
-  canCurrentUserEditComment(comment: Comment) {
+  canCurrentUserEditComment(comment: Comment): boolean {
     return (comment.user && this.currentUser && comment.user.username === this.currentUser.username) ||
       this.isStaff(this.currentUser) ||
       this.isAdmin(this.currentUser);
   }
 
-  isCommentFromPostOwner(comment: Comment) {
-    return this.post && this.post.author && this.post.author.username === this.getName(comment);
+  isCommentFromPostOwner(comment: Comment): boolean {
+    return Boolean(this.post && this.post.author && this.post.author.username === this.getName(comment));
   }
 
-  isStaffOrAdmin(comment: Comment) {
+  isStaffOrAdmin(comment: Comment): boolean {
     return this.isStaff(comment.user) || this.isAdmin(comment.user);
   }
 
@@ -147,15 +147,15 @@ export class CommentsComponent implements OnInit, OnDestroy {
     return Boolean(user && user.role && user.role.type === RoleEnum.administrator);
   }
 
-  getRoleName(comment: Comment) {
+  getRoleName(comment: Comment): string {
     return comment.user ? comment.user.role.name : '';
   }
 
-  getUserAvatar(user: User | undefined) {
+  getUserAvatar(user: User | undefined): string {
     return this.url.getUserImage(user);
   }
 
-  getName(comment: Comment) {
+  getName(comment: Comment): string {
     return comment.name || (comment.user && comment.user.username) || 'public';
   }
 

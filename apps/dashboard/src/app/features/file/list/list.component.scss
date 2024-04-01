@@ -1,87 +1,50 @@
 @import 'libs/shared/src/theme';
 
 :host {
-  .content {
-    margin: map_get($spacings, 4);
-    box-sizing: border-box;
-    max-width: 100%;
 
-    .container-align {
-      overflow: hidden;
-      box-shadow: map_get($box-shadow-up, 2);
-      box-sizing: border-box;
-      border-radius: map_get($radius, 3);
-      border: solid map-get($md-grey, 400) 1px;
-      padding: map-get($spacings, 5);
-    }
 
-    .action-container {
-      margin-bottom: map-get($spacings, 3);
+  mat-button-toggle {
+    background-color: map-get($md-primary, 500);
+    color: map-get($md-grey, 50);
+  }
 
-      mat-button-toggle {
-        background-color: map-get($md-primary, 500);
-        color: map-get($md-grey, 50);
-        font-size: 14px;
+  .table-container {
+    //border-radius: map-get($radius, 2);
+    //overflow: hidden;
+    //overflow-x: auto;
+
+    table {
+
+      thead {
+        background-color: map-get($md-grey, 50);
       }
-    }
 
-    .table-container {
-      border-radius: map-get($radius, 2);
-      overflow: hidden;
-      overflow-x: auto;
+      tr {
 
-      table {
-        border-collapse: collapse;
-        width: 100%;
+        td {
 
-        thead {
-          background-color: map-get($md-grey, 50);
-          font-size: 14px;
-        }
-
-        tr {
-          font-size: 12px;
-
-          th {
-            padding: map-get($spacings, 2);
-            white-space: nowrap;
-          }
-
-          td {
-            padding: map-get($spacings, 1) map-get($spacings, 4);
-            white-space: nowrap;
-
-            .file-image {
-              border-radius: map-get($radius, 2);
-              height: 70px;
-              width: 70px;
-              object-fit: cover;
-              object-position: center;
-              border: 1px solid map_get($md-primary, 100);
-            }
-          }
-
-          &.cell-even {
-            background-color: map-get($md-grey, 48);
-          }
-
-          &.cell-odd {
-            background-color: map-get($md-grey, 49);
-          }
-
-          button {
-            color: map-get($md-primary, 500);
+          .file-image {
+            border: 1px solid map_get($md-primary, 100);
           }
         }
 
-        tbody > tr:hover {
-          background-color: map-get($md-primary, 100);
+        &.cell-even {
+          background-color: map-get($md-grey, 48);
+        }
+
+        &.cell-odd {
+          background-color: map-get($md-grey, 49);
+        }
+
+        button {
+          color: map-get($md-primary, 500);
         }
       }
-    }
 
-    .pagination-container {
-      margin-top: map-get($spacings, 3);
+      tbody > tr:hover {
+        background-color: map-get($md-primary, 100);
+      }
     }
   }
+
 }

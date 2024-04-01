@@ -1,40 +1,34 @@
-<div class='card-modal'
-     fxLayout='column'>
-  <div class='head'
-       fxLayout='row'>
-    <span class='title'>Subir archivo</span>
-    <div fxFlex='100'></div>
-    <i class='fa fa-close close-button'
+<div class='card-modal flex flex-col'>
+  <div class='flex flex-row'>
+    <span class='title whitespace-nowrap'>Subir archivo</span>
+    <div class="w-full"></div>
+    <i class='fa fa-close close-button '
        (click)='cancel()'
        matTooltip='close'></i>
   </div>
-  <form [formGroup]='uploadFileForm'
-        class='body'
-        fxLayout='column'
-        fxLayoutAlign='start center'>
+  <form class='body flex flex-col items-center mt-3'
+        [formGroup]='uploadFileForm'>
 
-    <mat-form-field appearance='outline'>
+    <mat-form-field class="w-full text-xs"
+                    appearance='outline'>
       <mat-label>Nombre de la imagen</mat-label>
-      <input matInput
+      <input class="p-1.5"
+             matInput
              formControlName='name'
              type='text'>
     </mat-form-field>
 
     <input type='file'
-           class='input-file'
+           class='hidden'
            #uploader
            (change)='onFilesChange($event)'
            formControlName='file'>
-    <div class='pre-image-container'
-         fxLayout='row'>
-      <div class='upload-pre-image'
-           fxLayout='row'
-           fxLayoutAlign='center center'
-           fxFlex='100'
+    <div class='pre-image-container flex flex-row mb-5 w-full overflow-hidden'>
+      <div class='upload-pre-image flex flex-row justify-center items-center h-48 w-full rounded relative'
            (click)='openFile(uploader)'>
-        <i class='fa fa-file-image-o'
+        <i class='fa fa-file-image-o text-5xl'
            *ngIf='!image'></i>
-        <img class='upload-image'
+        <img class='upload-image w-full h-full object-cover object-center relative'
              *ngIf='!!image'
              [src]='image'
              (click)='openFile(uploader)'
@@ -42,18 +36,16 @@
       </div>
     </div>
     <p *ngIf='type'
-       class='data'>
+       class='w-full text-xs mb-1.5'>
       <span class='code-1'> var </span>
-      <span class='code-var'> Tipo </span> = {{type}}
+      <span class='code-var'> Tipo </span> = {{ type }}
     </p>
     <p *ngIf='size'
-       class='data'>
+       class='w-full text-xs mb-1.5'>
       <span class='code-1'> var </span>
-      <span class='code-var'> Tamaño </span> = {{getSize()}}
+      <span class='code-var'> Tamaño </span> = {{ getSize() }}
     </p>
-    <div class='buttons-container'
-         fxLayout='row'
-         fxLayoutAlign='end'>
+    <div class='buttons-container flex flex-row justify-end'>
       <mat-button-toggle class='button-ok'
                          (click)='upload()'
                          [disabled]='!file || uploadingImage'>Guardar

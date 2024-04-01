@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Store } from '@ngxs/store';
 
 import { TopUsers, UrlUtilsService, User, UserInfoState } from '@dcs-libs/shared';
@@ -11,14 +12,23 @@ import { TopUsers, UrlUtilsService, User, UserInfoState } from '@dcs-libs/shared
 export class TopPopularUsersComponent implements OnInit {
   top5Likes = {} as unknown as TopUsers;
 
-  constructor(private store: Store, private url: UrlUtilsService) {
+  constructor(private store: Store, public url: UrlUtilsService) {
   }
 
   ngOnInit(): void {
-    this.store.select(UserInfoState.topPopularUsers).subscribe(topPopular => this.top5Likes = topPopular);
+    this.store.select(UserInfoState.topPopularUsers).subscribe(topPopular => this.top5Likes = {...topPopular});
   }
 
-  getUserAvatar(user: User) {
+  onUserImgError(index: number): void {
+    this.top5Likes.users = this.top5Likes.users.map((user: User, i: number): User => {
+      if (i == index) {
+        return {...user, avatarUrl: undefined} as User;
+      }
+      return user;
+    });
+  }
+
+  getUserAvatar(user: User): string {
     return this.url.getUserImage(user);
   }
 

@@ -1,75 +1,50 @@
-<div class='container'
-     fxLayout='column'
-     fxLayoutAlign='start center'>
+<div class='flex flex-col items-center'>
 
-  <div class='align-container'
-       fxLayoutAlign='center start'
-       fxLayout='row'>
+  <div class='align-container flex flex-col overflow-hidden mt-5 max-w-[1080px]
+              w-full lg:w-11/12 xl:w-9/12 2xl:w-8/12'>
 
-    <div class='data-container'
-         ngClass.xs='margin-xs'
-         ngClass.sm='margin-xs'
-         fxLayoutAlign='center start'
-         fxFlex.xl='50'
-         fxFlex.lg='70'
-         fxFlex='80'
-         fxFlex.md='95'
-         fxFlex.sm='100'
-         fxFlex.xs='100'
-         fxLayout='row'>
-
-      <div fxFlex='100'
-           fxLayout='column'>
-        <div fxLayout='row'
-             fxLayoutAlign='start center'>
-          <mat-form-field appearance='outline'>
-            <mat-label class='code-none'>
-              Buscar miembros
-            </mat-label>
-            <input
-              matInput
-              (keyup)='filterUser($event)'
-              placeholder='username'
-            />
-          </mat-form-field>
-        </div>
-
-        <div fxLayout='row wrap'
-             fxLayoutAlign='start start'>
-          <ng-container *ngFor='let user of users; let i = index'>
-            <div class='user-card-container'
-                 fxFlex.xs='50'
-                 fxFlex.sm='33'
-                 fxFlex='20'>
-              <a class='user-card'
-                 [routerLink]="'/users/' + user?.username"
-                 fxLayout='column'
-                 fxLayoutAlign='center center'>
-                <img class='top-user-image'
-                     [src]='getUserAvatar(user)'
-                     alt='noavatar' />
-                <div fxLayout='column'
-                     fxFlex='90'
-                     fxLayoutAlign='left left'>
-                  <span class='top-user-name'>"{{ user?.username }}"</span>
-
-                  <div fxLayout='column'
-                       fxLayoutAlign='start start'>
-                  <span class='info-item'
-                        fxLayoutAlign='center center'><i class='material-icons'>mode_comment</i>&#160;{{user?.comments}}
-                    comentarios</span>
-                    <span class='info-item'
-                          fxLayoutAlign='center center'><i class='material-icons'>format_quote</i>&#160;{{user?.posts}}
-                      artículos</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </ng-container>
-        </div>
-
-      </div>
-
+    <div class="flex flex-row px-3">
+      <mat-form-field class="text-xs w-full max-w-72"
+                      appearance='outline'>
+        <mat-label class='code-none text-sm'>
+          Buscar miembros
+        </mat-label>
+        <input class="text-sm"
+               matInput
+               (keyup)='filterUser($event)'
+               placeholder='username'
+        />
+      </mat-form-field>
     </div>
+
+    <div class="flex flex-row flex-wrap">
+      <ng-container *ngFor='let user of users; let i = index'>
+        <div class='w-6/12 sm:w-4/12 md:w-3/12 lg:w-2/12 p-3'>
+          <a class='user-card flex flex-col p-5 no-underline shadow-md
+                    hover:shadow-none rounded items-center overflow-hidden'
+             [routerLink]="'/users/' + user?.username">
+            <img class='w-14 h-14 max-w-14 max-h-14 rounded-full mb-5 overflow-hidden'
+                 (error)="handlerAvatarImgError(i)"
+                 [src]='getUserAvatar(user)'
+                 [alt]='(user?.username || "") + " avatar"'/>
+            <div class="flex flex-col items-center">
+              <span class='top-user-name text-sm whitespace-nowrap'>"{{ user?.username }}"</span>
+
+              <div class="flex flex-col">
+                <span class='flex flex-row info-item text-xs mt-3 items-center whitespace-nowrap'>
+                  <i class='material-icons text-base'>mode_comment</i>&#160;{{ user?.comments }}
+                  comentarios
+                </span>
+                <span class='flex flex-row info-item text-xs mt-3 items-center whitespace-nowrap'>
+                  <i class='material-icons text-base'>format_quote</i>&#160;{{ user?.posts }}
+                  artículos
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </ng-container>
+    </div>
+
   </div>
 </div>

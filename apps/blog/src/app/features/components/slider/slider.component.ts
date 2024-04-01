@@ -12,6 +12,7 @@ export interface InformationBanner {
   value?: Comment;
 }
 
+// toDo (gonzalezext)[25.03.24]: move this to environments
 const TIME_TO_CHANGE_PAGE = 6000;
 
 @Component({
@@ -61,18 +62,6 @@ export class SliderComponent implements OnInit, OnDestroy {
       this.nextPageTimer();
       // this.setWavePath();
     }
-  }
-
-  /**
-   * This code is used to paint the initial wave form in the banner
-   */
-  setWavePath() {
-    let wave = '100% 0%, 0% 0%';
-    for (let i = 0; i <= 100; i++) {
-      const y = this.map(Math.cos(Math.PI * 1.5 * i / 100 - 1), -1, 1, 5, 99);
-      wave += `,${i}% ${Math.round((100 - y) * 100) / 100}%`;
-    }
-    document.documentElement.style.setProperty('--path', wave);
   }
 
   map(value: number, in_min: number, in_max: number, out_min: number, out_max: number): number {

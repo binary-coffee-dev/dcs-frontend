@@ -1,48 +1,41 @@
-<div class='container'
-     ngClass.xs='no-margin'
-     fxLayout='row'
-     fxLayoutAlign='center'>
+<div class='flex flex-row m-6 box-border max-w-full justify-center'>
 
-  <div class='container-align'
-       fxFlex.xs='100'
-       fxFlex.sm='100'
-       fxFlex.md='100'
-       fxFlex='80'
-       fxFlex.lg='80'
-       fxFlex.xl='50'
-       fxLayout='column'>
-    <div>
-      <app-filter></app-filter>
-    </div>
-    <div class='table-container'>
+  <div class='flex flex-col overflow-hidden shadow-lg box-border rounded p-7'
+       style="border: solid 1px #0001;">
 
-      <table>
-        <thead>
+    <app-filter class="mb-3"></app-filter>
+
+    <div class='table-container rounded overflow-y-hidden overflow-x-auto box-border'>
+
+      <table class="border-collapse w-full">
+        <thead class="text-sm">
         <tr>
-          <th class='start-align title-cell'>Titulo</th>
-          <th>Publicado</th>
-          <th>Autor</th>
-          <th>Activo</th>
-          <th></th>
+          <th class='text-start p-3'>Titulo</th>
+          <th class="p-3">Publicado</th>
+          <th class="p-3">Autor</th>
+          <th class="p-3">Activo</th>
+          <th class="p-3"></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody class="text-xs">
         <tr *ngFor='let post of posts; let i = index'
             [ngClass]='{"cell-even": i % 2 === 0, "cell-odd": i % 2 === 1}'>
-          <td class='title-cell'>{{post.title}}</td>
-          <td>
-            {{moment.timeFromDate(post.publishedAt) || ''}}
+          <td class='max-w-[450px] min-w-[200px] whitespace-normal py-1.5 px-3'>
+            {{ post.title }}
           </td>
-          <td>
-            {{post?.author?.username}}
+          <td class="py-1.5 px-3 whitespace-nowrap">
+            {{ moment.timeFromDate(post.publishedAt) || '' }}
           </td>
-          <td class='center-align'>
+          <td class="py-1.5 px-3 whitespace-nowrap">
+            {{ post?.author?.username }}
+          </td>
+          <td class='py-1.5 px-3 text-center'>
             <mat-checkbox [(ngModel)]='post.enable'
                           [disabled]='true'
                           color='primary'>
             </mat-checkbox>
           </td>
-          <td class='actions'>
+          <td class='actions py-1.5 px-3 whitespace-nowrap text-sm'>
             <button mat-button
                     *ngIf='([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)'
                     matTooltip='Editar artículo'
@@ -62,14 +55,14 @@
       </table>
 
     </div>
-    <div class='pagination-container'>
-      <app-pagination (nextPageEvent)='nextPageEvent()'
-                      (previousPageEvent)='previousPageEvent()'
-                      (pageEvent)='selectPageEvent($event)'
-                      [numberOfPages]='numberOfPages'
-                      [currentPage]='currentPage'>
-      </app-pagination>
-    </div>
+
+    <app-pagination class="mt-5"
+                    (nextPageEvent)='nextPageEvent()'
+                    (previousPageEvent)='previousPageEvent()'
+                    (pageEvent)='selectPageEvent($event)'
+                    [numberOfPages]='numberOfPages'
+                    [currentPage]='currentPage'>
+    </app-pagination>
 
   </div>
 </div>

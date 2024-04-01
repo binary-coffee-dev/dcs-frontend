@@ -2,16 +2,17 @@
   <button mat-button
           *ngIf='!isLogin'
           (click)='loginAction()'
-          class='login-button'>
+          class='login-button font-bold text-sm'>
     Login
   </button>
   <div *ngIf='isLogin'
        class='user-data'>
 
-
     <button mat-button
             [matMenuTriggerFor]='beforeMenu'>
-      <img [src]='getUserImage()'
+      <img class="w-[35px] h-[35px] rounded-full cursor-pointer"
+           style="height: 35px !important;"
+           [src]='getUserImage()'
            alt='user avatar'>
     </button>
     <mat-menu #beforeMenu='matMenu'

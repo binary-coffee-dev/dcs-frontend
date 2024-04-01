@@ -8,7 +8,7 @@ export interface User {
   avatar?: File;
   page: string;
   role: Role;
-  avatarUrl: string;
+  avatarUrl?: string;
   comments: number;
   posts: number;
 }

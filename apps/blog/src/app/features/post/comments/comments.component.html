@@ -1,25 +1,21 @@
-<div class='comments-container'
-     fxLayout='column'
-     fxLayoutAlign='start center'>
+<div class='comments-container w-full mb-4'>
 
-  <form class='comment-new-container'
-        fxLayout='column'
-        [formGroup]='commentForm'
-        fxLayoutAlign='center start'>
-    <div class='comments-header'><span>// Comparte tus opiniones</span></div>
+  <form class='comment-new-container w-full p-6 mb-9 shadow-lg rounded'
+        [formGroup]='commentForm'>
+    <div class='comments-header mb-6 font-thin'><span>// Comparte tus opiniones</span></div>
 
-    <span class='comment-error-message'
+    <span class='flex flex-row'
           *ngIf='commentError'>
-      <mat-icon mat-font-icon='fa-icon'
-                class='fa fa-warning'></mat-icon>
-      {{commentError}}
+      <mat-icon class='fa fa-warning text-3lg'
+                style="transform: translateY(3px)"></mat-icon>
+      {{ commentError }}
     </span>
 
-    <mat-form-field class='comment-item comment-item-text'
+    <mat-form-field class='comment-item-text w-full'
                     appearance='outline'>
       <mat-label class='code-none'>
-        <span class='code-1'> var </span>
-        <span class='code-var'> Opinión =</span>
+        <span class='code-1 text-sm'> var </span>
+        <span class='code-var text-sm'> Opinión =</span>
       </mat-label>
       <textarea matInput
                 (keyup)='commentChangeEvent()'
@@ -31,29 +27,24 @@
       </textarea>
     </mat-form-field>
 
-    <div class='button-container'
-         fxLayout='row'
-         fxLayoutAlign='end center'>
+    <div class='flex flex-row w-full justify-end'>
       <mat-button-toggle (click)='createComment()'>Enviar</mat-button-toggle>
     </div>
   </form>
 
-  <div class='comments-list'
+  <div class='comments-list p-6 w-full shadow-lg rounded'
        *ngIf='comments && comments.length > 0'>
     <ng-container *ngFor='let comment of comments'>
-      <div class='comment-container'
-           fxLayout='column'>
-        <div class='user-data'
-             fxLayout='row'>
-          <a [routerLink]="'/users/' + (comment?.user?.username || '')"
-             fxLayout='row'
-             fxLayoutAlign='start center'>
-            <img class='comment-user-image'
+      <div class='comment-container mt-6 mx-0 mb-9'>
+        <div class='user-data'>
+          <a class="flex flex-row items-center no-underline hover:underline"
+             [routerLink]="'/users/' + (comment?.user?.username || '')">
+            <img class='comment-user-image w-8 rounded-full mr-3'
                  [src]='getUserAvatar(comment?.user)'
                  alt='noavatar'>
-            <span class='comment-username'
-                  matTooltip='Ver perfil'>"{{getName(comment)}}"</span>
-            <i class='fa fa-check-circle'
+            <span class='mr-3'
+                  matTooltip='Ver perfil'>"{{ getName(comment) }}"</span>
+            <i class='fa fa-check-circle mr-1.5'
                *ngIf='isCommentFromPostOwner(comment)'
                [matTooltip]="'Autor'">
             </i>
@@ -63,25 +54,23 @@
             </i>
           </a>
         </div>
-        <div class='date'
-             fxLayout='row'>
-          <span>// {{comment?.publishedAt && moment.timeFromDate(comment.publishedAt) || ''}}</span>
-          <div fxFlex='100'></div>
-          <div fxLayout='row'
-               class='action-icons'>
-            <i class='fa fa-trash'
+        <div class='date flex flex-row w-full h-2.5 my-1.5 mx-0 pl-3 relative whitespace-nowrap text-xs'>
+          <span>// {{ comment?.createdAt && moment.timeFromDate(comment.createdAt) || '' }}</span>
+          <div class="w-full"></div>
+          <div class='text-2xl -mt-4'>
+            <i class='fa fa-trash ml-3'
                *ngIf='canCurrentUserEditComment(comment)'
                (click)='removeComment(comment.id)'
                matTooltip='Eliminar'>
             </i>
-            <i class='fa fa-pencil'
+            <i class='fa fa-pencil ml-3'
                *ngIf='canCurrentUserEditComment(comment)'
                (click)='editComment(comment)'
                matTooltip='Editar'>
             </i>
           </div>
         </div>
-        <div class='comment-content'>{{comment?.body}}</div>
+        <div class='comment-content p-5 text-base rounded-md relative break-all'>{{ comment?.body }}</div>
       </div>
     </ng-container>
   </div>

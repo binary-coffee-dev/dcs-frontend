@@ -2,80 +2,48 @@
 
 :host {
 
-  .container {
-    overflow: hidden;
+  .data-container {
 
-    .align-container {
-      width: 100vw;
-      overflow: hidden;
+    .bc-button {
+      border: solid 2px map-get($md-grey, 600);
 
-      .data-container {
-        overflow: hidden;
-        box-shadow: map_get($box-shadow, 3);
-        padding: map-get($spacings, 2) map-get($spacings, 10);
-        margin: map-get($spacings, 4) 0;
+      &.github-sponsor:hover {
+        color: map-get($md-grey, 800);
+        border: solid 2px map-get($md-grey, 800);
+      }
 
-        p {
-          font-size: 14px;
-        }
+      &.paypal:hover {
+        border: solid 2px #27346a;
+        color: #27346a;
+      }
 
-        .links-container {
-          width: 100%;
-          margin-top: map-get($spacings, 3);
+      &.patreon:hover {
+        border: solid 2px #ff424d;
+        color: #ff424d;
 
-          .bc-button {
-            width: 100%;
-            max-width: 600px;
-            border: solid 2px map-get($md-grey, 500);
-            border-radius: map_get($radius, 3);
-            margin: map-get($spacings, 2);
-            overflow: hidden;
-            font-size: 20px;
-            text-transform: uppercase;
-
-            .fa {
-              font-size: 30px;
-              width: 30px;
-            }
-
-            &.github-sponsor:hover {
-              border: solid 2px map-get($md-grey, 800);
-            }
-
-            &.paypal:hover {
-              border: solid 2px #27346a;
-              color: #27346a;
-            }
-
-            &.patreon:hover {
-              border: solid 2px #ff424d;
-              color: #ff424d;
-
-              svg {
-                fill: #ff424d;
-              }
-            }
-
-            &.buy-me-a-coffee:hover {
-              border: solid 2px #ffdc00;
-              color: #ffdc00;
-
-              svg {
-                fill: #ffdc00;
-              }
-            }
-
-            &.bitcoin:hover {
-              border: solid 2px #EF9303;
-            }
-
-            &.ethereum:hover {
-              border: solid 2px #656EAF;
-            }
-          }
+        svg {
+          fill: #ff424d;
         }
       }
+
+      &.buy-me-a-coffee:hover {
+        border: solid 2px #ffdc00;
+        color: #ffdc00;
+
+        svg {
+          fill: #ffdc00;
+        }
+      }
+
+      &.bitcoin:hover {
+        border: solid 2px #EF9303;
+      }
+
+      &.ethereum:hover {
+        border: solid 2px #656EAF;
+      }
     }
+
   }
 
 }

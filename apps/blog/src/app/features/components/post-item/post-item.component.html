@@ -1,50 +1,56 @@
-<div class='container'
-     fxLayout='row'>
+<div class='w-full mb-1 p-3'>
   <a [routerLink]="'/post/' + post.name"
-     class='card-container'
-     fxLayout='column'>
+     class='card-container flex flex-col relative w-full rounded-md overflow-hidden no-underline shadow-lg'>
 
-    <img *ngIf='post.banner?.url'
-         class='post-image'
+    <img class='w-full max-h-[200px] min-h-[200px] object-cover object-center'
+         *ngIf='post.banner?.url'
+         (error)="onBannerImgError()"
          [src]='getPostBanner(post)'
          [alt]='post.title'>
 
-    <div class='card-container-inner'>
-      <a *ngIf='post.author && post.author.username'
-         [routerLink]="'/users/' + (post.author.username || '')"
-         class='author-container'
-         (click)='stopPropagation($event)'
-         fxLayoutAlign='start center'
-         fxLayout='row'>
+    <div class='p-5'>
+      <div class="flex flex-row my-2 mx-0 items-center">
+        <a class='author-container text-[10px] flex flex-row items-center hover:underline'
+           *ngIf='post.author && post.author.username'
+           [routerLink]="'/users/' + (post.author.username || '')"
+           (click)='stopPropagation($event)'>
 
-        <img [src]='url.getUserImage(post.author)'
-             [alt]='post.author.username'>
-        {{post.author.username || 'público'}}
-      </a>
+          <img class="w-[20px] min-w-[20px] h-[20px] rounded-full"
+               style="height: 20px !important;"
+               (error)="onAuthorImgError()"
+               [src]='url.getUserImage(post.author)'
+               [alt]='post.author.username'>
+          <span class="ml-3">
+            {{ post.author.username || 'público' }}
+          </span>
+        </a>
 
-      <span class='post-date'>// {{post.publishedAt ? moment.timeFromDate(post.publishedAt) : ''}}</span>
+        <div class="w-full"></div>
 
-      <h1>
-        <span>var</span> Título = <b>{{post.title}}</b>
+        <span
+          class='post-date text-[10px] whitespace-nowrap'>// {{ post.publishedAt ? moment.timeFromDate(post.publishedAt) : '' }}</span>
+      </div>
+
+      <h1 class="text-base font-thin">
+        <span>var</span> Título = <b class="font-bold">{{ post.title }}</b>
       </h1>
 
       <div>
         <app-tags [tags]='post.tags'></app-tags>
       </div>
 
-      <div fxLayout='row'
-           class='icons-container'>
-        <div>
-          <i class='material-icons post-icons'>mode_comment</i>
-          {{post.comments}}
+      <div class='icons-container flex flex-row mt-5 text-xs'>
+        <div class="mr-5">
+          <i class='material-icons text-xs'>mode_comment</i>
+          {{ post.comments }}
         </div>
-        <div>
-          <i class='fa fa-coffee post-icons'></i>
-          {{post.likes}}
+        <div class="mr-5">
+          <i class='fa fa-coffee text-xs'></i>
+          {{ post.likes }}
         </div>
-        <div>
-          <i class='fa fa-eye post-icons'></i>
-          {{post.views}}
+        <div class="mr-5">
+          <i class='fa fa-eye text-xs'></i>
+          {{ post.views }}
         </div>
       </div>
     </div>

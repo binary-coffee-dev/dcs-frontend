@@ -1,65 +1,29 @@
 @import "libs/shared/src/theme";
 
 :host {
-  .side-nav {
 
-    .image-container {
-      width: 100%;
-      background-color: map-get($md-primary, 500);
-      padding: map-get($spacings, 5);
-      color: map-get($md-grey, 49);
-      margin-top: map-get($spacings, 4);
-
-      .profile-image {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin-bottom: map-get($spacings, 4);
-      }
-    }
-
-    .items-list {
-      width: 200px;
-      margin-top: map-get($spacings, 4);
-      margin-right: map-get($spacings, 2);
-
-      .title {
-        padding: map-get($spacings, 1);
-      }
-
-      .item {
-        text-decoration: none;
-        text-align: start;
-        background-color: transparent;
-        font-size: 12px;
-        border: none;
-        color: map-get($md-grey, 700);
-        padding: map-get($spacings, 2);
-        width: calc(100% - 24px);
-        margin: 0;
-
-        i {
-          margin-right: map-get($spacings, 2);
-        }
-
-        &:hover {
-          cursor: pointer;
-          background-color: map-get($md-grey, 50);
-        }
-
-        &.active {
-          cursor: initial;
-          background-color: map-get($md-primary, 100);
-        }
-      }
-
-      .separator {
-        height: 1px;
-        width: 100%;
-        margin: map-get($spacings, 2) 0;
-        background-color: map-get($md-grey, 500);
-      }
-    }
-
+  .image-container {
+    background-color: map-get($md-primary, 500);
+    color: map-get($md-grey, 49);
   }
+
+  .items-list {
+
+    .item {
+      color: map-get($md-grey, 700);
+
+      &:hover {
+        background-color: map-get($md-grey, 50);
+      }
+
+      &.active {
+        background-color: map-get($md-primary, 100);
+      }
+    }
+
+    .separator {
+      background-color: map-get($md-grey, 500);
+    }
+  }
+
 }

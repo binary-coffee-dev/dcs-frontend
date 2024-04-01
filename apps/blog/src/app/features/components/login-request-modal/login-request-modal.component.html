@@ -1,19 +1,13 @@
-<div class='card-modal'
-     fxLayout='column'>
-  <div class='head'
-       fxLayout='row'>
-    <div fxFlex='100'></div>
+<div class='card-modal'>
+  <div class='head'>
+    <div ></div>
     <i class='fa fa-close close-button'
        (click)='cancel()'
        matTooltip='close'></i>
   </div>
-  <div class='body'
-       fxLayout='column'
-       fxLayoutAlign='start center'>
+  <div class='body'>
     <span>Necesita estar autenticado</span>
-    <div class='buttons-container'
-         fxLayout='row'
-         fxLayoutAlign='end'>
+    <div class='buttons-container'>
       <mat-button-toggle class='button-ok'
                          (click)='ok()'>Autenticarse
       </mat-button-toggle>
