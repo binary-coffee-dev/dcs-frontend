@@ -1,12 +1,11 @@
 <div class='card-modal'>
-  <div class='head'>
-    <div ></div>
+  <div class='head w-full flex flex-row justify-end'>
     <i class='fa fa-close close-button'
        (click)='cancel()'
        matTooltip='close'></i>
   </div>
-  <div class='body'>
-    <span>Necesita estar autenticado</span>
+  <div class='body flex flex-col'>
+    <span class="mb-5">Necesita estar autenticado</span>
     <div class='buttons-container'>
       <mat-button-toggle class='button-ok'
                          (click)='ok()'>Autenticarse

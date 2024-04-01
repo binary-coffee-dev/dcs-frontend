@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
-import { DomSanitizer, Title } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
@@ -7,7 +7,6 @@ import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Store } from '@ngxs/store';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import {KatexOptions} from "ngx-markdown";
 
 import {
   ENVIRONMENT,
@@ -36,9 +35,6 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
   isBrowser: boolean;
   likes = 0;
   userLike = 0;
-  katexOptions: KatexOptions = {
-    delimiters: [{left: "$$", right: "$$", display: true}]
-  };
 
   _unsubscribe = new Subject();
 
@@ -54,14 +50,13 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public url: UrlUtilsService,
     @Inject(PLATFORM_ID) platformId: string,
-    protected sanitizer: DomSanitizer,
     private dialog: MatDialog,
   ) {
     super();
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadArticle(this.route.snapshot.data['post']);
     this.store.select(PostState.post).subscribe((post: Post) => this.loadArticle(post));
     const fragment = this.route.snapshot.fragment;
@@ -83,7 +78,7 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
     this._unsubscribe.next(true);
   }
 
-  loadPosts(posts: Post[]) {
+  loadPosts(posts: Post[]): void {
     if (posts) {
       this.similarPosts = [...posts].reduce((previousValue: Post[], currentValue, currentIndex) => {
         if (currentIndex < MAX_NUMBER_OF_POSTS) {
@@ -94,7 +89,7 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
     }
   }
 
-  loadArticle(post: Post) {
+  loadArticle(post: Post): void {
     if (post) {
       this.post = post;
       const imageUrl = post.banner ? new URL(post?.banner?.url || '', this.environment.apiUrl).toString() : '';
@@ -103,11 +98,11 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
           key: MetaTagsService.metas,
           value: new URL(`post/${post.name}`, this.environment.siteUrl).toString()
         } as MetaTag,
-        { key: MetaTagsService.titleMeta, value: `${post.title} | 🥇` } as MetaTag,
-        { key: MetaTagsService.imageMeta, value: imageUrl } as MetaTag,
-        { key: MetaTagsService.twitterImageMeta, value: imageUrl } as MetaTag,
-        { key: MetaTagsService.typeMeta, value: 'article' } as MetaTag,
-        { key: MetaTagsService.twitterTitleMeta, value: post.title } as MetaTag
+        {key: MetaTagsService.titleMeta, value: `${post.title} | 🥇`} as MetaTag,
+        {key: MetaTagsService.imageMeta, value: imageUrl} as MetaTag,
+        {key: MetaTagsService.twitterImageMeta, value: imageUrl} as MetaTag,
+        {key: MetaTagsService.typeMeta, value: 'article'} as MetaTag,
+        {key: MetaTagsService.twitterTitleMeta, value: post.title} as MetaTag
       ]);
       this.title.setTitle(`🥇 | ${post.title}`);
       this.metaTags.addLinkTag({
@@ -125,7 +120,7 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
     return `${this.environment.apiUrl}post-body-by-name/${(this.post?.name || '')}/download.md`;
   }
 
-  isMyPost(post: Post) {
+  isMyPost(post: Post): boolean {
     const user = this.store.selectSnapshot(AuthState.me);
     return !!user && !!post.author && post.author.id === user.id;
   }
@@ -134,7 +129,7 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
     this.window.location.href = `${this.environment.siteDashboardUrl}/articles/update/${post.id}`;
   }
 
-  postLikeClick() {
+  postLikeClick(): void {
     const user = this.store.selectSnapshot(AuthState.me);
     if (!user || !user.id) {
       this.dialog.open(LoginRequestModalComponent, {});
