@@ -39,7 +39,7 @@
         <div class='user-data'>
           <a class="flex flex-row items-center no-underline hover:underline"
              [routerLink]="'/users/' + (comment?.user?.username || '')">
-            <img class='comment-user-image w-8 rounded-full mr-3'
+            <img class='comment-user-image w-8 h-8 rounded-full mr-3'
                  [src]='getUserAvatar(comment?.user)'
                  alt='noavatar'>
             <span class='mr-3'

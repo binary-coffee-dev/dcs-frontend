@@ -1,9 +1,4 @@
 @import "libs/shared/src/theme";
 
 :host {
-  .body {
-    span {
-      margin-bottom: map-get($spacings, 3);
-    }
-  }
 }
