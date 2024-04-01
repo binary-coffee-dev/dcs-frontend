@@ -8,7 +8,7 @@ RUN npm install -g nx
 
 COPY apps ./apps
 COPY libs ./libs
-COPY tsconfig.json nx.json ./
+COPY tsconfig.json nx.json tailwind.config.js ./
 
 ARG ENVIRONMENT
 RUN if [ "$ENVIRONMENT" = "dev" ] ; then nx run dashboard:build:development ; else nx run dashboard:build:production ; fi
