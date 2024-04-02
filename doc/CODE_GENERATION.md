@@ -1,6 +1,6 @@
 # Code generation
 
-[<< go back to documentation](./doc.md)
+[<< go back to documentation](README.md)
 
 Here you can find some helper commands to create new components.
 

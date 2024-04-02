@@ -8,5 +8,5 @@ export interface Comment {
   name?: string;
   user?: User;
   post?: Post | string;
-  publishedAt: Date;
+  createdAt?: Date | string;
 }

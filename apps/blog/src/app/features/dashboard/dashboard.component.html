@@ -1,52 +1,32 @@
-<div class='container'
-     fxLayout='column'
-     fxLayoutAlign='start center'>
+<div class='flex flex-col overflow-hidden'>
 
   <app-slider></app-slider>
 
   <div *ngIf='isBrowser'
-       class='align-container'
-       fxLayoutAlign='center start'
-       fxLayout='row'>
+       class='flex flex-row w-full overflow-hidden justify-center'>
 
-    <div class='data-container'
-         fxLayoutAlign='center start'
-         fxFlex.xl='50'
-         fxFlex.lg='70'
-         fxFlex='80'
-         fxFlex.md='95'
-         fxFlex.sm='100'
-         fxFlex.xs='100'
-         fxLayout='row'>
+    <div class='flex flex-row overflow-hidden max-w-[1080px]
+                lg:w-11/12 xl:w-9/12 2xl:w-8/12'>
 
-      <div class='left-bar'
-           fxHide.sm
-           fxHide.xs>
+      <div class='min-w-52 ml-3
+                  hidden sm:hidden md:hidden lg:block xl:block 2xl:block'>
 
         <app-top-popular-users></app-top-popular-users>
 
         <app-top-active-users></app-top-active-users>
       </div>
 
-      <div class='posts-container'
-           fxFlex.sm='56'
-           fxFlex.xs='100'
-           fxFlex='45'>
-
-        <div class='post-element-content'>
-          <app-post-item
-            class='post-element'
-            *ngFor='let post of posts'
-            [post]='post'>
+      <div class="w-full">
+        <div class='mt-3'>
+          <app-post-item *ngFor='let post of posts'
+                         [post]='post'>
           </app-post-item>
         </div>
         <app-pagination></app-pagination>
       </div>
 
-      <div class='right-bar'
-           fxHide.xs
-           fxFlex.sm='40'
-           fxFlex='35'>
+      <div class='w-5/12 lg:w-4/12 mr-3
+                  hidden sm:block'>
         <app-info-bar></app-info-bar>
       </div>
     </div>

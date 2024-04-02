@@ -1,57 +1,16 @@
 @import 'libs/shared/src/theme';
 
 :host {
+  width: 100%;
 
-  .container {
-    width: 100vw;
-    height: 100vh;
+  .provider-item {
+    border: solid 2px map-get($md-grey, 700);
+    background-color: map-get($md-grey, 50);
 
-    .dialog-container {
-      box-shadow: map_get($box-shadow, 3);
-      border: solid 1px map-get($md-grey, 400);
-      padding: map-get($spacings, 7);
-      border-radius: map_get($radius, 4);
-    }
-
-    .logo {
-      width: 70px;
-      margin-bottom: map-get($spacings, 6);
-    }
-
-    h2 {
-      font-weight: 100;
-    }
-
-    h4 {
-      font-weight: 100;
-      font-size: 12px;
-      margin-top: 0;
-      margin-bottom: map-get($spacings, 8);
-    }
-
-    .provider-item {
-      border: solid 2px map-get($md-grey, 700);
-      border-radius: map_get($radius, 3);
-      width: 100%;
-      padding: map-get($spacings, 1) map-get($spacings, 3);
-      font-size: 12px;
-      background-color: map-get($md-grey, 50);
-
-      .fa {
-        font-size: 25px;
-        margin-right: map-get($spacings, 2);
-      }
-
-      &:hover {
-        background-color: map-get($md-grey, 700);
-        color: map-get($md-grey, 50);
-        cursor: pointer;
-      }
-    }
-
-    .note {
-      font-size: 10px;
-      margin-top: map-get($spacings, 6);
+    &:hover {
+      background-color: map-get($md-grey, 700);
+      color: map-get($md-grey, 50);
+      cursor: pointer;
     }
   }
 

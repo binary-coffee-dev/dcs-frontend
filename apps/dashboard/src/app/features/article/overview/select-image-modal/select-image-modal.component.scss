@@ -3,38 +3,14 @@
 :host {
 
   .table-container {
-    overflow-x: auto;
 
     table {
-      border-collapse: collapse;
-      width: 100%;
 
       thead {
         background-color: map-get($md-grey, 50);
-        font-size: 14px;
       }
 
       tr {
-        font-size: 12px;
-
-        th {
-          padding: map-get($spacings, 2);
-          white-space: nowrap;
-        }
-
-        td {
-          padding: map-get($spacings, 1) map-get($spacings, 4);
-          white-space: nowrap;
-
-          .file-image {
-            border-radius: map-get($radius, 2);
-            height: 70px;
-            width: 70px;
-            object-fit: cover;
-            object-position: center;
-            border: 1px solid map_get($md-primary, 100);
-          }
-        }
 
         &.cell-even {
           background-color: map-get($md-grey, 48);
@@ -54,13 +30,5 @@
         cursor: pointer;
       }
     }
-  }
-
-  app-pagination {
-    margin-top: map-get($spacings, 2);
-  }
-
-  .buttons-container {
-    margin-top: map-get($spacings, 3);
   }
 }

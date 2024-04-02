@@ -31,7 +31,7 @@ describe('PostsGuard', () => {
 
     (guard.canActivate() as Observable<boolean>).subscribe((result) => {
       expect(result).toBeTruthy();
-      expect(store.dispatch).toHaveBeenNthCalledWith(1, new SetFiltersAction({enable: { eq: true }} as Where));
+      expect(store.dispatch).toHaveBeenNthCalledWith(1, new SetFiltersAction({enable: {eq: true}} as Where));
       expect(store.dispatch).toHaveBeenNthCalledWith(2, new FetchPostsAction());
       done();
     });

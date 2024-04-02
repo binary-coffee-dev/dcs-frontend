@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, take, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { CommentService } from './comment.service';
 import { CommentStateModel, initCommentStateModel } from './comment-state.model';
@@ -69,7 +69,7 @@ export class CommentState {
   }
 
   @Action(FetchCommentsAction)
-  fetchCommentsAction(ctx: StateContext<CommentStateModel>, action: FetchCommentsAction) {
+  fetchCommentsAction(ctx: StateContext<CommentStateModel>, action: FetchCommentsAction): Observable<Comment[]> {
     return this.commentService.fetchComments(action.postId).pipe(
       take(1),
       tap(comments => ctx.patchState({comments}))

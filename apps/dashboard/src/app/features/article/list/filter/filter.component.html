@@ -1,11 +1,9 @@
-<form [formGroup]="filterForm"
-      (submit)="changeFilter()"
-      fxLayout="row wrap"
-      fxLayoutAlign="start">
-  <mat-form-field appearance="outline"
-                  fxFlex="50"
-                  fxFlex.xs="100"
-                  fxFlex.sm="100">
+<form class="flex flex-row max-md:flex-wrap"
+      [formGroup]="filterForm"
+      (submit)="changeFilter()">
+
+  <mat-form-field class="w-full sm:w-3/12"
+                  appearance="outline">
     <mat-label class="code-none">
       <span class="code-1"> var </span>
       <span class="code-var"> filtrar = </span>
@@ -16,21 +14,15 @@
            placeholder="Buscar">
   </mat-form-field>
 
-  <div fxFlex="50"
-       fxFlex.xs="100"
-       fxFlex.sm="100"
-       fxLayout="row"
-       fxLayoutAlign="end"
-       fxLayoutAlign.xs="start"
-       fxLayoutAlign.sm="start">
-    <mat-form-field appearance="fill"
-                    class="selector">
-      <mat-label>Usuario</mat-label>
-      <mat-select formControlName="users"
-                  (selectionChange)="changeFilter()">
-        <mat-option value="me">Mis artículos</mat-option>
-        <mat-option value="all">Todos los artículos</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+  <div class="hidden sm:block w-full"></div>
+
+  <mat-form-field class="selector"
+                  appearance="fill">
+    <mat-label>Usuario</mat-label>
+    <mat-select formControlName="users"
+                (selectionChange)="changeFilter()">
+      <mat-option value="me">Mis artículos</mat-option>
+      <mat-option value="all">Todos los artículos</mat-option>
+    </mat-select>
+  </mat-form-field>
 </form>

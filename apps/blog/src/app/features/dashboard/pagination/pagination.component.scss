@@ -2,20 +2,10 @@
 
 :host {
   .pagination-container {
-    margin: 0;
-    border-bottom: none;
-    position: sticky;
-    bottom: 0; // bottom: 0; if the "cli.component" is hide else bottom: 2.7rem;
     background-color: map_get($md-grey, A100);
 
-
     .pagination-button {
-      border-radius: 0;
-      height: 48px;
       color: map_get($md-primary, 800);
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
       background-color: map_get($md-grey, 350);
       border-top: 1px solid map_get($md-primary, 100);
 

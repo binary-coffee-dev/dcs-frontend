@@ -4,14 +4,14 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@dcs-libs/shared';
 import { PodcastComponent } from './podcast.component';
 import { PodcastRoutingModule } from './podcast-routing.module';
-import { PodcastListComponent } from './podcast-list/podcast-list.component';
 
 @NgModule({
-  declarations: [PodcastComponent, PodcastListComponent],
+  declarations: [PodcastComponent],
   imports: [
     CommonModule,
     MaterialModule,
     PodcastRoutingModule
   ]
 })
-export class PodcastModule { }
+export class PodcastModule {
+}

@@ -4,7 +4,7 @@ services:
   deploy:
     build:
       context: ..
-      dockerfile: docker/Dockerfile.admin
+      dockerfile: docker/admin.Dockerfile
       args:
         - ENVIRONMENT=$ENVIRONMENT
     restart: always

@@ -1,19 +1,19 @@
-<div class="cookies-consent"
-     *ngIf="showConsent"
-     fxLayout="row wrap">
-  <b fxFlex="90"
-       fxFlex.sm="100"
-       fxFlex.xs="100"
-       fxLayout="column">
-    <span class="first-span">En el sitio actual se están utilizando cookies para mejorar su experiencia.</span>
-    <span>Si desea conocer un poco más sobre el tema, puede leer las <a routerLink="/privacy-policy">políticas de privacidad</a> y las <a routerLink="/cookies">políticas de cookies</a> actualizadas.</span>
-  </b>
-  <div fxFlex="10"
-       fxFlex.sm="100"
-       fxFlex.xs="100"
-       fxLayout="row"
-       fxLayoutAlign="end center">
+<div class="cookies-consent fixed right-0 bottom-0 left-0 rounded m-3 p-4 shadow-lg hidden"
+     style="border: solid 1px #0001;"
+     [ngClass]="{'hidden': !showConsent}">
+  <span class="text-sm mb-3">En el sitio actual se están utilizando cookies para mejorar su experiencia.</span>
+  <span class="text-sm">
+    Si desea conocer un poco más sobre el tema, puede leer las
+    <a class="hover:underline font-semibold"
+       routerLink="/privacy-policy">políticas de privacidad</a>
+    y las
+    <a class="hover:underline font-semibold"
+       routerLink="/cookies">políticas de cookies</a>
+    actualizadas.
+  </span>
+  <div class="flex flex-row justify-end">
     <button (click)="consentCookies()"
-    class="bc-button" mat-button>Aceptar</button>
+            class="bc-button p-2" mat-button>Aceptar
+    </button>
   </div>
 </div>

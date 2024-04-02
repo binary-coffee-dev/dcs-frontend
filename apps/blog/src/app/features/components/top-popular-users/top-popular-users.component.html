@@ -1,23 +1,18 @@
-<div class='top'
+<div class='mt-6 mr-4 mb-7'
      *ngIf='(top5Likes?.users?.length || 0) > 0'>
   <span> Más Populares </span>
 
-  <div class='top-content'>
-    <a
-      *ngFor='let user of top5Likes.users; let i = index'
-      [routerLink]="'/users/' + user?.username"
-      fxLayout='row'
-      fxLayoutAlign='center center'
-    >
-      <img class='top-user-image'
+  <div class='top-content rounded flex flex-col mt-2 mb-2 pt-4 pr-4 pb-0 pl-4 shadow-lg'>
+    <a class="flex flex-row pb-3 items-center"
+       *ngFor='let user of top5Likes.users; let i = index'
+       [routerLink]="'/users/' + user?.username">
+      <img class='w-[40px] min-w-[40px] max-h-[40px] overflow-hidden rounded-full mr-3'
+           (error)="onUserImgError(i)"
            [src]='getUserAvatar(user)'
-           alt='noavatar' />
-      <div fxLayout='column'
-           class='user-info'
-           fxLayoutAlign='left left'>
-        <span class='top-user-name'>"{{ user?.username }}"</span>
-        <div fxFlex='100'></div>
-        <span class='post-info'> // {{ getTopLikeByIndex(i) }} likes</span>
+           alt='noavatar'/>
+      <div class='flex flex-col text-xs hover:underline overflow-hidden'>
+        <span class='top-user-name whitespace-nowrap'>"{{ user?.username }}"</span>
+        <span class='post-info whitespace-nowrap'> // {{ getTopLikeByIndex(i) }} likes</span>
       </div>
     </a>
   </div>

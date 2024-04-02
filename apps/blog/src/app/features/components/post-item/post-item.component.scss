@@ -1,92 +1,44 @@
 @import "../../../../../../../libs/shared/src/theme";
 
-$post_image_size: 110px;
-
 :host {
+  .card-container {
+    border: solid 0.1px #0000;
+    background-color: map-get($md-grey, 400);
 
-  .container {
-    //width: 100%;
-    //margin-bottom: map-get($spacings, 5);
-    padding: map-get($spacings, 2);
+    .post-date {
+      color: map-get($md-grey, 800);
+    }
 
-    .card-container {
-      position: relative;
-      border: solid 0.1px #0000;
-      width: 100%;
-      background-color: map-get($md-grey, 400);
-      border-radius: map-get($radius, 3);
-      box-shadow: map_get($box-shadow-up, 2);
-      overflow: hidden;
-      text-decoration: none;
+    h1 {
+      color: map-get($md-grey, 800);
 
-      .post-image {
-        max-height: 200px;
-        min-height: 200px;
-        width: 100%;
-        object-fit: cover;
-        object-position: center;
+      span {
+        color: map-get($md-primary, 500);
       }
+    }
 
-      .card-container-inner {
-        padding: map-get($spacings, 3);
+    .icons-container {
+      color: map-get($md-grey, 800);
+    }
 
-        .post-date {
-          font-size: 10px;
-          color: map-get($md-grey, 800);
-        }
-
-        h1 {
-          font-size: 15px;
-          font-weight: 100;
-          color: map-get($md-grey, 800);
-
-          span {
-            color: map-get($md-primary, 500);
-          }
-        }
-
-        .icons-container {
-          margin-top: map-get($spacings, 3);
-          color: map-get($md-grey, 800);
-          font-size: 12px;
-
-          div {
-            margin-right: map-get($spacings, 3);
-          }
-
-          .post-icons {
-            font-size: 12px;
-          }
-        }
-
-        .author-container {
-          font-size: 10px;
-          color: map-get($md-grey, 800);
-
-          img {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: map-get($spacings, 2);
-          }
-
-          &:hover {
-            animation: anim-author-link 0.3s infinite alternate;
-          }
-        }
-      }
+    .author-container {
+      color: map-get($md-grey, 800);
 
       &:hover {
-        &:before {
-          position: absolute;
-          left: 0;
-          content: "";
-          width: 6px;
-          height: 100%;
-          background-color: map-get($md-primary, 500);
-          z-index: 50;
-          animation: anim-active-line .3s normal;
-        }
+        animation: anim-author-link 0.3s infinite alternate;
+      }
+    }
+
+    &:hover {
+      &:before {
+        position: absolute;
+        left: 0;
+        content: "";
+        width: 6px;
+        height: 100%;
+        background-color: map-get($md-primary, 500);
+        z-index: 10;
+        animation: anim-active-line .3s normal;
       }
     }
   }

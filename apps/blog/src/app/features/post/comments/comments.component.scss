@@ -3,83 +3,44 @@
 :host {
   width: 100%;
 
-  .comments-container {
-    width: 100%;
+  .comment-new-container {
+    border: solid 1px #0001;
 
-    .comment-new-container {
-      width: 100%;
-      box-shadow: map_get($box-shadow, 1);
-      border: solid 1px #0001;
-      padding: map-get($spacings, 4);
-      margin-bottom: map-get($spacings, 6);
+    .comments-header {
+      color: map-get($md-grey, 7);
+    }
 
-      .comments-header {
-        margin-bottom: map-get($spacings, 4);
-        color: map-get($md-grey, 7);
-        font-weight: 100;
-      }
+    mat-form-field {
+      ::ng-deep.code-none {
 
-      mat-form-field {
-        width: 100%;
+        .code-1 {
+          color: map-get($md-primary, 500);
+        }
 
-        ::ng-deep.code-none {
-
-          .code-1 {
-            color: map-get($md-primary, 500);
-            font-size: 14px;
-          }
-
-          .code-var {
-            color: map-get($md-grey, 600);
-            font-size: 14px;
-          }
+        .code-var {
+          color: map-get($md-grey, 600);
         }
       }
+    }
 
-      .button-container {
-        width: 100%;
-
-        mat-button-toggle {
-          background-color: map-get($md-primary, 500);
-        }
-      }
+    mat-button-toggle {
+      background-color: map-get($md-primary, 500);
     }
   }
 
   .comments-list {
-    box-shadow: map_get($box-shadow, 1);
     border: solid 1px #0001;
-    padding: map-get($spacings, 4);
-    width: calc(100% - 48px);
 
     .comment-container {
-      margin: map-get($spacings, 4) 0 map-get($spacings, 6) 0;
-
       .user-data {
-        //margin-left: map-get($spacings, 4);
-
         a {
-          text-decoration: none;
           color: map-get($md-grey, 700);
 
           .comment-user-image {
-            width: 30px;
-            border-radius: 50%;
             border: solid 2px transparent;
-            margin-right: map-get($spacings, 2);
-          }
-
-          .comment-username {
-            margin-right: map-get($spacings, 2);
-          }
-
-          .fa {
-            margin-right: map-get($spacings, 1);
           }
 
           &:hover {
-            text-decoration: underline;
-
             .comment-user-image {
               border: solid 2px map-get($md-primary, 500);
             }
@@ -88,43 +49,24 @@
       }
 
       .date {
-        width: calc(100% - map-get($spacings, 2));
-        font-size: 10px;
-        height: 10px;
         color: map-get($md-grey, 600);
-        margin: map-get($spacings, 1) 0 map-get($spacings, 1) map-get($spacings, 2);
-        white-space: nowrap;
-        position: relative;
 
-        .action-icons {
-          font-size: 25px;
-          margin-top: -15px;
-
-          .fa {
-            margin-left: map-get($spacings, 2);
-
-            &:hover {
-              color: map-get($md-grey, 800);
-            }
+        .fa {
+          &:hover {
+            color: map-get($md-grey, 800);
           }
         }
       }
 
       .comment-content {
         background-color: map-get($md-grey, 49);
-        padding: map-get($spacings, 3);
-        font-size: 15px;
-        border-radius: map_get($radius, 3);
         color: map-get($md-grey, 700);
-        position: relative;
-        word-break: break-all;
 
         &:before {
           content: '';
           position: absolute;
           left: 0;
           top: -10px;
-          //background-color: map-get($md-grey, 49);
           width: 0;
           height: 0;
           border-top: 15px transparent solid;

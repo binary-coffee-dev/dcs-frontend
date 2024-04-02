@@ -10,11 +10,11 @@ import { WINDOW } from '@dcs-libs/shared';
 })
 export class ShareButtonsComponent implements OnInit {
 
-  url: string = '';
-  urlFacebook: string = '';
-  urlTwitter: string = '';
-  urlLinkedIn: string = '';
-  info: string = '';
+  url = '';
+  urlFacebook = '';
+  urlTwitter = '';
+  urlLinkedIn = '';
+  info = '';
 
   constructor(@Inject(WINDOW) private window: Window,
               @Inject(PLATFORM_ID) private platformId: Object) {

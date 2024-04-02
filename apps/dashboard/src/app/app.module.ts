@@ -36,14 +36,14 @@ export function createApollo(httpLink: HttpLink) {
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    AppRoutingModule,
+    RouterModule,
     ComponentsModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule,
-    AppRoutingModule,
     ReduxModule,
     SharedModule,
     NgxsModule.forRoot([PostState, AuthState, FileState, NotificationState, ConfigState, TagState], {

@@ -1,15 +1,39 @@
-<div class="podcast-container"
-     fxLayout="row wrap"
-     fxLayoutAlign="center center">
-  <a class="podcast-link"
-     [routerLink]="'/podcast/espacio-binario'"
-     fxLayoutAling="center center">
-    <div class="podcast-image-container">
-      <img src="/assets/images/banner-default.jpg"/>
+<div class="flex flex-row w-full justify-center pt-3">
+  <div class="max-w-[1080px] w-full lg:w-11/12 xl:w-9/12 2xl:w-8/12 px-0 sm:px-3">
+
+    <div class="podcast-container p-3 shadow-lg flex flex-col rounded"
+         style="border: solid 1px #0001;">
+
+      <h1 class="ml-3 mt-3 text-2xl">{{ podcastName }}</h1>
+
+      <div class="flex flex-row flex-wrap">
+
+        <ng-container *ngFor='let podcast of episodes; let i = index'>
+
+          <div class="flex flex-row p-3 w-6/12 sm:w-4/12 lg:w-3/12">
+            <a class="podcast-link flex flex-col text-base no-underline rounded w-full overflow-hidden"
+               target="_blank"
+               [href]="podcast.url">
+
+              <div class="w-full h-28 min-h-28 overflow-hidden">
+                <img class="w-full h-full object-cover object-center"
+                     [src]="podcast.banner"
+                     [alt]="podcastName + i"/>
+              </div>
+              <div class="flex flex-col p-1.5 h-full">
+                <span
+                  class="date-container text-xs my-0.5">// duraci&oacute;n de {{ moment.secondsToDuration(podcast.duration) }}</span>
+                <span class="podcast-title uppercase font-bold">{{ podcast.title }}</span>
+              </div>
+
+            </a>
+          </div>
+
+        </ng-container>
+
+      </div>
+
     </div>
-    <div class="podcast-title-container"
-         fxLayoutAlign="center center">
-      Espacio Binario
-    </div>
-  </a>
+
+  </div>
 </div>

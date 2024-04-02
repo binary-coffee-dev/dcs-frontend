@@ -3,9 +3,8 @@
 :host {
   max-height: 100%;
 
-  .card-modal {
-    height: 100%;
-    max-height: 100%;
+  .edit-comment-modal-content {
+    background: #fff;
   }
 
   .body {
@@ -13,35 +12,26 @@
       color: black;
     }
 
-    .title {
-      margin-bottom: map-get($spacings, 2);
-    }
+    mat-form-field {
+      width: 100%;
 
-    .comment-new-container {
-      height: 100%;
-      margin-bottom: map-get($spacings, 3);
-
-      mat-form-field {
-        width: 100%;
-
-        ::ng-deep {
-          textarea {
-            height: 320px;
-            max-height: 320px;
-          }
-
-          .code-none {
-            .code-1 {
-              color: map-get($md-primary, 500);
-            }
-
-            .code-var {
-              color: map-get($md-grey, 700);
-            }
-          }
+      ::ng-deep {
+        textarea {
+          height: 320px;
+          max-height: 320px;
         }
 
+        .code-none {
+          .code-1 {
+            color: map-get($md-primary, 500);
+          }
+
+          .code-var {
+            color: map-get($md-grey, 700);
+          }
+        }
       }
+
     }
   }
 }

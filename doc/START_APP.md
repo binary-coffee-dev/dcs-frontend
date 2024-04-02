@@ -1,6 +1,6 @@
 # Start application
 
-[<< go back to documentation](./doc.md)
+[<< go back to documentation](README.md)
 
 With this documentation you should be able to start the project locally or if you like, using a docker container. But before that, you need to install the project's dependencies.
 

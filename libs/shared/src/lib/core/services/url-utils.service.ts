@@ -15,7 +15,7 @@ export class UrlUtilsService {
     return this.normalizeImageUrl(user?.avatarUrl);
   }
 
-  normalizeImageUrl(url: string | undefined, defaultUrl =  'assets/images/noavatar.png') {
+  normalizeImageUrl(url: string | undefined, defaultUrl = 'assets/images/noavatar.png') {
     if (!url) {
       return defaultUrl;
     }
