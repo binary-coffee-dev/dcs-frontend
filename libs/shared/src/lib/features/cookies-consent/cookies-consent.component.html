@@ -1,6 +1,6 @@
-<div class="cookies-consent fixed right-0 bottom-0 left-0 rounded m-3 p-4 shadow-lg"
+<div class="cookies-consent fixed right-0 bottom-0 left-0 rounded m-3 p-4 shadow-lg hidden"
      style="border: solid 1px #0001;"
-     *ngIf="showConsent">
+     [ngClass]="{'hidden': !showConsent}">
   <span class="text-sm mb-3">En el sitio actual se están utilizando cookies para mejorar su experiencia.</span>
   <span class="text-sm">
     Si desea conocer un poco más sobre el tema, puede leer las
