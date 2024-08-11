@@ -4,23 +4,18 @@
   "projectType": "application",
   "sourceRoot": "apps/blog/src",
   "prefix": "",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/blog",
         "index": "apps/blog/src/index.html",
         "main": "apps/blog/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/blog/tsconfig.app.json",
-        "allowedCommonJsDependencies": [
-          "moment"
-        ],
+        "allowedCommonJsDependencies": ["moment"],
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/blog/src/favicon.png",
@@ -112,16 +107,15 @@
     },
     "server": {
       "executor": "@angular-devkit/build-angular:server",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/server",
         "main": "apps/blog/server.ts",
         "tsConfig": "apps/blog/tsconfig.server.json",
         "sourceMap": true,
         "optimization": false,
-        "extractLicenses": false
+        "extractLicenses": false,
+        "buildOptimizer": false
       },
       "configurations": {
         "production": {
@@ -133,7 +127,8 @@
           ],
           "sourceMap": false,
           "optimization": true,
-          "extractLicenses": true
+          "extractLicenses": true,
+          "buildOptimizer": true
         },
         "development": {
           "fileReplacements": [
@@ -144,7 +139,8 @@
           ],
           "sourceMap": false,
           "optimization": false,
-          "extractLicenses": true
+          "extractLicenses": true,
+          "buildOptimizer": false
         }
       }
     },
@@ -152,45 +148,26 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "blog:build:production"
+          "buildTarget": "blog:build:production"
         },
         "development": {
-          "browserTarget": "blog:build:development"
+          "buildTarget": "blog:build:development"
         },
         "default": {
-          "browserTarget": "blog:build"
+          "buildTarget": "blog:build"
         }
       },
       "defaultConfiguration": "default"
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "apps/blog/**/*.ts",
-          "apps/blog/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/blog/jest.config.js",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "apps/blog/jest.config.js"
       }
     }
-  },
-  "tags": []
+  }
 }

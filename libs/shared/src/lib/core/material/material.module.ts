@@ -3,19 +3,19 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
-import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/legacy-tooltip';
-import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
-import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatCardModule } from "@angular/material/card";
+import { MatInputModule } from "@angular/material/input";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatSelectModule } from "@angular/material/select";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatMenuModule } from "@angular/material/menu";
 
 @NgModule({
   imports: [
