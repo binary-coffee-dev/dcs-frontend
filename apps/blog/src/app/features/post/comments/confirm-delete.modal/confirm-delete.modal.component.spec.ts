@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { MAT_LEGACY_DIALOG_DATA, MatLegacyDialogRef } from '@angular/material/legacy-dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
 
@@ -19,9 +19,9 @@ describe('ConfirmDelete.ModalComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ConfirmDeleteModalComponent],
       providers: [
-        {provide: MatLegacyDialogRef, useClass: MatDialogRefStub},
+        {provide: MatDialogRef, useClass: MatDialogRefStub},
         {provide: Store, useClass: StoreStub},
-        {provide: MAT_LEGACY_DIALOG_DATA, useValue: {}}
+        {provide: MAT_DIALOG_DATA, useValue: {}}
       ]
     })
       .compileComponents();

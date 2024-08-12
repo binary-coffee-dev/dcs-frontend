@@ -4,7 +4,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { UrlUtilsService } from '@dcs-libs/shared';
 import { FooterComponent } from './footer.component';
-import { MatLegacyDialog } from '@angular/material/legacy-dialog';
 
 class UrlUtilsServiceStub {
   normalizeSiteUrl = jest.fn();
@@ -22,7 +21,6 @@ describe('FooterComponent', () => {
       imports: [MatDialogModule],
       declarations: [FooterComponent],
       providers: [
-        {provide: MatLegacyDialog, useClass: MatDialogStub},
         {provide: MatDialog, useClass: MatDialogStub},
         {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
       ],

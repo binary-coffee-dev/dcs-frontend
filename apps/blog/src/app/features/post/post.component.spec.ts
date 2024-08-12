@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatLegacyDialog } from '@angular/material/legacy-dialog';
 
 import { Store } from '@ngxs/store';
 
 import { ENVIRONMENT, HasPermissionsPipeStub, WINDOW } from '@dcs-libs/shared';
 import { PostComponent } from './post.component';
 import { MomentService, ResourceService, ScrollService } from '../../core/services';
+import { MatDialog } from "@angular/material/dialog";
 
 class StoreStub {
 }
@@ -40,7 +40,7 @@ describe('PostComponent', () => {
         {provide: ResourceService, useClass: ResourceServiceStub},
         {provide: ENVIRONMENT, useValue: {}},
         {provide: WINDOW, useValue: {}},
-        {provide: MatLegacyDialog, useClass: MatDialogStub},
+        {provide: MatDialog, useClass: MatDialogStub},
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

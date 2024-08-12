@@ -23,8 +23,8 @@ export class PostsGuard implements CanActivate {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let res: Observable<boolean | UrlTree> = of(true);
+  canActivate(): Observable<boolean> {
+    let res: Observable<boolean> = of(true);
     if (this.isBrowser) {
       res = this.store.dispatch(new SetFiltersAction({ enable: {eq: true} } as Where)).pipe(
         mergeMap(() => this.store.dispatch(new FetchPostsAction())),
