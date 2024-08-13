@@ -34,6 +34,7 @@ import { LoginRequestModalComponent } from './features/components/login-request-
 import { PodcastModule } from './features/podcast';
 import { UserModule } from './features/user';
 import { FilterComponent } from './features/components/filter/filter.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({ declarations: [
         AppComponent,
@@ -45,7 +46,7 @@ import { FilterComponent } from './features/components/filter/filter.component';
         LoginButtonComponent,
         LoginRequestModalComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({appId: 'serverApp'}),
         AppRoutingModule,
         BrowserAnimationsModule,
         NgxsReduxDevtoolsPluginModule.forRoot(),
@@ -57,7 +58,7 @@ import { FilterComponent } from './features/components/filter/filter.component';
         InfoModule,
         SharedModule,
         PodcastModule,
-        UserModule], providers: [
+        UserModule, NgOptimizedImage], providers: [
         {
             provide: ENVIRONMENT,
             useValue: environment

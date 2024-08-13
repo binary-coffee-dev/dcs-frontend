@@ -19,82 +19,95 @@
       font-weight: bold !important;
     }
   }
-}
 
-::ng-deep.app-important-menu {
-  background-color: map-get($md-grey, 400);
+  ::ng-deep .app-important-menu {
+    background-color: map-get($md-grey, 400) !important;
 
-  .mat-menu-item {
-    &:hover {
-      background-color: map-get($md-grey, 500);
-    }
-  }
-
-  .separator {
-    height: 1px;
-    width: calc(100% - 36px);
-    background-color: map-get($md-grey, 500);
-    margin: map-get($spacings, 1) map-get($spacings, 3);
-  }
-
-  .item1 {
-    padding-left: map-get($spacings, 6);
-    padding-right: map-get($spacings, 3);
-    position: relative;
-    color: map-get($md-grey, 800);
-    line-height: 35px;
-    height: 35px;
-    font-size: 14px;
-    display: block;
-
-    &.down-icon {
-      &:before {
-        content: '›';
-        position: absolute;
-        left: map-get($spacings, 3);
-        color: map-get($md-primary, 500);
-        font-size: 14px;
-        transform: rotateZ(90deg);
-      }
-    }
-
-    i {
-      margin-right: map-get($spacings, 1);
-      color: map-get($md-grey, 600);
-    }
-  }
-
-  .item2 {
-    padding-left: map-get($spacings, 9);
-    position: relative;
-    color: map-get($md-grey, 800);
-    line-height: 35px;
-    height: 35px;
-
-    &.right-icon {
-      &:before {
-        content: '›';
-        position: absolute;
-        left: map-get($spacings, 6);
-        color: map-get($md-primary, 500);
-        font-size: 14px;
-      }
-    }
-  }
-
-  .share-buttons {
-    a {
-      width: 37px;
-      padding: map-get($spacings, 1);
-      background-color: map-get($md-primary, 900);
-      color: map-get($md-grey, 400);
-      font-size: 25px;
-      border-radius: map_get($radius, 3);
-      text-decoration: none;
-
+    .mat-menu-item {
       &:hover {
-        background-color: map-get($md-primary, 910);
+        background-color: map-get($md-grey, 500);
+      }
+    }
+
+    .separator {
+      height: 1px;
+      width: calc(100% - 36px);
+      background-color: map-get($md-grey, 500);
+      margin: map-get($spacings, 1) map-get($spacings, 3);
+    }
+
+    .item1 {
+      padding-left: map-get($spacings, 6);
+      padding-right: map-get($spacings, 3);
+      position: relative;
+      color: map-get($md-grey, 800) !important;
+      line-height: 35px;
+      min-height: 35px;
+      font-size: 14px;
+      display: block;
+
+      span {
+        font-size: 14px !important;
+        letter-spacing: normal !important;
+        font-weight: 400 !important;
+      }
+
+      &.down-icon {
+        &:before {
+          content: '›';
+          position: absolute;
+          left: map-get($spacings, 3);
+          color: map-get($md-primary, 500) !important;
+          font-size: 14px;
+          transform: rotateZ(90deg);
+        }
+      }
+
+      i {
+        margin-right: map-get($spacings, 1);
+        color: map-get($md-grey, 600) !important;
+      }
+    }
+
+    .item2 {
+      padding-left: map-get($spacings, 9);
+      position: relative;
+      color: map-get($md-grey, 800) !important;
+      line-height: 35px;
+      min-height: 35px;
+
+      span {
+        font-size: 14px !important;
+        letter-spacing: normal !important;
+        font-weight: 400 !important;
+      }
+
+      &.right-icon {
+        &:before {
+          content: '›';
+          position: absolute;
+          left: map-get($spacings, 6);
+          color: map-get($md-primary, 500) !important;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .share-buttons {
+      a {
+        width: 37px;
+        padding: map-get($spacings, 1);
+        background-color: map-get($md-primary, 900);
+        color: map-get($md-grey, 400) !important;
+        font-size: 25px;
+        border-radius: map_get($radius, 3);
+        text-decoration: none;
+
+        &:hover {
+          background-color: map-get($md-primary, 910);
+        }
       }
     }
   }
 }
+
