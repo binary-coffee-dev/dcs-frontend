@@ -11,5 +11,16 @@
       }
     }
 
+    button {
+      color: map-get($md-grey, 900);
+      margin-top: map-get($spacings, 2);
+      padding: map-get($spacings, 1) map-get($spacings, 4);
+      border-radius: map-get($radius, 2);
+
+      &:hover {
+        background-color: map-get($md-grey, 400);
+      }
+    }
+
   }
 }

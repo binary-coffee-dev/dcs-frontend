@@ -12,7 +12,7 @@
       width: 100%;
 
       .bc-button {
-        border: solid 1px transparent;
+        border: solid 1px transparent !important;
 
         &:hover {
           border: 1px solid map_get($md-primary, 500);
