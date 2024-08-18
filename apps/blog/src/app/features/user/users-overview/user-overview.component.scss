@@ -7,8 +7,54 @@
     color: map-get($md-grey, 800);
   }
 
-  ::ng-deep.mat-input-element::placeholder {
-    color: map-get($md-grey, 800);
+  mat-form-field {
+    --mat-form-field-container-height: 33px;
+
+    margin: 5px 0;
+    height: 2rem;
+    font-size: 10px;
+    border: solid 1px map_get($md-primary, 200);
+    border-radius: map_get($radius, 2);
+
+    ::ng-deep.mat-mdc-text-field-wrapper {
+      padding-bottom: 0;
+      background-color: map_get($md-grey, A100);
+      border-radius: map_get($radius, 2);
+      border: none !important;
+
+      .mat-mdc-form-field-infix {
+        padding: 0.7em 0;
+      }
+
+      .mat-mdc-form-field-flex {
+        height: calc(2rem - 2px);
+        font-size: 10px;
+        border: none !important;
+
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__notch,
+        .mdc-notched-outline__trailing {
+          border-color: transparent !important;
+        }
+
+        .mdc-notched-outline {
+          border: none !important;
+        }
+
+        label {
+          top: 50%;
+
+          mat-label {
+            font-size: 10px;
+            color: #0009;
+          }
+        }
+      }
+    }
+
+    input {
+      color: map_get($md-grey, 850);
+    }
   }
 
   .align-container {
