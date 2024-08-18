@@ -13,6 +13,10 @@
     border-right: none !important;
     color: map_get($md-primary, 500);
 
+    mat-icon {
+      color: map_get($md-primary, 500);
+    }
+
     &:hover {
       border: 1px solid map_get($md-primary, 900);
     }
