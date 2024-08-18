@@ -6,6 +6,7 @@
 
     .bc-button {
       border: solid 2px map-get($md-grey, 600);
+      color: map-get($md-grey, 900);
 
       &.github-sponsor:hover {
         color: map-get($md-grey, 800);
