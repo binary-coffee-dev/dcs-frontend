@@ -38,21 +38,29 @@
           }
         }
 
-          .user-avatar {
-            color: map-get($md-grey, 800);
+        .title-content button {
+          color: map-get($md-grey, 700);
+
+          &:hover {
+            color: map-get($md-grey, 900);
+          }
+        }
+
+        .user-avatar {
+          color: map-get($md-grey, 800);
+
+          img {
+            border: solid 2px transparent;
+          }
+
+          &:hover {
+            text-decoration: underline;
 
             img {
-              border: solid 2px transparent;
-            }
-
-            &:hover {
-              text-decoration: underline;
-
-              img {
-                border: solid 2px map-get($md-primary, 500);
-              }
+              border: solid 2px map-get($md-primary, 500);
             }
           }
+        }
 
         .post-info {
           font-size: 12px;

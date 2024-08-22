@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MatLegacyDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
 
@@ -26,7 +26,7 @@ describe('ListComponent', () => {
       declarations: [ListComponent],
       providers: [
         {provide: Store, useClass: StoreStub},
-        {provide: MatLegacyDialog, useClass: MatDialogStub},
+        {provide: MatDialog, useClass: MatDialogStub},
         {provide: UrlUtilsService, useClass: UrlUtilsServiceStub},
         {provide: ROLE_PERMISSION_MAP, useValue: {}}
       ],

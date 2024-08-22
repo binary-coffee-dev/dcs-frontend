@@ -2,7 +2,7 @@ import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
 import { takeUntil } from 'rxjs/operators';

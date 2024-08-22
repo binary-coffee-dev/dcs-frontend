@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MatLegacyDialog } from '@angular/material/legacy-dialog';
+import { MatDialogRef } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
 
@@ -29,7 +29,7 @@ describe('PostInfoComponent', () => {
       declarations: [PostInfoComponent],
       providers: [
         {provide: Store, useClass: StoreStub},
-        {provide: MatLegacyDialog, useClass: MatDialogStub},
+        {provide: MatDialogRef, useClass: MatDialogStub},
         {provide: ResourceService, useClass: ResourceServiceStub},
         {provide: MomentService, useClass: MomentServiceStub},
       ],

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { MatDialog } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
 

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
@@ -34,47 +34,42 @@ import { LoginRequestModalComponent } from './features/components/login-request-
 import { PodcastModule } from './features/podcast';
 import { UserModule } from './features/user';
 import { FilterComponent } from './features/components/filter/filter.component';
+import {NgOptimizedImage} from "@angular/common";
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FilterComponent,
-    NewLabelComponent,
-    ScrollTopComponent,
-    CliComponent,
-    LoginButtonComponent,
-    LoginRequestModalComponent
-  ],
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState, UserInfoState, SubscriptionState], {
-      developmentMode: !environment.production
-    }),
-    ReduxModule,
-    MaterialModule,
-    InfoModule,
-    SharedModule,
-    PodcastModule,
-    UserModule,
-  ],
-  providers: [
-    {
-      provide: ENVIRONMENT,
-      useValue: environment
-    },
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory: createApollo,
-      deps: [HttpLink]
-    },
-    CommentService
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HeaderComponent,
+        FilterComponent,
+        NewLabelComponent,
+        ScrollTopComponent,
+        CliComponent,
+        LoginButtonComponent,
+        LoginRequestModalComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({appId: 'serverApp'}),
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        NgxsReduxDevtoolsPluginModule.forRoot(),
+        NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState, UserInfoState, SubscriptionState], {
+            developmentMode: !environment.production
+        }),
+        ReduxModule,
+        MaterialModule,
+        InfoModule,
+        SharedModule,
+        PodcastModule,
+        UserModule, NgOptimizedImage], providers: [
+        {
+            provide: ENVIRONMENT,
+            useValue: environment
+        },
+        {
+            provide: APOLLO_OPTIONS,
+            useFactory: createApollo,
+            deps: [HttpLink]
+        },
+        CommentService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 }

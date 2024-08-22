@@ -15,7 +15,7 @@ NOTE: be sure to be in the folder where you want to create the new component
 ## Generate library
 
 ```
-$ ng g @nrwl/angular:lib library-name
+$ ng g @nx/angular:lib library-name
 ```
 
 ## Generate ngxs state

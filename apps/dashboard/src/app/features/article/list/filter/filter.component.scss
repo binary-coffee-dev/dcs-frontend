@@ -17,9 +17,13 @@
     }
 
     .selector {
-      ::ng-deep.mat-form-field-flex {
-        border-radius: 4px;
-        border: 1px solid #8edbc3;
+      ::ng-deep.mat-mdc-text-field-wrapper {
+        overflow: visible;
+
+        .mat-form-field-flex {
+          border-radius: 4px;
+          border: 1px solid #8edbc3;
+        }
       }
     }
 

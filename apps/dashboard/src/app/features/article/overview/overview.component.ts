@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
 import { BehaviorSubject, Subject, timer } from 'rxjs';
@@ -18,7 +18,6 @@ import {
 } from '@dcs-libs/shared';
 import { SelectImageModalComponent } from './select-image-modal/select-image-modal.component';
 import { UploadFileModalComponent } from '../../components/upload-file.modal';
-import { Time } from "@angular/common";
 
 interface TimeType {
   title: string;

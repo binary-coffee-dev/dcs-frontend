@@ -8,18 +8,32 @@
     border-radius: map_get($radius, 3);
 
     form {
-      .mat-form-field {
-        width: 150px;
-        height: 30px;
+      --mat-form-field-container-height: 35px;
+
+      mat-form-field {
+        height: 2rem;
         font-size: 10px;
 
-        ::ng-deep.mat-form-field-wrapper {
+        ::ng-deep.mat-mdc-text-field-wrapper {
           padding-bottom: 0;
           background-color: map_get($md-grey, A100);
+          border: solid 1px map_get($md-primary, 200);
           border-radius: map_get($radius, 2);
 
-          .mat-form-field-infix {
+          .mat-mdc-form-field-infix {
             padding: 0.7em 0;
+          }
+
+          .mat-mdc-form-field-flex {
+            overflow: hidden;
+            width: 150px;
+            font-size: 10px;
+
+            label {
+              mat-label {
+                font-size: 10px;
+              }
+            }
           }
         }
 

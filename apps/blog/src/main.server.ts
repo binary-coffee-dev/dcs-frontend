@@ -6,7 +6,4 @@ if (environment.production) {
   enableProdMode();
 }
 
-export { AppServerModule } from './app/app.server.module';
-export { ngExpressEngine } from '@nguniversal/express-engine';
-
-
+export {AppServerModule as default} from './app/app.server.module';

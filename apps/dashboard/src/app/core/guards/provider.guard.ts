@@ -33,7 +33,7 @@ export class ProviderGuard implements CanActivate {
           return false;
         }
         this.router.navigate(['dashboard']);
-        return result;
+        return true;
       })
     );
   }

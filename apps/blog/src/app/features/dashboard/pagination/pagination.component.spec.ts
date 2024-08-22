@@ -49,7 +49,7 @@ describe('PaginationComponent', () => {
   });
 
   it('should dispatch the next page', () => {
-    jest.spyOn(store, 'dispatch').mockReturnValue(of({}));
+    jest.spyOn(store, 'dispatch').mockReturnValue(of());
 
     component.nextPage();
 
@@ -57,7 +57,7 @@ describe('PaginationComponent', () => {
   });
 
   it('should dispatch the previous page', () => {
-    jest.spyOn(store, 'dispatch').mockReturnValue(of({}));
+    jest.spyOn(store, 'dispatch').mockReturnValue(of());
 
     component.previousPage();
 
