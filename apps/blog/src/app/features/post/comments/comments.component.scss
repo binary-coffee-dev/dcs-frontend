@@ -11,14 +11,19 @@
     }
 
     mat-form-field {
-      ::ng-deep.code-none {
+      height: auto;
 
-        .code-1 {
-          color: map-get($md-primary, 500);
-        }
+      textarea {
+        color: map-get($md-grey, 700);
+      }
 
-        .code-var {
-          color: map-get($md-grey, 600);
+      ::ng-deep.mat-mdc-text-field-wrapper {
+        .mat-mdc-form-field-flex {
+          height: auto;
+
+          label {
+            top: 15px;
+          }
         }
       }
     }

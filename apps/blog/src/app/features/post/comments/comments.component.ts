@@ -96,7 +96,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   editComment(comment: Comment): void {
     this.dialog.open(EditCommentModalComponent, {
       width: '500px',
-      height: '600px',
+      height: '540px',
       maxHeight: '600px',
       data: {comment}
     });
