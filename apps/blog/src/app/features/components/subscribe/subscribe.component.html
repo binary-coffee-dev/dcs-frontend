@@ -6,18 +6,15 @@
     <div class="flex flex-col">
       <span class="error mf-4 mt-4 mr-4 text-xs"
             *ngIf="subscriptionError !== '' && !subscriptionSent">{{ subscriptionError }}</span>
-      <div class="card flex flex-row mb-6 mt-4 overflow-hidden">
-        <mat-form-field class="relative w-9/12 h-8 text-[10px]"
-                        appearance="outline">
+      <div class="card flex flex-row mb-6 mt-4">
+        <mat-form-field appearance="outline">
           <mat-label>Correo</mat-label>
-          <input class="rounded"
-                 matInput
-                 [attr.disabled]="true"
+          <input matInput
                  type="email"
                  placeholder="correo"
                  formControlName="email">
         </mat-form-field>
-        <div class="w-3/12 pl-2 min-w-10">
+        <div class="w-3/12 pl-2 min-w-10" style="margin-top: 5px;">
           <button class="h-8 relative text-xl font-medium w-full"
                   style="min-width: 0 !important;"
                   mat-button

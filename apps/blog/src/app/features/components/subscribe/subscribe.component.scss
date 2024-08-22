@@ -2,6 +2,7 @@
 
 :host {
   form {
+    --mat-form-field-container-height: 33px;
     background-color: map_get($md-grey, 400);
 
     .error {
@@ -12,25 +13,7 @@
       color: map_get($md-grey, 900);
     }
 
-
     .card {
-      mat-form-field {
-
-        ::ng-deep.mat-form-field-wrapper {
-          padding-bottom: 0;
-          background-color: map_get($md-grey, A100);
-          border-radius: map_get($radius, 2);
-
-          .mat-form-field-infix {
-            padding: 0.7em 0;
-          }
-        }
-
-        input {
-          color: map_get($md-grey, 850);
-        }
-      }
-
       button {
         color: map_get($md-grey, 48);
         background-color: map_get($md-primary, 500);
@@ -39,7 +22,6 @@
       .loading {
         animation: loading-animation 2s linear infinite;
       }
-
     }
   }
 }

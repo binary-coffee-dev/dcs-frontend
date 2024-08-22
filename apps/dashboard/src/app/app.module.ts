@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -33,35 +33,29 @@ export function createApollo(httpLink: HttpLink) {
   };
 }
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    AppRoutingModule,
-    RouterModule,
-    ComponentsModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ReduxModule,
-    SharedModule,
-    NgxsModule.forRoot([PostState, AuthState, FileState, NotificationState, ConfigState, TagState], {
-      developmentMode: !environment.production
-    })
-  ],
-  providers: [
-    {
-      provide: ENVIRONMENT,
-      useValue: environment
-    },
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory: createApollo,
-      deps: [HttpLink]
-    }
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [AppComponent],
+    bootstrap: [AppComponent], imports: [AppRoutingModule,
+        RouterModule,
+        ComponentsModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ReduxModule,
+        SharedModule,
+        NgxsModule.forRoot([PostState, AuthState, FileState, NotificationState, ConfigState, TagState], {
+            developmentMode: !environment.production
+        })], providers: [
+        {
+            provide: ENVIRONMENT,
+            useValue: environment
+        },
+        {
+            provide: APOLLO_OPTIONS,
+            useFactory: createApollo,
+            deps: [HttpLink]
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 }

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { MAT_LEGACY_DIALOG_DATA, MatLegacyDialogRef } from '@angular/material/legacy-dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
 
@@ -21,9 +20,9 @@ describe('EditCommentModalComponent', () => {
     TestBed.configureTestingModule({
       declarations: [EditCommentModalComponent],
       providers: [
-        {provide: MatLegacyDialogRef, useClass: MatDialogRefStub},
+        {provide: MatDialogRef, useClass: MatDialogRefStub},
         {provide: Store, useClass: StoreStub},
-        {provide: MAT_LEGACY_DIALOG_DATA, useValue: {comment: {body: 'tmp'}}}
+        {provide: MAT_DIALOG_DATA, useValue: {comment: {body: 'tmp'}}}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 import { Store } from '@ngxs/store';
 
@@ -14,6 +13,7 @@ import {
   UrlUtilsService, User
 } from '@dcs-libs/shared';
 import { UploadFileModalComponent } from '../../components/upload-file.modal';
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-list',

@@ -71,8 +71,15 @@
             color: map-get($md-grey, 500);
           }
 
-          .mat-form-field-prefix {
+          .mat-mdc-form-field-flex {
+            mat-label.offset {
+              margin-left: map-get($spacings, 4);
+            }
+          }
+
+          .mat-mdc-form-field-icon-prefix {
             font-size: 20px;
+            margin-left: map-get($spacings, 2);
             margin-right: map-get($spacings, 2);
             color: map-get($md-primary, 500);
             width: 20px;
