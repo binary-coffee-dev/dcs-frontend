@@ -62,7 +62,7 @@
           </mat-button-toggle>
         </div>
 
-        <h1 class="flex flex-row text-xl uppercase items-center mb-3">
+        <h1 class="title-content flex flex-row text-xl uppercase items-center mb-3">
           <span class="w-full text-xl font-bold">{{ post.title }}</span>
           <button mat-button
                   *ngIf=' ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)'
