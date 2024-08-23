@@ -5,6 +5,7 @@ import { CommonEngine } from '@angular/ssr';
 import express from 'express';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
+import compression from "compression";
 
 import bootstrap from './src/main.server';
 
@@ -20,6 +21,7 @@ export function app(): express.Express {
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
+  server.use(compression());
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
