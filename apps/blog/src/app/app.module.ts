@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,42 +34,45 @@ import { LoginRequestModalComponent } from './features/components/login-request-
 import { PodcastModule } from './features/podcast';
 import { UserModule } from './features/user';
 import { FilterComponent } from './features/components/filter/filter.component';
-import {NgOptimizedImage} from "@angular/common";
+import { NgOptimizedImage } from "@angular/common";
 
-@NgModule({ declarations: [
-        AppComponent,
-        HeaderComponent,
-        FilterComponent,
-        NewLabelComponent,
-        ScrollTopComponent,
-        CliComponent,
-        LoginButtonComponent,
-        LoginRequestModalComponent
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({appId: 'serverApp'}),
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        NgxsReduxDevtoolsPluginModule.forRoot(),
-        NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState, UserInfoState, SubscriptionState], {
-            developmentMode: !environment.production
-        }),
-        ReduxModule,
-        MaterialModule,
-        InfoModule,
-        SharedModule,
-        PodcastModule,
-        UserModule, NgOptimizedImage], providers: [
-        {
-            provide: ENVIRONMENT,
-            useValue: environment
-        },
-        {
-            provide: APOLLO_OPTIONS,
-            useFactory: createApollo,
-            deps: [HttpLink]
-        },
-        CommentService,
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FilterComponent,
+    NewLabelComponent,
+    ScrollTopComponent,
+    CliComponent,
+    LoginButtonComponent,
+    LoginRequestModalComponent
+  ],
+  bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({appId: 'serverApp'}),
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState, UserInfoState, SubscriptionState], {
+      developmentMode: !environment.production
+    }),
+    ReduxModule,
+    MaterialModule,
+    InfoModule,
+    SharedModule,
+    PodcastModule,
+    UserModule, NgOptimizedImage], providers: [
+    {
+      provide: ENVIRONMENT,
+      useValue: environment
+    },
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: createApollo,
+      deps: [HttpLink]
+    },
+    CommentService,
+    provideHttpClient(withInterceptorsFromDi()),
+    provideClientHydration()
+  ]
+})
 export class AppModule {
 }
