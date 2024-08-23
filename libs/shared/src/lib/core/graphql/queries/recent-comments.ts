@@ -4,7 +4,6 @@ export const RECENT_COMMENTS_QUERY = gql`
   query ($limit: Int){
     recentComments (limit: $limit) {
       body
-      email
       name
       user {
         data {
@@ -21,7 +20,6 @@ export const RECENT_COMMENTS_QUERY = gql`
           attributes {
             title
             name
-            body
           }
         }
       }
