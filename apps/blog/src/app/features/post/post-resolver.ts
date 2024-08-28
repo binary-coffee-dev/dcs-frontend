@@ -31,12 +31,14 @@ export class PostResolver implements Resolve<Post> {
     const user = this.store.selectSnapshot(AuthState.me) || {id: ''};
     return this.store.dispatch(new FetchPostAction(route.paramMap.get('id'), user.id))
       .pipe(
-        mergeMap(() => this.store.dispatch(new FetchPostUserLikeAction(route.paramMap.get('id'), user.id))),
-        mergeMap(() => this.store.dispatch(new RecentCommentAction())),
         mergeMap(() => {
-          // get similar posts only in the browser
+          // get this info only in the browser
           if (this.isBrowser) {
-            return this.store.dispatch(new FetchSimilarPostsAction(this.store.selectSnapshot(PostState.post).id));
+            return [
+              this.store.dispatch(new FetchPostUserLikeAction(route.paramMap.get('id'), user.id)),
+              this.store.dispatch(new RecentCommentAction()),
+              this.store.dispatch(new FetchSimilarPostsAction(this.store.selectSnapshot(PostState.post).id))
+            ];
           }
           return of({});
         }),
