@@ -11,7 +11,8 @@
     "lint": "nx lint",
     "serve:ssr": "node dist/apps/server/main",
     "build:ssr": "nx run blog:build:production && nx run blog:server:production",
-    "build:ssr:dev": "nx run blog:build:development && nx run blog:server:development"
+    "build:ssr:dev": "nx run blog:build:development && nx run blog:server:development",
+    "serve:ssr:prod": "npm run build:ssr && npm run serve:ssr"
   },
   "private": true,
   "dependencies": {
