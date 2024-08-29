@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '@dcs-libs/shared';
@@ -10,10 +10,11 @@ import { TopActiveUsersComponent } from './top-active-users.component';
   exports: [
     TopActiveUsersComponent
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    RouterModule
-  ]
+    imports: [
+        CommonModule,
+        MaterialModule,
+        RouterModule,
+        NgOptimizedImage
+    ]
 })
 export class TopActiveUsersModule { }

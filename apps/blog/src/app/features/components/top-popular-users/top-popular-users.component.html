@@ -8,8 +8,10 @@
        [routerLink]="'/users/' + user?.username">
       <img class='w-[40px] min-w-[40px] max-h-[40px] overflow-hidden rounded-full mr-3'
            (error)="onUserImgError(i)"
-           [src]='getUserAvatar(user)'
-           alt='noavatar'/>
+           [ngSrc]='getUserAvatar(user)'
+           width="40"
+           height="40"
+           [alt]='user?.username'/>
       <div class='flex flex-col text-xs hover:underline overflow-hidden'>
         <span class='top-user-name whitespace-nowrap'>"{{ user?.username }}"</span>
         <span class='post-info whitespace-nowrap'> // {{ getTopLikeByIndex(i) }} likes</span>

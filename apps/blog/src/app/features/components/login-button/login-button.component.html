@@ -12,7 +12,9 @@
             [matMenuTriggerFor]='beforeMenu'>
       <img class="w-[35px] h-[35px] rounded-full cursor-pointer"
            style="height: 35px !important;"
-           [src]='getUserImage()'
+           [ngSrc]='getUserImage()'
+           width="35"
+           height="35"
            alt='user avatar'>
     </button>
     <mat-menu #beforeMenu='matMenu'

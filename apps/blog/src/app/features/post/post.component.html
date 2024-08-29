@@ -10,9 +10,11 @@
       <div class='post-info-content p-6 shadow-lg'>
         <div class='w-full'>
           <img class="w-full max-h-[300px] object-cover object-center"
+               style="position: relative;"
                *ngIf='post?.banner && post?.banner?.url'
-               [src]='resource.addApiUrl(post.banner?.url)'
-               alt='avatar del usuario'/>
+               [ngSrc]='resource.addApiUrl(post.banner?.url)'
+               fill=""
+               alt='article banner'/>
         </div>
 
         <div class='tags-content text-right'>
@@ -23,9 +25,11 @@
           <a class='user-avatar flex flex-row text-xs items-center no-underline'
              [href]="'/users/' + post.author?.username"
              matTooltip='Ver perfil'>
-            <img class="w-8 h-8 rounded-full mr-3"
-                 [src]='url.getUserImage(post.author)'
-                 [alt]='post.author?.username'/>
+            <img [alt]='post.author?.username'
+                 [ngSrc]='url.getUserImage(post.author)'
+                 class="w-8 h-8 rounded-full mr-3"
+                 height="32"
+                 width="32"/>
             <span>"{{ post.author?.username }}"</span>
           </a>
         </div>

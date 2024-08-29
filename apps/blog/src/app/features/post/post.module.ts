@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -33,7 +33,8 @@ import { PostItemModule } from '../components/post-item/post-item.module';
     ServicesModule,
     TagsModule,
     SharedModule,
-    PostItemModule
+    PostItemModule,
+    NgOptimizedImage
   ]
 })
 export class PostModule {

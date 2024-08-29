@@ -8,14 +8,12 @@ export const POSTS_QUERY = gql`
         attributes {
           title
           name
-          body
           comments
           likes
           views
           createdAt
           updatedAt
           publishedAt
-          enable
           banner {
             data {
               id
@@ -29,8 +27,6 @@ export const POSTS_QUERY = gql`
               id
               attributes {
                 username
-                email
-                page
                 avatarUrl
               }
             }

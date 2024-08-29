@@ -1,28 +1,29 @@
 <div class="">
-     <span class="separator">
-          <a [href]="'/users/' + post.author?.username"
-             [title]="post.author?.email">
-               <img *ngIf="post.author?.avatar?.url"
-                    [src]="resource.addApiUrl(post.author?.avatar?.url)"
-                    alt="">
-               <span>{{ post.author?.username }}</span>
-          </a>
-     </span>
-
-  <span class="post-info separator">
-        <span>{{ post.publishedAt && moment.timeFromDate(post.publishedAt) || '' }}</span>
+   <span class="separator">
+     <a [href]="'/users/' + post.author?.username"
+        [title]="post.author?.email">
+         <img *ngIf="post.author?.avatar?.url"
+              [ngSrc]="resource.addApiUrl(post.author?.avatar?.url)"
+              fill=""
+              alt="author avatar">
+         <span>{{ post.author?.username }}</span>
+     </a>
   </span>
 
   <span class="post-info separator">
-          <mat-icon aria-hidden="false">comment</mat-icon>
-          <span>{{ post.comments || 0 }}</span>
-     </span>
+    <span>{{ post.publishedAt && moment.timeFromDate(post.publishedAt) || '' }}</span>
+  </span>
+
+  <span class="post-info separator">
+    <mat-icon aria-hidden="false">comment</mat-icon>
+    <span>{{ post.comments || 0 }}</span>
+  </span>
 
   <span class="post-info like"
         [title]="postLikeTitle()"
         (click)="postLikeClick()"
         [ngClass]="{'active': userLike > 0}">
-          <mat-icon aria-hidden="false">local_cafe</mat-icon>
-          <span>{{ likes }}</span>
-     </span>
+      <mat-icon aria-hidden="false">local_cafe</mat-icon>
+      <span>{{ likes }}</span>
+    </span>
 </div>

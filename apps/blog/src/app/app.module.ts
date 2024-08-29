@@ -2,6 +2,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { NgModule } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgOptimizedImage } from "@angular/common";
 
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
@@ -34,7 +35,6 @@ import { LoginRequestModalComponent } from './features/components/login-request-
 import { PodcastModule } from './features/podcast';
 import { UserModule } from './features/user';
 import { FilterComponent } from './features/components/filter/filter.component';
-import { NgOptimizedImage } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import { NgOptimizedImage } from "@angular/common";
     LoginButtonComponent,
     LoginRequestModalComponent
   ],
-  bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({appId: 'serverApp'}),
+  bootstrap: [AppComponent],
+  imports: [BrowserModule.withServerTransition({appId: 'serverApp'}),
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
@@ -59,7 +60,9 @@ import { NgOptimizedImage } from "@angular/common";
     InfoModule,
     SharedModule,
     PodcastModule,
-    UserModule, NgOptimizedImage], providers: [
+    UserModule, NgOptimizedImage
+  ],
+  providers: [
     {
       provide: ENVIRONMENT,
       useValue: environment

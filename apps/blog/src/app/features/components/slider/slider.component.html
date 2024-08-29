@@ -22,7 +22,9 @@
              *ngIf='activeInfo.value?.user'>
           <div>
             <img class="w-8 h-8 rounded-full"
-                 [src]='url.getUserImage(activeInfo.value?.user)'
+                 [ngSrc]='url.getUserImage(activeInfo.value?.user)'
+                 width="32"
+                 height="32"
                  [alt]='activeInfo.value?.user?.username || "noavatar"'>
           </div>
           &#160;{{ activeInfo.value?.user?.username }}
