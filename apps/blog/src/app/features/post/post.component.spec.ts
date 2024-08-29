@@ -4,15 +4,16 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { Store } from '@ngxs/store';
 
-import { ENVIRONMENT, HasPermissionsPipeStub, WINDOW } from '@dcs-libs/shared';
+import { ENVIRONMENT, HasPermissionsPipeStub, MomentService, WINDOW } from '@dcs-libs/shared';
 import { PostComponent } from './post.component';
-import { MomentService, ResourceService, ScrollService } from '../../core/services';
+import { ResourceService, ScrollService } from '../../core/services';
 import { MatDialog } from "@angular/material/dialog";
 
 class StoreStub {
 }
 
 class MomentServiceStub {
+  timeFromDateForPublishPost = () => '';
 }
 
 class ResourceServiceStub {

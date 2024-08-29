@@ -5,7 +5,8 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { Store } from '@ngxs/store';
 
 import { PostInfoComponent } from './post-info.component';
-import { MomentService, ResourceService } from '../../../core/services';
+import { ResourceService } from '../../../core/services';
+import { MomentService } from "@dcs-libs/shared";
 
 class StoreStub {
 }
