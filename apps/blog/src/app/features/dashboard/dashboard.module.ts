@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import { TagsModule } from '@dcs-libs/shared';
 import { DashboardComponent } from './dashboard.component';
@@ -20,17 +20,18 @@ import { PostItemModule } from '../components/post-item/post-item.module';
     PaginationComponent,
     SliderComponent,
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    MaterialModule,
-    ServicesModule,
-    TagsModule,
-    TopActiveUsersModule,
-    TopPopularUsersModule,
-    SharedComponentsModule,
-    PostItemModule
-  ],
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        MaterialModule,
+        ServicesModule,
+        TagsModule,
+        TopActiveUsersModule,
+        TopPopularUsersModule,
+        SharedComponentsModule,
+        PostItemModule,
+        NgOptimizedImage
+    ],
   providers: [PostsGuard]
 })
 export class DashboardModule {

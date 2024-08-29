@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '@dcs-libs/shared';
@@ -20,7 +20,8 @@ import { SubscribeComponent } from "./subscribe/subscribe.component";
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    NgOptimizedImage
   ]
 })
 export class SharedComponentsModule {

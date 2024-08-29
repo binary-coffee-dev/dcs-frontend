@@ -3,9 +3,11 @@
      class='card-container flex flex-col relative w-full rounded-md overflow-hidden no-underline shadow-lg'>
 
     <img class='w-full max-h-[200px] min-h-[200px] object-cover object-center'
+         style="position: relative;"
          *ngIf='post.banner?.url'
          (error)="onBannerImgError()"
-         [src]='getPostBanner(post)'
+         [ngSrc]='getPostBanner(post)'
+         fill=""
          [alt]='post.title'>
 
     <div class='p-5'>
@@ -18,7 +20,9 @@
           <img class="w-[20px] min-w-[20px] h-[20px] rounded-full"
                style="height: 20px !important;"
                (error)="onAuthorImgError()"
-               [src]='url.getUserImage(post.author)'
+               [ngSrc]='url.getUserImage(post.author)'
+               width="20"
+               height="20"
                [alt]='post.author.username'>
           <span class="ml-3">
             {{ post.author.username || 'público' }}
