@@ -46,7 +46,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       moment.locale('es');
-      console.log(moment.locale());
 
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
