@@ -79,7 +79,10 @@
               "maximumError": "21kb"
             }
           ],
-          "outputHashing": "all"
+          "sourceMap": true,
+          "outputHashing": "all",
+          "buildOptimizer": true,
+          "optimization": true
         },
         "development": {
           "fileReplacements": [
