@@ -5,9 +5,9 @@ import { Store } from '@ngxs/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { AuthState, CreateLikeArticle, Post, PostState, RemoveLikeArticle } from '@dcs-libs/shared';
+import { AuthState, CreateLikeArticle, MomentService, Post, PostState, RemoveLikeArticle } from '@dcs-libs/shared';
 import { LoginRequestModalComponent } from '../../components/login-request-modal';
-import { MomentService, ResourceService } from '../../../core/services';
+import { ResourceService } from '../../../core/services';
 
 @Component({
   selector: 'app-post-info',

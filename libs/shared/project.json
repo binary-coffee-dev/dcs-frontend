@@ -12,7 +12,11 @@
         "outputPath": "dist/libs/shared",
         "main": "libs/shared/src/index.ts",
         "tsConfig": "libs/shared/tsconfig.lib.json",
-        "assets": ["libs/shared/*.md"]
+        "assets": ["libs/shared/*.md"],
+        "scripts": [
+          "node_modules/moment/min/moment.min.js",
+          "node_modules/moment/locale/es.js"
+        ]
       }
     },
     "lint": {

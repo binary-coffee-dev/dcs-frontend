@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { Post, UrlUtilsService } from '@dcs-libs/shared';
-import { MomentService, ResourceService } from '../../../core/services';
+import { MomentService, Post, UrlUtilsService } from '@dcs-libs/shared';
+import { ResourceService } from '../../../core/services';
 
 @Component({
   selector: 'app-post-item',

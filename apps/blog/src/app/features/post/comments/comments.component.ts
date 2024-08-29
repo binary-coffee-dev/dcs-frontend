@@ -15,9 +15,9 @@ import {
   FetchCommentsAction,
   Post,
   UrlUtilsService,
-  RoleEnum, User
+  RoleEnum, User, MomentService
 } from '@dcs-libs/shared';
-import { MomentService, ScrollService } from '../../../core/services';
+import { ScrollService } from '../../../core/services';
 import { LoginRequestModalComponent } from '../../components/login-request-modal';
 import { ConfirmDeleteModalComponent } from './confirm-delete.modal/confirm-delete.modal.component';
 import { EditCommentModalComponent } from './edit-comment.modal/edit-comment.modal.component';
