@@ -1,66 +1,67 @@
 <div>
-  <button mat-button
-          *ngIf='!isLogin'
-          (click)='loginAction()'
-          class='login-button font-bold text-sm'>
-    Login
-  </button>
-  <div *ngIf='isLogin'
-       class='user-data'>
-
+  @if (!isLogin) {
     <button mat-button
-            [matMenuTriggerFor]='beforeMenu'>
-      <img class="w-[35px] h-[35px] rounded-full cursor-pointer"
-           style="height: 35px !important;"
-           [ngSrc]='getUserImage()'
-           width="35"
-           height="35"
-           alt='user avatar'>
+            (click)='loginAction()'
+            class='login-button font-bold text-sm'>
+      Login
     </button>
-    <mat-menu #beforeMenu='matMenu'
-              class='app-important-menu'
-              xPosition='before'>
+  } @else {
+    <div class='user-data'>
 
-      <div class='item1 down-icon'>
-        Perfil
-      </div>
-
-      <a mat-menu-item
-         class='item1'
-         [routerLink]='profileLink()'>
-        <i class='fa fa-user'></i>
-        Ver Perfil
-      </a>
-      <a mat-menu-item
-         class='item1'
-         [href]='editProfileLink()'>
-        <i class='fa fa-edit'></i>
-        Editar perfil
-      </a>
-
-      <div class='separator'></div>
-
-      <a mat-menu-item
-         class='item1'
-         [href]='newArticleLink()'>
-        <i class='fa fa-file'></i>
-        Nuevo artículo
-      </a>
-      <a mat-menu-item
-         class='item1'
-         [href]='articlesLink()'>
-        <i class='fa fa-quote-right'></i>
-        Gestionar artículos
-      </a>
-
-      <div class='separator'></div>
-
-      <button mat-menu-item
-              class='item1'
-              (click)='logoutAction()'>
-        Salir
+      <button mat-button
+              [matMenuTriggerFor]='beforeMenu'>
+        <img class="w-[35px] h-[35px] rounded-full cursor-pointer"
+             style="height: 35px !important;"
+             [ngSrc]='getUserImage()'
+             width="35"
+             height="35"
+             alt='user avatar'>
       </button>
-    </mat-menu>
+      <mat-menu #beforeMenu='matMenu'
+                class='app-important-menu'
+                xPosition='before'>
 
-  </div>
+        <div class='item1 down-icon'>
+          Perfil
+        </div>
+
+        <a mat-menu-item
+           class='item1'
+           [routerLink]='profileLink()'>
+          <i class='fa fa-user'></i>
+          Ver Perfil
+        </a>
+        <a mat-menu-item
+           class='item1'
+           [href]='editProfileLink()'>
+          <i class='fa fa-edit'></i>
+          Editar perfil
+        </a>
+
+        <div class='separator'></div>
+
+        <a mat-menu-item
+           class='item1'
+           [href]='newArticleLink()'>
+          <i class='fa fa-file'></i>
+          Nuevo artículo
+        </a>
+        <a mat-menu-item
+           class='item1'
+           [href]='articlesLink()'>
+          <i class='fa fa-quote-right'></i>
+          Gestionar artículos
+        </a>
+
+        <div class='separator'></div>
+
+        <button mat-menu-item
+                class='item1'
+                (click)='logoutAction()'>
+          Salir
+        </button>
+      </mat-menu>
+
+    </div>
+  }
 </div>
