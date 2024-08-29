@@ -20,6 +20,15 @@
         }
       }
     }
+
+    textarea {
+      outline: none;
+      padding: map-get($spacings, 1);
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
   }
 
   .banner-image-content {
@@ -41,18 +50,6 @@
   .time-section {
     mat-form-field {
       margin-right: map-get($spacings, 3);
-
-      ::ng-deep {
-        .mat-form-field-flex {
-          border-color: transparent;
-          background-color: map-get($md-grey, 49);
-          border-radius: map-get($radius, 2);
-
-          .mat-form-field-infix {
-            margin-left: map-get($spacings, 1);
-          }
-        }
-      }
     }
   }
 
@@ -70,30 +67,6 @@
             border: none;
           }
         }
-      }
-    }
-  }
-
-  mat-form-field {
-    font-size: 14px;
-
-    ::ng-deep {
-      .mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end {
-        border-color: transparent;
-        background-color: map-get($md-grey, 49);
-      }
-
-      textarea {
-        min-height: 100px;
-      }
-
-      .mat-form-field-prefix {
-        font-size: 20px;
-        margin-right: map-get($spacings, 2);
-        color: map-get($md-primary, 500);
-        width: 20px;
-        text-align: center;
-        align-self: center;
       }
     }
   }
