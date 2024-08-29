@@ -1,19 +1,47 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from "@angular/common";
 
-import moment from 'moment';
+declare let moment: any;
 
 @Injectable({
   providedIn: 'root'
 })
 export class MomentService {
 
-  constructor() {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: string
+  ) {
   }
 
-  timeFromDate(date: any) {
-    if (!date) {
-      return 'Sin publicar';
+  isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
+  }
+
+  timeFromDate(date: string | Date | undefined): string {
+    if (this.isBrowser()) {
+      return moment(date).fromNow();
     }
-    return moment(date).fromNow();
+    return '';
+  }
+
+  secondsToDuration(seconds: number): string {
+    if (this.isBrowser()) {
+      const milliseconds = seconds * 1000;
+      return moment(new Date().getTime() + milliseconds)
+        .fromNow()
+        .replace('en ', '')
+        .replace('in ', '');
+    }
+    return '';
+  }
+
+  timeFromDateForPublishPost(date: any) {
+    if (this.isBrowser()) {
+      if (!date) {
+        return 'Sin publicar';
+      }
+      return moment(date).fromNow();
+    }
+    return '';
   }
 }

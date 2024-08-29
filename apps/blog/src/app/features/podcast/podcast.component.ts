@@ -4,8 +4,7 @@ import { Store } from "@ngxs/store";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
-import { EpisodeModel, FetchPodcastAction, PodcastState } from "@dcs-libs/shared";
-import { MomentService } from "../../core/services";
+import { EpisodeModel, FetchPodcastAction, MomentService, PodcastState } from "@dcs-libs/shared";
 
 @Component({
   selector: 'app-podcast',

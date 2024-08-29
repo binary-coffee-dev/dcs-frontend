@@ -4,9 +4,8 @@ import { NO_ERRORS_SCHEMA, PLATFORM_ID } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { of } from 'rxjs';
 
-import { UrlUtilsService, WINDOW } from '@dcs-libs/shared';
+import { MomentService, UrlUtilsService, WINDOW } from '@dcs-libs/shared';
 import { InfoBarComponent } from './info-bar.component';
-import { MomentService } from '../../../core/services';
 
 class StoreStub {
   select = () => of([]);

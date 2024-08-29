@@ -8,13 +8,12 @@ import { Subject } from 'rxjs';
 import {
   Comment,
   CommentState,
-  EpisodeModel,
+  EpisodeModel, MomentService,
   PodcastState,
   Post,
   UrlUtilsService,
   WINDOW
 } from '@dcs-libs/shared';
-import { MomentService } from '../../../core/services';
 
 interface ShareLink {
   name: string;

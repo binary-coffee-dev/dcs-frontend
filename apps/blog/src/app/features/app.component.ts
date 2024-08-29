@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
 import { timer } from 'rxjs';
+
 import { MetaTagsService } from '../core/services';
 
 import {
@@ -18,6 +19,7 @@ import { consoleMessage } from './console.log';
 import { isPlatformBrowser } from '@angular/common';
 
 declare let gtag: (property: string, value: string, configs: Object) => {};
+declare let moment: any;
 
 // 30 seconds
 const TIME_TO_OPEN_SUBSCRIPTION_DIALOG_IN_MIL = 30000;
@@ -43,6 +45,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+      moment.locale('es');
+      console.log(moment.locale());
+
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
           gtag('config', this.environment?.googleAnalyticsId || '', {

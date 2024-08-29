@@ -24,7 +24,7 @@
             {{ post.title }}
           </td>
           <td class="py-1.5 px-3 whitespace-nowrap">
-            {{ moment.timeFromDate(post.publishedAt) || '' }}
+            {{ moment.timeFromDateForPublishPost(post.publishedAt) || '' }}
           </td>
           <td class="py-1.5 px-3 whitespace-nowrap">
             {{ post?.author?.username }}

@@ -7,11 +7,13 @@
     "start:admin": "nx run dashboard:serve --watch --port=4201 --poll=2000 --host=0.0.0.0 --disable-host-check",
     "build:admin": "nx run dashboard:build:development",
     "build:admin:prod": "nx run dashboard:build:production",
+    "stats": "nx run blog:build:production --stats-json && webpack-bundle-analyzer dist/apps/blog/stats.json",
     "test": "jest --coverage",
     "lint": "nx lint",
     "serve:ssr": "node dist/apps/server/main",
     "build:ssr": "nx run blog:build:production && nx run blog:server:production",
-    "build:ssr:dev": "nx run blog:build:development && nx run blog:server:development"
+    "build:ssr:dev": "nx run blog:build:development && nx run blog:server:development",
+    "serve:ssr:prod": "npm run build:ssr && npm run serve:ssr"
   },
   "private": true,
   "dependencies": {
@@ -31,13 +33,13 @@
     "@ngxs/storage-plugin": "18.1.1",
     "@ngxs/store": "18.1.1",
     "@nx/angular": "19.5.7",
-    "apollo-angular": "7.0.2",
+    "apollo-angular": "7.1.2",
     "compression": "^1.7.4",
     "express": "^4.19.2",
     "font-awesome": "4.7.0",
-    "graphql": "^16.8.1",
+    "graphql": "16.9.0",
     "marked": "12.0.2",
-    "moment": "^2.29.2",
+    "moment": "2.30.1",
     "ngx-chips": "^3.0.0",
     "ngx-clipboard": "^15.1.0",
     "ngx-markdown": "18.0.0",
@@ -88,7 +90,8 @@
     "tailwindcss": "^3.4.1",
     "ts-jest": "29.1.5",
     "ts-node": "10.9.1",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "webpack-bundle-analyzer": "4.10.2"
   },
   "pre-push": {
     "run": [

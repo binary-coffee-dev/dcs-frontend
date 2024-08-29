@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-import { UrlUtilsService } from '@dcs-libs/shared';
+import { MomentService, UrlUtilsService } from '@dcs-libs/shared';
 import { PostItemComponent } from './post-item.component';
-import { MomentService, ResourceService } from '../../../core/services';
+import { ResourceService } from '../../../core/services';
 
 class MomentServiceStub {
 }
