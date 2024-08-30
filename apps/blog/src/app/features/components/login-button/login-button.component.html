@@ -1,11 +1,11 @@
 <div>
-  @if (!isLogin) {
+  @if (isBrowser && !isLogin) {
     <button mat-button
             (click)='loginAction()'
             class='login-button font-bold text-sm'>
       Login
     </button>
-  } @else {
+  } @else if (isBrowser) {
     <div class='user-data'>
 
       <button mat-button

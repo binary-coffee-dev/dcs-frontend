@@ -1,4 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { Store } from '@ngxs/store';
 
@@ -14,14 +15,17 @@ export class LoginButtonComponent implements OnInit {
 
   isLogin = false;
   me?: User;
+  isBrowser: boolean;
 
   constructor(
     @Inject(WINDOW) private window: Window,
     @Inject(ENVIRONMENT) private env: Environment,
     private store: Store,
     private url: UrlUtilsService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    @Inject(PLATFORM_ID) platformId: string,
   ) {
+    this.isBrowser = isPlatformBrowser(platformId);
   }
 
   getUserImage() {
@@ -29,8 +33,10 @@ export class LoginButtonComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(AuthState.isLogin).subscribe(isLogin => this.isLogin = isLogin);
-    this.store.select(AuthState.me).subscribe(me => this.me = me);
+    if (this.isBrowser) {
+      this.store.select(AuthState.isLogin).subscribe(isLogin => this.isLogin = isLogin);
+      this.store.select(AuthState.me).subscribe(me => this.me = me);
+    }
   }
 
   loginAction() {
