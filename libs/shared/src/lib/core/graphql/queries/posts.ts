@@ -14,6 +14,7 @@ export const POSTS_QUERY = gql`
           createdAt
           updatedAt
           publishedAt
+          enable
           banner {
             data {
               id
