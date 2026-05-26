@@ -1,5 +1,5 @@
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_ID, NgModule } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgOptimizedImage } from "@angular/common";
@@ -48,7 +48,7 @@ import { FilterComponent } from './features/components/filter/filter.component';
     LoginRequestModalComponent
   ],
   bootstrap: [AppComponent],
-  imports: [BrowserModule.withServerTransition({appId: 'serverApp'}),
+  imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
@@ -63,6 +63,10 @@ import { FilterComponent } from './features/components/filter/filter.component';
     UserModule, NgOptimizedImage
   ],
   providers: [
+    {
+      provide: APP_ID,
+      useValue: 'serverApp'
+    },
     {
       provide: ENVIRONMENT,
       useValue: environment

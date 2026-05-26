@@ -10,9 +10,10 @@ import { LoginRequestModalComponent } from '../../components/login-request-modal
 import { ResourceService } from '../../../core/services';
 
 @Component({
-  selector: 'app-post-info',
-  templateUrl: './post-info.component.html',
-  styleUrls: ['./post-info.component.scss']
+    selector: 'app-post-info',
+    templateUrl: './post-info.component.html',
+    styleUrls: ['./post-info.component.scss'],
+    standalone: false
 })
 export class PostInfoComponent implements OnInit, OnDestroy {
 

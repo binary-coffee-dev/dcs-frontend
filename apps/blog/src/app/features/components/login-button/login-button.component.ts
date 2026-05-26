@@ -7,9 +7,10 @@ import { AuthState, ENVIRONMENT, Environment, LogoutAction, UrlUtilsService, Use
 import { LoginService } from '../../../core/services';
 
 @Component({
-  selector: 'app-login-button',
-  templateUrl: './login-button.component.html',
-  styleUrls: ['./login-button.component.scss']
+    selector: 'app-login-button',
+    templateUrl: './login-button.component.html',
+    styleUrls: ['./login-button.component.scss'],
+    standalone: false
 })
 export class LoginButtonComponent implements OnInit {
 

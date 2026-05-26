@@ -8,9 +8,10 @@ import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
 
 
 @Component({
-  selector: 'app-subscribe-dialog',
-  templateUrl: './subscribe-dialog.component.html',
-  styleUrls: ['./subscribe-dialog.component.scss']
+    selector: 'app-subscribe-dialog',
+    templateUrl: './subscribe-dialog.component.html',
+    styleUrls: ['./subscribe-dialog.component.scss'],
+    standalone: false
 })
 export class SubscribeDialogComponent implements OnInit {
 

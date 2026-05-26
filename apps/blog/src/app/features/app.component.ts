@@ -27,9 +27,10 @@ const TIME_TO_OPEN_SUBSCRIPTION_DIALOG_IN_MIL = 30000;
 const SUBSCRIPTION_WAS_OPENED_CONFIG_KEY = 'SUBSCRIPTION_WAS_OPENED_CONFIG_KEY';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent implements OnInit {
 

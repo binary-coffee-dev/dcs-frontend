@@ -6,9 +6,10 @@ import { LoginWithProviderAction } from '../../core/redux/states/auth';
 import { FetchPostsAction, PostAction } from '../../core/redux/states/post';
 
 @Component({
-  selector: 'app-loading',
-  templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss']
+    selector: 'app-loading',
+    templateUrl: './loading.component.html',
+    styleUrls: ['./loading.component.scss'],
+    standalone: false
 })
 export class LoadingComponent implements OnInit {
 

@@ -5,9 +5,10 @@ import { Store } from '@ngxs/store';
 import { TopUsers, UrlUtilsService, User, UserInfoState } from '@dcs-libs/shared';
 
 @Component({
-  selector: 'app-top-popular-users',
-  templateUrl: './top-popular-users.component.html',
-  styleUrls: ['./top-popular-users.component.scss']
+    selector: 'app-top-popular-users',
+    templateUrl: './top-popular-users.component.html',
+    styleUrls: ['./top-popular-users.component.scss'],
+    standalone: false
 })
 export class TopPopularUsersComponent implements OnInit {
   top5Likes = {} as unknown as TopUsers;

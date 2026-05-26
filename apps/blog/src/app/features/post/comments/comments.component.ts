@@ -23,9 +23,10 @@ import { ConfirmDeleteModalComponent } from './confirm-delete.modal/confirm-dele
 import { EditCommentModalComponent } from './edit-comment.modal/edit-comment.modal.component';
 
 @Component({
-  selector: 'app-comments',
-  templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss', '../post.component.scss']
+    selector: 'app-comments',
+    templateUrl: './comments.component.html',
+    styleUrls: ['./comments.component.scss', '../post.component.scss'],
+    standalone: false
 })
 export class CommentsComponent implements OnInit, OnDestroy {
 

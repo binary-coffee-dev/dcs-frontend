@@ -4,9 +4,10 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { LoginService } from '../../../core/services';
 
 @Component({
-  selector: 'app-login-request-modal',
-  templateUrl: './login-request-modal.component.html',
-  styleUrls: ['./login-request-modal.component.scss']
+    selector: 'app-login-request-modal',
+    templateUrl: './login-request-modal.component.html',
+    styleUrls: ['./login-request-modal.component.scss'],
+    standalone: false
 })
 export class LoginRequestModalComponent {
 

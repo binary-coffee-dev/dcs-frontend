@@ -3,9 +3,10 @@ import { Component, HostListener } from '@angular/core';
 import { ScrollService } from '../../../core/services';
 
 @Component({
-  selector: 'app-scroll-top',
-  templateUrl: './scroll-top.component.html',
-  styleUrls: ['./scroll-top.component.scss']
+    selector: 'app-scroll-top',
+    templateUrl: './scroll-top.component.html',
+    styleUrls: ['./scroll-top.component.scss'],
+    standalone: false
 })
 export class ScrollTopComponent {
   windowScrolled = false;

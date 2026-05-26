@@ -6,9 +6,10 @@ import { Store } from '@ngxs/store';
 import { RemoveCommentAction } from '@dcs-libs/shared';
 
 @Component({
-  selector: 'app-confirm-delete.modal',
-  templateUrl: './confirm-delete.modal.component.html',
-  styleUrls: ['./confirm-delete.modal.component.scss']
+    selector: 'app-confirm-delete.modal',
+    templateUrl: './confirm-delete.modal.component.html',
+    styleUrls: ['./confirm-delete.modal.component.scss'],
+    standalone: false
 })
 export class ConfirmDeleteModalComponent {
 

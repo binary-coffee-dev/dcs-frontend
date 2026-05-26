@@ -9,9 +9,10 @@ import { SubscribeAction, SubscriptionState } from "@dcs-libs/shared";
 
 
 @Component({
-  selector: 'app-subscribe',
-  templateUrl: './subscribe.component.html',
-  styleUrls: ['./subscribe.component.scss']
+    selector: 'app-subscribe',
+    templateUrl: './subscribe.component.html',
+    styleUrls: ['./subscribe.component.scss'],
+    standalone: false
 })
 export class SubscribeComponent implements OnInit, OnDestroy {
 

@@ -15,9 +15,10 @@ import {
 import { UploadFileModalComponent } from '../components/upload-file.modal';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+    selector: 'app-user-profile',
+    templateUrl: './user-profile.component.html',
+    styleUrls: ['./user-profile.component.scss'],
+    standalone: false
 })
 export class UserProfileComponent implements OnInit {
   me: User = {} as unknown as User;

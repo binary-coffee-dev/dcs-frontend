@@ -7,9 +7,10 @@ import { takeUntil } from "rxjs/operators";
 import { EpisodeModel, FetchPodcastAction, MomentService, PodcastState } from "@dcs-libs/shared";
 
 @Component({
-  selector: 'app-podcast',
-  templateUrl: './podcast.component.html',
-  styleUrls: ['./podcast.component.scss']
+    selector: 'app-podcast',
+    templateUrl: './podcast.component.html',
+    styleUrls: ['./podcast.component.scss'],
+    standalone: false
 })
 export class PodcastComponent implements OnInit, OnDestroy {
   _unsubscribe = new Subject();

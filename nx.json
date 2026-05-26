@@ -71,5 +71,6 @@
     }
   },
   "defaultBase": "develop",
-  "useInferencePlugins": false
+  "useInferencePlugins": false,
+  "analytics": false
 }

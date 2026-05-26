@@ -8,9 +8,10 @@ import { FileState, UploadFileAction } from '@dcs-libs/shared';
 
 
 @Component({
-  selector: 'app-upload-file.modal',
-  templateUrl: './upload-file.modal.component.html',
-  styleUrls: ['./upload-file.modal.component.scss']
+    selector: 'app-upload-file.modal',
+    templateUrl: './upload-file.modal.component.html',
+    styleUrls: ['./upload-file.modal.component.scss'],
+    standalone: false
 })
 export class UploadFileModalComponent implements OnInit {
 

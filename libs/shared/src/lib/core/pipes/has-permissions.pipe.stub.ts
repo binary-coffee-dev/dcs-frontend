@@ -5,7 +5,8 @@ import { Observable, of } from 'rxjs';
 import { Permission } from '../permissions';
 
 @Pipe({
-  name: 'hasPermissions'
+    name: 'hasPermissions',
+    standalone: false
 })
 export class HasPermissionsPipeStub implements PipeTransform {
 

@@ -10,9 +10,10 @@ import {
 } from '@dcs-libs/shared';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user-overview.component.html',
-  styleUrls: ['./user-overview.component.scss']
+    selector: 'app-user',
+    templateUrl: './user-overview.component.html',
+    styleUrls: ['./user-overview.component.scss'],
+    standalone: false
 })
 export class UsersOverviewComponent implements OnInit {
 

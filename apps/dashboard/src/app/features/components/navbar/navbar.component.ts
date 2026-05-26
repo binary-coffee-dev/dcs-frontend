@@ -9,9 +9,10 @@ import { ROUTES } from '../sidebar/sidebar.model';
 const PATH_NAME_POSITION = 2;
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    standalone: false
 })
 export class NavbarComponent implements OnInit {
   private listTitles: any[] = [];

@@ -7,9 +7,10 @@ import { SubscriptionState, UnsubscribeAction, VerifySubscriptionAction } from '
 
 
 @Component({
-  selector: 'app-subscription',
-  templateUrl: './subscription.component.html',
-  styleUrls: ['./subscription.component.scss']
+    selector: 'app-subscription',
+    templateUrl: './subscription.component.html',
+    styleUrls: ['./subscription.component.scss'],
+    standalone: false
 })
 export class SubscriptionComponent implements OnInit {
   message = '';

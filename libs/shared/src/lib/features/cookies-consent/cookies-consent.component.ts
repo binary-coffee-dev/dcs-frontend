@@ -6,9 +6,10 @@ import { ConfigState, SetConfigAction } from '../../core/redux/states/config';
 import consentVersions from '../../../assets/consent-versions.json';
 
 @Component({
-  selector: 'app-cookies-consent',
-  templateUrl: './cookies-consent.component.html',
-  styleUrls: ['./cookies-consent.component.scss']
+    selector: 'app-cookies-consent',
+    templateUrl: './cookies-consent.component.html',
+    styleUrls: ['./cookies-consent.component.scss'],
+    standalone: false
 })
 export class CookiesConsentComponent implements OnInit {
 

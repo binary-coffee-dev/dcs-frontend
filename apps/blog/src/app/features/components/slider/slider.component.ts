@@ -16,9 +16,10 @@ export interface InformationBanner {
 const TIME_TO_CHANGE_PAGE = 6000;
 
 @Component({
-  selector: 'app-slider',
-  templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss']
+    selector: 'app-slider',
+    templateUrl: './slider.component.html',
+    styleUrls: ['./slider.component.scss'],
+    standalone: false
 })
 export class SliderComponent implements OnInit, OnDestroy {
 

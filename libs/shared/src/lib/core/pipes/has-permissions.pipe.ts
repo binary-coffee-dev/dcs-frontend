@@ -5,7 +5,8 @@ import { AuthState } from '../redux/states';
 import { Permission, ROLE_PERMISSION_MAP, RoleEnum } from '../permissions';
 
 @Pipe({
-  name: 'hasPermissions'
+    name: 'hasPermissions',
+    standalone: false
 })
 export class HasPermissionsPipe implements PipeTransform {
 

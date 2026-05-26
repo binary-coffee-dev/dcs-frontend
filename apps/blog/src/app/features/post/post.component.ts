@@ -24,9 +24,10 @@ import { LoginRequestModalComponent } from '../components/login-request-modal';
 const MAX_NUMBER_OF_POSTS = 6;
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+    selector: 'app-post',
+    templateUrl: './post.component.html',
+    styleUrls: ['./post.component.scss'],
+    standalone: false
 })
 export class PostComponent extends Permissions implements OnInit, OnDestroy {
 

@@ -14,9 +14,10 @@ import {
 } from '@dcs-libs/shared';
 
 @Component({
-  selector: 'app-select-image-modal',
-  templateUrl: './select-image-modal.component.html',
-  styleUrls: ['./select-image-modal.component.scss']
+    selector: 'app-select-image-modal',
+    templateUrl: './select-image-modal.component.html',
+    styleUrls: ['./select-image-modal.component.scss'],
+    standalone: false
 })
 export class SelectImageModalComponent implements OnInit {
 

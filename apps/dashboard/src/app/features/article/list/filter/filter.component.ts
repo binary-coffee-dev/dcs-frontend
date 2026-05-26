@@ -8,9 +8,10 @@ import { Store } from '@ngxs/store';
 import { AuthState, FetchPostsAction, SetFiltersAction, Where } from '@dcs-libs/shared';
 
 @Component({
-  selector: 'app-filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss']
+    selector: 'app-filter',
+    templateUrl: './filter.component.html',
+    styleUrls: ['./filter.component.scss'],
+    standalone: false
 })
 export class FilterComponent implements OnInit, OnDestroy {
 

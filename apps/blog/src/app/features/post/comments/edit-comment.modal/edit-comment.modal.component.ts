@@ -7,9 +7,10 @@ import { Store } from '@ngxs/store';
 import { Comment, EditCommentAction } from '@dcs-libs/shared';
 
 @Component({
-  selector: 'app-edit-comment.modal',
-  templateUrl: './edit-comment.modal.component.html',
-  styleUrls: ['./edit-comment.modal.component.scss']
+    selector: 'app-edit-comment.modal',
+    templateUrl: './edit-comment.modal.component.html',
+    styleUrls: ['./edit-comment.modal.component.scss'],
+    standalone: false
 })
 export class EditCommentModalComponent implements OnInit {
 

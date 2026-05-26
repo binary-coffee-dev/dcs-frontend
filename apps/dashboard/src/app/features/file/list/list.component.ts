@@ -16,9 +16,10 @@ import { UploadFileModalComponent } from '../../components/upload-file.modal';
 import { MatDialog } from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    standalone: false
 })
 export class ListComponent extends Permissions implements OnInit {
   files: File[] = [];

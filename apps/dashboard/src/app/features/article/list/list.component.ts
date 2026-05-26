@@ -16,9 +16,10 @@ import {
 } from '@dcs-libs/shared';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    standalone: false
 })
 export class ListComponent extends Permissions implements OnInit {
   posts: Post[] = [];

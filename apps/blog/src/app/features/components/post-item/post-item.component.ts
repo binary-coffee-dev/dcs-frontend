@@ -4,9 +4,10 @@ import { MomentService, Post, UrlUtilsService } from '@dcs-libs/shared';
 import { ResourceService } from '../../../core/services';
 
 @Component({
-  selector: 'app-post-item',
-  templateUrl: './post-item.component.html',
-  styleUrls: ['./post-item.component.scss']
+    selector: 'app-post-item',
+    templateUrl: './post-item.component.html',
+    styleUrls: ['./post-item.component.scss'],
+    standalone: false
 })
 export class PostItemComponent {
   @Input()
