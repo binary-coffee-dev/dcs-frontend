@@ -1,3 +1,7 @@
+@use "sass:map";
+
+@use "./variables" as vars;
+
 html,
 body {
   padding: 0;
@@ -11,11 +15,11 @@ body {
 }
 
 .cdk-global-overlay-wrapper {
-  background-color: rgba($color: map_get($md-primary, 900), $alpha: .1);
+  background-color: rgba($color: map.get(vars.$md-primary, 900), $alpha: .1);
 }
 
 .mat-form-field-outline > * {
-  color: map_get($md-primary, 100);
+  color: map.get(vars.$md-primary, 100);
 
   &:focus {
     font-weight: 100;
@@ -28,13 +32,13 @@ mat-form-field {
   margin: 5px 0;
   height: 2rem;
   font-size: 10px;
-  border: solid 1px map_get($md-primary, 200);
-  border-radius: map_get($radius, 2);
+  border: solid 1px map.get(vars.$md-primary, 200);
+  border-radius: map.get(vars.$radius, 2);
 
   ::ng-deep.mat-mdc-text-field-wrapper {
     padding-bottom: 0;
-    background-color: map_get($md-grey, A100);
-    border-radius: map_get($radius, 2);
+    background-color: map.get(vars.$md-grey, A100);
+    border-radius: map.get(vars.$radius, 2);
     border: none !important;
 
     .mat-mdc-form-field-infix {
@@ -63,15 +67,15 @@ mat-form-field {
           --lateral-distance: 10px;
           font-size: 10px;
           padding: 3px var(--lateral-distance) 0 var(--lateral-distance);
-          color: map-get($md-grey, 850);
-          background-color: map-get($md-grey, A100);
+          color: map.get(vars.$md-grey, 850);
+          background-color: map.get(vars.$md-grey, A100);
         }
       }
     }
   }
 
   input {
-    color: map_get($md-grey, 850);
+    color: map.get(vars.$md-grey, 850);
   }
 }
 

@@ -1,8 +1,9 @@
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { APP_ID, NgModule } from '@angular/core';
+import { APP_ID, NgModule, provideZoneChangeDetection } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgOptimizedImage } from "@angular/common";
+import { provideServerRendering, withRoutes } from '@angular/ssr';
 
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
@@ -35,6 +36,7 @@ import { LoginRequestModalComponent } from './features/components/login-request-
 import { PodcastModule } from './features/podcast';
 import { UserModule } from './features/user';
 import { FilterComponent } from './features/components/filter/filter.component';
+import { serverRoutes } from './app.routes.server'
 
 @NgModule({
   declarations: [
@@ -78,7 +80,9 @@ import { FilterComponent } from './features/components/filter/filter.component';
     },
     CommentService,
     provideHttpClient(withInterceptorsFromDi()),
-    provideClientHydration()
+    provideClientHydration(),
+    provideZoneChangeDetection({eventCoalescing: true}),
+    // provideServerRendering(withRoutes(serverRoutes))
   ]
 })
 export class AppModule {

@@ -1,28 +1,30 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use 'libs/shared/src/theme' as theme;
 
 :host {
 
   .image-container {
-    background-color: map-get($md-primary, 500);
-    color: map-get($md-grey, 49);
+    background-color: map.get(theme.$md-primary, 500);
+    color: map.get(theme.$md-grey, 49);
   }
 
   .items-list {
 
     .item {
-      color: map-get($md-grey, 700);
+      color: map.get(theme.$md-grey, 700);
 
       &:hover {
-        background-color: map-get($md-grey, 50);
+        background-color: map.get(theme.$md-grey, 50);
       }
 
       &.active {
-        background-color: map-get($md-primary, 100);
+        background-color: map.get(theme.$md-primary, 100);
       }
     }
 
     .separator {
-      background-color: map-get($md-grey, 500);
+      background-color: map.get(theme.$md-grey, 500);
     }
   }
 

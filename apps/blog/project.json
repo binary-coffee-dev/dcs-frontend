@@ -1,5 +1,5 @@
 {
-  "project": "blog",
+  "name": "blog",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/blog/src",
@@ -7,7 +7,7 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/blog",
@@ -15,7 +15,7 @@
         "main": "apps/blog/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/blog/tsconfig.app.json",
-        "allowedCommonJsDependencies": ["moment"],
+        "allowedCommonJsDependencies": ["moment", "xhr2"],
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/blog/src/favicon.png",
@@ -149,8 +149,31 @@
         }
       }
     },
+    "serve-ssr": {
+      "continuous": true,
+      "executor": "@angular-devkit/build-angular:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "blog:build:development",
+          "serverTarget": "blog:server:development"
+        },
+        "production": {
+          "browserTarget": "blog:build:production",
+          "serverTarget": "blog:server:production"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4200
+      }
+    },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:dev-server",
+      "continuous": true,
+      "options": {
+        "port": 4200,
+        "publicHost": "0.0.0.0"
+      },
       "configurations": {
         "production": {
           "buildTarget": "blog:build:production"

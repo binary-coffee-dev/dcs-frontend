@@ -1,15 +1,17 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use 'libs/shared/src/theme' as theme;
 
 :host {
   width: 100%;
   box-sizing: border-box;
 
   .menu-dashboard-button {
-    color: map-get($md-grey, 700);
+    color: map.get(theme.$md-grey, 700);
   }
 
   a {
-    color: map_get($md-grey, 900);
+    color: map.get(theme.$md-grey, 900);
   }
 
 }

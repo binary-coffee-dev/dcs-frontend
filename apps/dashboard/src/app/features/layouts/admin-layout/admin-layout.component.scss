@@ -1,4 +1,6 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use "libs/shared/src/theme" as theme;
 
 $toolbar-height: 100px;
 
@@ -6,15 +8,15 @@ $toolbar-height: 100px;
   mat-toolbar {
     padding: 0;
     z-index: 99999;
-    background-color: map_get($md-grey, 100);
+    background-color: map.get(theme.$md-grey, 100);
 
     height: $toolbar-height;
     max-height: $toolbar-height;
     min-height: $toolbar-height;
 
-    color: map_get($md-grey, 900);
+    color: map.get(theme.$md-grey, 900);
 
-    box-shadow: map_get($box-shadow, 2);
+    box-shadow: map.get(theme.$box-shadow, 2);
   }
 
   mat-sidenav-container {
@@ -27,8 +29,8 @@ $toolbar-height: 100px;
     z-index: -1;
 
     mat-sidenav {
-      background-color: map_get($md-grey, 200);
-      border-right: 1px solid map_get($md-primary, 100);
+      background-color: map.get(theme.$md-grey, 200);
+      border-right: 1px solid map.get(theme.$md-primary, 100);
       width: 260px;
     }
   }

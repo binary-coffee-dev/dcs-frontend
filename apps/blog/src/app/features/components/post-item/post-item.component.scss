@@ -1,28 +1,30 @@
-@import "../../../../../../../libs/shared/src/theme";
+@use "sass:map";
+
+@use "libs/shared/src/theme" as theme;
 
 :host {
   .card-container {
     border: solid 0.1px #0000;
-    background-color: map-get($md-grey, 400);
+    background-color: map.get(theme.$md-grey, 400);
 
     .post-date {
-      color: map-get($md-grey, 800);
+      color: map.get(theme.$md-grey, 800);
     }
 
     h1 {
-      color: map-get($md-grey, 800);
+      color: map.get(theme.$md-grey, 800);
 
       span {
-        color: map-get($md-primary, 500);
+        color: map.get(theme.$md-primary, 500);
       }
     }
 
     .icons-container {
-      color: map-get($md-grey, 800);
+      color: map.get(theme.$md-grey, 800);
     }
 
     .author-container {
-      color: map-get($md-grey, 800);
+      color: map.get(theme.$md-grey, 800);
 
       &:hover {
         animation: anim-author-link 0.3s infinite alternate;
@@ -36,7 +38,7 @@
         content: "";
         width: 6px;
         height: 100%;
-        background-color: map-get($md-primary, 500);
+        background-color: map.get(theme.$md-primary, 500);
         z-index: 10;
         animation: anim-active-line .3s normal;
       }

@@ -1,4 +1,6 @@
-@import 'libs/shared/src/theme';
+@use "sass:map";
+
+@use 'libs/shared/src/theme' as theme;
 
 :host {
   width: 100%;
@@ -6,32 +8,32 @@
   table {
 
     thead {
-      background-color: map-get($md-grey, 50);
+      background-color: map.get(theme.$md-grey, 50);
     }
 
     tr {
 
       td {
         &.actions {
-          color: map-get($md-primary, 500);
+          color: map.get(theme.$md-primary, 500);
         }
       }
 
       &.cell-even {
-        background-color: map-get($md-grey, 48);
+        background-color: map.get(theme.$md-grey, 48);
       }
 
       &.cell-odd {
-        background-color: map-get($md-grey, 49);
+        background-color: map.get(theme.$md-grey, 49);
       }
 
       button {
-        color: map-get($md-primary, 500);
+        color: map.get(theme.$md-primary, 500);
       }
     }
 
     tbody > tr:hover {
-      background-color: map-get($md-primary, 100) !important;
+      background-color: map.get(theme.$md-primary, 100) !important;
     }
 
   }

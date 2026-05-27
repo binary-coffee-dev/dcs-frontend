@@ -1,4 +1,6 @@
-@import 'libs/shared/src/theme';
+@use "sass:map";
+
+@use 'libs/shared/src/theme' as theme;
 
 :host {
 
@@ -8,7 +10,7 @@
       font-size: 14px;
 
       .code-1 {
-        color: map-get($md-primary, 500);
+        color: map.get(theme.$md-primary, 500);
       }
     }
 
