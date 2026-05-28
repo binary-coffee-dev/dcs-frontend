@@ -1,7 +1,7 @@
 <div class='flex flex-row m-6 box-border max-w-full justify-center'>
 
   <div class='flex flex-col overflow-hidden shadow-lg box-border rounded p-7'
-       style="border: solid 1px #0001;">
+    style="border: solid 1px #0001;">
 
     <app-filter class="mb-3"></app-filter>
 
@@ -9,59 +9,62 @@
 
       <table class="border-collapse w-full">
         <thead class="text-sm">
-        <tr>
-          <th class='text-start p-3'>Titulo</th>
-          <th class="p-3">Publicado</th>
-          <th class="p-3">Autor</th>
-          <th class="p-3">Activo</th>
-          <th class="p-3"></th>
-        </tr>
+          <tr>
+            <th class='text-start p-3'>Titulo</th>
+            <th class="p-3">Publicado</th>
+            <th class="p-3">Autor</th>
+            <th class="p-3">Activo</th>
+            <th class="p-3"></th>
+          </tr>
         </thead>
         <tbody class="text-xs">
-        <tr *ngFor='let post of posts; let i = index'
-            [ngClass]='{"cell-even": i % 2 === 0, "cell-odd": i % 2 === 1}'>
-          <td class='max-w-[450px] min-w-[200px] whitespace-normal py-1.5 px-3'>
-            {{ post.title }}
-          </td>
-          <td class="py-1.5 px-3 whitespace-nowrap">
-            {{ moment.timeFromDateForPublishPost(post.publishedAt) || '' }}
-          </td>
-          <td class="py-1.5 px-3 whitespace-nowrap">
-            {{ post?.author?.username }}
-          </td>
-          <td class='py-1.5 px-3 text-center'>
-            <mat-checkbox [(ngModel)]='post.enable'
-                          [disabled]='true'
-                          color='primary'>
-            </mat-checkbox>
-          </td>
-          <td class='actions py-1.5 px-3 whitespace-nowrap text-sm'>
-            <button mat-button
-                    *ngIf='([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)'
+          @for (post of posts; track post; let i = $index) {
+            <tr
+              [ngClass]='{"cell-even": i % 2 === 0, "cell-odd": i % 2 === 1}'>
+              <td class='max-w-[450px] min-w-[200px] whitespace-normal py-1.5 px-3'>
+                {{ post.title }}
+              </td>
+              <td class="py-1.5 px-3 whitespace-nowrap">
+                {{ moment.timeFromDateForPublishPost(post.publishedAt) || '' }}
+              </td>
+              <td class="py-1.5 px-3 whitespace-nowrap">
+                {{ post?.author?.username }}
+              </td>
+              <td class='py-1.5 px-3 text-center'>
+                <mat-checkbox [(ngModel)]='post.enable'
+                  [disabled]='true'
+                  color='primary'>
+                </mat-checkbox>
+              </td>
+              <td class='actions py-1.5 px-3 whitespace-nowrap text-sm'>
+                @if (([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)) {
+                  <button mat-button
                     matTooltip='Editar artículo'
                     [routerLink]="'/articles/update/' + post.id"
                     [matTooltipPosition]="'above'">
-              <i class='fa fa-pencil'></i>
-            </button>
-            <button mat-button
-                    matTooltip='Ver artículo'
-                    [matTooltipPosition]="'above'"
-                    (click)='openArticle(post)'>
-              <i class='fa fa-external-link'></i>
-            </button>
-          </td>
-        </tr>
+                    <i class='fa fa-pencil'></i>
+                  </button>
+                }
+                <button mat-button
+                  matTooltip='Ver artículo'
+                  [matTooltipPosition]="'above'"
+                  (click)='openArticle(post)'>
+                  <i class='fa fa-external-link'></i>
+                </button>
+              </td>
+            </tr>
+          }
         </tbody>
       </table>
 
     </div>
 
     <app-pagination class="mt-5"
-                    (nextPageEvent)='nextPageEvent()'
-                    (previousPageEvent)='previousPageEvent()'
-                    (pageEvent)='selectPageEvent($event)'
-                    [numberOfPages]='numberOfPages'
-                    [currentPage]='currentPage'>
+      (nextPageEvent)='nextPageEvent()'
+      (previousPageEvent)='previousPageEvent()'
+      (pageEvent)='selectPageEvent($event)'
+      [numberOfPages]='numberOfPages'
+      [currentPage]='currentPage'>
     </app-pagination>
 
   </div>

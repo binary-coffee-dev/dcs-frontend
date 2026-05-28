@@ -1,38 +1,39 @@
 <div class='w-full mb-1 p-3'>
   <a [routerLink]="'/post/' + post.name"
-     class='card-container flex flex-col relative w-full rounded-md overflow-hidden no-underline shadow-lg'>
+    class='card-container flex flex-col relative w-full rounded-md overflow-hidden no-underline shadow-lg'>
 
-    <img class='w-full max-h-[200px] min-h-[200px] object-cover object-center'
-         style="position: relative;"
-         *ngIf='post.banner?.url'
-         (error)="onBannerImgError()"
-         [ngSrc]='getPostBanner(post)'
-         fill=""
-         [alt]='post.title'>
+    @if (post.banner?.url) {
+      <img class='w-full max-h-[200px] min-h-[200px] object-cover object-center'
+        style="position: relative;"
+        (error)="onBannerImgError()"
+        [ngSrc]='getPostBanner(post)'
+        fill=""
+        [alt]='post.title'>
+    }
 
     <div class='p-5'>
       <div class="flex flex-row my-2 mx-0 items-center">
-        <a class='author-container text-[10px] flex flex-row items-center hover:underline'
-           *ngIf='post.author && post.author.username'
-           [routerLink]="'/users/' + (post.author.username || '')"
-           (click)='stopPropagation($event)'>
-
-          <img class="w-[20px] min-w-[20px] h-[20px] rounded-full"
-               style="height: 20px !important;"
-               (error)="onAuthorImgError()"
-               [ngSrc]='url.getUserImage(post.author)'
-               width="20"
-               height="20"
-               [alt]='post.author.username'>
-          <span class="ml-3">
-            {{ post.author.username || 'público' }}
-          </span>
-        </a>
+        @if (post.author && post.author.username) {
+          <a class='author-container text-[10px] flex flex-row items-center hover:underline'
+            [routerLink]="'/users/' + (post.author.username || '')"
+            (click)='stopPropagation($event)'>
+            <img class="w-[20px] min-w-[20px] h-[20px] rounded-full"
+              style="height: 20px !important;"
+              (error)="onAuthorImgError()"
+              [ngSrc]='url.getUserImage(post.author)'
+              width="20"
+              height="20"
+              [alt]='post.author.username'>
+            <span class="ml-3">
+              {{ post.author.username || 'público' }}
+            </span>
+          </a>
+        }
 
         <div class="w-full"></div>
 
         <span
-          class='post-date text-[10px] whitespace-nowrap'>// {{ post.publishedAt ? moment.timeFromDate(post.publishedAt) : '' }}</span>
+        class='post-date text-[10px] whitespace-nowrap'>// {{ post.publishedAt ? moment.timeFromDate(post.publishedAt) : '' }}</span>
       </div>
 
       <h1 class="text-base font-thin">

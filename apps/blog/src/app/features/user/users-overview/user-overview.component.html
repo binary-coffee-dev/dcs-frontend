@@ -5,31 +5,30 @@
 
     <div class="flex flex-row px-3">
       <mat-form-field class="text-xs w-full max-w-72"
-                      appearance='outline'>
+        appearance='outline'>
         <mat-label class='code-none text-sm'>
           Buscar miembros
         </mat-label>
         <input class="text-sm"
-               matInput
-               (keyup)='filterUser($event)'
-               placeholder='username'
-        />
+          matInput
+          (keyup)='filterUser($event)'
+          placeholder='username'
+          />
       </mat-form-field>
     </div>
 
     <div class="flex flex-row flex-wrap">
-      <ng-container *ngFor='let user of users; let i = index'>
+      @for (user of users; track user; let i = $index) {
         <div class='w-6/12 sm:w-4/12 md:w-3/12 lg:w-2/12 p-3'>
           <a class='user-card flex flex-col p-5 no-underline shadow-md
                     hover:shadow-none rounded items-center overflow-hidden'
-             [routerLink]="'/users/' + user?.username">
+            [routerLink]="'/users/' + user?.username">
             <img class='w-14 h-14 max-w-14 max-h-14 rounded-full mb-5 overflow-hidden'
-                 (error)="handlerAvatarImgError(i)"
-                 [src]='getUserAvatar(user)'
-                 [alt]='(user?.username || "") + " avatar"'/>
+              (error)="handlerAvatarImgError(i)"
+              [src]='getUserAvatar(user)'
+              [alt]='(user?.username || "") + " avatar"'/>
             <div class="flex flex-col items-center">
               <span class='top-user-name text-sm whitespace-nowrap'>"{{ user?.username }}"</span>
-
               <div class="flex flex-col">
                 <span class='flex flex-row info-item text-xs mt-3 items-center whitespace-nowrap'>
                   <i class='material-icons text-base'>mode_comment</i>&#160;{{ user?.comments }}
@@ -43,7 +42,7 @@
             </div>
           </a>
         </div>
-      </ng-container>
+      }
     </div>
 
   </div>

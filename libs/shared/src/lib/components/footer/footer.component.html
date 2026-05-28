@@ -1,84 +1,81 @@
 <div>
-  <footer *ngIf="(!full && socialLinks) || full">
-
-    <div *ngIf="!full">
-      <app-social-links></app-social-links>
-    </div>
-
-    <div *ngIf="full"
-         class="groups">
-      <div class="sub-group">
-        <span class="sub-group-header"><b>{{ root }} </b>binarycoffee -h</span>
+  @if ((!full && socialLinks) || full) {
+    <footer>
+      @if (!full) {
         <div>
-          <a matButton
-             [routerLink]="'/donate'">
-            <span>> Donar</span>
-          </a>
-
-          <a matButton
-             (click)='openSubscriptionDialog()'>
-            <span>> Subscribirse</span>
-          </a>
-
-          <a matButton
-             href="mailto:website@binary-coffee.dev"
-             target="blank">
-            <span>> Contáctenos</span>
-          </a>
-
-          <a matButton
-             [href]="getSitemapUrl()"
-             target="_blank"
-             title="Vea la estructura general del sitio web">
-            <span>> Mapa</span>
-          </a>
-
-          <a matButton
-             [href]="getRSSUrl()"
-             target="_blank"
-             title="Sígannos por medio de nuestro RSS">
-            <span>> RSS</span>
-          </a>
+          <app-social-links></app-social-links>
         </div>
-      </div>
-
-      <div class="sub-group">
-        <span class="sub-group-header"><b>{{ root }} </b>sociales -ls</span>
-        <app-social-links [footer]="true"></app-social-links>
-        <a matButton
-           [routerLink]="'/podcast/espacio-binario'">
-          <span>> Espacio Binario</span>
-        </a>
-      </div>
-
-      <div class="sub-group">
-        <span class="sub-group-header"><b>{{ root }} </b>legal -ls</span>
-        <div>
-          <a matButton
-             routerLink="/about">
-            <span>> About</span>
-          </a>
-          <a matButton
-             routerLink="/privacy-policy">
-            <span>> Políticas de Privacidad</span>
-          </a>
-          <a matButton
-             routerLink="/cookies">
-            <span>> Políticas de Cookies</span>
-          </a>
-          <a matButton
-             routerLink="/code-of-conduct">
-            <span>> Código de Conducta</span>
-          </a>
-          <a matButton
-             routerLink="/term-of-use">
-            <span>> Términos y Condiciones</span>
-          </a>
+      }
+      @if (full) {
+        <div
+          class="groups">
+          <div class="sub-group">
+            <span class="sub-group-header"><b>{{ root }} </b>binarycoffee -h</span>
+            <div>
+              <a matButton
+                [routerLink]="'/donate'">
+                <span>> Donar</span>
+              </a>
+              <a matButton
+                (click)='openSubscriptionDialog()'>
+                <span>> Subscribirse</span>
+              </a>
+              <a matButton
+                href="mailto:website@binary-coffee.dev"
+                target="blank">
+                <span>> Contáctenos</span>
+              </a>
+              <a matButton
+                [href]="getSitemapUrl()"
+                target="_blank"
+                title="Vea la estructura general del sitio web">
+                <span>> Mapa</span>
+              </a>
+              <a matButton
+                [href]="getRSSUrl()"
+                target="_blank"
+                title="Sígannos por medio de nuestro RSS">
+                <span>> RSS</span>
+              </a>
+            </div>
+          </div>
+          <div class="sub-group">
+            <span class="sub-group-header"><b>{{ root }} </b>sociales -ls</span>
+            <app-social-links [footer]="true"></app-social-links>
+            <a matButton
+              [routerLink]="'/podcast/espacio-binario'">
+              <span>> Espacio Binario</span>
+            </a>
+          </div>
+          <div class="sub-group">
+            <span class="sub-group-header"><b>{{ root }} </b>legal -ls</span>
+            <div>
+              <a matButton
+                routerLink="/about">
+                <span>> About</span>
+              </a>
+              <a matButton
+                routerLink="/privacy-policy">
+                <span>> Políticas de Privacidad</span>
+              </a>
+              <a matButton
+                routerLink="/cookies">
+                <span>> Políticas de Cookies</span>
+              </a>
+              <a matButton
+                routerLink="/code-of-conduct">
+                <span>> Código de Conducta</span>
+              </a>
+              <a matButton
+                routerLink="/term-of-use">
+                <span>> Términos y Condiciones</span>
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-
-    </div>
-  </footer>
+      }
+    </footer>
+  }
 </div>
 
 <div class="copyright">

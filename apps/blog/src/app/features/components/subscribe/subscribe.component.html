@@ -1,33 +1,37 @@
 <div class="container pl-6">
   <span>Subscribirse</span>
   <form class="mt-2 px-6 py-0 rounded shadow-lg"
-        [formGroup]="subscribeForm"
-        (ngSubmit)="subscribe()">
+    [formGroup]="subscribeForm"
+    (ngSubmit)="subscribe()">
     <div class="flex flex-col">
-      <span class="error mf-4 mt-4 mr-4 text-xs"
-            *ngIf="subscriptionError !== '' && !subscriptionSent">{{ subscriptionError }}</span>
+      @if (subscriptionError !== '' && !subscriptionSent) {
+        <span class="error mf-4 mt-4 mr-4 text-xs"
+        >{{ subscriptionError }}</span>
+      }
       <div class="card flex flex-row mb-6 mt-4">
         <mat-form-field appearance="outline">
           <mat-label>Correo</mat-label>
           <input matInput
-                 type="email"
-                 placeholder="correo"
-                 formControlName="email">
+            type="email"
+            placeholder="correo"
+            formControlName="email">
         </mat-form-field>
         <div class="w-3/12 pl-2 min-w-10" style="margin-top: 5px;">
           <button class="h-8 relative text-xl font-medium w-full"
-                  style="min-width: 0 !important;"
-                  mat-button
-                  type="submit"
-                  [disabled]="loading">
+            style="min-width: 0 !important;"
+            mat-button
+            type="submit"
+            [disabled]="loading">
             <div class="relative w-4 h-4"
-                 [ngClass]="{loading}">
+              [ngClass]="{loading}">
               <div style="transform: translateY(-6px) translateX(0.2px);">{{ loading ? '↺' : '>' }}</div>
             </div>
           </button>
         </div>
       </div>
-      <b class="message mf-4 mb-4 mr-4 text-xs" *ngIf="message">{{ message }}</b>
+      @if (message) {
+        <b class="message mf-4 mb-4 mr-4 text-xs">{{ message }}</b>
+      }
     </div>
   </form>
 </div>

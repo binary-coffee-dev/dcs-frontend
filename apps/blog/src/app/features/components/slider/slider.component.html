@@ -2,51 +2,53 @@
 
   <div class='content flex flex-col justify-center h-full text-center z-20'>
 
-    <ng-container *ngIf='activeInfo && activeInfo.type === "welcome"'>
+    @if (activeInfo && activeInfo.type === "welcome") {
       <div class='info-item place-content-center self-center'>
         <h1 class="font-bold text-3xl mb-1">Bienvenido a Binary Coffee</h1>
         <h4 class="font-bold text-sm mb-6">un espacio donde puedes compartir tus ideas</h4>
         <a class='button text-xs p-3 rounded border-0 shadow-md'
-           [href]="getCreateArticleUrl()">Publicar tu primer artículo</a>
+        [href]="getCreateArticleUrl()">Publicar tu primer artículo</a>
       </div>
-    </ng-container>
+    }
 
-    <ng-container *ngIf='activeInfo && activeInfo.type === "comment"'>
+    @if (activeInfo && activeInfo.type === "comment") {
       <div class='info-item flex flex-col self-center'>
         <div class='message-text-container flex flex-row items-center mb-3'>
           <div class='message-text w-80 break-words leading-7 text-left'>
             {{ getLimitedMessage(activeInfo.value?.body) }}
           </div>
         </div>
-        <div class='flex flex-row text-xs mb-3 ml-5 items-center'
-             *ngIf='activeInfo.value?.user'>
-          <div>
-            <img class="w-8 h-8 rounded-full"
-                 [ngSrc]='url.getUserImage(activeInfo.value?.user)'
-                 width="32"
-                 height="32"
-                 [alt]='activeInfo.value?.user?.username || "noavatar"'>
+        @if (activeInfo.value?.user) {
+          <div class='flex flex-row text-xs mb-3 ml-5 items-center'
+            >
+            <div>
+              <img class="w-8 h-8 rounded-full"
+                [ngSrc]='url.getUserImage(activeInfo.value?.user)'
+                width="32"
+                height="32"
+                [alt]='activeInfo.value?.user?.username || "noavatar"'>
+            </div>
+            &#160;{{ activeInfo.value?.user?.username }}
           </div>
-          &#160;{{ activeInfo.value?.user?.username }}
-        </div>
+        }
         <div class='buttons-container'>
           <a class='button text-xs p-2 rounded border-0 shadow-md'
-             [routerLink]="'/users/' + activeInfo.value?.user?.username">Ver perfil</a>
+          [routerLink]="'/users/' + activeInfo.value?.user?.username">Ver perfil</a>
           <a class='button space-left white text-xs p-2 rounded border-0 shadow-md'
-             [routerLink]="'/post/' + getPostName()"
-             [fragment]='activeInfo.value?.id'>Leer ></a>
+            [routerLink]="'/post/' + getPostName()"
+          [fragment]='activeInfo.value?.id'>Leer ></a>
         </div>
       </div>
-    </ng-container>
+    }
 
   </div>
 
   <div class='content-pagination m-5 flex flex-row place-content-center'>
-    <ng-container *ngFor='let inf of info; let i = index'>
+    @for (inf of info; track inf; let i = $index) {
       <button class='carousel-button relative h-5 w-16 border-0 px-3 py-0'
-              (click)='openInfo(i)'
-              [ngClass]='{"active": activePage === i}'></button>
-    </ng-container>
+        (click)='openInfo(i)'
+      [ngClass]='{"active": activePage === i}'></button>
+    }
   </div>
 
   <div class='background absolute inset-0 -z-1'></div>

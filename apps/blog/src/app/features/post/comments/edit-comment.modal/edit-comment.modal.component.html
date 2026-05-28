@@ -3,42 +3,44 @@
     <span class='mb-3 whitespace-nowrap'>Editar comentario</span>
     <div class="w-full"></div>
     <i class='fa fa-close close-button'
-       (click)='cancel()'
-       matTooltip='close'></i>
+      (click)='cancel()'
+    matTooltip='close'></i>
   </div>
   <div class='body flex flex-col'>
 
     <form class='flex flex-col h-full mb-10'
-          [formGroup]='commentForm'>
+      [formGroup]='commentForm'>
 
-      <span class='comment-error-message'
-            *ngIf='commentError'>
-        <mat-icon class='fa fa-warning'></mat-icon>
-        {{ commentError }}
-      </span>
+      @if (commentError) {
+        <span class='comment-error-message'
+          >
+          <mat-icon class='fa fa-warning'></mat-icon>
+          {{ commentError }}
+        </span>
+      }
 
       <mat-form-field class='comment-item comment-item-text'
-                      appearance='outline'>
+        appearance='outline'>
         <mat-label class='code-none'>
           <span class='code-1'> var </span>
           <span class='code-var'> Opinión =</span>
         </mat-label>
         <textarea matInput
-                  formControlName='body'
-                  type='text'
-                  maxlength='250'
-                  cols='30'
-                  rows='4'>
-      </textarea>
+          formControlName='body'
+          type='text'
+          maxlength='250'
+          cols='30'
+          rows='4'>
+        </textarea>
       </mat-form-field>
     </form>
 
     <div class='buttons-container'>
       <mat-button-toggle class='button-ok mr-3'
-                         (click)='ok()'>editar
+        (click)='ok()'>editar
       </mat-button-toggle>
       <mat-button-toggle class='button-cancel'
-                         (click)='cancel()'>cancelar
+        (click)='cancel()'>cancelar
       </mat-button-toggle>
     </div>
   </div>

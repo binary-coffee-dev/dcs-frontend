@@ -1,188 +1,190 @@
 <div class='content flex flex-row flex-wrap w-full justify-center'>
 
   <form class='form-container m-0 sm:m-5 p-7 shadow-lg w-full md:w-5/12 box-border max-w-[550px] rounded'
-        style="border: solid 1px #0001;"
-        [formGroup]='personalForm'>
+    style="border: solid 1px #0001;"
+    [formGroup]='personalForm'>
 
     <h1 class="text-xl font-bold">Personal</h1>
 
     <div class='mb-5 w-16 h-16 overflow-hidden rounded'>
       <a class='user-image cursor-pointer'
-         (click)='openUploadFileModal()'>
+        (click)='openUploadFileModal()'>
         <i class='icon-hover fa fa-camera flex flex-row items-center justify-center
                   opacity-0 absolute max-h-16 max-w-16 h-full w-full bg-[rgba(#000, .3)]
                   text-[rgba(#fff, .5)] rounded-full text-2xl z-50 transition-opacity'>
 
         </i>
         <img class='img w-full h-auto transition-opacity'
-             alt="user-avatar"
-             [src]='getUserImage()'/>
+          alt="user-avatar"
+          [src]='getUserImage()'/>
       </a>
     </div>
 
     <mat-form-field class="w-full text-xs"
-                    appearance='outline'>
+      appearance='outline'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Identificador_De_Usuario </span> =
       </mat-label>
       <i matPrefix
-         class='fa fa-user'></i>
+      class='fa fa-user'></i>
       <input matInput
-             readonly
-             formControlName='username'
-             type='text'>
+        readonly
+        formControlName='username'
+        type='text'>
     </mat-form-field>
     <mat-form-field class="w-full hidden text-xs"
-                    appearance='outline'>
+      appearance='outline'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Name </span> =
       </mat-label>
       <i matPrefix
-         class='fa fa-id-card'></i>
+      class='fa fa-id-card'></i>
       <input matInput
-             formControlName='name'
-             placeholder='Name'
-             type='text'>
+        formControlName='name'
+        placeholder='Name'
+        type='text'>
     </mat-form-field>
     <mat-form-field class='w-full hidden text-xs'
-                    appearance='outline'>
+      appearance='outline'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Email </span> =
       </mat-label>
       <i matPrefix
-         class='fa fa-envelope'></i>
+      class='fa fa-envelope'></i>
       <input matInput
-             formControlName='email'
-             placeholder='Email'
-             type='text'>
+        formControlName='email'
+        placeholder='Email'
+        type='text'>
     </mat-form-field>
     <mat-form-field class='w-full hidden text-xs'
-                    appearance='outline'>
+      appearance='outline'>
 
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Descripción </span> =
       </mat-label>
       <i matPrefix
-         class='fa fa-book'></i>
+      class='fa fa-book'></i>
       <textarea class="w-full"
-                matInput
-                formControlName='description'
-                placeholder='Descripción'></textarea>
+        matInput
+        formControlName='description'
+      placeholder='Descripción'></textarea>
     </mat-form-field>
 
-    <div *ngIf='false'
-         fxLayout='row'
-         fxLayoutAlign='end'>
-      <mat-button-toggle class='button-ok'>Guardar</mat-button-toggle>
-    </div>
+    @if (false) {
+      <div
+        fxLayout='row'
+        fxLayoutAlign='end'>
+        <mat-button-toggle class='button-ok'>Guardar</mat-button-toggle>
+      </div>
+    }
   </form>
 
   <form class='form-container m-0 sm:m-5 p-7 shadow-lg w-full md:w-5/12 box-border max-w-[550px] rounded'
-        style="border: solid 1px #0001;"
-        [formGroup]='professionalForm'>
+    style="border: solid 1px #0001;"
+    [formGroup]='professionalForm'>
 
     <h1 class="text-xl font-bold">Profesional</h1>
 
     <mat-form-field class='w-full hidden text-xs'
-                    appearance='outline'>
+      appearance='outline'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> School </span> =
       </mat-label>
       <i matPrefix
-         class='fa fa-university'></i>
+      class='fa fa-university'></i>
       <input matInput
-             formControlName='school'
-             placeholder='School'
-             type='text'>
+        formControlName='school'
+        placeholder='School'
+        type='text'>
     </mat-form-field>
     <mat-form-field appearance='outline'
-                    class='hidden w-full text-xs'>
+      class='hidden w-full text-xs'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Estudios </span> =
       </mat-label>
       <i matPrefix
-         class='fa fa-graduation-cap'></i>
+      class='fa fa-graduation-cap'></i>
       <input matInput
-             formControlName='study'
-             placeholder='Estudios'
-             type='text'>
+        formControlName='study'
+        placeholder='Estudios'
+        type='text'>
     </mat-form-field>
     <mat-form-field class="w-full text-xs"
-                    appearance='outline'>
+      appearance='outline'>
       <mat-label class='code-none'>
         <span class='code-1'> var </span>
         <span class='code-var'> Sitio_Web </span> =
       </mat-label>
       <i matPrefix
-         class='fa fa-at'></i>
+      class='fa fa-at'></i>
       <input matInput
-             (keyup)='onUserDataChange()'
-             formControlName='page'
-             placeholder='Sitio Web'
-             type='text'>
+        (keyup)='onUserDataChange()'
+        formControlName='page'
+        placeholder='Sitio Web'
+        type='text'>
     </mat-form-field>
 
     <div (click)='saveProfessionalData()'
-         fxLayout='row'
-         fxLayoutAlign='end'>
+      fxLayout='row'
+      fxLayoutAlign='end'>
       <mat-button-toggle [disabled]='!professionalDataChange'
-                         class='button-ok'>Guardar
+        class='button-ok'>Guardar
       </mat-button-toggle>
     </div>
   </form>
 
   <form class='form-container disable-component m-0 sm:m-5 p-7 shadow-lg w-full md:w-5/12
                box-border max-w-[550px] rounded'
-        style="border: solid 1px #0001;"
-        ngClass.xs='no-margin'
-        [formGroup]='socialsForm'>
+    style="border: solid 1px #0001;"
+    ngClass.xs='no-margin'
+    [formGroup]='socialsForm'>
 
     <h1 class="text-xl font-bold">Redes sociales</h1>
 
     <mat-form-field class="w-full text-xs"
-                    appearance='outline'>
+      appearance='outline'>
       <mat-label class='code-none offset'>
         <span class='code-1'> var </span>
         <span class='code-var'> Facebook </span> =
       </mat-label>
       <i matPrefix
-         class='fa fa-facebook-square'></i>
+      class='fa fa-facebook-square'></i>
       <input matInput
-             formControlName='facebook'
-             placeholder='Facebook'
-             type='text'>
+        formControlName='facebook'
+        placeholder='Facebook'
+        type='text'>
     </mat-form-field>
     <mat-form-field class="w-full text-xs"
-                    appearance='outline'>
+      appearance='outline'>
       <mat-label class='code-none offset'>
         <span class='code-1'> var </span>
         <span class='code-var'> Twitter </span> =
       </mat-label>
       <i matPrefix
-         class='fa fa-twitter-square'></i>
+      class='fa fa-twitter-square'></i>
       <input matInput
-             formControlName='twitter'
-             placeholder='Twitter'
-             type='text'>
+        formControlName='twitter'
+        placeholder='Twitter'
+        type='text'>
     </mat-form-field>
     <mat-form-field class="w-full text-xs"
-                    appearance='outline'>
+      appearance='outline'>
       <mat-label class='code-none offset'>
         <span class='code-1'> var </span>
         <span class='code-var'> Linkedin </span> =
       </mat-label>
       <i matPrefix
-         class='fa fa-linkedin-square'></i>
+      class='fa fa-linkedin-square'></i>
       <input matInput
-             formControlName='linkedin'
-             placeholder='Linkedin'
-             type='text'>
+        formControlName='linkedin'
+        placeholder='Linkedin'
+        type='text'>
     </mat-form-field>
 
     <div class="flex flex-row">
@@ -192,24 +194,24 @@
 
   <form class='form-container disable-component flex flex-col m-0 sm:m-5 p-7 shadow-lg
                w-full md:w-5/12 box-border max-w-[550px] rounded'
-        style="border: solid 1px #0001;"
-        [formGroup]='privacyForm'>
+    style="border: solid 1px #0001;"
+    [formGroup]='privacyForm'>
 
     <h1 class="text-xl font-bold">Privacidad</h1>
 
     <mat-checkbox class="w-full text-xs"
-                  formControlName='showEmail'>
+      formControlName='showEmail'>
       Mostrar correo
     </mat-checkbox>
     <mat-checkbox class="w-full text-xs"
-                  formControlName='showEmail'>
+      formControlName='showEmail'>
       Mostrar redes sociales
     </mat-checkbox>
 
     <h1 class="text-xl font-bold">Preferencias</h1>
 
     <mat-checkbox class="w-full text-xs"
-                  formControlName='showEmail'>
+      formControlName='showEmail'>
       Recibir notificaciones por correo
     </mat-checkbox>
 

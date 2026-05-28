@@ -9,12 +9,13 @@
 
       <div class='post-info-content p-6 shadow-lg'>
         <div class='w-full'>
-          <img class="w-full max-h-[300px] object-cover object-center"
-               style="position: relative;"
-               *ngIf='post?.banner && post?.banner?.url'
-               [ngSrc]='resource.addApiUrl(post.banner?.url)'
-               fill=""
-               alt='article banner'/>
+          @if (post?.banner && post?.banner?.url) {
+            <img class="w-full max-h-[300px] object-cover object-center"
+              style="position: relative;"
+              [ngSrc]='resource.addApiUrl(post.banner?.url)'
+              fill=""
+              alt='article banner'/>
+          }
         </div>
 
         <div class='tags-content text-right'>
@@ -23,13 +24,13 @@
 
         <div class='flex flex-row mb-1.5'>
           <a class='user-avatar flex flex-row text-xs items-center no-underline'
-             [href]="'/users/' + post.author?.username"
-             matTooltip='Ver perfil'>
+            [href]="'/users/' + post.author?.username"
+            matTooltip='Ver perfil'>
             <img [alt]='post.author?.username'
-                 [ngSrc]='url.getUserImage(post.author)'
-                 class="w-8 h-8 rounded-full mr-3"
-                 height="32"
-                 width="32"/>
+              [ngSrc]='url.getUserImage(post.author)'
+              class="w-8 h-8 rounded-full mr-3"
+              height="32"
+              width="32"/>
             <span>"{{ post.author?.username }}"</span>
           </a>
         </div>
@@ -51,7 +52,7 @@
           </div>
           <div class="w-full hidden md:block"></div>
           <mat-button-toggle class='like-button text-xs min-w-[200px] hidden md:block'
-                             (click)='postLikeClick()'>
+            (click)='postLikeClick()'>
             <i class='fa fa-coffee post-icons'></i>
             Brindar con {{ post.author?.username }}
           </mat-button-toggle>
@@ -60,7 +61,7 @@
         <div class="flex flex-row md:hidden mb-3">
           <div class="w-full"></div>
           <mat-button-toggle class='like-button text-xs min-w-[200px]'
-                             (click)='postLikeClick()'>
+            (click)='postLikeClick()'>
             <i class='fa fa-coffee post-icons'></i>
             Brindar con {{ post.author?.username }}
           </mat-button-toggle>
@@ -68,57 +69,65 @@
 
         <h1 class="title-content flex flex-row text-xl uppercase items-center mb-3">
           <span class="w-full text-xl font-bold">{{ post.title }}</span>
-          <button mat-button
-                  *ngIf=' ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)'
-                  matTooltip='Editar artículo'
-                  (click)='editPost(post)'>
-            <i class='fa fa-edit'></i>
-          </button>
+          @if ( ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)) {
+            <button mat-button
+              matTooltip='Editar artículo'
+              (click)='editPost(post)'>
+              <i class='fa fa-edit'></i>
+            </button>
+          }
         </h1>
 
         <div class='block md:hidden'>
           <app-share-buttons></app-share-buttons>
         </div>
 
-        <div class='markdown-container'
-             *ngIf='isBrowser'>
-          <markdown class="markdown-post-style"
-                    [data]='post.body'
-                    katex
-                    [katexOptions]=""
-                    [disableSanitizer]="true"
-                    lineNumbers></markdown>
-        </div>
-        <div class='markdown-container'
-             *ngIf='!isBrowser'>
-          <markdown class="markdown-post-style"
-                    [src]='articleBody()'
-                    katex
-                    lineNumbers></markdown>
-        </div>
+        @if (isBrowser) {
+          <div class='markdown-container'
+            >
+            <markdown class="markdown-post-style"
+              [data]='post.body'
+              katex
+              [katexOptions]=""
+              [disableSanitizer]="true"
+            lineNumbers></markdown>
+          </div>
+        }
+        @if (!isBrowser) {
+          <div class='markdown-container'
+            >
+            <markdown class="markdown-post-style"
+              [src]='articleBody()'
+              katex
+            lineNumbers></markdown>
+          </div>
+        }
       </div>
 
       <div class='flex flex-row py-0'>
         <div class="w-full"></div>
         <mat-button-toggle class='like-button text-xs min-w-[200px] last-like-button'
-                           (click)='postLikeClick()'>
+          (click)='postLikeClick()'>
           <i class='fa fa-coffee post-icons'></i>
           Brindar con {{ post.author?.username }}
         </mat-button-toggle>
       </div>
 
-      <app-comments *ngIf='post'
-                    [post]='post'></app-comments>
+      @if (post) {
+        <app-comments
+        [post]='post'></app-comments>
+      }
     </div>
     <div class='w-4/12 hidden md:block'>
       <app-info-bar [showPodcast]='false'
-                    [showSocialMedias]='true'></app-info-bar>
+      [showSocialMedias]='true'></app-info-bar>
       <div class='similar-post-content'>
-        <app-post-item
-          class='post-element'
-          *ngFor='let post of similarPosts'
-          [post]='post'>
-        </app-post-item>
+        @for (post of similarPosts; track post) {
+          <app-post-item
+            class='post-element'
+            [post]='post'>
+          </app-post-item>
+        }
       </div>
     </div>
   </div>

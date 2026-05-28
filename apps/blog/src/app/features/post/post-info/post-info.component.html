@@ -1,13 +1,15 @@
 <div class="">
-   <span class="separator">
-     <a [href]="'/users/' + post.author?.username"
-        [title]="post.author?.email">
-         <img *ngIf="post.author?.avatar?.url"
-              [ngSrc]="resource.addApiUrl(post.author?.avatar?.url)"
-              fill=""
-              alt="author avatar">
-         <span>{{ post.author?.username }}</span>
-     </a>
+  <span class="separator">
+    <a [href]="'/users/' + post.author?.username"
+      [title]="post.author?.email">
+      @if (post.author?.avatar?.url) {
+        <img
+          [ngSrc]="resource.addApiUrl(post.author?.avatar?.url)"
+          fill=""
+          alt="author avatar">
+      }
+      <span>{{ post.author?.username }}</span>
+    </a>
   </span>
 
   <span class="post-info separator">
@@ -20,10 +22,10 @@
   </span>
 
   <span class="post-info like"
-        [title]="postLikeTitle()"
-        (click)="postLikeClick()"
-        [ngClass]="{'active': userLike > 0}">
-      <mat-icon aria-hidden="false">local_cafe</mat-icon>
-      <span>{{ likes }}</span>
-    </span>
+    [title]="postLikeTitle()"
+    (click)="postLikeClick()"
+    [ngClass]="{'active': userLike > 0}">
+    <mat-icon aria-hidden="false">local_cafe</mat-icon>
+    <span>{{ likes }}</span>
+  </span>
 </div>

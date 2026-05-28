@@ -7,8 +7,10 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": {
           "base": "dist/apps/dashboard"
@@ -62,8 +64,7 @@
           "node_modules/prismjs/components/prism-json.js",
           "node_modules/moment/min/moment.min.js",
           "node_modules/moment/locale/es.js"
-        ],
-        "browser": "apps/dashboard/src/main.ts"
+        ]
       },
       "configurations": {
         "production": {
@@ -132,9 +133,12 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
-        "jestConfig": "apps/dashboard/jest.config.js"
+        "jestConfig": "apps/dashboard/jest.config.js",
+        "tsConfig": "apps/dashboard/tsconfig.spec.json"
       }
     }
   }

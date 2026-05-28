@@ -1,17 +1,20 @@
-<a matButton
-   routerLink="/subscribe"
-   title="Suscríbase"
-   *ngIf="!footer">
-<!--  <mat-icon class="fa fa-envelope-open"></mat-icon>-->
-</a>
-<ng-container *ngFor="let link of links">
+@if (!footer) {
   <a matButton
-     *ngIf="link.enabled"
-     [href]="link.href"
-     [title]="link.title"
-     target="blanck">
-<!--    <mat-icon [class]="link.icon"-->
-<!--              *ngIf="!footer"></mat-icon>-->
-<!--    <span *ngIf="footer">> {{link.title}}</span>-->
+    routerLink="/subscribe"
+    title="Suscríbase"
+    >
+    <!--  <mat-icon class="fa fa-envelope-open"></mat-icon>-->
   </a>
-</ng-container>
+}
+@for (link of links; track link) {
+  @if (link.enabled) {
+    <a matButton
+      [href]="link.href"
+      [title]="link.title"
+      target="blanck">
+      <!--    <mat-icon [class]="link.icon"-->
+    <!--              *ngIf="!footer"></mat-icon>-->
+    <!--    <span *ngIf="footer">> {{link.title}}</span>-->
+  </a>
+}
+}

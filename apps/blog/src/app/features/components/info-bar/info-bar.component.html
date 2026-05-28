@@ -4,75 +4,77 @@
 
   <div class='flex flex-row mt-6 ml-5 text-xs leading-5'>
     <div class="flex flex-col mr-3">
-      <span class='line-number text-right'
-            *ngFor='let line of lineNumbers'>{{ line }}</span>
+      @for (line of lineNumbers; track line) {
+        <span class='line-number text-right'
+        >{{ line }}</span>
+      }
     </div>
     <div class='reference-line m-0 box-border'></div>
     <div class='overflow-hidden flex flex-col w-full ml-3'>
 
       <!--podcast list-->
-      <ng-container *ngIf='showPodcast'>
+      @if (showPodcast) {
         <span class="whitespace-nowrap"><span class='class'>class</span> Podcast_Espacio_Binario &#123;</span>
-        <ng-container *ngFor='let podcast of episodes'>
+        @for (podcast of episodes; track podcast) {
           <span>&#160;</span>
           <a class='link no-underline py-0 px-2 rounded ml-5 flex flex-col hover:underline'
-             [href]='podcast?.url'
-             target='blank'>
+            [href]='podcast?.url'
+            target='blank'>
             <span class='comment'>// {{ moment.timeFromDate(toDate(podcast?.date)) }}</span>
             <span class="overflow-hidden whitespace-nowrap text-ellipsis">{{ podcast?.title }}</span>
             <span class='comment'>// {{ moment.secondsToDuration(podcast.duration) }}</span>
           </a>
-        </ng-container>
+        }
         <span>&#160;</span>
         <span>&#125;</span>
         <span>&#160;</span>
         <span>&#160;</span>
-      </ng-container>
+      }
 
       <!--share in social medias-->
-      <ng-container *ngIf='showSocialMedias'>
+      @if (showSocialMedias) {
         <span class="whitespace-nowrap"><span class='class'>class</span> Compartir_Artículo &#123;</span>
-        <ng-container *ngFor='let link of shareLinks'>
+        @for (link of shareLinks; track link) {
           <span>&#160;</span>
           <a class='link no-underline py-0 px-2 rounded ml-5 flex flex-col hover:underline'
-             [href]='link?.url'
-             target='blank'>
+            [href]='link?.url'
+            target='blank'>
             <span class='comment'>// compartir</span>
             <span><span class='var'>var</span> {{ link?.name }}&#59;</span>
           </a>
-        </ng-container>
+        }
         <span>&#160;</span>
         <span>&#125;</span>
         <span>&#160;</span>
         <span>&#160;</span>
-      </ng-container>
+      }
 
       <!--recent comments-->
-      <ng-container *ngIf='showRecentComments'>
+      @if (showRecentComments) {
         <span><span class='class'>class</span> Opiniones_Recientes &#123;</span>
-        <ng-container *ngFor='let comment of comments'>
+        @for (comment of comments; track comment) {
           <span>&#160;</span>
           <a [routerLink]="'/post/' + getPostName(comment?.post)"
-             [fragment]='comment?.id'
-             [title]='comment?.user?.username'
-             class='link no-underline py-0 px-2 rounded ml-5 flex flex-col hover:underline'>
+            [fragment]='comment?.id'
+            [title]='comment?.user?.username'
+            class='link no-underline py-0 px-2 rounded ml-5 flex flex-col hover:underline'>
             <span class='comment'>// {{ moment.timeFromDate(comment?.createdAt) }}</span>
             <span class='flex flex-row'>
               <div class='overflow-visible w-3 h-3'>
                 <img class="w-5 h-5 min-w-5 min-h-5 rounded-full"
-                     [ngSrc]='url.getUserImage(comment?.user)'
-                     width="20"
-                     height="20"
-                     [alt]='comment?.user?.username || "noavatar"'>
+                  [ngSrc]='url.getUserImage(comment?.user)'
+                  width="20"
+                  height="20"
+                  [alt]='comment?.user?.username || "noavatar"'>
               </div>
               &#160;&#160;"{{ comment?.user?.username }}"
             </span>
             <span class='comment-body overflow-hidden whitespace-nowrap text-ellipsis'>{{ comment?.body }}</span>
           </a>
-        </ng-container>
+        }
         <span>&#160;</span>
         <span>&#125;</span>
-      </ng-container>
+      }
     </div>
   </div>
 </div>
