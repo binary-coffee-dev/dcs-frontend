@@ -37,6 +37,7 @@
     "express": "^5.1.0",
     "font-awesome": "4.7.0",
     "graphql": "16.14.0",
+    "katex": "^0.16.47",
     "marked": "18.0.4",
     "moment": "2.30.1",
     "ngx-chips": "^3.0.0",

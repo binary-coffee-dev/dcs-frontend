@@ -9,10 +9,10 @@
 
       <div class='post-info-content p-6 shadow-lg'>
         <div class='w-full'>
-          @if (post?.banner && post?.banner?.url) {
+          @if (post.banner && post.banner.url) {
             <img class="w-full max-h-[300px] object-cover object-center"
               style="position: relative;"
-              [ngSrc]='resource.addApiUrl(post.banner?.url)'
+              [ngSrc]='resource.addApiUrl(post.banner.url)'
               fill=""
               alt='article banner'/>
           }

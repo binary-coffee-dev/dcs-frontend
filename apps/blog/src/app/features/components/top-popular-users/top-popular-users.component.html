@@ -1,6 +1,5 @@
-@if ((top5Likes?.users?.length || 0) > 0) {
-  <div class='mt-6 mr-4 mb-7'
-    >
+@if ((top5Likes.users.length || 0) > 0) {
+  <div class='mt-6 mr-4 mb-7'>
     <span> Más Populares </span>
     <div class='top-content rounded flex flex-col mt-2 mb-2 pt-4 pr-4 pb-0 pl-4 shadow-lg'>
       @for (user of top5Likes.users; track user; let i = $index) {
