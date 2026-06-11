@@ -1,9 +1,9 @@
-import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Store } from '@ngxs/store';
 
-import { AuthState, ENVIRONMENT, Environment, LogoutAction, UrlUtilsService, User, WINDOW } from '@dcs-libs/shared';
+import { AuthState, ENVIRONMENT, Environment, LogoutAction, UrlUtilsService, User } from '@dcs-libs/shared';
 import { LoginService } from '../../../core/services';
 
 @Component({
@@ -13,21 +13,19 @@ import { LoginService } from '../../../core/services';
     standalone: false
 })
 export class LoginButtonComponent implements OnInit {
-  private window = inject<Window>(WINDOW);
   private env = inject<Environment>(ENVIRONMENT);
   private store = inject(Store);
   private url = inject(UrlUtilsService);
   private loginService = inject(LoginService);
 
 
-  isLogin = false;
+  isLogin = signal<boolean>(false);
+  isBrowser = signal<boolean>(false);
+
   me?: User;
-  isBrowser: boolean;
 
   constructor() {
-    const platformId = inject(PLATFORM_ID);
-
-    this.isBrowser = isPlatformBrowser(platformId);
+    this.isBrowser.set(isPlatformBrowser(inject(PLATFORM_ID)));
   }
 
   getUserImage() {
@@ -35,8 +33,8 @@ export class LoginButtonComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.isBrowser) {
-      this.store.select(AuthState.isLogin).subscribe(isLogin => this.isLogin = isLogin);
+    if (this.isBrowser()) {
+      this.store.select(AuthState.isLogin).subscribe(isLogin => this.isLogin.set(isLogin));
       this.store.select(AuthState.me).subscribe(me => this.me = me);
     }
   }
