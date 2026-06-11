@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { catchError, tap } from 'rxjs/operators';
@@ -20,13 +20,12 @@ export interface PodcastStateModel {
 })
 @Injectable()
 export class PodcastState {
+  private podcastService = inject(PodcastService);
+
 
   @Selector()
   public static episodesList(state: PodcastStateModel): EpisodeModel[] {
     return state.episodes;
-  }
-
-  constructor(private podcastService: PodcastService) {
   }
 
   @Action(FetchPodcastAction)

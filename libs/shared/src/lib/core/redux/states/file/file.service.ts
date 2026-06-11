@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Apollo } from 'apollo-angular';
@@ -14,14 +14,11 @@ import { UpdateResponseService } from '../../../services/update-response.service
 
 @Injectable()
 export class FileService {
+  private apollo = inject(Apollo);
+  private http = inject(HttpClient);
+  private environment = inject<Environment>(ENVIRONMENT);
+  private responseService = inject(UpdateResponseService);
 
-  constructor(
-    private apollo: Apollo,
-    private http: HttpClient,
-    @Inject(ENVIRONMENT) private environment: Environment,
-    private responseService: UpdateResponseService
-  ) {
-  }
 
   fetchFiles(limit: number, start = 0, filters = {}): Observable<ResponseData> {
     return this.apollo

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { Store } from "@ngxs/store";
 import { Subject } from "rxjs";
@@ -13,17 +13,14 @@ import { EpisodeModel, FetchPodcastAction, MomentService, PodcastState } from "@
     standalone: false
 })
 export class PodcastComponent implements OnInit, OnDestroy {
+  private store = inject(Store);
+  moment = inject(MomentService);
+
   _unsubscribe = new Subject();
 
   podcastName = 'Espacio Binario';
   isAdmin = true;
   episodes: EpisodeModel[] = [];
-
-  constructor(
-    private store: Store,
-    public moment: MomentService,
-  ) {
-  }
 
   ngOnInit(): void {
     this.store.dispatch(new FetchPodcastAction('espacio-binario'));

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,9 +12,9 @@ import {UpdateResponseService} from "../../../services/update-response.service";
   providedIn: 'root'
 })
 export class SubscriptionService {
+  private apollo = inject(Apollo);
+  private responseService = inject(UpdateResponseService);
 
-  constructor(private apollo: Apollo, private responseService: UpdateResponseService) {
-  }
 
   verifySubscription(token: string): Observable<Subscription | undefined> {
     return this.apollo.mutate<{ verify: Subscription }>({ mutation: VERIFY_SUBSCRIPTION_MUTATION, variables: { token } })

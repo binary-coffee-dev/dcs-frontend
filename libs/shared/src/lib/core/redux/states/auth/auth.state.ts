@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { catchError, map, take, tap } from 'rxjs/operators';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
@@ -25,6 +25,8 @@ import { RoleEnum } from '../../../permissions';
 })
 @Injectable()
 export class AuthState {
+  private authService = inject(AuthService);
+
 
   @Selector()
   static token(state: AuthStateModel): string {
@@ -49,9 +51,6 @@ export class AuthState {
   @Selector()
   static authError(state: AuthStateModel): AuthError | undefined {
     return state.error;
-  }
-
-  constructor(private authService: AuthService) {
   }
 
   @Action(LoginAction)

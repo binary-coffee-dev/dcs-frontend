@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 import { Store } from '@ngxs/store';
@@ -15,6 +15,8 @@ import { SubscribeAction, SubscriptionState } from "@dcs-libs/shared";
     standalone: false
 })
 export class SubscribeComponent implements OnInit, OnDestroy {
+  private store = inject(Store);
+
 
   _unsubscribe = new Subject();
 
@@ -27,9 +29,6 @@ export class SubscribeComponent implements OnInit, OnDestroy {
   subscribeForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email])
   });
-
-  constructor(private store: Store) {
-  }
 
   ngOnInit(): void {
     this.subscribeToLoading();

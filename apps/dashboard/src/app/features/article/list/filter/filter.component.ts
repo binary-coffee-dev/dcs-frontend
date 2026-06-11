@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { Subject, timer } from 'rxjs';
@@ -14,6 +14,8 @@ import { AuthState, FetchPostsAction, SetFiltersAction, Where } from '@dcs-libs/
     standalone: false
 })
 export class FilterComponent implements OnInit, OnDestroy {
+  private store = inject(Store);
+
 
   currentFilter = '';
   usersFilter = 'me';
@@ -25,9 +27,6 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   resetTimer = new Subject();
   _unsubscribe = new Subject();
-
-  constructor(private store: Store) {
-  }
 
   ngOnInit(): void {
   }

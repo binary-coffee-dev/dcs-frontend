@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { WINDOW } from '@dcs-libs/shared';
@@ -7,10 +7,10 @@ import { WINDOW } from '@dcs-libs/shared';
   providedIn: 'root'
 })
 export class ScrollService {
-  constructor(
-    @Inject(WINDOW) private window: Window,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
+  private window = inject<Window>(WINDOW);
+  private platformId = inject<Object>(PLATFORM_ID);
+
+  constructor() {
     this.smoothScroll = this.smoothScroll.bind(this);
   }
 

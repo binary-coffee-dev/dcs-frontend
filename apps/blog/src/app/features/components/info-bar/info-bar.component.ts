@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Store } from '@ngxs/store';
@@ -27,6 +27,11 @@ interface ShareLink {
     standalone: false
 })
 export class InfoBarComponent implements OnInit, OnDestroy {
+  private store = inject(Store);
+  moment = inject(MomentService);
+  url = inject(UrlUtilsService);
+  private window = inject<Window>(WINDOW);
+
 
   @Input() showPodcast = true;
   @Input() showRecentComments = true;
@@ -41,13 +46,9 @@ export class InfoBarComponent implements OnInit, OnDestroy {
 
   lineNumbers: number[] = [];
 
-  constructor(
-    private store: Store,
-    public moment: MomentService,
-    public url: UrlUtilsService,
-    @Inject(WINDOW) private window: Window,
-    @Inject(PLATFORM_ID) platformId: string
-  ) {
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+
     this.isBrowser = isPlatformBrowser(platformId);
   }
 

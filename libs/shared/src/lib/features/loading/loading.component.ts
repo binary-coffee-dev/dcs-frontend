@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { Actions, ofActionCompleted, ofActionDispatched } from '@ngxs/store';
 
@@ -12,6 +12,8 @@ import { FetchPostsAction, PostAction } from '../../core/redux/states/post';
     standalone: false
 })
 export class LoadingComponent implements OnInit {
+  private actions = inject(Actions);
+
 
   loadingCount = 0;
 
@@ -20,9 +22,6 @@ export class LoadingComponent implements OnInit {
     PostAction,
     LoginWithProviderAction
   ];
-
-  constructor(private actions: Actions) {
-  }
 
   ngOnInit() {
     this.actionToLoading.forEach((action) => {

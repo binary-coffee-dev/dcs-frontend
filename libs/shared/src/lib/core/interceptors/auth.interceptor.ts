@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -11,9 +11,9 @@ import { LogoutAction } from '../redux/states/auth';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  private store = inject(Store);
+  private router = inject(Router);
 
-  constructor(private store: Store, private router: Router) {
-  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = req;

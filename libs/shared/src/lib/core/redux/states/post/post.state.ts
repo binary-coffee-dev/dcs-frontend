@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {catchError, mergeMap, tap} from 'rxjs/operators';
@@ -27,6 +27,8 @@ import {CreateNotificationAction} from '../notification/notification.action';
 })
 @Injectable()
 export class PostState extends PaginationBaseClass<PostStateModel> {
+  private postService = inject(PostService);
+
 
   @Selector()
   static posts(state: PostStateModel): Post[] {
@@ -81,10 +83,6 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   @Selector()
   static where(state: PostStateModel): Where | undefined {
     return state.where;
-  }
-
-  constructor(private postService: PostService) {
-    super();
   }
 
   @Action(ChangePageSizeAction)

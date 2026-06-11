@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { CanActivate, UrlTree } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -17,9 +17,13 @@ import {
 
 @Injectable()
 export class PostsGuard implements CanActivate {
+  private store = inject(Store);
+
   isBrowser = false;
 
-  constructor(private store: Store, @Inject(PLATFORM_ID) platformId: string) {
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+
     this.isBrowser = isPlatformBrowser(platformId);
   }
 

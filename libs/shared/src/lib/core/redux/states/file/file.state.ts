@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, tap } from 'rxjs/operators';
@@ -23,6 +23,8 @@ import { CreateNotificationAction } from '../notification/notification.action';
 })
 @Injectable()
 export class FileState extends PaginationBaseClass<FileStateModel> {
+  private fileService = inject(FileService);
+
 
   @Selector()
   static files(state: FileStateModel): File[] {
@@ -47,10 +49,6 @@ export class FileState extends PaginationBaseClass<FileStateModel> {
   @Selector()
   static newFile(state: FileStateModel): File | undefined {
     return state.newFile;
-  }
-
-  constructor(private fileService: FileService) {
-    super();
   }
 
   @Action(ChangeQueryAction)

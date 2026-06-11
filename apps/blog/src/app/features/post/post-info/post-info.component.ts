@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
@@ -16,6 +16,11 @@ import { ResourceService } from '../../../core/services';
     standalone: false
 })
 export class PostInfoComponent implements OnInit, OnDestroy {
+  private store = inject(Store);
+  resource = inject(ResourceService);
+  private dialog = inject(MatDialog);
+  moment = inject(MomentService);
+
 
   @Input() post: Post = {} as unknown as Post;
 
@@ -23,14 +28,6 @@ export class PostInfoComponent implements OnInit, OnDestroy {
   userLike = 0;
 
   _unsubscribe = new Subject();
-
-  constructor(
-    private store: Store,
-    public resource: ResourceService,
-    private dialog: MatDialog,
-    public moment: MomentService,
-  ) {
-  }
 
   ngOnInit(): void {
     this.store.select(PostState.likes)

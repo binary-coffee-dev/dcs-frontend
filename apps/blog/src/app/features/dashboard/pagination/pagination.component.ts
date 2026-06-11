@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 import { Observable, of } from 'rxjs';
@@ -13,12 +13,12 @@ import { ScrollService } from '../../../core/services';
     standalone: false
 })
 export class PaginationComponent implements OnInit {
+  private store = inject(Store);
+  private scroll = inject(ScrollService);
+
 
   firstPage: Observable<boolean> = of(false);
   lastPage: Observable<boolean> = of(false);
-
-  constructor(private store: Store, private scroll: ScrollService) {
-  }
 
   ngOnInit() {
     this.firstPage = this.store.select(PostState.firstPage);

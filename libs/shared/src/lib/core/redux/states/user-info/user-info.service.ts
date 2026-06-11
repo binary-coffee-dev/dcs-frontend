@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,9 +11,9 @@ import {UpdateResponseService} from "../../../services/update-response.service";
 
 @Injectable()
 export class UserInfoService {
+  private apollo = inject(Apollo);
+  private responseService = inject(UpdateResponseService);
 
-  constructor(private apollo: Apollo, private responseService: UpdateResponseService) {
-  }
 
   topActiveUsers(): Observable<TopUsers> {
     return this.apollo.query({query: TOP_ACTIVE_USERS_QUERY, fetchPolicy: 'no-cache'})

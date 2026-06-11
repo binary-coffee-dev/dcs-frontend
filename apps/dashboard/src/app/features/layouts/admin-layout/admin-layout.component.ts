@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, inject } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
@@ -8,15 +8,18 @@ import { MediaMatcher } from '@angular/cdk/layout';
     standalone: false
 })
 export class AdminLayoutComponent implements OnDestroy {
+  private changeDetectorRef = inject(ChangeDetectorRef);
+  private media = inject(MediaMatcher);
+
   mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;
 
   showSidenav = false;
 
-  constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-    private media: MediaMatcher
-  ) {
+  constructor() {
+    const changeDetectorRef = this.changeDetectorRef;
+    const media = this.media;
+
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addEventListener('change', this._mobileQueryListener);

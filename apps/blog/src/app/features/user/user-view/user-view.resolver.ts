@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 
 import {Store} from '@ngxs/store';
@@ -25,14 +25,13 @@ export interface UserView {
 
 @Injectable()
 export class UserViewResolver implements Resolve<UserView> {
+  private store = inject(Store);
+
 
   user: User = {} as unknown as User;
   posts: Post[] = [];
   count: number = 0;
   commentsCount: number = 0;
-
-  constructor(private store: Store) {
-  }
 
   resolve(route: ActivatedRouteSnapshot): Observable<UserView> | Promise<UserView> | UserView {
     return this.store.dispatch(new FetchUserByUsernameAction(route.paramMap.get('username')))

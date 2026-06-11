@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -15,6 +15,9 @@ import { FetchPostsAction, PostState, SetFiltersAction, Where } from '@dcs-libs/
     standalone: false
 })
 export class FilterComponent implements OnInit, OnDestroy {
+  private store = inject(Store);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   filter = '';
 
@@ -24,13 +27,6 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   resetTime = new Subject();
   _unsubscribe = new Subject();
-
-  constructor(
-    private store: Store,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
-  }
 
   ngOnInit(): void {
     this.extractParams();

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatDialogRef } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
@@ -20,18 +20,15 @@ import {
     standalone: false
 })
 export class SelectImageModalComponent implements OnInit {
+  private store = inject(Store);
+  private dialogRef = inject<MatDialogRef<SelectImageModalComponent>>(MatDialogRef);
+  private url = inject(UrlUtilsService);
+
 
   files: File[] = [];
 
   currentPage = 0;
   numberOfPages = 0;
-
-  constructor(
-    private store: Store,
-    private dialogRef: MatDialogRef<SelectImageModalComponent>,
-    private url: UrlUtilsService
-  ) {
-  }
 
   ngOnInit() {
     this.store.select(FileState.files).subscribe((files: File[]) => {

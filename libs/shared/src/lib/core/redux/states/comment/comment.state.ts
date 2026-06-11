@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, take, tap } from 'rxjs/operators';
@@ -21,6 +21,8 @@ import { CommentError, Comment } from '../../models';
 })
 @Injectable()
 export class CommentState {
+  private commentService = inject(CommentService);
+
 
   @Selector()
   static comments(state: CommentStateModel): Comment[] {
@@ -40,9 +42,6 @@ export class CommentState {
   @Selector()
   static recentComments(state: CommentStateModel): Comment[] {
     return state.recentComments;
-  }
-
-  constructor(private commentService: CommentService) {
   }
 
   @Action(CreateCommentAction)

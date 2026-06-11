@@ -3,18 +3,18 @@
   <div class="flex flex-row items-center max-w-[1080px]
               w-full lg:w-11/12 xl:w-9/12 2xl:w-8/12">
     <a class="flex flex-row no-underline items-center"
-      routerLink='/'>
+       routerLink='/'>
       <div class="w-[40px] my-6 ml-3 mr-6">
         <img [ngSrc]="'/assets/images/128x128/binarycoffee_2.0.0.png'"
-          width="40"
-          height="40"
-          alt='binarycoffee-logo'>
+             width="40"
+             height="40"
+             alt='binarycoffee-logo'>
       </div>
       <span class="hidden md:block">Binary Coffee</span>
     </a>
 
     <div class='w-full'></div>
-    @if (showSearch) {
+    @if (showSearch()) {
       <app-filter class="hidden md:block"></app-filter>
     }
     <div class='w-full'></div>
@@ -22,17 +22,18 @@
     <app-login-button></app-login-button>
 
     <div class="h-9 max-h-9 pr-3">
-      <mat-button-toggle class="min-w-10 h-9 ml-6 text-base" [matMenuTriggerFor]='beforeMenu'>
+      <mat-button-toggle class="min-w-10 h-9 ml-6 text-base"
+                         [matMenuTriggerFor]='beforeMenu'>
         <mat-icon aria-hidden='false'>menu</mat-icon>
       </mat-button-toggle>
     </div>
     <mat-menu #beforeMenu='matMenu'
-      class='app-important-menu'
-      xPosition='before'>
+              class='app-important-menu'
+              xPosition='before'>
 
       <a mat-menu-item
-        routerLink='/users'
-        class='mat-menu-item item1'>
+         routerLink='/users'
+         class='mat-menu-item item1'>
         <i class='fa fa-users'></i>
         Miembros
       </a>
@@ -43,32 +44,32 @@
       </div>
 
       <a mat-menu-item
-        routerLink='/about'
-        class='item2 right-icon'>
+         routerLink='/about'
+         class='item2 right-icon'>
         About
       </a>
 
       <a mat-menu-item
-        routerLink='/privacy-policy'
-        class='item2 right-icon'>
+         routerLink='/privacy-policy'
+         class='item2 right-icon'>
         Políticas de Privacidad
       </a>
 
       <a mat-menu-item
-        routerLink='/cookies'
-        class='item2 right-icon'>
+         routerLink='/cookies'
+         class='item2 right-icon'>
         Políticas de Cookies
       </a>
 
       <a mat-menu-item
-        routerLink='/code-of-conduct'
-        class='item2 right-icon'>
+         routerLink='/code-of-conduct'
+         class='item2 right-icon'>
         Código de Conducta
       </a>
 
       <a mat-menu-item
-        routerLink='/term-of-use'
-        class='item2 right-icon'>
+         routerLink='/term-of-use'
+         class='item2 right-icon'>
         Términos y Condiciones
       </a>
 
@@ -78,57 +79,57 @@
       </div>
 
       <a mat-menu-item
-        routerLink='/donate'
-        class='item2 right-icon'>
+         routerLink='/donate'
+         class='item2 right-icon'>
         Donar
       </a>
 
       <a mat-menu-item
-        target='_blank'
-        [href]='env.contactMail'
-        class='item2 right-icon'>
+         target='_blank'
+         [href]='env.contactMail'
+         class='item2 right-icon'>
         Contáctenos
       </a>
 
       <a mat-menu-item
-        target='_blank'
-        [href]='env.apiUrl + "api/sitemap"'
-        class='item2 right-icon'>
+         target='_blank'
+         [href]='env.apiUrl + "api/sitemap"'
+         class='item2 right-icon'>
         Mapa
       </a>
 
       <a mat-menu-item
-        target='_blank'
-        [href]='env.apiUrl + "api/posts/feed/rss2"'
-        class='item2 right-icon'>
+         target='_blank'
+         [href]='env.apiUrl + "api/posts/feed/rss2"'
+         class='item2 right-icon'>
         RSS
       </a>
 
       <a mat-menu-item
-        routerLink='/podcast/espacio-binario'
-        class='item1'>
+         routerLink='/podcast/espacio-binario'
+         class='item1'>
         <i class='fa fa-play-circle'></i>
         Espacio Binario
       </a>
       <div class='share-buttons px-6 py-0 mx-0 my-6 flex flex-row place-content-between'>
         <a class="flex flex-row justify-center"
-          [href]='env.socials?.twitter'
-          target='_blank'>
+           [href]='env.socials?.twitter'
+           target='_blank'>
           <i class='fa fa-twitter'></i>
         </a>
         <a class="flex flex-row justify-center"
-          [href]='env.socials?.github'
-          target='_blank'>
+           [href]='env.socials?.github'
+           target='_blank'>
           <i class='fa fa-github'></i>
         </a>
         <a class="flex flex-row justify-center"
-          [href]='env.socials?.telegram'
-          target='_blank'>
+           [href]='env.socials?.telegram'
+           target='_blank'>
           <i class='fa fa-telegram'></i>
         </a>
         <a class="flex flex-row justify-center"
-          [href]='env.socials?.facebook'
-          target='_blank'>
+           [href]='env.socials?.facebook'
+           target='_blank'>
           <i class='fa fa-facebook'></i>
         </a>
       </div>

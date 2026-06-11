@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
@@ -20,9 +20,8 @@ import { TopUsers, User } from '../../models';
 })
 @Injectable()
 export class UserInfoState {
+  private userInfoService = inject(UserInfoService);
 
-  constructor(private userInfoService: UserInfoService) {
-  }
 
   @Selector()
   public static topActiveUsers(state: UserInfoStateModel): TopUsers {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngxs/store';
@@ -13,13 +13,10 @@ import { SubscriptionState, UnsubscribeAction, VerifySubscriptionAction } from '
     standalone: false
 })
 export class SubscriptionComponent implements OnInit {
-  message = '';
+  private store = inject(Store);
+  private activeRouter = inject(ActivatedRoute);
 
-  constructor(
-    private store: Store,
-    private activeRouter: ActivatedRoute
-  ) {
-  }
+  message = '';
 
   ngOnInit() {
     this.verifyingEmail(this.activeRouter.snapshot.params['token']);

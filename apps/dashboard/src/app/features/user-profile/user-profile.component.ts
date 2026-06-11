@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from "@angular/material/dialog";
 
@@ -21,6 +21,10 @@ import { UploadFileModalComponent } from '../components/upload-file.modal';
     standalone: false
 })
 export class UserProfileComponent implements OnInit {
+  private store = inject(Store);
+  private dialog = inject(MatDialog);
+  private url = inject(UrlUtilsService);
+
   me: User = {} as unknown as User;
   professionalDataChange = false;
 
@@ -46,13 +50,6 @@ export class UserProfileComponent implements OnInit {
   privacyForm = new UntypedFormGroup({
     showEmail: new UntypedFormControl('')
   });
-
-  constructor(
-    private store: Store,
-    private dialog: MatDialog,
-    private url: UrlUtilsService
-  ) {
-  }
 
   ngOnInit() {
     this.store.select(AuthState.me).subscribe((me) => {

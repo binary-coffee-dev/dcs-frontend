@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, inject } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { Store } from '@ngxs/store';
@@ -15,18 +15,15 @@ const PATH_NAME_POSITION = 2;
     standalone: false
 })
 export class NavbarComponent implements OnInit {
+  private location = inject(Location);
+  private env = inject<Environment>(ENVIRONMENT);
+  private store = inject(Store);
+
   private listTitles: any[] = [];
   me: User | undefined = {} as unknown as User;
 
   @Output()
   openSidenav = new EventEmitter<void>();
-
-  constructor(
-    private location: Location,
-    @Inject(ENVIRONMENT) private env: Environment,
-    private store: Store
-  ) {
-  }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);

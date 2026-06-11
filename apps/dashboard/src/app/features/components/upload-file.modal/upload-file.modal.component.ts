@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef } from "@angular/material/dialog";
 
@@ -14,6 +14,9 @@ import { FileState, UploadFileAction } from '@dcs-libs/shared';
     standalone: false
 })
 export class UploadFileModalComponent implements OnInit {
+  private store = inject(Store);
+  private dialogRef = inject<MatDialogRef<UploadFileModalComponent>>(MatDialogRef);
+
 
   uploadFileForm = new UntypedFormGroup({
     name: new UntypedFormControl(''),
@@ -27,9 +30,6 @@ export class UploadFileModalComponent implements OnInit {
   image: string | ArrayBuffer | null = null;
 
   uploadingImage = false;
-
-  constructor(private store: Store, private dialogRef: MatDialogRef<UploadFileModalComponent>) {
-  }
 
   ngOnInit() {
   }

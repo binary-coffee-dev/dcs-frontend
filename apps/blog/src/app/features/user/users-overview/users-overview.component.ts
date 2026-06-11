@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
@@ -16,11 +16,11 @@ import {
     standalone: false
 })
 export class UsersOverviewComponent implements OnInit {
+  private store = inject(Store);
+  private url = inject(UrlUtilsService);
+
 
   users: User[] = [];
-
-  constructor(private store: Store, private url: UrlUtilsService) {
-  }
 
   ngOnInit(): void {
     this.store.select(UserInfoState.users)

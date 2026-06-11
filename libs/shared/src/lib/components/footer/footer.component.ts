@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, inject } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 
 import { UrlUtilsService } from '../../core/services';
@@ -11,6 +11,9 @@ import { SubscribeDialogComponent } from '../subscribe-dialog';
     standalone: false
 })
 export class FooterComponent implements OnInit {
+    private url = inject(UrlUtilsService);
+    private dialog = inject(MatDialog);
+
     year: number = 0;
     root: string = '';
 
@@ -19,10 +22,6 @@ export class FooterComponent implements OnInit {
 
     @Input()
     socialLinks = true;
-
-    constructor(private url: UrlUtilsService,
-                private dialog: MatDialog) {
-    }
 
     ngOnInit() {
         this.root = 'bc@dev:';

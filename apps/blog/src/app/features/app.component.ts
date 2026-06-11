@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { MatDialog } from "@angular/material/dialog";
 
@@ -33,16 +33,13 @@ const SUBSCRIPTION_WAS_OPENED_CONFIG_KEY = 'SUBSCRIPTION_WAS_OPENED_CONFIG_KEY';
     standalone: false
 })
 export class AppComponent implements OnInit {
+  router = inject(Router);
+  private store = inject(Store);
+  private metaTags = inject(MetaTagsService);
+  private dialog = inject(MatDialog);
+  private environment = inject<Environment>(ENVIRONMENT);
+  private platformId = inject(PLATFORM_ID);
 
-  constructor(
-    public router: Router,
-    private store: Store,
-    private metaTags: MetaTagsService,
-    private dialog: MatDialog,
-    @Inject(ENVIRONMENT) private environment: Environment,
-    @Inject(PLATFORM_ID) private platformId: string
-  ) {
-  }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {

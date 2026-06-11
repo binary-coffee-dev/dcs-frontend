@@ -1,4 +1,4 @@
-import { Inject, Injectable, RendererFactory2, ViewEncapsulation } from '@angular/core';
+import { Injectable, RendererFactory2, ViewEncapsulation, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { WINDOW } from '@dcs-libs/shared';
 
@@ -28,6 +28,11 @@ export declare type LinkDefinition = {
   providedIn: 'root'
 })
 export class MetaTagsService {
+  private title = inject(Title);
+  private rendererFactory = inject(RendererFactory2);
+  private window = inject<Window>(WINDOW);
+  private meta = inject(Meta);
+
 
   public static metas = 'og:url';
   public static titleMeta = 'og:title';
@@ -37,13 +42,6 @@ export class MetaTagsService {
   public static secureImageMeta = 'og:image:secure_url';
   public static twitterTitleMeta = 'twitter:text:title';
   public static twitterImageMeta = 'twitter:image';
-
-  constructor(
-    private title: Title,
-    private rendererFactory: RendererFactory2,
-    @Inject(WINDOW) private window: Window,
-    private meta: Meta) {
-  }
 
   public updateMetas(tags: MetaTag[]) {
     tags.forEach(siteTag => {

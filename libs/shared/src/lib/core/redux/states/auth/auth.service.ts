@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
@@ -19,9 +19,9 @@ import {UpdateResponseService} from "../../../services/update-response.service";
   providedIn: 'root'
 })
 export class AuthService {
+  private apollo = inject(Apollo);
+  private responseService = inject(UpdateResponseService);
 
-  constructor(private apollo: Apollo, private responseService: UpdateResponseService) {
-  }
 
   login(identifier: string, password: string): Observable<LoginResponseModel> {
     return this.apollo

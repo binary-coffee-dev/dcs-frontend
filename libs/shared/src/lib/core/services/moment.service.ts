@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from "@angular/common";
 
 declare let moment: any;
@@ -7,11 +7,8 @@ declare let moment: any;
   providedIn: 'root'
 })
 export class MomentService {
+  private platformId = inject(PLATFORM_ID);
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: string
-  ) {
-  }
 
   isBrowser(): boolean {
     return isPlatformBrowser(this.platformId);

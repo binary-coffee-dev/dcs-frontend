@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
@@ -14,6 +14,12 @@ import { PROVIDERS } from './providers';
     standalone: false
 })
 export class AuthComponent implements OnInit {
+  private store = inject(Store);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private window = inject<Window>(WINDOW);
+  private env = inject<Environment>(ENVIRONMENT);
+
   authError: AuthError | undefined = undefined;
 
   providers = PROVIDERS;
@@ -22,15 +28,6 @@ export class AuthComponent implements OnInit {
     identifier: new UntypedFormControl('', Validators.required),
     password: new UntypedFormControl('', Validators.required),
   });
-
-  constructor(
-    private store: Store,
-    private router: Router,
-    private route: ActivatedRoute,
-    @Inject(WINDOW) private window: Window,
-    @Inject(ENVIRONMENT) private env: Environment
-  ) {
-  }
 
   ngOnInit(): void {
     this.store.select(AuthState.authError).subscribe(error => this.authError = error);

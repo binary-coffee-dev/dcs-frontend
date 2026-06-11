@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Environment, ENVIRONMENT } from '../models';
 import { User } from '../redux';
@@ -7,9 +7,8 @@ import { User } from '../redux';
   providedIn: 'root'
 })
 export class UrlUtilsService {
+  private environment = inject<Environment>(ENVIRONMENT);
 
-  constructor(@Inject(ENVIRONMENT) private environment: Environment) {
-  }
 
   getUserImage(user: User | undefined) {
     return this.normalizeImageUrl(user?.avatarUrl);

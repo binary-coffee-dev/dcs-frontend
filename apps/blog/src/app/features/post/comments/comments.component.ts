@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from "@angular/material/dialog";
@@ -29,6 +29,13 @@ import { EditCommentModalComponent } from './edit-comment.modal/edit-comment.mod
     standalone: false
 })
 export class CommentsComponent implements OnInit, OnDestroy {
+  private store = inject(Store);
+  moment = inject(MomentService);
+  private url = inject(UrlUtilsService);
+  private scroll = inject(ScrollService);
+  private route = inject(ActivatedRoute);
+  private dialog = inject(MatDialog);
+
 
   unsubscribe = new Subject();
 
@@ -45,16 +52,6 @@ export class CommentsComponent implements OnInit, OnDestroy {
   commentForm = new UntypedFormGroup({
     body: new UntypedFormControl('', Validators.required)
   });
-
-  constructor(
-    private store: Store,
-    public moment: MomentService,
-    private url: UrlUtilsService,
-    private scroll: ScrollService,
-    private route: ActivatedRoute,
-    private dialog: MatDialog
-  ) {
-  }
 
   ngOnInit(): void {
     this.store.select(CommentState.comments).subscribe(comments => {

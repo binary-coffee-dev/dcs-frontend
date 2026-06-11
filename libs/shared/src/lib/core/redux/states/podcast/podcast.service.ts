@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,11 +10,9 @@ import {UpdateResponseService} from "../../../services/update-response.service";
 
 @Injectable()
 export class PodcastService {
-  constructor(
-    private apollo: Apollo,
-    private responseService: UpdateResponseService
-  ) {
-  }
+  private apollo = inject(Apollo);
+  private responseService = inject(UpdateResponseService);
+
 
   fetchPodcasts(identifier: string): Observable<PodcastModel> {
     return this.apollo

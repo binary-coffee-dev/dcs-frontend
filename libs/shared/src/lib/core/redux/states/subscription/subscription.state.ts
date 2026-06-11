@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, tap } from 'rxjs/operators';
@@ -15,6 +15,8 @@ import { Subscription } from '../../models';
 })
 @Injectable()
 export class SubscriptionState {
+  private subscriptionService = inject(SubscriptionService);
+
 
   @Selector()
   static subscription(state: SubscriptionStateModel): Subscription | undefined {
@@ -24,9 +26,6 @@ export class SubscriptionState {
   @Selector()
   static loading(state: SubscriptionStateModel): boolean {
     return state.loading;
-  }
-
-  constructor(private subscriptionService: SubscriptionService) {
   }
 
   @Action(VerifySubscriptionAction)

@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 
 import { ScrollService } from '../../../core/services';
 
@@ -9,9 +9,9 @@ import { ScrollService } from '../../../core/services';
     standalone: false
 })
 export class ScrollTopComponent {
-  windowScrolled = false;
+  private scroll = inject(ScrollService);
 
-  constructor(private scroll: ScrollService) {}
+  windowScrolled = false;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {

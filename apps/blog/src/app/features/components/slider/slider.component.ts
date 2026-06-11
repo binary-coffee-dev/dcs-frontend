@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Subject, timer } from 'rxjs';
@@ -22,6 +22,11 @@ const TIME_TO_CHANGE_PAGE = 6000;
     standalone: false
 })
 export class SliderComponent implements OnInit, OnDestroy {
+  private store = inject(Store);
+  url = inject(UrlUtilsService);
+  private environment = inject<Environment>(ENVIRONMENT);
+  private platformId = inject<Object>(PLATFORM_ID);
+
 
   unsubscribe = new Subject<void>();
   stopTimer = new Subject<void>();
@@ -30,14 +35,6 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   activeInfo: InformationBanner = {} as unknown as InformationBanner;
   activePage = 0;
-
-  constructor(
-    private store: Store,
-    public url: UrlUtilsService,
-    @Inject(ENVIRONMENT) private environment: Environment,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-  }
 
   ngOnDestroy(): void {
     this.unsubscribe.next();

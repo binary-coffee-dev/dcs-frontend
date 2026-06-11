@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Store } from '@ngxs/store';
@@ -13,19 +13,20 @@ import { LoginService } from '../../../core/services';
     standalone: false
 })
 export class LoginButtonComponent implements OnInit {
+  private window = inject<Window>(WINDOW);
+  private env = inject<Environment>(ENVIRONMENT);
+  private store = inject(Store);
+  private url = inject(UrlUtilsService);
+  private loginService = inject(LoginService);
+
 
   isLogin = false;
   me?: User;
   isBrowser: boolean;
 
-  constructor(
-    @Inject(WINDOW) private window: Window,
-    @Inject(ENVIRONMENT) private env: Environment,
-    private store: Store,
-    private url: UrlUtilsService,
-    private loginService: LoginService,
-    @Inject(PLATFORM_ID) platformId: string,
-  ) {
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+
     this.isBrowser = isPlatformBrowser(platformId);
   }
 

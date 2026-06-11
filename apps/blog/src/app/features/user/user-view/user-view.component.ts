@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngxs/store';
@@ -26,6 +26,13 @@ interface UserData {
     standalone: false
 })
 export class UserViewComponent implements OnInit {
+  private store = inject(Store);
+  moment = inject(MomentService);
+  url = inject(UrlUtilsService);
+  private route = inject(ActivatedRoute);
+  private window = inject<Window>(WINDOW);
+  private environment = inject<Environment>(ENVIRONMENT);
+
 
   user = {} as User;
   posts: Post[] = [];
@@ -36,16 +43,6 @@ export class UserViewComponent implements OnInit {
 
   firstPage: Observable<boolean> = of(true);
   lastPage: Observable<boolean> = of(true);
-
-  constructor(
-    private store: Store,
-    public moment: MomentService,
-    public url: UrlUtilsService,
-    private route: ActivatedRoute,
-    @Inject(WINDOW) private window: Window,
-    @Inject(ENVIRONMENT) private environment: Environment,
-  ) {
-  }
 
   ngOnInit(): void {
     this.user = this.route.snapshot.data['userInfo'].user;

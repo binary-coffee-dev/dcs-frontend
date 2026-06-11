@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
@@ -12,13 +12,12 @@ import { RemoveCommentAction } from '@dcs-libs/shared';
     standalone: false
 })
 export class ConfirmDeleteModalComponent {
+  private dialogRef = inject<MatDialogRef<ConfirmDeleteModalComponent>>(MatDialogRef);
+  private store = inject(Store);
+  data = inject<{
+    commentId: string;
+}>(MAT_DIALOG_DATA);
 
-  constructor(
-    private dialogRef: MatDialogRef<ConfirmDeleteModalComponent>,
-    private store: Store,
-    @Inject(MAT_DIALOG_DATA) public data: {commentId: string}
-  ) {
-  }
 
   ok() {
     this.store.dispatch(new RemoveCommentAction(this.data.commentId)).subscribe(() => {

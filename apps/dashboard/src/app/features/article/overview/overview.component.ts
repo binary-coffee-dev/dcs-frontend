@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from "@angular/material/dialog";
@@ -31,6 +31,14 @@ interface TimeType {
     standalone: false
 })
 export class OverviewComponent extends Permissions implements OnInit, OnDestroy {
+  private store = inject(Store);
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
+  private dialog = inject(MatDialog);
+  private url = inject(UrlUtilsService);
+  private env = inject<Environment>(ENVIRONMENT);
+  private window = inject<Window>(WINDOW);
+
   post: any = {
     body: ''
   } as unknown as Post;
@@ -56,15 +64,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
 
   articleTextStatus: 'edit' | 'preview' = 'edit';
 
-  constructor(
-    private store: Store,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private dialog: MatDialog,
-    private url: UrlUtilsService,
-    @Inject(ENVIRONMENT) private env: Environment,
-    @Inject(WINDOW) private window: Window
-  ) {
+  constructor() {
     super();
     this.populateAvailableTimes();
 

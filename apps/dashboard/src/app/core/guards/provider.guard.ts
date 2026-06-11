@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -11,13 +11,10 @@ import { AuthState, LoginWithProviderAction, WINDOW } from '@dcs-libs/shared';
   providedIn: 'root'
 })
 export class ProviderGuard implements CanActivate {
+  private store = inject(Store);
+  private router = inject(Router);
+  private window = inject<Window>(WINDOW);
 
-  constructor(
-    private store: Store,
-    private router: Router,
-    @Inject(WINDOW) private window: Window
-  ) {
-  }
 
   canActivate(
     next: ActivatedRouteSnapshot,

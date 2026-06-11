@@ -1,4 +1,4 @@
-import { Inject, Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 import { AuthState } from '../redux/states';
@@ -9,11 +9,9 @@ import { Permission, ROLE_PERMISSION_MAP, RoleEnum } from '../permissions';
     standalone: false
 })
 export class HasPermissionsPipe implements PipeTransform {
+  private store = inject(Store);
+  private rolePermissionMap = inject<Map<RoleEnum, Permission[]>>(ROLE_PERMISSION_MAP);
 
-  constructor(
-    private store: Store,
-    @Inject(ROLE_PERMISSION_MAP) private rolePermissionMap: Map<RoleEnum, Permission[]>) {
-  }
 
   transform(permissions: Permission[]): boolean {
     const userRole = this.store.selectSnapshot(AuthState.role);

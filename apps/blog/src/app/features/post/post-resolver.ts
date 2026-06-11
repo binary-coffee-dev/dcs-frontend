@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { isPlatformBrowser } from "@angular/common";
 
@@ -17,13 +17,14 @@ import {
 
 @Injectable({providedIn: 'root'})
 export class PostResolver implements Resolve<Post> {
+  private store = inject(Store);
+
 
   isBrowser: boolean;
 
-  constructor(
-    private store: Store,
-    @Inject(PLATFORM_ID) platformId: string,
-  ) {
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+
     this.isBrowser = isPlatformBrowser(platformId);
   }
 

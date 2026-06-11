@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialogRef } from "@angular/material/dialog";
 
 import { LoginService } from '../../../core/services';
@@ -10,11 +10,9 @@ import { LoginService } from '../../../core/services';
     standalone: false
 })
 export class LoginRequestModalComponent {
+  private loginService = inject(LoginService);
+  private dialogRef = inject<MatDialogRef<LoginRequestModalComponent>>(MatDialogRef);
 
-  constructor(
-    private loginService: LoginService,
-    private dialogRef: MatDialogRef<LoginRequestModalComponent>) {
-  }
 
   ok() {
     this.loginService.loginAction();

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { ScrollService } from '../../core/services';
 
@@ -9,9 +9,8 @@ import { ScrollService } from '../../core/services';
     standalone: false
 })
 export class DonateComponent implements OnInit {
+  private scroll = inject(ScrollService);
 
-  constructor(private scroll: ScrollService) {
-  }
 
   ngOnInit() {
     this.scroll.smoothScroll();

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -16,6 +16,11 @@ const PATH_NAME_POSITION = 2;
     standalone: false
 })
 export class SidebarComponent implements OnInit {
+  private store = inject(Store);
+  private router = inject(Router);
+  private location = inject(Location);
+  private url = inject(UrlUtilsService);
+
   @Output()
   routeChange = new EventEmitter<void>();
 
@@ -23,14 +28,6 @@ export class SidebarComponent implements OnInit {
 
   menuAccess: RouteInfo[] = [];
   currentRoute = '';
-
-  constructor(
-    private store: Store,
-    private router: Router,
-    private location: Location,
-    private url: UrlUtilsService
-  ) {
-  }
 
   ngOnInit() {
 

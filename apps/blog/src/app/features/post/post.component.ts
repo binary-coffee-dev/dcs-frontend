@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
@@ -30,6 +30,18 @@ const MAX_NUMBER_OF_POSTS = 6;
     standalone: false
 })
 export class PostComponent extends Permissions implements OnInit, OnDestroy {
+  private store = inject(Store);
+  resource = inject(ResourceService);
+  private metaTags = inject(MetaTagsService);
+  moment = inject(MomentService);
+  private title = inject(Title);
+  private scroll = inject(ScrollService);
+  private window = inject<Window>(WINDOW);
+  private environment = inject<Environment>(ENVIRONMENT);
+  private route = inject(ActivatedRoute);
+  url = inject(UrlUtilsService);
+  private dialog = inject(MatDialog);
+
 
   post: Post = {} as unknown as Post;
   similarPosts: Post[] = [];
@@ -39,20 +51,9 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
 
   _unsubscribe = new Subject();
 
-  constructor(
-    private store: Store,
-    public resource: ResourceService,
-    private metaTags: MetaTagsService,
-    public moment: MomentService,
-    private title: Title,
-    private scroll: ScrollService,
-    @Inject(WINDOW) private window: Window,
-    @Inject(ENVIRONMENT) private environment: Environment,
-    private route: ActivatedRoute,
-    public url: UrlUtilsService,
-    @Inject(PLATFORM_ID) platformId: string,
-    private dialog: MatDialog,
-  ) {
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+
     super();
     this.isBrowser = isPlatformBrowser(platformId);
   }

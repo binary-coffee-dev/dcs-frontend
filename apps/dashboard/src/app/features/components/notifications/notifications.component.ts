@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
@@ -12,13 +12,12 @@ import { CloseNotificationAction, Notification, NotificationState } from '@dcs-l
     standalone: false
 })
 export class NotificationsComponent implements OnInit {
+  private store = inject(Store);
+
 
   notifications: Notification[] = [];
 
   notificationsMap: Set<number> = new Set<number>();
-
-  constructor(private store: Store) {
-  }
 
   ngOnInit() {
     this.store.select(NotificationState.notifications)

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
@@ -11,10 +11,10 @@ import { TopUsers, UrlUtilsService, User, UserInfoState } from '@dcs-libs/shared
     standalone: false
 })
 export class TopActiveUsersComponent implements OnInit {
-  top5Post = {} as TopUsers;
+  private store = inject(Store);
+  url = inject(UrlUtilsService);
 
-  constructor(private store: Store, public url: UrlUtilsService) {
-  }
+  top5Post = {} as TopUsers;
 
   ngOnInit(): void {
     this.store.select(UserInfoState.topActiveUsers).subscribe(topActive => this.top5Post = {...topActive});

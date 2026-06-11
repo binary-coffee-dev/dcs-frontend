@@ -1,16 +1,13 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Environment, ENVIRONMENT, WINDOW } from '@dcs-libs/shared';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  private window = inject<Window>(WINDOW);
+  private env = inject<Environment>(ENVIRONMENT);
 
-  constructor(
-    @Inject(WINDOW) private window: Window,
-    @Inject(ENVIRONMENT) private env: Environment
-  ) {
-  }
 
   loginAction() {
     this.loginWithRedir(this.window.location.href);

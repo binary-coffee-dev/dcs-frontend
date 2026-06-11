@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -11,8 +11,8 @@ import { PostAction } from '@dcs-libs/shared';
   providedIn: 'root'
 })
 export class PostGuard implements CanActivate {
-  constructor(private store: Store) {
-  }
+  private store = inject(Store);
+
 
   canActivate(
     next: ActivatedRouteSnapshot,

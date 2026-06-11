@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
@@ -22,21 +22,17 @@ import { MatDialog } from "@angular/material/dialog";
     standalone: false
 })
 export class ListComponent extends Permissions implements OnInit {
+  private store = inject(Store);
+  private dialog = inject(MatDialog);
+  private url = inject(UrlUtilsService);
+  private rolePermissionMap = inject<Map<RoleEnum, Permission[]>>(ROLE_PERMISSION_MAP);
+
   files: File[] = [];
 
   numberOfPages = 0;
   currentPage = 0;
 
   tableOrCard = false;
-
-  constructor(
-    private store: Store,
-    private dialog: MatDialog,
-    private url: UrlUtilsService,
-    @Inject(ROLE_PERMISSION_MAP) private rolePermissionMap: Map<RoleEnum, Permission[]>
-  ) {
-    super();
-  }
 
   ngOnInit() {
     this.updateFilter();

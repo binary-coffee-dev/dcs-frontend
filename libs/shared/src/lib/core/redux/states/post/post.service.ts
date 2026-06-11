@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -26,12 +26,10 @@ import { Where } from '../pagination-base.class';
   providedIn: 'root'
 })
 export class PostService {
+  private apollo = inject(Apollo);
+  private env = inject<Environment>(ENVIRONMENT);
+  private responseService = inject(UpdateResponseService);
 
-  constructor(
-    private apollo: Apollo,
-    @Inject(ENVIRONMENT) private env: Environment,
-    private responseService: UpdateResponseService) {
-  }
 
   fetchPosts(limit: number, start = 0, where: any = {}): Observable<PostConnection> {
     const sort = [!!this.env.isDashboard ? 'createdAt:desc' : 'publishedAt:desc'];

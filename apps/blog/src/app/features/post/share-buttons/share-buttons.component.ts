@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { WINDOW } from '@dcs-libs/shared';
@@ -10,16 +10,15 @@ import { WINDOW } from '@dcs-libs/shared';
     standalone: false
 })
 export class ShareButtonsComponent implements OnInit {
+  private window = inject<Window>(WINDOW);
+  private platformId = inject<Object>(PLATFORM_ID);
+
 
   url = '';
   urlFacebook = '';
   urlTwitter = '';
   urlLinkedIn = '';
   info = '';
-
-  constructor(@Inject(WINDOW) private window: Window,
-              @Inject(PLATFORM_ID) private platformId: Object) {
-  }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {

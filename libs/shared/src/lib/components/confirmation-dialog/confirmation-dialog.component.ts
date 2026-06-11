@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 @Component({
@@ -8,13 +8,21 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
     standalone: false
 })
 export class ConfirmationDialogComponent implements OnInit {
+  private dialogRef = inject<MatDialogRef<ConfirmationDialogComponent>>(MatDialogRef);
+  data = inject<{
+    title: string;
+    okTitle: string;
+    cancelTitle: string;
+}>(MAT_DIALOG_DATA);
+
 
   @Input() title = '';
   @Input() okTitle = 'Ok';
   @Input() cancelTitle = 'Cancelar';
 
-  constructor(private dialogRef: MatDialogRef<ConfirmationDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { title: string, okTitle: string, cancelTitle: string }) {
+  constructor() {
+    const data = this.data;
+
     this.title = data.title || this.title;
     this.okTitle = data.okTitle || this.okTitle;
     this.cancelTitle = data.cancelTitle || this.cancelTitle;

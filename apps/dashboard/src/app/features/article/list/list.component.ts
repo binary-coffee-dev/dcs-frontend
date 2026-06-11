@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
@@ -22,21 +22,17 @@ import {
     standalone: false
 })
 export class ListComponent extends Permissions implements OnInit {
+  private store = inject(Store);
+  moment = inject(MomentService);
+  private environment = inject<Environment>(ENVIRONMENT);
+  url = inject(UrlUtilsService);
+
   posts: Post[] = [];
 
   currentPage = 0;
   numberOfPages = 0;
 
   tableOrCard = false;
-
-  constructor(
-    private store: Store,
-    public moment: MomentService,
-    @Inject(ENVIRONMENT) private environment: Environment,
-    public url: UrlUtilsService
-  ) {
-    super();
-  }
 
   ngOnInit() {
     const me = this.meUser();

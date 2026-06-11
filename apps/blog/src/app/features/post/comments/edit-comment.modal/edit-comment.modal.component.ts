@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
@@ -13,18 +13,17 @@ import { Comment, EditCommentAction } from '@dcs-libs/shared';
     standalone: false
 })
 export class EditCommentModalComponent implements OnInit {
+  private dialogRef = inject<MatDialogRef<EditCommentModalComponent>>(MatDialogRef);
+  private store = inject(Store);
+  data = inject<{
+    comment: Comment;
+}>(MAT_DIALOG_DATA);
+
 
   commentError = '';
   commentForm = new UntypedFormGroup({
     body: new UntypedFormControl('', Validators.required),
   });
-
-  constructor(
-    private dialogRef: MatDialogRef<EditCommentModalComponent>,
-    private store: Store,
-    @Inject(MAT_DIALOG_DATA) public data: { comment: Comment }
-  ) {
-  }
 
   ngOnInit(): void {
     this.commentForm.controls['body'].setValue(this.data.comment.body);

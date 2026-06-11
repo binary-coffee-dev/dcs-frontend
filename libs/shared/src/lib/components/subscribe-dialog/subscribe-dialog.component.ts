@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from "@angular/material/dialog";
 
@@ -14,14 +14,13 @@ import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
     standalone: false
 })
 export class SubscribeDialogComponent implements OnInit {
+  private dialogRef = inject<MatDialogRef<SubscribeDialogComponent>>(MatDialogRef);
+  private store = inject(Store);
+
 
   subscribeForm = new UntypedFormGroup({
     email: new UntypedFormControl('', [Validators.required, Validators.email])
   });
-
-  constructor(private dialogRef: MatDialogRef<SubscribeDialogComponent>,
-              private store: Store) {
-  }
 
   ngOnInit(): void {
   }

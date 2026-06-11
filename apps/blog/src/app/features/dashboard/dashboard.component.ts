@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
@@ -12,6 +12,8 @@ import { isPlatformBrowser } from '@angular/common';
     standalone: false
 })
 export class DashboardComponent implements OnInit {
+  private store = inject(Store);
+
 
   posts: Post[] = [];
   numbers: number[] = [];
@@ -19,7 +21,9 @@ export class DashboardComponent implements OnInit {
   pageSize = 0;
   isBrowser = false;
 
-  constructor(private store: Store, @Inject(PLATFORM_ID) platformId: string) {
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
