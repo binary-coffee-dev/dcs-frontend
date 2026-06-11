@@ -4,7 +4,7 @@
 
   <div class='flex flex-row mt-6 ml-5 text-xs leading-5'>
     <div class="flex flex-col mr-3">
-      @for (line of lineNumbers; track line) {
+      @for (line of lineNumbers(); track line) {
         <span class='line-number text-right'
         >{{ line }}</span>
       }
@@ -13,9 +13,9 @@
     <div class='overflow-hidden flex flex-col w-full ml-3'>
 
       <!--podcast list-->
-      @if (showPodcast) {
+      @if (showPodcast()) {
         <span class="whitespace-nowrap"><span class='class'>class</span> Podcast_Espacio_Binario &#123;</span>
-        @for (podcast of episodes; track podcast) {
+        @for (podcast of episodes(); track podcast) {
           <span>&#160;</span>
           <a class='link no-underline py-0 px-2 rounded ml-5 flex flex-col hover:underline'
             [href]='podcast?.url'
@@ -32,9 +32,9 @@
       }
 
       <!--share in social medias-->
-      @if (showSocialMedias) {
+      @if (showSocialMedias()) {
         <span class="whitespace-nowrap"><span class='class'>class</span> Compartir_Artículo &#123;</span>
-        @for (link of shareLinks; track link) {
+        @for (link of shareLinks(); track link) {
           <span>&#160;</span>
           <a class='link no-underline py-0 px-2 rounded ml-5 flex flex-col hover:underline'
             [href]='link?.url'
@@ -50,9 +50,9 @@
       }
 
       <!--recent comments-->
-      @if (showRecentComments) {
+      @if (showRecentComments()) {
         <span><span class='class'>class</span> Opiniones_Recientes &#123;</span>
-        @for (comment of comments; track comment) {
+        @for (comment of comments(); track comment) {
           <span>&#160;</span>
           <a [routerLink]="'/post/' + getPostName(comment?.post)"
             [fragment]='comment?.id'
