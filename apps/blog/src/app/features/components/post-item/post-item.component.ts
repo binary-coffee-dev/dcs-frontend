@@ -1,27 +1,30 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, input, linkedSignal } from '@angular/core';
 
 import { MomentService, Post, UrlUtilsService } from '@dcs-libs/shared';
 import { ResourceService } from '../../../core/services';
 
 @Component({
-    selector: 'app-post-item',
-    templateUrl: './post-item.component.html',
-    styleUrls: ['./post-item.component.scss'],
-    standalone: false
+  selector: 'app-post-item',
+  templateUrl: './post-item.component.html',
+  styleUrls: ['./post-item.component.scss'],
+  standalone: false,
 })
 export class PostItemComponent {
+  private resource = inject(ResourceService);
   moment = inject(MomentService);
   url = inject(UrlUtilsService);
-  private resource = inject(ResourceService);
 
-  @Input()
-  post: Post = {} as unknown as Post;
+  post = input<Post | null>(null);
+  postValue = linkedSignal<Post | null, Post | null>({
+    source: this.post,
+    computation: (source) => source,
+  });
 
-  getPostBanner(post: Post) {
-    if (post && post.banner && post.banner.url) {
+  getPostBanner(post: Post | null) {
+    if (post?.banner?.url) {
       return this.resource.addApiUrl(post.banner.url);
     }
-    return "";
+    return '';
   }
 
   public stopPropagation(event: any) {
@@ -29,12 +32,21 @@ export class PostItemComponent {
   }
 
   onBannerImgError() {
-    this.post = {...this.post, banner: undefined};
+    this.postValue.set({
+      ...(this.postValue() || {}),
+      banner: undefined,
+    } as Post);
   }
 
   onAuthorImgError(): void {
-    if (this.post.author && this.post.author.avatarUrl) {
-      delete this.post.author.avatarUrl;
+    if (this.postValue()?.author?.avatarUrl) {
+      this.postValue.update(
+        (post) =>
+          ({
+            ...post,
+            author: { ...post?.author, avatarUrl: undefined },
+          } as Post)
+      );
     }
   }
 }

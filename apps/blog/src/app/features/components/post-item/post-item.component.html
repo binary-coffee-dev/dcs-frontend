@@ -1,31 +1,31 @@
 <div class='w-full mb-1 p-3'>
-  <a [routerLink]="'/post/' + post.name"
-    class='card-container flex flex-col relative w-full rounded-md overflow-hidden no-underline shadow-lg'>
+  <a [routerLink]="'/post/' + postValue()?.name"
+     class='card-container flex flex-col relative w-full rounded-md overflow-hidden no-underline shadow-lg'>
 
-    @if (post.banner?.url) {
+    @if (postValue()?.banner?.url) {
       <img class='w-full max-h-[200px] min-h-[200px] object-cover object-center'
-        style="position: relative;"
-        (error)="onBannerImgError()"
-        [ngSrc]='getPostBanner(post)'
-        fill=""
-        [alt]='post.title'>
+           style="position: relative;"
+           (error)="onBannerImgError()"
+           [ngSrc]='getPostBanner(postValue())'
+           fill=""
+           [alt]='postValue()?.title || ""'>
     }
 
     <div class='p-5'>
       <div class="flex flex-row my-2 mx-0 items-center">
-        @if (post.author && post.author.username) {
+        @if (postValue()?.author?.username) {
           <a class='author-container text-[10px] flex flex-row items-center hover:underline'
-            [routerLink]="'/users/' + (post.author.username || '')"
-            (click)='stopPropagation($event)'>
+             [routerLink]="'/users/' + (postValue()?.author?.username || '')"
+             (click)='stopPropagation($event)'>
             <img class="w-[20px] min-w-[20px] h-[20px] rounded-full"
-              style="height: 20px !important;"
-              (error)="onAuthorImgError()"
-              [ngSrc]='url.getUserImage(post.author)'
-              width="20"
-              height="20"
-              [alt]='post.author.username'>
+                 style="height: 20px !important;"
+                 (error)="onAuthorImgError()"
+                 [ngSrc]='url.getUserImage(postValue()?.author)'
+                 width="20"
+                 height="20"
+                 [alt]='postValue()?.author?.username || "noavatar"'>
             <span class="ml-3">
-              {{ post.author.username || 'público' }}
+              {{ postValue()?.author?.username || 'público' }}
             </span>
           </a>
         }
@@ -33,29 +33,29 @@
         <div class="w-full"></div>
 
         <span
-        class='post-date text-[10px] whitespace-nowrap'>// {{ post.publishedAt ? moment.timeFromDate(post.publishedAt) : '' }}</span>
+          class='post-date text-[10px] whitespace-nowrap'>// {{ postValue()?.publishedAt ? moment.timeFromDate(postValue()?.publishedAt) : '' }}</span>
       </div>
 
       <h1 class="text-base font-thin">
-        <span>var</span> Título = <b class="font-bold">{{ post.title }}</b>
+        <span>var</span> Título = <b class="font-bold">{{ postValue()?.title }}</b>
       </h1>
 
       <div>
-        <app-tags [tags]='post.tags'></app-tags>
+        <app-tags [tags]='postValue()?.tags'></app-tags>
       </div>
 
       <div class='icons-container flex flex-row mt-5 text-xs'>
         <div class="mr-5">
           <i class='material-icons text-xs'>mode_comment</i>
-          {{ post.comments }}
+          {{ postValue()?.comments }}
         </div>
         <div class="mr-5">
           <i class='fa fa-coffee text-xs'></i>
-          {{ post.likes }}
+          {{ postValue()?.likes }}
         </div>
         <div class="mr-5">
           <i class='fa fa-eye text-xs'></i>
-          {{ post.views }}
+          {{ postValue()?.views }}
         </div>
       </div>
     </div>
