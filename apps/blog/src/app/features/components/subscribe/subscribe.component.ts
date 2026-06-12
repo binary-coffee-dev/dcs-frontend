@@ -1,33 +1,30 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { SubscribeAction, SubscriptionState } from "@dcs-libs/shared";
-
+import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
 
 @Component({
-    selector: 'app-subscribe',
-    templateUrl: './subscribe.component.html',
-    styleUrls: ['./subscribe.component.scss'],
-    standalone: false
+  selector: 'app-subscribe',
+  templateUrl: './subscribe.component.html',
+  styleUrls: ['./subscribe.component.scss'],
+  standalone: false,
 })
 export class SubscribeComponent implements OnInit, OnDestroy {
   private store = inject(Store);
 
-
   _unsubscribe = new Subject();
 
-  message = '';
-  subscriptionError = '';
-  subscriptionSent = false;
-
-  loading = false;
+  message = signal<string>('');
+  subscriptionError = signal<string>('');
+  subscriptionSent = signal<boolean>(false);
+  loading = signal<boolean>(false);
 
   subscribeForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email])
+    email: new FormControl('', [Validators.required, Validators.email]),
   });
 
   ngOnInit(): void {
@@ -36,49 +33,57 @@ export class SubscribeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._unsubscribe.next(true);
+    this._unsubscribe.complete();
   }
 
   subscribeToLoading(): void {
-    this.store.select(SubscriptionState.loading)
+    this.store
+      .select(SubscriptionState.loading)
       .pipe(takeUntil(this._unsubscribe))
       .subscribe((loading) => {
-        this.loading = loading;
-        // this.loading = true;
-        this.subscribeForm = new FormGroup({
-          email: new FormControl({value: this.subscribeForm.controls['email'].value, disabled: loading})
-        });
+        this.loading.set(loading);
+        if (loading) {
+          this.subscribeForm.controls.email.disable();
+        } else {
+          this.subscribeForm.controls.email.enable();
+        }
       });
   }
 
   subscribe() {
-    if (this.subscribeForm.valid && !this.loading) {
+    if (this.subscribeForm.valid && !this.loading()) {
       this.store
-        .dispatch(new SubscribeAction(this.subscribeForm.controls['email'].value || ''))
+        .dispatch(
+          new SubscribeAction(this.subscribeForm.controls['email'].value || '')
+        )
         .pipe(takeUntil(this._unsubscribe))
         .subscribe(() => {
           const subscription = this.store.selectSnapshot(
             SubscriptionState.subscription
           );
           if (subscription && !subscription.verified) {
-            this.subscriptionError = '';
-            this.message =
-              'La suscripción ha sido correctamente enviada, revise su email para verificarlo.';
+            this.subscriptionError.set('');
+            this.message.set(
+              'La suscripción ha sido correctamente enviada, revise su email para verificarlo.'
+            );
           } else if (subscription && subscription.verified) {
-            this.message = '';
-            this.subscriptionError =
-              'El email ya se encuentra suscrito al sitio';
+            this.message.set('');
+            this.subscriptionError.set(
+              'El email ya se encuentra suscrito al sitio'
+            );
           } else {
-            this.message = '';
-            this.subscriptionError =
-              'Error: Ha ocurrido un problema con su suscripción. Por favor, contáctenos en website@binarycoffee.dev';
+            this.message.set('');
+            this.subscriptionError.set(
+              'Error: Ha ocurrido un problema con su suscripción. Por favor, contáctenos en website@binarycoffee.dev'
+            );
           }
           this.subscribeForm = new FormGroup({
-            email: new FormControl('', [Validators.required, Validators.email])
+            email: new FormControl('', [Validators.required, Validators.email]),
           });
         });
-    } else if (!this.loading) {
-      this.message = '';
-      this.subscriptionError = 'Error: Email incorrecto';
+    } else if (!this.loading()) {
+      this.message.set('');
+      this.subscriptionError.set('Error: Email incorrecto');
     }
   }
 }
