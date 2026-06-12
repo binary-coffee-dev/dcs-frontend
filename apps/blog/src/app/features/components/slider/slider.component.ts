@@ -1,11 +1,26 @@
-import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  inject,
+  signal,
+  computed,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Subject, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
-import { Comment, CommentState, Environment, ENVIRONMENT, UrlUtilsService } from '@dcs-libs/shared';
+import {
+  Comment,
+  CommentState,
+  Environment,
+  ENVIRONMENT,
+  Post,
+  UrlUtilsService,
+} from '@dcs-libs/shared';
 
 export interface InformationBanner {
   type: 'comment' | 'welcome';
@@ -16,10 +31,10 @@ export interface InformationBanner {
 const TIME_TO_CHANGE_PAGE = 6000;
 
 @Component({
-    selector: 'app-slider',
-    templateUrl: './slider.component.html',
-    styleUrls: ['./slider.component.scss'],
-    standalone: false
+  selector: 'app-slider',
+  templateUrl: './slider.component.html',
+  styleUrls: ['./slider.component.scss'],
+  standalone: false,
 })
 export class SliderComponent implements OnInit, OnDestroy {
   private store = inject(Store);
@@ -27,52 +42,67 @@ export class SliderComponent implements OnInit, OnDestroy {
   private environment = inject<Environment>(ENVIRONMENT);
   private platformId = inject<Object>(PLATFORM_ID);
 
-
   unsubscribe = new Subject<void>();
   stopTimer = new Subject<void>();
 
-  info: InformationBanner[] = [];
+  info = signal<InformationBanner[]>([]);
+  createArticleUrl = signal<string>(
+    `${this.environment.siteDashboardUrl}/articles/create`
+  );
+  activeInfo = signal<InformationBanner | null>(null);
+  activePage = signal<number>(0);
 
-  activeInfo: InformationBanner = {} as unknown as InformationBanner;
-  activePage = 0;
+  getPostName = computed(() => {
+    if (
+      this.activeInfo()?.value?.post &&
+      typeof this.activeInfo()?.value?.post === 'string'
+    ) {
+      return '';
+    }
+    return (this.activeInfo()?.value?.post as Post)?.name ?? '';
+  });
 
   ngOnDestroy(): void {
     this.unsubscribe.next();
   }
 
   ngOnInit(): void {
-    this.info.push({ type: 'welcome' } as InformationBanner);
+    this.info.update((list) => [
+      ...list,
+      { type: 'welcome' } as InformationBanner,
+    ]);
 
-    this.store.select(CommentState.recentComments)
+    this.store
+      .select(CommentState.recentComments)
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe(comments => {
+      .subscribe((comments) => {
         if (comments && comments.length > 0) {
-          this.info = this.info.filter(v => v.type !== 'comment');
+          this.info.update((list) => [
+            ...list.filter((v) => v.type !== 'comment'),
+          ]);
           this.addComment(comments[0]);
           this.addComment(comments[1]);
         }
       });
 
-    this.activePage = 0;
+    this.activePage.set(0);
     this.updateInfo();
 
     if (isPlatformBrowser(this.platformId)) {
       this.nextPageTimer();
-      // this.setWavePath();
     }
   }
 
-  map(value: number, in_min: number, in_max: number, out_min: number, out_max: number): number {
-    return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-  }
-
   addComment(comment: Comment) {
-    this.info.push({ type: 'comment', value: comment } as InformationBanner);
+    this.info.update((list) => [
+      ...list,
+      { type: 'comment', value: comment } as InformationBanner,
+    ]);
   }
 
   openInfo(page: number) {
     this.stopTimer.next();
-    this.activePage = page;
+    this.activePage.set(page);
     this.updateInfo();
     this.nextPageTimer();
   }
@@ -81,29 +111,18 @@ export class SliderComponent implements OnInit, OnDestroy {
     timer(TIME_TO_CHANGE_PAGE)
       .pipe(takeUntil(this.unsubscribe), takeUntil(this.stopTimer))
       .subscribe(() => {
-        this.activePage = (this.activePage + 1) % this.info.length;
+        this.activePage.update(value => (value + 1) % this.info().length);
         this.updateInfo();
         this.nextPageTimer.bind(this)();
       });
   }
 
   updateInfo() {
-    this.activeInfo = this.info[this.activePage];
+    this.activeInfo.set(this.info()[this.activePage()]);
   }
 
   getLimitedMessage(message: string | undefined) {
-    message = message || '';
+    message = message ?? '';
     return message.substring(0, Math.min(70, message.length)) + '...';
-  }
-
-  getCreateArticleUrl(): string {
-    return `${this.environment.siteDashboardUrl}/articles/create`;
-  }
-
-  getPostName() {
-    if (typeof this.activeInfo?.value?.post === 'string' ) {
-      return '';
-    }
-    return this.activeInfo?.value?.post?.name;
   }
 }
