@@ -1,6 +1,10 @@
-<div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+<div class="scroll-to-top"
+     [ngClass]="{'show-scrollTop': windowScrolled()}">
   <div class="links">
-    <button mat-button class="social-link" title="Subir" (click)="scrollToTop()">
+    <button mat-button
+            class="social-link"
+            title="Subir"
+            (click)="scrollToTop()">
       <mat-icon aria-hidden="false">keyboard_arrow_up</mat-icon>
     </button>
   </div>
