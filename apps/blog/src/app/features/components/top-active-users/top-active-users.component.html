@@ -1,16 +1,16 @@
-@if ((top5Post.users.length || 0) > 0) {
+@if ((top5Post()?.users?.length ?? 0) > 0) {
   <div class='mt-6 mr-4 mb-7'>
     <span> Más Activos </span>
     <div class='top-content rounded flex flex-col mt-2 mb-2 pt-4 pr-4 pb-0 pl-4 shadow-lg'>
-      @for (user of top5Post.users; track user; let i = $index) {
+      @for (user of top5Post()?.users ?? []; track user; let i = $index) {
         <a class="flex flex-row pb-3 items-center"
-          [routerLink]="'/users/' + user?.username">
+           [routerLink]="'/users/' + user?.username">
           <img class='w-[40px] min-w-[40px] max-h-[40px] overflow-hidden rounded-full mr-3'
-            (error)="onUserImgError(i)"
-            [ngSrc]='getUserAvatar(user)'
-            width="40"
-            height="40"
-            [alt]='user?.username' />
+               (error)="onUserImgError(i)"
+               [ngSrc]='getUserAvatar(user)'
+               width="40"
+               height="40"
+               [alt]='user?.username' />
           <div class='flex flex-col text-xs hover:underline overflow-hidden'>
             <span class='top-user-name whitespace-nowrap'>"{{ user?.username }}"</span>
             <span class='post-info whitespace-nowrap'> // {{ getTopLikeByIndex(i) }} artículos</span>

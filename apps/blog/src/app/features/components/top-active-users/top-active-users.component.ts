@@ -1,31 +1,47 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
-import { TopUsers, UrlUtilsService, User, UserInfoState } from '@dcs-libs/shared';
+import {
+  TopUsers,
+  UrlUtilsService,
+  User,
+  UserInfoState,
+} from '@dcs-libs/shared';
 
 @Component({
-    selector: 'app-top-active-users',
-    templateUrl: './top-active-users.component.html',
-    styleUrls: ['./top-active-users.component.scss'],
-    standalone: false
+  selector: 'app-top-active-users',
+  templateUrl: './top-active-users.component.html',
+  styleUrls: ['./top-active-users.component.scss'],
+  standalone: false,
 })
 export class TopActiveUsersComponent implements OnInit {
   private store = inject(Store);
   url = inject(UrlUtilsService);
 
-  top5Post = {} as TopUsers;
+  top5Post = signal<TopUsers | null>(null);
 
   ngOnInit(): void {
-    this.store.select(UserInfoState.topActiveUsers).subscribe(topActive => this.top5Post = {...topActive});
+    this.store
+      .select(UserInfoState.topActiveUsers)
+      .subscribe((topActive) => this.top5Post.set({ ...topActive }));
   }
 
   onUserImgError(index: number): void {
-    this.top5Post.users = this.top5Post.users.map((user: User, i: number): User => {
-      if (i == index) {
-        return {...user, avatarUrl: undefined} as User;
+    this.top5Post.update((top5Post: TopUsers | null): TopUsers | null => {
+      if (top5Post) {
+        return {
+          ...(top5Post ?? {}),
+          users:
+            top5Post?.users?.map((user: User, i: number): User => {
+              if (i == index) {
+                return { ...user, avatarUrl: undefined } as User;
+              }
+              return user;
+            }) ?? [],
+        } as TopUsers;
       }
-      return user;
+      return top5Post;
     });
   }
 
@@ -34,9 +50,6 @@ export class TopActiveUsersComponent implements OnInit {
   }
 
   getTopLikeByIndex(i: number): string | number {
-    if (this.top5Post && this.top5Post.values) {
-      return this.top5Post.values[i];
-    }
-    return '';
+    return this.top5Post()?.values?.[i] ?? '';
   }
 }
