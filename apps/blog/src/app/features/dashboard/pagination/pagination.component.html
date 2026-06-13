@@ -1,19 +1,17 @@
-@if (((firstPage | async)  === false) || ((lastPage | async) === false)) {
-  <div class="pagination-container flex flex-row w-full pt-4 px-3 border-b-0 sticky bottom-0"
-    >
-    @if ((firstPage | async)  === false) {
+@if (!firstPage() || !lastPage()) {
+  <div class="pagination-container flex flex-row w-full pt-4 px-3 border-b-0 sticky bottom-0">
+    @if (!firstPage()) {
       <button class="pagination-button w-full pb-left rounded-none text-base font-bold cursor-pointer"
-        mat-button
-        (click)="previousPage()">
+              mat-button
+              (click)="previousPage()">
         <mat-icon aria-hidden="false">navigate_before</mat-icon>
         <mat-icon aria-hidden="false">navigate_before</mat-icon>
       </button>
     }
-    @if ((lastPage | async) === false) {
+    @if (!lastPage()) {
       <button class="pagination-button w-full pb-right"
-        mat-button
-        (click)="nextPage()"
-        >
+              mat-button
+              (click)="nextPage()">
         <mat-icon aria-hidden="false">navigate_next</mat-icon>
         <mat-icon aria-hidden="false">navigate_next</mat-icon>
       </button>
