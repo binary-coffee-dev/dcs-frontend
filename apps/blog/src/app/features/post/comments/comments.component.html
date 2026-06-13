@@ -1,31 +1,30 @@
 <div class='comments-container w-full mb-4'>
 
   <form class='comment-new-container w-full p-6 mb-9 shadow-lg rounded'
-    [formGroup]='commentForm'>
+        [formGroup]='commentForm'>
     <div class='comments-header mb-6 font-thin'><span>// Comparte tus opiniones</span></div>
 
-    @if (commentError) {
-      <span class='flex flex-row'
-        >
+    @if (commentError()) {
+      <span class='flex flex-row'>
         <mat-icon class='fa fa-warning text-3lg'
-        style="transform: translateY(3px)"></mat-icon>
-        {{ commentError }}
+                  style="transform: translateY(3px)"></mat-icon>
+        {{ commentError() }}
       </span>
     }
 
     <mat-form-field class='comment-item-text w-full'
-      appearance='outline'>
+                    appearance='outline'>
       <mat-label class='code-none'>
         <span class='code-1 text-sm'> var </span>
         <span class='code-var text-sm'> Opinión =</span>
       </mat-label>
       <textarea matInput
-        (keyup)='commentChangeEvent()'
-        formControlName='body'
-        type='text'
-        maxlength='250'
-        cols='30'
-        rows='4'>
+                (keyup)='commentChangeEvent()'
+                formControlName='body'
+                type='text'
+                maxlength='250'
+                cols='30'
+                rows='4'>
       </textarea>
     </mat-form-field>
 
@@ -34,29 +33,28 @@
     </div>
   </form>
 
-  @if (comments && comments.length > 0) {
-    <div class='comments-list p-6 w-full shadow-lg rounded'
-      >
-      @for (comment of comments; track comment) {
+  @if ((comments()?.length ?? 0) > 0) {
+    <div class='comments-list p-6 w-full shadow-lg rounded'>
+      @for (comment of comments(); track comment) {
         <div class='comment-container mt-6 mx-0 mb-9'>
           <div class='user-data'>
             <a class="flex flex-row items-center no-underline hover:underline"
-              [routerLink]="'/users/' + (comment?.user?.username || '')">
+               [routerLink]="'/users/' + (comment?.user?.username || '')">
               <img class='comment-user-image w-8 h-8 rounded-full mr-3'
-                [ngSrc]='getUserAvatar(comment?.user)'
-                width="32"
-                height="32"
-                alt='noavatar'>
+                   [ngSrc]='getUserAvatar(comment?.user)'
+                   width="32"
+                   height="32"
+                   alt='noavatar'>
               <span class='mr-3'
-              matTooltip='Ver perfil'>"{{ getName(comment) }}"</span>
+                    matTooltip='Ver perfil'>"{{ getName(comment) }}"</span>
               @if (isCommentFromPostOwner(comment)) {
                 <i class='fa fa-check-circle mr-1.5'
-                  [matTooltip]="'Autor'">
+                   [matTooltip]="'Autor'">
                 </i>
               }
               @if (isStaffOrAdmin(comment)) {
                 <i class='fa fa-star'
-                  [matTooltip]='getRoleName(comment)'>
+                   [matTooltip]='getRoleName(comment)'>
                 </i>
               }
             </a>
@@ -67,14 +65,14 @@
             <div class='text-2xl -mt-4'>
               @if (canCurrentUserEditComment(comment)) {
                 <i class='fa fa-trash ml-3'
-                  (click)='removeComment(comment.id)'
-                  matTooltip='Eliminar'>
+                   (click)='removeComment(comment.id)'
+                   matTooltip='Eliminar'>
                 </i>
               }
               @if (canCurrentUserEditComment(comment)) {
                 <i class='fa fa-pencil ml-3'
-                  (click)='editComment(comment)'
-                  matTooltip='Editar'>
+                   (click)='editComment(comment)'
+                   matTooltip='Editar'>
                 </i>
               }
             </div>

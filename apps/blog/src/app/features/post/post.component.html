@@ -9,70 +9,70 @@
 
       <div class='post-info-content p-6 shadow-lg'>
         <div class='w-full'>
-          @if (post.banner && post.banner.url) {
+          @if (post()?.banner?.url) {
             <img class="w-full max-h-[300px] object-cover object-center"
-              style="position: relative;"
-              [ngSrc]='resource.addApiUrl(post.banner.url)'
-              fill=""
-              alt='article banner'/>
+                 style="position: relative;"
+                 [ngSrc]='resource.addApiUrl(post()?.banner?.url)'
+                 fill=""
+                 alt='article banner' />
           }
         </div>
 
         <div class='tags-content text-right'>
-          <app-tags [tags]='post.tags'></app-tags>
+          <app-tags [tags]='post()?.tags ?? []'></app-tags>
         </div>
 
         <div class='flex flex-row mb-1.5'>
           <a class='user-avatar flex flex-row text-xs items-center no-underline'
-            [href]="'/users/' + post.author?.username"
-            matTooltip='Ver perfil'>
-            <img [alt]='post.author?.username'
-              [ngSrc]='url.getUserImage(post.author)'
-              class="w-8 h-8 rounded-full mr-3"
-              height="32"
-              width="32"/>
-            <span>"{{ post.author?.username }}"</span>
+             [href]="'/users/' + (post()?.author?.username ?? '')"
+             matTooltip='Ver perfil'>
+            <img [alt]='post()?.author?.username ?? "noimage"'
+                 [ngSrc]='url.getUserImage(post()?.author)'
+                 class="w-8 h-8 rounded-full mr-3"
+                 height="32"
+                 width="32" />
+            <span>"{{ post()?.author?.username }}"</span>
           </a>
         </div>
 
         <div class='post-info flex flex-row items-end'>
-          <span>// {{ moment.timeFromDateForPublishPost(post.publishedAt) }}</span>
+          <span>// {{ moment.timeFromDateForPublishPost(post()?.publishedAt) ?? '' }}</span>
           <div class="w-full"></div>
           <div class='icon'>
             <i class='material-icons post-icons'>mode_comment</i>
-            {{ post.comments }}
+            {{ post()?.comments ?? '' }}
           </div>
           <div class='icon'>
             <i class='fa fa-coffee post-icons'></i>
-            {{ likes }}
+            {{ likes() ?? '' }}
           </div>
           <div class='icon'>
             <i class='fa fa-eye post-icons'></i>
-            {{ post.views }}
+            {{ post()?.views ?? '' }}
           </div>
           <div class="w-full hidden md:block"></div>
           <mat-button-toggle class='like-button text-xs min-w-[200px] hidden md:block'
-            (click)='postLikeClick()'>
+                             (click)='postLikeClick()'>
             <i class='fa fa-coffee post-icons'></i>
-            Brindar con {{ post.author?.username }}
+            Brindar con {{ post()?.author?.username ?? 'unknown' }}
           </mat-button-toggle>
         </div>
 
         <div class="flex flex-row md:hidden mb-3">
           <div class="w-full"></div>
           <mat-button-toggle class='like-button text-xs min-w-[200px]'
-            (click)='postLikeClick()'>
+                             (click)='postLikeClick()'>
             <i class='fa fa-coffee post-icons'></i>
-            Brindar con {{ post.author?.username }}
+            Brindar con {{ post()?.author?.username ?? 'unknown' }}
           </mat-button-toggle>
         </div>
 
         <h1 class="title-content flex flex-row text-xl uppercase items-center mb-3">
-          <span class="w-full text-xl font-bold">{{ post.title }}</span>
-          @if ( ([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost(post)) {
+          <span class="w-full text-xl font-bold">{{ post()?.title ?? '' }}</span>
+          @if (([permissions().EDIT_ANY_ARTICLE] | hasPermissions) || isMyPost()) {
             <button mat-button
-              matTooltip='Editar artículo'
-              (click)='editPost(post)'>
+                    matTooltip='Editar artículo'
+                    (click)='editPost()'>
               <i class='fa fa-edit'></i>
             </button>
           }
@@ -82,24 +82,22 @@
           <app-share-buttons></app-share-buttons>
         </div>
 
-        @if (isBrowser) {
-          <div class='markdown-container'
-            >
+        @if (isBrowser()) {
+          <div class='markdown-container'>
             <markdown class="markdown-post-style"
-              [data]='post.body'
-              katex
-              [katexOptions]=""
-              [disableSanitizer]="true"
-            lineNumbers></markdown>
+                      [data]='post()?.body ?? ""'
+                      katex
+                      [katexOptions]=""
+                      [disableSanitizer]="true"
+                      lineNumbers></markdown>
           </div>
         }
-        @if (!isBrowser) {
-          <div class='markdown-container'
-            >
+        @if (!isBrowser()) {
+          <div class='markdown-container'>
             <markdown class="markdown-post-style"
-              [src]='articleBody()'
-              katex
-            lineNumbers></markdown>
+                      [src]='articleBody()'
+                      katex
+                      lineNumbers></markdown>
           </div>
         }
       </div>
@@ -107,22 +105,21 @@
       <div class='flex flex-row py-0'>
         <div class="w-full"></div>
         <mat-button-toggle class='like-button text-xs min-w-[200px] last-like-button'
-          (click)='postLikeClick()'>
+                           (click)='postLikeClick()'>
           <i class='fa fa-coffee post-icons'></i>
-          Brindar con {{ post.author?.username }}
+          Brindar con {{ post()?.author?.username ?? 'unknown' }}
         </mat-button-toggle>
       </div>
 
-      @if (post) {
-        <app-comments
-        [post]='post'></app-comments>
+      @if (post()) {
+        <app-comments [post]='post()'></app-comments>
       }
     </div>
     <div class='w-4/12 hidden md:block'>
       <app-info-bar [showPodcast]='false'
-      [showSocialMedias]='true'></app-info-bar>
+                    [showSocialMedias]='true'></app-info-bar>
       <div class='similar-post-content'>
-        @for (post of similarPosts; track post) {
+        @for (post of similarPosts(); track post) {
           <app-post-item
             class='post-element'
             [post]='post'>

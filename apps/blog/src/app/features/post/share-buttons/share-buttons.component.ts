@@ -10,9 +10,7 @@ import { WINDOW } from '@dcs-libs/shared';
     standalone: false
 })
 export class ShareButtonsComponent implements OnInit {
-  private window = inject<Window>(WINDOW);
   private platformId = inject<Object>(PLATFORM_ID);
-
 
   url = '';
   urlFacebook = '';
