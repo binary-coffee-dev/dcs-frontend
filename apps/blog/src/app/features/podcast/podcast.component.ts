@@ -1,36 +1,28 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 
-import { Store } from "@ngxs/store";
-import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { Store } from '@ngxs/store';
 
-import { EpisodeModel, FetchPodcastAction, MomentService, PodcastState } from "@dcs-libs/shared";
+import {
+  FetchPodcastAction,
+  MomentService,
+  PodcastState,
+} from '@dcs-libs/shared';
 
 @Component({
-    selector: 'app-podcast',
-    templateUrl: './podcast.component.html',
-    styleUrls: ['./podcast.component.scss'],
-    standalone: false
+  selector: 'app-podcast',
+  templateUrl: './podcast.component.html',
+  styleUrls: ['./podcast.component.scss'],
+  standalone: false,
 })
-export class PodcastComponent implements OnInit, OnDestroy {
+export class PodcastComponent implements OnInit {
   private store = inject(Store);
   moment = inject(MomentService);
 
-  _unsubscribe = new Subject();
-
-  podcastName = 'Espacio Binario';
-  isAdmin = true;
-  episodes: EpisodeModel[] = [];
+  podcastName = signal<string>('Espacio Binario');
+  episodes = toSignal(this.store.select(PodcastState.episodesList));
 
   ngOnInit(): void {
     this.store.dispatch(new FetchPodcastAction('espacio-binario'));
-    this.store.select(PodcastState.episodesList)
-      .pipe(takeUntil(this._unsubscribe))
-      .subscribe(list => this.episodes = list || []);
   }
-
-  ngOnDestroy(): void {
-    this._unsubscribe.next(true);
-  }
-
 }
