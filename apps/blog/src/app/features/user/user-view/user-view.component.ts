@@ -1,15 +1,19 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
-import { Observable, of } from 'rxjs';
 
 import {
   UrlUtilsService,
   MomentService,
-  Post,
-  PostState, User, NextPageAction, PreviousPageAction, WINDOW, ENVIRONMENT, Environment
+  PostState,
+  User,
+  WINDOW,
+  ENVIRONMENT,
+  Environment,
 } from '@dcs-libs/shared';
+import { UserView } from './user-view.resolver';
 
 interface UserData {
   type: 'link' | 'button' | 'data';
@@ -20,83 +24,68 @@ interface UserData {
 }
 
 @Component({
-    selector: 'app-user-view',
-    templateUrl: './user-view.component.html',
-    styleUrls: ['./user-view.component.scss'],
-    standalone: false
+  selector: 'app-user-view',
+  templateUrl: './user-view.component.html',
+  styleUrls: ['./user-view.component.scss'],
+  standalone: false,
 })
-export class UserViewComponent implements OnInit {
+export class UserViewComponent {
   private store = inject(Store);
-  moment = inject(MomentService);
-  url = inject(UrlUtilsService);
   private route = inject(ActivatedRoute);
   private window = inject<Window>(WINDOW);
   private environment = inject<Environment>(ENVIRONMENT);
+  moment = inject(MomentService);
+  url = inject(UrlUtilsService);
 
+  routeData = toSignal(this.route.data);
+  userInfo = computed<UserView | null>(() => this.routeData()?.['userInfo']);
 
-  user = {} as User;
-  posts: Post[] = [];
-  count = 0;
-  commentsCount = 0;
+  user = computed(() => this.userInfo()?.user);
+  count = computed(() => this.userInfo()?.count ?? 0);
+  commentsCount = computed(() => this.userInfo()?.commentsCount ?? 0);
+  posts = toSignal(this.store.select(PostState.posts), { initialValue: [] });
 
-  userData: UserData[] = [];
+  userData = computed(() => {
+    const userPage = this.user()?.page;
+    if (userPage) {
+      return [
+        {
+          type: 'data',
+          icon: 'email',
+          text: 'private',
+        } as UserData,
+        {
+          type: 'link',
+          icon: 'language',
+          link: userPage,
+        } as UserData,
+        {
+          type: 'button',
+          icon: 'rss_feed',
+          action: this.copyRSSToClipboard.bind(this),
+          text: 'RSS',
+        } as UserData,
+      ];
+    }
+    return [];
+  });
 
-  firstPage: Observable<boolean> = of(true);
-  lastPage: Observable<boolean> = of(true);
+  firstPage = toSignal(this.store.select(PostState.firstPage));
+  lastPage = toSignal(this.store.select(PostState.lastPage));
+  getUserRSSLink = computed(() => {
+    return `${this.environment.apiUrl}api/posts/feed/${
+      this.user()?.username
+    }/json`;
+  });
 
-  ngOnInit(): void {
-    this.user = this.route.snapshot.data['userInfo'].user;
-    this.posts = this.route.snapshot.data['userInfo'].posts;
-    this.count = this.route.snapshot.data['userInfo'].count;
-    this.commentsCount = this.route.snapshot.data['userInfo'].commentsCount;
-
-    this.store.select(PostState.posts).subscribe((posts) => this.posts = posts || this.posts);
-    this.firstPage = this.store.select(PostState.firstPage);
-    this.lastPage = this.store.select(PostState.lastPage);
-
-    this.createUserData();
-  }
-
-  createUserData() {
-    this.userData.push({
-      type: 'data',
-      icon: 'email',
-      text: 'private'
-    } as UserData);
-    this.userData.push({
-      type: 'link',
-      icon: 'language',
-      link: this.user?.page
-    } as UserData);
-    this.userData.push({
-      type: 'button',
-      icon: 'rss_feed',
-      action: this.copyRSSToClipboard.bind(this),
-      text: 'RSS'
-    } as UserData);
-  }
-
-  getUserAvatar(user: User) {
+  getUserAvatar(user: User | undefined): string {
+    if (!user) {
+      return '';
+    }
     return this.url.getUserImage(user);
-  }
-
-  getPostImg() {
-    return 'assets/images/banner-default.jpg';
-  }
-
-  articlesNextPage() {
-    this.store.dispatch(new NextPageAction());
-  }
-
-  articlesPreviousPage() {
-    this.store.dispatch(new PreviousPageAction());
   }
 
   copyRSSToClipboard() {
     this.window.navigator.clipboard.writeText(this.getUserRSSLink());
-  }
-
-  getUserRSSLink() {
-    return `${this.environment.apiUrl}api/posts/feed/${this.user.username}/json`;
   }
 }

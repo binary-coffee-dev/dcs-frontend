@@ -27,11 +27,10 @@ export interface UserView {
 export class UserViewResolver implements Resolve<UserView> {
   private store = inject(Store);
 
-
   user: User = {} as unknown as User;
   posts: Post[] = [];
-  count: number = 0;
-  commentsCount: number = 0;
+  count = 0;
+  commentsCount = 0;
 
   resolve(route: ActivatedRouteSnapshot): Observable<UserView> | Promise<UserView> | UserView {
     return this.store.dispatch(new FetchUserByUsernameAction(route.paramMap.get('username')))
