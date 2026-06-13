@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngxs/store';
@@ -16,7 +16,7 @@ export class SubscriptionComponent implements OnInit {
   private store = inject(Store);
   private activeRouter = inject(ActivatedRoute);
 
-  message = '';
+  message = signal<string>('');
 
   ngOnInit() {
     this.verifyingEmail(this.activeRouter.snapshot.params['token']);
@@ -46,9 +46,8 @@ export class SubscriptionComponent implements OnInit {
       .dispatch(action)
       .subscribe(() => {
         const subscription = this.store.selectSnapshot(SubscriptionState.subscription);
-        console.log(subscription)
         if (subscription?.verified === expectedVerifiedValue) {
-          this.message = message;
+          this.message.set(message);
         }
       });
   }
