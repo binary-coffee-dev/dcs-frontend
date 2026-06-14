@@ -1,12 +1,12 @@
 <app-notifications></app-notifications>
 <mat-toolbar>
-  <app-navbar (openSidenav)='showSidenav = true'></app-navbar>
+  <app-navbar (openSidenav)='showSidenav.set(true)'></app-navbar>
 </mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav [mode]="mobileQuery.matches ? 'over' : 'side'"
-               (closed)='showSidenav = false'
-               [opened]='mobileQuery.matches && showSidenav || !mobileQuery.matches'>
-    <app-sidebar (routeChange)='showSidenav = false'></app-sidebar>
+  <mat-sidenav [mode]="mobileQuery().matches ? 'over' : 'side'"
+               (closed)='showSidenav.set(false)'
+               [opened]='mobileQuery().matches && showSidenav() || !mobileQuery().matches'>
+    <app-sidebar (routeChange)='showSidenav.set(false)'></app-sidebar>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class='router'>
