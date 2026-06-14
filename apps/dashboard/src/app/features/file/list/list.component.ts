@@ -1,81 +1,86 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, computed, effect } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 
 import {
   AuthState,
-  ChangeFilesPageAction, ChangeQueryAction, ConfigState, ConfirmationDialogComponent,
+  ChangeFilesPageAction,
+  ChangeQueryAction,
+  ConfirmationDialogComponent,
   FetchFilesAction,
   File,
   FileState,
-  NextFilesPageAction, Permission, Permissions,
-  PreviousFilesPageAction, RemoveFileAction, ROLE_PERMISSION_MAP, RoleEnum, SetConfigAction,
-  UrlUtilsService, User
+  NextFilesPageAction,
+  Permission,
+  Permissions,
+  PreviousFilesPageAction,
+  RemoveFileAction,
+  ROLE_PERMISSION_MAP,
+  RoleEnum,
+  UrlUtilsService,
 } from '@dcs-libs/shared';
 import { UploadFileModalComponent } from '../../components/upload-file.modal';
-import { MatDialog } from "@angular/material/dialog";
 
 @Component({
-    selector: 'app-list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.scss'],
-    standalone: false
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss'],
+  standalone: false,
 })
-export class ListComponent extends Permissions implements OnInit {
+export class ListComponent extends Permissions {
   private store = inject(Store);
   private dialog = inject(MatDialog);
   private url = inject(UrlUtilsService);
-  private rolePermissionMap = inject<Map<RoleEnum, Permission[]>>(ROLE_PERMISSION_MAP);
+  private rolePermissionMap =
+    inject<Map<RoleEnum, Permission[]>>(ROLE_PERMISSION_MAP);
 
-  files: File[] = [];
+  files = toSignal(this.store.select(FileState.files), { initialValue: [] });
+  me = toSignal(this.store.select(AuthState.me));
 
-  numberOfPages = 0;
-  currentPage = 0;
+  pageIndicators = toSignal(this.store.select(FileState.pageIndicators));
+  numberOfPages = computed(() => {
+    return Math.ceil(
+      this.pageIndicators().count / this.pageIndicators().pageSize
+    );
+  });
+  currentPage = computed(() => this.pageIndicators().page);
 
-  tableOrCard = false;
+  constructor() {
+    super();
 
-  ngOnInit() {
-    this.updateFilter();
-    this.store.select(FileState.files).subscribe((files: File[]) => this.files = files);
-    this.store.select(FileState.pageIndicators).subscribe(indicators => {
-      if (indicators) {
-        this.currentPage = indicators.page;
-        this.numberOfPages = Math.ceil(indicators.count / indicators.pageSize);
+    effect(() => {
+      let where = {};
+      const me = this.me();
+      if (me) {
+        const permissionsByRole =
+          this.rolePermissionMap.get(me.role.type) || [];
+        if (
+          permissionsByRole.findIndex(
+            (v) => v === this.permissions().VIEW_ANY_IMAGE
+          ) === -1
+        ) {
+          where = { user: { id: { eq: me.id.toString() } } };
+        }
       }
+
+      this.store.dispatch(new ChangeQueryAction(where));
+      this.refreshPage();
     });
-    this.store.select(ConfigState.getConfigItem('dashboard-file-tableOrCard')).subscribe(value => this.tableOrCard = !!value);
   }
 
   openUploadFileModal() {
     const dialog = this.dialog.open(UploadFileModalComponent, {
       height: 'auto',
       width: '100%',
-      maxWidth: '425px'
+      maxWidth: '425px',
     });
-    dialog.afterClosed().subscribe(result => {
+    dialog.afterClosed().subscribe((result) => {
       if (result) {
         this.refreshPage();
       }
     });
-  }
-
-  updateFilter() {
-    let where = {};
-
-    const me = this.meUser();
-    if (me) {
-      const permissionsByRole = this.rolePermissionMap.get(me.role.type) || [];
-      if (permissionsByRole.findIndex(v => v === this.permissions().VIEW_ANY_IMAGE) === -1) {
-        where = {user: {id: {eq: me.id.toString()}}};
-      }
-    }
-
-    this.store.dispatch(new ChangeQueryAction(where));
-    this.refreshPage();
-  }
-
-  meUser(): User | undefined {
-    return this.store.selectSnapshot(AuthState.me);
   }
 
   refreshPage() {
@@ -98,18 +103,16 @@ export class ListComponent extends Permissions implements OnInit {
     this.store.dispatch(new ChangeFilesPageAction(page));
   }
 
-  toggleTableCard() {
-    this.tableOrCard = !this.tableOrCard;
-    this.store.dispatch(new SetConfigAction('dashboard-file-tableOrCard', this.tableOrCard));
-  }
-
   removeImage(file: File) {
-    this.dialog.open(ConfirmationDialogComponent, {
-      data: { title: '¿Está seguro que desea eliminar la imágen?' }
-    }).afterClosed().subscribe(result => {
-      if (result) {
-        this.store.dispatch(new RemoveFileAction(file.id));
-      }
-    });
+    this.dialog
+      .open(ConfirmationDialogComponent, {
+        data: { title: '¿Está seguro que desea eliminar la imágen?' },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.store.dispatch(new RemoveFileAction(file.id));
+        }
+      });
   }
 }
