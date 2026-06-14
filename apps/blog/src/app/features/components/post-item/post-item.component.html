@@ -41,7 +41,7 @@
       </h1>
 
       <div>
-        <app-tags [tags]='postValue()?.tags'></app-tags>
+        <app-tags [tags]='postValue()?.tags ?? []'></app-tags>
       </div>
 
       <div class='icons-container flex flex-row mt-5 text-xs'>
