@@ -1,6 +1,13 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  effect,
+  signal,
+  computed,
+} from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
 
@@ -10,84 +17,85 @@ import {
   UpdateMeAction,
   UpdateMyAvatarAction,
   UrlUtilsService,
-  User
+  User,
 } from '@dcs-libs/shared';
 import { UploadFileModalComponent } from '../components/upload-file.modal';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
-    selector: 'app-user-profile',
-    templateUrl: './user-profile.component.html',
-    styleUrls: ['./user-profile.component.scss'],
-    standalone: false
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.scss'],
+  standalone: false,
 })
 export class UserProfileComponent implements OnInit {
   private store = inject(Store);
   private dialog = inject(MatDialog);
   private url = inject(UrlUtilsService);
 
-  me: User = {} as unknown as User;
-  professionalDataChange = false;
+  me = toSignal(this.store.select(AuthState.me));
+  professionalDataChange = signal<boolean>(false);
+
+  getUserImage = computed(() => this.url.getUserImage(this.me()));
 
   personalForm = new UntypedFormGroup({
     username: new UntypedFormControl(''),
     name: new UntypedFormControl(''),
     email: new UntypedFormControl(''),
-    description: new UntypedFormControl('')
+    description: new UntypedFormControl(''),
   });
 
   professionalForm = new UntypedFormGroup({
     school: new UntypedFormControl(''),
     study: new UntypedFormControl(''),
-    page: new UntypedFormControl('')
+    page: new UntypedFormControl(''),
   });
 
   socialsForm = new UntypedFormGroup({
     facebook: new UntypedFormControl(''),
     twitter: new UntypedFormControl(''),
-    linkedin: new UntypedFormControl('')
+    linkedin: new UntypedFormControl(''),
   });
 
   privacyForm = new UntypedFormGroup({
-    showEmail: new UntypedFormControl('')
+    showEmail: new UntypedFormControl(''),
   });
 
   ngOnInit() {
-    this.store.select(AuthState.me).subscribe((me) => {
+    effect(() => {
+      const me = this.me();
       if (me) {
-        this.me = me;
         this.personalForm.controls['username'].setValue(me.username);
         this.professionalForm.controls['page'].setValue(me.page);
 
-        this.professionalDataChange = false;
+        this.professionalDataChange.set(false);
       }
     });
-  }
-
-  getUserImage() {
-    return this.url.getUserImage(this.me);
   }
 
   saveProfessionalData() {
     this.store.dispatch(
       new UpdateMeAction(
-        this.me.id,
+        this.me().id,
         this.professionalForm.controls['page'].value
       )
     );
   }
 
   onUserDataChange() {
-    this.professionalDataChange = this.me.page !== this.professionalForm.controls['page'].value;
+    this.professionalDataChange.set(
+      this.me().page !== this.professionalForm.controls['page'].value
+    );
   }
 
   openUploadFileModal() {
     const dialog = this.dialog.open(UploadFileModalComponent, {
       height: 'auto',
-      width: '50vh'
+      width: '50vh',
     });
     dialog.afterClosed().subscribe((result: File) => {
       if (result) {
-        this.store.dispatch(new UpdateMyAvatarAction(this.me.id, result.id));
+        this.store.dispatch(new UpdateMyAvatarAction(this.me().id, result.id));
       }
     });
   }
