@@ -12,7 +12,7 @@ export class CanLeave implements CanDeactivate<OverviewComponent> {
                 currentState: RouterStateSnapshot,
                 nextState?: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (component.formDataChange || component.imageChange) {
+    if (component.formDataChange() || component.imageChange()) {
       return confirm('¿Está seguro que desea salir sin guardar?');
     }
     return true;

@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { MatDialogRef } from "@angular/material/dialog";
+import { Component, OnInit, inject, computed } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
 
@@ -10,39 +10,32 @@ import {
   FileState,
   NextFilesPageAction,
   PreviousFilesPageAction,
-  UrlUtilsService
+  UrlUtilsService,
 } from '@dcs-libs/shared';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
-    selector: 'app-select-image-modal',
-    templateUrl: './select-image-modal.component.html',
-    styleUrls: ['./select-image-modal.component.scss'],
-    standalone: false
+  selector: 'app-select-image-modal',
+  templateUrl: './select-image-modal.component.html',
+  styleUrls: ['./select-image-modal.component.scss'],
+  standalone: false,
 })
 export class SelectImageModalComponent implements OnInit {
   private store = inject(Store);
-  private dialogRef = inject<MatDialogRef<SelectImageModalComponent>>(MatDialogRef);
+  private dialogRef =
+    inject<MatDialogRef<SelectImageModalComponent>>(MatDialogRef);
   private url = inject(UrlUtilsService);
 
+  files = toSignal(this.store.select(FileState.files), { initialValue: [] });
 
-  files: File[] = [];
-
-  currentPage = 0;
-  numberOfPages = 0;
+  pageIndicators = toSignal(this.store.select(FileState.pageIndicators));
+  currentPage = computed(() => this.pageIndicators()?.page ?? 0);
+  numberOfPages = computed(() =>
+    Math.ceil(this.pageIndicators().count / this.pageIndicators().pageSize)
+  );
 
   ngOnInit() {
-    this.store.select(FileState.files).subscribe((files: File[]) => {
-      if (files) {
-        this.files = files;
-      }
-    });
     this.store.dispatch(new FetchFilesAction(6));
-    this.store.select(FileState.pageIndicators).subscribe(indicator => {
-      if (indicator) {
-        this.currentPage = indicator.page;
-        this.numberOfPages = Math.ceil(indicator.count / indicator.pageSize);
-      }
-    });
   }
 
   selectImage(image: File) {
