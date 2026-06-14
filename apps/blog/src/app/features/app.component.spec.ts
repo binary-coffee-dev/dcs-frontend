@@ -1,4 +1,4 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
@@ -22,7 +22,7 @@ class MatDialogStub {
 describe('AppComponent', () => {
   let component: AppComponent;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent],
@@ -34,7 +34,7 @@ describe('AppComponent', () => {
         {provide: MetaTagsService, useClass: MetaTagsServiceStub}
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     const fixture = TestBed.createComponent(AppComponent);

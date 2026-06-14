@@ -1,6 +1,6 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import { NgxsModule, Store } from '@ngxs/store';
+import { NgxsModule } from '@ngxs/store';
 
 import { PostState } from './post.state';
 import { PostService } from './post.service';
@@ -10,23 +10,16 @@ class PostServiceStub {
   fetchPost = jest.fn();
 }
 
-
 describe('PostState', () => {
-  let store: Store;
-  let postService: PostService;
   let postState: PostState;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [NgxsModule.forRoot([PostState])],
-      providers: [
-        {provide: PostService, useClass: PostServiceStub}
-      ]
+      providers: [{ provide: PostService, useClass: PostServiceStub }],
     }).compileComponents();
-    store = TestBed.inject(Store);
-    postService = TestBed.inject(PostService);
     postState = TestBed.inject(PostState);
-  }));
+  });
 
   it('should create', () => {
     expect(postState).toBeTruthy();

@@ -1,35 +1,31 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { MomentService, UrlUtilsService } from '@dcs-libs/shared';
 import { PostItemComponent } from './post-item.component';
 import { ResourceService } from '../../../core/services';
 
-class MomentServiceStub {
-}
+class MomentServiceStub {}
 
-class ResourceServiceStub {
-}
+class ResourceServiceStub {}
 
-class UrlUtilsServiceStub {
-}
+class UrlUtilsServiceStub {}
 
 describe('PostItemComponent', () => {
   let component: PostItemComponent;
   let fixture: ComponentFixture<PostItemComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PostItemComponent],
       providers: [
-        {provide: MomentService, useClass: MomentServiceStub},
-        {provide: ResourceService, useClass: ResourceServiceStub},
-        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
+        { provide: MomentService, useClass: MomentServiceStub },
+        { provide: ResourceService, useClass: ResourceServiceStub },
+        { provide: UrlUtilsService, useClass: UrlUtilsServiceStub },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PostItemComponent);

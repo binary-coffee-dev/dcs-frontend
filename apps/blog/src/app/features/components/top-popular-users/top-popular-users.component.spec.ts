@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngxs/store';
 
@@ -9,25 +9,23 @@ class StoreStub {
   select = jest.fn();
 }
 
-class UrlUtilsServiceStub {
-}
+class UrlUtilsServiceStub {}
 
 describe('TopPopularUsersComponent', () => {
   let component: TopPopularUsersComponent;
   let fixture: ComponentFixture<TopPopularUsersComponent>;
   TopPopularUsersComponent.prototype.ngOnInit = jest.fn();
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TopPopularUsersComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: Store, useClass: StoreStub },
-        { provide: UrlUtilsService, useClass: UrlUtilsServiceStub }
-      ]
-    })
-      .compileComponents();
-  }));
+        { provide: UrlUtilsService, useClass: UrlUtilsServiceStub },
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TopPopularUsersComponent);

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Actions } from '@ngxs/store';
 
@@ -11,13 +11,12 @@ describe('LoadingComponent', () => {
   let fixture: ComponentFixture<LoadingComponent>;
   LoadingComponent.prototype.ngOnInit = () => {};
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LoadingComponent],
-      providers: [{ provide: Actions, useClass: ActionsStub }]
-    })
-      .compileComponents();
-  }));
+      providers: [{ provide: Actions, useClass: ActionsStub }],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoadingComponent);

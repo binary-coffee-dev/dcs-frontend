@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 import { Store } from '@ngxs/store';
@@ -15,7 +15,7 @@ describe('ConfirmDelete.ModalComponent', () => {
   let component: ConfirmDeleteModalComponent;
   let fixture: ComponentFixture<ConfirmDeleteModalComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ConfirmDeleteModalComponent],
       providers: [
@@ -25,7 +25,7 @@ describe('ConfirmDelete.ModalComponent', () => {
       ]
     })
       .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ConfirmDeleteModalComponent);

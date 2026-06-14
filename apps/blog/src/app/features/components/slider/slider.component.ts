@@ -5,6 +5,7 @@ import {
   inject,
   signal,
   computed,
+  DestroyRef,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser } from '@angular/common';
@@ -38,9 +39,10 @@ const TIME_TO_CHANGE_PAGE = 6000;
 })
 export class SliderComponent implements OnInit {
   private store = inject(Store);
-  url = inject(UrlUtilsService);
   private environment = inject<Environment>(ENVIRONMENT);
   private platformId = inject<Object>(PLATFORM_ID);
+  private destroyRef = inject(DestroyRef);
+  url = inject(UrlUtilsService);
 
   stopTimer = new Subject<void>();
 
@@ -69,7 +71,7 @@ export class SliderComponent implements OnInit {
 
     this.store
       .select(CommentState.recentComments)
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((comments) => {
         if (comments && comments.length > 0) {
           this.info.update((list) => [
@@ -104,7 +106,7 @@ export class SliderComponent implements OnInit {
 
   nextPageTimer() {
     timer(TIME_TO_CHANGE_PAGE)
-      .pipe(takeUntil(this.stopTimer), takeUntilDestroyed())
+      .pipe(takeUntil(this.stopTimer), takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.activePage.update((value) => (value + 1) % this.info().length);
         this.updateInfo();

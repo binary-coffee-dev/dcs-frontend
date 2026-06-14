@@ -1,52 +1,55 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { of } from 'rxjs';
 import { Store } from '@ngxs/store';
 
-import { ENVIRONMENT, HasPermissionsPipeStub, MomentService, WINDOW } from '@dcs-libs/shared';
+import {
+  ENVIRONMENT,
+  HasPermissionsPipeStub,
+  MomentService,
+  WINDOW,
+} from '@dcs-libs/shared';
 import { PostComponent } from './post.component';
 import { ResourceService, ScrollService } from '../../core/services';
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog } from '@angular/material/dialog';
 
 class StoreStub {
+  select = () => of();
 }
 
 class MomentServiceStub {
   timeFromDateForPublishPost = () => '';
 }
 
-class ResourceServiceStub {
-}
+class ResourceServiceStub {}
 
-class ScrollServiceStub {
-}
+class ScrollServiceStub {}
 
-class MatDialogStub {
-}
+class MatDialogStub {}
 
 describe('PostComponent', () => {
   let component: PostComponent;
   let fixture: ComponentFixture<PostComponent>;
   PostComponent.prototype.ngOnInit = jest.fn();
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [PostComponent, HasPermissionsPipeStub],
       providers: [
-        {provide: Store, useClass: StoreStub},
-        {provide: MomentService, useClass: MomentServiceStub},
-        {provide: ScrollService, useClass: ScrollServiceStub},
-        {provide: ResourceService, useClass: ResourceServiceStub},
-        {provide: ENVIRONMENT, useValue: {}},
-        {provide: WINDOW, useValue: {}},
-        {provide: MatDialog, useClass: MatDialogStub},
+        { provide: Store, useClass: StoreStub },
+        { provide: MomentService, useClass: MomentServiceStub },
+        { provide: ScrollService, useClass: ScrollServiceStub },
+        { provide: ResourceService, useClass: ResourceServiceStub },
+        { provide: ENVIRONMENT, useValue: {} },
+        { provide: WINDOW, useValue: {} },
+        { provide: MatDialog, useClass: MatDialogStub },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PostComponent);

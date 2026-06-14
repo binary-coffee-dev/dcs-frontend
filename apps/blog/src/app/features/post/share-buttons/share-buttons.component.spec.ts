@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, PLATFORM_ID } from '@angular/core';
 
 import { ShareButtonsComponent } from './share-buttons.component';
@@ -8,17 +8,16 @@ describe('ShareButtonsComponent', () => {
   let component: ShareButtonsComponent;
   let fixture: ComponentFixture<ShareButtonsComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ShareButtonsComponent],
       providers: [
         { provide: WINDOW, useValue: {} },
-        { provide: PLATFORM_ID, useValue: {} }
+        { provide: PLATFORM_ID, useValue: {} },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ShareButtonsComponent);

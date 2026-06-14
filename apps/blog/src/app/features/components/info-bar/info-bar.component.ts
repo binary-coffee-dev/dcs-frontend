@@ -67,9 +67,6 @@ export class InfoBarComponent implements OnInit {
 
   constructor() {
     this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  }
-
-  ngOnInit(): void {
     this.store
       .select(PodcastState.episodesList)
       .pipe(takeUntilDestroyed())
@@ -82,6 +79,9 @@ export class InfoBarComponent implements OnInit {
       .subscribe((comments) => {
         this.comments.set(comments || []);
       });
+  }
+
+  ngOnInit(): void {
     this.createShareLinks();
   }
 
