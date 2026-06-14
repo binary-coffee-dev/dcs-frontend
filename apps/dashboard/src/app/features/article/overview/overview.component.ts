@@ -8,13 +8,14 @@ import {
   linkedSignal,
   computed,
 } from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
-import { BehaviorSubject, Subject, timer } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { Subject, timer } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import {
   AuthState,
@@ -23,7 +24,6 @@ import {
   FetchTagsAction,
   File,
   Permissions,
-  Post,
   PostCreateAction,
   PostState,
   PostUpdateAction,
@@ -34,11 +34,15 @@ import {
 } from '@dcs-libs/shared';
 import { SelectImageModalComponent } from './select-image-modal/select-image-modal.component';
 import { UploadFileModalComponent } from '../../components/upload-file.modal';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 interface TimeType {
   title: string;
   minutes: number;
+}
+
+interface AutoCompleteModel {
+  value: string;
+  display: string;
 }
 
 @Component({
@@ -104,7 +108,6 @@ export class OverviewComponent
   isNewPost = computed(() => !this.routeParams()['id']);
   isPublished = computed(() => Boolean(this.post().publishedAt));
 
-  _unsubscribe = new Subject();
   _stopTimer = new Subject();
 
   constructor() {
@@ -126,10 +129,13 @@ export class OverviewComponent
           this.articleForm.controls['title'].setValue(post.title);
           this.articleForm.controls['enable'].setValue(Boolean(post.enable));
           this.articleForm.controls['tags'].setValue(
-            post.tags.map((tag: Tag) => ({
-              display: tag.name,
-              value: tag.id,
-            }))
+            post.tags.map(
+              (tag: Tag) =>
+                ({
+                  display: tag.name,
+                  value: tag.id,
+                } as AutoCompleteModel)
+            )
           );
 
           if (post.publishedAt) {
@@ -168,8 +174,6 @@ export class OverviewComponent
   }
 
   ngOnDestroy(): void {
-    this._unsubscribe.next(true);
-    this._stopTimer.next(true);
     if (this.window?.document?.removeEventListener) {
       this.window.document.removeEventListener(
         'keydown',
@@ -178,8 +182,8 @@ export class OverviewComponent
     }
   }
 
-  shortCutHandlerMethod(event: any) {
-    if (event.ctrlKey && event.which === 83) {
+  shortCutHandlerMethod(event: KeyboardEvent) {
+    if (event.ctrlKey && event.code === 'KeyS') {
       event.preventDefault();
       this.submitPost();
       return false;
@@ -195,7 +199,7 @@ export class OverviewComponent
     const TIME_TO_WAIT_UNTIL_REFRESH = 500;
     this._stopTimer.next(true);
     timer(TIME_TO_WAIT_UNTIL_REFRESH)
-      .pipe(takeUntil(this._stopTimer))
+      .pipe(takeUntil(this._stopTimer), takeUntilDestroyed())
       .subscribe(() => this.onPostChange());
   }
 
@@ -234,7 +238,7 @@ export class OverviewComponent
   }
 
   tagChange() {
-    const tset = new Set();
+    const tset = new Set<string>();
     if (
       this.post().tags.length !== this.articleForm.controls['tags'].value.length
     ) {
@@ -242,7 +246,8 @@ export class OverviewComponent
     }
     this.post().tags.forEach((tag: Tag) => tset.add(tag.id));
     return this.articleForm.controls['tags'].value.reduce(
-      (p: boolean, v: any) => p || !tset.has(v.value),
+      (prev: boolean, value: AutoCompleteModel) =>
+        prev || !tset.has(value.value),
       false
     );
   }
@@ -256,11 +261,8 @@ export class OverviewComponent
           title: this.articleForm.controls['title'].value,
           enable: this.articleForm.controls['enable'].value,
           tags: this.articleForm.controls['tags'].value.map(
-            (tag: any) =>
-              ({
-                name: tag.display,
-                id: tag.value,
-              } as Tag)
+            (tag: AutoCompleteModel) =>
+              ({ name: tag.display, id: tag.value } as Tag)
           ),
         };
       });
@@ -304,7 +306,7 @@ export class OverviewComponent
       } else {
         this.store
           .dispatch(new PostUpdateAction(this.post()))
-          .pipe(takeUntil(this._unsubscribe))
+          .pipe(takeUntilDestroyed())
           .subscribe(() => {
             this.imageChange.set(false);
             this.formDataChange.set(false);
@@ -349,7 +351,7 @@ export class OverviewComponent
 
     dialog
       .afterClosed()
-      .pipe(takeUntil(this._unsubscribe))
+      .pipe(takeUntilDestroyed())
       .subscribe((image: File) => {
         if (image) {
           this.post.update((post) => ({ ...post, banner: image }));

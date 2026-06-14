@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
 
@@ -13,10 +12,8 @@ import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
   styleUrls: ['./subscribe.component.scss'],
   standalone: false,
 })
-export class SubscribeComponent implements OnInit, OnDestroy {
+export class SubscribeComponent implements OnInit {
   private store = inject(Store);
-
-  _unsubscribe = new Subject();
 
   message = signal<string>('');
   subscriptionError = signal<string>('');
@@ -31,15 +28,10 @@ export class SubscribeComponent implements OnInit, OnDestroy {
     this.subscribeToLoading();
   }
 
-  ngOnDestroy(): void {
-    this._unsubscribe.next(true);
-    this._unsubscribe.complete();
-  }
-
   subscribeToLoading(): void {
     this.store
       .select(SubscriptionState.loading)
-      .pipe(takeUntil(this._unsubscribe))
+      .pipe(takeUntilDestroyed())
       .subscribe((loading) => {
         this.loading.set(loading);
         if (loading) {
@@ -56,7 +48,7 @@ export class SubscribeComponent implements OnInit, OnDestroy {
         .dispatch(
           new SubscribeAction(this.subscribeForm.controls['email'].value || '')
         )
-        .pipe(takeUntil(this._unsubscribe))
+        .pipe(takeUntilDestroyed())
         .subscribe(() => {
           const subscription = this.store.selectSnapshot(
             SubscriptionState.subscription

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -6,15 +7,20 @@ import { Subject, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
-import { FetchPostsAction, PostState, SetFiltersAction, Where } from '@dcs-libs/shared';
+import {
+  FetchPostsAction,
+  PostState,
+  SetFiltersAction,
+  Where,
+} from '@dcs-libs/shared';
 
 @Component({
-    selector: 'app-filter',
-    templateUrl: './filter.component.html',
-    styleUrls: ['./filter.component.scss'],
-    standalone: false
+  selector: 'app-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.scss'],
+  standalone: false,
 })
-export class FilterComponent implements OnInit, OnDestroy {
+export class FilterComponent implements OnInit {
   private store = inject(Store);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -22,11 +28,10 @@ export class FilterComponent implements OnInit, OnDestroy {
   filter = '';
 
   filterForm = new UntypedFormGroup({
-    filter: new UntypedFormControl('')
+    filter: new UntypedFormControl(''),
   });
 
   resetTime = new Subject();
-  _unsubscribe = new Subject();
 
   ngOnInit(): void {
     this.extractParams();
@@ -36,36 +41,34 @@ export class FilterComponent implements OnInit, OnDestroy {
     this.filter = this.route.snapshot.queryParamMap.get('filter') || '';
     this.filterForm.controls['filter'].setValue(this.filter);
 
-    this.dispatchNewFilter({title: {contains: this.filter}});
-  }
-
-  ngOnDestroy(): void {
-    this.resetTime.next(true);
-    this._unsubscribe.next(true);
+    this.dispatchNewFilter({ title: { contains: this.filter } });
   }
 
   filterChange() {
     this.resetTime.next(true);
-    timer(1000).pipe(takeUntil(this.resetTime)).subscribe(() => {
-      this.changeFilter();
-    });
+    timer(1000)
+      .pipe(takeUntil(this.resetTime), takeUntilDestroyed())
+      .subscribe(() => {
+        this.changeFilter();
+      });
   }
 
   changeFilter() {
     if (this.checkIfFilterChange()) {
       this.filter = this.filterForm.controls['filter'].value;
 
-      this.dispatchNewFilter({title: {contains: this.filter}});
+      this.dispatchNewFilter({ title: { contains: this.filter } });
     }
   }
 
   dispatchNewFilter(newFilters: any) {
     const filter = {
       ...(this.store.selectSnapshot(PostState.where) || {}),
-      ...newFilters
+      ...newFilters,
     } as Where;
-    this.store.dispatch(new SetFiltersAction(filter))
-      .pipe(takeUntil(this._unsubscribe))
+    this.store
+      .dispatch(new SetFiltersAction(filter))
+      .pipe(takeUntilDestroyed())
       .subscribe(() => {
         this.store.dispatch(new FetchPostsAction());
         this.updateRoute();
@@ -80,7 +83,7 @@ export class FilterComponent implements OnInit, OnDestroy {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParamsHandling: null,
-      queryParams
+      queryParams,
     });
   }
 

@@ -1,28 +1,26 @@
 import {
   Component,
-  Input,
-  OnDestroy,
   OnInit,
   PLATFORM_ID,
   inject,
   input,
   signal,
-  effect, computed,
+  computed,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Store } from '@ngxs/store';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 import {
   Comment,
   CommentState,
-  EpisodeModel, MomentService,
+  EpisodeModel,
+  MomentService,
   PodcastState,
   Post,
   UrlUtilsService,
-  WINDOW
+  WINDOW,
 } from '@dcs-libs/shared';
 
 interface ShareLink {
@@ -36,7 +34,7 @@ interface ShareLink {
   styleUrls: ['./info-bar.component.scss'],
   standalone: false,
 })
-export class InfoBarComponent implements OnInit, OnDestroy {
+export class InfoBarComponent implements OnInit {
   private store = inject(Store);
   moment = inject(MomentService);
   url = inject(UrlUtilsService);
@@ -65,7 +63,6 @@ export class InfoBarComponent implements OnInit, OnDestroy {
     return Object.keys(new Array(numberOfLines).fill(0)).map((i) => +i + 1);
   });
 
-  _unsubscribe = new Subject();
   isBrowser = true;
 
   constructor() {
@@ -75,13 +72,13 @@ export class InfoBarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.store
       .select(PodcastState.episodesList)
-      .pipe(takeUntil(this._unsubscribe))
+      .pipe(takeUntilDestroyed())
       .subscribe((list) => {
         this.episodes.set(list || []);
       });
     this.store
       .select(CommentState.recentComments)
-      .pipe(takeUntil(this._unsubscribe))
+      .pipe(takeUntilDestroyed())
       .subscribe((comments) => {
         this.comments.set(comments || []);
       });
@@ -106,10 +103,6 @@ export class InfoBarComponent implements OnInit, OnDestroy {
         } as ShareLink,
       ]);
     }
-  }
-
-  ngOnDestroy(): void {
-    this._unsubscribe.next(true);
   }
 
   toDate(date: string | undefined): Date | undefined {

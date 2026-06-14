@@ -1,12 +1,12 @@
 import {
   Component,
-  OnDestroy,
   OnInit,
   PLATFORM_ID,
   inject,
   signal,
   computed,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Subject, timer } from 'rxjs';
@@ -36,13 +36,12 @@ const TIME_TO_CHANGE_PAGE = 6000;
   styleUrls: ['./slider.component.scss'],
   standalone: false,
 })
-export class SliderComponent implements OnInit, OnDestroy {
+export class SliderComponent implements OnInit {
   private store = inject(Store);
   url = inject(UrlUtilsService);
   private environment = inject<Environment>(ENVIRONMENT);
   private platformId = inject<Object>(PLATFORM_ID);
 
-  unsubscribe = new Subject<void>();
   stopTimer = new Subject<void>();
 
   info = signal<InformationBanner[]>([]);
@@ -62,10 +61,6 @@ export class SliderComponent implements OnInit, OnDestroy {
     return (this.activeInfo()?.value?.post as Post)?.name ?? '';
   });
 
-  ngOnDestroy(): void {
-    this.unsubscribe.next();
-  }
-
   ngOnInit(): void {
     this.info.update((list) => [
       ...list,
@@ -74,7 +69,7 @@ export class SliderComponent implements OnInit, OnDestroy {
 
     this.store
       .select(CommentState.recentComments)
-      .pipe(takeUntil(this.unsubscribe))
+      .pipe(takeUntilDestroyed())
       .subscribe((comments) => {
         if (comments && comments.length > 0) {
           this.info.update((list) => [
@@ -109,9 +104,9 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   nextPageTimer() {
     timer(TIME_TO_CHANGE_PAGE)
-      .pipe(takeUntil(this.unsubscribe), takeUntil(this.stopTimer))
+      .pipe(takeUntil(this.stopTimer), takeUntilDestroyed())
       .subscribe(() => {
-        this.activePage.update(value => (value + 1) % this.info().length);
+        this.activePage.update((value) => (value + 1) % this.info().length);
         this.updateInfo();
         this.nextPageTimer.bind(this)();
       });
