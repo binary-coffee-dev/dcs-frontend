@@ -1,6 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, computed, effect } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
+import { mergeMap } from 'rxjs';
 
 import {
   ENVIRONMENT,
@@ -12,52 +14,63 @@ import {
   PreviousPageAction,
   SelectPageAction,
   MomentService,
-  UrlUtilsService, Permissions, AuthState, ConfigState, SetConfigAction, SetFiltersAction, User, Where
+  UrlUtilsService,
+  Permissions,
+  AuthState,
+  ConfigState,
+  SetConfigAction,
+  SetFiltersAction,
+  User,
+  Where,
 } from '@dcs-libs/shared';
 
 @Component({
-    selector: 'app-list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.scss'],
-    standalone: false
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss'],
+  standalone: false,
 })
 export class ListComponent extends Permissions implements OnInit {
   private store = inject(Store);
-  moment = inject(MomentService);
   private environment = inject<Environment>(ENVIRONMENT);
+  moment = inject(MomentService);
   url = inject(UrlUtilsService);
 
-  posts: Post[] = [];
+  posts = toSignal(this.store.select(PostState.posts));
 
-  currentPage = 0;
-  numberOfPages = 0;
+  pageIndicator = toSignal(this.store.select(PostState.pageIndicator));
+  currentPage = computed(() => this.pageIndicator().page);
+  numberOfPages = computed(() =>
+    Math.ceil(this.pageIndicator().count / this.pageIndicator().pageSize)
+  );
 
-  tableOrCard = false;
+  tableOrCardStore = toSignal(
+    this.store.select(ConfigState.getConfigItem('dashboard-post-tableOrCard'))
+  );
+  tableOrCard = computed(() => Boolean(this.tableOrCardStore()));
+
+  me = toSignal(this.store.select(AuthState.me));
 
   ngOnInit() {
-    const me = this.meUser();
-    this.store.dispatch(new SetFiltersAction({author: {id: {eq: me?.id}}, state: 'PREVIEW'} as Where)).subscribe(() => {
-      this.store.dispatch(new FetchPostsAction());
+    effect(() => {
+      const me = this.me();
+      this.store
+        .dispatch(
+          new SetFiltersAction({
+            author: { id: { eq: me?.id } },
+            state: 'PREVIEW',
+          } as Where)
+        )
+        .pipe(mergeMap(() => this.store.dispatch(new FetchPostsAction())));
     });
-    this.store.select(PostState.posts).subscribe(posts => {
-      this.posts = posts || [];
-    });
-    this.store.select(PostState.pageIndicator).subscribe(indicator => {
-      if (indicator) {
-        this.currentPage = indicator.page;
-        this.numberOfPages = Math.ceil(indicator.count / indicator.pageSize);
-      }
-    });
-    this.store.select(ConfigState.getConfigItem('dashboard-post-tableOrCard')).subscribe(value => this.tableOrCard = !!value);
   }
 
-  isMyPost(post: any) {
-    const user = this.meUser();
-    return !!user && !!post.author && post.author.id === user.id;
-  }
-
-  meUser(): User | undefined {
-    return this.store.selectSnapshot(AuthState.me);
+  isMyPost(post: Post, user: User | undefined) {
+    return (
+      (user?.id ?? false) &&
+      (post?.author?.id ?? false) &&
+      post.author.id === user.id
+    );
   }
 
   nextPageEvent() {
@@ -77,7 +90,8 @@ export class ListComponent extends Permissions implements OnInit {
   }
 
   toggleTableCard() {
-    this.tableOrCard = !this.tableOrCard;
-    this.store.dispatch(new SetConfigAction('dashboard-post-tableOrCard', this.tableOrCard));
+    this.store.dispatch(
+      new SetConfigAction('dashboard-post-tableOrCard', this.tableOrCard)
+    );
   }
 }
