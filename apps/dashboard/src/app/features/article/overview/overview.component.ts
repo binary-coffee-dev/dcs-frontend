@@ -155,6 +155,15 @@ export class OverviewComponent
     this.store.dispatch(new FetchTagsAction());
   }
 
+  ngOnDestroy(): void {
+    if (this.window?.document?.removeEventListener) {
+      this.window.document.removeEventListener(
+        'keydown',
+        this.shortCutHandlerMethod.bind(this)
+      );
+    }
+  }
+
   populateAvailableTimes(extraTime: TimeType | null = null): void {
     this.timesSelections.set(
       [...Array(24).keys()].reduce((p: TimeType[], v: number) => {
@@ -171,15 +180,6 @@ export class OverviewComponent
     this.timesSelections.update((times) =>
       times.sort((a: TimeType, b: TimeType): number => a.minutes - b.minutes)
     );
-  }
-
-  ngOnDestroy(): void {
-    if (this.window?.document?.removeEventListener) {
-      this.window.document.removeEventListener(
-        'keydown',
-        this.shortCutHandlerMethod.bind(this)
-      );
-    }
   }
 
   shortCutHandlerMethod(event: KeyboardEvent) {

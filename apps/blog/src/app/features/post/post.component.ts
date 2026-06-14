@@ -1,6 +1,5 @@
 import {
   Component,
-  OnDestroy,
   OnInit,
   PLATFORM_ID,
   inject,
@@ -16,7 +15,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
-import { Subject } from 'rxjs';
 
 import {
   ENVIRONMENT,
@@ -48,7 +46,7 @@ const MAX_NUMBER_OF_POSTS = 6;
   styleUrls: ['./post.component.scss'],
   standalone: false,
 })
-export class PostComponent extends Permissions implements OnInit, OnDestroy {
+export class PostComponent extends Permissions implements OnInit {
   private store = inject(Store);
   private metaTags = inject(MetaTagsService);
   private title = inject(Title);
@@ -61,13 +59,15 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
   moment = inject(MomentService);
   url = inject(UrlUtilsService);
 
-  post = toSignal(this.store.select(PostState.post), {initialValue: null});
+  post = toSignal(this.store.select(PostState.post), { initialValue: null });
   isBrowser = signal<boolean>(false);
   likes = toSignal(this.store.select(PostState.likes));
   userLike = toSignal(this.store.select(PostState.userLike));
   user = toSignal(this.store.select(AuthState.me));
 
-  similarPostsEvent = toSignal(this.store.select(PostState.similarPosts), {initialValue: []});
+  similarPostsEvent = toSignal(this.store.select(PostState.similarPosts), {
+    initialValue: [],
+  });
   similarPosts = linkedSignal<Post[], Post[]>({
     source: this.similarPostsEvent,
     computation: (posts) => {
@@ -80,7 +80,7 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
 
   articleBody = computed(() => {
     return `${this.environment.apiUrl}post-body-by-name/${
-      this.post?.name || ''
+      this.post?.name ?? ''
     }/download.md`;
   });
 
@@ -91,8 +91,6 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
       this.post()?.author?.id === this.user()?.id
     );
   });
-
-  _unsubscribe = new Subject();
 
   constructor() {
     super();
@@ -149,19 +147,16 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.loadArticle(this.route.snapshot.data['post']);
     const fragment = this.route.snapshot.fragment;
     if (!fragment) {
       this.scroll.smoothScroll();
     }
   }
 
-  ngOnDestroy(): void {
-    this._unsubscribe.next(true);
-  }
-
   editPost() {
-    this.window.location.href = `${this.environment.siteDashboardUrl}/articles/update/${this.post()?.id}`;
+    this.window.location.href = `${
+      this.environment.siteDashboardUrl
+    }/articles/update/${this.post()?.id}`;
   }
 
   postLikeClick(): void {
@@ -171,9 +166,7 @@ export class PostComponent extends Permissions implements OnInit, OnDestroy {
       this.dialog.open(LoginRequestModalComponent, {});
     }
     if (this.userLike() === 0 && userId && postId) {
-      this.store.dispatch(
-        new CreateLikeArticle(userId, postId)
-      );
+      this.store.dispatch(new CreateLikeArticle(userId, postId));
     } else if (userId) {
       this.store.dispatch(new RemoveLikeArticle(userId));
     }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -61,7 +61,7 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  dispatchNewFilter(newFilters: any) {
+  dispatchNewFilter(newFilters: { title: { contains: string } }) {
     const filter = {
       ...(this.store.selectSnapshot(PostState.where) || {}),
       ...newFilters,
