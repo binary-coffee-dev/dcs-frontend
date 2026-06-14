@@ -1,11 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
 
-import { AuthError, AuthErrorAction, AuthState, Environment, ENVIRONMENT, LoginAction, Provider, WINDOW } from '@dcs-libs/shared';
+import { AuthErrorAction, AuthState, Environment, ENVIRONMENT, LoginAction, Provider, WINDOW } from '@dcs-libs/shared';
 import { PROVIDERS } from './providers';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-auth',
@@ -13,29 +14,20 @@ import { PROVIDERS } from './providers';
     styleUrls: ['./auth.component.scss'],
     standalone: false
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent {
   private store = inject(Store);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private window = inject<Window>(WINDOW);
   private env = inject<Environment>(ENVIRONMENT);
 
-  authError: AuthError | undefined = undefined;
-
-  providers = PROVIDERS;
+  authError = toSignal(this.store.select(AuthState.authError));
+  providers = signal(PROVIDERS);
 
   loginForm = new UntypedFormGroup({
     identifier: new UntypedFormControl('', Validators.required),
     password: new UntypedFormControl('', Validators.required),
   });
-
-  ngOnInit(): void {
-    this.store.select(AuthState.authError).subscribe(error => this.authError = error);
-  }
-
-  isLocalEnvironment() {
-    return Boolean(this.env.local);
-  }
 
   login() {
     if (this.loginForm.valid && this.checkEmptySpaces(this.loginForm.controls['identifier'].value)) {
@@ -63,7 +55,7 @@ export class AuthComponent implements OnInit {
     const redirectUri =
       new URL(`./provider/${provider.name}` + (redir ? `?${tokenOn ? 'tokenOn=true&' : ''}redir=${encodeURIComponent(redir)}` : ''),
         siteDashboardUrl).href;
-    let queryParams = {
+    const queryParams = {
       client_id: this.env.githubClientId,
       scope: provider.scope,
       redirect_uri: redirectUri
@@ -85,12 +77,6 @@ export class AuthComponent implements OnInit {
     if (token !== '') {
       this.router.navigate(['']);
     }
-  }
-
-  redirectToSiteMainView() {
-    const urlBase = this.env.siteUrl;
-    const loginUrl = new URL(urlBase);
-    this.window.location.href = `${loginUrl}`;
   }
 
   checkEmptySpaces(value: string): boolean {

@@ -43,7 +43,6 @@ describe('NavbarComponent', () => {
     location = TestBed.inject(Location);
     component = fixture.componentInstance;
     jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
-    jest.spyOn(component, 'getTitle').mockReturnValue(EXAMPLE_PATH);
     fixture.detectChanges();
   });
 

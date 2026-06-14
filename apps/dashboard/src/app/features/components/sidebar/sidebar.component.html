@@ -2,26 +2,26 @@
 
   <div class='image-container flex flex-col w-full p-8 mt-6 items-center'>
     <img class='w-24 h-24 rounded-full mb-6'
-      [src]='getUserImage()'
-      [alt]='me.username || "user-profile"'>
-    <span>"{{ me.username || '' }}"</span>
+         [src]='getUserImage()'
+         [alt]='me()?.username ?? "user-profile"'>
+    <span>"{{ me()?.username ?? '' }}"</span>
   </div>
 
   <div class='items-list flex flex-col w-48 mt-6 mr-3'>
 
-    @for (it of menuAccess; track it) {
+    @for (it of menuAccess(); track it) {
       <a class='item no-underline text-start bg-transparent text-xs border-0 p-3
                 w-full m-0 hover:cursor-pointer active:cursor-default'
-        (click)='this.routeChange.emit()'
-        [ngClass]='{active: it.path === currentRoute}'
-        [routerLink]='it.path'><i class="mr-3" [ngClass]='it.icon'></i>{{ it.text }}</a>
-      }
+         (click)='this.routeChange.emit()'
+         [ngClass]='{active: it.path === currentRoute()}'
+         [routerLink]='it.path'><i class="mr-3" [ngClass]='it.icon'></i>{{ it.text }}</a>
+    }
 
-      <div class='separator h-[1px] w-full my-3 mx-0'></div>
-      <button class='item w-full text-xs p-3 text-left'
-        (click)='logout()'>
-        Salir
-      </button>
-    </div>
-
+    <div class='separator h-[1px] w-full my-3 mx-0'></div>
+    <button class='item w-full text-xs p-3 text-left'
+            (click)='logout()'>
+      Salir
+    </button>
   </div>
+
+</div>

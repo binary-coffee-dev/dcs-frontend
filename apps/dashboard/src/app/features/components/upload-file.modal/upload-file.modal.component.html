@@ -3,49 +3,49 @@
     <span class='title whitespace-nowrap'>Subir archivo</span>
     <div class="w-full"></div>
     <i class='fa fa-close close-button '
-      (click)='cancel()'
-    matTooltip='close'></i>
+       (click)='cancel()'
+       matTooltip='close'></i>
   </div>
   <form class='body flex flex-col items-center mt-3'
-    [formGroup]='uploadFileForm'>
+        [formGroup]='uploadFileForm'>
 
     <mat-form-field class="w-full text-xs"
-      appearance='outline'>
+                    appearance='outline'>
       <mat-label>Nombre de la imagen</mat-label>
       <input class="p-1.5"
-        matInput
-        formControlName='name'
-        type='text'>
+             matInput
+             formControlName='name'
+             type='text'>
     </mat-form-field>
 
     <input type='file'
-      class='hidden'
-      #uploader
-      (change)='onFilesChange($event)'
-      formControlName='file'>
+           class='hidden'
+           #uploader
+           (change)='onFilesChange($event)'
+           formControlName='file'>
     <div class='pre-image-container flex flex-row mb-5 w-full overflow-hidden'>
       <div class='upload-pre-image flex flex-row justify-center items-center h-48 w-full rounded relative'
-        (click)='openFile(uploader)'>
-        @if (!image) {
+           (click)='openFile(uploader)'>
+        @if (!image()) {
           <i class='fa fa-file-image-o text-5xl'
           ></i>
         }
-        @if (!!image) {
+        @if (!!image()) {
           <img class='upload-image w-full h-full object-cover object-center relative'
-            [src]='image'
-            (click)='openFile(uploader)'
-            alt='upload'>
+               [src]='image()'
+               (click)='openFile(uploader)'
+               alt='upload'>
         }
       </div>
     </div>
-    @if (type) {
+    @if (type()) {
       <p
         class='w-full text-xs mb-1.5'>
         <span class='code-1'> var </span>
-        <span class='code-var'> Tipo </span> = {{ type }}
+        <span class='code-var'> Tipo </span> = {{ type() }}
       </p>
     }
-    @if (size) {
+    @if (size()) {
       <p
         class='w-full text-xs mb-1.5'>
         <span class='code-1'> var </span>
@@ -54,11 +54,11 @@
     }
     <div class='buttons-container flex flex-row justify-end'>
       <mat-button-toggle class='button-ok'
-        (click)='upload()'
-        [disabled]='!file || uploadingImage'>Guardar
+                         (click)='upload()'
+                         [disabled]='!file() || uploadingImage()'>Guardar
       </mat-button-toggle>
       <mat-button-toggle class='button-cancel'
-        (click)='cancel()'>Cancelar
+                         (click)='cancel()'>Cancelar
       </mat-button-toggle>
     </div>
   </form>

@@ -1,17 +1,16 @@
-@if (authError) {
-  <div class='error flex flex-row items-center justify-center'
-    >
-    <span>{{ authError.title }}</span>
+@if (authError()?.title) {
+  <div class='error flex flex-row items-center justify-center'>
+    <span>{{ authError()?.title }}</span>
   </div>
 }
 
 <div class='flex flex-col items-center justify-center w-full h-screen overflow-hidden'>
   <div class='flex flex-col items-center justify-center shadow-lg p-6 rounded'
-    style="border: solid 1px #0001;">
+       style="border: solid 1px #0001;">
 
     <img class='h-16 mb-9'
-      src='/assets/images/128x128/binarycoffee_2.0.1.png'
-      alt='binarycoffee-logo'>
+         src='/assets/images/128x128/binarycoffee_2.0.1.png'
+         alt='binarycoffee-logo'>
 
     <h2 class="text-2xl py-4 font-thin">Bienvenido a Binary Coffee</h2>
 
@@ -20,10 +19,10 @@
         Puedes acceder con tu cuenta en Github
       </span>
 
-      @for (provider of providers; track provider) {
+      @for (provider of providers(); track provider) {
         <a class='provider-item flex flex-row items-center rounded py-1.5 px-5 text-xs'
-          (click)='loginWithProvider(provider)'
-          [matTooltip]="'Entar con mi cuenta de ' + provider.name">
+           (click)='loginWithProvider(provider)'
+           [matTooltip]="'Entar con mi cuenta de ' + provider.name">
           <i [className]='provider.icon + " text-2xl"'></i>
           <span class='provider-name ml-3'>Continuar con {{ provider.name }}</span>
         </a>

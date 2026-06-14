@@ -1,68 +1,75 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatDialogRef } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
 
 import { FileState, UploadFileAction } from '@dcs-libs/shared';
 
-
 @Component({
-    selector: 'app-upload-file.modal',
-    templateUrl: './upload-file.modal.component.html',
-    styleUrls: ['./upload-file.modal.component.scss'],
-    standalone: false
+  selector: 'app-upload-file.modal',
+  templateUrl: './upload-file.modal.component.html',
+  styleUrls: ['./upload-file.modal.component.scss'],
+  standalone: false,
 })
-export class UploadFileModalComponent implements OnInit {
+export class UploadFileModalComponent {
   private store = inject(Store);
-  private dialogRef = inject<MatDialogRef<UploadFileModalComponent>>(MatDialogRef);
-
+  private dialogRef =
+    inject<MatDialogRef<UploadFileModalComponent>>(MatDialogRef);
 
   uploadFileForm = new UntypedFormGroup({
     name: new UntypedFormControl(''),
     file: new UntypedFormControl(''),
   });
 
-  file = null;
+  file = signal<File>(null);
 
-  size: number = 0;
-  type: string = '';
-  image: string | ArrayBuffer | null = null;
+  size = signal<number>(0);
+  type = signal<string>('');
+  image = signal<string | ArrayBuffer | null>(null);
+  uploadingImage = signal<boolean>(false);
 
-  uploadingImage = false;
+  getSize = computed(
+    () => `${Math.round((this.size() / 1024) * 100) / 100} kB`
+  );
 
-  ngOnInit() {
-  }
-
-  openFile(inputFile: any) {
+  openFile(inputFile: HTMLInputElement) {
     inputFile.click();
   }
 
-  onFilesChange(event: any) {
-    if (event.target.files && event.target.files.length > 0 && event.target.files[0]) {
-      this.file = event.target.files[0];
-      if (this.file) {
-        this.uploadFileForm.controls['name'].setValue(this.file['name']);
-        this.size = this.file['size'];
-        this.type = this.file['type'];
+  onFilesChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (
+      inputElement.files &&
+      inputElement.files?.length > 0 &&
+      inputElement.files[0]
+    ) {
+      this.file.set(inputElement.files[0]);
+      if (this.file()) {
+        this.uploadFileForm.controls['name'].setValue(this.file().name);
+        this.size.set(this.file().size);
+        this.type.set(this.file().type);
 
         const reader = new FileReader();
-        reader.onload = () => this.image = reader.result;
-        reader.readAsDataURL(this.file);
+        reader.onload = () => this.image.set(reader.result);
+        reader.readAsDataURL(this.file());
       }
     }
   }
 
-  getSize() {
-    return `${Math.round(this.size / 1024 * 100) / 100} kB`;
-  }
-
   upload() {
-    if (!this.uploadingImage && this.file) {
-      this.uploadingImage = true;
-      this.store.dispatch(new UploadFileAction(this.file, this.uploadFileForm.controls['name'].value)).subscribe(() => {
-        this.dialogRef.close(this.store.selectSnapshot(FileState.newFile));
-      });
+    if (!this.uploadingImage() && this.file()) {
+      this.uploadingImage.set(true);
+      this.store
+        .dispatch(
+          new UploadFileAction(
+            this.file(),
+            this.uploadFileForm.controls['name'].value
+          )
+        )
+        .subscribe(() => {
+          this.dialogRef.close(this.store.selectSnapshot(FileState.newFile));
+        });
     }
   }
 
