@@ -9,7 +9,7 @@
                        [post]='post'>
         </app-post-item>
       }
-      @if (!posts()?.length) {
+      @if (!posts().length) {
         <div class='no-article flex flex-col mx-3 mb-0 mt-4 justify-center items-center'>
           <i class='fa fa-file-text text-4xl'></i>
           <h1 class="font-normal text-center text-3xl mt-3">No tiene artículos publicados</h1>
@@ -75,12 +75,12 @@
     </div>
 
     <div class='flex flex-col sm:hidden'>
-      @for (post of posts() ?? []; track post) {
+      @for (post of posts(); track post) {
         <app-post-item class='post-element'
                        [post]='post'>
         </app-post-item>
       }
-      @if (!posts()?.length) {
+      @if (!posts().length) {
         <div class='no-article flex flex-col mx-3 mb-0 mt-4 justify-center items-center'>
           <i class='fa fa-file-text text-4xl'></i>
           <h1 class="font-normal text-center text-3xl mt-3">No tiene artículos publicados</h1>

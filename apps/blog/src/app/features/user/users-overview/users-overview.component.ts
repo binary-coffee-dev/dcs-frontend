@@ -1,4 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, linkedSignal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 
@@ -6,37 +7,42 @@ import {
   FetchUsersAction,
   UrlUtilsService,
   User,
-  UserInfoState
+  UserInfoState,
 } from '@dcs-libs/shared';
 
 @Component({
-    selector: 'app-user',
-    templateUrl: './user-overview.component.html',
-    styleUrls: ['./user-overview.component.scss'],
-    standalone: false
+  selector: 'app-user',
+  templateUrl: './user-overview.component.html',
+  styleUrls: ['./user-overview.component.scss'],
+  standalone: false,
 })
-export class UsersOverviewComponent implements OnInit {
+export class UsersOverviewComponent {
   private store = inject(Store);
   private url = inject(UrlUtilsService);
 
-
-  users: User[] = [];
-
-  ngOnInit(): void {
-    this.store.select(UserInfoState.users)
-      .subscribe(users => this.users = users ? users.map(u => ({...u})) : []);
-  }
+  usersStore = toSignal(this.store.select(UserInfoState.users), {
+    initialValue: [],
+  });
+  users = linkedSignal({
+    source: this.usersStore,
+    computation: (users) => users,
+  });
 
   handlerAvatarImgError(index: number): void {
-    this.users[index].avatarUrl = undefined;
+    this.users.update((users) =>
+      users.map((user, i) =>
+        i === index ? { ...user, avatarUrl: undefined } : user
+      )
+    );
   }
 
-  filterUser(event: any): void {
-    this.store.dispatch(new FetchUsersAction(event.target.value));
+  filterUser(event: KeyboardEvent): void {
+    this.store.dispatch(
+      new FetchUsersAction((event.target as HTMLInputElement).value)
+    );
   }
 
   getUserAvatar(user: User): string {
     return this.url.getUserImage(user);
   }
-
 }
