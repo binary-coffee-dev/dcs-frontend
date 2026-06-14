@@ -1,20 +1,15 @@
-@if (!footer) {
+@if (!footer()) {
   <a matButton
-    routerLink="/subscribe"
-    title="Suscríbase"
-    >
-    <!--  <mat-icon class="fa fa-envelope-open"></mat-icon>-->
+     routerLink="/subscribe"
+     title="Suscríbase">
   </a>
 }
-@for (link of links; track link) {
+@for (link of links(); track link) {
   @if (link.enabled) {
     <a matButton
-      [href]="link.href"
-      [title]="link.title"
-      target="blanck">
-      <!--    <mat-icon [class]="link.icon"-->
-    <!--              *ngIf="!footer"></mat-icon>-->
-    <!--    <span *ngIf="footer">> {{link.title}}</span>-->
-  </a>
-}
+       [href]="link.href"
+       [title]="link.title"
+       target="blanck">
+    </a>
+  }
 }

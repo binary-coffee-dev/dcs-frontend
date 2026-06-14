@@ -1,29 +1,29 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from "@angular/material/dialog";
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
 
 import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
 
-
 @Component({
-    selector: 'app-subscribe-dialog',
-    templateUrl: './subscribe-dialog.component.html',
-    styleUrls: ['./subscribe-dialog.component.scss'],
-    standalone: false
+  selector: 'app-subscribe-dialog',
+  templateUrl: './subscribe-dialog.component.html',
+  styleUrls: ['./subscribe-dialog.component.scss'],
+  standalone: false,
 })
-export class SubscribeDialogComponent implements OnInit {
-  private dialogRef = inject<MatDialogRef<SubscribeDialogComponent>>(MatDialogRef);
+export class SubscribeDialogComponent {
+  private dialogRef =
+    inject<MatDialogRef<SubscribeDialogComponent>>(MatDialogRef);
   private store = inject(Store);
 
-
   subscribeForm = new UntypedFormGroup({
-    email: new UntypedFormControl('', [Validators.required, Validators.email])
+    email: new UntypedFormControl('', [Validators.required, Validators.email]),
   });
-
-  ngOnInit(): void {
-  }
 
   ok() {
     this.store
@@ -34,11 +34,13 @@ export class SubscribeDialogComponent implements OnInit {
         );
         let message = undefined;
         if (subscription && !subscription.verified) {
-          message = 'La suscripción ha sido correctamente enviada, revise su email para verificarlo.';
+          message =
+            'La suscripción ha sido correctamente enviada, revise su email para verificarlo.';
         } else if (subscription && subscription.verified) {
           message = 'El email ya se encuentra suscrito al sitio';
         } else {
-          message = 'Error: Ha ocurrido algún problema con su suscripción. Por favor, contáctenos en website@binary-coffee.dev';
+          message =
+            'Error: Ha ocurrido algún problema con su suscripción. Por favor, contáctenos en website@binary-coffee.dev';
         }
         this.dialogRef.close(message);
       });

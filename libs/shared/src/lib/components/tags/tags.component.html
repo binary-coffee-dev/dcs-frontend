@@ -1,8 +1,7 @@
 <div class="content">
-  @for (tag of tags; track tag) {
-    <i class="tag"
-      >
-      <{{tag.name}}>
+  @for (tag of tags(); track tag.id) {
+    <i class="tag">
+      <{{ tag.name }}>
     </i>
   }
 </div>

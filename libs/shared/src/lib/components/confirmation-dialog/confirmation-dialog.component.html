@@ -1,13 +1,13 @@
 <div class="card-modal">
-  <span class="title mb-3">{{ title }}</span>
+  <span class="title mb-3">{{ title() }}</span>
   <div class="flex flex-row justify-end mt-3">
     <button mat-button
             class="button-ok mr-3 pl-4 pr-4 text-sm"
-            (click)="ok()">Eliminar
+            (click)="ok()"> {{ okTitle() }}
     </button>
     <button mat-button
             class="button-cancel pl-4 pr-4 text-sm"
-            (click)="cancel()">Cancelar
+            (click)="cancel()">{{ cancelTitle() }}
     </button>
   </div>
 </div>

@@ -1,21 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 
 import { SocialLink } from './social-link.model';
 import { links } from './links-data';
 
 @Component({
-    selector: 'app-social-links',
-    templateUrl: './social-links.component.html',
-    styleUrls: ['./social-links.component.scss'],
-    standalone: false
+  selector: 'app-social-links',
+  templateUrl: './social-links.component.html',
+  styleUrls: ['./social-links.component.scss'],
+  standalone: false,
 })
 export class SocialLinksComponent {
+  footer = input<boolean>(false);
 
-  @Input()
-  footer = false;
-
-  links: SocialLink[] = links;
-
-  constructor() {
-  }
+  links = signal<SocialLink[]>(links);
 }

@@ -9,6 +9,7 @@ import {
   ChangeFilesPageAction,
   ChangeQueryAction,
   ConfirmationDialogComponent,
+  ConfirmationDialogData,
   FetchFilesAction,
   File,
   FileState,
@@ -106,7 +107,10 @@ export class ListComponent extends Permissions {
   removeImage(file: File) {
     this.dialog
       .open(ConfirmationDialogComponent, {
-        data: { title: '¿Está seguro que desea eliminar la imágen?' },
+        data: {
+          title: '¿Está seguro que desea eliminar la imágen?',
+          okTitle: 'Eliminar'
+        } as ConfirmationDialogData,
       })
       .afterClosed()
       .subscribe((result) => {
