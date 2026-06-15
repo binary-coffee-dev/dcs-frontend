@@ -28,7 +28,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrls: ['./user-profile.component.scss'],
   standalone: false,
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent {
   private store = inject(Store);
   private dialog = inject(MatDialog);
   private url = inject(UrlUtilsService);
@@ -61,7 +61,7 @@ export class UserProfileComponent implements OnInit {
     showEmail: new UntypedFormControl(''),
   });
 
-  ngOnInit() {
+  constructor() {
     effect(() => {
       const me = this.me();
       if (me) {
@@ -74,18 +74,21 @@ export class UserProfileComponent implements OnInit {
   }
 
   saveProfessionalData() {
-    this.store.dispatch(
-      new UpdateMeAction(
-        this.me().id,
-        this.professionalForm.controls['page'].value
-      )
-    );
+    const me = this.me();
+    if (me) {
+      this.store.dispatch(
+        new UpdateMeAction(me.id, this.professionalForm.controls['page'].value)
+      );
+    }
   }
 
   onUserDataChange() {
-    this.professionalDataChange.set(
-      this.me().page !== this.professionalForm.controls['page'].value
-    );
+    const me = this.me();
+    if (me) {
+      this.professionalDataChange.set(
+        me.page !== this.professionalForm.controls['page'].value
+      );
+    }
   }
 
   openUploadFileModal() {
@@ -94,8 +97,9 @@ export class UserProfileComponent implements OnInit {
       width: '50vh',
     });
     dialog.afterClosed().subscribe((result: File) => {
-      if (result) {
-        this.store.dispatch(new UpdateMyAvatarAction(this.me().id, result.id));
+      const me = this.me();
+      if (result && me) {
+        this.store.dispatch(new UpdateMyAvatarAction(me.id, result.id));
       }
     });
   }

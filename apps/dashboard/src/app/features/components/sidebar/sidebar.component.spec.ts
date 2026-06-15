@@ -7,8 +7,11 @@ import { Store } from '@ngxs/store';
 
 import { UrlUtilsService } from '@dcs-libs/shared';
 import { SidebarComponent } from './sidebar.component';
+import { of } from 'rxjs';
 
-class StoreStub {}
+class StoreStub {
+  select = () => of({});
+}
 
 class UrlUtilsServiceStub {
   getUserImage = () => '';

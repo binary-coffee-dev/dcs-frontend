@@ -3,10 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 
-import {
-  CloseNotificationAction,
-  NotificationState,
-} from '@dcs-libs/shared';
+import { CloseNotificationAction, NotificationState } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-notifications',
@@ -14,17 +11,16 @@ import {
   styleUrls: ['./notifications.component.scss'],
   standalone: false,
 })
-export class NotificationsComponent implements OnInit {
+export class NotificationsComponent {
   private store = inject(Store);
 
-  notifications = toSignal(
-    this.store.select(NotificationState.notifications),
-    { initialValue: [] }
-  );
+  notifications = toSignal(this.store.select(NotificationState.notifications), {
+    initialValue: [],
+  });
 
   notificationsMap: Set<number> = new Set<number>();
 
-  ngOnInit() {
+  constructor() {
     effect(() => {
       this.notifications()
         .filter((not) => !this.notificationsMap.has(not.id))

@@ -19,7 +19,7 @@ import { OverviewComponent } from './overview.component';
 
 class StoreStub {
   dispatch = jest.fn();
-  select = jest.fn();
+  select = () => of([]);
 }
 
 class MatDialogStub {}

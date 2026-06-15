@@ -4,8 +4,11 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 import { CookiesConsentComponent } from './cookies-consent.component';
+import { of } from 'rxjs';
 
-class StoreStub {}
+class StoreStub {
+  select = () => of('');
+}
 
 describe('CookiesConsentComponent', () => {
   let component: CookiesConsentComponent;

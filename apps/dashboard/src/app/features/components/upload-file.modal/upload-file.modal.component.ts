@@ -22,7 +22,7 @@ export class UploadFileModalComponent {
     file: new UntypedFormControl(''),
   });
 
-  file = signal<File>(null);
+  file = signal<File | null>(null);
 
   size = signal<number>(0);
   type = signal<string>('');
@@ -44,28 +44,27 @@ export class UploadFileModalComponent {
       inputElement.files?.length > 0 &&
       inputElement.files[0]
     ) {
-      this.file.set(inputElement.files[0]);
-      if (this.file()) {
-        this.uploadFileForm.controls['name'].setValue(this.file().name);
-        this.size.set(this.file().size);
-        this.type.set(this.file().type);
+      const file = inputElement.files[0];
+      if (file) {
+        this.file.set(file);
+        this.uploadFileForm.controls['name'].setValue(file.name);
+        this.size.set(file.size);
+        this.type.set(file.type);
 
         const reader = new FileReader();
         reader.onload = () => this.image.set(reader.result);
-        reader.readAsDataURL(this.file());
+        reader.readAsDataURL(file);
       }
     }
   }
 
   upload() {
-    if (!this.uploadingImage() && this.file()) {
+    const file = this.file();
+    if (!this.uploadingImage() && file) {
       this.uploadingImage.set(true);
       this.store
         .dispatch(
-          new UploadFileAction(
-            this.file(),
-            this.uploadFileForm.controls['name'].value
-          )
+          new UploadFileAction(file, this.uploadFileForm.controls['name'].value)
         )
         .subscribe(() => {
           this.dialogRef.close(this.store.selectSnapshot(FileState.newFile));

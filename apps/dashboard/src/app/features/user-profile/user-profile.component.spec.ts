@@ -2,12 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
+import { of } from 'rxjs';
 import { Store } from '@ngxs/store';
 
 import { UrlUtilsService } from '@dcs-libs/shared';
 import { UserProfileComponent } from './user-profile.component';
 
-class StoreStub {}
+class StoreStub {
+  select = () => of({});
+}
 
 class MatDialogStub {}
 

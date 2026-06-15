@@ -3,8 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngxs/store';
 
 import { NotificationsComponent } from './notifications.component';
+import { of } from 'rxjs';
 
-class StoreStub {}
+class StoreStub {
+  select = () => of([]);
+}
 
 describe('NotificationsComponent', () => {
   let component: NotificationsComponent;

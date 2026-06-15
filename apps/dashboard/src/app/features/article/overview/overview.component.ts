@@ -80,9 +80,13 @@ export class OverviewComponent
       return post;
     },
   });
-  getPostPreviewUrl = computed(
-    () => `${this.env.siteUrl}/post/${this.post().name}`
-  );
+  getPostPreviewUrl = computed(() => {
+    const post = this.post();
+    if (post) {
+      return `${this.env.siteUrl}/post/${post.name}`;
+    }
+    return '';
+  });
 
   formDataChange = signal<boolean>(false);
   imageChange = signal<boolean>(false);
@@ -105,8 +109,8 @@ export class OverviewComponent
   );
 
   routeParams = toSignal(this.activatedRoute.params);
-  isNewPost = computed(() => !this.routeParams()['id']);
-  isPublished = computed(() => Boolean(this.post().publishedAt));
+  isNewPost = computed(() => !this.routeParams()?.['id']);
+  isPublished = computed(() => Boolean(this.post()?.publishedAt));
 
   _stopTimer = new Subject();
 
@@ -204,67 +208,75 @@ export class OverviewComponent
   }
 
   onPostChange() {
-    const keyNames = ['body', 'title', 'enable'];
-    this.formDataChange.set(
-      keyNames.reduce((prev, key: string) => {
-        return (
-          prev ||
-          (this.post() &&
-            this.post()[key] !== this.articleForm.controls[key].value)
-        );
-      }, false)
-    );
+    const post = this.post();
+    if (post) {
+      const keyNames = ['body', 'title', 'enable'];
+      this.formDataChange.set(
+        keyNames.reduce<boolean>((prev, key: string) => {
+          return Boolean(
+            prev || (post as any)[key] !== this.articleForm.controls[key].value
+          );
+        }, false)
+      );
 
-    const date = this.post().publishedAt
-      ? this.getDatesParameters(new Date(this.post().publishedAt))
-      : {};
-    const date2 = this.articleForm.controls['date'].value
-      ? this.getDatesParameters(
-          new Date(this.articleForm.controls['date'].value)
-        )
-      : {};
-    const { hours, minutes } = this.getHMFromMinutes(
-      this.articleForm.controls['time'].value
-    );
-    const publishedAtChange =
-      date.minutes !== minutes ||
-      date.hours !== hours ||
-      date.day !== date2.day ||
-      date.month !== date2.month ||
-      date.year !== date2.year;
+      const date = post.publishedAt
+        ? this.getDatesParameters(new Date(post.publishedAt))
+        : {};
 
-    this.formDataChange =
-      this.formDataChange || publishedAtChange || this.tagChange();
+      const date2 = this.articleForm.controls['date'].value
+        ? this.getDatesParameters(
+            new Date(this.articleForm.controls['date'].value)
+          )
+        : {};
+      const { hours, minutes } = this.getHMFromMinutes(
+        this.articleForm.controls['time'].value
+      );
+      const publishedAtChange =
+        date.minutes !== minutes ||
+        date.hours !== hours ||
+        date.day !== date2.day ||
+        date.month !== date2.month ||
+        date.year !== date2.year;
+
+      this.formDataChange.update(
+        (formDataChange) =>
+          formDataChange || publishedAtChange || this.tagChange()
+      );
+    }
   }
 
   tagChange() {
+    const post = this.post();
     const tset = new Set<string>();
-    if (
-      this.post().tags.length !== this.articleForm.controls['tags'].value.length
-    ) {
-      return true;
+    if (post) {
+      if (post.tags.length !== this.articleForm.controls['tags'].value.length) {
+        return true;
+      }
+      post.tags.forEach((tag: Tag) => tset.add(tag.id));
+      return this.articleForm.controls['tags'].value.reduce(
+        (prev: boolean, value: AutoCompleteModel) =>
+          prev || !tset.has(value.value),
+        false
+      );
     }
-    this.post().tags.forEach((tag: Tag) => tset.add(tag.id));
-    return this.articleForm.controls['tags'].value.reduce(
-      (prev: boolean, value: AutoCompleteModel) =>
-        prev || !tset.has(value.value),
-      false
-    );
   }
 
   submitPost() {
     if (this.formDataChange()) {
       this.post.update((post) => {
-        return {
-          ...post,
-          body: this.articleForm.controls['body'].value,
-          title: this.articleForm.controls['title'].value,
-          enable: this.articleForm.controls['enable'].value,
-          tags: this.articleForm.controls['tags'].value.map(
-            (tag: AutoCompleteModel) =>
-              ({ name: tag.display, id: tag.value } as Tag)
-          ),
-        };
+        if (post) {
+          return {
+            ...post,
+            body: this.articleForm.controls['body'].value,
+            title: this.articleForm.controls['title'].value,
+            enable: this.articleForm.controls['enable'].value,
+            tags: this.articleForm.controls['tags'].value.map(
+              (tag: AutoCompleteModel) =>
+                ({ name: tag.display, id: tag.value } as Tag)
+            ),
+          };
+        }
+        return post;
       });
 
       let date: Date;
@@ -284,15 +296,15 @@ export class OverviewComponent
           date.setMinutes(minutes);
         }
       }
-      this.post.update((post) => ({ ...post, publishedAt: date }));
+      this.post.update((post) =>
+        post ? { ...post, publishedAt: date } : post
+      );
 
-      if (this.isNewPost()) {
+      const post = this.post();
+      if (this.isNewPost() && post) {
         this.store
           .dispatch(
-            new PostCreateAction(
-              this.post(),
-              this.store.selectSnapshot(AuthState.me)
-            )
+            new PostCreateAction(post, this.store.selectSnapshot(AuthState.me))
           )
           .subscribe(() => {
             this.formDataChange.set(false);
@@ -303,9 +315,9 @@ export class OverviewComponent
               )}`,
             ]);
           });
-      } else {
+      } else if (post) {
         this.store
-          .dispatch(new PostUpdateAction(this.post()))
+          .dispatch(new PostUpdateAction(post))
           .pipe(takeUntilDestroyed())
           .subscribe(() => {
             this.imageChange.set(false);
@@ -354,7 +366,9 @@ export class OverviewComponent
       .pipe(takeUntilDestroyed())
       .subscribe((image: File) => {
         if (image) {
-          this.post.update((post) => ({ ...post, banner: image }));
+          this.post.update((post) =>
+            post ? { ...post, banner: image } : post
+          );
           this.imageChange.set(true);
         }
       });
@@ -368,14 +382,14 @@ export class OverviewComponent
     });
     dialog.afterClosed().subscribe((image: File) => {
       if (image) {
-        this.post.update((post) => ({ ...post, banner: image }));
+        this.post.update((post) => (post ? { ...post, banner: image } : post));
         this.imageChange.set(true);
       }
     });
   }
 
   removeCurrentBanner() {
-    this.post.update((post) => ({ ...post, banner: undefined }));
+    this.post.update((post) => (post ? { ...post, banner: undefined } : post));
     this.imageChange.set(true);
   }
 

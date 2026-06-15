@@ -37,16 +37,18 @@ export class ListComponent extends Permissions {
   private rolePermissionMap =
     inject<Map<RoleEnum, Permission[]>>(ROLE_PERMISSION_MAP);
 
-  files = toSignal(this.store.select(FileState.files), { initialValue: [] });
   me = toSignal(this.store.select(AuthState.me));
+  files = toSignal(this.store.select(FileState.files), { initialValue: [] });
 
   pageIndicators = toSignal(this.store.select(FileState.pageIndicators));
   numberOfPages = computed(() => {
-    return Math.ceil(
-      this.pageIndicators().count / this.pageIndicators().pageSize
-    );
+    const pageIndicators = this.pageIndicators();
+    if (pageIndicators) {
+      return Math.ceil(pageIndicators.count / pageIndicators.pageSize);
+    }
+    return 0;
   });
-  currentPage = computed(() => this.pageIndicators().page);
+  currentPage = computed(() => this.pageIndicators()?.page ?? 0);
 
   constructor() {
     super();
@@ -109,7 +111,7 @@ export class ListComponent extends Permissions {
       .open(ConfirmationDialogComponent, {
         data: {
           title: '¿Está seguro que desea eliminar la imágen?',
-          okTitle: 'Eliminar'
+          okTitle: 'Eliminar',
         } as ConfirmationDialogData,
       })
       .afterClosed()

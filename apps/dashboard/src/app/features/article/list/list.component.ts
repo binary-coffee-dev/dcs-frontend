@@ -30,7 +30,7 @@ import {
   styleUrls: ['./list.component.scss'],
   standalone: false,
 })
-export class ListComponent extends Permissions implements OnInit {
+export class ListComponent extends Permissions {
   private store = inject(Store);
   private environment = inject<Environment>(ENVIRONMENT);
   moment = inject(MomentService);
@@ -39,10 +39,16 @@ export class ListComponent extends Permissions implements OnInit {
   posts = toSignal(this.store.select(PostState.posts));
 
   pageIndicator = toSignal(this.store.select(PostState.pageIndicator));
-  currentPage = computed(() => this.pageIndicator().page);
-  numberOfPages = computed(() =>
-    Math.ceil(this.pageIndicator().count / this.pageIndicator().pageSize)
-  );
+  currentPage = computed(() => this.pageIndicator()?.page ?? 0);
+  numberOfPages = computed(() => {
+    const pageIndicator = this.pageIndicator();
+    if (pageIndicator) {
+      return Math.ceil(
+        pageIndicator.count / pageIndicator.pageSize
+      );
+    }
+    return 0;
+  });
 
   tableOrCardStore = toSignal(
     this.store.select(ConfigState.getConfigItem('dashboard-post-tableOrCard'))
@@ -51,7 +57,9 @@ export class ListComponent extends Permissions implements OnInit {
 
   me = toSignal(this.store.select(AuthState.me));
 
-  ngOnInit() {
+  constructor() {
+    super();
+
     effect(() => {
       const me = this.me();
       this.store
@@ -69,7 +77,7 @@ export class ListComponent extends Permissions implements OnInit {
     return (
       (user?.id ?? false) &&
       (post?.author?.id ?? false) &&
-      post.author.id === user.id
+      post?.author?.id === user?.id
     );
   }
 

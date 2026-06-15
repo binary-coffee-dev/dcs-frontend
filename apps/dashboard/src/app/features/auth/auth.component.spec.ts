@@ -6,8 +6,11 @@ import { Store } from '@ngxs/store';
 
 import { ENVIRONMENT, WINDOW } from '@dcs-libs/shared';
 import { AuthComponent } from './auth.component';
+import { of } from 'rxjs';
 
-class StoreStub {}
+class StoreStub {
+  select = () => of({});
+}
 
 describe('AuthComponent', () => {
   let component: AuthComponent;

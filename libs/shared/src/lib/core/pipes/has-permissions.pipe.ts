@@ -12,7 +12,6 @@ export class HasPermissionsPipe implements PipeTransform {
   private store = inject(Store);
   private rolePermissionMap = inject<Map<RoleEnum, Permission[]>>(ROLE_PERMISSION_MAP);
 
-
   transform(permissions: Permission[]): boolean {
     const userRole = this.store.selectSnapshot(AuthState.role);
     if (userRole) {

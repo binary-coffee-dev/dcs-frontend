@@ -1,22 +1,33 @@
+import { TestBed } from '@angular/core/testing';
+
 import { Store } from '@ngxs/store';
 
-import { Permission, RoleEnum } from '../permissions';
+import {
+  Permission,
+  ROLE_PERMISSION_MAP,
+  rolePermissionMap,
+} from '../permissions';
 import { HasPermissionsPipe } from './has-permissions.pipe';
+
+class StoreStub {
+  selectSnapshot = jest.fn();
+}
 
 describe('HasPermissionsPipe', () => {
   let pipe: HasPermissionsPipe;
   let store: Store;
 
   beforeEach(() => {
-    store = {
-      selectSnapshot: jest.fn
-    } as unknown as Store;
-    const map = new Map<RoleEnum, Permission[]>();
-    map.set(RoleEnum.authenticated, []);
-    map.set(RoleEnum.staff, [
-      Permission.EDIT_ANY_ARTICLE
-    ]);
-    pipe = new HasPermissionsPipe(store, map);
+    TestBed.configureTestingModule({
+      declarations: [HasPermissionsPipe],
+      providers: [
+        HasPermissionsPipe,
+        { provide: Store, useClass: StoreStub },
+        { provide: ROLE_PERMISSION_MAP, useValue: rolePermissionMap },
+      ],
+    });
+    pipe = TestBed.inject(HasPermissionsPipe);
+    store = TestBed.inject(Store);
   });
 
   it('create an instance', () => {
@@ -34,7 +45,10 @@ describe('HasPermissionsPipe', () => {
   it('should return false if the permissions are not in the list (example 2)', () => {
     jest.spyOn(store, 'selectSnapshot').mockReturnValue('staff');
 
-    const actual = pipe.transform([Permission.REMOVE_ANY_ARTICLE, Permission.EDIT_ANY_ARTICLE]);
+    const actual = pipe.transform([
+      Permission.REMOVE_ANY_ARTICLE,
+      Permission.EDIT_ANY_ARTICLE,
+    ]);
 
     expect(actual).toEqual(false);
   });

@@ -30,9 +30,15 @@ export class SelectImageModalComponent implements OnInit {
 
   pageIndicators = toSignal(this.store.select(FileState.pageIndicators));
   currentPage = computed(() => this.pageIndicators()?.page ?? 0);
-  numberOfPages = computed(() =>
-    Math.ceil(this.pageIndicators().count / this.pageIndicators().pageSize)
-  );
+  numberOfPages = computed(() => {
+    const pageIndicators = this.pageIndicators();
+    if (pageIndicators) {
+      return Math.ceil(
+        pageIndicators.count / pageIndicators.pageSize
+      );
+    }
+    return 0;
+  });
 
   ngOnInit() {
     this.store.dispatch(new FetchFilesAction(6));
