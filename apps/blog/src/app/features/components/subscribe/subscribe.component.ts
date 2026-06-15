@@ -1,5 +1,5 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, OnInit, inject, signal, effect } from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngxs/store';
@@ -12,34 +12,28 @@ import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
   styleUrls: ['./subscribe.component.scss'],
   standalone: false,
 })
-export class SubscribeComponent implements OnInit {
+export class SubscribeComponent {
   private store = inject(Store);
 
   message = signal<string>('');
   subscriptionError = signal<string>('');
   subscriptionSent = signal<boolean>(false);
-  loading = signal<boolean>(false);
+  loading = toSignal(this.store.select(SubscriptionState.loading), {
+    initialValue: false,
+  });
 
   subscribeForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  ngOnInit(): void {
-    this.subscribeToLoading();
-  }
-
-  subscribeToLoading(): void {
-    this.store
-      .select(SubscriptionState.loading)
-      .pipe(takeUntilDestroyed())
-      .subscribe((loading) => {
-        this.loading.set(loading);
-        if (loading) {
-          this.subscribeForm.controls.email.disable();
-        } else {
-          this.subscribeForm.controls.email.enable();
-        }
-      });
+  constructor() {
+    effect(() => {
+      if (this.loading()) {
+        this.subscribeForm.controls.email.disable();
+      } else {
+        this.subscribeForm.controls.email.enable();
+      }
+    });
   }
 
   subscribe() {

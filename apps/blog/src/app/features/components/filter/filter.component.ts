@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -24,6 +24,7 @@ export class FilterComponent implements OnInit {
   private store = inject(Store);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
 
   filter = '';
 
@@ -47,7 +48,7 @@ export class FilterComponent implements OnInit {
   filterChange() {
     this.resetTime.next(true);
     timer(1000)
-      .pipe(takeUntil(this.resetTime), takeUntilDestroyed())
+      .pipe(takeUntil(this.resetTime), takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.changeFilter();
       });
@@ -68,7 +69,7 @@ export class FilterComponent implements OnInit {
     } as Where;
     this.store
       .dispatch(new SetFiltersAction(filter))
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.store.dispatch(new FetchPostsAction());
         this.updateRoute();

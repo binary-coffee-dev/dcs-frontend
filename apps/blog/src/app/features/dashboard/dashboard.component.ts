@@ -3,7 +3,6 @@ import {
   PLATFORM_ID,
   inject,
   signal,
-  computed,
 } from '@angular/core';
 
 import { Store } from '@ngxs/store';

@@ -35,7 +35,7 @@
 
   @if ((comments()?.length ?? 0) > 0) {
     <div class='comments-list p-6 w-full shadow-lg rounded'>
-      @for (comment of comments(); track comment) {
+      @for (comment of comments(); track comment.id) {
         <div class='comment-container mt-6 mx-0 mb-9'>
           <div class='user-data'>
             <a class="flex flex-row items-center no-underline hover:underline"

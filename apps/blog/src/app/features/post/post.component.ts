@@ -72,7 +72,9 @@ export class PostComponent extends Permissions implements OnInit {
     source: this.similarPostsEvent,
     computation: (posts) => {
       if (posts) {
-        return [...posts].slice(0, Math.min(MAX_NUMBER_OF_POSTS, posts.length));
+        return posts
+          .slice(0, Math.min(MAX_NUMBER_OF_POSTS, posts.length))
+          .map((post, id) => ({ ...post, id: id + '' } as Post));
       }
       return [];
     },

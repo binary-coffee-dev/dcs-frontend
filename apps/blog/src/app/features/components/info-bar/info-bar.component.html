@@ -52,7 +52,7 @@
       <!--recent comments-->
       @if (showRecentComments()) {
         <span><span class='class'>class</span> Opiniones_Recientes &#123;</span>
-        @for (comment of comments(); track comment) {
+        @for (comment of comments(); track comment.id) {
           <span>&#160;</span>
           <a [routerLink]="'/post/' + getPostName(comment?.post)"
             [fragment]='comment?.id'

@@ -119,7 +119,7 @@
       <app-info-bar [showPodcast]='false'
                     [showSocialMedias]='true'></app-info-bar>
       <div class='similar-post-content'>
-        @for (post of similarPosts(); track post) {
+        @for (post of similarPosts(); track post.id) {
           <app-post-item
             class='post-element'
             [post]='post'>

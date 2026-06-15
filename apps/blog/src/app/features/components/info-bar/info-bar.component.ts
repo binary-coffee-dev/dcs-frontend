@@ -7,15 +7,13 @@ import {
   signal,
   computed,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Store } from '@ngxs/store';
 
 import {
-  Comment,
   CommentState,
-  EpisodeModel,
   MomentService,
   PodcastState,
   Post,
@@ -36,16 +34,23 @@ interface ShareLink {
 })
 export class InfoBarComponent implements OnInit {
   private store = inject(Store);
+  private window = inject<Window>(WINDOW);
   moment = inject(MomentService);
   url = inject(UrlUtilsService);
-  private window = inject<Window>(WINDOW);
 
   showPodcast = input<boolean>(true);
   showRecentComments = input<boolean>(true);
   showSocialMedias = input<boolean>(false);
 
-  episodes = signal<EpisodeModel[]>([]);
-  comments = signal<Comment[]>([]);
+  episodes = toSignal(this.store.select(PodcastState.episodesList), {
+    initialValue: [],
+  });
+  commentsStore = toSignal(this.store.select(CommentState.recentComments), {
+    initialValue: [],
+  });
+  comments = computed(() =>
+    this.commentsStore().map((comment, id) => ({ ...comment, id: id + '' }))
+  );
   shareLinks = signal<ShareLink[]>([]);
 
   lineNumbers = computed(() => {
@@ -67,18 +72,6 @@ export class InfoBarComponent implements OnInit {
 
   constructor() {
     this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-    this.store
-      .select(PodcastState.episodesList)
-      .pipe(takeUntilDestroyed())
-      .subscribe((list) => {
-        this.episodes.set(list || []);
-      });
-    this.store
-      .select(CommentState.recentComments)
-      .pipe(takeUntilDestroyed())
-      .subscribe((comments) => {
-        this.comments.set(comments || []);
-      });
   }
 
   ngOnInit(): void {

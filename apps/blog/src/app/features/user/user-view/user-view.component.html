@@ -4,7 +4,7 @@
               w-full lg:w-11/12 xl:w-9/12 2xl:w-8/12'>
 
     <div class='hidden sm:flex sm:flex-col w-full overflow-hidden box-border'>
-      @for (post of posts(); track post) {
+      @for (post of posts(); track post.id) {
         <app-post-item class='post-element'
                        [post]='post'>
         </app-post-item>
@@ -75,7 +75,7 @@
     </div>
 
     <div class='flex flex-col sm:hidden'>
-      @for (post of posts(); track post) {
+      @for (post of posts(); track post.id) {
         <app-post-item class='post-element'
                        [post]='post'>
         </app-post-item>
