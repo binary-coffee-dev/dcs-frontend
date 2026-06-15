@@ -5,13 +5,15 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngxs/store';
 
 import { SubscribeComponent } from './subscribe.component';
+import { of } from 'rxjs';
 
-class StoreStub {}
+class StoreStub {
+  select = () => of(false);
+}
 
 describe('SubscribeComponent', () => {
   let component: SubscribeComponent;
   let fixture: ComponentFixture<SubscribeComponent>;
-  SubscribeComponent.prototype.ngOnInit = jest.fn();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -25,8 +27,6 @@ describe('SubscribeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SubscribeComponent);
     component = fixture.componentInstance;
-
-    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });
