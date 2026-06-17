@@ -7,22 +7,15 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": {
-          "base": "dist/apps/dashboard"
-        },
+        "outputPath": "dist/apps/dashboard",
         "index": "apps/dashboard/src/index.html",
-        "polyfills": [
-          "zone.js"
-        ],
+        "main": "apps/dashboard/src/main.ts",
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/dashboard/tsconfig.app.json",
-        "allowedCommonJsDependencies": [
-          "moment"
-        ],
+        "allowedCommonJsDependencies": ["moment"],
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/dashboard/src/favicon.png",
@@ -41,7 +34,6 @@
           "node_modules/katex/dist/katex.min.css"
         ],
         "scripts": [
-          "node_modules/marked/marked.min.js",
           "node_modules/prismjs/prism.js",
           "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
           "node_modules/katex/dist/katex.min.js",
@@ -114,7 +106,8 @@
       "defaultConfiguration": "default"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:dev-server",
+      "continuous": true,
       "configurations": {
         "production": {
           "buildTarget": "dashboard:build:production"
@@ -133,9 +126,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/dashboard/jest.config.js",
         "tsConfig": "apps/dashboard/tsconfig.spec.json"

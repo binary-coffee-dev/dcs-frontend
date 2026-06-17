@@ -2,8 +2,8 @@
 
 @use 'libs/shared/src/theme' as theme;
 
-$fa-font-path: "../../../node_modules/font-awesome/fonts";
 @use 'font-awesome/scss/font-awesome' as *;
+$fa-font-path: "../../../node_modules/font-awesome/fonts";
 
 // loading oxygen font
 @font-face {

@@ -195,7 +195,7 @@ export class OverviewComponent
     return true;
   }
 
-  normalizeUrl(url: string) {
+  normalizeUrl(url: string | undefined | null) {
     return this.url.normalizeImageUrl(url);
   }
 

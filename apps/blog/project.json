@@ -27,8 +27,8 @@
           }
         ],
         "styles": [
-          "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
           "apps/blog/src/styles.scss",
+          "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
           "node_modules/prismjs/themes/prism-okaidia.css",
           "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
           "node_modules/katex/dist/katex.min.css"
@@ -170,8 +170,7 @@
       "executor": "@nx/angular:dev-server",
       "continuous": true,
       "options": {
-        "port": 4200,
-        "publicHost": "0.0.0.0"
+        "port": 4200
       },
       "configurations": {
         "production": {

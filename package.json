@@ -3,8 +3,8 @@
   "version": "2024.7.29",
   "scripts": {
     "ng": "nx",
-    "start": "nx run blog:serve --watch --poll=2000 --port=4200",
-    "start:admin": "nx run dashboard:serve --watch --port=4201 --poll=2000",
+    "start": "nx run blog:serve --watch --poll=2000 --port=4200 --host=0.0.0.0",
+    "start:admin": "nx run dashboard:serve --watch --port=4201 --poll=2000 --host=0.0.0.0",
     "build:admin": "nx run dashboard:build:development",
     "build:admin:prod": "nx run dashboard:build:production",
     "stats": "nx run blog:build:production --stats-json && webpack-bundle-analyzer dist/apps/blog/stats.json",
