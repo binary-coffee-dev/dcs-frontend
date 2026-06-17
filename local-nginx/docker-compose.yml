@@ -2,8 +2,10 @@ version: '3'
 
 services:
   deploy:
-    build:
-      context: .
+    image: nginx:1.13.9-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./remove:/var/log/nginx
     ports:
       - '4202:80'
     extra_hosts:
