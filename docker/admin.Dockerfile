@@ -1,4 +1,4 @@
-FROM node:20.12.2-alpine3.19 AS build-env
+FROM node:22.22.3-alpine3.24 AS build-env
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ COPY tsconfig.json nx.json tailwind.config.js ./
 ARG ENVIRONMENT
 RUN if [ "$ENVIRONMENT" = "dev" ] ; then nx run dashboard:build:development ; else nx run dashboard:build:production ; fi
 
-FROM nginx:1.13.9-alpine
+FROM nginx:1.31.1-alpine3.23
 
 COPY --from=build-env /app/dist/apps/dashboard/ /usr/share/nginx/html
 
