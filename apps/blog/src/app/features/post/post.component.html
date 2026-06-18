@@ -82,24 +82,14 @@
           <app-share-buttons></app-share-buttons>
         </div>
 
-        @if (isBrowser()) {
-          <div class='markdown-container'>
-            <markdown class="markdown-post-style"
-                      [data]='post()?.body ?? ""'
-                      katex
-                      [katexOptions]=""
-                      [disableSanitizer]="true"
-                      lineNumbers></markdown>
-          </div>
-        }
-        @if (!isBrowser()) {
-          <div class='markdown-container'>
-            <markdown class="markdown-post-style"
-                      [src]='articleBody()'
-                      katex
-                      lineNumbers></markdown>
-          </div>
-        }
+        <div class='markdown-container'>
+          <markdown class="markdown-post-style"
+                    [data]='post()?.body ?? ""'
+                    katex
+                    [katexOptions]=""
+                    [disableSanitizer]="true"
+                    lineNumbers></markdown>
+        </div>
       </div>
 
       <div class='flex flex-row py-0'>

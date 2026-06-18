@@ -7,15 +7,22 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/angular:webpack-browser",
+      "executor": "@nx/angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/blog",
         "index": "apps/blog/src/index.html",
-        "main": "apps/blog/src/main.ts",
+        "browser": "apps/blog/src/main.ts",
+        "server": "apps/blog/src/main.server.ts",
+        "ssr": {
+          "entry": "apps/blog/src/server.ts"
+        },
         "polyfills": ["zone.js"],
         "tsConfig": "apps/blog/tsconfig.app.json",
         "allowedCommonJsDependencies": ["moment", "xhr2"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["."]
+        },
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/blog/src/favicon.png",
@@ -80,7 +87,6 @@
           ],
           "sourceMap": true,
           "outputHashing": "all",
-          "buildOptimizer": true,
           "optimization": true
         },
         "development": {
@@ -90,18 +96,15 @@
               "with": "apps/blog/src/environments/environment.dev.ts"
             }
           ],
-          "buildOptimizer": false,
           "optimization": false,
           "outputHashing": "all",
-          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
         },
         "default": {
-          "buildOptimizer": false,
           "optimization": false,
-          "vendorChunk": true,
+          "outputHashing": "all",
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
@@ -109,62 +112,25 @@
       },
       "defaultConfiguration": "default"
     },
-    "server": {
-      "executor": "@angular-devkit/build-angular:server",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/apps/server",
-        "main": "apps/blog/server.ts",
-        "tsConfig": "apps/blog/tsconfig.server.json",
-        "sourceMap": true,
-        "optimization": false,
-        "extractLicenses": false,
-        "buildOptimizer": false
-      },
-      "configurations": {
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "apps/blog/src/environments/environment.ts",
-              "with": "apps/blog/src/environments/environment.prod.ts"
-            }
-          ],
-          "sourceMap": false,
-          "optimization": true,
-          "extractLicenses": true,
-          "buildOptimizer": true
-        },
-        "development": {
-          "fileReplacements": [
-            {
-              "replace": "apps/blog/src/environments/environment.ts",
-              "with": "apps/blog/src/environments/environment.dev.ts"
-            }
-          ],
-          "sourceMap": false,
-          "optimization": false,
-          "extractLicenses": true,
-          "buildOptimizer": false
-        }
-      }
-    },
     "serve-ssr": {
+      "executor": "@nx/angular:dev-server",
       "continuous": true,
-      "executor": "@angular-devkit/build-angular:ssr-dev-server",
+      "options": {
+        "port": 4200,
+        "buildTarget": "blog:build"
+      },
       "configurations": {
-        "development": {
-          "browserTarget": "blog:build:development",
-          "serverTarget": "blog:server:development"
-        },
         "production": {
-          "browserTarget": "blog:build:production",
-          "serverTarget": "blog:server:production"
+          "buildTarget": "blog:build:production"
+        },
+        "development": {
+          "buildTarget": "blog:build:development"
+        },
+        "default": {
+          "buildTarget": "blog:build"
         }
       },
-      "defaultConfiguration": "development",
-      "options": {
-        "port": 4200
-      }
+      "defaultConfiguration": "default"
     },
     "serve": {
       "executor": "@nx/angular:dev-server",
@@ -180,7 +146,7 @@
           "buildTarget": "blog:build:development"
         },
         "default": {
-          "buildTarget": "blog:build"
+          "buildTarget": "blog:build:default"
         }
       },
       "defaultConfiguration": "default"

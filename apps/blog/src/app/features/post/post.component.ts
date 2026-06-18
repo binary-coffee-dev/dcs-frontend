@@ -1,16 +1,13 @@
 import {
   Component,
   OnInit,
-  PLATFORM_ID,
   inject,
-  signal,
   computed,
   linkedSignal,
   effect,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { isPlatformBrowser } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -60,7 +57,6 @@ export class PostComponent extends Permissions implements OnInit {
   url = inject(UrlUtilsService);
 
   post = toSignal(this.store.select(PostState.post), { initialValue: null });
-  isBrowser = signal<boolean>(false);
   likes = toSignal(this.store.select(PostState.likes));
   userLike = toSignal(this.store.select(PostState.userLike));
   user = toSignal(this.store.select(AuthState.me));
@@ -80,12 +76,6 @@ export class PostComponent extends Permissions implements OnInit {
     },
   });
 
-  articleBody = computed(() => {
-    return `${this.environment.apiUrl}post-body-by-name/${
-      this.post?.name ?? ''
-    }/download.md`;
-  });
-
   isMyPost = computed(() => {
     return (
       this.user()?.id &&
@@ -96,7 +86,6 @@ export class PostComponent extends Permissions implements OnInit {
 
   constructor() {
     super();
-    this.isBrowser.set(isPlatformBrowser(inject(PLATFORM_ID)));
 
     effect(() => {
       const postId = this.post()?.id;
