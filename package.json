@@ -11,7 +11,7 @@
     "test": "jest --coverage",
     "lint": "nx lint",
     "build:ssr:dev": "nx reset && nx run blog:build:development ",
-    "serve:ssr:prod": "nx reset && nx run blog:build:production",
+    "build:ssr:prod": "nx reset && nx run blog:build:production",
     "serve:ssr": "node dist/apps/blog/server/server.mjs"
   },
   "private": true,

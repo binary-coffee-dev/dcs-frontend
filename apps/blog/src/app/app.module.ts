@@ -1,6 +1,6 @@
 import { provideClientHydration } from '@angular/platform-browser';
 import { APP_ID, NgModule, provideZoneChangeDetection } from '@angular/core';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgOptimizedImage } from "@angular/common";
 import { provideServerRendering, withRoutes } from '@angular/ssr';
@@ -79,7 +79,7 @@ import { serverRoutes } from './app.routes.server'
       deps: [HttpLink]
     },
     CommentService,
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideClientHydration(),
     provideZoneChangeDetection({eventCoalescing: true}),
     provideServerRendering(withRoutes(serverRoutes))
