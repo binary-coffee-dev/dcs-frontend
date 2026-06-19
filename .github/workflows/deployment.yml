@@ -10,13 +10,13 @@ jobs:
   # BUILD PROJECT AND DEPENDENCIES
   build:
 
-#    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    #    if: "!contains(github.event.head_commit.message, 'ci skip')"
 
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [ 20.12.x ]
+        node-version: [ 22.22.3 ]
 
     steps:
       - uses: actions/checkout@v4
@@ -33,16 +33,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Installing NX
-        run: npm install -g nx@15.9.2
+        run: npm install -g nx@22.7.4
 
       # pipeline actions
       - run: npm ci
       - name: Build blog Dashboard (prod)
         run: npm run build:admin:prod
-#        run: nx run dashboard:build:production
       - name: Build blog Blog (prod)
-        run: npm run build:ssr
-#        run: nx run blog:build:production && nx run blog:server:production
+        run: npm run build:blog:prod
 
 
   # RUN TESTS
@@ -53,7 +51,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 20.12.x ]
+        node-version: [ 22.22.3 ]
 
     steps:
       - uses: actions/checkout@v4
@@ -73,7 +71,7 @@ jobs:
         run: npm install -g codecov
 
       # pipeline actions
-#      - run: npm run lint # toDo: until lint is fixed
+      #      - run: npm run lint # toDo: until lint is fixed
       - run: npm test
       - run: codecov
         env:
@@ -93,12 +91,12 @@ jobs:
 
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@main
-        env:
+        with:
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: ""
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.DEV__REMOTE_TARGET }}
 
       - name: Deploy project with docker in hosting
@@ -123,7 +121,7 @@ jobs:
 
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@main
-        env:
+        with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: ""
@@ -180,7 +178,7 @@ jobs:
 
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@main
-        env:
+        with:
           SSH_PRIVATE_KEY: ${{ secrets.PROD__SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: ""
@@ -210,7 +208,7 @@ jobs:
 
       - name: Copy project to the hosting
         uses: easingthemes/ssh-deploy@main
-        env:
+        with:
           SSH_PRIVATE_KEY: ${{ secrets.PROD__SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: ""
