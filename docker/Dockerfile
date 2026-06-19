@@ -10,7 +10,8 @@ COPY apps/blog ./apps/blog
 COPY libs ./libs
 COPY tsconfig.json nx.json tailwind.config.js ./
 
+ENV NX_DAEMON=false
 ARG ENVIRONMENT
-RUN if [ "$ENVIRONMENT" = "dev" ] ; then nx run blog:build:development && nx run blog:server:development ; else nx run blog:build:production &&  nx run blog:server:production ; fi
+RUN if [ "$ENVIRONMENT" = "dev" ] ; then nx run build:blog:dev; else nx run build:blog:prod; fi
 
-CMD ["npm", "run", "serve:ssr"]
+CMD ["npm", "run", "serve:blog"]

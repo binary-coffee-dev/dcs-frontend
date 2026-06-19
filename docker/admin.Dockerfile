@@ -6,12 +6,13 @@ COPY package.json package-lock.json ./
 RUN npm install
 RUN npm install -g nx
 
-COPY apps ./apps
+COPY apps/dashboard ./apps/dashboard
 COPY libs ./libs
 COPY tsconfig.json nx.json tailwind.config.js ./
 
+ENV NX_DAEMON=false
 ARG ENVIRONMENT
-RUN if [ "$ENVIRONMENT" = "dev" ] ; then npm run admin:build:development ; else npm run admin:build:production ; fi
+RUN if [ "$ENVIRONMENT" = "dev" ] ; then npm run build:admin:dev ; else npm run build:admin:prod ; fi
 
 FROM nginx:1.31.1-alpine3.23
 

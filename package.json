@@ -3,16 +3,16 @@
   "version": "2024.7.29",
   "scripts": {
     "ng": "nx",
-    "start": "nx run blog:serve-ssr --watch --poll=2000 --port=4200 --host=0.0.0.0",
+    "start": "nx run blog:serve-ssr --port=4200 --host=0.0.0.0 --disable-host-check",
     "start:admin": "nx run dashboard:serve --watch --port=4201 --poll=2000 --host=0.0.0.0",
     "build:admin:dev": "nx run dashboard:build:development",
     "build:admin:prod": "nx run dashboard:build:production",
     "stats": "nx run blog:build:production --stats-json && webpack-bundle-analyzer dist/apps/blog/stats.json",
     "test": "jest --coverage",
     "lint": "nx lint",
-    "build:ssr:dev": "nx reset && nx run blog:build:development ",
-    "build:ssr:prod": "nx reset && nx run blog:build:production",
-    "serve:ssr": "node dist/apps/blog/server/server.mjs"
+    "build:blog:dev": "nx reset && nx run blog:build:development ",
+    "build:blog:prod": "nx reset && nx run blog:build:production",
+    "serve:blog": "node dist/apps/blog/server/server.mjs"
   },
   "private": true,
   "dependencies": {
