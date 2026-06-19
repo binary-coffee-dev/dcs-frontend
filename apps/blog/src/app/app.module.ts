@@ -1,4 +1,4 @@
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { provideClientHydration } from '@angular/platform-browser';
 import { APP_ID, NgModule, provideZoneChangeDetection } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -82,7 +82,7 @@ import { serverRoutes } from './app.routes.server'
     provideHttpClient(withInterceptorsFromDi()),
     provideClientHydration(),
     provideZoneChangeDetection({eventCoalescing: true}),
-    // provideServerRendering(withRoutes(serverRoutes))
+    provideServerRendering(withRoutes(serverRoutes))
   ]
 })
 export class AppModule {

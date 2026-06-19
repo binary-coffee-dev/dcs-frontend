@@ -1,4 +1,4 @@
-FROM node:20.12.2-alpine3.19
+FROM node:22.22.3-alpine3.24
 
 WORKDIR /app
 
@@ -6,7 +6,7 @@ COPY package.json package-lock.json ./
 RUN npm install
 RUN npm install -g nx
 
-COPY apps ./apps
+COPY apps/blog ./apps/blog
 COPY libs ./libs
 COPY tsconfig.json nx.json tailwind.config.js ./
 

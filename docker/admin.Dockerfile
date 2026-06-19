@@ -11,7 +11,7 @@ COPY libs ./libs
 COPY tsconfig.json nx.json tailwind.config.js ./
 
 ARG ENVIRONMENT
-RUN if [ "$ENVIRONMENT" = "dev" ] ; then nx run dashboard:build:development ; else nx run dashboard:build:production ; fi
+RUN if [ "$ENVIRONMENT" = "dev" ] ; then npm run admin:build:development ; else npm run admin:build:production ; fi
 
 FROM nginx:1.31.1-alpine3.23
 
