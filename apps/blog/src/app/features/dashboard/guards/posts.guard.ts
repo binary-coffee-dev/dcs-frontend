@@ -9,7 +9,8 @@ import { map, mergeMap } from 'rxjs/operators';
 import {
   FetchPodcastAction,
   FetchPostsAction,
-  FetchTopActiveUsersAction, FetchTopPopularUsersAction,
+  FetchTopActiveUsersAction,
+  FetchTopPopularUsersAction,
   RecentCommentAction,
   SetFiltersAction,
   Where
@@ -30,12 +31,12 @@ export class PostsGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     let res: Observable<boolean> = of(true);
     if (this.isBrowser) {
-      res = this.store.dispatch(new SetFiltersAction({ enable: {eq: true} } as Where)).pipe(
+      res = this.store.dispatch(new SetFiltersAction({ enable: { eq: true } } as Where)).pipe(
         mergeMap(() => this.store.dispatch(new FetchPostsAction())),
         mergeMap(() => this.store.dispatch(new RecentCommentAction())),
         mergeMap(() => this.store.dispatch(new FetchTopActiveUsersAction())),
         mergeMap(() => this.store.dispatch(new FetchTopPopularUsersAction())),
-        mergeMap(() => this.store.dispatch(new FetchPodcastAction("espacio-binario"))),
+        mergeMap(() => this.store.dispatch(new FetchPodcastAction('espacio-binario'))),
         map(() => true)
       );
     }

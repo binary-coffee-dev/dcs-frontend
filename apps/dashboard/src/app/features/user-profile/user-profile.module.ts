@@ -8,12 +8,6 @@ import { UploadFileModalModule } from '../components/upload-file.modal';
 
 @NgModule({
   declarations: [UserProfileComponent],
-  imports: [
-    CommonModule,
-    UserProfileRoutingModule,
-    MaterialModule,
-    UploadFileModalModule
-  ]
+  imports: [CommonModule, UserProfileRoutingModule, MaterialModule, UploadFileModalModule]
 })
-export class UserProfileModule {
-}
+export class UserProfileModule {}

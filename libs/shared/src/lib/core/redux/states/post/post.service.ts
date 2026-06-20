@@ -19,7 +19,7 @@ import {
   POST_UPDATE_MUTATION
 } from '../../../graphql/mutations';
 import { Environment, ENVIRONMENT } from '../../../models';
-import {UpdateResponseService} from "../../../services/update-response.service";
+import { UpdateResponseService } from '../../../services/update-response.service';
 import { Where } from '../pagination-base.class';
 
 @Injectable({
@@ -30,11 +30,10 @@ export class PostService {
   private env = inject<Environment>(ENVIRONMENT);
   private responseService = inject(UpdateResponseService);
 
-
   fetchPosts(limit: number, start = 0, where: any = {}): Observable<PostConnection> {
-    const sort = [!!this.env.isDashboard ? 'createdAt:desc' : 'publishedAt:desc'];
+    const sort = [this.env.isDashboard ? 'createdAt:desc' : 'publishedAt:desc'];
     let state: any = 'LIVE';
-    where = {...where};
+    where = { ...where };
     if (where.state) {
       state = where.state;
       delete where.state;
@@ -45,68 +44,100 @@ export class PostService {
         variables: { limit, start, filters: where, sort, state },
         fetchPolicy: 'no-cache'
       })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => ({
-        values: result.data.posts,
-        aggregate: {
-          count: result.data.meta_posts.pagination.total
-        }
-      })));
+      .pipe(
+        map((res) => this.responseService.formatResponseObjects(res)),
+        map((result: any) => ({
+          values: result.data.posts,
+          aggregate: {
+            count: result.data.meta_posts.pagination.total
+          }
+        }))
+      );
   }
 
   fetchPost(id: string): Observable<Post> {
     return this.apollo
       .query({ query: POST_QUERY, variables: { id: +id }, fetchPolicy: 'no-cache' })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.post));
+      .pipe(
+        map((res) => this.responseService.formatResponseObjects(res)),
+        map((result: any) => result.data.post)
+      );
   }
 
   fetchPostByName(name: string | null, noUpdate = false): Observable<any> {
     return this.apollo
       .query({ query: POST_BY_NAME_QUERY, variables: { name, noUpdate }, fetchPolicy: 'no-cache' })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => ({
-        post: result.data.postByName,
-        likes: result.data.likes.meta.pagination.total
-      })));
+      .pipe(
+        map((res) => this.responseService.formatResponseObjects(res)),
+        map((result: any) => ({
+          post: result.data.postByName,
+          likes: result.data.likes.meta.pagination.total
+        }))
+      );
   }
 
   fetchPostUserLikeAction(name: string | null, userId: string): Observable<any> {
     return this.apollo
       .query({ query: USER_LIKE_QUERY, variables: { name, userId }, fetchPolicy: 'no-cache' })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => ({
-        userLike: result.data.userLike.meta.pagination.total
-      })));
+      .pipe(
+        map((res) => this.responseService.formatResponseObjects(res)),
+        map((result: any) => ({
+          userLike: result.data.userLike.meta.pagination.total
+        }))
+      );
   }
 
   updatePost(post: Post) {
     const banner = post.banner && post.banner.id;
     const author = post.author && post.author.id;
-    const tags = post.tags.map(tag => tag.id);
+    const tags = post.tags.map((tag) => tag.id);
     return this.apollo
       .mutate({ mutation: POST_UPDATE_MUTATION, variables: { ...post, banner, author, tags } })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.updatePost));
+      .pipe(
+        map((res) => this.responseService.formatResponseObjects(res)),
+        map((result: any) => result.data.updatePost)
+      );
   }
 
   createPost(post: Post, me: User | undefined) {
     const banner = post.banner && post.banner.id;
-    const tags = post.tags.map(tag => tag.id);
+    const tags = post.tags.map((tag) => tag.id);
     return this.apollo
-      .mutate({ mutation: POST_CREATE_MUTATION, variables: { ...post, author: me?.id, banner, tags } })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.createPost));
+      .mutate({
+        mutation: POST_CREATE_MUTATION,
+        variables: { ...post, author: me?.id, banner, tags }
+      })
+      .pipe(
+        map((res) => this.responseService.formatResponseObjects(res)),
+        map((result: any) => result.data.createPost)
+      );
   }
 
   fetchSimilarPostsAction(id: string, limit = 10): Observable<Post[]> {
-    return this.apollo.query({ query: SIMILAR_POSTS_QUERY, variables: { id, limit }, fetchPolicy: 'no-cache' })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.similarPosts));
+    return this.apollo
+      .query({ query: SIMILAR_POSTS_QUERY, variables: { id, limit }, fetchPolicy: 'no-cache' })
+      .pipe(
+        map((res) => this.responseService.formatResponseObjects(res)),
+        map((result: any) => result.data.similarPosts)
+      );
   }
 
   likeArticle(userId: string, postId: string) {
     return this.apollo
-      .mutate({ mutation: LIKE_CREATE_MUTATION, variables: { user: userId, post: postId, type: 'like' } })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.createOpinion.opinion));
+      .mutate({
+        mutation: LIKE_CREATE_MUTATION,
+        variables: { user: userId, post: postId, type: 'like' }
+      })
+      .pipe(
+        map((res) => this.responseService.formatResponseObjects(res)),
+        map((result: any) => result.data.createOpinion.opinion)
+      );
   }
 
   removeLikeArticle(postId: string) {
-    return this.apollo
-      .mutate({ mutation: LIKE_REMOVE_MUTATION, variables: { id: postId } })
-      .pipe(map(res => this.responseService.formatResponseObjects(res)), map((result: any) => result.data.deleteOpinion.opinion));
+    return this.apollo.mutate({ mutation: LIKE_REMOVE_MUTATION, variables: { id: postId } }).pipe(
+      map((res) => this.responseService.formatResponseObjects(res)),
+      map((result: any) => result.data.deleteOpinion.opinion)
+    );
   }
 }

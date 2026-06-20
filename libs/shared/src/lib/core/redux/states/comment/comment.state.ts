@@ -8,9 +8,11 @@ import { CommentService } from './comment.service';
 import { CommentStateModel, initCommentStateModel } from './comment-state.model';
 import {
   CommentErrorAction,
-  CreateCommentAction, EditCommentAction,
+  CreateCommentAction,
+  EditCommentAction,
   FetchCommentsAction,
-  RecentCommentAction, RemoveCommentAction
+  RecentCommentAction,
+  RemoveCommentAction
 } from './comment.action';
 import { RefreshPostAction } from '../post/post.action';
 import { CommentError, Comment } from '../../models';
@@ -23,7 +25,6 @@ import { CommentError, Comment } from '../../models';
 export class CommentState {
   private commentService = inject(CommentService);
 
-
   @Selector()
   static comments(state: CommentStateModel): Comment[] {
     return state.comments;
@@ -31,7 +32,7 @@ export class CommentState {
 
   @Selector()
   static commentsCount(state: CommentStateModel): number {
-    return state && state.comments && state.comments.length || 0;
+    return (state && state.comments && state.comments.length) || 0;
   }
 
   @Selector()
@@ -64,14 +65,17 @@ export class CommentState {
 
   @Action(CommentErrorAction)
   commentErrorAction(ctx: StateContext<CommentStateModel>, action: CommentErrorAction) {
-    ctx.patchState({error: {message: action.errorMessage, timestamp: new Date().getTime()}});
+    ctx.patchState({ error: { message: action.errorMessage, timestamp: new Date().getTime() } });
   }
 
   @Action(FetchCommentsAction)
-  fetchCommentsAction(ctx: StateContext<CommentStateModel>, action: FetchCommentsAction): Observable<Comment[]> {
+  fetchCommentsAction(
+    ctx: StateContext<CommentStateModel>,
+    action: FetchCommentsAction
+  ): Observable<Comment[]> {
     return this.commentService.fetchComments(action.postId).pipe(
       take(1),
-      tap(comments => ctx.patchState({comments}))
+      tap((comments) => ctx.patchState({ comments }))
     );
   }
 
@@ -79,23 +83,31 @@ export class CommentState {
   fetchRecentCommentAction(ctx: StateContext<CommentStateModel>) {
     return this.commentService.recentComments().pipe(
       take(1),
-      tap(recentComments => ctx.patchState({recentComments}))
+      tap((recentComments) => ctx.patchState({ recentComments }))
     );
   }
 
   @Action(RemoveCommentAction)
   removeCommentAction(ctx: StateContext<CommentStateModel>, action: RemoveCommentAction) {
     return this.commentService.removeComment(action.commentId).pipe(
-      tap(recentComments => ctx.patchState({comments: ctx.getState().comments.filter(c => c.id !== recentComments.id)})),
+      tap((recentComments) =>
+        ctx.patchState({
+          comments: ctx.getState().comments.filter((c) => c.id !== recentComments.id)
+        })
+      )
     );
   }
 
   @Action(EditCommentAction)
   editCommentAction(ctx: StateContext<CommentStateModel>, action: EditCommentAction) {
     return this.commentService.editComment(action.commentId, action.body).pipe(
-      tap(recentComments => ctx.patchState({
-        comments: ctx.getState().comments.map(c => c.id === recentComments.id ? recentComments : c)
-      }))
+      tap((recentComments) =>
+        ctx.patchState({
+          comments: ctx
+            .getState()
+            .comments.map((c) => (c.id === recentComments.id ? recentComments : c))
+        })
+      )
     );
   }
 }

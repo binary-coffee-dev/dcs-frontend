@@ -4,13 +4,13 @@ import { isPlatformBrowser } from '@angular/common';
 import { WINDOW } from '@dcs-libs/shared';
 
 @Component({
-    selector: 'app-share-buttons',
-    templateUrl: './share-buttons.component.html',
-    styleUrls: ['./share-buttons.component.scss'],
-    standalone: false
+  selector: 'app-share-buttons',
+  templateUrl: './share-buttons.component.html',
+  styleUrls: ['./share-buttons.component.scss'],
+  standalone: false
 })
 export class ShareButtonsComponent implements OnInit {
-  private platformId = inject<Object>(PLATFORM_ID);
+  private platformId = inject<object>(PLATFORM_ID);
 
   url = '';
   urlFacebook = '';

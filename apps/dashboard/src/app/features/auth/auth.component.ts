@@ -1,18 +1,26 @@
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 
-import { AuthErrorAction, AuthState, Environment, ENVIRONMENT, LoginAction, Provider, WINDOW } from '@dcs-libs/shared';
+import {
+  AuthErrorAction,
+  AuthState,
+  Environment,
+  ENVIRONMENT,
+  LoginAction,
+  Provider,
+  WINDOW
+} from '@dcs-libs/shared';
 import { PROVIDERS } from './providers';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
-    selector: 'app-auth',
-    templateUrl: './auth.component.html',
-    styleUrls: ['./auth.component.scss'],
-    standalone: false
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss'],
+  standalone: false
 })
 export class AuthComponent {
   private store = inject(Store);
@@ -26,11 +34,14 @@ export class AuthComponent {
 
   loginForm = new UntypedFormGroup({
     identifier: new UntypedFormControl('', Validators.required),
-    password: new UntypedFormControl('', Validators.required),
+    password: new UntypedFormControl('', Validators.required)
   });
 
   login() {
-    if (this.loginForm.valid && this.checkEmptySpaces(this.loginForm.controls['identifier'].value)) {
+    if (
+      this.loginForm.valid &&
+      this.checkEmptySpaces(this.loginForm.controls['identifier'].value)
+    ) {
       const identifier = this.loginForm.controls['identifier'].value;
       const password = this.loginForm.controls['password'].value;
       this.store.dispatch(new LoginAction(identifier, password)).subscribe(() => {
@@ -38,7 +49,8 @@ export class AuthComponent {
         const tokenOn = this.route.snapshot.queryParamMap.get('tokenOn');
         if (redir) {
           // toDo 21.11.21, guille, validate query params
-          this.window.location.href = redir + (tokenOn ? '?token=' + this.store.selectSnapshot(AuthState.token) : '');
+          this.window.location.href =
+            redir + (tokenOn ? '?token=' + this.store.selectSnapshot(AuthState.token) : '');
         } else {
           this.redirectToDashboard();
         }
@@ -49,12 +61,15 @@ export class AuthComponent {
   }
 
   loginWithProvider(provider: Provider) {
-    const siteDashboardUrl = this.env.siteDashboardUrl + (this.env.siteDashboardUrl.endsWith('/') ? '' : '/');
+    const siteDashboardUrl =
+      this.env.siteDashboardUrl + (this.env.siteDashboardUrl.endsWith('/') ? '' : '/');
     const redir = this.route.snapshot.queryParamMap.get('redir');
     const tokenOn = this.route.snapshot.queryParamMap.get('tokenOn');
-    const redirectUri =
-      new URL(`./provider/${provider.name}` + (redir ? `?${tokenOn ? 'tokenOn=true&' : ''}redir=${encodeURIComponent(redir)}` : ''),
-        siteDashboardUrl).href;
+    const redirectUri = new URL(
+      `./provider/${provider.name}` +
+        (redir ? `?${tokenOn ? 'tokenOn=true&' : ''}redir=${encodeURIComponent(redir)}` : ''),
+      siteDashboardUrl
+    ).href;
     const queryParams = {
       client_id: this.env.githubClientId,
       scope: provider.scope,

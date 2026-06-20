@@ -10,5 +10,4 @@ import { PostItemComponent } from './post-item.component';
   imports: [CommonModule, TagsModule, RouterModule, MaterialModule, NgOptimizedImage],
   exports: [PostItemComponent]
 })
-export class PostItemModule {
-}
+export class PostItemModule {}

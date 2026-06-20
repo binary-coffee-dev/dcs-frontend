@@ -1,14 +1,15 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+
+import { filter, map } from 'rxjs/operators';
 
 import { ENVIRONMENT, WINDOW } from '@dcs-libs/shared';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class HeaderComponent implements OnInit {
   private route = inject(ActivatedRoute);

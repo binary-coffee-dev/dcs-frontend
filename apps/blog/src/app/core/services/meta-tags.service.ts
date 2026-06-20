@@ -1,5 +1,6 @@
 import { Injectable, RendererFactory2, ViewEncapsulation, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+
 import { WINDOW } from '@dcs-libs/shared';
 
 export interface MetaTag {
@@ -33,7 +34,6 @@ export class MetaTagsService {
   private window = inject<Window>(WINDOW);
   private meta = inject(Meta);
 
-
   public static metas = 'og:url';
   public static titleMeta = 'og:title';
   public static descriptionMeta = 'og:description';
@@ -44,7 +44,7 @@ export class MetaTagsService {
   public static twitterImageMeta = 'twitter:image';
 
   public updateMetas(tags: MetaTag[]) {
-    tags.forEach(siteTag => {
+    tags.forEach((siteTag) => {
       this.meta.updateTag({ name: siteTag.key, content: siteTag.value });
       this.meta.updateTag({ property: siteTag.key, content: siteTag.value });
     });
@@ -72,7 +72,6 @@ export class MetaTagsService {
       });
 
       renderer.appendChild(head, link);
-
     } catch (er) {
       // console.error(er);
     }

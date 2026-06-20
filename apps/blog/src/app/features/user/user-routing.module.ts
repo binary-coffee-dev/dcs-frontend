@@ -28,5 +28,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [UserViewResolver, UsersOverViewResolver]
 })
-export class UserRoutingModule {
-}
+export class UserRoutingModule {}

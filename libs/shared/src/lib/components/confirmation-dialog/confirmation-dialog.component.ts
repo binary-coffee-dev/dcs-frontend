@@ -11,11 +11,10 @@ export interface ConfirmationDialogData {
   selector: 'app-confirmation-dialog',
   templateUrl: './confirmation-dialog.component.html',
   styleUrls: ['./confirmation-dialog.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class ConfirmationDialogComponent {
-  private dialogRef =
-    inject<MatDialogRef<ConfirmationDialogComponent>>(MatDialogRef);
+  private dialogRef = inject<MatDialogRef<ConfirmationDialogComponent>>(MatDialogRef);
   data = inject<ConfirmationDialogData>(MAT_DIALOG_DATA);
 
   title = input<string>(this.data.title ?? '');

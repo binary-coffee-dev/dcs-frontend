@@ -1,21 +1,17 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 import { Observable, of } from 'rxjs';
 
-import {
-  NextPageAction,
-  PostState,
-  PreviousPageAction,
-} from '@dcs-libs/shared';
+import { NextPageAction, PostState, PreviousPageAction } from '@dcs-libs/shared';
 import { ScrollService } from '../../../core/services';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class PaginationComponent {
   private store = inject(Store);
@@ -31,8 +27,6 @@ export class PaginationComponent {
   }
 
   previousPage() {
-    this.store
-      .dispatch(new PreviousPageAction())
-      .subscribe(() => this.scroll.smoothScroll());
+    this.store.dispatch(new PreviousPageAction()).subscribe(() => this.scroll.smoothScroll());
   }
 }

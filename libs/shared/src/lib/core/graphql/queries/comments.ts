@@ -1,11 +1,11 @@
 import { gql } from 'apollo-angular';
 
 export const COMMENTS_QUERY = gql`
-  query ($postId: ID){
+  query ($postId: ID) {
     comments(
       sort: "createdAt:desc"
       pagination: { limit: 100, start: 0 }
-      filters: { post: { id: {eq: $postId} } }
+      filters: { post: { id: { eq: $postId } } }
     ) {
       meta {
         pagination {

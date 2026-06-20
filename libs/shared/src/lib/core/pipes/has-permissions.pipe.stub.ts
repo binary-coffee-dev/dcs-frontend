@@ -5,13 +5,11 @@ import { Observable, of } from 'rxjs';
 import { Permission } from '../permissions';
 
 @Pipe({
-    name: 'hasPermissions',
-    standalone: false
+  name: 'hasPermissions',
+  standalone: false
 })
 export class HasPermissionsPipeStub implements PipeTransform {
-
-  constructor() {
-  }
+  constructor() {}
 
   transform(permissions: Permission[]): Observable<boolean> {
     return of(true);

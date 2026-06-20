@@ -6,7 +6,7 @@ import {
   signal,
   effect,
   linkedSignal,
-  computed,
+  computed
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
@@ -30,7 +30,7 @@ import {
   Tag,
   TagState,
   UrlUtilsService,
-  WINDOW,
+  WINDOW
 } from '@dcs-libs/shared';
 import { SelectImageModalComponent } from './select-image-modal/select-image-modal.component';
 import { UploadFileModalComponent } from '../../components/upload-file.modal';
@@ -49,12 +49,9 @@ interface AutoCompleteModel {
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
-  standalone: false,
+  standalone: false
 })
-export class OverviewComponent
-  extends Permissions
-  implements OnInit, OnDestroy
-{
+export class OverviewComponent extends Permissions implements OnInit, OnDestroy {
   private store = inject(Store);
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
@@ -64,7 +61,7 @@ export class OverviewComponent
   private window = inject<Window>(WINDOW);
 
   postStore = toSignal(this.store.select(PostState.post), {
-    initialValue: null,
+    initialValue: null
   });
   post = linkedSignal({
     source: this.postStore,
@@ -78,7 +75,7 @@ export class OverviewComponent
         return newPost;
       }
       return post;
-    },
+    }
   });
   getPostPreviewUrl = computed(() => {
     const post = this.post();
@@ -100,13 +97,11 @@ export class OverviewComponent
     title: new UntypedFormControl(''),
     tags: new UntypedFormControl([]),
     date: new UntypedFormControl(),
-    time: new UntypedFormControl(),
+    time: new UntypedFormControl()
   });
 
   tagsStore = toSignal(this.store.select(TagState.tags), { initialValue: [] });
-  tags = computed(() =>
-    this.tagsStore().map((tag) => ({ display: tag.name, value: tag.id }))
-  );
+  tags = computed(() => this.tagsStore().map((tag) => ({ display: tag.name, value: tag.id })));
 
   routeParams = toSignal(this.activatedRoute.params);
   isNewPost = computed(() => !this.routeParams()?.['id']);
@@ -118,10 +113,7 @@ export class OverviewComponent
     super();
     this.populateAvailableTimes();
 
-    this.window.document.addEventListener(
-      'keydown',
-      this.shortCutHandlerMethod.bind(this)
-    );
+    this.window.document.addEventListener('keydown', this.shortCutHandlerMethod.bind(this));
   }
 
   ngOnInit() {
@@ -137,8 +129,8 @@ export class OverviewComponent
               (tag: Tag) =>
                 ({
                   display: tag.name,
-                  value: tag.id,
-                } as AutoCompleteModel)
+                  value: tag.id
+                }) as AutoCompleteModel
             )
           );
 
@@ -146,8 +138,7 @@ export class OverviewComponent
             post.publishedAt = new Date(post.publishedAt);
             this.articleForm.controls['date'].setValue(post.publishedAt);
 
-            const minutes =
-              post.publishedAt.getHours() * 60 + post.publishedAt.getMinutes();
+            const minutes = post.publishedAt.getHours() * 60 + post.publishedAt.getMinutes();
             const title = `${post.publishedAt.getHours()}:${post.publishedAt.getMinutes()}`;
             this.populateAvailableTimes({ title, minutes } as TimeType);
 
@@ -161,10 +152,7 @@ export class OverviewComponent
 
   ngOnDestroy(): void {
     if (this.window?.document?.removeEventListener) {
-      this.window.document.removeEventListener(
-        'keydown',
-        this.shortCutHandlerMethod.bind(this)
-      );
+      this.window.document.removeEventListener('keydown', this.shortCutHandlerMethod.bind(this));
     }
   }
 
@@ -213,24 +201,16 @@ export class OverviewComponent
       const keyNames = ['body', 'title', 'enable'];
       this.formDataChange.set(
         keyNames.reduce<boolean>((prev, key: string) => {
-          return Boolean(
-            prev || (post as any)[key] !== this.articleForm.controls[key].value
-          );
+          return Boolean(prev || (post as any)[key] !== this.articleForm.controls[key].value);
         }, false)
       );
 
-      const date = post.publishedAt
-        ? this.getDatesParameters(new Date(post.publishedAt))
-        : {};
+      const date = post.publishedAt ? this.getDatesParameters(new Date(post.publishedAt)) : {};
 
       const date2 = this.articleForm.controls['date'].value
-        ? this.getDatesParameters(
-            new Date(this.articleForm.controls['date'].value)
-          )
+        ? this.getDatesParameters(new Date(this.articleForm.controls['date'].value))
         : {};
-      const { hours, minutes } = this.getHMFromMinutes(
-        this.articleForm.controls['time'].value
-      );
+      const { hours, minutes } = this.getHMFromMinutes(this.articleForm.controls['time'].value);
       const publishedAtChange =
         date.minutes !== minutes ||
         date.hours !== hours ||
@@ -239,8 +219,7 @@ export class OverviewComponent
         date.year !== date2.year;
 
       this.formDataChange.update(
-        (formDataChange) =>
-          formDataChange || publishedAtChange || this.tagChange()
+        (formDataChange) => formDataChange || publishedAtChange || this.tagChange()
       );
     }
   }
@@ -254,8 +233,7 @@ export class OverviewComponent
       }
       post.tags.forEach((tag: Tag) => tset.add(tag.id));
       return this.articleForm.controls['tags'].value.reduce(
-        (prev: boolean, value: AutoCompleteModel) =>
-          prev || !tset.has(value.value),
+        (prev: boolean, value: AutoCompleteModel) => prev || !tset.has(value.value),
         false
       );
     }
@@ -271,9 +249,8 @@ export class OverviewComponent
             title: this.articleForm.controls['title'].value,
             enable: this.articleForm.controls['enable'].value,
             tags: this.articleForm.controls['tags'].value.map(
-              (tag: AutoCompleteModel) =>
-                ({ name: tag.display, id: tag.value } as Tag)
-            ),
+              (tag: AutoCompleteModel) => ({ name: tag.display, id: tag.value }) as Tag
+            )
           };
         }
         return post;
@@ -282,13 +259,10 @@ export class OverviewComponent
       let date: Date;
       if (
         this.articleForm.controls['date'].value &&
-        (this.articleForm.controls['time'].value ||
-          this.articleForm.controls['time'].value === 0)
+        (this.articleForm.controls['time'].value || this.articleForm.controls['time'].value === 0)
       ) {
         date = new Date(this.articleForm.controls['date'].value);
-        const { hours, minutes } = this.getHMFromMinutes(
-          this.articleForm.controls['time'].value
-        );
+        const { hours, minutes } = this.getHMFromMinutes(this.articleForm.controls['time'].value);
         if (hours !== null) {
           date.setHours(hours);
         }
@@ -296,23 +270,17 @@ export class OverviewComponent
           date.setMinutes(minutes);
         }
       }
-      this.post.update((post) =>
-        post ? { ...post, publishedAt: date } : post
-      );
+      this.post.update((post) => (post ? { ...post, publishedAt: date } : post));
 
       const post = this.post();
       if (this.isNewPost() && post) {
         this.store
-          .dispatch(
-            new PostCreateAction(post, this.store.selectSnapshot(AuthState.me))
-          )
+          .dispatch(new PostCreateAction(post, this.store.selectSnapshot(AuthState.me)))
           .subscribe(() => {
             this.formDataChange.set(false);
             this.imageChange.set(false);
             this.router.navigate([
-              `/articles/update/${this.store.selectSnapshot(
-                PostState.newPostId
-              )}`,
+              `/articles/update/${this.store.selectSnapshot(PostState.newPostId)}`
             ]);
           });
       } else if (post) {
@@ -358,7 +326,7 @@ export class OverviewComponent
     const dialog = this.dialog.open(SelectImageModalComponent, {
       height: 'auto',
       width: '100%',
-      maxWidth: '700px',
+      maxWidth: '700px'
     });
 
     dialog
@@ -366,9 +334,7 @@ export class OverviewComponent
       .pipe(takeUntilDestroyed())
       .subscribe((image: File) => {
         if (image) {
-          this.post.update((post) =>
-            post ? { ...post, banner: image } : post
-          );
+          this.post.update((post) => (post ? { ...post, banner: image } : post));
           this.imageChange.set(true);
         }
       });
@@ -378,7 +344,7 @@ export class OverviewComponent
     const dialog = this.dialog.open(UploadFileModalComponent, {
       height: 'auto',
       width: '100%',
-      maxWidth: '425px',
+      maxWidth: '425px'
     });
     dialog.afterClosed().subscribe((image: File) => {
       if (image) {
@@ -394,8 +360,6 @@ export class OverviewComponent
   }
 
   changeArticleStatus() {
-    this.articleTextStatus.update((status) =>
-      status === 'edit' ? 'preview' : 'edit'
-    );
+    this.articleTextStatus.update((status) => (status === 'edit' ? 'preview' : 'edit'));
   }
 }

@@ -1,9 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {
-  UntypedFormControl,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
@@ -14,24 +10,21 @@ import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
   selector: 'app-subscribe-dialog',
   templateUrl: './subscribe-dialog.component.html',
   styleUrls: ['./subscribe-dialog.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class SubscribeDialogComponent {
-  private dialogRef =
-    inject<MatDialogRef<SubscribeDialogComponent>>(MatDialogRef);
+  private dialogRef = inject<MatDialogRef<SubscribeDialogComponent>>(MatDialogRef);
   private store = inject(Store);
 
   subscribeForm = new UntypedFormGroup({
-    email: new UntypedFormControl('', [Validators.required, Validators.email]),
+    email: new UntypedFormControl('', [Validators.required, Validators.email])
   });
 
   ok() {
     this.store
       .dispatch(new SubscribeAction(this.subscribeForm.controls['email'].value))
       .subscribe(() => {
-        const subscription = this.store.selectSnapshot(
-          SubscriptionState.subscription
-        );
+        const subscription = this.store.selectSnapshot(SubscriptionState.subscription);
         let message = undefined;
         if (subscription && !subscription.verified) {
           message =

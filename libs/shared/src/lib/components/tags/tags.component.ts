@@ -6,7 +6,7 @@ import { Tag } from '@dcs-libs/shared';
   selector: 'app-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class TagsComponent {
   tags = input<Tag[]>([]);

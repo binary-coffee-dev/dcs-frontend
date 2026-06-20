@@ -1,15 +1,5 @@
-import {
-  Component,
-  inject,
-  input,
-  effect,
-  linkedSignal,
-} from '@angular/core';
-import {
-  UntypedFormControl,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component, inject, input, effect, linkedSignal } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -28,7 +18,7 @@ import {
   UrlUtilsService,
   RoleEnum,
   User,
-  MomentService,
+  MomentService
 } from '@dcs-libs/shared';
 import { ScrollService } from '../../../core/services';
 import { LoginRequestModalComponent } from '../../components/login-request-modal';
@@ -39,7 +29,7 @@ import { EditCommentModalComponent } from './edit-comment.modal/edit-comment.mod
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss', '../post.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class CommentsComponent {
   private store = inject(Store);
@@ -55,14 +45,14 @@ export class CommentsComponent {
   error = toSignal(this.store.select(CommentState.error));
   commentError = linkedSignal({
     source: this.error,
-    computation: (error) => error?.message,
+    computation: (error) => error?.message
   });
 
   isLogin = toSignal(this.store.select(AuthState.isLogin));
   currentUser = toSignal(this.store.select(AuthState.me));
 
   commentForm = new UntypedFormGroup({
-    body: new UntypedFormControl('', Validators.required),
+    body: new UntypedFormControl('', Validators.required)
   });
 
   constructor() {
@@ -96,12 +86,12 @@ export class CommentsComponent {
       width: '500px',
       height: '540px',
       maxHeight: '600px',
-      data: { comment },
+      data: { comment }
     });
   }
 
   createComment(): void {
-    const postId = this.post()?.id
+    const postId = this.post()?.id;
     if (
       this.commentForm.valid &&
       this.checkEmptySpaces(this.commentForm.controls['body'].value) &&
@@ -109,7 +99,7 @@ export class CommentsComponent {
     ) {
       const comment = {
         body: this.commentForm.controls['body'].value,
-        post: postId,
+        post: postId
       } as Comment;
       this.store.dispatch(new CreateCommentAction(comment)).subscribe(() => {
         this.commentForm.reset();
@@ -117,9 +107,7 @@ export class CommentsComponent {
         this.commentError.set('');
       });
     } else {
-      this.store.dispatch(
-        new CommentErrorAction('Missing data in the comment')
-      );
+      this.store.dispatch(new CommentErrorAction('Missing data in the comment'));
     }
   }
 
@@ -146,9 +134,7 @@ export class CommentsComponent {
   }
 
   isAdmin(user: User | undefined): boolean {
-    return Boolean(
-      user && user.role && user.role.type === RoleEnum.administrator
-    );
+    return Boolean(user && user.role && user.role.type === RoleEnum.administrator);
   }
 
   getRoleName(comment: Comment): string {

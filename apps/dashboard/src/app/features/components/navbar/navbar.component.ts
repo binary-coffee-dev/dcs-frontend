@@ -1,9 +1,4 @@
-import {
-  Component,
-  inject,
-  output,
-  signal,
-} from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 
 import { Environment, ENVIRONMENT } from '@dcs-libs/shared';
 
@@ -11,7 +6,7 @@ import { Environment, ENVIRONMENT } from '@dcs-libs/shared';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class NavbarComponent {
   private env = inject<Environment>(ENVIRONMENT);

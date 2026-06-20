@@ -17,7 +17,6 @@ import { Tag } from '../../models';
 export class TagState extends PaginationBaseClass<TagStateModel> {
   private tagService = inject(TagService);
 
-
   @Selector()
   static tags(state: TagStateModel): Tag[] {
     return state.elements;
@@ -25,7 +24,7 @@ export class TagState extends PaginationBaseClass<TagStateModel> {
 
   @Action(FetchTagsAction)
   fetchTagsAction(ctx: StateContext<TagStateModel>) {
-    ctx.patchState({elements: []});
-    return this.tagService.fetchTags().pipe(tap(taps => ctx.patchState({elements: taps})));
+    ctx.patchState({ elements: [] });
+    return this.tagService.fetchTags().pipe(tap((taps) => ctx.patchState({ elements: taps })));
   }
 }

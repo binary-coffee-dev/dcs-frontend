@@ -15,9 +15,8 @@ import { UserInfoService } from './states/user-info';
     CommonModule,
     GraphQLModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsStoragePluginModule.forRoot({keys: ['auth', 'config']})
+    NgxsStoragePluginModule.forRoot({ keys: ['auth', 'config'] })
   ],
   providers: [FileService, TagService, PodcastService, UserInfoService]
 })
-export class ReduxModule {
-}
+export class ReduxModule {}

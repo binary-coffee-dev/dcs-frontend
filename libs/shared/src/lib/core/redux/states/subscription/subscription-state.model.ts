@@ -8,6 +8,6 @@ export interface SubscriptionStateModel {
 export const initSubscriptionStateModel = () => {
   return {
     subscription: {} as unknown as Subscription,
-    loading: false,
+    loading: false
   } as SubscriptionStateModel;
 };

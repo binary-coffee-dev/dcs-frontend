@@ -2,7 +2,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { APP_ID, NgModule, provideZoneChangeDetection } from '@angular/core';
 import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgOptimizedImage } from "@angular/common";
+import { NgOptimizedImage } from '@angular/common';
 import { provideServerRendering, withRoutes } from '@angular/ssr';
 
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
@@ -20,7 +20,9 @@ import {
   CommentService,
   MaterialModule,
   PodcastState,
-  ConfigState, UserInfoState, SubscriptionState
+  ConfigState,
+  UserInfoState,
+  SubscriptionState
 } from '@dcs-libs/shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './features/app.component';
@@ -36,7 +38,7 @@ import { LoginRequestModalComponent } from './features/components/login-request-
 import { PodcastModule } from './features/podcast';
 import { UserModule } from './features/user';
 import { FilterComponent } from './features/components/filter/filter.component';
-import { serverRoutes } from './app.routes.server'
+import { serverRoutes } from './app.routes.server';
 
 @NgModule({
   declarations: [
@@ -54,15 +56,27 @@ import { serverRoutes } from './app.routes.server'
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState, UserInfoState, SubscriptionState], {
-      developmentMode: !environment.production
-    }),
+    NgxsModule.forRoot(
+      [
+        CommentState,
+        AuthState,
+        PostState,
+        PodcastState,
+        ConfigState,
+        UserInfoState,
+        SubscriptionState
+      ],
+      {
+        developmentMode: !environment.production
+      }
+    ),
     ReduxModule,
     MaterialModule,
     InfoModule,
     SharedModule,
     PodcastModule,
-    UserModule, NgOptimizedImage
+    UserModule,
+    NgOptimizedImage
   ],
   providers: [
     {
@@ -81,9 +95,8 @@ import { serverRoutes } from './app.routes.server'
     CommentService,
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideClientHydration(),
-    provideZoneChangeDetection({eventCoalescing: true}),
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideServerRendering(withRoutes(serverRoutes))
   ]
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -7,7 +7,7 @@ import { ResourceService } from '../../../core/services';
   selector: 'app-post-item',
   templateUrl: './post-item.component.html',
   styleUrls: ['./post-item.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class PostItemComponent {
   private resource = inject(ResourceService);
@@ -17,7 +17,7 @@ export class PostItemComponent {
   post = input<Post | null>(null);
   postValue = linkedSignal<Post | null, Post | null>({
     source: this.post,
-    computation: (source) => source,
+    computation: (source) => source
   });
 
   getPostBanner(post: Post | null) {
@@ -34,7 +34,7 @@ export class PostItemComponent {
   onBannerImgError() {
     this.postValue.set({
       ...(this.postValue() || {}),
-      banner: undefined,
+      banner: undefined
     } as Post);
   }
 
@@ -44,8 +44,8 @@ export class PostItemComponent {
         (post) =>
           ({
             ...post,
-            author: { ...post?.author, avatarUrl: undefined },
-          } as Post)
+            author: { ...post?.author, avatarUrl: undefined }
+          }) as Post
       );
     }
   }

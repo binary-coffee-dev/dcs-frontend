@@ -14,17 +14,16 @@ import { AuthInterceptor } from '../interceptors/auth.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true,
+      multi: true
     },
     provideApollo(() => {
-       const httpLink = inject(HttpLink);
+      const httpLink = inject(HttpLink);
 
-       return {
-         link: httpLink.create({uri: '/graphql'}),
-         cache: new InMemoryCache()
-       };
+      return {
+        link: httpLink.create({ uri: '/graphql' }),
+        cache: new InMemoryCache()
+      };
     })
-  ],
+  ]
 })
-export class GraphQLModule {
-}
+export class GraphQLModule {}

@@ -5,12 +5,11 @@ import { Store } from '@ngxs/store';
 
 import { SubscriptionState, UnsubscribeAction, VerifySubscriptionAction } from '@dcs-libs/shared';
 
-
 @Component({
-    selector: 'app-subscription',
-    templateUrl: './subscription.component.html',
-    styleUrls: ['./subscription.component.scss'],
-    standalone: false
+  selector: 'app-subscription',
+  templateUrl: './subscription.component.html',
+  styleUrls: ['./subscription.component.scss'],
+  standalone: false
 })
 export class SubscriptionComponent implements OnInit {
   private store = inject(Store);
@@ -28,7 +27,8 @@ export class SubscriptionComponent implements OnInit {
       this.executeAction(
         new VerifySubscriptionAction(token),
         true,
-        'Se ha suscrito correctamente al sitio Binary Coffee 😊.');
+        'Se ha suscrito correctamente al sitio Binary Coffee 😊.'
+      );
     }
   }
 
@@ -37,18 +37,17 @@ export class SubscriptionComponent implements OnInit {
       this.executeAction(
         new UnsubscribeAction(unsubscribeToken),
         false,
-        'Se ha unsubscrito del sitio Binary Coffee 😥.');
+        'Se ha unsubscrito del sitio Binary Coffee 😥.'
+      );
     }
   }
 
   executeAction(action: object, expectedVerifiedValue: boolean, message: string) {
-    this.store
-      .dispatch(action)
-      .subscribe(() => {
-        const subscription = this.store.selectSnapshot(SubscriptionState.subscription);
-        if (subscription?.verified === expectedVerifiedValue) {
-          this.message.set(message);
-        }
-      });
+    this.store.dispatch(action).subscribe(() => {
+      const subscription = this.store.selectSnapshot(SubscriptionState.subscription);
+      if (subscription?.verified === expectedVerifiedValue) {
+        this.message.set(message);
+      }
+    });
   }
 }

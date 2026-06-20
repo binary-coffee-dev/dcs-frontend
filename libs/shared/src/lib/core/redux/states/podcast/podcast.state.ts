@@ -22,7 +22,6 @@ export interface PodcastStateModel {
 export class PodcastState {
   private podcastService = inject(PodcastService);
 
-
   @Selector()
   public static episodesList(state: PodcastStateModel): EpisodeModel[] {
     return state.episodes;
@@ -32,7 +31,9 @@ export class PodcastState {
   public fetchPodcast(ctx: StateContext<PodcastStateModel>, action: FetchPodcastAction) {
     return this.podcastService.fetchPodcasts(action.identifier).pipe(
       tap((podcast: PodcastModel) => {
-        ctx.patchState({ episodes: podcast.episodes.reverse().slice(0, Math.min(4, podcast.episodes.length)) })
+        ctx.patchState({
+          episodes: podcast.episodes.reverse().slice(0, Math.min(4, podcast.episodes.length))
+        });
       }),
       catchError((err) => {
         console.error(err);

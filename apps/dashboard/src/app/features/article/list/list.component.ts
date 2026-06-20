@@ -21,14 +21,14 @@ import {
   SetConfigAction,
   SetFiltersAction,
   User,
-  Where,
+  Where
 } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class ListComponent extends Permissions {
   private store = inject(Store);
@@ -43,9 +43,7 @@ export class ListComponent extends Permissions {
   numberOfPages = computed(() => {
     const pageIndicator = this.pageIndicator();
     if (pageIndicator) {
-      return Math.ceil(
-        pageIndicator.count / pageIndicator.pageSize
-      );
+      return Math.ceil(pageIndicator.count / pageIndicator.pageSize);
     }
     return 0;
   });
@@ -66,7 +64,7 @@ export class ListComponent extends Permissions {
         .dispatch(
           new SetFiltersAction({
             author: { id: { eq: me?.id } },
-            state: 'PREVIEW',
+            state: 'PREVIEW'
           } as Where)
         )
         .pipe(mergeMap(() => this.store.dispatch(new FetchPostsAction())));
@@ -74,11 +72,7 @@ export class ListComponent extends Permissions {
   }
 
   isMyPost(post: Post, user: User | undefined) {
-    return (
-      (user?.id ?? false) &&
-      (post?.author?.id ?? false) &&
-      post?.author?.id === user?.id
-    );
+    return (user?.id ?? false) && (post?.author?.id ?? false) && post?.author?.id === user?.id;
   }
 
   nextPageEvent() {
@@ -98,8 +92,6 @@ export class ListComponent extends Permissions {
   }
 
   toggleTableCard() {
-    this.store.dispatch(
-      new SetConfigAction('dashboard-post-tableOrCard', this.tableOrCard)
-    );
+    this.store.dispatch(new SetConfigAction('dashboard-post-tableOrCard', this.tableOrCard));
   }
 }

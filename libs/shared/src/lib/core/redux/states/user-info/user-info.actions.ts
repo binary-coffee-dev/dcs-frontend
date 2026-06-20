@@ -9,20 +9,17 @@ export class FetchTopPopularUsersAction {
 export class FetchUsersAction {
   public static readonly type = '[UserInfo] Fetch users';
 
-  constructor(public search: string) {
-  }
+  constructor(public search: string) {}
 }
 
 export class FetchUserByUsernameAction {
   public static readonly type = '[UserInfo] Fetch user by username';
 
-  constructor(public username: string | null) {
-  }
+  constructor(public username: string | null) {}
 }
 
 export class FetchCommentsCountAction {
   public static readonly type = '[UserInfo] Fetch comments count';
 
-  constructor(public userId: string) {
-  }
+  constructor(public userId: string) {}
 }

@@ -1,12 +1,4 @@
-import {
-  Component,
-  OnInit,
-  PLATFORM_ID,
-  inject,
-  input,
-  signal,
-  computed,
-} from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject, input, signal, computed } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -18,7 +10,7 @@ import {
   PodcastState,
   Post,
   UrlUtilsService,
-  WINDOW,
+  WINDOW
 } from '@dcs-libs/shared';
 
 interface ShareLink {
@@ -30,7 +22,7 @@ interface ShareLink {
   selector: 'app-info-bar',
   templateUrl: './info-bar.component.html',
   styleUrls: ['./info-bar.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class InfoBarComponent implements OnInit {
   private store = inject(Store);
@@ -43,10 +35,10 @@ export class InfoBarComponent implements OnInit {
   showSocialMedias = input<boolean>(false);
 
   episodes = toSignal(this.store.select(PodcastState.episodesList), {
-    initialValue: [],
+    initialValue: []
   });
   commentsStore = toSignal(this.store.select(CommentState.recentComments), {
-    initialValue: [],
+    initialValue: []
   });
   comments = computed(() =>
     this.commentsStore().map((comment, id) => ({ ...comment, id: id + '' }))
@@ -84,16 +76,16 @@ export class InfoBarComponent implements OnInit {
       this.shareLinks.set([
         {
           name: 'Facebook',
-          url: `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`,
+          url: `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`
         } as ShareLink,
         {
           name: 'Twitter',
-          url: `https://twitter.com/intent/tweet/?hashtags=BinaryCoffee&url=${currentUrl}`,
+          url: `https://twitter.com/intent/tweet/?hashtags=BinaryCoffee&url=${currentUrl}`
         } as ShareLink,
         {
           name: 'Linkedin',
-          url: `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`,
-        } as ShareLink,
+          url: `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`
+        } as ShareLink
       ]);
     }
   }

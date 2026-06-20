@@ -10,7 +10,7 @@ import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
   selector: 'app-subscribe',
   templateUrl: './subscribe.component.html',
   styleUrls: ['./subscribe.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class SubscribeComponent {
   private store = inject(Store);
@@ -19,11 +19,11 @@ export class SubscribeComponent {
   subscriptionError = signal<string>('');
   subscriptionSent = signal<boolean>(false);
   loading = toSignal(this.store.select(SubscriptionState.loading), {
-    initialValue: false,
+    initialValue: false
   });
 
   subscribeForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email])
   });
 
   constructor() {
@@ -39,14 +39,10 @@ export class SubscribeComponent {
   subscribe() {
     if (this.subscribeForm.valid && !this.loading()) {
       this.store
-        .dispatch(
-          new SubscribeAction(this.subscribeForm.controls['email'].value || '')
-        )
+        .dispatch(new SubscribeAction(this.subscribeForm.controls['email'].value || ''))
         .pipe(takeUntilDestroyed())
         .subscribe(() => {
-          const subscription = this.store.selectSnapshot(
-            SubscriptionState.subscription
-          );
+          const subscription = this.store.selectSnapshot(SubscriptionState.subscription);
           if (subscription && !subscription.verified) {
             this.subscriptionError.set('');
             this.message.set(
@@ -54,9 +50,7 @@ export class SubscribeComponent {
             );
           } else if (subscription && subscription.verified) {
             this.message.set('');
-            this.subscriptionError.set(
-              'El email ya se encuentra suscrito al sitio'
-            );
+            this.subscriptionError.set('El email ya se encuentra suscrito al sitio');
           } else {
             this.message.set('');
             this.subscriptionError.set(
@@ -64,7 +58,7 @@ export class SubscribeComponent {
             );
           }
           this.subscribeForm = new FormGroup({
-            email: new FormControl('', [Validators.required, Validators.email]),
+            email: new FormControl('', [Validators.required, Validators.email])
           });
         });
     } else if (!this.loading()) {

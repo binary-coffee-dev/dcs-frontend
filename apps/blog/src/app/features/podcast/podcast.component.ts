@@ -3,17 +3,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 
-import {
-  FetchPodcastAction,
-  MomentService,
-  PodcastState,
-} from '@dcs-libs/shared';
+import { FetchPodcastAction, MomentService, PodcastState } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-podcast',
   templateUrl: './podcast.component.html',
   styleUrls: ['./podcast.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class PodcastComponent implements OnInit {
   private store = inject(Store);

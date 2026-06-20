@@ -19,12 +19,11 @@ export class FileService {
   private environment = inject<Environment>(ENVIRONMENT);
   private responseService = inject(UpdateResponseService);
 
-
   fetchFiles(limit: number, start = 0, filters = {}): Observable<ResponseData> {
     return this.apollo
       .query({ query: FILES_QUERY, variables: { limit, start, filters }, fetchPolicy: 'no-cache' })
       .pipe(
-        map(res => this.responseService.formatResponseObjects(res)),
+        map((res) => this.responseService.formatResponseObjects(res)),
         map((result: any) => ({
           aggregate: { count: result.data.meta_images.pagination.total },
           values: result.data.images.map((elem: any) => elem.image).filter((v: any) => !!v)
@@ -36,11 +35,12 @@ export class FileService {
     const formData = new FormData();
     // @ts-ignore
     formData.append('files', file, name);
-    return this.http.post<any>(`${this.environment.apiUrl}api/upload`, formData).pipe(map(response => response[0]));
+    return this.http
+      .post<any>(`${this.environment.apiUrl}api/upload`, formData)
+      .pipe(map((response) => response[0]));
   }
 
   removeFileAction(id: string) {
-    return this.apollo
-      .mutate({ mutation: REMOVE_IMAGE_MUTATION, variables: { id } });
+    return this.apollo.mutate({ mutation: REMOVE_IMAGE_MUTATION, variables: { id } });
   }
 }

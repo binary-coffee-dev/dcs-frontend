@@ -6,18 +6,13 @@ import { Subject, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
-import {
-  AuthState,
-  FetchPostsAction,
-  SetFiltersAction,
-  Where,
-} from '@dcs-libs/shared';
+import { AuthState, FetchPostsAction, SetFiltersAction, Where } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class FilterComponent {
   private store = inject(Store);
@@ -27,7 +22,7 @@ export class FilterComponent {
 
   filterForm = new UntypedFormGroup({
     filter: new UntypedFormControl(''),
-    users: new UntypedFormControl('me'),
+    users: new UntypedFormControl('me')
   });
 
   resetTimer = new Subject();
@@ -54,7 +49,7 @@ export class FilterComponent {
       const filter = {
         author,
         title: { contains: filterStr },
-        state: 'PREVIEW',
+        state: 'PREVIEW'
       } as Where;
       this.store
         .dispatch(new SetFiltersAction(filter))

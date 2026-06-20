@@ -7,11 +7,6 @@ import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
   declarations: [DashboardComponent],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    MaterialModule
-  ]
+  imports: [CommonModule, DashboardRoutingModule, MaterialModule]
 })
-export class DashboardModule {
-}
+export class DashboardModule {}

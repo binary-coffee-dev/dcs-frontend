@@ -22,7 +22,6 @@ import { TopUsers, User } from '../../models';
 export class UserInfoState {
   private userInfoService = inject(UserInfoService);
 
-
   @Selector()
   public static topActiveUsers(state: UserInfoStateModel): TopUsers {
     return state.topActiveUsers;
@@ -50,31 +49,39 @@ export class UserInfoState {
 
   @Action(FetchTopActiveUsersAction)
   public fetchTopActiveUsersAction(ctx: StateContext<UserInfoStateModel>) {
-    return this.userInfoService.topActiveUsers()
-      .pipe(tap((topActiveUsers) => ctx.patchState({topActiveUsers})));
+    return this.userInfoService
+      .topActiveUsers()
+      .pipe(tap((topActiveUsers) => ctx.patchState({ topActiveUsers })));
   }
 
   @Action(FetchTopPopularUsersAction)
   public fetchTopPopularUsersAction(ctx: StateContext<UserInfoStateModel>) {
-    return this.userInfoService.topPopularUsers()
-      .pipe(tap((topPopularUsers) => ctx.patchState({topPopularUsers})));
+    return this.userInfoService
+      .topPopularUsers()
+      .pipe(tap((topPopularUsers) => ctx.patchState({ topPopularUsers })));
   }
 
   @Action(FetchUsersAction)
   public fetchUsersAction(ctx: StateContext<UserInfoStateModel>, action: FetchUsersAction) {
-    return this.userInfoService.getUsers(action.search)
-      .pipe(tap((users) => ctx.patchState({users})));
+    return this.userInfoService
+      .getUsers(action.search)
+      .pipe(tap((users) => ctx.patchState({ users })));
   }
 
   @Action(FetchUserByUsernameAction)
   public fetchUserAction(ctx: StateContext<UserInfoStateModel>, action: FetchUserByUsernameAction) {
-    return this.userInfoService.getUserByUsername(action.username)
-      .pipe(tap((user) => ctx.patchState({user})));
+    return this.userInfoService
+      .getUserByUsername(action.username)
+      .pipe(tap((user) => ctx.patchState({ user })));
   }
 
   @Action(FetchCommentsCountAction)
-  public fetchCommentsCountAction(ctx: StateContext<UserInfoStateModel>, action: FetchCommentsCountAction) {
-    return this.userInfoService.getCommentsCount(action.userId)
-      .pipe(tap((commentsCount) => ctx.patchState({commentsCount})));
+  public fetchCommentsCountAction(
+    ctx: StateContext<UserInfoStateModel>,
+    action: FetchCommentsCountAction
+  ) {
+    return this.userInfoService
+      .getCommentsCount(action.userId)
+      .pipe(tap((commentsCount) => ctx.patchState({ commentsCount })));
   }
 }

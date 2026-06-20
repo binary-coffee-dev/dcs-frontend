@@ -10,7 +10,7 @@ import {
   MomentService,
   Post,
   PostState,
-  RemoveLikeArticle,
+  RemoveLikeArticle
 } from '@dcs-libs/shared';
 import { LoginRequestModalComponent } from '../../components/login-request-modal';
 import { ResourceService } from '../../../core/services';
@@ -19,7 +19,7 @@ import { ResourceService } from '../../../core/services';
   selector: 'app-post-info',
   templateUrl: './post-info.component.html',
   styleUrls: ['./post-info.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class PostInfoComponent {
   private store = inject(Store);
@@ -32,11 +32,9 @@ export class PostInfoComponent {
   user = toSignal(this.store.select(AuthState.me));
   likes = toSignal(this.store.select(PostState.likes), { initialValue: 0 });
   userLike = toSignal(this.store.select(PostState.userLike), {
-    initialValue: 0,
+    initialValue: 0
   });
-  postLikeTitle = computed(() =>
-    this.userLike() > 0 ? '' : 'Chinchin con el autor'
-  );
+  postLikeTitle = computed(() => (this.userLike() > 0 ? '' : 'Chinchin con el autor'));
 
   postLikeClick() {
     if (!this.user()?.id) {
@@ -45,9 +43,7 @@ export class PostInfoComponent {
     const userId = this.user()?.id;
     const postId = this.post()?.id;
     if (this.userLike() === 0 && userId && postId) {
-      this.store.dispatch(
-        new CreateLikeArticle(userId, postId)
-      );
+      this.store.dispatch(new CreateLikeArticle(userId, postId));
     } else if (userId && postId) {
       this.store.dispatch(new RemoveLikeArticle(postId));
     }

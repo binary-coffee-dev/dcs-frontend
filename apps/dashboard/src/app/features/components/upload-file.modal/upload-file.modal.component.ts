@@ -10,16 +10,15 @@ import { FileState, UploadFileAction } from '@dcs-libs/shared';
   selector: 'app-upload-file.modal',
   templateUrl: './upload-file.modal.component.html',
   styleUrls: ['./upload-file.modal.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class UploadFileModalComponent {
   private store = inject(Store);
-  private dialogRef =
-    inject<MatDialogRef<UploadFileModalComponent>>(MatDialogRef);
+  private dialogRef = inject<MatDialogRef<UploadFileModalComponent>>(MatDialogRef);
 
   uploadFileForm = new UntypedFormGroup({
     name: new UntypedFormControl(''),
-    file: new UntypedFormControl(''),
+    file: new UntypedFormControl('')
   });
 
   file = signal<File | null>(null);
@@ -29,9 +28,7 @@ export class UploadFileModalComponent {
   image = signal<string | ArrayBuffer | null>(null);
   uploadingImage = signal<boolean>(false);
 
-  getSize = computed(
-    () => `${Math.round((this.size() / 1024) * 100) / 100} kB`
-  );
+  getSize = computed(() => `${Math.round((this.size() / 1024) * 100) / 100} kB`);
 
   openFile(inputFile: HTMLInputElement) {
     inputFile.click();
@@ -39,11 +36,7 @@ export class UploadFileModalComponent {
 
   onFilesChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
-    if (
-      inputElement.files &&
-      inputElement.files?.length > 0 &&
-      inputElement.files[0]
-    ) {
+    if (inputElement.files && inputElement.files?.length > 0 && inputElement.files[0]) {
       const file = inputElement.files[0];
       if (file) {
         this.file.set(file);
@@ -63,9 +56,7 @@ export class UploadFileModalComponent {
     if (!this.uploadingImage() && file) {
       this.uploadingImage.set(true);
       this.store
-        .dispatch(
-          new UploadFileAction(file, this.uploadFileForm.controls['name'].value)
-        )
+        .dispatch(new UploadFileAction(file, this.uploadFileForm.controls['name'].value))
         .subscribe(() => {
           this.dialogRef.close(this.store.selectSnapshot(FileState.newFile));
         });

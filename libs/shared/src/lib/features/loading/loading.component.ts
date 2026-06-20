@@ -9,7 +9,7 @@ import { FetchPostsAction, PostAction } from '../../core/redux/states/post';
   selector: 'app-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class LoadingComponent implements OnInit {
   private actions = inject(Actions);

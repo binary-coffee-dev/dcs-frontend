@@ -8,7 +8,7 @@ import { WINDOW } from '@dcs-libs/shared';
 })
 export class ScrollService {
   private window = inject<Window>(WINDOW);
-  private platformId = inject<Object>(PLATFORM_ID);
+  private platformId = inject<object>(PLATFORM_ID);
 
   constructor() {
     this.smoothScroll = this.smoothScroll.bind(this);
@@ -23,7 +23,7 @@ export class ScrollService {
   scrollToFragment(fragment: any) {
     const value = this.window.document.getElementById(fragment);
     if (value) {
-      value.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});
+      value.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
     }
   }
 }

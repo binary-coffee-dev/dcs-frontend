@@ -1,6 +1,7 @@
+import { InjectionToken } from '@angular/core';
+
 import { RoleEnum } from './roleEnum';
 import { Permission } from './permission';
-import { InjectionToken } from '@angular/core';
 
 export const rolePermissionMap = new Map<RoleEnum, Permission[]>();
 
@@ -32,4 +33,6 @@ export class Permissions {
   }
 }
 
-export const ROLE_PERMISSION_MAP = new InjectionToken<Map<RoleEnum, Permission[]>>('ROLE_PERMISSION_MAP');
+export const ROLE_PERMISSION_MAP = new InjectionToken<Map<RoleEnum, Permission[]>>(
+  'ROLE_PERMISSION_MAP'
+);

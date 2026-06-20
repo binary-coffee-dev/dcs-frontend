@@ -11,7 +11,7 @@ import {
   User,
   WINDOW,
   ENVIRONMENT,
-  Environment,
+  Environment
 } from '@dcs-libs/shared';
 import { UserView } from './user-view.resolver';
 
@@ -27,7 +27,7 @@ interface UserData {
   selector: 'app-user-view',
   templateUrl: './user-view.component.html',
   styleUrls: ['./user-view.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class UserViewComponent {
   private store = inject(Store);
@@ -52,19 +52,19 @@ export class UserViewComponent {
         {
           type: 'data',
           icon: 'email',
-          text: 'private',
+          text: 'private'
         } as UserData,
         {
           type: 'link',
           icon: 'language',
-          link: userPage,
+          link: userPage
         } as UserData,
         {
           type: 'button',
           icon: 'rss_feed',
           action: this.copyRSSToClipboard.bind(this),
-          text: 'RSS',
-        } as UserData,
+          text: 'RSS'
+        } as UserData
       ];
     }
     return [];
@@ -73,9 +73,7 @@ export class UserViewComponent {
   firstPage = toSignal(this.store.select(PostState.firstPage));
   lastPage = toSignal(this.store.select(PostState.lastPage));
   getUserRSSLink = computed(() => {
-    return `${this.environment.apiUrl}api/posts/feed/${
-      this.user()?.username
-    }/json`;
+    return `${this.environment.apiUrl}api/posts/feed/${this.user()?.username}/json`;
   });
 
   getUserAvatar(user: User | undefined): string {

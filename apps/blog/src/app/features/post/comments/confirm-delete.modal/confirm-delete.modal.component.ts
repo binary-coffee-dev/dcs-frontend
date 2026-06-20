@@ -9,20 +9,17 @@ import { RemoveCommentAction } from '@dcs-libs/shared';
   selector: 'app-confirm-delete.modal',
   templateUrl: './confirm-delete.modal.component.html',
   styleUrls: ['./confirm-delete.modal.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class ConfirmDeleteModalComponent {
-  private dialogRef =
-    inject<MatDialogRef<ConfirmDeleteModalComponent>>(MatDialogRef);
+  private dialogRef = inject<MatDialogRef<ConfirmDeleteModalComponent>>(MatDialogRef);
   private store = inject(Store);
   data = inject<{ commentId: string }>(MAT_DIALOG_DATA);
 
   ok() {
-    this.store
-      .dispatch(new RemoveCommentAction(this.data.commentId))
-      .subscribe(() => {
-        this.dialogRef.close(true);
-      });
+    this.store.dispatch(new RemoveCommentAction(this.data.commentId)).subscribe(() => {
+      this.dialogRef.close(true);
+    });
   }
 
   cancel() {

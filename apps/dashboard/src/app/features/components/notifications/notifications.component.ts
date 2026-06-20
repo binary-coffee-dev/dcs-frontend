@@ -9,13 +9,13 @@ import { CloseNotificationAction, NotificationState } from '@dcs-libs/shared';
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class NotificationsComponent {
   private store = inject(Store);
 
   notifications = toSignal(this.store.select(NotificationState.notifications), {
-    initialValue: [],
+    initialValue: []
   });
 
   notificationsMap: Set<number> = new Set<number>();

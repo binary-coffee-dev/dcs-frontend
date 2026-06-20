@@ -22,19 +22,18 @@ import { SocialLinksComponent } from './components/social-links/social-links.com
     ConfirmationDialogComponent,
     SubscribeDialogComponent,
     SocialLinksComponent,
-    FooterComponent,
+    FooterComponent
   ],
   exports: [
     LoadingComponent,
     HasPermissionsPipe,
     CookiesConsentComponent,
     SocialLinksComponent,
-    FooterComponent,
+    FooterComponent
   ],
   providers: [
-    {provide: WINDOW, useFactory: windowFactory},
-    {provide: ROLE_PERMISSION_MAP, useValue: rolePermissionMap}
+    { provide: WINDOW, useFactory: windowFactory },
+    { provide: ROLE_PERMISSION_MAP, useValue: rolePermissionMap }
   ]
 })
-export class SharedModule {
-}
+export class SharedModule {}

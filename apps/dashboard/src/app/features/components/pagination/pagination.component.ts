@@ -4,7 +4,7 @@ import { Component, effect, input, Input, output, signal } from '@angular/core';
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class PaginationComponent {
   showPages = input<number>(2);
@@ -44,11 +44,7 @@ export class PaginationComponent {
       }
       for (
         let i = this.currentPage();
-        i <
-        Math.min(
-          this.currentPage() + this.showPages() + 1,
-          this.numberOfPages()
-        );
+        i < Math.min(this.currentPage() + this.showPages() + 1, this.numberOfPages());
         i++
       ) {
         pages.push(i);

@@ -10,7 +10,6 @@ import { AboutComponent } from './about/about.component';
 import { CodeOfConductComponent } from './code-of-conduct/code-of-conduct.component';
 import { TermOfUseComponent } from './term-of-use/term-of-use.component';
 
-
 @NgModule({
   declarations: [
     PrivacyComponent,
@@ -19,15 +18,7 @@ import { TermOfUseComponent } from './term-of-use/term-of-use.component';
     CodeOfConductComponent,
     TermOfUseComponent
   ],
-  imports: [
-    MarkdownModule.forRoot(),
-    CommonModule,
-    MaterialModule,
-  ],
-  exports: [
-    PrivacyComponent,
-    CookiesComponent
-  ]
+  imports: [MarkdownModule.forRoot(), CommonModule, MaterialModule],
+  exports: [PrivacyComponent, CookiesComponent]
 })
-export class InfoModule {
-}
+export class InfoModule {}

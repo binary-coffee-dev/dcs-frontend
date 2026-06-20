@@ -2,18 +2,13 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 
 import { Store } from '@ngxs/store';
 
-import {
-  TopUsers,
-  UrlUtilsService,
-  User,
-  UserInfoState,
-} from '@dcs-libs/shared';
+import { TopUsers, UrlUtilsService, User, UserInfoState } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-top-popular-users',
   templateUrl: './top-popular-users.component.html',
   styleUrls: ['./top-popular-users.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class TopPopularUsersComponent implements OnInit {
   private store = inject(Store);
@@ -37,7 +32,7 @@ export class TopPopularUsersComponent implements OnInit {
               return { ...user, avatarUrl: undefined } as User;
             }
             return user;
-          }),
+          })
         } as TopUsers;
       }
       return top5Likes;

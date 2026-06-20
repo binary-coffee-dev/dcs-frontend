@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, computed } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 
@@ -10,20 +11,18 @@ import {
   FileState,
   NextFilesPageAction,
   PreviousFilesPageAction,
-  UrlUtilsService,
+  UrlUtilsService
 } from '@dcs-libs/shared';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-select-image-modal',
   templateUrl: './select-image-modal.component.html',
   styleUrls: ['./select-image-modal.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class SelectImageModalComponent implements OnInit {
   private store = inject(Store);
-  private dialogRef =
-    inject<MatDialogRef<SelectImageModalComponent>>(MatDialogRef);
+  private dialogRef = inject<MatDialogRef<SelectImageModalComponent>>(MatDialogRef);
   private url = inject(UrlUtilsService);
 
   files = toSignal(this.store.select(FileState.files), { initialValue: [] });
@@ -33,9 +32,7 @@ export class SelectImageModalComponent implements OnInit {
   numberOfPages = computed(() => {
     const pageIndicators = this.pageIndicators();
     if (pageIndicators) {
-      return Math.ceil(
-        pageIndicators.count / pageIndicators.pageSize
-      );
+      return Math.ceil(pageIndicators.count / pageIndicators.pageSize);
     }
     return 0;
   });

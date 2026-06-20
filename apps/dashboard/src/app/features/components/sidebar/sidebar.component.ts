@@ -1,21 +1,11 @@
-import {
-  Component,
-  inject,
-  output,
-  signal,
-  computed,
-} from '@angular/core';
+import { Component, inject, output, signal, computed } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 
-import {
-  LogoutAction,
-  AuthState,
-  UrlUtilsService,
-} from '@dcs-libs/shared';
+import { LogoutAction, AuthState, UrlUtilsService } from '@dcs-libs/shared';
 import { ROUTES, RouteInfo } from './sidebar.model';
 
 const PATH_NAME_POSITION = 2;
@@ -24,7 +14,7 @@ const PATH_NAME_POSITION = 2;
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class SidebarComponent {
   private store = inject(Store);

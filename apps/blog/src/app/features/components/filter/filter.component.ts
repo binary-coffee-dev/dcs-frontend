@@ -7,18 +7,13 @@ import { Subject, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
-import {
-  FetchPostsAction,
-  PostState,
-  SetFiltersAction,
-  Where,
-} from '@dcs-libs/shared';
+import { FetchPostsAction, PostState, SetFiltersAction, Where } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class FilterComponent implements OnInit {
   private store = inject(Store);
@@ -29,7 +24,7 @@ export class FilterComponent implements OnInit {
   filter = '';
 
   filterForm = new UntypedFormGroup({
-    filter: new UntypedFormControl(''),
+    filter: new UntypedFormControl('')
   });
 
   resetTime = new Subject();
@@ -65,7 +60,7 @@ export class FilterComponent implements OnInit {
   dispatchNewFilter(newFilters: { title: { contains: string } }) {
     const filter = {
       ...(this.store.selectSnapshot(PostState.where) || {}),
-      ...newFilters,
+      ...newFilters
     } as Where;
     this.store
       .dispatch(new SetFiltersAction(filter))
@@ -84,7 +79,7 @@ export class FilterComponent implements OnInit {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParamsHandling: null,
-      queryParams,
+      queryParams
     });
   }
 

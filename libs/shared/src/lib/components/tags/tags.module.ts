@@ -9,4 +9,4 @@ import { MaterialModule } from '../../core/material';
   declarations: [TagsComponent],
   exports: [TagsComponent]
 })
-export class TagsModule { }
+export class TagsModule {}

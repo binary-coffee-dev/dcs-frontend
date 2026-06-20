@@ -13,11 +13,10 @@ import { PostAction } from '@dcs-libs/shared';
 export class PostGuard implements CanActivate {
   private store = inject(Store);
 
-
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.store.dispatch(new PostAction(next.params['id'])).pipe(map(() => true));
   }
-
 }

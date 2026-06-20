@@ -20,7 +20,7 @@ import {
   RemoveFileAction,
   ROLE_PERMISSION_MAP,
   RoleEnum,
-  UrlUtilsService,
+  UrlUtilsService
 } from '@dcs-libs/shared';
 import { UploadFileModalComponent } from '../../components/upload-file.modal';
 
@@ -28,14 +28,13 @@ import { UploadFileModalComponent } from '../../components/upload-file.modal';
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class ListComponent extends Permissions {
   private store = inject(Store);
   private dialog = inject(MatDialog);
   private url = inject(UrlUtilsService);
-  private rolePermissionMap =
-    inject<Map<RoleEnum, Permission[]>>(ROLE_PERMISSION_MAP);
+  private rolePermissionMap = inject<Map<RoleEnum, Permission[]>>(ROLE_PERMISSION_MAP);
 
   me = toSignal(this.store.select(AuthState.me));
   files = toSignal(this.store.select(FileState.files), { initialValue: [] });
@@ -57,13 +56,8 @@ export class ListComponent extends Permissions {
       let where = {};
       const me = this.me();
       if (me) {
-        const permissionsByRole =
-          this.rolePermissionMap.get(me.role.type) || [];
-        if (
-          permissionsByRole.findIndex(
-            (v) => v === this.permissions().VIEW_ANY_IMAGE
-          ) === -1
-        ) {
+        const permissionsByRole = this.rolePermissionMap.get(me.role.type) || [];
+        if (permissionsByRole.findIndex((v) => v === this.permissions().VIEW_ANY_IMAGE) === -1) {
           where = { user: { id: { eq: me.id.toString() } } };
         }
       }
@@ -77,7 +71,7 @@ export class ListComponent extends Permissions {
     const dialog = this.dialog.open(UploadFileModalComponent, {
       height: 'auto',
       width: '100%',
-      maxWidth: '425px',
+      maxWidth: '425px'
     });
     dialog.afterClosed().subscribe((result) => {
       if (result) {
@@ -111,8 +105,8 @@ export class ListComponent extends Permissions {
       .open(ConfirmationDialogComponent, {
         data: {
           title: '¿Está seguro que desea eliminar la imágen?',
-          okTitle: 'Eliminar',
-        } as ConfirmationDialogData,
+          okTitle: 'Eliminar'
+        } as ConfirmationDialogData
       })
       .afterClosed()
       .subscribe((result) => {

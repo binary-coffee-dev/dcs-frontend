@@ -1,5 +1,11 @@
 import { Injectable, inject } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+  CanActivate,
+  Router
+} from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -15,10 +21,10 @@ export class ProviderGuard implements CanActivate {
   private router = inject(Router);
   private window = inject<Window>(WINDOW);
 
-
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const provider = next.paramMap.get('provider');
     const code = next.queryParamMap.get('code');
     const redir = next.queryParamMap.get('redir');
@@ -26,7 +32,8 @@ export class ProviderGuard implements CanActivate {
     return this.store.dispatch(new LoginWithProviderAction(provider, code)).pipe(
       map((result) => {
         if (redir) {
-          this.window.location.href = redir + (tokenOn ? '?token=' + this.store.selectSnapshot(AuthState.token) : '');
+          this.window.location.href =
+            redir + (tokenOn ? '?token=' + this.store.selectSnapshot(AuthState.token) : '');
           return false;
         }
         this.router.navigate(['dashboard']);

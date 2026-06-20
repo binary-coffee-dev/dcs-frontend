@@ -9,7 +9,6 @@ import { User } from '../redux';
 export class UrlUtilsService {
   private environment = inject<Environment>(ENVIRONMENT);
 
-
   getUserImage(user: User | undefined | null) {
     return this.normalizeImageUrl(user?.avatarUrl);
   }

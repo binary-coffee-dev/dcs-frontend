@@ -10,10 +10,7 @@ import { TopPopularUsersModule } from '../components/top-popular-users/top-popul
 import { PostItemModule } from '../components/post-item/post-item.module';
 
 @NgModule({
-  declarations: [
-    UsersOverviewComponent,
-    UserViewComponent,
-  ],
+  declarations: [UsersOverviewComponent, UserViewComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -23,5 +20,4 @@ import { PostItemModule } from '../components/post-item/post-item.module';
     PostItemModule
   ]
 })
-export class UserModule {
-}
+export class UserModule {}

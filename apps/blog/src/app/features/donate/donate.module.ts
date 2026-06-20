@@ -7,15 +7,8 @@ import { MaterialModule } from '@dcs-libs/shared';
 import { DonateComponent } from './donate.component';
 import { DonateRoutingModule } from './donate-routing.module';
 
-
 @NgModule({
   declarations: [DonateComponent],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    DonateRoutingModule,
-    ClipboardModule
-  ]
+  imports: [CommonModule, MaterialModule, DonateRoutingModule, ClipboardModule]
 })
-export class DonateModule {
-}
+export class DonateModule {}

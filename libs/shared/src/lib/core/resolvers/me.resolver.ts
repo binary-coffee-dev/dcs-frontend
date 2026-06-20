@@ -10,8 +10,10 @@ import { MeAction } from '../redux/states/auth';
 export class MeResolver implements Resolve<any> {
   private store = inject(Store);
 
-
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any> | Promise<any> | any {
     this.store.dispatch(new MeAction());
     return true;
   }

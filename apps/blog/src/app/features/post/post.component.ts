@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  computed,
-  linkedSignal,
-  effect,
-} from '@angular/core';
+import { Component, OnInit, inject, computed, linkedSignal, effect } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -25,14 +18,9 @@ import {
   UrlUtilsService,
   MomentService,
   CreateLikeArticle,
-  RemoveLikeArticle,
+  RemoveLikeArticle
 } from '@dcs-libs/shared';
-import {
-  MetaTag,
-  MetaTagsService,
-  ResourceService,
-  ScrollService,
-} from '../../core/services';
+import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
 import { LoginRequestModalComponent } from '../components/login-request-modal';
 
 const MAX_NUMBER_OF_POSTS = 6;
@@ -41,7 +29,7 @@ const MAX_NUMBER_OF_POSTS = 6;
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class PostComponent extends Permissions implements OnInit {
   private store = inject(Store);
@@ -62,7 +50,7 @@ export class PostComponent extends Permissions implements OnInit {
   user = toSignal(this.store.select(AuthState.me));
 
   similarPostsEvent = toSignal(this.store.select(PostState.similarPosts), {
-    initialValue: [],
+    initialValue: []
   });
   similarPosts = linkedSignal<Post[], Post[]>({
     source: this.similarPostsEvent,
@@ -70,17 +58,15 @@ export class PostComponent extends Permissions implements OnInit {
       if (posts) {
         return posts
           .slice(0, Math.min(MAX_NUMBER_OF_POSTS, posts.length))
-          .map((post, id) => ({ ...post, id: id + '' } as Post));
+          .map((post, id) => ({ ...post, id: id + '' }) as Post);
       }
       return [];
-    },
+    }
   });
 
   isMyPost = computed(() => {
     return (
-      this.user()?.id &&
-      this.post()?.author?.id &&
-      this.post()?.author?.id === this.user()?.id
+      this.user()?.id && this.post()?.author?.id && this.post()?.author?.id === this.user()?.id
     );
   });
 
@@ -92,42 +78,32 @@ export class PostComponent extends Permissions implements OnInit {
       const postName = this.post()?.name;
       if (this.post() && postId && postName) {
         const imageUrl = this.post()?.banner
-          ? new URL(
-              this.post()?.banner?.url ?? '',
-              this.environment.apiUrl
-            ).toString()
+          ? new URL(this.post()?.banner?.url ?? '', this.environment.apiUrl).toString()
           : '';
         this.metaTags.updateMetas([
           {
             key: MetaTagsService.metas,
-            value: new URL(
-              `post/${postName}`,
-              this.environment.siteUrl
-            ).toString(),
+            value: new URL(`post/${postName}`, this.environment.siteUrl).toString()
           } as MetaTag,
           {
             key: MetaTagsService.titleMeta,
-            value: `${this.post()?.title} | 🥇`,
+            value: `${this.post()?.title} | 🥇`
           } as MetaTag,
           { key: MetaTagsService.imageMeta, value: imageUrl } as MetaTag,
           { key: MetaTagsService.twitterImageMeta, value: imageUrl } as MetaTag,
           { key: MetaTagsService.typeMeta, value: 'article' } as MetaTag,
           {
             key: MetaTagsService.twitterTitleMeta,
-            value: this.post()?.title,
-          } as MetaTag,
+            value: this.post()?.title
+          } as MetaTag
         ]);
         this.title.setTitle(`🥇 | ${this.post()?.title}`);
         this.metaTags.addLinkTag(
           {
             rel: 'alternate',
             type: 'application/rss+xml',
-            title: `RSS Feed for ${
-              this.post()?.author?.username
-            } in binary-coffee.dev`,
-            href: `${this.environment.apiUrl}posts/feed/${
-              this.post()?.author?.username
-            }/rss2`,
+            title: `RSS Feed for ${this.post()?.author?.username} in binary-coffee.dev`,
+            href: `${this.environment.apiUrl}posts/feed/${this.post()?.author?.username}/rss2`
           },
           'rss-id'
         );

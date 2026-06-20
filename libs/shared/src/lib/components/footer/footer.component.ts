@@ -8,7 +8,7 @@ import { SubscribeDialogComponent } from '../subscribe-dialog';
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class FooterComponent {
   private url = inject(UrlUtilsService);
@@ -24,7 +24,7 @@ export class FooterComponent {
 
   openSubscriptionDialog() {
     this.dialog.open(SubscribeDialogComponent, {
-      disableClose: true,
+      disableClose: true
     });
   }
 }

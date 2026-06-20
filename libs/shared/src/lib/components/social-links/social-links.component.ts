@@ -7,7 +7,7 @@ import { links } from './links-data';
   selector: 'app-social-links',
   templateUrl: './social-links.component.html',
   styleUrls: ['./social-links.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class SocialLinksComponent {
   footer = input<boolean>(false);

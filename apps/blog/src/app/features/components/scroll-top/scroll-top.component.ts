@@ -6,7 +6,7 @@ import { ScrollService } from '../../../core/services';
   selector: 'app-scroll-top',
   templateUrl: './scroll-top.component.html',
   styleUrls: ['./scroll-top.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class ScrollTopComponent {
   private scroll = inject(ScrollService);
@@ -15,11 +15,7 @@ export class ScrollTopComponent {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    if (
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop > 100
-    ) {
+    if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
       this.windowScrolled.set(true);
     } else if (
       (this.windowScrolled() && window.pageYOffset) ||

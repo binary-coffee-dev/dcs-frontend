@@ -2,11 +2,11 @@ import {
   AngularNodeAppEngine,
   createNodeRequestHandler,
   isMainModule,
-  writeResponseToNodeResponse,
+  writeResponseToNodeResponse
 } from '@angular/ssr/node';
-
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 import express from 'express';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
@@ -22,7 +22,7 @@ app.use(
   express.static(browserDistFolder, {
     maxAge: '1y',
     index: false,
-    redirect: false,
+    redirect: false
   })
 );
 
@@ -32,9 +32,7 @@ app.use(
 app.use('/**', (req, res, next) => {
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next()
-    )
+    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
 });
 

@@ -18,31 +18,34 @@ const routes: Routes = [
         data: {
           isHome: true
         },
-        loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)
+        loadChildren: () =>
+          import('./features/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
         path: 'post/:id',
-        loadChildren: () => import('./features/post/post.module').then(m => m.PostModule)
+        loadChildren: () => import('./features/post/post.module').then((m) => m.PostModule)
       },
       {
         path: 'verify/:token',
-        loadChildren: () => import('./features/subscription/subscription.module').then(m => m.SubscriptionModule)
+        loadChildren: () =>
+          import('./features/subscription/subscription.module').then((m) => m.SubscriptionModule)
       },
       {
         path: 'unsubscribe/:unsubscribe_token',
-        loadChildren: () => import('./features/subscription/subscription.module').then(m => m.SubscriptionModule)
+        loadChildren: () =>
+          import('./features/subscription/subscription.module').then((m) => m.SubscriptionModule)
       },
       {
         path: 'donate',
-        loadChildren: () => import('./features/donate/donate.module').then(m => m.DonateModule)
+        loadChildren: () => import('./features/donate/donate.module').then((m) => m.DonateModule)
       },
       {
         path: 'podcast',
-        loadChildren: () => import('./features/podcast/podcast.module').then(m => m.PodcastModule)
+        loadChildren: () => import('./features/podcast/podcast.module').then((m) => m.PodcastModule)
       },
       {
         path: 'users',
-        loadChildren: () => import('./features/user/user.module').then(m => m.UserModule)
+        loadChildren: () => import('./features/user/user.module').then((m) => m.UserModule)
       },
       {
         path: 'privacy-policy',
@@ -73,5 +76,4 @@ const routes: Routes = [
   providers: [MeResolver],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

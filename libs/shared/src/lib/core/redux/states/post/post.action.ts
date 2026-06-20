@@ -4,22 +4,25 @@ import { Where } from '../pagination-base.class';
 export class PostAction {
   static readonly type = '[Post] Fetch post';
 
-  constructor(public postId: string) {
-  }
+  constructor(public postId: string) {}
 }
 
 export class FetchPostAction {
   static readonly type = '[Post] Fetch post by name';
 
-  constructor(public postName: string | null, public userId: string) {
-  }
+  constructor(
+    public postName: string | null,
+    public userId: string
+  ) {}
 }
 
 export class FetchPostUserLikeAction {
   static readonly type = '[Post] Fetch post user like';
 
-  constructor(public postName: string | null, public userId: string) {
-  }
+  constructor(
+    public postName: string | null,
+    public userId: string
+  ) {}
 }
 
 export class RefreshPostAction {
@@ -29,15 +32,16 @@ export class RefreshPostAction {
 export class PostUpdateAction {
   static readonly type = '[Post] Post update';
 
-  constructor(public post: Post) {
-  }
+  constructor(public post: Post) {}
 }
 
 export class PostCreateAction {
   static readonly type = '[Post] Post create';
 
-  constructor(public post: Post, public me: User | undefined) {
-  }
+  constructor(
+    public post: Post,
+    public me: User | undefined
+  ) {}
 }
 
 export class FetchPostsAction {
@@ -55,41 +59,41 @@ export class PreviousPageAction {
 export class SelectPageAction {
   static readonly type = '[Post] Change page';
 
-  constructor(public page: number) {
-  }
+  constructor(public page: number) {}
 }
 
 export class ChangePageSizeAction {
   static readonly type = '[Post] Change page size';
 
-  constructor(public pageSize: number | undefined) {
-  }
+  constructor(public pageSize: number | undefined) {}
 }
 
 export class SetFiltersAction {
   static readonly type = '[Post] Set post filters';
 
-  constructor(public where: Where) {
-  }
+  constructor(public where: Where) {}
 }
 
 export class FetchSimilarPostsAction {
   static readonly type = '[Post] Fetch similar posts';
 
-  constructor(public id: string, public limit = 10) {
-  }
+  constructor(
+    public id: string,
+    public limit = 10
+  ) {}
 }
 
 export class CreateLikeArticle {
   static readonly type = '[Post] Create like article';
 
-  constructor(public userId: string, public postId: string) {
-  }
+  constructor(
+    public userId: string,
+    public postId: string
+  ) {}
 }
 
 export class RemoveLikeArticle {
   static readonly type = '[Post] Remove like article';
 
-  constructor(public postId: string) {
-  }
+  constructor(public postId: string) {}
 }

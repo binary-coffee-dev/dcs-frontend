@@ -10,7 +10,7 @@ import consentVersions from '../../../assets/consent-versions.json';
   selector: 'app-cookies-consent',
   templateUrl: './cookies-consent.component.html',
   styleUrls: ['./cookies-consent.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class CookiesConsentComponent {
   private store = inject(Store);
@@ -23,9 +23,7 @@ export class CookiesConsentComponent {
       .reduce((prev, key) => `${prev}${key}:${(consentVersions as any)[key]}/`, '')
   );
   configCookiesConsent = toSignal(
-    this.store.select(
-      ConfigState.getConfigItem(CookiesConsentComponent.COOKIES_CONSENT_CONFIG)
-    ),
+    this.store.select(ConfigState.getConfigItem(CookiesConsentComponent.COOKIES_CONSENT_CONFIG)),
     { initialValue: '' }
   );
   showConsent = computed(() => {
