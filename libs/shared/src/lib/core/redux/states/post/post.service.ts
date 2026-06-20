@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 
 import { Post, PostConnection, User } from '../../models';
@@ -20,7 +20,6 @@ import {
 } from '../../../graphql/mutations';
 import { Environment, ENVIRONMENT } from '../../../models';
 import { UpdateResponseService } from '../../../services/update-response.service';
-import { Where } from '../pagination-base.class';
 
 @Injectable({
   providedIn: 'root'

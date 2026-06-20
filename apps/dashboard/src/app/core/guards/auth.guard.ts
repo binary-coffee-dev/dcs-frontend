@@ -21,8 +21,8 @@ export class AuthGuard implements CanActivate {
   private window = inject<Window>(WINDOW);
 
   canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    _next: ActivatedRouteSnapshot,
+    _state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.store.selectSnapshot(AuthState.token) !== '') {
       return true;

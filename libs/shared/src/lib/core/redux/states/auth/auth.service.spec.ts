@@ -9,7 +9,7 @@ class ApolloStub {
 
 describe('AuthService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    providers: [AuthService, {provide: Apollo, useClass: Apollo}]
+    providers: [AuthService, {provide: Apollo, useClass: ApolloStub}]
   }));
 
   it('should be created', () => {

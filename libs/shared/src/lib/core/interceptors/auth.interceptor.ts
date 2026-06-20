@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
       authReq = req.clone({ headers: req.headers.set('Authorization', `Bearer ${token}`) });
     }
     return next.handle(authReq).pipe(
-      catchError((res, caught) => {
+      catchError((res, _caught) => {
         if (res.error && res.error.error && res.error.error.status === 401) {
           return this.store.dispatch(new LogoutAction()).pipe(
             map(() => {

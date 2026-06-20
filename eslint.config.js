@@ -89,7 +89,7 @@ module.exports = defineConfig([
       '@angular-eslint/prefer-standalone': 'off',
 
       // Rxjs rules
-      '@rxlint/no-nested-subscribe': 'warn',
+      '@rxlint/no-nested-subscribe': 'error',
       '@rxlint/no-subject-unsubscribe': 'off',
       '@rxlint/no-unsafe-takeuntil': 'error',
       '@rxlint/no-ignored-takewhile-value': 'off',
@@ -162,7 +162,7 @@ module.exports = defineConfig([
       globals: jest.environments.globals.globals,
       parser: tsParser,
       parserOptions: {
-        project: ['tsconfig.base.json', 'apps/*/tsconfig.spec.json', 'libs/*/tsconfig.spec.json'],
+        project: ['tsconfig.json', 'apps/*/tsconfig.spec.json', 'libs/*/tsconfig.spec.json'],
         createDefaultProgram: true
       }
     },
@@ -176,7 +176,7 @@ module.exports = defineConfig([
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        project: ['tsconfig.base.json'],
+        project: ['tsconfig.json'],
         createDefaultProgram: true
       }
     },

@@ -1,5 +1,5 @@
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
-import { CanActivate, UrlTree } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Observable, of } from 'rxjs';

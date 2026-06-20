@@ -43,7 +43,7 @@ export class FilterComponent implements OnInit {
   filterChange() {
     this.resetTime.next(true);
     timer(1000)
-      .pipe(takeUntil(this.resetTime), takeUntilDestroyed(this.destroyRef))
+      .pipe(takeUntilDestroyed(this.destroyRef), takeUntil(this.resetTime))
       .subscribe(() => {
         this.changeFilter();
       });

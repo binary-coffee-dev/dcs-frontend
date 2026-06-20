@@ -1,4 +1,4 @@
-import { Component, effect, input, Input, output, signal } from '@angular/core';
+import { Component, effect, input, output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',

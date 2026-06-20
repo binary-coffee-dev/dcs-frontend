@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, effect, signal, computed } from '@angular/core';
+import { Component, inject, effect, signal, computed } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -10,8 +10,7 @@ import {
   File,
   UpdateMeAction,
   UpdateMyAvatarAction,
-  UrlUtilsService,
-  User
+  UrlUtilsService
 } from '@dcs-libs/shared';
 import { UploadFileModalComponent } from '../components/upload-file.modal';
 

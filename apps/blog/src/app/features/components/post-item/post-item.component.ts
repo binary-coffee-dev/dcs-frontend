@@ -1,4 +1,4 @@
-import { Component, Input, inject, input, linkedSignal } from '@angular/core';
+import { Component, inject, input, linkedSignal } from '@angular/core';
 
 import { MomentService, Post, UrlUtilsService } from '@dcs-libs/shared';
 import { ResourceService } from '../../../core/services';

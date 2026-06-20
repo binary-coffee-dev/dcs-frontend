@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { filter, map } from 'rxjs/operators';
 
-import { ENVIRONMENT, WINDOW } from '@dcs-libs/shared';
+import { ENVIRONMENT } from '@dcs-libs/shared';
 
 @Component({
   selector: 'app-header',

@@ -191,7 +191,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
     const TIME_TO_WAIT_UNTIL_REFRESH = 500;
     this._stopTimer.next(true);
     timer(TIME_TO_WAIT_UNTIL_REFRESH)
-      .pipe(takeUntil(this._stopTimer), takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(), takeUntil(this._stopTimer))
       .subscribe(() => this.onPostChange());
   }
 

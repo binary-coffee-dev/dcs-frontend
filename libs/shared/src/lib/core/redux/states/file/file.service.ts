@@ -2,11 +2,11 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Apollo } from 'apollo-angular';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { FILES_QUERY } from '../../../graphql/queries';
-import { File, File as FileModel } from '../../models';
+import { File as FileModel } from '../../models';
 import { ENVIRONMENT, Environment } from '../../../models';
 import { ResponseData } from '../pagination-base.class';
 import { REMOVE_IMAGE_MUTATION } from '../../../graphql/mutations';
@@ -33,7 +33,6 @@ export class FileService {
 
   uploadFile(file: File, name: string | null = null): Observable<FileModel> {
     const formData = new FormData();
-    // @ts-ignore
     formData.append('files', file, name);
     return this.http
       .post<any>(`${this.environment.apiUrl}api/upload`, formData)

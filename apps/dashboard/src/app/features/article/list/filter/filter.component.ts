@@ -30,7 +30,7 @@ export class FilterComponent {
   filterChange() {
     this.resetTimer.next(true);
     timer(1000)
-      .pipe(takeUntil(this.resetTimer), takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(), takeUntil(this.resetTimer))
       .subscribe(() => {
         this.changeFilter();
       });

@@ -72,7 +72,7 @@ export class MetaTagsService {
       });
 
       renderer.appendChild(head, link);
-    } catch (er) {
+    } catch (_er) {
       // console.error(er);
     }
   }

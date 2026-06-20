@@ -15,7 +15,7 @@ export class PostGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    _state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.store.dispatch(new PostAction(next.params['id'])).pipe(map(() => true));
   }

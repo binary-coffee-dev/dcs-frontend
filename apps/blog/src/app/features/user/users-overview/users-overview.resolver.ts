@@ -10,7 +10,7 @@ import { FetchUsersAction } from '@dcs-libs/shared';
 export class UsersOverViewResolver implements Resolve<void> {
   private store = inject(Store);
 
-  resolve(route: ActivatedRouteSnapshot): Observable<void> | Promise<void> | void {
+  resolve(_route: ActivatedRouteSnapshot): Observable<void> | Promise<void> | void {
     return this.store.dispatch(new FetchUsersAction(''));
   }
 }

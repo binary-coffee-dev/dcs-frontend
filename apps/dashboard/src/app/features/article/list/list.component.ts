@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, computed, effect } from '@angular/core';
+import { Component, inject, computed, effect } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';

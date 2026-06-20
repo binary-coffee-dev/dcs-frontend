@@ -76,7 +76,7 @@ export class PaginationBaseClass<T extends StateBase> {
     );
   }
 
-  fetchElements(pageSize: number, start: number, where = {}): Observable<ResponseData> {
+  fetchElements(pageSize: number, start: number, _where = {}): Observable<ResponseData> {
     return of({} as ResponseData);
   }
 

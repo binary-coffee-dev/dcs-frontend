@@ -1,8 +1,6 @@
 import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import { WINDOW } from '@dcs-libs/shared';
-
 @Component({
   selector: 'app-share-buttons',
   templateUrl: './share-buttons.component.html',

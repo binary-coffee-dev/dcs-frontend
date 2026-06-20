@@ -23,14 +23,14 @@ export class ProviderGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    _state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const provider = next.paramMap.get('provider');
     const code = next.queryParamMap.get('code');
     const redir = next.queryParamMap.get('redir');
     const tokenOn = next.queryParamMap.get('tokenOn');
     return this.store.dispatch(new LoginWithProviderAction(provider, code)).pipe(
-      map((result) => {
+      map((_result) => {
         if (redir) {
           this.window.location.href =
             redir + (tokenOn ? '?token=' + this.store.selectSnapshot(AuthState.token) : '');

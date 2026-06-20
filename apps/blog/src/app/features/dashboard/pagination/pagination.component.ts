@@ -1,8 +1,7 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
-import { Observable, of } from 'rxjs';
 
 import { NextPageAction, PostState, PreviousPageAction } from '@dcs-libs/shared';
 import { ScrollService } from '../../../core/services';

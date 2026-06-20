@@ -95,7 +95,6 @@ export class FileState extends PaginationBaseClass<FileStateModel> {
 
   @Action(UploadFileAction)
   uploadFile(ctx: StateContext<FileStateModel>, action: UploadFileAction) {
-    // @ts-ignore
     return this.fileService.uploadFile(action.file, action.name).pipe(
       tap((file: File) => {
         ctx.patchState({ newFile: file });

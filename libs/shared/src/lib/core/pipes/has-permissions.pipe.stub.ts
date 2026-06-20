@@ -11,7 +11,7 @@ import { Permission } from '../permissions';
 export class HasPermissionsPipeStub implements PipeTransform {
   constructor() {}
 
-  transform(permissions: Permission[]): Observable<boolean> {
+  transform(_permissions: Permission[]): Observable<boolean> {
     return of(true);
   }
 }

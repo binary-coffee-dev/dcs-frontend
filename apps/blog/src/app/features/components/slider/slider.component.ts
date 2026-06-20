@@ -93,7 +93,7 @@ export class SliderComponent implements OnInit {
 
   nextPageTimer() {
     timer(TIME_TO_CHANGE_PAGE)
-      .pipe(takeUntil(this.stopTimer), takeUntilDestroyed(this.destroyRef))
+      .pipe(takeUntilDestroyed(this.destroyRef), takeUntil(this.stopTimer))
       .subscribe(() => {
         this.activePage.update((value) => (value + 1) % this.info().length);
         this.updateInfo();

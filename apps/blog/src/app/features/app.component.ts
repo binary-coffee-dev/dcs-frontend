@@ -18,7 +18,7 @@ import {
 } from '@dcs-libs/shared';
 import { consoleMessage } from './console.log';
 
-declare let gtag: (property: string, value: string, configs: object) => {};
+declare let gtag: (property: string, value: string, configs: object) => void;
 declare let moment: any;
 
 // 30 seconds
@@ -53,6 +53,7 @@ export class AppComponent implements OnInit {
       });
       this.store.dispatch(new ChangePageSizeAction(this.environment?.postPageSize));
 
+      // eslint-disable-next-line no-console
       console.log(consoleMessage);
 
       // toDo 27.01.22, guille, show subscription in new version
