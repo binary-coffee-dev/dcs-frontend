@@ -71,7 +71,7 @@ jobs:
         run: npm install -g codecov
 
       # pipeline actions
-      #      - run: npm run lint # toDo: until lint is fixed
+      - run: npm run lint
       - run: npm test
       - run: codecov
         env:
