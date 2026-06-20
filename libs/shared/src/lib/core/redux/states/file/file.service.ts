@@ -33,7 +33,7 @@ export class FileService {
 
   uploadFile(file: File, name: string | null = null): Observable<FileModel> {
     const formData = new FormData();
-    formData.append('files', file, name);
+    formData.append('files', file, name ?? '');
     return this.http
       .post<any>(`${this.environment.apiUrl}api/upload`, formData)
       .pipe(map((response) => response[0]));
