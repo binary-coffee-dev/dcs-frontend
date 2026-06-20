@@ -2,6 +2,7 @@ import { Component, OnInit, PLATFORM_ID, inject, computed } from '@angular/core'
 import { NavigationEnd, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { isPlatformBrowser } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 import { timer } from 'rxjs';
@@ -17,7 +18,6 @@ import {
   SubscribeDialogComponent
 } from '@dcs-libs/shared';
 import { consoleMessage } from './console.log';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 declare let gtag: (property: string, value: string, configs: object) => void;
 declare let moment: any;
