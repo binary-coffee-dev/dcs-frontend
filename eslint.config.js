@@ -47,7 +47,7 @@ module.exports = defineConfig([
     },
 
     plugins: {
-      // prettier,
+      prettier,
       '@typescript-eslint': tsPlugin
     },
 
@@ -58,7 +58,7 @@ module.exports = defineConfig([
       'plugin:@angular-eslint/recommended',
       'plugin:@angular-eslint/template/process-inline-templates',
       'plugin:import/typescript',
-      // 'plugin:prettier/recommended',
+      'plugin:prettier/recommended',
       'plugin:@rxlint/recommended',
       'eslint-config-prettier'
     ),
@@ -108,7 +108,7 @@ module.exports = defineConfig([
       'no-var': 'error',
       'no-debugger': 'error',
       'no-duplicate-imports': 'error',
-      // 'prettier/prettier': 'error',
+      'prettier/prettier': 'error',
       'no-empty': 'off',
       'no-useless-escape': 'off',
       'no-prototype-builtins': 'off', // todo: see how to fix if enable

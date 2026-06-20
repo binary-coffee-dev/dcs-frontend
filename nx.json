@@ -7,6 +7,9 @@
       "options": {}
     }
   },
+  "tui": {
+    "enabled": false
+  },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
@@ -32,7 +35,7 @@
       }
     },
     "@nx/eslint:lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/.eslintignore"],
+      "inputs": ["default", "{workspaceRoot}/eslint.config.js"],
       "cache": true
     }
   },
