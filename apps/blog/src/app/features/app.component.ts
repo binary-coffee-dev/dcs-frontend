@@ -6,6 +6,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 import { timer } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 
 import { MetaTagsService } from '../core/services';
 import {
@@ -41,15 +42,17 @@ export class AppComponent implements OnInit {
   private environment = inject<Environment>(ENVIRONMENT);
   private platformId = inject(PLATFORM_ID);
 
-  isSessionOpen = toSignal<boolean>(this.store.select(AuthState.isLogin), { initialValue: false });
+  isSessionOpen = toSignal(this.store.select(AuthState.isLogin), { initialValue: false });
   lastOpenDate = toSignal(
-    this.store.selectSnapshot(ConfigState.getConfigItem(SUBSCRIPTION_WAS_OPENED_CONFIG_KEY)),
-    { initialValue: Date.now() }
+    this.store
+      .selectSnapshot(ConfigState.getConfigItem(SUBSCRIPTION_WAS_OPENED_CONFIG_KEY))
+      .pipe(map((v: string) => new Date(v))),
+    { initialValue: new Date() }
   );
 
   dialogWasShown = computed(() => {
     try {
-      const date = new Date(this.lastOpenDate());
+      const date = new Date(this.lastOpenDate() as Date);
       return date.getDate() === new Date().getDate();
     } catch (er) {
       console.error(er);
