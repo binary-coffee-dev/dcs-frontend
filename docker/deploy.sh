@@ -16,4 +16,4 @@ then
 fi
 
 echo "Docker container name: $PROJECT_NAME";
-docker-compose -f $DOCKER_COMPOSE_FILE --project-name=$PROJECT_NAME up -d --build
+docker compose -f $DOCKER_COMPOSE_FILE --project-name=$PROJECT_NAME up -d --build
