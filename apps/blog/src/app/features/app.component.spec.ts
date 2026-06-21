@@ -8,8 +8,19 @@ import { Store } from '@ngxs/store';
 import { ENVIRONMENT } from '@dcs-libs/shared';
 import { AppComponent } from './app.component';
 import { MetaTagsService } from '../core/services';
+import { of } from 'rxjs';
 
 class StoreStub {
+  select = (func: Function) => {
+    switch (Object.getPrototypeOf(func).name) {
+      case 'isLogin':
+        return of(true);
+      case 'getConfigItem':
+        return of(new Date());
+      default:
+        return of();
+    }
+  };
   dispatch = jest.fn();
 }
 

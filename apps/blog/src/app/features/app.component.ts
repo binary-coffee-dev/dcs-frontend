@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
   isSessionOpen = toSignal(this.store.select(AuthState.isLogin), { initialValue: false });
   lastOpenDate = toSignal(
     this.store
-      .selectSnapshot(ConfigState.getConfigItem(SUBSCRIPTION_WAS_OPENED_CONFIG_KEY))
+      .select(ConfigState.getConfigItem(SUBSCRIPTION_WAS_OPENED_CONFIG_KEY))
       .pipe(map((v: string) => new Date(v))),
     { initialValue: new Date() }
   );
