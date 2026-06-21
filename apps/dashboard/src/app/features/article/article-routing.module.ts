@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: 'create',
     component: OverviewComponent,
-    canDeactivate: [CanLeave],
+    canDeactivate: [CanLeave]
   },
   {
     path: 'update/:id',
@@ -25,11 +25,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes)
-  ],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
   providers: [CanLeave]
 })
-export class ArticleRoutingModule {
-}
+export class ArticleRoutingModule {}

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CliComponent } from './cli.component';
 
@@ -6,12 +6,11 @@ describe('CliComponent', () => {
   let component: CliComponent;
   let fixture: ComponentFixture<CliComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ CliComponent ]
-    })
-    .compileComponents();
-  }));
+      declarations: [CliComponent],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CliComponent);

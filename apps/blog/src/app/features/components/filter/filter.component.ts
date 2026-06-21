@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, inject, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -11,9 +12,14 @@ import { FetchPostsAction, PostState, SetFiltersAction, Where } from '@dcs-libs/
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss']
+  styleUrls: ['./filter.component.scss'],
+  standalone: false
 })
-export class FilterComponent implements OnInit, OnDestroy {
+export class FilterComponent implements OnInit {
+  private store = inject(Store);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
 
   filter = '';
 
@@ -22,14 +28,6 @@ export class FilterComponent implements OnInit, OnDestroy {
   });
 
   resetTime = new Subject();
-  _unsubscribe = new Subject();
-
-  constructor(
-    private store: Store,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
-  }
 
   ngOnInit(): void {
     this.extractParams();
@@ -39,36 +37,34 @@ export class FilterComponent implements OnInit, OnDestroy {
     this.filter = this.route.snapshot.queryParamMap.get('filter') || '';
     this.filterForm.controls['filter'].setValue(this.filter);
 
-    this.dispatchNewFilter({title: {contains: this.filter}});
-  }
-
-  ngOnDestroy(): void {
-    this.resetTime.next(true);
-    this._unsubscribe.next(true);
+    this.dispatchNewFilter({ title: { contains: this.filter } });
   }
 
   filterChange() {
     this.resetTime.next(true);
-    timer(1000).pipe(takeUntil(this.resetTime)).subscribe(() => {
-      this.changeFilter();
-    });
+    timer(1000)
+      .pipe(takeUntilDestroyed(this.destroyRef), takeUntil(this.resetTime))
+      .subscribe(() => {
+        this.changeFilter();
+      });
   }
 
   changeFilter() {
     if (this.checkIfFilterChange()) {
       this.filter = this.filterForm.controls['filter'].value;
 
-      this.dispatchNewFilter({title: {contains: this.filter}});
+      this.dispatchNewFilter({ title: { contains: this.filter } });
     }
   }
 
-  dispatchNewFilter(newFilters: any) {
+  dispatchNewFilter(newFilters: { title: { contains: string } }) {
     const filter = {
       ...(this.store.selectSnapshot(PostState.where) || {}),
       ...newFilters
     } as Where;
-    this.store.dispatch(new SetFiltersAction(filter))
-      .pipe(takeUntil(this._unsubscribe))
+    this.store
+      .dispatch(new SetFiltersAction(filter))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.store.dispatch(new FetchPostsAction());
         this.updateRoute();

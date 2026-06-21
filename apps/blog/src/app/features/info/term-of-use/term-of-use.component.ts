@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-term-of-use',
   templateUrl: './term-of-use.component.html',
-  styleUrls: ['./term-of-use.component.scss']
+  styleUrls: ['./term-of-use.component.scss'],
+  standalone: false
 })
-export class TermOfUseComponent {
-}
+export class TermOfUseComponent {}

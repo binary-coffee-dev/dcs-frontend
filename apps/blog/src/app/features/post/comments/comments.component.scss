@@ -1,4 +1,6 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   width: 100%;
@@ -7,14 +9,14 @@
     border: solid 1px #0001;
 
     .comments-header {
-      color: map-get($md-grey, 7);
+      color: map.get(vars.$md-grey, 7);
     }
 
     mat-form-field {
       height: auto;
 
       textarea {
-        color: map-get($md-grey, 700);
+        color: map.get(vars.$md-grey, 700);
       }
 
       ::ng-deep.mat-mdc-text-field-wrapper {
@@ -29,7 +31,7 @@
     }
 
     mat-button-toggle {
-      background-color: map-get($md-primary, 500);
+      background-color: map.get(vars.$md-primary, 500);
     }
   }
 
@@ -39,7 +41,7 @@
     .comment-container {
       .user-data {
         a {
-          color: map-get($md-grey, 700);
+          color: map.get(vars.$md-grey, 700);
 
           .comment-user-image {
             border: solid 2px transparent;
@@ -47,25 +49,25 @@
 
           &:hover {
             .comment-user-image {
-              border: solid 2px map-get($md-primary, 500);
+              border: solid 2px map.get(vars.$md-primary, 500);
             }
           }
         }
       }
 
       .date {
-        color: map-get($md-grey, 600);
+        color: map.get(vars.$md-grey, 600);
 
         .fa {
           &:hover {
-            color: map-get($md-grey, 800);
+            color: map.get(vars.$md-grey, 800);
           }
         }
       }
 
       .comment-content {
-        background-color: map-get($md-grey, 49);
-        color: map-get($md-grey, 700);
+        background-color: map.get(vars.$md-grey, 49);
+        color: map.get(vars.$md-grey, 700);
 
         &:before {
           content: '';
@@ -76,7 +78,7 @@
           height: 0;
           border-top: 15px transparent solid;
           border-right: 15px transparent solid;
-          border-left: 15px map-get($md-grey, 49) solid;
+          border-left: 15px map.get(vars.$md-grey, 49) solid;
         }
       }
     }

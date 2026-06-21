@@ -14,5 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SubscriptionRoutingModule {
-}
+export class SubscriptionRoutingModule {}

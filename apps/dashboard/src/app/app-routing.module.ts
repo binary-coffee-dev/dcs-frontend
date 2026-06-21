@@ -14,16 +14,16 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
-    loadChildren:
-      () => import('./features/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
+    loadChildren: () =>
+      import('./features/layouts/admin-layout/admin-layout.module').then((m) => m.AdminLayoutModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./features/auth/auth.module').then((m) => m.AuthModule)
   },
   {
     path: 'provider',
-    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./features/auth/auth.module').then((m) => m.AuthModule)
   }
 ];
 

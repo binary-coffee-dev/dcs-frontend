@@ -1,9 +1,10 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, input, effect, linkedSignal } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog } from '@angular/material/dialog';
+import { toSignal } from '@angular/core/rxjs-interop';
 
-import { Subject, timer } from 'rxjs';
+import { timer } from 'rxjs';
 import { Store } from '@ngxs/store';
 
 import {
@@ -15,7 +16,9 @@ import {
   FetchCommentsAction,
   Post,
   UrlUtilsService,
-  RoleEnum, User, MomentService
+  RoleEnum,
+  User,
+  MomentService
 } from '@dcs-libs/shared';
 import { ScrollService } from '../../../core/services';
 import { LoginRequestModalComponent } from '../../components/login-request-modal';
@@ -25,41 +28,35 @@ import { EditCommentModalComponent } from './edit-comment.modal/edit-comment.mod
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss', '../post.component.scss']
+  styleUrls: ['./comments.component.scss', '../post.component.scss'],
+  standalone: false
 })
-export class CommentsComponent implements OnInit, OnDestroy {
+export class CommentsComponent {
+  private store = inject(Store);
+  moment = inject(MomentService);
+  private url = inject(UrlUtilsService);
+  private scroll = inject(ScrollService);
+  private route = inject(ActivatedRoute);
+  private dialog = inject(MatDialog);
 
-  unsubscribe = new Subject();
+  post = input<Post | null>(null);
 
-  @Input()
-  post: Post = {} as Post;
+  comments = toSignal(this.store.select(CommentState.comments));
+  error = toSignal(this.store.select(CommentState.error));
+  commentError = linkedSignal({
+    source: this.error,
+    computation: (error) => error?.message
+  });
 
-  comments: Comment[] = [];
-  commentError = '';
-
-  isLogin = false;
-
-  currentUser: User | undefined = {} as unknown as User;
+  isLogin = toSignal(this.store.select(AuthState.isLogin));
+  currentUser = toSignal(this.store.select(AuthState.me));
 
   commentForm = new UntypedFormGroup({
     body: new UntypedFormControl('', Validators.required)
   });
 
-  constructor(
-    private store: Store,
-    public moment: MomentService,
-    private url: UrlUtilsService,
-    private scroll: ScrollService,
-    private route: ActivatedRoute,
-    private dialog: MatDialog
-  ) {
-  }
-
-  ngOnInit(): void {
-    this.store.select(CommentState.comments).subscribe(comments => {
-      if (comments) {
-        this.comments = comments;
-      }
+  constructor() {
+    effect(() => {
       timer(100).subscribe(() => {
         const fragment = this.route.snapshot.fragment;
         if (fragment) {
@@ -67,19 +64,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
         }
       });
     });
-    this.store.select(CommentState.error).subscribe(error => {
-      this.commentError = error.message;
-    });
-    this.store.select(AuthState.isLogin).subscribe(isLogin => this.isLogin = isLogin);
-    this.store.select(AuthState.me).subscribe(user => this.currentUser = user);
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe.next(true);
   }
 
   commentChangeEvent(): void {
-    if (!this.isLogin) {
+    if (!this.isLogin()) {
       this.postLikeClick();
       this.commentForm.controls['body'].setValue('');
     }
@@ -90,7 +78,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   removeComment(commentId: string): void {
-    this.dialog.open(ConfirmDeleteModalComponent, {data: {commentId}});
+    this.dialog.open(ConfirmDeleteModalComponent, { data: { commentId } });
   }
 
   editComment(comment: Comment): void {
@@ -98,41 +86,43 @@ export class CommentsComponent implements OnInit, OnDestroy {
       width: '500px',
       height: '540px',
       maxHeight: '600px',
-      data: {comment}
+      data: { comment }
     });
   }
 
   createComment(): void {
-    if (this.commentForm.valid && this.checkEmptySpaces(this.commentForm.controls['body'].value)) {
+    const postId = this.post()?.id;
+    if (
+      this.commentForm.valid &&
+      this.checkEmptySpaces(this.commentForm.controls['body'].value) &&
+      postId
+    ) {
       const comment = {
         body: this.commentForm.controls['body'].value,
-        post: this.post.id
+        post: postId
       } as Comment;
       this.store.dispatch(new CreateCommentAction(comment)).subscribe(() => {
         this.commentForm.reset();
-        this.store.dispatch(new FetchCommentsAction(this.post.id));
-        this.commentError = '';
+        this.store.dispatch(new FetchCommentsAction(postId));
+        this.commentError.set('');
       });
     } else {
       this.store.dispatch(new CommentErrorAction('Missing data in the comment'));
     }
   }
 
-  canComment(comment: Comment): boolean {
-    if (comment && comment.user && comment.user.id === this.currentUser?.id) {
-      return true;
-    }
-    return Boolean(comment && comment.user && (this.isAdmin(this.currentUser) || this.isStaff(this.currentUser)));
-  }
-
   canCurrentUserEditComment(comment: Comment): boolean {
-    return (comment.user && this.currentUser && comment.user.username === this.currentUser.username) ||
-      this.isStaff(this.currentUser) ||
-      this.isAdmin(this.currentUser);
+    return (
+      (comment?.user?.username &&
+        this.currentUser()?.username &&
+        comment.user.username === this.currentUser()?.username) ||
+      this.isStaff(this.currentUser()) ||
+      this.isAdmin(this.currentUser())
+    );
   }
 
   isCommentFromPostOwner(comment: Comment): boolean {
-    return Boolean(this.post && this.post.author && this.post.author.username === this.getName(comment));
+    return Boolean(this.post()?.author?.username === this.getName(comment));
   }
 
   isStaffOrAdmin(comment: Comment): boolean {

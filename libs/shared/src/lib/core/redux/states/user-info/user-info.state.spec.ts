@@ -1,25 +1,23 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { NgxsModule, Store } from '@ngxs/store';
 
 import { UserInfoState } from './user-info.state';
 import { UserInfoService } from './user-info.service';
 
-class UserInfoServiceStub {
-}
+class UserInfoServiceStub {}
 
 describe('UserInfo store', () => {
   let store: Store;
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{provide: UserInfoService, useClass: UserInfoServiceStub}],
-      imports: [NgxsModule.forRoot([UserInfoState])]
+      providers: [{ provide: UserInfoService, useClass: UserInfoServiceStub }],
+      imports: [NgxsModule.forRoot([UserInfoState])],
     }).compileComponents();
     store = TestBed.inject(Store);
-  }));
+  });
 
   it('should create', () => {
     expect(store).toBeTruthy();
   });
-
 });

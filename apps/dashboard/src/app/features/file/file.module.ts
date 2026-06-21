@@ -20,5 +20,4 @@ import { UploadFileModalModule } from '../components/upload-file.modal';
     UploadFileModalModule
   ]
 })
-export class FileModule {
-}
+export class FileModule {}

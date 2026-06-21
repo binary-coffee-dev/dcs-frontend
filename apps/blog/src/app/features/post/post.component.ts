@@ -1,12 +1,10 @@
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, inject, computed, linkedSignal, effect } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { isPlatformBrowser } from '@angular/common';
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog } from '@angular/material/dialog';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 import {
   ENVIRONMENT,
@@ -16,7 +14,11 @@ import {
   PostState,
   AuthState,
   Permissions,
-  WINDOW, UrlUtilsService, MomentService, CreateLikeArticle, RemoveLikeArticle
+  WINDOW,
+  UrlUtilsService,
+  MomentService,
+  CreateLikeArticle,
+  RemoveLikeArticle
 } from '@dcs-libs/shared';
 import { MetaTag, MetaTagsService, ResourceService, ScrollService } from '../../core/services';
 import { LoginRequestModalComponent } from '../components/login-request-modal';
@@ -26,118 +28,114 @@ const MAX_NUMBER_OF_POSTS = 6;
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  styleUrls: ['./post.component.scss'],
+  standalone: false
 })
-export class PostComponent extends Permissions implements OnInit, OnDestroy {
+export class PostComponent extends Permissions implements OnInit {
+  private store = inject(Store);
+  private metaTags = inject(MetaTagsService);
+  private title = inject(Title);
+  private scroll = inject(ScrollService);
+  private window = inject<Window>(WINDOW);
+  private environment = inject<Environment>(ENVIRONMENT);
+  private route = inject(ActivatedRoute);
+  private dialog = inject(MatDialog);
+  resource = inject(ResourceService);
+  moment = inject(MomentService);
+  url = inject(UrlUtilsService);
 
-  post: Post = {} as unknown as Post;
-  similarPosts: Post[] = [];
-  isBrowser: boolean;
-  likes = 0;
-  userLike = 0;
+  post = toSignal(this.store.select(PostState.post), { initialValue: null });
+  likes = toSignal(this.store.select(PostState.likes));
+  userLike = toSignal(this.store.select(PostState.userLike));
+  user = toSignal(this.store.select(AuthState.me));
 
-  _unsubscribe = new Subject();
+  similarPostsEvent = toSignal(this.store.select(PostState.similarPosts), {
+    initialValue: []
+  });
+  similarPosts = linkedSignal<Post[], Post[]>({
+    source: this.similarPostsEvent,
+    computation: (posts) => {
+      if (posts) {
+        return posts
+          .slice(0, Math.min(MAX_NUMBER_OF_POSTS, posts.length))
+          .map((post, id) => ({ ...post, id: id + '' }) as Post);
+      }
+      return [];
+    }
+  });
 
-  constructor(
-    private store: Store,
-    public resource: ResourceService,
-    private metaTags: MetaTagsService,
-    public moment: MomentService,
-    private title: Title,
-    private scroll: ScrollService,
-    @Inject(WINDOW) private window: Window,
-    @Inject(ENVIRONMENT) private environment: Environment,
-    private route: ActivatedRoute,
-    public url: UrlUtilsService,
-    @Inject(PLATFORM_ID) platformId: string,
-    private dialog: MatDialog,
-  ) {
+  isMyPost = computed(() => {
+    return (
+      this.user()?.id && this.post()?.author?.id && this.post()?.author?.id === this.user()?.id
+    );
+  });
+
+  constructor() {
     super();
-    this.isBrowser = isPlatformBrowser(platformId);
+
+    effect(() => {
+      const postId = this.post()?.id;
+      const postName = this.post()?.name;
+      if (this.post() && postId && postName) {
+        const imageUrl = this.post()?.banner
+          ? new URL(this.post()?.banner?.url ?? '', this.environment.apiUrl).toString()
+          : '';
+        this.metaTags.updateMetas([
+          {
+            key: MetaTagsService.metas,
+            value: new URL(`post/${postName}`, this.environment.siteUrl).toString()
+          } as MetaTag,
+          {
+            key: MetaTagsService.titleMeta,
+            value: `${this.post()?.title} | 🥇`
+          } as MetaTag,
+          { key: MetaTagsService.imageMeta, value: imageUrl } as MetaTag,
+          { key: MetaTagsService.twitterImageMeta, value: imageUrl } as MetaTag,
+          { key: MetaTagsService.typeMeta, value: 'article' } as MetaTag,
+          {
+            key: MetaTagsService.twitterTitleMeta,
+            value: this.post()?.title
+          } as MetaTag
+        ]);
+        this.title.setTitle(`🥇 | ${this.post()?.title}`);
+        this.metaTags.addLinkTag(
+          {
+            rel: 'alternate',
+            type: 'application/rss+xml',
+            title: `RSS Feed for ${this.post()?.author?.username} in binary-coffee.dev`,
+            href: `${this.environment.apiUrl}posts/feed/${this.post()?.author?.username}/rss2`
+          },
+          'rss-id'
+        );
+
+        this.store.dispatch(new FetchCommentsAction(postId));
+      }
+    });
   }
 
   ngOnInit(): void {
-    this.loadArticle(this.route.snapshot.data['post']);
-    this.store.select(PostState.post).subscribe((post: Post) => this.loadArticle(post));
     const fragment = this.route.snapshot.fragment;
     if (!fragment) {
       this.scroll.smoothScroll();
     }
-    this.store.select(PostState.likes)
-      .pipe(takeUntil(this._unsubscribe))
-      .subscribe(likes => this.likes = likes);
-    this.store.select(PostState.userLike)
-      .pipe(takeUntil(this._unsubscribe))
-      .subscribe(userLike => this.userLike = userLike);
-    this.store.select(PostState.similarPosts).subscribe((posts: Post[]) => {
-      this.loadPosts(posts);
-    });
   }
 
-  ngOnDestroy(): void {
-    this._unsubscribe.next(true);
-  }
-
-  loadPosts(posts: Post[]): void {
-    if (posts) {
-      this.similarPosts = [...posts].reduce((previousValue: Post[], currentValue, currentIndex) => {
-        if (currentIndex < MAX_NUMBER_OF_POSTS) {
-          previousValue.push(currentValue);
-        }
-        return previousValue;
-      }, []);
-    }
-  }
-
-  loadArticle(post: Post): void {
-    if (post) {
-      this.post = post;
-      const imageUrl = post.banner ? new URL(post?.banner?.url || '', this.environment.apiUrl).toString() : '';
-      this.metaTags.updateMetas([
-        {
-          key: MetaTagsService.metas,
-          value: new URL(`post/${post.name}`, this.environment.siteUrl).toString()
-        } as MetaTag,
-        {key: MetaTagsService.titleMeta, value: `${post.title} | 🥇`} as MetaTag,
-        {key: MetaTagsService.imageMeta, value: imageUrl} as MetaTag,
-        {key: MetaTagsService.twitterImageMeta, value: imageUrl} as MetaTag,
-        {key: MetaTagsService.typeMeta, value: 'article'} as MetaTag,
-        {key: MetaTagsService.twitterTitleMeta, value: post.title} as MetaTag
-      ]);
-      this.title.setTitle(`🥇 | ${post.title}`);
-      this.metaTags.addLinkTag({
-        rel: 'alternate',
-        type: 'application/rss+xml',
-        title: `RSS Feed for ${post.author?.username} in binary-coffee.dev`,
-        href: `${this.environment.apiUrl}posts/feed/${this.post.author?.username}/rss2`
-      }, 'rss-id');
-
-      this.store.dispatch(new FetchCommentsAction(post.id));
-    }
-  }
-
-  articleBody(): string {
-    return `${this.environment.apiUrl}post-body-by-name/${(this.post?.name || '')}/download.md`;
-  }
-
-  isMyPost(post: Post): boolean {
-    const user = this.store.selectSnapshot(AuthState.me);
-    return !!user && !!post.author && post.author.id === user.id;
-  }
-
-  editPost(post: Post) {
-    this.window.location.href = `${this.environment.siteDashboardUrl}/articles/update/${post.id}`;
+  editPost() {
+    this.window.location.href = `${
+      this.environment.siteDashboardUrl
+    }/articles/update/${this.post()?.id}`;
   }
 
   postLikeClick(): void {
-    const user = this.store.selectSnapshot(AuthState.me);
-    if (!user || !user.id) {
+    const userId = this.user()?.id;
+    const postId = this.post()?.id;
+    if (!userId) {
       this.dialog.open(LoginRequestModalComponent, {});
     }
-    if (this.userLike === 0 && user && user.id) {
-      this.store.dispatch(new CreateLikeArticle(user.id, this.post.id));
-    } else if (user && user.id) {
-      this.store.dispatch(new RemoveLikeArticle(this.post.id));
+    if (this.userLike() === 0 && userId && postId) {
+      this.store.dispatch(new CreateLikeArticle(userId, postId));
+    } else if (userId) {
+      this.store.dispatch(new RemoveLikeArticle(userId));
     }
   }
 }

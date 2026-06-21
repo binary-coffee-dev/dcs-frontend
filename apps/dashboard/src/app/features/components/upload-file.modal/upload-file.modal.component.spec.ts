@@ -1,33 +1,29 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatDialogRef } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
 
 import { UploadFileModalComponent } from './upload-file.modal.component';
 
+class StoreStub {}
 
-class StoreStub {
-}
-
-class MatDialogRefStub {
-}
+class MatDialogRefStub {}
 
 describe('UploadFile.ModalComponent', () => {
   let component: UploadFileModalComponent;
   let fixture: ComponentFixture<UploadFileModalComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [UploadFileModalComponent],
       providers: [
-        {provide: Store, useClass: StoreStub},
-        {provide: MatDialogRef, useClass: MatDialogRefStub},
+        { provide: Store, useClass: StoreStub },
+        { provide: MatDialogRef, useClass: MatDialogRefStub },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UploadFileModalComponent);

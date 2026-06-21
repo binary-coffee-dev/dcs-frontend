@@ -1,16 +1,18 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use 'libs/shared/src/variables' as vars;
 
 :host {
 
   .data-container {
 
     .bc-button {
-      border: solid 2px map-get($md-grey, 600);
-      color: map-get($md-grey, 900);
+      border: solid 2px map.get(vars.$md-grey, 600);
+      color: map.get(vars.$md-grey, 900);
 
       &.github-sponsor:hover {
-        color: map-get($md-grey, 800);
-        border: solid 2px map-get($md-grey, 800);
+        color: map.get(vars.$md-grey, 800);
+        border: solid 2px map.get(vars.$md-grey, 800);
       }
 
       &.paypal:hover {

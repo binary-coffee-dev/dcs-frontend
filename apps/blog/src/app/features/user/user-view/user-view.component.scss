@@ -1,4 +1,6 @@
-@import 'libs/shared/src/theme';
+@use "sass:map";
+
+@use 'libs/shared/src/variables' as vars;
 
 :host {
 
@@ -7,11 +9,11 @@
     .no-article {
 
       .fa {
-        color: map-get($md-primary, 500);
+        color: map.get(vars.$md-primary, 500);
       }
 
       h1 {
-        color: map-get($md-grey, 700);
+        color: map.get(vars.$md-grey, 700);
       }
     }
 
@@ -19,15 +21,15 @@
       border: solid 1px #0001;
 
       .user-image {
-        border: solid 3px map-get($md-grey, 500);
+        border: solid 3px map.get(vars.$md-grey, 500);
       }
 
       .profile-stacks {
         span {
-          color: map-get($md-grey, 700);
+          color: map.get(vars.$md-grey, 700);
 
           .material-icons {
-            color: map-get($md-primary, 500);
+            color: map.get(vars.$md-primary, 500);
           }
         }
       }
@@ -36,15 +38,15 @@
 
         a, button {
           &:hover {
-            background-color: map-get($md-grey, 50);
+            background-color: map.get(vars.$md-grey, 50);
           }
         }
 
         .profile-data-item {
-          color: map-get($md-grey, 700);
+          color: map.get(vars.$md-grey, 700);
 
           .material-icons {
-            color: map-get($md-primary, 500);
+            color: map.get(vars.$md-primary, 500);
           }
 
           &:not(:active).rss:after {

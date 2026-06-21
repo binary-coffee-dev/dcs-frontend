@@ -6,11 +6,7 @@ import { UploadFileModalComponent } from './upload-file.modal.component';
 
 @NgModule({
   declarations: [UploadFileModalComponent],
-  imports: [
-    CommonModule,
-    MaterialModule
-  ],
+  imports: [CommonModule, MaterialModule],
   exports: [UploadFileModalComponent]
 })
-export class UploadFileModalModule {
-}
+export class UploadFileModalModule {}

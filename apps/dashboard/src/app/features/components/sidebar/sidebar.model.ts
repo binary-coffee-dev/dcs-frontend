@@ -15,7 +15,7 @@ export enum AccessIds {
 }
 
 // the accessId is a reference to a Access.id
-export let ROUTES: RouteInfo[] = [
+export const ROUTES: RouteInfo[] = [
   {
     accessId: AccessIds.USER,
     visible: false,

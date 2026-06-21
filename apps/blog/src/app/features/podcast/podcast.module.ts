@@ -7,11 +7,6 @@ import { PodcastRoutingModule } from './podcast-routing.module';
 
 @NgModule({
   declarations: [PodcastComponent],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    PodcastRoutingModule
-  ]
+  imports: [CommonModule, MaterialModule, PodcastRoutingModule]
 })
-export class PodcastModule {
-}
+export class PodcastModule {}

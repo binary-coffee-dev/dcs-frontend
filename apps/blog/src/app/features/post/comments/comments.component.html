@@ -4,12 +4,13 @@
         [formGroup]='commentForm'>
     <div class='comments-header mb-6 font-thin'><span>// Comparte tus opiniones</span></div>
 
-    <span class='flex flex-row'
-          *ngIf='commentError'>
-      <mat-icon class='fa fa-warning text-3lg'
-                style="transform: translateY(3px)"></mat-icon>
-      {{ commentError }}
-    </span>
+    @if (commentError()) {
+      <span class='flex flex-row'>
+        <mat-icon class='fa fa-warning text-3lg'
+                  style="transform: translateY(3px)"></mat-icon>
+        {{ commentError() }}
+      </span>
+    }
 
     <mat-form-field class='comment-item-text w-full'
                     appearance='outline'>
@@ -32,48 +33,53 @@
     </div>
   </form>
 
-  <div class='comments-list p-6 w-full shadow-lg rounded'
-       *ngIf='comments && comments.length > 0'>
-    <ng-container *ngFor='let comment of comments'>
-      <div class='comment-container mt-6 mx-0 mb-9'>
-        <div class='user-data'>
-          <a class="flex flex-row items-center no-underline hover:underline"
-             [routerLink]="'/users/' + (comment?.user?.username || '')">
-            <img class='comment-user-image w-8 h-8 rounded-full mr-3'
-                 [ngSrc]='getUserAvatar(comment?.user)'
-                 width="32"
-                 height="32"
-                 alt='noavatar'>
-            <span class='mr-3'
-                  matTooltip='Ver perfil'>"{{ getName(comment) }}"</span>
-            <i class='fa fa-check-circle mr-1.5'
-               *ngIf='isCommentFromPostOwner(comment)'
-               [matTooltip]="'Autor'">
-            </i>
-            <i class='fa fa-star'
-               *ngIf='isStaffOrAdmin(comment)'
-               [matTooltip]='getRoleName(comment)'>
-            </i>
-          </a>
-        </div>
-        <div class='date flex flex-row w-full h-2.5 my-1.5 mx-0 pl-3 relative whitespace-nowrap text-xs'>
-          <span>// {{ comment?.createdAt && moment.timeFromDate(comment.createdAt) || '' }}</span>
-          <div class="w-full"></div>
-          <div class='text-2xl -mt-4'>
-            <i class='fa fa-trash ml-3'
-               *ngIf='canCurrentUserEditComment(comment)'
-               (click)='removeComment(comment.id)'
-               matTooltip='Eliminar'>
-            </i>
-            <i class='fa fa-pencil ml-3'
-               *ngIf='canCurrentUserEditComment(comment)'
-               (click)='editComment(comment)'
-               matTooltip='Editar'>
-            </i>
+  @if ((comments()?.length ?? 0) > 0) {
+    <div class='comments-list p-6 w-full shadow-lg rounded'>
+      @for (comment of comments(); track comment.id) {
+        <div class='comment-container mt-6 mx-0 mb-9'>
+          <div class='user-data'>
+            <a class="flex flex-row items-center no-underline hover:underline"
+               [routerLink]="'/users/' + (comment?.user?.username || '')">
+              <img class='comment-user-image w-8 h-8 rounded-full mr-3'
+                   [ngSrc]='getUserAvatar(comment?.user)'
+                   width="32"
+                   height="32"
+                   alt='noavatar'>
+              <span class='mr-3'
+                    matTooltip='Ver perfil'>"{{ getName(comment) }}"</span>
+              @if (isCommentFromPostOwner(comment)) {
+                <i class='fa fa-check-circle mr-1.5'
+                   [matTooltip]="'Autor'">
+                </i>
+              }
+              @if (isStaffOrAdmin(comment)) {
+                <i class='fa fa-star'
+                   [matTooltip]='getRoleName(comment)'>
+                </i>
+              }
+            </a>
           </div>
+          <div class='date flex flex-row w-full h-2.5 my-1.5 mx-0 pl-3 relative whitespace-nowrap text-xs'>
+            <span>// {{ comment?.createdAt && moment.timeFromDate(comment.createdAt) || '' }}</span>
+            <div class="w-full"></div>
+            <div class='text-2xl -mt-4'>
+              @if (canCurrentUserEditComment(comment)) {
+                <i class='fa fa-trash ml-3'
+                   (click)='removeComment(comment.id)'
+                   matTooltip='Eliminar'>
+                </i>
+              }
+              @if (canCurrentUserEditComment(comment)) {
+                <i class='fa fa-pencil ml-3'
+                   (click)='editComment(comment)'
+                   matTooltip='Editar'>
+                </i>
+              }
+            </div>
+          </div>
+          <div class='comment-content p-5 text-base rounded-md relative break-all'>{{ comment?.body }}</div>
         </div>
-        <div class='comment-content p-5 text-base rounded-md relative break-all'>{{ comment?.body }}</div>
-      </div>
-    </ng-container>
-  </div>
+      }
+    </div>
+  }
 </div>

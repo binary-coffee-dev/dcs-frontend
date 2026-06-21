@@ -14,13 +14,16 @@
     </a>
 
     <div class='w-full'></div>
-    <app-filter class="hidden md:block" *ngIf='showSearch'></app-filter>
+    @if (showSearch()) {
+      <app-filter class="hidden md:block"></app-filter>
+    }
     <div class='w-full'></div>
 
     <app-login-button></app-login-button>
 
     <div class="h-9 max-h-9 pr-3">
-      <mat-button-toggle class="min-w-10 h-9 ml-6 text-base" [matMenuTriggerFor]='beforeMenu'>
+      <mat-button-toggle class="min-w-10 h-9 ml-6 text-base"
+                         [matMenuTriggerFor]='beforeMenu'>
         <mat-icon aria-hidden='false'>menu</mat-icon>
       </mat-button-toggle>
     </div>

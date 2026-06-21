@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PodcastComponent } from './podcast.component';
 
-
 const routes: Routes = [
   {
     path: 'espacio-binario',
@@ -15,5 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PodcastRoutingModule {
-}
+export class PodcastRoutingModule {}

@@ -1,4 +1,6 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   form {
@@ -15,7 +17,7 @@
         border: solid 1px transparent !important;
 
         &:hover {
-          border: 1px solid map_get($md-primary, 500);
+          border: 1px solid map.get(vars.$md-primary, 500);
         }
       }
     }

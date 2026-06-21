@@ -1,15 +1,15 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
 
-// toDo: take social colors to the theme file
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   .container {
-    color: map_get($md-grey, 500);
+    color: map.get(vars.$md-grey, 500);
 
     .twitter {
       $color: #1da1f2;
-      background-color: map_get($md-grey, 350);
-      border: 1px solid map_get($md-primary, 100);
+      background-color: map.get(vars.$md-grey, 350);
+      border: 1px solid map.get(vars.$md-primary, 100);
       color: $color;
 
       &:hover {
@@ -19,8 +19,8 @@
 
     .facebook {
       $color: #2d4a86;
-      background-color: map_get($md-grey, 350);
-      border: 1px solid map_get($md-primary, 100);
+      background-color: map.get(vars.$md-grey, 350);
+      border: 1px solid map.get(vars.$md-primary, 100);
       color: $color;
 
       &:hover {
@@ -30,8 +30,8 @@
 
     .linkedin {
       $color: #0077b5;
-      background-color: map_get($md-grey, 350);
-      border: 1px solid map_get($md-primary, 100);
+      background-color: map.get(vars.$md-grey, 350);
+      border: 1px solid map.get(vars.$md-primary, 100);
       color: $color;
 
       &:hover {

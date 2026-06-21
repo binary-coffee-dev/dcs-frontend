@@ -4,25 +4,34 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dcs-libs/shared": ["libs/shared/src/index.ts"],
-      "rxjs": ["node_modules/rxjs"],
-      "rxjs/*": ["node_modules/rxjs/*"],
-      "~environments/*": ["environments/*"],
-      "~graphql/*": ["app/core/graphql/*"]
+      "@dcs-libs/shared": [
+        "libs/shared/src/index.ts"
+      ],
+      "rxjs": [
+        "node_modules/rxjs"
+      ],
+      "rxjs/*": [
+        "node_modules/rxjs/*"
+      ],
+      "~environments/*": [
+        "environments/*"
+      ],
+      "~graphql/*": [
+        "app/core/graphql/*"
+      ]
     },
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "resolveJsonModule": true
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,8 +1,9 @@
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideClientHydration } from '@angular/platform-browser';
+import { APP_ID, NgModule, provideZoneChangeDetection } from '@angular/core';
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgOptimizedImage } from "@angular/common";
+import { NgOptimizedImage } from '@angular/common';
+import { provideServerRendering, withRoutes } from '@angular/ssr';
 
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
@@ -19,7 +20,9 @@ import {
   CommentService,
   MaterialModule,
   PodcastState,
-  ConfigState, UserInfoState, SubscriptionState
+  ConfigState,
+  UserInfoState,
+  SubscriptionState
 } from '@dcs-libs/shared';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './features/app.component';
@@ -35,6 +38,7 @@ import { LoginRequestModalComponent } from './features/components/login-request-
 import { PodcastModule } from './features/podcast';
 import { UserModule } from './features/user';
 import { FilterComponent } from './features/components/filter/filter.component';
+import { serverRoutes } from './app.routes.server';
 
 @NgModule({
   declarations: [
@@ -48,21 +52,37 @@ import { FilterComponent } from './features/components/filter/filter.component';
     LoginRequestModalComponent
   ],
   bootstrap: [AppComponent],
-  imports: [BrowserModule.withServerTransition({appId: 'serverApp'}),
+  imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot([CommentState, AuthState, PostState, PodcastState, ConfigState, UserInfoState, SubscriptionState], {
-      developmentMode: !environment.production
-    }),
+    NgxsModule.forRoot(
+      [
+        CommentState,
+        AuthState,
+        PostState,
+        PodcastState,
+        ConfigState,
+        UserInfoState,
+        SubscriptionState
+      ],
+      {
+        developmentMode: !environment.production
+      }
+    ),
     ReduxModule,
     MaterialModule,
     InfoModule,
     SharedModule,
     PodcastModule,
-    UserModule, NgOptimizedImage
+    UserModule,
+    NgOptimizedImage
   ],
   providers: [
+    {
+      provide: APP_ID,
+      useValue: 'serverApp'
+    },
     {
       provide: ENVIRONMENT,
       useValue: environment
@@ -73,9 +93,10 @@ import { FilterComponent } from './features/components/filter/filter.component';
       deps: [HttpLink]
     },
     CommentService,
-    provideHttpClient(withInterceptorsFromDi()),
-    provideClientHydration()
+    provideHttpClient(withFetch(), withInterceptorsFromDi()),
+    provideClientHydration(),
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideServerRendering(withRoutes(serverRoutes))
   ]
 })
-export class AppModule {
-}
+export class AppModule {}

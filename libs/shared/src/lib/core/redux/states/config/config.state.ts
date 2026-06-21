@@ -5,7 +5,7 @@ import { State, Action, Selector, StateContext, createSelector } from '@ngxs/sto
 import { SetConfigAction } from './config.actions';
 
 export interface ConfigStateModel {
-  configurations: {[key: string]: any};
+  configurations: { [key: string]: any };
 }
 
 @State<ConfigStateModel>({
@@ -16,9 +16,8 @@ export interface ConfigStateModel {
 })
 @Injectable()
 export class ConfigState {
-
   @Selector()
-  public static getConfigurations(state: ConfigStateModel): {[key: string]: any} {
+  public static getConfigurations(state: ConfigStateModel): { [key: string]: any } {
     return state.configurations;
   }
 
@@ -30,8 +29,8 @@ export class ConfigState {
 
   @Action(SetConfigAction)
   public setConfigAction(ctx: StateContext<ConfigStateModel>, action: SetConfigAction) {
-    const configurations = {...ctx.getState().configurations};
+    const configurations = { ...ctx.getState().configurations };
     configurations[action.key] = action.value;
-    ctx.patchState({configurations});
+    ctx.patchState({ configurations });
   }
 }

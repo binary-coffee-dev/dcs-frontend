@@ -1,33 +1,30 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
 
 import { EditCommentModalComponent } from './edit-comment.modal.component';
 
-class StoreStub {
-}
+class StoreStub {}
 
-class MatDialogRefStub {
-}
+class MatDialogRefStub {}
 
 describe('EditCommentModalComponent', () => {
   let component: EditCommentModalComponent;
   let fixture: ComponentFixture<EditCommentModalComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [EditCommentModalComponent],
       providers: [
-        {provide: MatDialogRef, useClass: MatDialogRefStub},
-        {provide: Store, useClass: StoreStub},
-        {provide: MAT_DIALOG_DATA, useValue: {comment: {body: 'tmp'}}}
+        { provide: MatDialogRef, useClass: MatDialogRefStub },
+        { provide: Store, useClass: StoreStub },
+        { provide: MAT_DIALOG_DATA, useValue: { comment: { body: 'tmp' } } },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EditCommentModalComponent);

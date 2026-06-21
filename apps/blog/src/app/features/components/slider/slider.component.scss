@@ -1,19 +1,21 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use 'libs/shared/src/variables' as vars;
 
 :host {
-  color: map-get($md-grey, 49);
+  color: map.get(vars.$md-grey, 49);
 
   .button {
-    background-color: map-get($md-primary, 910);
-    color: map-get($md-grey, 49);
+    background-color: map.get(vars.$md-primary, 910);
+    color: map.get(vars.$md-grey, 49);
 
     &.space-left {
-      margin-left: map-get($spacings, 2);
+      margin-left: map.get(vars.$spacings, 2);
     }
 
     &.white {
-      background-color: map-get($md-grey, 49);
-      color: map-get($md-primary, 500);
+      background-color: map.get(vars.$md-grey, 49);
+      color: map.get(vars.$md-primary, 500);
     }
 
     &:hover {
@@ -24,7 +26,7 @@
 
   .container {
     .background2 {
-      background-color: map-get($md-primary, 500);
+      background-color: map.get(vars.$md-primary, 500);
     }
 
     .background {
@@ -41,20 +43,20 @@
             display: block;
             height: calc(100% - 14px);
             width: 3px;
-            margin-right: map-get($spacings, 2);
+            margin-right: map.get(vars.$spacings, 2);
             background-color: #cff0e538;
           }
 
           .message-text {
-            color: map-get($md-grey, 49);
+            color: map.get(vars.$md-grey, 49);
           }
         }
 
         .buttons-container {
-          margin-left: map-get($spacings, 3);
+          margin-left: map.get(vars.$spacings, 3);
 
           button {
-            margin-right: map-get($spacings, 2);
+            margin-right: map.get(vars.$spacings, 2);
           }
         }
       }
@@ -68,7 +70,7 @@
         width: 100%;
         height: 1px;
         margin-top: 3px;
-        background-color: map-get($md-primary, 100);
+        background-color: map.get(vars.$md-primary, 100);
         border-radius: 2px;
         display: block;
       }
@@ -83,7 +85,7 @@
         &:after {
           height: 4px;
           margin-top: 0;
-          background-color: map-get($md-primary, 50);
+          background-color: map.get(vars.$md-primary, 50);
         }
       }
     }

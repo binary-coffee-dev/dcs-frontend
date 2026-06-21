@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { ScrollTopComponent } from './scroll-top.component';
@@ -13,16 +13,13 @@ describe('ScrollTopComponent', () => {
   let fixture: ComponentFixture<ScrollTopComponent>;
   let scrollService: ScrollService;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ScrollTopComponent],
-      providers: [
-        {provide: ScrollService, useClass: ScrollServiceStub}
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+      providers: [{ provide: ScrollService, useClass: ScrollServiceStub }],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ScrollTopComponent);

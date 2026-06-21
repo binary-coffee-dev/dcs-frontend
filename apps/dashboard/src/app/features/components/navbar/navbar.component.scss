@@ -1,15 +1,17 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   width: 100%;
   box-sizing: border-box;
 
   .menu-dashboard-button {
-    color: map-get($md-grey, 700);
+    color: map.get(vars.$md-grey, 700);
   }
 
   a {
-    color: map_get($md-grey, 900);
+    color: map.get(vars.$md-grey, 900);
   }
 
 }

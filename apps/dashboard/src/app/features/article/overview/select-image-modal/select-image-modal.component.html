@@ -15,21 +15,21 @@
       </tr>
       </thead>
       <tbody>
-      <ng-container *ngFor='let file of files; let i = index'>
-        <tr class="text-xs"
-            [ngClass]='{"cell-even": i % 2 === 0, "cell-odd": i % 2 === 1}'
-            (click)='selectImage(file)'>
-          <td class="whitespace-nowrap py-1.5 px-6">
-            <img class='file-image rounded w-16 h-16 object-cover object-center'
-                 style="border: solid 1px #0001;"
-                 [src]='normalizeUrl(file?.url || "")'
-                 [alt]='file.name'>
-          </td>
-          <td>
-            {{file?.url || ''}}
-          </td>
-        </tr>
-      </ng-container>
+        @for (file of files(); track file; let i = $index) {
+          <tr class="text-xs"
+              [ngClass]='{"cell-even": i % 2 === 0, "cell-odd": i % 2 === 1}'
+              (click)='selectImage(file)'>
+            <td class="whitespace-nowrap py-1.5 px-6">
+              <img class='file-image rounded w-16 h-16 object-cover object-center'
+                   style="border: solid 1px #0001;"
+                   [src]='normalizeUrl(file?.url ?? "")'
+                   [alt]='file.name'>
+            </td>
+            <td>
+              {{ file?.url ?? '' }}
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>
@@ -37,8 +37,8 @@
                   (nextPageEvent)='nextPageEvent()'
                   (previousPageEvent)='previousPageEvent()'
                   (pageEvent)='selectPageEvent($event)'
-                  [numberOfPages]='numberOfPages'
-                  [currentPage]='currentPage'></app-pagination>
+                  [numberOfPages]='numberOfPages()'
+                  [currentPage]='currentPage()'></app-pagination>
   <div class='mt-5 flex flex-row justify-end'>
     <mat-button-toggle class='button-cancel'
                        (click)='cancel()'>Cancelar

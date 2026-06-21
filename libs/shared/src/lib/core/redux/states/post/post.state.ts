@@ -1,25 +1,31 @@
-import {Injectable} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {catchError, mergeMap, tap} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { catchError, mergeMap, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
-import {PostService} from './post.service';
+import { PostService } from './post.service';
 import {
   ChangePageSizeAction,
   FetchPostAction,
-  FetchPostsAction, FetchSimilarPostsAction, CreateLikeArticle,
+  FetchPostsAction,
+  FetchSimilarPostsAction,
+  CreateLikeArticle,
   NextPageAction,
   PostAction,
   PostCreateAction,
   PostUpdateAction,
-  PreviousPageAction, RefreshPostAction,
-  SelectPageAction, SetFiltersAction, RemoveLikeArticle, FetchPostUserLikeAction
+  PreviousPageAction,
+  RefreshPostAction,
+  SelectPageAction,
+  SetFiltersAction,
+  RemoveLikeArticle,
+  FetchPostUserLikeAction
 } from './post.action';
-import {initPostStateModel, PostStateModel} from './post-state.model';
-import {NotificationType, Post} from '../../models';
-import {PaginationBaseClass, ResponseData, StateBase, Where} from '../pagination-base.class';
-import {CreateNotificationAction} from '../notification/notification.action';
+import { initPostStateModel, PostStateModel } from './post-state.model';
+import { NotificationType, Post } from '../../models';
+import { PaginationBaseClass, ResponseData, StateBase, Where } from '../pagination-base.class';
+import { CreateNotificationAction } from '../notification/notification.action';
 
 @State<PostStateModel>({
   name: 'post',
@@ -27,6 +33,7 @@ import {CreateNotificationAction} from '../notification/notification.action';
 })
 @Injectable()
 export class PostState extends PaginationBaseClass<PostStateModel> {
+  private postService = inject(PostService);
 
   @Selector()
   static posts(state: PostStateModel): Post[] {
@@ -60,7 +67,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
 
   @Selector()
   static pageIndicator(state: PostStateModel): StateBase {
-    return {...state} as StateBase;
+    return { ...state } as StateBase;
   }
 
   @Selector()
@@ -83,10 +90,6 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
     return state.where;
   }
 
-  constructor(private postService: PostService) {
-    super();
-  }
-
   @Action(ChangePageSizeAction)
   changePageSizeAction(ctx: StateContext<PostStateModel>, action: ChangePageSizeAction) {
     this.changePageSize(ctx, action.pageSize);
@@ -107,7 +110,7 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
 
   @Action(SetFiltersAction)
   setFiltersAction(ctx: StateContext<PostStateModel>, action: SetFiltersAction) {
-    ctx.patchState({where: action.where});
+    ctx.patchState({ where: action.where });
   }
 
   @Action(PreviousPageAction)
@@ -122,67 +125,77 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
 
   @Action(PostAction)
   fetchPostAction(ctx: StateContext<PostStateModel>, action: PostAction) {
-    return this.postService.fetchPost(action.postId).pipe(
-      tap(post => ctx.patchState({post}))
-    );
+    return this.postService.fetchPost(action.postId).pipe(tap((post) => ctx.patchState({ post })));
   }
 
   @Action(FetchPostAction)
   fetchPostByNameAction(ctx: StateContext<PostStateModel>, action: FetchPostAction) {
-    ctx.patchState({userId: action.userId});
-    return this.postService.fetchPostByName(action.postName, false).pipe(
-      tap(({post, likes}) => ctx.patchState({post, likes}))
-    );
+    ctx.patchState({ userId: action.userId });
+    return this.postService
+      .fetchPostByName(action.postName, false)
+      .pipe(tap(({ post, likes }) => ctx.patchState({ post, likes })));
   }
 
   @Action(FetchPostUserLikeAction)
   fetchPostUserLikeAction(ctx: StateContext<PostStateModel>, action: FetchPostUserLikeAction) {
     const userId = action.userId || ctx.getState().userId;
     if (userId) {
-      return this.postService.fetchPostUserLikeAction(action.postName, userId).pipe(
-        tap(({userLike}) => ctx.patchState({userLike}))
-      );
+      return this.postService
+        .fetchPostUserLikeAction(action.postName, userId)
+        .pipe(tap(({ userLike }) => ctx.patchState({ userLike })));
     } else {
       return of({});
     }
   }
 
   @Action(RefreshPostAction)
-  refreshPostAction({dispatch, getState}: StateContext<PostStateModel>) {
-    return dispatch(new FetchPostAction(getState().post.name, getState().userId)).pipe(mergeMap(() => {
-      return dispatch(new FetchPostUserLikeAction(getState().post.name, getState().userId));
-    }));
+  refreshPostAction({ dispatch, getState }: StateContext<PostStateModel>) {
+    return dispatch(new FetchPostAction(getState().post.name, getState().userId)).pipe(
+      mergeMap(() => {
+        return dispatch(new FetchPostUserLikeAction(getState().post.name, getState().userId));
+      })
+    );
   }
 
   @Action(PostUpdateAction)
   postUpdateAction(ctx: StateContext<PostStateModel>, action: PostUpdateAction) {
-    return this.postService.updatePost(action.post).pipe(tap(() => {
-      ctx.dispatch(new CreateNotificationAction('Artículo actualizado correctamente', NotificationType.info));
-    }));
+    return this.postService.updatePost(action.post).pipe(
+      tap(() => {
+        ctx.dispatch(
+          new CreateNotificationAction('Artículo actualizado correctamente', NotificationType.info)
+        );
+      })
+    );
   }
 
   @Action(PostCreateAction)
   postCreateAction(ctx: StateContext<PostStateModel>, action: PostCreateAction) {
-    return this.postService.createPost(action.post, action.me).pipe(tap(post => {
-      ctx.patchState({newPostId: post.id});
-      ctx.dispatch(new CreateNotificationAction('Artículo creado correctamente', NotificationType.info));
-    }));
+    return this.postService.createPost(action.post, action.me).pipe(
+      tap((post) => {
+        ctx.patchState({ newPostId: post.id });
+        ctx.dispatch(
+          new CreateNotificationAction('Artículo creado correctamente', NotificationType.info)
+        );
+      })
+    );
   }
 
   @Action(FetchSimilarPostsAction)
   fetchSimilarPostsAction(ctx: StateContext<PostStateModel>, action: FetchSimilarPostsAction) {
-    return this.postService.fetchSimilarPostsAction(action.id, action.limit).pipe(tap(posts => {
-      ctx.patchState({similarPosts: posts || []});
-    }));
+    return this.postService.fetchSimilarPostsAction(action.id, action.limit).pipe(
+      tap((posts) => {
+        ctx.patchState({ similarPosts: posts || [] });
+      })
+    );
   }
 
   @Action(CreateLikeArticle)
   likeArticle(ctx: StateContext<PostStateModel>, action: CreateLikeArticle) {
-    ctx.patchState({userLike: 1, likes: ctx.getState().likes + 1});
+    ctx.patchState({ userLike: 1, likes: ctx.getState().likes + 1 });
     return this.postService.likeArticle(action.userId, action.postId).pipe(
       tap(() => ctx.dispatch(new RefreshPostAction())),
       catchError(() => {
-        ctx.patchState({userLike: 0, likes: ctx.getState().likes - 1});
+        ctx.patchState({ userLike: 0, likes: ctx.getState().likes - 1 });
         return of({});
       })
     );
@@ -190,11 +203,11 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
 
   @Action(RemoveLikeArticle)
   removeLikeArticle(ctx: StateContext<PostStateModel>, action: RemoveLikeArticle) {
-    ctx.patchState({userLike: 0, likes: ctx.getState().likes - 1});
+    ctx.patchState({ userLike: 0, likes: ctx.getState().likes - 1 });
     return this.postService.removeLikeArticle(action.postId).pipe(
       tap(() => ctx.dispatch(new RefreshPostAction())),
       catchError(() => {
-        ctx.patchState({userLike: 1, likes: ctx.getState().likes + 1});
+        ctx.patchState({ userLike: 1, likes: ctx.getState().likes + 1 });
         return of({});
       })
     );
@@ -203,5 +216,4 @@ export class PostState extends PaginationBaseClass<PostStateModel> {
   override fetchElements(pageSize: number, start: number, where = {}): Observable<ResponseData> {
     return this.postService.fetchPosts(pageSize, start, where);
   }
-
 }

@@ -1,29 +1,31 @@
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, inject, signal, effect } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
-  styleUrls: ['./admin-layout.component.scss']
+  styleUrls: ['./admin-layout.component.scss'],
+  standalone: false
 })
 export class AdminLayoutComponent implements OnDestroy {
-  mobileQuery: MediaQueryList;
+  private changeDetectorRef = inject(ChangeDetectorRef);
+  private media = inject(MediaMatcher);
+
+  mobileQuery = signal<MediaQueryList>(this.media.matchMedia('(max-width: 600px)'));
+  showSidenav = signal<boolean>(false);
+
   private readonly _mobileQueryListener: () => void;
 
-  showSidenav = false;
-
-  constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-    private media: MediaMatcher
-  ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+  constructor() {
+    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
+    effect(() => {
+      this.mobileQuery().addEventListener('change', this._mobileQueryListener);
+    });
   }
 
   ngOnDestroy(): void {
-    if (this.mobileQuery?.removeEventListener) {
-      this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
+    if (this.mobileQuery()?.removeEventListener) {
+      this.mobileQuery().removeEventListener('change', this._mobileQueryListener);
     }
   }
 }

@@ -1,44 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from "@angular/material/dialog";
+import { Component, inject, input, signal } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { UrlUtilsService } from '../../core/services';
 import { SubscribeDialogComponent } from '../subscribe-dialog';
 
 @Component({
-    selector: 'app-footer',
-    templateUrl: './footer.component.html',
-    styleUrls: ['./footer.component.scss']
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss'],
+  standalone: false
 })
-export class FooterComponent implements OnInit {
-    year: number = 0;
-    root: string = '';
+export class FooterComponent {
+  private url = inject(UrlUtilsService);
+  private dialog = inject(MatDialog);
 
-    @Input()
-    full = true;
+  full = input<boolean>(true);
+  socialLinks = input<boolean>(true);
 
-    @Input()
-    socialLinks = true;
+  year = signal<number>(new Date().getFullYear());
+  root = signal<string>('bc@dev');
+  sitemapUrl = signal<string>(this.url.normalizeSiteUrl('sitemap'));
+  getRSSUrl = signal<string>(this.url.normalizeSiteUrl('posts/feed/rss2'));
 
-    constructor(private url: UrlUtilsService,
-                private dialog: MatDialog) {
-    }
-
-    ngOnInit() {
-        this.root = 'bc@dev:';
-        this.year = new Date().getFullYear();
-    }
-
-    getSitemapUrl() {
-        return this.url.normalizeSiteUrl('sitemap');
-    }
-
-    getRSSUrl() {
-        return this.url.normalizeSiteUrl('posts/feed/rss2');
-    }
-
-    openSubscriptionDialog() {
-      this.dialog.open(SubscribeDialogComponent, {
-        disableClose: true
-      });
-    }
+  openSubscriptionDialog() {
+    this.dialog.open(SubscribeDialogComponent, {
+      disableClose: true
+    });
+  }
 }

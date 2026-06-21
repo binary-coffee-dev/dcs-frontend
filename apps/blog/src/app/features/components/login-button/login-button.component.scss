@@ -1,14 +1,16 @@
-@import 'libs/shared/src/theme';
+@use "sass:map";
+
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   .login-button {
-    background-color: map_get($md-primary, 900);
+    background-color: map.get(vars.$md-primary, 900);
     border: 2px solid transparent;
-    color: map_get($md-grey, A100);
+    color: map.get(vars.$md-grey, A100);
     animation: atent 10s 5s infinite cubic-bezier(0, .74, .27, .99);
 
     &:hover {
-      border: 2px solid map_get($md-primary, 500);
+      border: 2px solid map.get(vars.$md-primary, 500);
     }
 
     @keyframes atent {

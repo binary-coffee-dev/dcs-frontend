@@ -1,8 +1,8 @@
 import { gql } from 'apollo-angular';
 
 export const RECENT_COMMENTS_QUERY = gql`
-  query ($limit: Int){
-    recentComments (limit: $limit) {
+  query ($limit: Int) {
+    recentComments(limit: $limit) {
       body
       name
       user {

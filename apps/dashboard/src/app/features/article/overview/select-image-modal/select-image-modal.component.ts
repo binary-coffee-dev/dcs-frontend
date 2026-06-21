@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from "@angular/material/dialog";
+import { Component, OnInit, inject, computed } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 
@@ -16,35 +17,28 @@ import {
 @Component({
   selector: 'app-select-image-modal',
   templateUrl: './select-image-modal.component.html',
-  styleUrls: ['./select-image-modal.component.scss']
+  styleUrls: ['./select-image-modal.component.scss'],
+  standalone: false
 })
 export class SelectImageModalComponent implements OnInit {
+  private store = inject(Store);
+  private dialogRef = inject<MatDialogRef<SelectImageModalComponent>>(MatDialogRef);
+  private url = inject(UrlUtilsService);
 
-  files: File[] = [];
+  files = toSignal(this.store.select(FileState.files), { initialValue: [] });
 
-  currentPage = 0;
-  numberOfPages = 0;
-
-  constructor(
-    private store: Store,
-    private dialogRef: MatDialogRef<SelectImageModalComponent>,
-    private url: UrlUtilsService
-  ) {
-  }
+  pageIndicators = toSignal(this.store.select(FileState.pageIndicators));
+  currentPage = computed(() => this.pageIndicators()?.page ?? 0);
+  numberOfPages = computed(() => {
+    const pageIndicators = this.pageIndicators();
+    if (pageIndicators) {
+      return Math.ceil(pageIndicators.count / pageIndicators.pageSize);
+    }
+    return 0;
+  });
 
   ngOnInit() {
-    this.store.select(FileState.files).subscribe((files: File[]) => {
-      if (files) {
-        this.files = files;
-      }
-    });
     this.store.dispatch(new FetchFilesAction(6));
-    this.store.select(FileState.pageIndicators).subscribe(indicator => {
-      if (indicator) {
-        this.currentPage = indicator.page;
-        this.numberOfPages = Math.ceil(indicator.count / indicator.pageSize);
-      }
-    });
   }
 
   selectImage(image: File) {

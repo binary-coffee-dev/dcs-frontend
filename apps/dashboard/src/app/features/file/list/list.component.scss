@@ -1,22 +1,21 @@
-@import 'libs/shared/src/theme';
+@use "sass:map";
+
+@use 'libs/shared/src/variables' as vars;
 
 :host {
 
 
   mat-button-toggle {
-    background-color: map-get($md-primary, 500);
-    color: map-get($md-grey, 50);
+    background-color: map.get(vars.$md-primary, 500);
+    color: map.get(vars.$md-grey, 50);
   }
 
   .table-container {
-    //border-radius: map-get($radius, 2);
-    //overflow: hidden;
-    //overflow-x: auto;
 
     table {
 
       thead {
-        background-color: map-get($md-grey, 50);
+        background-color: map.get(vars.$md-grey, 50);
       }
 
       tr {
@@ -24,25 +23,25 @@
         td {
 
           .file-image {
-            border: 1px solid map_get($md-primary, 100);
+            border: 1px solid map.get(vars.$md-primary, 100);
           }
         }
 
         &.cell-even {
-          background-color: map-get($md-grey, 48);
+          background-color: map.get(vars.$md-grey, 48);
         }
 
         &.cell-odd {
-          background-color: map-get($md-grey, 49);
+          background-color: map.get(vars.$md-grey, 49);
         }
 
         button {
-          color: map-get($md-primary, 500);
+          color: map.get(vars.$md-primary, 500);
         }
       }
 
       tbody > tr:hover {
-        background-color: map-get($md-primary, 100);
+        background-color: map.get(vars.$md-primary, 100);
       }
     }
   }

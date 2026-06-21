@@ -12,29 +12,33 @@ import { Notification } from '../../models';
 })
 @Injectable()
 export class NotificationState {
-
   @Selector()
   static notifications(state: NotificationStateModel): Notification[] {
     return state.notifications;
   }
 
-  constructor() {
-  }
+  constructor() {}
 
   @Action(CreateNotificationAction)
-  createNotificationAction(ctx: StateContext<NotificationStateModel>, action: CreateNotificationAction) {
+  createNotificationAction(
+    ctx: StateContext<NotificationStateModel>,
+    action: CreateNotificationAction
+  ) {
     ctx.patchState({
       notifications: [
         ...ctx.getState().notifications,
-        {type: action.type, title: action.title, id: new Date().getTime()} as Notification
+        { type: action.type, title: action.title, id: new Date().getTime() } as Notification
       ]
     });
   }
 
   @Action(CloseNotificationAction)
-  closeNotificationAction(ctx: StateContext<NotificationStateModel>, action: CloseNotificationAction) {
+  closeNotificationAction(
+    ctx: StateContext<NotificationStateModel>,
+    action: CloseNotificationAction
+  ) {
     ctx.patchState({
-      notifications: [...ctx.getState().notifications.filter(not => not.id !== action.id)]
+      notifications: [...ctx.getState().notifications.filter((not) => not.id !== action.id)]
     });
   }
 }

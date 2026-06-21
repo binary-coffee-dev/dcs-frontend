@@ -30,7 +30,7 @@ export interface ResponseData {
 
 export class PaginationBaseClass<T extends StateBase> {
   changePageSize(ctx: StateContext<T>, pageSize: number | undefined) {
-    ctx.patchState({pageSize} as unknown as Partial<T>);
+    ctx.patchState({ pageSize } as unknown as Partial<T>);
   }
 
   nextPage(ctx: StateContext<T>) {
@@ -50,23 +50,21 @@ export class PaginationBaseClass<T extends StateBase> {
     const count = ctx.getState().count;
     const pageSize = ctx.getState().pageSize;
     if (page >= 0 && page <= this.lastPage(count, pageSize)) {
-      return this.fetchPage(pageSize, page * pageSize, where, ctx, page).pipe(tap(() => {
-        ctx.patchState({page} as unknown as Partial<T>);
-      }));
+      return this.fetchPage(pageSize, page * pageSize, where, ctx, page).pipe(
+        tap(() => {
+          ctx.patchState({ page } as unknown as Partial<T>);
+        })
+      );
     }
     return of(false);
   }
 
   fetchPage(pageSize: number, start: number, where = {}, ctx: StateContext<T>, page?: number) {
-    return this.fetchElements(
-      pageSize,
-      start,
-      where
-    ).pipe(
+    return this.fetchElements(pageSize, start, where).pipe(
       tap((response: ResponseData) => {
         const elements = response ? response.values : [];
         const count = response ? response.aggregate.count : 0;
-        ctx.patchState({elements, count} as unknown as Partial<T>);
+        ctx.patchState({ elements, count } as unknown as Partial<T>);
         this.refreshPaginationVisibility(
           ctx,
           typeof page === 'number' ? page : ctx.getState().page,
@@ -78,7 +76,7 @@ export class PaginationBaseClass<T extends StateBase> {
     );
   }
 
-  fetchElements(pageSize: number, start: number, where = {}): Observable<ResponseData> {
+  fetchElements(pageSize: number, start: number, _where = {}): Observable<ResponseData> {
     return of({} as ResponseData);
   }
 
@@ -90,7 +88,7 @@ export class PaginationBaseClass<T extends StateBase> {
   }
 
   nextPageNumber(page: number, count: number, pageSize: number) {
-    return Math.min(page + 1, !!count ? this.lastPage(count, pageSize) : 0);
+    return Math.min(page + 1, count ? this.lastPage(count, pageSize) : 0);
   }
 
   lastPage(count: number, pageSize: number) {

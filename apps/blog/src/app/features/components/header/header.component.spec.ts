@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -6,28 +6,27 @@ import { ENVIRONMENT, MaterialModule, WINDOW } from '@dcs-libs/shared';
 import { HeaderComponent } from './header.component';
 
 const env = {
-  siteUrl: 'http://binary-coffee.dev'
+  siteUrl: 'http://binary-coffee.dev',
 };
 const window = {
-  location: { href: '' }
+  location: { href: '' },
 };
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, MaterialModule],
       providers: [
         { provide: WINDOW, useFactory: () => window },
-        { provide: ENVIRONMENT, useFactory: () => env }
+        { provide: ENVIRONMENT, useFactory: () => env },
       ],
       declarations: [HeaderComponent],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
@@ -38,5 +37,4 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });

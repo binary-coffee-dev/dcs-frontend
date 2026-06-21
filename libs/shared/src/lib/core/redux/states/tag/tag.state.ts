@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
@@ -15,19 +15,16 @@ import { Tag } from '../../models';
 })
 @Injectable()
 export class TagState extends PaginationBaseClass<TagStateModel> {
+  private tagService = inject(TagService);
 
   @Selector()
   static tags(state: TagStateModel): Tag[] {
     return state.elements;
   }
 
-  constructor(private tagService: TagService) {
-    super();
-  }
-
   @Action(FetchTagsAction)
   fetchTagsAction(ctx: StateContext<TagStateModel>) {
-    ctx.patchState({elements: []});
-    return this.tagService.fetchTags().pipe(tap(taps => ctx.patchState({elements: taps})));
+    ctx.patchState({ elements: [] });
+    return this.tagService.fetchTags().pipe(tap((taps) => ctx.patchState({ elements: taps })));
   }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
-import { Observable, of } from 'rxjs';
 
 import { NextPageAction, PostState, PreviousPageAction } from '@dcs-libs/shared';
 import { ScrollService } from '../../../core/services';
@@ -9,20 +9,15 @@ import { ScrollService } from '../../../core/services';
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss']
+  styleUrls: ['./pagination.component.scss'],
+  standalone: false
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent {
+  private store = inject(Store);
+  private scroll = inject(ScrollService);
 
-  firstPage: Observable<boolean> = of(false);
-  lastPage: Observable<boolean> = of(false);
-
-  constructor(private store: Store, private scroll: ScrollService) {
-  }
-
-  ngOnInit() {
-    this.firstPage = this.store.select(PostState.firstPage);
-    this.lastPage = this.store.select(PostState.lastPage);
-  }
+  firstPage = toSignal(this.store.select(PostState.firstPage));
+  lastPage = toSignal(this.store.select(PostState.lastPage));
 
   nextPage() {
     this.store.dispatch(new NextPageAction()).subscribe(() => {
@@ -33,5 +28,4 @@ export class PaginationComponent implements OnInit {
   previousPage() {
     this.store.dispatch(new PreviousPageAction()).subscribe(() => this.scroll.smoothScroll());
   }
-
 }

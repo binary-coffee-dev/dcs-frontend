@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, effect, signal, computed } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog } from '@angular/material/dialog';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 
@@ -9,19 +10,25 @@ import {
   File,
   UpdateMeAction,
   UpdateMyAvatarAction,
-  UrlUtilsService,
-  User
+  UrlUtilsService
 } from '@dcs-libs/shared';
 import { UploadFileModalComponent } from '../components/upload-file.modal';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  styleUrls: ['./user-profile.component.scss'],
+  standalone: false
 })
-export class UserProfileComponent implements OnInit {
-  me: User = {} as unknown as User;
-  professionalDataChange = false;
+export class UserProfileComponent {
+  private store = inject(Store);
+  private dialog = inject(MatDialog);
+  private url = inject(UrlUtilsService);
+
+  me = toSignal(this.store.select(AuthState.me));
+  professionalDataChange = signal<boolean>(false);
+
+  getUserImage = computed(() => this.url.getUserImage(this.me()));
 
   personalForm = new UntypedFormGroup({
     username: new UntypedFormControl(''),
@@ -46,40 +53,30 @@ export class UserProfileComponent implements OnInit {
     showEmail: new UntypedFormControl('')
   });
 
-  constructor(
-    private store: Store,
-    private dialog: MatDialog,
-    private url: UrlUtilsService
-  ) {
-  }
-
-  ngOnInit() {
-    this.store.select(AuthState.me).subscribe((me) => {
+  constructor() {
+    effect(() => {
+      const me = this.me();
       if (me) {
-        this.me = me;
         this.personalForm.controls['username'].setValue(me.username);
         this.professionalForm.controls['page'].setValue(me.page);
 
-        this.professionalDataChange = false;
+        this.professionalDataChange.set(false);
       }
     });
   }
 
-  getUserImage() {
-    return this.url.getUserImage(this.me);
-  }
-
   saveProfessionalData() {
-    this.store.dispatch(
-      new UpdateMeAction(
-        this.me.id,
-        this.professionalForm.controls['page'].value
-      )
-    );
+    const me = this.me();
+    if (me) {
+      this.store.dispatch(new UpdateMeAction(me.id, this.professionalForm.controls['page'].value));
+    }
   }
 
   onUserDataChange() {
-    this.professionalDataChange = this.me.page !== this.professionalForm.controls['page'].value;
+    const me = this.me();
+    if (me) {
+      this.professionalDataChange.set(me.page !== this.professionalForm.controls['page'].value);
+    }
   }
 
   openUploadFileModal() {
@@ -88,8 +85,9 @@ export class UserProfileComponent implements OnInit {
       width: '50vh'
     });
     dialog.afterClosed().subscribe((result: File) => {
-      if (result) {
-        this.store.dispatch(new UpdateMyAvatarAction(this.me.id, result.id));
+      const me = this.me();
+      if (result && me) {
+        this.store.dispatch(new UpdateMyAvatarAction(me.id, result.id));
       }
     });
   }

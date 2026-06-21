@@ -18,5 +18,4 @@ import { MaterialModule } from '../../core/material';
   ],
   providers: [SubscriptionService]
 })
-export class SubscriptionModule {
-}
+export class SubscriptionModule {}

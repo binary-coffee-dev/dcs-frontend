@@ -1,23 +1,25 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use 'libs/shared/src/theme' as theme;
 
 :host {
   .content {
-    color: map-get($map: $md-grey, $key: 900);
-    border-radius: map-get($map: $radius, $key: 2);
-    background-color: map-get($map: $md-grey, $key: A100);
+    color: map.get($map: theme.$md-grey, $key: 900);
+    border-radius: map.get($map: theme.$radius, $key: 2);
+    background-color: map.get($map: theme.$md-grey, $key: A100);
 
     .header-description {
-      color: map_get($md-grey, 600);
+      color: map.get(theme.$md-grey, 600);
       font-weight: bold;
-      padding: 0 map-get($map: $spacings, $key: 4);
+      padding: 0 map.get($map: theme.$spacings, $key: 4);
     }
 
     .copy-button {
-      margin-bottom: map-get($map: $spacings, $key: 4);
+      margin-bottom: map.get($map: theme.$spacings, $key: 4);
     }
 
     .img {
-      border-radius: map-get($map: $radius, $key: 2);
+      border-radius: map.get($map: theme.$radius, $key: 2);
       width: 100%;
     }
   }

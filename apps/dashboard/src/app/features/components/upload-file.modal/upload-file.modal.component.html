@@ -26,29 +26,36 @@
     <div class='pre-image-container flex flex-row mb-5 w-full overflow-hidden'>
       <div class='upload-pre-image flex flex-row justify-center items-center h-48 w-full rounded relative'
            (click)='openFile(uploader)'>
-        <i class='fa fa-file-image-o text-5xl'
-           *ngIf='!image'></i>
-        <img class='upload-image w-full h-full object-cover object-center relative'
-             *ngIf='!!image'
-             [src]='image'
-             (click)='openFile(uploader)'
-             alt='upload'>
+        @if (!image()) {
+          <i class='fa fa-file-image-o text-5xl'
+          ></i>
+        }
+        @if (!!image()) {
+          <img class='upload-image w-full h-full object-cover object-center relative'
+               [src]='image()'
+               (click)='openFile(uploader)'
+               alt='upload'>
+        }
       </div>
     </div>
-    <p *ngIf='type'
-       class='w-full text-xs mb-1.5'>
-      <span class='code-1'> var </span>
-      <span class='code-var'> Tipo </span> = {{ type }}
-    </p>
-    <p *ngIf='size'
-       class='w-full text-xs mb-1.5'>
-      <span class='code-1'> var </span>
-      <span class='code-var'> Tamaño </span> = {{ getSize() }}
-    </p>
+    @if (type()) {
+      <p
+        class='w-full text-xs mb-1.5'>
+        <span class='code-1'> var </span>
+        <span class='code-var'> Tipo </span> = {{ type() }}
+      </p>
+    }
+    @if (size()) {
+      <p
+        class='w-full text-xs mb-1.5'>
+        <span class='code-1'> var </span>
+        <span class='code-var'> Tamaño </span> = {{ getSize() }}
+      </p>
+    }
     <div class='buttons-container flex flex-row justify-end'>
       <mat-button-toggle class='button-ok'
                          (click)='upload()'
-                         [disabled]='!file || uploadingImage'>Guardar
+                         [disabled]='!file() || uploadingImage()'>Guardar
       </mat-button-toggle>
       <mat-button-toggle class='button-cancel'
                          (click)='cancel()'>Cancelar

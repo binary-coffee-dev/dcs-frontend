@@ -16,7 +16,7 @@
         </i>
         <img class='img w-full h-auto transition-opacity'
              alt="user-avatar"
-             [src]='getUserImage()'/>
+             [src]='getUserImage()' />
       </a>
     </div>
 
@@ -74,11 +74,13 @@
                 placeholder='Descripción'></textarea>
     </mat-form-field>
 
-    <div *ngIf='false'
-         fxLayout='row'
-         fxLayoutAlign='end'>
-      <mat-button-toggle class='button-ok'>Guardar</mat-button-toggle>
-    </div>
+    @if (false) {
+      <div
+        fxLayout='row'
+        fxLayoutAlign='end'>
+        <mat-button-toggle class='button-ok'>Guardar</mat-button-toggle>
+      </div>
+    }
   </form>
 
   <form class='form-container m-0 sm:m-5 p-7 shadow-lg w-full md:w-5/12 box-border max-w-[550px] rounded'
@@ -131,7 +133,7 @@
     <div (click)='saveProfessionalData()'
          fxLayout='row'
          fxLayoutAlign='end'>
-      <mat-button-toggle [disabled]='!professionalDataChange'
+      <mat-button-toggle [disabled]='!professionalDataChange()'
                          class='button-ok'>Guardar
       </mat-button-toggle>
     </div>

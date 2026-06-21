@@ -1,9 +1,8 @@
 import {TestBed} from '@angular/core/testing';
 
-import {MomentService} from './moment.service';
 import {UpdateResponseService} from "./update-response.service";
 
-describe('MomentService', () => {
+describe('UpdateResponseService', () => {
   let interceptor : UpdateResponseService;
 
   beforeEach(() => TestBed.configureTestingModule({}));

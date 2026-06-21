@@ -1,5 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { Component, inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
 
@@ -8,16 +8,13 @@ import { RemoveCommentAction } from '@dcs-libs/shared';
 @Component({
   selector: 'app-confirm-delete.modal',
   templateUrl: './confirm-delete.modal.component.html',
-  styleUrls: ['./confirm-delete.modal.component.scss']
+  styleUrls: ['./confirm-delete.modal.component.scss'],
+  standalone: false
 })
 export class ConfirmDeleteModalComponent {
-
-  constructor(
-    private dialogRef: MatDialogRef<ConfirmDeleteModalComponent>,
-    private store: Store,
-    @Inject(MAT_DIALOG_DATA) public data: {commentId: string}
-  ) {
-  }
+  private dialogRef = inject<MatDialogRef<ConfirmDeleteModalComponent>>(MatDialogRef);
+  private store = inject(Store);
+  data = inject<{ commentId: string }>(MAT_DIALOG_DATA);
 
   ok() {
     this.store.dispatch(new RemoveCommentAction(this.data.commentId)).subscribe(() => {

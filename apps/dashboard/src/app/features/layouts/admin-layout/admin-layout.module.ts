@@ -7,13 +7,7 @@ import { AdminLayoutRoutingModule } from './admin-layout.routing.module';
 import { AdminLayoutComponent } from './admin-layout.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MaterialModule,
-    AdminLayoutRoutingModule,
-    ComponentsModule
-  ],
+  imports: [CommonModule, MaterialModule, AdminLayoutRoutingModule, ComponentsModule],
   declarations: [AdminLayoutComponent]
 })
-export class AdminLayoutModule {
-}
+export class AdminLayoutModule {}

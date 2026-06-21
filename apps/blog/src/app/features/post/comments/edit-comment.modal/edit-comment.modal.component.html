@@ -11,11 +11,12 @@
     <form class='flex flex-col h-full mb-10'
           [formGroup]='commentForm'>
 
-      <span class='comment-error-message'
-            *ngIf='commentError'>
-        <mat-icon class='fa fa-warning'></mat-icon>
-        {{ commentError }}
-      </span>
+      @if (commentError()) {
+        <span class='comment-error-message'>
+          <mat-icon class='fa fa-warning'></mat-icon>
+          {{ commentError() }}
+        </span>
+      }
 
       <mat-form-field class='comment-item comment-item-text'
                       appearance='outline'>
@@ -29,7 +30,7 @@
                   maxlength='250'
                   cols='30'
                   rows='4'>
-      </textarea>
+        </textarea>
       </mat-form-field>
     </form>
 

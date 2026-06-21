@@ -4,13 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UpdateResponseService {
-
-  constructor() {
-  }
+  constructor() {}
 
   formatResponseObjects(obj: any, parent: any = null, key: any | string = null) {
-    if (!obj || typeof obj === 'boolean' || typeof obj === 'number' ||
-      typeof obj === 'string' || typeof obj === 'undefined' || typeof obj === 'function') {
+    if (
+      !obj ||
+      typeof obj === 'boolean' ||
+      typeof obj === 'number' ||
+      typeof obj === 'string' ||
+      typeof obj === 'undefined' ||
+      typeof obj === 'function'
+    ) {
       return obj;
     }
     // toDo (gonzalezext)[05.05.23]: see if this can be done different

@@ -1,6 +1,6 @@
 export interface GeoLocationResponse {
   city: string;
-  country: string;// this one
+  country: string; // this one
   hostname: string;
   ip: string;
   loc: string;

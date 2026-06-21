@@ -1,24 +1,26 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject, computed } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog } from '@angular/material/dialog';
+import { isPlatformBrowser } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Store } from '@ngxs/store';
 import { timer } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 
 import { MetaTagsService } from '../core/services';
-
 import {
   AuthState,
   ChangePageSizeAction,
   ConfigState,
   Environment,
   ENVIRONMENT,
-  SetConfigAction, SubscribeDialogComponent
+  SetConfigAction,
+  SubscribeDialogComponent
 } from '@dcs-libs/shared';
 import { consoleMessage } from './console.log';
-import { isPlatformBrowser } from '@angular/common';
 
-declare let gtag: (property: string, value: string, configs: Object) => {};
+declare let gtag: (property: string, value: string, configs: object) => void;
 declare let moment: any;
 
 // 30 seconds
@@ -29,25 +31,42 @@ const SUBSCRIPTION_WAS_OPENED_CONFIG_KEY = 'SUBSCRIPTION_WAS_OPENED_CONFIG_KEY';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  standalone: false
 })
 export class AppComponent implements OnInit {
+  router = inject(Router);
+  private store = inject(Store);
+  private metaTags = inject(MetaTagsService);
+  private dialog = inject(MatDialog);
+  private environment = inject<Environment>(ENVIRONMENT);
+  private platformId = inject(PLATFORM_ID);
 
-  constructor(
-    public router: Router,
-    private store: Store,
-    private metaTags: MetaTagsService,
-    private dialog: MatDialog,
-    @Inject(ENVIRONMENT) private environment: Environment,
-    @Inject(PLATFORM_ID) private platformId: string
-  ) {
-  }
+  isSessionOpen = toSignal(this.store.select(AuthState.isLogin), { initialValue: false });
+  lastOpenDate = toSignal(
+    this.store
+      .select(ConfigState.getConfigItem(SUBSCRIPTION_WAS_OPENED_CONFIG_KEY))
+      .pipe(map((v: string) => new Date(v))),
+    { initialValue: new Date() }
+  );
+
+  dialogWasShown = computed(() => {
+    try {
+      const date = new Date(this.lastOpenDate() as Date);
+      return date.getDate() === new Date().getDate();
+    } catch (er) {
+      console.error(er);
+    }
+    return false;
+  });
+
+  canOpenSubscription = computed<boolean>(() => !this.isSessionOpen() && !this.dialogWasShown());
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       moment.locale('es');
 
-      this.router.events.subscribe(event => {
+      this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
           gtag('config', this.environment?.googleAnalyticsId || '', {
             page_path: event.urlAfterRedirects
@@ -56,48 +75,33 @@ export class AppComponent implements OnInit {
       });
       this.store.dispatch(new ChangePageSizeAction(this.environment?.postPageSize));
 
+      // eslint-disable-next-line no-console
       console.log(consoleMessage);
 
-      // toDo 27.01.22, guille, show subscription in new version
-      // this.showSubscriptionDialog();
+      this.showSubscriptionDialog();
     }
-    this.metaTags.addLinkTag({
-      rel: 'alternate',
-      type: 'application/rss+xml',
-      title: `RSS Feed for binary-coffee.dev`,
-      href: `${this.environment.apiUrl}posts/feed/rss2`
-    }, 'rss-id');
+    this.metaTags.addLinkTag(
+      {
+        rel: 'alternate',
+        type: 'application/rss+xml',
+        title: `RSS Feed for binary-coffee.dev`,
+        href: `${this.environment.apiUrl}posts/feed/rss2`
+      },
+      'rss-id'
+    );
   }
 
   showSubscriptionDialog() {
     if (this.canOpenSubscription()) {
-      timer(TIME_TO_OPEN_SUBSCRIPTION_DIALOG_IN_MIL).subscribe(() => {
-        this.dialog.open(SubscribeDialogComponent, {
-          disableClose: true
-        }).afterClosed()
-          .subscribe(() => {
-            this.store.dispatch(new SetConfigAction(SUBSCRIPTION_WAS_OPENED_CONFIG_KEY, new Date()));
-          });
-      });
+      timer(TIME_TO_OPEN_SUBSCRIPTION_DIALOG_IN_MIL)
+        .pipe(
+          mergeMap(() =>
+            this.dialog.open(SubscribeDialogComponent, { disableClose: true }).afterClosed()
+          )
+        )
+        .subscribe(() => {
+          this.store.dispatch(new SetConfigAction(SUBSCRIPTION_WAS_OPENED_CONFIG_KEY, new Date()));
+        });
     }
-  }
-
-  canOpenSubscription(): boolean {
-    return !this.isSessionOpen() && !this.dialogWasShown();
-  }
-
-  isSessionOpen(): boolean {
-    return this.store.selectSnapshot(AuthState.isLogin);
-  }
-
-  dialogWasShown(): boolean {
-    const lastOpenDate = this.store.selectSnapshot(ConfigState.getConfigItem(SUBSCRIPTION_WAS_OPENED_CONFIG_KEY));
-    try {
-      const date = new Date(lastOpenDate);
-      return date.getDate() === (new Date()).getDate();
-    } catch (er) {
-      console.error(er);
-    }
-    return false;
   }
 }

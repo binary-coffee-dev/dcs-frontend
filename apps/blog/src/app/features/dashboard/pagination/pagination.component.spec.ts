@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Store } from '@ngxs/store';
@@ -10,6 +10,7 @@ import { ScrollService } from '../../../core/services';
 
 class StoreStub {
   dispatch = jest.fn();
+  select = () => of({});
 }
 
 class ScrollServiceStub {
@@ -20,26 +21,22 @@ describe('PaginationComponent', () => {
   let component: PaginationComponent;
   let fixture: ComponentFixture<PaginationComponent>;
   let store: Store;
-  PaginationComponent.prototype.ngOnInit = jest.fn();
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PaginationComponent],
       providers: [
-        {provide: Store, useClass: StoreStub},
-        {provide: ScrollService, useClass: ScrollServiceStub}
+        { provide: Store, useClass: StoreStub },
+        { provide: ScrollService, useClass: ScrollServiceStub },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginationComponent);
     component = fixture.componentInstance;
     store = TestBed.inject(Store);
-
-    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });

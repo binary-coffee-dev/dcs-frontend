@@ -1,17 +1,19 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   mat-icon {
     font-size: 1.5rem;
-    color: map_get($md-primary, 700);
-    padding-left: map_get($spacings, 2);
+    color: map.get(vars.$md-primary, 700);
+    padding-left: map.get(vars.$spacings, 2);
   }
 
   a {
     cursor: pointer !important;
     text-decoration: none;
 
-    padding-left: map_get($spacings, 0);
+    padding-left: map.get(vars.$spacings, 0);
 
     &:hover {
       span {
@@ -24,14 +26,14 @@
 
     span {
       background-color: transparent;
-      color: map_get($md-grey, 900);
+      color: map.get(vars.$md-grey, 900);
       position: relative;
 
       @keyframes cursor-anim {
 
         0%,
         49% {
-          background-color: map_get($md-grey, 800);
+          background-color: map.get(vars.$md-grey, 800);
         }
 
         50% {
@@ -53,7 +55,7 @@
     &:hover {
       mat-icon {
         font-size: 1.5rem;
-        color: map_get($md-primary, 900);
+        color: map.get(vars.$md-primary, 900);
       }
     }
   }

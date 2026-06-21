@@ -1,19 +1,21 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use "libs/shared/src/variables" as vars;
 
 :host {
   .container {
-    padding: map_get($spacings, 2);
+    padding: map.get(vars.$spacings, 2);
     position: sticky;
     bottom: 0;
-    background-color: map_get($md-grey, A100);
-    color: map_get($md-primary, 900);
-    border-top: 1px solid map_get($md-primary, 100);
+    background-color: map.get(vars.$md-grey, A100);
+    color: map.get(vars.$md-primary, 900);
+    border-top: 1px solid map.get(vars.$md-primary, 100);
 
     input {
       border: none;
       background-color: transparent;
-      color: map_get($md-grey, 800);
-      margin-left: map_get($spacings, 1);
+      color: map.get(vars.$md-grey, 800);
+      margin-left: map.get(vars.$spacings, 1);
     }
   }
 }

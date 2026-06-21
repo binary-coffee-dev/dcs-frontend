@@ -1,10 +1,14 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "neverConnectToCloud": true,
+  "useDaemonProcess": false,
   "tasksRunnerOptions": {
     "default": {
       "options": {}
     }
+  },
+  "tui": {
+    "enabled": false
   },
   "targetDefaults": {
     "build": {
@@ -15,11 +19,7 @@
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
     },
     "lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore"
-      ]
+      "inputs": ["default", "{workspaceRoot}/eslint.config.js"]
     },
     "@nx/jest:jest": {
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
@@ -35,11 +35,7 @@
       }
     },
     "@nx/eslint:lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore"
-      ],
+      "inputs": ["default", "{workspaceRoot}/eslint.config.js"],
       "cache": true
     }
   },
@@ -71,5 +67,6 @@
     }
   },
   "defaultBase": "develop",
-  "useInferencePlugins": false
+  "useInferencePlugins": false,
+  "analytics": false
 }

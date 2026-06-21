@@ -7,14 +7,7 @@ import { TopPopularUsersComponent } from './top-popular-users.component';
 
 @NgModule({
   declarations: [TopPopularUsersComponent],
-  exports: [
-    TopPopularUsersComponent
-  ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    RouterModule,
-    NgOptimizedImage
-  ]
+  exports: [TopPopularUsersComponent],
+  imports: [CommonModule, MaterialModule, RouterModule, NgOptimizedImage]
 })
-export class TopPopularUsersModule { }
+export class TopPopularUsersModule {}

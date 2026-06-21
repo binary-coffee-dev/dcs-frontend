@@ -1,4 +1,4 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
@@ -8,8 +8,19 @@ import { Store } from '@ngxs/store';
 import { ENVIRONMENT } from '@dcs-libs/shared';
 import { AppComponent } from './app.component';
 import { MetaTagsService } from '../core/services';
+import { of } from 'rxjs';
 
 class StoreStub {
+  select = (func: Function) => {
+    switch (Object.getPrototypeOf(func).name) {
+      case 'isLogin':
+        return of(true);
+      case 'getConfigItem':
+        return of(new Date());
+      default:
+        return of();
+    }
+  };
   dispatch = jest.fn();
 }
 
@@ -22,7 +33,7 @@ class MatDialogStub {
 describe('AppComponent', () => {
   let component: AppComponent;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent],
@@ -34,7 +45,7 @@ describe('AppComponent', () => {
         {provide: MetaTagsService, useClass: MetaTagsServiceStub}
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     const fixture = TestBed.createComponent(AppComponent);

@@ -1,32 +1,30 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { Store } from '@ngxs/store';
 
 import { SubscribeDialogComponent } from './subscribe-dialog.component';
 
-class MatDialogRefStub {
-}
+class MatDialogRefStub {}
 
-class StoreStub {
-}
+class StoreStub {}
 
 describe('SubscribeDialogComponent', () => {
   let component: SubscribeDialogComponent;
   let fixture: ComponentFixture<SubscribeDialogComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SubscribeDialogComponent],
       providers: [
-        {provide: Store, useClass: StoreStub},
-        {provide: MatDialogRef, useClass: MatDialogRefStub},
-        {provide: MAT_DIALOG_DATA, useValue: {}}
+        { provide: Store, useClass: StoreStub },
+        { provide: MatDialogRef, useClass: MatDialogRefStub },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SubscribeDialogComponent);

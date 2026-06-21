@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
@@ -9,25 +9,23 @@ class UrlUtilsServiceStub {
   normalizeSiteUrl = jest.fn();
 }
 
-class MatDialogStub {
-}
+class MatDialogStub {}
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MatDialogModule],
       declarations: [FooterComponent],
       providers: [
-        {provide: MatDialog, useClass: MatDialogStub},
-        {provide: UrlUtilsService, useClass: UrlUtilsServiceStub}
+        { provide: MatDialog, useClass: MatDialogStub },
+        { provide: UrlUtilsService, useClass: UrlUtilsServiceStub },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FooterComponent);

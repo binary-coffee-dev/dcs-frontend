@@ -1,11 +1,27 @@
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  PLATFORM_ID,
+  inject,
+  signal,
+  computed,
+  DestroyRef
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Subject, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
-import { Comment, CommentState, Environment, ENVIRONMENT, UrlUtilsService } from '@dcs-libs/shared';
+import {
+  Comment,
+  CommentState,
+  Environment,
+  ENVIRONMENT,
+  Post,
+  UrlUtilsService
+} from '@dcs-libs/shared';
 
 export interface InformationBanner {
   type: 'comment' | 'welcome';
@@ -18,94 +34,79 @@ const TIME_TO_CHANGE_PAGE = 6000;
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss']
+  styleUrls: ['./slider.component.scss'],
+  standalone: false
 })
-export class SliderComponent implements OnInit, OnDestroy {
+export class SliderComponent implements OnInit {
+  private store = inject(Store);
+  private environment = inject<Environment>(ENVIRONMENT);
+  private platformId = inject<object>(PLATFORM_ID);
+  private destroyRef = inject(DestroyRef);
+  url = inject(UrlUtilsService);
 
-  unsubscribe = new Subject<void>();
   stopTimer = new Subject<void>();
 
-  info: InformationBanner[] = [];
+  info = signal<InformationBanner[]>([]);
+  createArticleUrl = signal<string>(`${this.environment.siteDashboardUrl}/articles/create`);
+  activeInfo = signal<InformationBanner | null>(null);
+  activePage = signal<number>(0);
 
-  activeInfo: InformationBanner = {} as unknown as InformationBanner;
-  activePage = 0;
-
-  constructor(
-    private store: Store,
-    public url: UrlUtilsService,
-    @Inject(ENVIRONMENT) private environment: Environment,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe.next();
-  }
+  getPostName = computed(() => {
+    if (this.activeInfo()?.value?.post && typeof this.activeInfo()?.value?.post === 'string') {
+      return '';
+    }
+    return (this.activeInfo()?.value?.post as Post)?.name ?? '';
+  });
 
   ngOnInit(): void {
-    this.info.push({ type: 'welcome' } as InformationBanner);
+    this.info.update((list) => [...list, { type: 'welcome' } as InformationBanner]);
 
-    this.store.select(CommentState.recentComments)
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(comments => {
+    this.store
+      .select(CommentState.recentComments)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((comments) => {
         if (comments && comments.length > 0) {
-          this.info = this.info.filter(v => v.type !== 'comment');
+          this.info.update((list) => [...list.filter((v) => v.type !== 'comment')]);
           this.addComment(comments[0]);
           this.addComment(comments[1]);
         }
       });
 
-    this.activePage = 0;
+    this.activePage.set(0);
     this.updateInfo();
 
     if (isPlatformBrowser(this.platformId)) {
       this.nextPageTimer();
-      // this.setWavePath();
     }
   }
 
-  map(value: number, in_min: number, in_max: number, out_min: number, out_max: number): number {
-    return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-  }
-
   addComment(comment: Comment) {
-    this.info.push({ type: 'comment', value: comment } as InformationBanner);
+    this.info.update((list) => [...list, { type: 'comment', value: comment } as InformationBanner]);
   }
 
   openInfo(page: number) {
     this.stopTimer.next();
-    this.activePage = page;
+    this.activePage.set(page);
     this.updateInfo();
     this.nextPageTimer();
   }
 
   nextPageTimer() {
     timer(TIME_TO_CHANGE_PAGE)
-      .pipe(takeUntil(this.unsubscribe), takeUntil(this.stopTimer))
+      .pipe(takeUntilDestroyed(this.destroyRef), takeUntil(this.stopTimer))
       .subscribe(() => {
-        this.activePage = (this.activePage + 1) % this.info.length;
+        this.activePage.update((value) => (value + 1) % this.info().length);
         this.updateInfo();
         this.nextPageTimer.bind(this)();
       });
   }
 
   updateInfo() {
-    this.activeInfo = this.info[this.activePage];
+    this.activeInfo.set(this.info()[this.activePage()]);
   }
 
   getLimitedMessage(message: string | undefined) {
-    message = message || '';
+    message = message ?? '';
     return message.substring(0, Math.min(70, message.length)) + '...';
-  }
-
-  getCreateArticleUrl(): string {
-    return `${this.environment.siteDashboardUrl}/articles/create`;
-  }
-
-  getPostName() {
-    if (typeof this.activeInfo?.value?.post === 'string' ) {
-      return '';
-    }
-    return this.activeInfo?.value?.post?.name;
   }
 }

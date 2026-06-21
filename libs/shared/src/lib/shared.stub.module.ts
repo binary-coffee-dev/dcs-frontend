@@ -7,16 +7,11 @@ import { ROLE_PERMISSION_MAP, rolePermissionMap } from './core/permissions';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [
-    HasPermissionsPipeStub
-  ],
-  exports: [
-    HasPermissionsPipeStub
-  ],
+  declarations: [HasPermissionsPipeStub],
+  exports: [HasPermissionsPipeStub],
   providers: [
-    {provide: WINDOW, useFactory: windowFactory},
-    {provide: ROLE_PERMISSION_MAP, useValue: rolePermissionMap}
+    { provide: WINDOW, useFactory: windowFactory },
+    { provide: ROLE_PERMISSION_MAP, useValue: rolePermissionMap }
   ]
 })
-export class SharedStubModule {
-}
+export class SharedStubModule {}

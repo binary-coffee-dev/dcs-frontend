@@ -1,4 +1,6 @@
-@import "libs/shared/src/theme";
+@use "sass:map";
+
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   .scroll-to-top {
@@ -7,18 +9,18 @@
     transform: translateX(100%);
     bottom: 3rem;
     transition: all .2s ease-in-out;
-    border-radius: map_get($radius, 2) 0 0 map_get($radius, 2);
-    background-color: map_get($md-grey, 350);
-    border: 1px solid map_get($md-primary, 100);
+    border-radius: map.get(vars.$radius, 2) 0 0 map.get(vars.$radius, 2);
+    background-color: map.get(vars.$md-grey, 350);
+    border: 1px solid map.get(vars.$md-primary, 100);
     border-right: none !important;
-    color: map_get($md-primary, 500);
+    color: map.get(vars.$md-primary, 500);
 
     mat-icon {
-      color: map_get($md-primary, 500);
+      color: map.get(vars.$md-primary, 500);
     }
 
     &:hover {
-      border: 1px solid map_get($md-primary, 900);
+      border: 1px solid map.get(vars.$md-primary, 900);
     }
   }
 

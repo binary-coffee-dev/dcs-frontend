@@ -17,11 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes),
-    MarkdownModule.forRoot()
-  ],
+  imports: [RouterModule.forChild(routes), MarkdownModule.forRoot()],
   exports: [RouterModule]
 })
-export class PostRoutingModule {
-}
+export class PostRoutingModule {}

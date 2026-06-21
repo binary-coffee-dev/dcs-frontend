@@ -1,7 +1,8 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatDialogRef } from "@angular/material/dialog";
 
+import { of } from "rxjs";
 import { Store } from '@ngxs/store';
 
 import { PostInfoComponent } from './post-info.component';
@@ -9,6 +10,17 @@ import { ResourceService } from '../../../core/services';
 import { MomentService } from "@dcs-libs/shared";
 
 class StoreStub {
+  select = (v: Function) => {
+    switch (Object.getPrototypeOf(v).name) {
+      case 'me':
+        return of({});
+      case 'likes':
+        return of([]);
+      case 'userLike':
+        return of(1);
+    }
+    return of();
+  }
 }
 
 class MatDialogStub {
@@ -23,9 +35,8 @@ class MomentServiceStub {
 describe('PostInfoComponent', () => {
   let component: PostInfoComponent;
   let fixture: ComponentFixture<PostInfoComponent>;
-  PostInfoComponent.prototype.ngOnInit = jest.fn();
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PostInfoComponent],
       providers: [
@@ -37,13 +48,11 @@ describe('PostInfoComponent', () => {
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PostInfoComponent);
     component = fixture.componentInstance;
-
-    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });

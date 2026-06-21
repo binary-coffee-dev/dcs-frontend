@@ -1,8 +1,9 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatDialog } from "@angular/material/dialog";
 
+import {of} from 'rxjs';
 import { Store } from '@ngxs/store';
 
 import { UrlUtilsService } from '@dcs-libs/shared';
@@ -10,6 +11,7 @@ import { CommentsComponent } from './comments.component';
 import { ScrollService } from '../../../core/services';
 
 class StoreStub {
+  select = () => of({});
 }
 
 class UrlUtilsServiceStub {
@@ -24,9 +26,8 @@ class MatDialogStub {
 describe('CommentsComponent', () => {
   let component: CommentsComponent;
   let fixture: ComponentFixture<CommentsComponent>;
-  CommentsComponent.prototype.ngOnInit = jest.fn();
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [CommentsComponent],
@@ -39,13 +40,11 @@ describe('CommentsComponent', () => {
       ]
     })
       .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CommentsComponent);
     component = fixture.componentInstance;
-
-    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
 
     fixture.detectChanges();
   });

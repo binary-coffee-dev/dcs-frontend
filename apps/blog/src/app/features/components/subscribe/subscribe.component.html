@@ -4,8 +4,9 @@
         [formGroup]="subscribeForm"
         (ngSubmit)="subscribe()">
     <div class="flex flex-col">
-      <span class="error mf-4 mt-4 mr-4 text-xs"
-            *ngIf="subscriptionError !== '' && !subscriptionSent">{{ subscriptionError }}</span>
+      @if (subscriptionError() !== '' && !subscriptionSent()) {
+        <span class="error mf-4 mt-4 mr-4 text-xs">{{ subscriptionError() }}</span>
+      }
       <div class="card flex flex-row mb-6 mt-4">
         <mat-form-field appearance="outline">
           <mat-label>Correo</mat-label>
@@ -19,15 +20,17 @@
                   style="min-width: 0 !important;"
                   mat-button
                   type="submit"
-                  [disabled]="loading">
+                  [disabled]="loading()">
             <div class="relative w-4 h-4"
-                 [ngClass]="{loading}">
-              <div style="transform: translateY(-6px) translateX(0.2px);">{{ loading ? '↺' : '>' }}</div>
+                 [ngClass]="{loading: loading()}">
+              <div style="transform: translateY(-6px) translateX(0.2px);">{{ loading() ? '↺' : '>' }}</div>
             </div>
           </button>
         </div>
       </div>
-      <b class="message mf-4 mb-4 mr-4 text-xs" *ngIf="message">{{ message }}</b>
+      @if (message()) {
+        <b class="message mf-4 mb-4 mr-4 text-xs">{{ message() }}</b>
+      }
     </div>
   </form>
 </div>

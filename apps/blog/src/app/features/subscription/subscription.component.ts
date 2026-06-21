@@ -1,24 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngxs/store';
 
 import { SubscriptionState, UnsubscribeAction, VerifySubscriptionAction } from '@dcs-libs/shared';
 
-
 @Component({
   selector: 'app-subscription',
   templateUrl: './subscription.component.html',
-  styleUrls: ['./subscription.component.scss']
+  styleUrls: ['./subscription.component.scss'],
+  standalone: false
 })
 export class SubscriptionComponent implements OnInit {
-  message = '';
+  private store = inject(Store);
+  private activeRouter = inject(ActivatedRoute);
 
-  constructor(
-    private store: Store,
-    private activeRouter: ActivatedRoute
-  ) {
-  }
+  message = signal<string>('');
 
   ngOnInit() {
     this.verifyingEmail(this.activeRouter.snapshot.params['token']);
@@ -30,7 +27,8 @@ export class SubscriptionComponent implements OnInit {
       this.executeAction(
         new VerifySubscriptionAction(token),
         true,
-        'Se ha suscrito correctamente al sitio Binary Coffee 😊.');
+        'Se ha suscrito correctamente al sitio Binary Coffee 😊.'
+      );
     }
   }
 
@@ -39,19 +37,17 @@ export class SubscriptionComponent implements OnInit {
       this.executeAction(
         new UnsubscribeAction(unsubscribeToken),
         false,
-        'Se ha unsubscrito del sitio Binary Coffee 😥.');
+        'Se ha unsubscrito del sitio Binary Coffee 😥.'
+      );
     }
   }
 
   executeAction(action: object, expectedVerifiedValue: boolean, message: string) {
-    this.store
-      .dispatch(action)
-      .subscribe(() => {
-        const subscription = this.store.selectSnapshot(SubscriptionState.subscription);
-        console.log(subscription)
-        if (subscription?.verified === expectedVerifiedValue) {
-          this.message = message;
-        }
-      });
+    this.store.dispatch(action).subscribe(() => {
+      const subscription = this.store.selectSnapshot(SubscriptionState.subscription);
+      if (subscription?.verified === expectedVerifiedValue) {
+        this.message.set(message);
+      }
+    });
   }
 }

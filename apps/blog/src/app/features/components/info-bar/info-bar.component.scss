@@ -1,19 +1,21 @@
-@import '../../../../../../../libs/shared/src/theme';
+@use "sass:map";
+
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   .line-number {
-    color: map-get($md-grey, 500);
+    color: map.get(vars.$md-grey, 500);
   }
 
   .reference-line {
     min-width: 2px;
     max-width: 2px;
     flex: 1 1 100%;
-    background-color: map-get($md-grey, 400);
+    background-color: map.get(vars.$md-grey, 400);
   }
 
   .comment {
-    color: map-get($md-grey, 600);
+    color: map.get(vars.$md-grey, 600);
   }
 
   .class {
@@ -21,11 +23,11 @@
   }
 
   .link {
-    background-color: map-get($md-grey, 400);
-    color: map-get($md-grey, 800);
+    background-color: map.get(vars.$md-grey, 400);
+    color: map.get(vars.$md-grey, 800);
   }
 
   .var {
-    color: map-get($md-primary, 500);
+    color: map.get(vars.$md-primary, 500);
   }
 }

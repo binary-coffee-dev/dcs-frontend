@@ -7,7 +7,7 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/dashboard",
@@ -34,7 +34,6 @@
           "node_modules/katex/dist/katex.min.css"
         ],
         "scripts": [
-          "node_modules/marked/marked.min.js",
           "node_modules/prismjs/prism.js",
           "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
           "node_modules/katex/dist/katex.min.js",
@@ -90,19 +89,15 @@
               "with": "apps/dashboard/src/environments/environment.dev.ts"
             }
           ],
-          "buildOptimizer": false,
           "optimization": false,
           "outputHashing": "all",
-          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
         },
         "default": {
           "baseHref": "/dashboard/",
-          "buildOptimizer": false,
           "optimization": false,
-          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
@@ -111,7 +106,8 @@
       "defaultConfiguration": "default"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:dev-server",
+      "continuous": true,
       "configurations": {
         "production": {
           "buildTarget": "dashboard:build:production"
@@ -132,7 +128,8 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/dashboard/jest.config.js"
+        "jestConfig": "apps/dashboard/jest.config.js",
+        "tsConfig": "apps/dashboard/tsconfig.spec.json"
       }
     }
   }

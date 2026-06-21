@@ -1,15 +1,19 @@
 export class LoginAction {
   static readonly type = '[Auth] Login action';
 
-  constructor(public identifier: string, public password: string) {
-  }
+  constructor(
+    public identifier: string,
+    public password: string
+  ) {}
 }
 
 export class LoginWithProviderAction {
   static readonly type = '[Auth] Login with provider action';
 
-  constructor(public provider: string | null, public code: string | null) {
-  }
+  constructor(
+    public provider: string | null,
+    public code: string | null
+  ) {}
 }
 
 export class LogoutAction {
@@ -23,20 +27,23 @@ export class MeAction {
 export class AuthErrorAction {
   static readonly type = '[Auth] Auth error action';
 
-  constructor(public title: string) {
-  }
+  constructor(public title: string) {}
 }
 
 export class UpdateMeAction {
   static readonly type = '[Auth] Update me action';
 
-  constructor(public id: string, public page: string) {
-  }
+  constructor(
+    public id: string,
+    public page: string
+  ) {}
 }
 
 export class UpdateMyAvatarAction {
   static readonly type = '[Auth] Update my image action';
 
-  constructor(public id: string, public avatar: string) {
-  }
+  constructor(
+    public id: string,
+    public avatar: string
+  ) {}
 }

@@ -1,6 +1,7 @@
 <div class="content">
-  <i class="tag"
-     *ngFor="let tag of tags">
-    <{{tag.name}}>
-  </i>
+  @for (tag of tags(); track tag.id) {
+    <i class="tag">
+      <{{ tag.name }}>
+    </i>
+  }
 </div>

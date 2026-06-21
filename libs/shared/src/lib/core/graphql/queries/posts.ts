@@ -1,8 +1,19 @@
 import { gql } from 'apollo-angular';
 
 export const POSTS_QUERY = gql`
-  query ($limit: Int!, $start: Int!, $filters: PostFiltersInput!, $sort: [String], $state: PublicationState!){
-    posts(filters: $filters, pagination: {limit: $limit, start: $start}, sort: $sort, publicationState: $state) {
+  query (
+    $limit: Int!
+    $start: Int!
+    $filters: PostFiltersInput!
+    $sort: [String]
+    $state: PublicationState!
+  ) {
+    posts(
+      filters: $filters
+      pagination: { limit: $limit, start: $start }
+      sort: $sort
+      publicationState: $state
+    ) {
       data {
         id
         attributes {

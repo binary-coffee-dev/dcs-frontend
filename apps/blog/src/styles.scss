@@ -1,8 +1,9 @@
-//@import "mixing";
-@import "libs/shared/src/theme";
+@use 'libs/shared/src/theme' as theme;
 
+@use "sass:map";
+
+@use 'font-awesome/scss/font-awesome' as *;
 $fa-font-path: "../../../node_modules/font-awesome/fonts";
-@import 'font-awesome/scss/font-awesome';
 
 // loading oxygen font
 @font-face {
@@ -38,7 +39,7 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts";
 }
 
 markdown {
-  color: map_get($md-grey, 800);
+  color: map.get(theme.$md-grey, 800);
 
   h1,
   h2,
@@ -64,14 +65,14 @@ markdown {
   pre {
     font-size: 18px;
     font-weight: 100;
-    background-color: map_get($md-grey, A100) !important;
-    box-shadow: map_get($box-shadow, 0);
-    border: 1px solid map_get($md-primary, 100);
+    background-color: map.get(theme.$md-grey, A100) !important;
+    box-shadow: map.get(theme.$box-shadow, 0);
+    border: 1px solid map.get(theme.$md-primary, 100);
 
     code {
-      color: map_get($md-grey, 900) !important;
+      color: map.get(theme.$md-grey, 900) !important;
       padding: 0 3px;
-      border-radius: map_get($radius, 2);
+      border-radius: map.get(theme.$radius, 2);
     }
   }
 
@@ -87,14 +88,14 @@ markdown {
 
     li {
       &::marker {
-        color: map-get($md-primary, 500);
+        color: map.get(theme.$md-primary, 500);
         content: '○ ';
       }
     }
   }
 
   a {
-    color: map_get($md-grey, 800);
+    color: map.get(theme.$md-grey, 800);
     word-break: break-all;
   }
 
@@ -104,10 +105,10 @@ markdown {
 
   blockquote {
     position: relative;
-    margin: map-get($spacings, 1) 0;
-    padding: map-get($spacings, 1) map-get($spacings, 2) map-get($spacings, 1) map-get($spacings, 6);
-    background-color: map-get($md-grey, 49);
-    border-radius: map-get($radius, 3);
+    margin: map.get(theme.$spacings, 1) 0;
+    padding: map.get(theme.$spacings, 1) map.get(theme.$spacings, 2) map.get(theme.$spacings, 1) map.get(theme.$spacings, 6);
+    background-color: map.get(theme.$md-grey, 49);
+    border-radius: map.get(theme.$radius, 3);
     overflow: hidden;
 
     &:before {
@@ -117,7 +118,7 @@ markdown {
       top: 0;
       bottom: 0;
       width: 6px;
-      background-color: map_get($md-primary, 500);
+      background-color: map.get(theme.$md-primary, 500);
     }
   }
 
@@ -136,8 +137,8 @@ markdown {
 
   img {
     max-width: 100%;
-    box-shadow: map_get($box-shadow, 0);
-    border-radius: map_get($radius, 2) !important;
+    box-shadow: map.get(theme.$box-shadow, 0);
+    border-radius: map.get(theme.$radius, 2) !important;
   }
 }
 

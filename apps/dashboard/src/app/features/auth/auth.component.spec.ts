@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
@@ -6,29 +6,32 @@ import { Store } from '@ngxs/store';
 
 import { ENVIRONMENT, WINDOW } from '@dcs-libs/shared';
 import { AuthComponent } from './auth.component';
+import { of } from 'rxjs';
 
 class StoreStub {
+  select = () => of({});
 }
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
   let fixture: ComponentFixture<AuthComponent>;
-  AuthComponent.prototype.ngOnInit = () => {};
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AuthComponent],
       imports: [RouterTestingModule],
-      providers: [{provide: Store, useClass: StoreStub}, {provide: WINDOW, useValue: {}}, {provide: ENVIRONMENT, useValue: {}}],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
-  }));
+      providers: [
+        { provide: Store, useClass: StoreStub },
+        { provide: WINDOW, useValue: {} },
+        { provide: ENVIRONMENT, useValue: {} },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthComponent);
     component = fixture.componentInstance;
-    jest.spyOn(component, 'ngOnInit').mockImplementation(jest.fn());
     fixture.detectChanges();
   });
 
