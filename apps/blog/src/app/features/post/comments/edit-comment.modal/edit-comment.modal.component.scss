@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   max-height: 100%;
@@ -36,11 +36,11 @@
 
         .code-none {
           .code-1 {
-            color: map.get(theme.$md-primary, 500);
+            color: map.get(vars.$md-primary, 500);
           }
 
           .code-var {
-            color: map.get(theme.$md-grey, 700);
+            color: map.get(vars.$md-grey, 700);
           }
         }
       }

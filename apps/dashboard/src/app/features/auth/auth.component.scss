@@ -1,17 +1,17 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   width: 100%;
 
   .provider-item {
-    border: solid 2px map.get(theme.$md-grey, 700);
-    background-color: map.get(theme.$md-grey, 50);
+    border: solid 2px map.get(vars.$md-grey, 700);
+    background-color: map.get(vars.$md-grey, 50);
 
     &:hover {
-      background-color: map.get(theme.$md-grey, 700);
-      color: map.get(theme.$md-grey, 50);
+      background-color: map.get(vars.$md-grey, 700);
+      color: map.get(vars.$md-grey, 50);
       cursor: pointer;
     }
   }
@@ -21,13 +21,13 @@
     top: 0;
     z-index: 800;
     width: 100vw;
-    padding: map.get(theme.$spacings, 1);
-    background-color: map.get(theme.$md-error, 50);
-    color: map.get(theme.$md-error, 500);
+    padding: map.get(vars.$spacings, 1);
+    background-color: map.get(vars.$md-error, 50);
+    color: map.get(vars.$md-error, 500);
 
     @media screen and (max-width: 959px) {
       position: sticky;
-      margin-bottom: map.get(theme.$spacings, 4);
+      margin-bottom: map.get(vars.$spacings, 4);
     }
   }
 

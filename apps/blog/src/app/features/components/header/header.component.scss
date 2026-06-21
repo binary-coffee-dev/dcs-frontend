@@ -1,19 +1,19 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   mat-toolbar {
-    background-color: map.get(theme.$md-grey, 100);
+    background-color: map.get(vars.$md-grey, 100);
   }
 
   a {
-    color: map.get(theme.$md-grey, 900);
+    color: map.get(vars.$md-grey, 900);
   }
 
   mat-button-toggle {
-    background-color: map.get(theme.$md-grey, 400);
-    color: map.get(theme.$md-primary, 500);
+    background-color: map.get(vars.$md-grey, 400);
+    color: map.get(vars.$md-primary, 500);
     border: solid 1px #e0e0e0;
 
     ::ng-deep span {
@@ -25,26 +25,26 @@
 }
 
 ::ng-deep .app-important-menu {
-  background-color: map.get(theme.$md-grey, 400) !important;
+  background-color: map.get(vars.$md-grey, 400) !important;
 
   .mat-mdc-menu-item {
     &:hover {
-      background-color: map.get(theme.$md-grey, 500) !important;
+      background-color: map.get(vars.$md-grey, 500) !important;
     }
   }
 
   .separator {
     height: 1px;
     width: calc(100% - 36px);
-    background-color: map.get(theme.$md-grey, 500);
-    margin: map.get(theme.$spacings, 1) map.get(theme.$spacings, 3);
+    background-color: map.get(vars.$md-grey, 500);
+    margin: map.get(vars.$spacings, 1) map.get(vars.$spacings, 3);
   }
 
   .item1 {
-    padding-left: map.get(theme.$spacings, 6);
-    padding-right: map.get(theme.$spacings, 3);
+    padding-left: map.get(vars.$spacings, 6);
+    padding-right: map.get(vars.$spacings, 3);
     position: relative;
-    color: map.get(theme.$md-grey, 800) !important;
+    color: map.get(vars.$md-grey, 800) !important;
     line-height: 35px;
     min-height: 35px;
     font-size: 14px;
@@ -60,23 +60,23 @@
       &:before {
         content: '›';
         position: absolute;
-        left: map.get(theme.$spacings, 3);
-        color: map.get(theme.$md-primary, 500) !important;
+        left: map.get(vars.$spacings, 3);
+        color: map.get(vars.$md-primary, 500) !important;
         font-size: 14px;
         transform: rotateZ(90deg);
       }
     }
 
     i {
-      margin-right: map.get(theme.$spacings, 1);
-      color: map.get(theme.$md-grey, 600) !important;
+      margin-right: map.get(vars.$spacings, 1);
+      color: map.get(vars.$md-grey, 600) !important;
     }
   }
 
   .item2 {
-    padding-left: map.get(theme.$spacings, 9);
+    padding-left: map.get(vars.$spacings, 9);
     position: relative;
-    color: map.get(theme.$md-grey, 800) !important;
+    color: map.get(vars.$md-grey, 800) !important;
     line-height: 35px;
     min-height: 35px;
 
@@ -90,8 +90,8 @@
       &:before {
         content: '›';
         position: absolute;
-        left: map.get(theme.$spacings, 6);
-        color: map.get(theme.$md-primary, 500) !important;
+        left: map.get(vars.$spacings, 6);
+        color: map.get(vars.$md-primary, 500) !important;
         font-size: 14px;
       }
     }
@@ -100,15 +100,15 @@
   .share-buttons {
     a {
       width: 37px;
-      padding: map.get(theme.$spacings, 1);
-      background-color: map.get(theme.$md-primary, 900);
-      color: map.get(theme.$md-grey, 400) !important;
+      padding: map.get(vars.$spacings, 1);
+      background-color: map.get(vars.$md-primary, 900);
+      color: map.get(vars.$md-grey, 400) !important;
       font-size: 25px;
-      border-radius: map.get(theme.$radius, 3);
+      border-radius: map.get(vars.$radius, 3);
       text-decoration: none;
 
       &:hover {
-        background-color: map.get(theme.$md-primary, 910);
+        background-color: map.get(vars.$md-primary, 910);
       }
     }
   }

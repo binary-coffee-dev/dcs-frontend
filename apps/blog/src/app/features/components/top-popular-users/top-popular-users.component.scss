@@ -1,10 +1,10 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   .top-content {
-    background-color: map.get(theme.$md-grey, 400);
+    background-color: map.get(vars.$md-grey, 400);
 
     a {
       img {
@@ -13,17 +13,17 @@
 
       &:hover {
         img {
-          border: solid 2px map.get(theme.$md-primary, 500);
+          border: solid 2px map.get(vars.$md-primary, 500);
         }
       }
     }
   }
 
   .top-user-name {
-    color: map.get(theme.$md-grey, 800);
+    color: map.get(vars.$md-grey, 800);
   }
 
   .post-info {
-    color: map.get(theme.$md-grey, 600);
+    color: map.get(vars.$md-grey, 600);
   }
 }

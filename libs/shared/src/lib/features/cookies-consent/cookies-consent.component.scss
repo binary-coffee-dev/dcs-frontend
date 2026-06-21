@@ -1,26 +1,26 @@
 @use "sass:map";
 
-@use "libs/shared/src/theme" as theme;
+@use "libs/shared/src/variables" as vars;
 
 :host {
   .cookies-consent {
-    background-color: map.get(theme.$md-grey, A100);
-    color: map.get($map: theme.$md-grey, $key: 800);
+    background-color: map.get(vars.$md-grey, A100);
+    color: map.get($map: vars.$md-grey, $key: 800);
 
     span {
       a {
-        color: map.get(theme.$md-primary, 500);
+        color: map.get(vars.$md-primary, 500);
       }
     }
 
     button {
-      color: map.get(theme.$md-grey, 900);
-      margin-top: map.get(theme.$spacings, 2);
-      padding: map.get(theme.$spacings, 1) map.get(theme.$spacings, 4);
-      border-radius: map.get(theme.$radius, 2);
+      color: map.get(vars.$md-grey, 900);
+      margin-top: map.get(vars.$spacings, 2);
+      padding: map.get(vars.$spacings, 1) map.get(vars.$spacings, 4);
+      border-radius: map.get(vars.$radius, 2);
 
       &:hover {
-        background-color: map.get(theme.$md-grey, 400);
+        background-color: map.get(vars.$md-grey, 400);
       }
     }
 

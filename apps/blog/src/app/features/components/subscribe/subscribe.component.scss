@@ -1,30 +1,30 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   form {
     --mat-form-field-container-height: 33px;
-    background-color: map.get(theme.$md-grey, 400);
+    background-color: map.get(vars.$md-grey, 400);
 
     mat-form-field {
       input {
-        color: map.get(theme.$md-grey, 900);
+        color: map.get(vars.$md-grey, 900);
       }
     }
 
     .error {
-      color: map.get(theme.$md-error, 500);
+      color: map.get(vars.$md-error, 500);
     }
 
     .message {
-      color: map.get(theme.$md-grey, 900);
+      color: map.get(vars.$md-grey, 900);
     }
 
     .card {
       button {
-        color: map.get(theme.$md-grey, 48);
-        background-color: map.get(theme.$md-primary, 500);
+        color: map.get(vars.$md-grey, 48);
+        background-color: map.get(vars.$md-primary, 500);
       }
 
       .loading {

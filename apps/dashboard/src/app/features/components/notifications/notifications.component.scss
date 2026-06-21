@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   position: fixed;
@@ -9,19 +9,19 @@
   z-index: 100000;
 
   .alert {
-    padding: map.get(theme.$spacings, 2);
-    margin: map.get(theme.$spacings, 2);
-    border-radius: map.get(theme.$radius, 2);
+    padding: map.get(vars.$spacings, 2);
+    margin: map.get(vars.$spacings, 2);
+    border-radius: map.get(vars.$radius, 2);
   }
 
   .alert-danger {
-    background-color: map.get(theme.$md-error, 50);
-    color: map.get(theme.$md-error, 500);
+    background-color: map.get(vars.$md-error, 50);
+    color: map.get(vars.$md-error, 500);
   }
 
   .alert-success {
-    background-color: map.get(theme.$md-primary, 50);
-    color: map.get(theme.$md-primary, 500);
+    background-color: map.get(vars.$md-primary, 50);
+    color: map.get(vars.$md-primary, 500);
   }
 
   .alert-warning {
@@ -30,7 +30,7 @@
   }
 
   .alert-info {
-    background-color: map.get(theme.$md-secundary, 50);
-    color: map.get(theme.$md-secundary, 500)
+    background-color: map.get(vars.$md-secundary, 50);
+    color: map.get(vars.$md-secundary, 500)
   }
 }

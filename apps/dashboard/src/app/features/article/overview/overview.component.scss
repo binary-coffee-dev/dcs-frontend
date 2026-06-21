@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 :host {
 
@@ -11,21 +11,21 @@
   }
 
   .article-text {
-    background-color: map.get(theme.$md-grey, 49);
+    background-color: map.get(vars.$md-grey, 49);
 
     .actions {
-      background-color: map.get(theme.$md-grey, 50);
+      background-color: map.get(vars.$md-grey, 50);
 
       button {
         &:hover {
-          color: map.get(theme.$md-primary, 500);
+          color: map.get(vars.$md-primary, 500);
         }
       }
     }
 
     textarea {
       outline: none;
-      padding: map.get(theme.$spacings, 1);
+      padding: map.get(vars.$spacings, 1);
 
       &:focus-visible {
         outline: none;
@@ -36,8 +36,8 @@
   .banner-image-content {
     .banner-image, .no-banner {
       max-width: 300px;
-      border: dashed 2px map.get(theme.$md-grey, 500);
-      color: map.get(theme.$md-grey, 500);
+      border: dashed 2px map.get(vars.$md-grey, 500);
+      color: map.get(vars.$md-grey, 500);
     }
 
     .banner-actions {
@@ -51,14 +51,14 @@
 
   .time-section {
     mat-form-field {
-      margin-right: map.get(theme.$spacings, 3);
+      margin-right: map.get(vars.$spacings, 3);
     }
   }
 
   .tags-section {
     tag-input {
-      border: solid 1px map.get(theme.$md-primary, 200);
-      border-radius: map.get(theme.$radius, 2);
+      border: solid 1px map.get(vars.$md-primary, 200);
+      border-radius: map.get(vars.$radius, 2);
       padding-left: 6px;
 
       ::ng-deep {

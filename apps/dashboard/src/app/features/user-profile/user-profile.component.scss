@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 :host {
 
@@ -35,7 +35,7 @@
         top: 0;
         left: 0;
         z-index: 100001;
-        box-shadow: map.get(theme.$box-shadow, 4);
+        box-shadow: map.get(vars.$box-shadow, 4);
       }
     }
 
@@ -56,7 +56,7 @@
       mat-checkbox {
         ::ng-deep {
           .mat-checkbox-checked > .mat-accent {
-            background-color: map.get(theme.$md-primary, 500);
+            background-color: map.get(vars.$md-primary, 500);
           }
         }
       }
@@ -66,24 +66,24 @@
         ::ng-deep {
           .mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end {
             border-color: transparent;
-            background-color: map.get(theme.$md-grey, 49);
+            background-color: map.get(vars.$md-grey, 49);
           }
 
           input:read-only {
-            color: map.get(theme.$md-grey, 500);
+            color: map.get(vars.$md-grey, 500);
           }
 
           .mat-mdc-form-field-flex {
             mat-label.offset {
-              margin-left: map.get(theme.$spacings, 4);
+              margin-left: map.get(vars.$spacings, 4);
             }
           }
 
           .mat-mdc-form-field-icon-prefix {
             font-size: 20px;
-            margin-left: map.get(theme.$spacings, 2);
-            margin-right: map.get(theme.$spacings, 2);
-            color: map.get(theme.$md-primary, 500);
+            margin-left: map.get(vars.$spacings, 2);
+            margin-right: map.get(vars.$spacings, 2);
+            color: map.get(vars.$md-primary, 500);
             width: 20px;
             text-align: center;
             align-self: center;

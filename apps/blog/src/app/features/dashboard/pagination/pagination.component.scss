@@ -1,34 +1,34 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 :host {
   .pagination-container {
-    background-color: map.get(theme.$md-grey, A100);
+    background-color: map.get(vars.$md-grey, A100);
 
     .pagination-button {
-      color: map.get(theme.$md-primary, 800);
-      background-color: map.get(theme.$md-grey, 350);
-      border-top: 1px solid map.get(theme.$md-primary, 100);
+      color: map.get(vars.$md-primary, 800);
+      background-color: map.get(vars.$md-grey, 350);
+      border-top: 1px solid map.get(vars.$md-primary, 100);
 
       &:hover {
-        border-top: 1px solid map.get(theme.$md-primary, 900);
+        border-top: 1px solid map.get(vars.$md-primary, 900);
       }
     }
 
     .pb-left {
-      border-left: 1px solid map.get(theme.$md-primary, 100);
+      border-left: 1px solid map.get(vars.$md-primary, 100);
 
       &:hover {
-        border-left: 1px solid map.get(theme.$md-primary, 900);
+        border-left: 1px solid map.get(vars.$md-primary, 900);
       }
     }
 
     .pb-right {
-      border-right: 1px solid map.get(theme.$md-primary, 100);
+      border-right: 1px solid map.get(vars.$md-primary, 100);
 
       &:hover {
-        border-right: 1px solid map.get(theme.$md-primary, 900);
+        border-right: 1px solid map.get(vars.$md-primary, 900);
       }
     }
   }

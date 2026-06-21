@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 :host {
 
@@ -10,41 +10,41 @@
   }
 
   .copyright {
-    padding: map.get(theme.$spacings, 1);
+    padding: map.get(vars.$spacings, 1);
     text-align: center;
-    background-color: map.get(theme.$md-primary, 800);
-    color: map.get(theme.$md-grey, A100);
+    background-color: map.get(vars.$md-primary, 800);
+    color: map.get(vars.$md-grey, A100);
 
     span {
-      color: map.get(theme.$md-grey, A100);
-      margin: 0 map.get(theme.$spacings, 1);
+      color: map.get(vars.$md-grey, A100);
+      margin: 0 map.get(vars.$spacings, 1);
     }
   }
 
   footer {
-    padding: map.get(theme.$spacings, 2) map.get(theme.$spacings, 2);
-    background-color: map.get(theme.$md-primary, 50);
-    color: map.get(theme.$md-grey, 800);
-    box-shadow: map.get(theme.$box-shadow-up, 4);
+    padding: map.get(vars.$spacings, 2) map.get(vars.$spacings, 2);
+    background-color: map.get(vars.$md-primary, 50);
+    color: map.get(vars.$md-grey, 800);
+    box-shadow: map.get(vars.$box-shadow-up, 4);
   }
 
   .groups {
-    color: map.get(theme.$md-grey, 900);
+    color: map.get(vars.$md-grey, 900);
 
     .sub-group {
-      margin-bottom: map.get(theme.$spacings, 3);
+      margin-bottom: map.get(vars.$spacings, 3);
 
       .sub-group-header {
-        margin-bottom: map.get(theme.$spacings, 2);
+        margin-bottom: map.get(vars.$spacings, 2);
 
         b {
-          color: map.get(theme.$md-primary, 900);
+          color: map.get(vars.$md-primary, 900);
         }
       }
 
       a {
         text-align: left;
-        padding-left: map.get(theme.$spacings, 0);
+        padding-left: map.get(vars.$spacings, 0);
 
         &:hover {
           span {
@@ -63,7 +63,7 @@
 
             0%,
             49% {
-              background-color: map.get(theme.$md-grey, 800);
+              background-color: map.get(vars.$md-grey, 800);
             }
 
             50% {
@@ -96,7 +96,7 @@
   }
 
   .anim-pulse {
-    color: map.get(theme.$md-primary, 800);
+    color: map.get(vars.$md-primary, 800);
     animation: anim-pulse 0.9s infinite linear;
   }
 

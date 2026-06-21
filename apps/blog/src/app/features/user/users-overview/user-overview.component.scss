@@ -1,34 +1,34 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 
 :host {
 
   .code-none {
-    color: map.get(theme.$md-grey, 800);
+    color: map.get(vars.$md-grey, 800);
   }
 
 
   .align-container {
 
     .user-card {
-      background-color: map.get(theme.$md-grey, 350);
+      background-color: map.get(vars.$md-grey, 350);
       border: solid .5px transparent;
 
       &:hover {
-        border: solid .5px map.get(theme.$md-grey, 500);
+        border: solid .5px map.get(vars.$md-grey, 500);
       }
 
       .top-user-name {
-        color: map.get(theme.$md-grey, 800);
+        color: map.get(vars.$md-grey, 800);
       }
 
       .info-item {
-        color: map.get(theme.$md-grey, 800);
+        color: map.get(vars.$md-grey, 800);
 
         .material-icons {
-          color: map.get(theme.$md-primary, 500);
+          color: map.get(vars.$md-primary, 500);
         }
       }
     }

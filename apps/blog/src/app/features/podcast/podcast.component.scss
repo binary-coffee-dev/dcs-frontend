@@ -1,26 +1,26 @@
 @use "sass:map";
 
-@use 'libs/shared/src/theme' as theme;
+@use 'libs/shared/src/variables' as vars;
 
 :host {
 
   .podcast-container {
 
     .podcast-link {
-      background-color: map.get($map: theme.$md-grey, $key: A100);
-      color: map.get(theme.$md-primary, 500);
-      border: 1px solid map.get($map: theme.$md-primary, $key: 100);
+      background-color: map.get($map: vars.$md-grey, $key: A100);
+      color: map.get(vars.$md-primary, 500);
+      border: 1px solid map.get($map: vars.$md-primary, $key: 100);
 
       &:hover {
-        border: 1px solid map.get($map: theme.$md-primary, $key: 500);
+        border: 1px solid map.get($map: vars.$md-primary, $key: 500);
       }
 
       .date-container {
-        color: map.get(theme.$md-grey, 800);
+        color: map.get(vars.$md-grey, 800);
       }
 
       .podcast-title {
-        color: map.get(theme.$md-grey, 900);
+        color: map.get(vars.$md-grey, 900);
       }
     }
 
