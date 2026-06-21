@@ -93,6 +93,7 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         with:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_PORT: 20
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
@@ -104,6 +105,7 @@ jobs:
         with:
           command: cd ${{ secrets.DEV__REMOTE_TARGET }} && ENVIRONMENT=dev PORT_FRONTEND=${{ secrets.DEV__PORT_FRONTEND_DASHBOARD }} ./docker/deploy.sh blog-admin-dev docker/docker-compose.admin.yml
           host: ${{ secrets.REMOTE_HOST }}
+          port: 20
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.SERVER_SSH_KEY}}
 
@@ -126,6 +128,7 @@ jobs:
           ARGS: "-rltgoDzvO --delete"
           SOURCE: ""
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_PORT: 20
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.DEV__REMOTE_TARGET }}
 
@@ -134,6 +137,7 @@ jobs:
         with:
           command: cd ${{ secrets.DEV__REMOTE_TARGET }} && ENVIRONMENT=dev PORT_FRONTEND=${{ secrets.DEV__PORT_FRONTEND_BLOG }} ./docker/deploy.sh blog-frontend-dev docker/docker-compose.yml
           host: ${{ secrets.REMOTE_HOST }}
+          port: 20
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.SERVER_SSH_KEY}}
 
@@ -183,6 +187,7 @@ jobs:
           ARGS: "-rltgoDzvO --delete"
           SOURCE: ""
           REMOTE_HOST: ${{ secrets.PROD__REMOTE_HOST }}
+          REMOTE_PORT: 20
           REMOTE_USER: ${{ secrets.PROD__REMOTE_USER }}
           TARGET: ${{ secrets.PROD__REMOTE_TARGET }}
 
@@ -191,6 +196,7 @@ jobs:
         with:
           command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_DASHBOARD }} ./docker/deploy.sh dashboard-prod-v4 docker/docker-compose.admin.yml
           host: ${{ secrets.PROD__REMOTE_HOST }}
+          port: 20
           username: ${{ secrets.PROD__REMOTE_USER }}
           privateKey: ${{ secrets.PROD__SERVER_SSH_KEY}}
 
@@ -213,6 +219,7 @@ jobs:
           ARGS: "-rltgoDzvO --delete"
           SOURCE: ""
           REMOTE_HOST: ${{ secrets.PROD__REMOTE_HOST }}
+          REMOTE_PORT: 20
           REMOTE_USER: ${{ secrets.PROD__REMOTE_USER }}
           TARGET: ${{ secrets.PROD__REMOTE_TARGET }}
 
@@ -221,6 +228,7 @@ jobs:
         with:
           command: cd ${{ secrets.PROD__REMOTE_TARGET }} && PORT_FRONTEND=${{ secrets.PROD__PORT_FRONTEND_BLOG }} ./docker/deploy.sh frontend-prod-v4 docker/docker-compose.yml
           host: ${{ secrets.PROD__REMOTE_HOST }}
+          port: 20
           username: ${{ secrets.PROD__REMOTE_USER }}
           privateKey: ${{ secrets.PROD__SERVER_SSH_KEY}}
 
