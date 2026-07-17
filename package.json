@@ -32,7 +32,7 @@
     "@apollo/client": "4.2.0",
     "@ngxs/storage-plugin": "21.0.0",
     "@ngxs/store": "21.0.0",
-    "@nx/angular": "22.7.5",
+    "@nx/angular": "23.1.0",
     "apollo-angular": "14.0.0",
     "compression": "^1.7.4",
     "express": "^4.22.2",
