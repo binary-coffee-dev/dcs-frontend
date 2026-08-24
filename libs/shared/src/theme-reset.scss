@@ -27,15 +27,15 @@ body {
 }
 
 mat-form-field {
-  --mat-form-field-container-height: 33px;
+  --mat-form-field-container-height: 2rem;
 
   margin: 5px 0;
   height: 2rem;
-  font-size: 10px;
+  font-size: 10px !important;
   border: solid 1px map.get(vars.$md-primary, 200);
   border-radius: map.get(vars.$radius, 2);
 
-  ::ng-deep.mat-mdc-text-field-wrapper {
+  .mat-mdc-text-field-wrapper {
     padding-bottom: 0;
     background-color: map.get(vars.$md-grey, A100);
     border-radius: map.get(vars.$radius, 2);
@@ -61,8 +61,6 @@ mat-form-field {
       }
 
       label {
-        top: 45%;
-
         mat-label {
           --lateral-distance: 10px;
           font-size: 10px;
