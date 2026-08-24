@@ -3,6 +3,7 @@ version: '3'
 services:
   deploy:
     image: nginx:1.13.9-alpine
+    restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
