@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody class="text-xs">
-          @for (post of posts(); track post; let i = $index) {
+          @for (post of posts(); track post?.id; let i = $index) {
             <tr
               [ngClass]='{"cell-even": i % 2 === 0, "cell-odd": i % 2 === 1}'>
               <td class='max-w-[450px] min-w-[200px] whitespace-normal py-1.5 px-3'>

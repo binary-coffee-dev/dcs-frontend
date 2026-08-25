@@ -1,4 +1,4 @@
-import { Component, inject, signal, effect } from '@angular/core';
+import { Component, inject, signal, effect, DestroyRef } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -14,6 +14,7 @@ import { SubscribeAction, SubscriptionState } from '@dcs-libs/shared';
 })
 export class SubscribeComponent {
   private store = inject(Store);
+  private destroyRef = inject(DestroyRef);
 
   message = signal<string>('');
   subscriptionError = signal<string>('');
@@ -40,7 +41,7 @@ export class SubscribeComponent {
     if (this.subscribeForm.valid && !this.loading()) {
       this.store
         .dispatch(new SubscribeAction(this.subscribeForm.controls['email'].value || ''))
-        .pipe(takeUntilDestroyed())
+        .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(() => {
           const subscription = this.store.selectSnapshot(SubscriptionState.subscription);
           if (subscription && !subscription.verified) {

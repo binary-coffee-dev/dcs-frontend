@@ -6,7 +6,8 @@ import {
   signal,
   effect,
   linkedSignal,
-  computed
+  computed,
+  DestroyRef
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
@@ -59,6 +60,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
   private url = inject(UrlUtilsService);
   private env = inject<Environment>(ENVIRONMENT);
   private window = inject<Window>(WINDOW);
+  private destroyRef = inject(DestroyRef);
 
   postStore = toSignal(this.store.select(PostState.post), {
     initialValue: null
@@ -114,11 +116,9 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
     this.populateAvailableTimes();
 
     this.window.document.addEventListener('keydown', this.shortCutHandlerMethod.bind(this));
-  }
 
-  ngOnInit() {
-    if (!this.isNewPost()) {
-      effect(() => {
+    effect(() => {
+      if (!this.isNewPost()) {
         const post = this.post();
         if (post) {
           this.articleForm.controls['body'].setValue(post.body);
@@ -145,8 +145,11 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
             this.articleForm.controls['time'].setValue(minutes);
           }
         }
-      });
-    }
+      }
+    });
+  }
+
+  ngOnInit() {
     this.store.dispatch(new FetchTagsAction());
   }
 
@@ -191,7 +194,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
     const TIME_TO_WAIT_UNTIL_REFRESH = 500;
     this._stopTimer.next(true);
     timer(TIME_TO_WAIT_UNTIL_REFRESH)
-      .pipe(takeUntilDestroyed(), takeUntil(this._stopTimer))
+      .pipe(takeUntilDestroyed(this.destroyRef), takeUntil(this._stopTimer))
       .subscribe(() => this.onPostChange());
   }
 
@@ -286,7 +289,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
       } else if (post) {
         this.store
           .dispatch(new PostUpdateAction(post))
-          .pipe(takeUntilDestroyed())
+          .pipe(takeUntilDestroyed(this.destroyRef))
           .subscribe(() => {
             this.imageChange.set(false);
             this.formDataChange.set(false);
@@ -331,7 +334,7 @@ export class OverviewComponent extends Permissions implements OnInit, OnDestroy 
 
     dialog
       .afterClosed()
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((image: File) => {
         if (image) {
           this.post.update((post) => (post ? { ...post, banner: image } : post));

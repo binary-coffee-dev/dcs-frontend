@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
@@ -16,6 +16,7 @@ import { AuthState, FetchPostsAction, SetFiltersAction, Where } from '@dcs-libs/
 })
 export class FilterComponent {
   private store = inject(Store);
+  private destroyRef = inject(DestroyRef);
 
   currentFilter = '';
   usersFilter = 'me';
@@ -30,7 +31,7 @@ export class FilterComponent {
   filterChange() {
     this.resetTimer.next(true);
     timer(1000)
-      .pipe(takeUntilDestroyed(), takeUntil(this.resetTimer))
+      .pipe(takeUntilDestroyed(this.destroyRef), takeUntil(this.resetTimer))
       .subscribe(() => {
         this.changeFilter();
       });
@@ -53,7 +54,7 @@ export class FilterComponent {
       } as Where;
       this.store
         .dispatch(new SetFiltersAction(filter))
-        .pipe(takeUntilDestroyed())
+        .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(() => this.store.dispatch(new FetchPostsAction()));
     }
   }
