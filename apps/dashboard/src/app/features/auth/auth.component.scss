@@ -5,6 +5,14 @@
 :host {
   width: 100%;
 
+  .login-button {
+    border: solid 2px map.get(vars.$md-grey, 700);
+    background-color: map.get(vars.$md-grey, 50);
+
+    width: 100%;
+    height: 2rem;
+  }
+
   .provider-item {
     border: solid 2px map.get(vars.$md-grey, 700);
     background-color: map.get(vars.$md-grey, 50);

@@ -11,6 +11,11 @@ const routes: Routes = [
     component: AuthComponent
   },
   {
+    path: 'local',
+    data: { provider: 'local' },
+    component: AuthComponent
+  },
+  {
     path: ':provider',
     canActivate: [ProviderGuard],
     component: AuthComponent
