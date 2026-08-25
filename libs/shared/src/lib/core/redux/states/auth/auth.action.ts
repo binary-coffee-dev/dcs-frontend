@@ -27,7 +27,7 @@ export class MeAction {
 export class AuthErrorAction {
   static readonly type = '[Auth] Auth error action';
 
-  constructor(public title: string) {}
+  constructor(public title: string | undefined) {}
 }
 
 export class UpdateMeAction {

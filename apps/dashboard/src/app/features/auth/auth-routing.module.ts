@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AuthComponent } from './auth.component';
 import { ProviderGuard } from '../../core/guards/provider.guard';
 import { MaterialModule } from '@dcs-libs/shared';
+import { CleanAuthErrorsGuard } from '../../core/guards/clean-auth-errors.guard';
 
 const routes: Routes = [
   {
@@ -12,12 +13,13 @@ const routes: Routes = [
   },
   {
     path: 'local',
+    canActivate: [CleanAuthErrorsGuard],
     data: { provider: 'local' },
     component: AuthComponent
   },
   {
     path: ':provider',
-    canActivate: [ProviderGuard],
+    canActivate: [CleanAuthErrorsGuard, ProviderGuard],
     component: AuthComponent
   }
 ];
