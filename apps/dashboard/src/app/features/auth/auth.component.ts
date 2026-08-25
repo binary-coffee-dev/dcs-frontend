@@ -28,11 +28,11 @@ export class AuthComponent {
   private route = inject(ActivatedRoute);
   private window = inject<Window>(WINDOW);
   private env = inject<Environment>(ENVIRONMENT);
+  private routerData = toSignal(this.route.data);
 
   authError = toSignal(this.store.select(AuthState.authError));
   providers = signal(PROVIDERS);
 
-  private routerData = toSignal(this.route.data);
   isLocalProvider = computed(() => this.routerData()?.['provider'] === 'local');
 
   loginForm = new UntypedFormGroup({

@@ -27,6 +27,7 @@
 
         <div class="pb-10">
           <form [formGroup]="loginForm"
+                (submit)="login()"
                 class="flex flex-col">
             <mat-form-field class="w1/2"
                             appearance='outline'>
