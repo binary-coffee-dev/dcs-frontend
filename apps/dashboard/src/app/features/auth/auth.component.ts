@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -31,6 +31,9 @@ export class AuthComponent {
 
   authError = toSignal(this.store.select(AuthState.authError));
   providers = signal(PROVIDERS);
+
+  private routerData = toSignal(this.route.data);
+  isLocalProvider = computed(() => this.routerData()?.['provider'] === 'local');
 
   loginForm = new UntypedFormGroup({
     identifier: new UntypedFormControl('', Validators.required),

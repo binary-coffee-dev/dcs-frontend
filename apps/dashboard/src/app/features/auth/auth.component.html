@@ -16,16 +16,50 @@
 
     <div class="flex flex-col">
       <span class="font-thin mt-0 mb-12 text-xs">
-        Puedes acceder con tu cuenta en Github
+        @if (isLocalProvider()) {
+          Puedes acceder con tu usuario y contraseña
+        } @else {
+          Puedes acceder con tu cuenta en Github
+        }
       </span>
 
-      @for (provider of providers(); track provider) {
-        <a class='provider-item flex flex-row items-center rounded py-1.5 px-5 text-xs'
-           (click)='loginWithProvider(provider)'
-           [matTooltip]="'Entar con mi cuenta de ' + provider.name">
-          <i [className]='provider.icon + " text-2xl"'></i>
-          <span class='provider-name ml-3'>Continuar con {{ provider.name }}</span>
-        </a>
+      @if (isLocalProvider()) {
+
+        <div class="pb-10">
+          <form [formGroup]="loginForm"
+                class="flex flex-col">
+            <mat-form-field class="w1/2"
+                            appearance='outline'>
+              <mat-label class='code-none'>Usuario</mat-label>
+              <input matInput
+                     formControlName='identifier'
+                     placeholder='Usuario' />
+            </mat-form-field>
+
+            <mat-form-field class="w1/2"
+                            appearance='outline'>
+              <mat-label class='code-none'>Contrase&ntilde;a</mat-label>
+              <input matInput
+                     formControlName='password'
+                     placeholder='Contrase&ntilde;a' />
+            </mat-form-field>
+            <button type="submit"
+                    class="login-button rounded mt-4 text-xs">
+              Autenticar
+            </button>
+          </form>
+        </div>
+
+      } @else {
+
+        @for (provider of providers(); track provider) {
+          <a class='provider-item flex flex-row items-center rounded py-1.5 px-5 text-xs'
+             (click)='loginWithProvider(provider)'
+             [matTooltip]="'Entar con mi cuenta de ' + provider.name">
+            <i [className]='provider.icon + " text-2xl"'></i>
+            <span class='provider-name ml-3'>Continuar con {{ provider.name }}</span>
+          </a>
+        }
       }
     </div>
 
